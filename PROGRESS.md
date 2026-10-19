@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #004 Misère Tic-Tac-Toe COMPLETE
+
+- Built on the m,n,k family (misère flag already supported by engine, solver, heuristic, board).
+  Shell gained an optional `describeResult` line ("X completed three in a row.").
+- Perfect = exact misère solver; Easy/Medium = alpha-beta with the sign-flipped line heuristic.
+  6 achievements incl. "The Squeeze" (opponent's last move was forced into a line).
+- Verified (actually run): `npm run verify` → lint, typecheck, 181 unit tests, build, 40 Playwright
+  tests. #004-specific: reachable-position enumeration (5,478 / 958 terminals, loser owns the line),
+  Perfect opens in the center (the only non-losing opening), Perfect never loses against every
+  reply sequence as X and as O, Perfect vs Perfect draws, Perfect 0 losses vs Medium (100 games).
+- Platform fix found by screenshot review: achievement toasts covered the bottom game controls on
+  phones; they now appear under the header on narrow screens.
+
 ## 2026-11-06 — Session 1: #003 Ultimate Tic-Tac-Toe COMPLETE
 
 - Platform refactor (own commit): generic two-player match shell
