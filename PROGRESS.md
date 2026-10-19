@@ -2,6 +2,21 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #005 Four in a Row (Connect Four) COMPLETE
+
+- Git history rewritten on request to remove the Co-Authored-By trailers (trees unchanged; force
+  push with lease); CLAUDE.md now forbids attribution trailers.
+- New shared gravity family `src/games/shared/gravity/` (engine, `GravitySearchAgent`, environment,
+  SVG board with masked holes and falling discs, shell definition builder) for #005 and #006.
+- #005: 7×6, four in a row; Easy / Medium / Hard (iterative-deepening negamax, Zobrist TT,
+  600 ms, ≈ depth 13 from the empty board); 6 achievements; red/yellow discs with a shape cue on
+  yellow and a blue/orange colorblind palette.
+- Verified (actually run): `npm run verify` → 210 unit tests, 46 Playwright tests. Search agent's
+  move always achieves the exact game value on 40 random late positions (checked against plain
+  negamax); seeded strength: Easy vs Random 40–0, Medium vs Easy 29–0–1, Hard vs Medium 16–0.
+- Found in screenshot review and fixed: scoreboard disc icons rendered black (CSS variables were
+  scoped to the board).
+
 ## 2026-11-06 — Session 1: #004 Misère Tic-Tac-Toe COMPLETE
 
 - Built on the m,n,k family (misère flag already supported by engine, solver, heuristic, board).
