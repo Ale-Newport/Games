@@ -21,9 +21,10 @@ export class EpsilonAgent<S, A> implements Agent<S, A> {
   constructor(
     private readonly inner: Agent<S, A>,
     private readonly epsilon: number,
+    meta: { id?: string; label?: string } = {},
   ) {
-    this.id = `${inner.id}~eps${epsilon}`;
-    this.label = `${inner.label} (ε=${epsilon})`;
+    this.id = meta.id ?? `${inner.id}~eps${epsilon}`;
+    this.label = meta.label ?? `${inner.label} (ε=${epsilon})`;
   }
 
   get lastStats() {

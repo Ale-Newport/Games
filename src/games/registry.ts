@@ -4,8 +4,11 @@
  * are code-split and loaded on demand.
  */
 import type { GameManifest, GameRegistration } from '../core/game-engine/types';
+import { manifest as ticTacToe } from './tic-tac-toe/manifest';
 
-export const GAMES: readonly GameRegistration[] = [];
+export const GAMES: readonly GameRegistration[] = [
+  { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
+];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
 

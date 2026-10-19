@@ -264,7 +264,17 @@ const DEFINITIONS: Def[] = [
 const PROGRESS: Record<
   string,
   Partial<Omit<RoadmapEntry, 'number' | 'id' | 'name' | 'category'>>
-> = {};
+> = {
+  'tic-tac-toe': {
+    status: 'COMPLETE',
+    engine: 'done',
+    graphics: 'done',
+    content: 'done',
+    tests: 'done',
+    ai: 'done',
+    completed: '2026-11-06',
+  },
+};
 
 export const ROADMAP: readonly RoadmapEntry[] = DEFINITIONS.map(([number, id, name, category]) => ({
   number,

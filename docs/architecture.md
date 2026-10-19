@@ -70,6 +70,7 @@ src/games/<id>/
   ai.ts          computer-opponent configuration (uses src/ai/agents)
   ai-adapter.ts  AiBundle: GameEnvironment + agent presets
   Game.tsx       UI component; Board/renderer components; *.module.css
+  HowToPlay.tsx  exports `Rules` (rules dialog content; never name it Rules.tsx — clashes with rules.ts on case-insensitive filesystems)
   audio.ts       SoundSpec definitions
   i18n.ts        game strings (en/es)
   assets/        preview.svg and other original assets
