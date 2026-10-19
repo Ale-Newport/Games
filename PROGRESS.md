@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #007 Gomoku COMPLETE
+
+- Freestyle 15×15 on the m,n,k engine. New shared pieces: `src/games/shared/goban/` (intersection
+  board with coordinates, star points, shaded stones, tap-to-preview/tap-again-to-place on touch;
+  stone-game definition builder) and `src/games/shared/five/agent.ts` (candidate generation near
+  stones, window attack/defense scores, alpha-beta with root iterative deepening).
+- Measurement caught a flaw: 3-ply search lost to the greedy level because the evaluation ignored
+  tempo; fixed (side to move's windows weighted ×1.5). Final seeded results: Easy vs Random 20–0,
+  Medium vs Easy 20–0, Hard vs Medium 9–0–3, Expert vs Hard 10–0 (avg 154 ms, ≤ 830 ms).
+- Shell: optional wide layout (board left, scores/controls right ≥ 960 px) for large boards.
+- Verified (actually run): `npm run verify` → 244 unit tests, build, 54 Playwright tests
+  (mobile uses real double taps). Screenshots reviewed.
+
 ## 2026-11-06 — Session 1: #006 Connect Five Gravity COMPLETE
 
 - 9×7 gravity board, five in a row (six+ also wins), on the shared gravity family. Levels tuned by

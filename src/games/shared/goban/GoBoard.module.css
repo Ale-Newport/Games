@@ -1,0 +1,181 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
+}
+
+.wood {
+  fill: #d9a95b;
+}
+
+:global(:root[data-theme='dark']) .wood {
+  fill: #c99645;
+}
+
+.grid line {
+  stroke: #3b2a12;
+  stroke-width: 1.6;
+  stroke-linecap: square;
+}
+
+.star {
+  fill: #3b2a12;
+}
+
+.coords text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  fill: #5a4120;
+  text-anchor: middle;
+}
+
+.stone {
+  transition: opacity var(--dur-slow);
+}
+
+.shadow {
+  fill: rgba(0, 0, 0, 0.32);
+}
+
+.animated .placed {
+  animation: place 220ms var(--ease-spring);
+}
+
+@keyframes place {
+  from {
+    transform: scale(1.25);
+    opacity: 0.4;
+  }
+}
+
+.dim {
+  opacity: 0.55;
+}
+
+.lastOnBlack {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 3;
+}
+
+.lastOnWhite {
+  fill: none;
+  stroke: #1b1d24;
+  stroke-width: 3;
+}
+
+.ghostBlack {
+  fill: rgba(10, 10, 14, 0.45);
+}
+
+.ghostWhite {
+  fill: rgba(255, 255, 255, 0.6);
+}
+
+.hint {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 4;
+  stroke-dasharray: 8 6;
+}
+
+.winLine {
+  stroke: #ff3d5a;
+  stroke-width: 6;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
+
+.forbidden line {
+  stroke: #d3243d;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.captureMark {
+  fill: none;
+  stroke: #d3243d;
+  stroke-width: 3;
+  stroke-dasharray: 6 5;
+}
+
+.terrBlack {
+  fill: #111;
+}
+
+.terrWhite {
+  fill: #fff;
+  stroke: #333;
+  stroke-width: 1;
+}
+
+.points {
+  position: absolute;
+  /* One button per intersection, centered on it: the grid spans (size) cells around the lines. */
+  left: calc(100% * (1 - 0.5) / (var(--size) + 1));
+  top: calc(100% * (1 - 0.5) / (var(--size) + 1));
+  width: calc(100% * var(--size) / (var(--size) + 1));
+  height: calc(100% * var(--size) / (var(--size) + 1));
+  display: grid;
+  grid-template-columns: repeat(var(--size), 1fr);
+  grid-template-rows: repeat(var(--size), 1fr);
+}
+
+.row {
+  display: contents;
+}
+
+.point {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.point[aria-disabled='true'] {
+  cursor: default;
+}
+
+.point:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: -2px;
+}
+
+@media (hover: hover) {
+  .hoverBlack:hover {
+    background: radial-gradient(circle, rgba(10, 10, 14, 0.45) 0 44%, transparent 46%);
+  }
+
+  .hoverWhite:hover {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.65) 0 44%, transparent 46%);
+  }
+}
+
+.confirm {
+  position: absolute;
+  left: 50%;
+  bottom: -30px;
+  transform: translateX(-50%);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  white-space: nowrap;
+}

@@ -396,3 +396,47 @@
     padding: var(--space-4);
   }
 }
+
+/* Side layout for large boards on wide screens: board left, scores/status/controls right. */
+@media (min-width: 960px) {
+  .wide {
+    display: grid;
+    max-width: 1180px;
+    grid-template-columns: minmax(0, auto) 300px;
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      'board score'
+      'board status'
+      'board controls'
+      'board keys';
+    column-gap: var(--space-6);
+    align-items: start;
+    justify-content: center;
+  }
+
+  .wide .scoreboard {
+    grid-area: score;
+    grid-template-columns: 1fr;
+  }
+
+  .wide .status {
+    grid-area: status;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .wide .controls {
+    grid-area: controls;
+    justify-content: flex-start;
+  }
+
+  .wide .keys {
+    grid-area: keys;
+    text-align: left;
+  }
+
+  .wide .boardWrap {
+    grid-area: board;
+    width: min(calc(100dvh - 150px), 760px, calc(100vw - 420px));
+  }
+}

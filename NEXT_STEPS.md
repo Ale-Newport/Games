@@ -9,7 +9,8 @@
 - **#004 Misère Tic-Tac-Toe — COMPLETE** (2026-11-06).
 - **#005 Four in a Row — COMPLETE** (2026-11-06).
 - **#006 Connect Five Gravity — COMPLETE** (2026-11-06).
-- **Current game: #007 Gomoku** (`gomoku`) — TODO.
+- **#007 Gomoku — COMPLETE** (2026-11-06).
+- **Current game: #008 Renju** (`renju`) — TODO.
 
 ## Resume instructions
 
@@ -39,15 +40,11 @@ with its own engine, and `src/games/tic-tac-toe-4x4/` for an m,n,k game):
 Gotcha: Prettier reflows long lines — when scripting edits to existing files, re-read them first or
 use exact-match edits, and check that the edit applied.
 
-## Plan for #007 Gomoku (then #008 Renju, #009 Pente)
+## Plan for #008 Renju and #009 Pente
 
-- Freestyle Gomoku on 15×15: five or more in a row wins (document overline choice: freestyle =
-  overlines win). The m,n,k engine already handles 15×15, k = 5 (lineThrough ≥ k). The exact solver
-  does not apply (225 cells); the full-board UI needs a Go-style board component (intersections,
-  stones, coordinates, zoom-friendly on mobile).
-- AI: threat-space heuristics are essential (open fours, fours, open threes). Write a dedicated
-  candidate-move generator (cells within distance 2 of stones) + alpha-beta with a pattern
-  evaluation; consider a shared `src/games/shared/five-in-row/` for Gomoku/Renju/Pente.
+- Reuse `createStoneGame` (`src/games/shared/goban/stone-game.tsx`) and `FiveInRowAgent`
+  (`src/games/shared/five/agent.ts`; it already accepts `isForbidden` at the root — Renju must also
+  apply it inside the search, or filter candidates by a board-level forbidden check).
 - Renju (#008) adds Black restrictions (double-three, double-four, overline forbidden for Black)
   — design the pattern detector so Renju can reuse it. Pente (#009) adds pair captures and 5-capture
   victory on a 19×19 board.
