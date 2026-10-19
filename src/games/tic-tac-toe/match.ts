@@ -5,14 +5,7 @@ import { AGENT_PRESETS, DIFFICULTIES } from './ai';
 import { TTT } from './rules';
 
 export type { MatchSetup, MatchState, Mode, Scores, Speed } from '../shared/mnk/match';
-export {
-  SPEED_MS,
-  canUndo,
-  firstPlayerFor,
-  isHumanTurn,
-  markRecorded,
-  statsMode,
-} from '../shared/mnk/match';
+export { SPEED_MS, firstPlayerFor, markRecorded, statsMode } from '../shared/mnk/match';
 
 export const MATCH_CONFIG: MnkMatchConfig = {
   rules: TTT,
@@ -25,6 +18,8 @@ export const MATCH_CONFIG: MnkMatchConfig = {
 export const defaultSetup = (playerName?: string, secondName?: string) =>
   mnk.defaultSetup(MATCH_CONFIG, playerName, secondName);
 export const newMatch = (setup: MatchSetup) => mnk.newMatch(MATCH_CONFIG, setup);
+export const isHumanTurn = (m: MatchState) => mnk.isHumanTurn(MATCH_CONFIG, m);
+export const canUndo = (m: MatchState) => mnk.canUndo(MATCH_CONFIG, m);
 export const applyMove = (m: MatchState, cell: number) => mnk.applyMove(MATCH_CONFIG, m, cell);
 export const undo = (m: MatchState) => mnk.undo(MATCH_CONFIG, m);
 export const restartRound = (m: MatchState) => mnk.restartRound(MATCH_CONFIG, m);
