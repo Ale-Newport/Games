@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #008 Renju COMPLETE
+
+- RIF forbidden-move detector (`src/games/renju/forbidden.ts`): exact five, overline, fours
+  (same-line 4-4, straight four), recursive real-three (3-3) with fake-three handling, fast path.
+  Hand-verified pattern tests (9). Forbidden points are illegal for Black, marked with a red ✕,
+  disabled and announced as "forbidden for Black"; the AI applies the check at every search node.
+- Documented simplification: tournament opening protocol (swap / two fifth moves) not implemented;
+  RIF center first stone enforced.
+- Bug found and fixed (affected #007): the shell's "alternate who starts" let White move first in
+  round 2 of stone games. New `MatchConfig.fixedFirstSeat` (Black always opens; menu hides the
+  toggle) with a regression test.
+- Verified (actually run): `npm run verify` → 267 unit tests, build, 56 Playwright tests.
+
 ## 2026-11-06 — Session 1: #007 Gomoku COMPLETE
 
 - Freestyle 15×15 on the m,n,k engine. New shared pieces: `src/games/shared/goban/` (intersection

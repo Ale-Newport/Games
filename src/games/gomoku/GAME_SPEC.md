@@ -9,7 +9,8 @@ Freestyle Gomoku:
 - The first player with an unbroken line of **five or more** stones horizontally, vertically or
   diagonally wins (freestyle: overlines count). Black has no restrictions (that is Renju, #008).
 - If the board fills with no five in a row, the game is a draw.
-- Match option _Alternate who starts each round_ (default on).
+- Black always moves first in every round; players choose their color in the menu (the shell's
+  "alternate who starts" option is disabled for stone games via `fixedFirstSeat`).
 
 Freestyle Gomoku on 15×15 is known to be a first-player win with perfect play; no level here is
 perfect.

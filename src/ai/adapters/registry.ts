@@ -18,6 +18,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'connect-five-gravity': () =>
     import('../../games/connect-five-gravity/ai-adapter').then((m) => m.bundle),
   gomoku: () => import('../../games/gomoku/ai-adapter').then((m) => m.bundle),
+  renju: () => import('../../games/renju/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

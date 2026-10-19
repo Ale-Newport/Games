@@ -235,6 +235,7 @@ export function GoBoard(props: GoBoardProps) {
             {Array.from({ length: size }, (_, c) => {
               const i = r * size + c;
               const stone = stones[i] ?? 0;
+              const playable = ghost !== null && (isPlayable?.(i) ?? stone === 0);
               return (
                 <button
                   key={i}
@@ -243,11 +244,11 @@ export function GoBoard(props: GoBoardProps) {
                   }}
                   type="button"
                   role="gridcell"
-                  className={`${styles.point} ${ghost !== null && stone === 0 ? (ghost === 1 ? styles.hoverBlack : styles.hoverWhite) : ''}`}
+                  className={`${styles.point} ${playable ? (ghost === 1 ? styles.hoverBlack : styles.hoverWhite) : ''}`}
                   data-point={i}
                   tabIndex={i === cursor ? 0 : -1}
                   aria-label={pointLabel(i, stone)}
-                  aria-disabled={ghost === null || stone !== 0}
+                  aria-disabled={!playable}
                   onClick={() => press(i)}
                   onFocus={() => setCursor(i)}
                 />
