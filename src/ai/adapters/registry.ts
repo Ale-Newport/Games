@@ -10,6 +10,8 @@ export type AnyBundle = AiBundle<any, any>;
 export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'tic-tac-toe': () => import('../../games/tic-tac-toe/ai-adapter').then((m) => m.bundle),
   'tic-tac-toe-4x4': () => import('../../games/tic-tac-toe-4x4/ai-adapter').then((m) => m.bundle),
+  'ultimate-tic-tac-toe': () =>
+    import('../../games/ultimate-tic-tac-toe/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

@@ -2,6 +2,22 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #003 Ultimate Tic-Tac-Toe COMPLETE
+
+- Platform refactor (own commit): generic two-player match shell
+  `src/games/shared/two-player/` (`TwoPlayerGame`, `TwoPlayerRules`, match flow, strings, sounds).
+  Boards plug in as components; the m,n,k games now wrap it. Intended for all two-player board
+  games (#004–#070) — new games supply rules, board, agents, strings and achievements only.
+- #003: dedicated engine (sending rule, free choice, local wins close boards, drawn boards count
+  for nobody, global line wins, draw when all boards are closed), 9×9 board with playable-board
+  glow, captured/drawn overlays and global win line, keypad entry in the forced board,
+  capture chime, spoken move/next-board announcements, 6 achievements, EN/ES.
+- AI chosen by measurement (seeded `npm run evaluate`): Easy vs Random 34–4–2; Medium vs Easy
+  26–4–0; Hard = MCTS 20k sims/600 ms: 13–2–1 vs Medium, 6–4–2 vs alpha-beta (depth ≤ 10, 400 ms).
+- Verified (actually run): `npm run verify` → lint, typecheck, 161 unit tests, build,
+  36 Playwright tests (desktop + mobile). Screenshots reviewed (capture + free choice on desktop,
+  vs Easy on mobile).
+
 ## 2026-11-06 — Session 1: #002 Tic-Tac-Toe 4×4 COMPLETE
 
 - Refactored the m,n,k family so #001, #002 (and later #004) share one implementation:

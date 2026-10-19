@@ -23,12 +23,22 @@ export interface MnkBoardProps {
   onFocusCell: (index: number) => void;
 }
 
-function Mark({ cell, className }: { cell: Cell; className?: string }) {
+/** X or O glyph (pathLength-normalized strokes for draw-on animation). */
+export function Mark({
+  cell,
+  className,
+  drawIn,
+}: {
+  cell: Cell;
+  className?: string;
+  drawIn?: boolean;
+}) {
+  const extra = `${className ?? ''} ${drawIn ? styles.draw : ''}`;
   if (cell === 1) {
     return (
       <svg
         viewBox="0 0 100 100"
-        className={`${styles.mark} ${styles.x} ${className ?? ''}`}
+        className={`${styles.mark} ${styles.x} ${extra}`}
         aria-hidden="true"
       >
         <path d="M28 28 L72 72" pathLength={1} />
@@ -40,7 +50,7 @@ function Mark({ cell, className }: { cell: Cell; className?: string }) {
     return (
       <svg
         viewBox="0 0 100 100"
-        className={`${styles.mark} ${styles.o} ${className ?? ''}`}
+        className={`${styles.mark} ${styles.o} ${extra}`}
         aria-hidden="true"
       >
         <circle cx="50" cy="50" r="23" pathLength={1} transform="rotate(-90 50 50)" />
@@ -145,10 +155,7 @@ export function MnkBoard(props: MnkBoardProps) {
                 onFocus={() => onFocusCell(i)}
               >
                 {cell !== 0 ? (
-                  <Mark
-                    cell={cell}
-                    className={animate && lastMove === i ? styles.draw : undefined}
-                  />
+                  <Mark cell={cell} drawIn={animate && lastMove === i} />
                 ) : (
                   ghost !== null && <Mark cell={ghost} className={styles.ghost} />
                 )}
