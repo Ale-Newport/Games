@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #009 Pente COMPLETE
+
+- Dedicated capture engine (custodial pairs in 8 directions, multi-captures, safe moves into a
+  bracket, five-or-more and five-pairs wins, center opening + tournament rule).
+- AI on the generic `AlphaBetaAgent` with capture-aware candidate pruning. Measurement found a
+  horizon bug (3/4-ply lost to 2-ply because leaf evaluation ignored tempo and immediate fours);
+  fixed with tempo weighting and explicit four/double-four detection. Seeded (with 8% randomness
+  for variety): Easy vs Random 10–0, Medium vs Easy 15–1, Hard (5 plies/10 candidates) vs Medium 20–4.
+- Shell: optional `statusInfo` live line (capture counter).
+- Replaced a meaningless assertion I had written (type check of a boolean) with a real
+  double-capture history test.
+- Verified (actually run): `npm run verify` → 284 unit tests, build, 60 Playwright tests.
+
 ## 2026-11-06 — Session 1: #008 Renju COMPLETE
 
 - RIF forbidden-move detector (`src/games/renju/forbidden.ts`): exact five, overline, fours

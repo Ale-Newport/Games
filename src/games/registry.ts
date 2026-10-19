@@ -12,6 +12,7 @@ import { manifest as fourInARow } from './four-in-a-row/manifest';
 import { manifest as connectFive } from './connect-five-gravity/manifest';
 import { manifest as gomoku } from './gomoku/manifest';
 import { manifest as renju } from './renju/manifest';
+import { manifest as pente } from './pente/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -22,6 +23,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: connectFive, load: () => import('./connect-five-gravity/index') },
   { manifest: gomoku, load: () => import('./gomoku/index') },
   { manifest: renju, load: () => import('./renju/index') },
+  { manifest: pente, load: () => import('./pente/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

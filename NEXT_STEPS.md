@@ -11,7 +11,8 @@
 - **#006 Connect Five Gravity — COMPLETE** (2026-11-06).
 - **#007 Gomoku — COMPLETE** (2026-11-06).
 - **#008 Renju — COMPLETE** (2026-11-06).
-- **Current game: #009 Pente** (`pente`) — TODO.
+- **#009 Pente — COMPLETE** (2026-11-06).
+- **Current game: #010 Othello / Reversi 8×8** (public title "Reversi", id `reversi-8x8`) — TODO.
 
 ## Resume instructions
 
@@ -41,14 +42,16 @@ with its own engine, and `src/games/tic-tac-toe-4x4/` for an m,n,k game):
 Gotcha: Prettier reflows long lines — when scripting edits to existing files, re-read them first or
 use exact-match edits, and check that the edit applied.
 
-## Plan for #009 Pente
+## Plan for #010 Reversi 8×8 and #011 Reversi 6×6
 
-- Reuse `createStoneGame` (`src/games/shared/goban/stone-game.tsx`) and `FiveInRowAgent`
-  (`src/games/shared/five/agent.ts`; it already accepts `isForbidden` at the root — Renju must also
-  apply it inside the search, or filter candidates by a board-level forbidden check).
-- Renju (#008) adds Black restrictions (double-three, double-four, overline forbidden for Black)
-  — design the pattern detector so Renju can reuse it. Pente (#009) adds pair captures and 5-capture
-  victory on a 19×19 board.
+- One shared engine for both sizes: `src/games/shared/reversi/` (board N×N, standard start square,
+  flips in 8 directions, pass when no legal move, game ends when neither side can move, disc count
+  scoring; Black first). The pass is a real action for the AI contract (action index N×N = pass).
+- AI: alpha-beta with mobility, corner/X-square/edge weights and disc parity in the endgame; exact
+  endgame solving in the last ~10–12 empties. 6×6 is solved (second player wins 16–20 with perfect
+  play) — verify against our solver if feasible.
+- Board: green felt, discs with flip animation, legal-move dots, last move, live disc counts
+  (`statusInfo`), pass notice.
 
 ## Known follow-ups (platform)
 
