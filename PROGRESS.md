@@ -2,6 +2,27 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #002 Tic-Tac-Toe 4×4 COMPLETE
+
+- Refactored the m,n,k family so #001, #002 (and later #004) share one implementation:
+  `src/games/shared/mnk/` now holds the engine, exact solver, agents, environment factory, match
+  flow, full game UI (`MnkGame`), board, strings and sounds. #001 became a thin definition; all its
+  tests (unit + e2e) still pass unchanged apart from generic test ids (`mnk-status`, `mnk-menu`).
+- New exact solver (`solver.ts`): bitboards, 8-fold symmetry TT with byte lookup tables,
+  dead-position detection, immediate-win / forced-block pruning, misère support. Empty 4×4 board:
+  3.4M nodes / ~0.65 s vs 44M nodes / ~27 s for plain memoized negamax (measured).
+- Proven by test: 4×4 four-in-a-row is a draw and every position with ≤ 3 marks is a draw
+  (3,360 three-mark positions) → the Perfect agent skips search while ≤ 2 marks are down.
+- #002: same modes/features as #001 on a 4×4 board; Easy / Medium (heuristic alpha-beta) /
+  Perfect (solver, trap-setting tie-breaks); 6 achievements; EN/ES rules.
+- Verified (actually run): `npm run verify` → lint clean, 132 unit tests, build, 30 Playwright
+  tests (desktop + mobile). Solver agrees with plain negamax on all 3×3 positions (normal and
+  misère) and 150 random late 4×4 positions. Seeded evaluations (`npm run evaluate`):
+  Medium vs Easy 10 W / 89 D / 1 L; Perfect vs Medium 11 W / 89 D / 0 L (max decision 79 ms);
+  Perfect never lost in any batch. Screenshots reviewed (mobile result screen, desktop hint).
+- Found during verification: the naive e2e strategy loses to Perfect (expected) — the test now
+  waits for either the human's turn or the end of the round.
+
 ## 2026-11-06 — Session 1: #001 Tic-Tac-Toe COMPLETE
 
 - Shared m,n,k engine `src/games/shared/mnk/` (rules + accessible animated `MnkBoard`), built to

@@ -1,6 +1,7 @@
-import type { SoundSpec } from '../../core/audio/audio-engine';
+import type { SoundSpec } from '../../../core/audio/audio-engine';
 
-export const SOUNDS = {
+/** Default synthesized sounds for m,n,k games; games may override individual entries. */
+export const MNK_SOUNDS = {
   placeX: [
     { wave: 'triangle', freq: 880, freqEnd: 660, duration: 0.09, gain: 0.22 },
     { wave: 'noise', freq: 0, duration: 0.03, gain: 0.05, lowpass: 3000 },
@@ -24,3 +25,5 @@ export const SOUNDS = {
   invalid: [{ wave: 'square', freq: 140, duration: 0.09, gain: 0.08 }],
   hint: [{ wave: 'sine', freq: 1320, freqEnd: 1560, duration: 0.18, gain: 0.12 }],
 } satisfies Record<string, SoundSpec>;
+
+export type MnkSounds = Record<keyof typeof MNK_SOUNDS, SoundSpec>;

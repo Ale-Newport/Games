@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 1 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 199
+**Complete:** 2 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 198
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -12,7 +12,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | # | Game | ID | Status | Engine | Graphics | Content | Tests | AI | Completed | Known issues |
 |---:|---|---|---|:-:|:-:|:-:|:-:|:-:|---|---|
 | 001 | Tic-Tac-Toe 3×3 | `tic-tac-toe` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 002 | Tic-Tac-Toe 4×4 | `tic-tac-toe-4x4` | TODO | — | — | — | — | — |  |  |
+| 002 | Tic-Tac-Toe 4×4 | `tic-tac-toe-4x4` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 003 | Ultimate Tic-Tac-Toe | `ultimate-tic-tac-toe` | TODO | — | — | — | — | — |  |  |
 | 004 | Misère Tic-Tac-Toe | `misere-tic-tac-toe` | TODO | — | — | — | — | — |  |  |
 | 005 | Connect Four | `four-in-a-row` | TODO | — | — | — | — | — |  |  |

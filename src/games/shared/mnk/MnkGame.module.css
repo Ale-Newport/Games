@@ -205,6 +205,7 @@
 }
 
 .menuLogo {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -221,8 +222,21 @@
   color: var(--player-1);
 }
 
-.menuLogo svg:last-child {
+.menuLogo svg:nth-child(2) {
   color: var(--player-2);
+}
+
+.menuSize {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--accent-contrast);
+  background: var(--accent);
 }
 
 .menuTitle {

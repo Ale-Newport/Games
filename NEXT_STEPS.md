@@ -4,7 +4,8 @@
 
 - Platform foundation: done (see PROGRESS.md).
 - **#001 Tic-Tac-Toe 3×3 — COMPLETE** (2026-11-06).
-- **Current game: #002 Tic-Tac-Toe 4×4** — TODO (start at Stage A).
+- **#002 Tic-Tac-Toe 4×4 — COMPLETE** (2026-11-06).
+- **Current game: #003 Ultimate Tic-Tac-Toe** — TODO (start at Stage A).
 
 ## Resume instructions
 
@@ -13,22 +14,26 @@
 3. `npm run verify` should be green before you start.
 4. Follow CLAUDE.md Stages A–G for the current game.
 
-## Plan for #002 Tic-Tac-Toe 4×4 (four in a row)
+## Plan for #003 Ultimate Tic-Tac-Toe
 
-- Reuse `src/games/shared/mnk/engine.ts` with `{ rows: 4, cols: 4, k: 4 }` and `MnkBoard`.
-  Follow `src/games/tic-tac-toe/` as the template (rules binding, match.ts, ai.ts, ai-adapter.ts,
-  Game.tsx, HowToPlay.tsx, i18n.ts, audio.ts, manifest.ts, rules-meta.ts, tests/).
-- Consider extracting the parts of `tic-tac-toe/match.ts` and `Game.tsx` that are identical for
-  #002/#004 into `src/games/shared/mnk/` (match flow, menu, scoreboard) — only if it removes real
-  duplication; keep game-specific modes/achievements in each game.
-- AI: the 4×4 tree is much larger than 3×3. Full-depth alpha-beta from the empty board may be too
-  slow in the browser; plan an evaluation heuristic (open lines weighted by marks) with iterative
-  deepening under a time budget for Medium/Hard, and verify "Hard never loses" empirically plus
-  exact checks from mid-game positions. Measure node counts/latency before deciding; document in
-  GAME_SPEC.md. 4×4 k=4 is a known draw with perfect play — confirm with an offline exhaustive
-  search in a test (with transposition table) if it runs in reasonable time.
-- Achievements and statistics analogous to #001 but specific to 4×4.
-- e2e spec `tests/e2e/games/tic-tac-toe-4x4.spec.ts`.
+- Ruleset to document: 9 local 3×3 boards in a 3×3 global board. A move in cell c of a local board
+  sends the opponent to local board c. If that board is won or full, the opponent may play in any
+  open board (free choice). A local board is won by three in a row (it then counts for that player
+  on the global board); a full local board with no line is drawn and counts for nobody. The game
+  is won by three local boards in a row; if no open boards remain, it is a draw. (Decide and
+  document whether drawn boards can count for both — the common competitive ruleset says no.)
+- This is NOT an m,n,k game: write a new engine `src/games/ultimate-tic-tac-toe/engine.ts`
+  (bitboards per local board recommended for AI speed). Reuse `lineThrough`/grid helpers and the
+  `MnkBoard` visual language where sensible, but build a dedicated 9×9 board component that shows
+  the active board(s), won-board overlays (big X/O), and legal-target highlighting.
+- AI: tree is far too large for exact solving. Use `MctsAgent` (already generic) and/or
+  `AlphaBetaAgent` with a heuristic (local-board wins, global two-in-a-rows, sending penalties).
+  Measure latency in the browser; keep decisions ≤ ~300 ms or move search to a worker.
+- Reuse the match-flow ideas from `src/games/shared/mnk/match.ts`, but the state type differs;
+  consider generalizing `MnkGame`'s menu/scoreboard pieces into `src/components/` or
+  `src/games/shared/turn-based/` only if it clearly reduces duplication.
+- Tests: send/free-choice rules, local and global wins, drawn local boards, draw detection,
+  contract suite, UI, e2e.
 
 ## Known follow-ups (platform)
 
