@@ -1,0 +1,30 @@
+.arena {
+  padding: var(--space-5);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.report {
+  margin-top: var(--space-5);
+}
+
+.report h3 {
+  margin-bottom: var(--space-3);
+}
+
+.kind {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
