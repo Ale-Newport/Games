@@ -8,7 +8,8 @@
 - **#003 Ultimate Tic-Tac-Toe — COMPLETE** (2026-11-06).
 - **#004 Misère Tic-Tac-Toe — COMPLETE** (2026-11-06).
 - **#005 Four in a Row — COMPLETE** (2026-11-06).
-- **Current game: #006 Connect Five Gravity** (`connect-five-gravity`) — TODO.
+- **#006 Connect Five Gravity — COMPLETE** (2026-11-06).
+- **Current game: #007 Gomoku** (`gomoku`) — TODO.
 
 ## Resume instructions
 
@@ -38,12 +39,18 @@ with its own engine, and `src/games/tic-tac-toe-4x4/` for an m,n,k game):
 Gotcha: Prettier reflows long lines — when scripting edits to existing files, re-read them first or
 use exact-match edits, and check that the edit applied.
 
-## Plan for #006 Connect Five Gravity
+## Plan for #007 Gomoku (then #008 Renju, #009 Pente)
 
-- Same gravity family with `{ rows: 7, cols: 9, k: 5 }` (ruleset `connect-five-9x7`).
-  Reuse `createGravityDefinition`, `GravitySearchAgent`, `createGravityEnvironment`.
-- Measure search depth/latency on 9×7 (63 cells, branching 9) and tune Easy/Medium/Hard.
-- Digits 1–9 map to the 9 columns.
+- Freestyle Gomoku on 15×15: five or more in a row wins (document overline choice: freestyle =
+  overlines win). The m,n,k engine already handles 15×15, k = 5 (lineThrough ≥ k). The exact solver
+  does not apply (225 cells); the full-board UI needs a Go-style board component (intersections,
+  stones, coordinates, zoom-friendly on mobile).
+- AI: threat-space heuristics are essential (open fours, fours, open threes). Write a dedicated
+  candidate-move generator (cells within distance 2 of stones) + alpha-beta with a pattern
+  evaluation; consider a shared `src/games/shared/five-in-row/` for Gomoku/Renju/Pente.
+- Renju (#008) adds Black restrictions (double-three, double-four, overline forbidden for Black)
+  — design the pattern detector so Renju can reuse it. Pente (#009) adds pair captures and 5-capture
+  victory on a 19×19 board.
 
 ## Known follow-ups (platform)
 

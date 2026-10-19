@@ -123,14 +123,6 @@ export function createGravityBoard(rules: GravityRules) {
                     r={UNIT * 0.26}
                     className={seat === 0 ? styles.inner0 : styles.inner1}
                   />
-                  {winSet.has(i) && (
-                    <circle
-                      cx={col * UNIT + UNIT / 2}
-                      cy={row * UNIT + UNIT / 2}
-                      r={UNIT * 0.46}
-                      className={styles.winRing}
-                    />
-                  )}
                   {isLast && !winSet.has(i) && (
                     <circle
                       cx={col * UNIT + UNIT / 2}
@@ -166,6 +158,16 @@ export function createGravityBoard(rules: GravityRules) {
               fill={`url(#frame-${cols}x${rows})`}
               mask={`url(#holes-${cols}x${rows})`}
             />
+            {/* Win rings sit above the frame so they are never hidden by it. */}
+            {[...winSet].map((i) => (
+              <circle
+                key={`win-${i}`}
+                cx={(i % cols) * UNIT + UNIT / 2}
+                cy={Math.floor(i / cols) * UNIT + UNIT / 2}
+                r={UNIT * 0.37}
+                className={styles.winRing}
+              />
+            ))}
           </svg>
           <div className={styles.columns} role="group" aria-label={t('board.label')}>
             {Array.from({ length: cols }, (_, col) => {
