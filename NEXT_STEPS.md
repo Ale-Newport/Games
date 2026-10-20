@@ -12,7 +12,8 @@
 - **#007 Gomoku — COMPLETE** (2026-11-06).
 - **#008 Renju — COMPLETE** (2026-11-06).
 - **#009 Pente — COMPLETE** (2026-11-06).
-- **Current game: #010 Othello / Reversi 8×8** (public title "Reversi", id `reversi-8x8`) — TODO.
+- **#010 Reversi 8×8 — COMPLETE** (2026-11-06).
+- **Current game: #011 Reversi 6×6** (`reversi-6x6`) — TODO: reuse `createReversiDefinition`.
 
 ## Resume instructions
 

@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #010 Reversi 8×8 COMPLETE
+
+- Shared Reversi family `src/games/shared/reversi/` (engine with explicit pass action and
+  end-when-nobody-can-move, `ReversiSearchAgent` with corner-aware weights, mobility, iterative
+  deepening and exact endgame; felt board with flip animation, legal-move dots and Pass bar).
+- Seeded results: Easy vs Random 19–0–1, Medium vs Easy 20–0, Hard vs Medium 16–0 (avg 520 ms).
+  Exact endgame move matches brute force on 12 random 6×6 endgames. Found and fixed: the endgame
+  timeout fallback ran without a time limit.
+- Screenshot review fix: the board frame overlapped coordinate labels on phones.
+- Verified (actually run): `npm run verify` → 304 unit tests, build, 62 Playwright tests.
+
 ## 2026-11-06 — Session 1: #009 Pente COMPLETE
 
 - Dedicated capture engine (custodial pairs in 8 directions, multi-captures, safe moves into a
