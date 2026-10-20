@@ -11,6 +11,7 @@ import type { ShogiVariant } from './variants';
 
 const MATE = 1_000_000;
 const MATE_BOUND = MATE - 10_000;
+const CONTEMPT = 40;
 
 const enum Bound {
   Exact,
@@ -224,7 +225,10 @@ export class ShogiSearchAgent implements Agent<ShogiState, string> {
       if (t !== null) return t;
     }
     const key = pos.key();
-    for (let i = this.path.length - 3; i >= 0; i -= 2) if (this.path[i] === key) return 0;
+    // A repetition is scored as a slightly bad draw for the root player (contempt), so the
+    // computer avoids repeating unless it is worse off.
+    for (let i = this.path.length - 3; i >= 0; i -= 2)
+      if (this.path[i] === key) return ply % 2 === 0 ? -CONTEMPT : CONTEMPT;
     if (depth <= 0) return this.quiesce(pos, alpha, beta, ply, 0);
     const entry = this.table.get(key);
     if (entry && entry.depth >= depth) {

@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #022 Animal Shogi 3×4 COMPLETE
+
+- Catalog entry "Dōbutsu Shōgi" shipped under the generic title "Animal Shogi 3×4" with original
+  animal tiles (movement dots), since the product name is a trademark.
+- Thin module on the shared shogi family (`ANIMAL`: royal capture, try rule, compulsory hen
+  promotion, threefold repetition). Portrait board sized by the available height on phones.
+- The bench exposed an engine weakness: Expert vs Hard was 0–0–6 (both repeated into draws).
+  Added draw contempt to `ShogiSearchAgent` (also used by #021) → Easy vs Random 10–0, Medium vs
+  Easy 10–0, Hard vs Medium 6–0, Expert vs Hard 6–0.
+- Verified (actually run): `npm run verify` → 514 unit tests, build, 86 Playwright tests.
+
 ## 2026-11-06 — Session 1: #021 Shogi COMPLETE
 
 - Shared shogi family `src/games/shared/shogi/`: piece tables with oriented vectors and reverse
