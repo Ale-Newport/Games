@@ -1,9 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { Rng } from '../../../../core/game-engine/random';
-import { parseFen } from '../fen';
+import { START_FEN, parseFen } from '../fen';
 import {
   applyChessAction,
   chess960BackRank,
+  chess960Fen,
+  chess960Number,
+  bishopsNeverMeet,
   createChessState,
   insufficientMaterial,
   isValidChessState,
@@ -111,6 +114,13 @@ describe('variants', () => {
       expect(r.lastIndexOf('R')).toBeGreaterThan(k);
     }
     expect(seen.size).toBe(960);
+    expect(chess960Number(chess960Fen(733))).toBe(733);
+    expect(chess960Number(START_FEN)).toBe(518);
+    expect(chess960Number('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1')).toBe(null);
+    // Saves must start from a position the variant allows.
+    const foreign = { ...createChessState(STANDARD), startFen: chess960Fen(3) };
+    expect(isValidChessState(STANDARD, foreign)).toBe(false);
+    expect(isValidChessState(CHESS960, createChessState(CHESS960, 3))).toBe(true);
     const s = createChessState(CHESS960, 7);
     expect(legalActions(CHESS960, s).length).toBeGreaterThan(15);
   });
@@ -163,4 +173,21 @@ describe('variants', () => {
       }
     }
   }, 60_000);
+});
+
+describe('antichess dead draw', () => {
+  it('draws once only bishops on opposite square colors remain', () => {
+    const rules = ANTICHESS.rules;
+    // c1 and d2 are both dark: the bishops can still meet.
+    expect(bishopsNeverMeet(parseFen(rules, '8/8/8/8/8/8/3b4/2B5 w - - 0 1'))).toBe(false);
+    // c1 dark, d3 light: they never can.
+    expect(bishopsNeverMeet(parseFen(rules, '8/8/8/8/8/3b4/8/2B5 w - - 0 1'))).toBe(true);
+    // White must take the knight (compulsory); afterwards b2 (dark) vs d3 (light) is dead.
+    const s = from(ANTICHESS, '8/8/8/8/8/3b4/1n6/2B5 w - - 0 1');
+    expect(legalActions(ANTICHESS, s)).toEqual(['c1b2']);
+    expect(applyChessAction(ANTICHESS, s, 'c1b2').result).toEqual({
+      kind: 'draw',
+      reason: 'insufficient-material',
+    });
+  });
 });

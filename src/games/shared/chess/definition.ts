@@ -2,7 +2,7 @@
 import type { AgentPreset } from '../../../ai/protocols/bundle';
 import type { GameEnvironment } from '../../../ai/protocols/types';
 import type { SoundSpec } from '../../../core/audio/audio-engine';
-import type { Dictionary, Locale } from '../../../core/i18n';
+import type { Dictionary, Locale, Translator } from '../../../core/i18n';
 import type { TimeControl } from '../two-player/match';
 import type { RoundEndEvent, TwoPlayerGameDefinition } from '../two-player/TwoPlayerGame';
 import { ChessSeatIcon, createChessBoard, localizeSan } from './ChessBoard';
@@ -50,6 +50,8 @@ export interface ChessGameOptions {
   badge?: string;
   /** Start-position seed for each new round (Chess960); fixed starts ignore it. */
   seed?: () => number;
+  /** Extra live line for the status (e.g. the Chess960 start number). */
+  info?: (state: ChessState, t: Translator) => string | null;
   onRoundEnd?: (event: RoundEndEvent<ChessState>) => void;
 }
 
@@ -97,15 +99,19 @@ export function createChessDefinition(
       return pieceCount(after.fen) < pieceCount(before.fen) ? CAPTURE : MOVE;
     },
     statusInfo: (s, t) => {
-      if (s.result) return null;
-      if (v.goal === 'three-check')
-        return t('info.checks', {
-          seat0: t('seat.0'),
-          seat1: t('seat.1'),
-          a: s.checks[0],
-          b: s.checks[1],
-        });
-      return v.goal !== 'antichess' && positionOf(v, s).inCheck() ? t('info.check') : null;
+      const parts = [o.info?.(s, t) ?? null];
+      if (!s.result && v.goal === 'three-check')
+        parts.push(
+          t('info.checks', {
+            seat0: t('seat.0'),
+            seat1: t('seat.1'),
+            a: s.checks[0],
+            b: s.checks[1],
+          }),
+        );
+      else if (!s.result && v.goal !== 'antichess' && positionOf(v, s).inCheck())
+        parts.push(t('info.check'));
+      return parts.filter(Boolean).join(' · ') || null;
     },
     describeResult: (s, t) => {
       const r = s.result;

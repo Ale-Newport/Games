@@ -296,3 +296,15 @@
 .seatIcon[data-seat='1'] {
   background: #b7c9ca;
 }
+
+.hill {
+  box-shadow: inset 0 0 0 3px rgba(240, 170, 40, 0.85);
+}
+
+.hill.light {
+  background: #f4dfb0;
+}
+
+.hill.dark {
+  background: #8c9a6a;
+}

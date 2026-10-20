@@ -2,6 +2,21 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #016 Chess960 COMPLETE
+
+- Thin module on the shared chess family: random start per round via the definition's `seed`,
+  `restart` keeps it, start number in the status line (`chess960Number`), castling by moving the
+  king onto its rook (tested from the UI with a setup where O-O is legal on move one).
+- Engine: saves/deserialized states must start from a position the variant allows
+  (`isAllowedStart`; also tightens #015). Dead-position rule made variant-aware (King of the Hill
+  never dead, Three-Check only K v K, Antichess opposite-colored bishops) ahead of #017–#019.
+- Seeded bench (starts 0–7): Easy vs Random 8–0, Medium vs Easy 8–0, Hard vs Medium 4–0, Expert vs
+  Hard 4–0.
+- Played in the browser (mobile): position #215 drawn, bishops on opposite colors, king between
+  the rooks.
+- Verified (actually run): `npm run verify` → 434 unit tests (incl. the drafted #017 module's),
+  build, 74 Playwright tests.
+
 ## 2026-11-06 — Session 1: #015 Chess COMPLETE
 
 - Shared chess family `src/games/shared/chess/`: mailbox `Position` with Zobrist keys, legal move

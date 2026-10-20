@@ -18,7 +18,8 @@
 - **#013 International Draughts — COMPLETE** (2026-11-06).
 - **#014 Spanish Checkers — COMPLETE** (2026-11-06).
 - **#015 Chess — COMPLETE** (2026-11-06).
-- **Current game: #016 Chess960** (`chess960`) — TODO.
+- **#016 Chess960 — COMPLETE** (2026-11-06).
+- **Current game: #017 Antichess** (`antichess`) — TODO (module drafted in the working tree).
 
 ## Resume instructions
 

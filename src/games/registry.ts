@@ -19,6 +19,7 @@ import { manifest as englishCheckers } from './english-checkers/manifest';
 import { manifest as internationalDraughts } from './international-draughts/manifest';
 import { manifest as spanishCheckers } from './spanish-checkers/manifest';
 import { manifest as chess } from './chess/manifest';
+import { manifest as chess960 } from './chess960/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -36,6 +37,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: internationalDraughts, load: () => import('./international-draughts/index') },
   { manifest: spanishCheckers, load: () => import('./spanish-checkers/index') },
   { manifest: chess, load: () => import('./chess/index') },
+  { manifest: chess960, load: () => import('./chess960/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
