@@ -14,7 +14,9 @@
 - **#009 Pente — COMPLETE** (2026-11-06).
 - **#010 Reversi 8×8 — COMPLETE** (2026-11-06).
 - **#011 Reversi 6×6 — COMPLETE** (2026-11-06).
-- **Current game: #012 English Checkers** (`english-checkers`) — TODO.
+- **#012 English Checkers — COMPLETE** (2026-11-06).
+- **Current game: #013 International Draughts** (`international-draughts`) — TODO: engine variant
+  `INTERNATIONAL` and board/definition are ready; needs module, tuned levels, tests, e2e.
 
 ## Resume instructions
 

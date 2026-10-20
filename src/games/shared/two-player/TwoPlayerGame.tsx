@@ -86,7 +86,7 @@ export interface TwoPlayerGameDefinition<S, A> {
   /** Optional extra line under the result (e.g. why a misère round was lost). */
   describeResult?: (state: S, t: Translator) => string | null;
   /** Sound for an action; defaults to the seat's placement sound. */
-  actionSound?: (after: S, action: A, mover: Seat) => SoundSpec;
+  actionSound?: (after: S, action: A, mover: Seat, before: S) => SoundSpec;
   sounds?: Partial<ShellSounds>;
   onRoundEnd?: (event: RoundEndEvent<S>) => void;
 }
@@ -225,7 +225,7 @@ export function TwoPlayerGame<S, A>({
     if (action !== undefined) {
       const mover = rules.moverOfPly(next.round, rules.plies(next.round) - 1);
       svc.playSound(
-        def.actionSound?.(next.round, action, mover) ??
+        def.actionSound?.(next.round, action, mover, prev.round) ??
           (mover === 0 ? sounds.placeX : sounds.placeO),
       );
       setAnnouncement(def.describeAction(prev.round, action, next.round, t));

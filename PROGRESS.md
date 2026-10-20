@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #012 English Checkers COMPLETE
+
+- Shared draughts family `src/games/shared/draughts/` (parameterized engine with English,
+  International and Spanish variants; environment/evaluation; alpha-beta presets; board with
+  step-by-step multi-jump entry and captured-piece preview; shell definition builder). 14
+  hand-built rule tests across the three variants; the position helper rejects pieces on
+  non-playable squares (it caught several of my own fixture mistakes).
+- Shell: `actionSound` now receives the previous state (needed to detect crowning).
+- Seeded results (English): Easy vs Random 10–0, Medium vs Easy 9–1–0, Hard vs Medium 7–1–0.
+- Verified (actually run): `npm run verify` → 341 unit tests, build, 66 Playwright tests.
+
 ## 2026-11-06 — Session 1: #011 Reversi 6×6 COMPLETE
 
 - Thin module on the shared Reversi family; levels tuned for 6×6 (Hard: exact endgame in the last
