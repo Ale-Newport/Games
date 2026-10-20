@@ -2,6 +2,13 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #019 Three-Check Chess COMPLETE
+
+- Thin module on the shared chess family (`THREE_CHECK`): counters in the status line next to the
+  check indicator, counters validated by the save replay, only bare kings are dead.
+- Seeded bench: Easy vs Random 8–0, Medium vs Easy 8–0, Hard vs Medium 4–0, Expert vs Hard 4–0.
+- Verified (actually run): `npm run verify` → 475 unit tests, build, 80 Playwright tests.
+
 ## 2026-11-06 — Session 1: #018 King of the Hill Chess COMPLETE
 
 - Thin module on the shared chess family (`KING_OF_THE_HILL`): hill squares marked on the board and

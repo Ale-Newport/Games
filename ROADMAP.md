@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 18 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 182
+**Complete:** 19 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 181
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -29,7 +29,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 016 | Chess960 | `chess960` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 017 | Antichess | `antichess` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 018 | King of the Hill Chess | `king-of-the-hill` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 019 | Three-Check Chess | `three-check-chess` | TODO | — | — | — | — | — |  |  |
+| 019 | Three-Check Chess | `three-check-chess` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 020 | Gardner Minichess | `gardner-minichess` | TODO | — | — | — | — | — |  |  |
 | 021 | Shogi | `shogi` | TODO | — | — | — | — | — |  |  |
 | 022 | Dōbutsu Shōgi | `dobutsu-shogi` | TODO | — | — | — | — | — |  |  |
