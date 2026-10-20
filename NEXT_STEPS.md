@@ -19,7 +19,8 @@
 - **#014 Spanish Checkers — COMPLETE** (2026-11-06).
 - **#015 Chess — COMPLETE** (2026-11-06).
 - **#016 Chess960 — COMPLETE** (2026-11-06).
-- **Current game: #017 Antichess** (`antichess`) — TODO (module drafted in the working tree).
+- **#017 Antichess — COMPLETE** (2026-11-06).
+- **Current game: #018 King of the Hill Chess** (`king-of-the-hill`) — TODO (drafted in the working tree).
 
 ## Resume instructions
 
