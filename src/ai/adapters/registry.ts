@@ -25,6 +25,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'english-checkers': () => import('../../games/english-checkers/ai-adapter').then((m) => m.bundle),
   'international-draughts': () =>
     import('../../games/international-draughts/ai-adapter').then((m) => m.bundle),
+  'spanish-checkers': () => import('../../games/spanish-checkers/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

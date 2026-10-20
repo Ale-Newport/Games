@@ -2,6 +2,13 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #014 Spanish Checkers COMPLETE
+
+- `SPANISH` variant on the shared draughts family (other parity, flying kings, forward-only men,
+  quantity-then-quality capture law); king-capture achievement replay cross-checked on random games.
+- Seeded: Easy vs Random 10–0, Medium vs Easy 9–0–1, Hard vs Medium 8–0 (avg 549 ms).
+- Verified (actually run): `npm run verify` → 363 unit tests, build, 70 Playwright tests.
+
 ## 2026-11-06 — Session 1: #013 International Draughts COMPLETE
 
 - FMJD rules on the shared draughts family (`INTERNATIONAL` variant); achievement replay moved to
