@@ -23,8 +23,8 @@
 - **#018 King of the Hill Chess — COMPLETE** (2026-11-06).
 - **#019 Three-Check Chess — COMPLETE** (2026-11-06).
 - **#020 Gardner Minichess — COMPLETE** (2026-11-06).
-- **Current game: #021 Shogi** (`shogi`) — TODO (shared engine `src/games/shared/shogi/` started:
-  position, perft, game layer and tests).
+- **#021 Shogi — COMPLETE** (2026-11-06).
+- **Current game: #022 Animal Shogi 3×4** (`dobutsu-shogi`) — TODO (drafted in the working tree).
 
 ## Resume instructions
 

@@ -24,6 +24,7 @@ import { manifest as antichess } from './antichess/manifest';
 import { manifest as kingOfTheHill } from './king-of-the-hill/manifest';
 import { manifest as threeCheck } from './three-check-chess/manifest';
 import { manifest as gardner } from './gardner-minichess/manifest';
+import { manifest as shogi } from './shogi/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -46,6 +47,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: kingOfTheHill, load: () => import('./king-of-the-hill/index') },
   { manifest: threeCheck, load: () => import('./three-check-chess/index') },
   { manifest: gardner, load: () => import('./gardner-minichess/index') },
+  { manifest: shogi, load: () => import('./shogi/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 20 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 180
+**Complete:** 21 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 179
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -31,7 +31,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 018 | King of the Hill Chess | `king-of-the-hill` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 019 | Three-Check Chess | `three-check-chess` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 020 | Gardner Minichess | `gardner-minichess` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 021 | Shogi | `shogi` | TODO | — | — | — | — | — |  |  |
+| 021 | Shogi | `shogi` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 022 | Dōbutsu Shōgi | `dobutsu-shogi` | TODO | — | — | — | — | — |  |  |
 | 023 | Xiangqi | `xiangqi` | TODO | — | — | — | — | — |  |  |
 | 024 | Janggi | `janggi` | TODO | — | — | — | — | — |  |  |

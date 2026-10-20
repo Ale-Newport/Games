@@ -2,6 +2,22 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #021 Shogi COMPLETE
+
+- Shared shogi family `src/games/shared/shogi/`: piece tables with oriented vectors and reverse
+  attack masks, mutable position with drops (nifu, dead drops, uchifuzume), compulsory/optional
+  promotion, Zobrist keys; perft 30 / 900 / 25 470 / 719 731 matches the published values (depth 4
+  in ~0.4 s). Immutable game layer with Western notation, checkmate/no-moves, fourfold repetition
+  with perpetual-check loss, 512-ply limit; replay validation with a prefix cache. Also covers the
+  3×4 animal variant (royal capture, try rule) for #022.
+- `ShogiSearchAgent` (alpha-beta, quiescence, TT, killers, ID; pawn-drop-mate filtered in search).
+  Seeded bench: Easy vs Random 5–0–1, Medium vs Easy 6–0, Hard vs Medium 4–0, Expert vs Hard 4–0.
+- Original pieces: wooden wedges with kanji (red when promoted) plus a small Latin letter; board
+  with hands as trays, promotion dialog, drops by tapping the hand.
+- Played in the browser (1280×800): 7g7f 3c3d Bx2b+ (dialog), Sx2b, B*5e from the hand.
+- Verified (actually run): `npm run verify` → 514 unit tests (incl. the drafted #022 module), build,
+  84 Playwright tests.
+
 ## 2026-11-06 — Session 1: #020 Gardner Minichess COMPLETE (chess family done)
 
 - Thin module on the shared chess family (`GARDNER`, 5×5): the board, codec (3 752 actions) and
