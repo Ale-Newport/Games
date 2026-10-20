@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #018 King of the Hill Chess COMPLETE
+
+- Thin module on the shared chess family (`KING_OF_THE_HILL`): hill squares marked on the board and
+  listed in the status line; dead-position draws disabled for this goal (a bare king can still
+  reach the hill), so flag falls always lose.
+- Seeded bench: Easy vs Random 8–0, Medium vs Easy 8–0, Hard vs Medium 2–0–2 (two repetitions),
+  Expert vs Hard 4–0 (games end on the hill).
+- Verified (actually run): `npm run verify` → 475 unit tests (incl. drafted #019/#020), build, 78
+  Playwright tests.
+
 ## 2026-11-06 — Session 1: #017 Antichess COMPLETE
 
 - Thin module on the shared chess family (`ANTICHESS`): compulsory captures, non-royal king,

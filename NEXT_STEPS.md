@@ -20,7 +20,8 @@
 - **#015 Chess — COMPLETE** (2026-11-06).
 - **#016 Chess960 — COMPLETE** (2026-11-06).
 - **#017 Antichess — COMPLETE** (2026-11-06).
-- **Current game: #018 King of the Hill Chess** (`king-of-the-hill`) — TODO (drafted in the working tree).
+- **#018 King of the Hill Chess — COMPLETE** (2026-11-06).
+- **Current game: #019 Three-Check Chess** (`three-check-chess`) — TODO (drafted in the working tree).
 
 ## Resume instructions
 
