@@ -2,6 +2,13 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #013 International Draughts COMPLETE
+
+- FMJD rules on the shared draughts family (`INTERNATIONAL` variant); achievement replay moved to
+  `src/games/shared/draughts/feats.ts` (used by #012 and #013), cross-checked on random games.
+- Seeded: Easy vs Random 10–0, Medium vs Easy 10–0, Hard vs Medium 7–0–1 (avg 622 ms).
+- Verified (actually run): `npm run verify` → 352 unit tests, build, 68 Playwright tests.
+
 ## 2026-11-06 — Session 1: #012 English Checkers COMPLETE
 
 - Shared draughts family `src/games/shared/draughts/` (parameterized engine with English,

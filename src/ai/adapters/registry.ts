@@ -23,6 +23,8 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'reversi-8x8': () => import('../../games/reversi-8x8/ai-adapter').then((m) => m.bundle),
   'reversi-6x6': () => import('../../games/reversi-6x6/ai-adapter').then((m) => m.bundle),
   'english-checkers': () => import('../../games/english-checkers/ai-adapter').then((m) => m.bundle),
+  'international-draughts': () =>
+    import('../../games/international-draughts/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
