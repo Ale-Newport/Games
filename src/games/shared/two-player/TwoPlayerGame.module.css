@@ -64,6 +64,39 @@
   color: var(--text-muted);
 }
 
+.clock {
+  grid-column: 1 / -1;
+  justify-self: stretch;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.clock[data-running='true'] {
+  background: var(--accent);
+  color: var(--accent-contrast, #fff);
+}
+
+.clock[data-low='true'] {
+  color: var(--danger);
+}
+
+.clock[data-running='true'][data-low='true'] {
+  background: var(--danger);
+  color: #fff;
+}
+
+.confirm {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
 .scoreValue {
   font-family: var(--font-display);
   font-size: var(--text-xl);

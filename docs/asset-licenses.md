@@ -9,6 +9,7 @@ sprites, music, logos or level data are used.
 | -------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------ |
 | Game preview illustrations | `src/games/*/assets/preview.svg`                         | Hand-authored SVG for this project                                 |
 | Board/piece graphics       | Inline SVG/CSS/Canvas in each game module                | Original, generated in code                                        |
+| Chess piece set            | `src/games/shared/chess/ChessPieces.tsx`                 | Original silhouettes drawn for this project (no third-party set)   |
 | Sound effects              | `src/core/audio/audio-engine.ts`, `src/games/*/audio.ts` | Synthesized at runtime with the Web Audio API from parameter specs |
 | Favicon / logo             | `public/favicon.svg`                                     | Original                                                           |
 

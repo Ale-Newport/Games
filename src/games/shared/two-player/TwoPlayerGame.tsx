@@ -1,6 +1,8 @@
 import {
   Bot,
   Circle,
+  Flag,
+  Handshake,
   LayoutList,
   Lightbulb,
   Pause,
@@ -37,7 +39,7 @@ import {
 import { useKeyboard } from '../../../core/input/keyboard';
 import { TWO_PLAYER_STRINGS } from './i18n';
 import * as flow from './match';
-import type { MatchConfig, MatchSetup, MatchState, Mode, Seat } from './match';
+import type { Adjudication, MatchConfig, MatchSetup, MatchState, Mode, Seat } from './match';
 import { SHELL_SOUNDS, type ShellSounds } from './sounds';
 import styles from './TwoPlayerGame.module.css';
 
@@ -50,6 +52,8 @@ export interface BoardProps<S, A> {
   animate: boolean;
   t: Translator;
   onAction: (action: A) => void;
+  /** Seat shown at the bottom (the human's seat vs the computer, otherwise seat 0). */
+  perspective: Seat;
 }
 
 export interface RoundEndEvent<S> {
@@ -59,6 +63,8 @@ export interface RoundEndEvent<S> {
   outcome: 'win' | 'loss' | 'draw' | 'complete';
   /** A human won (always true for a decisive two-player round). */
   humanWon: boolean;
+  /** Set when the round ended by resignation, flag fall or agreement instead of the rules. */
+  adjudication: Adjudication | null;
   unlock: (achievementId: string) => void;
 }
 
@@ -88,7 +94,17 @@ export interface TwoPlayerGameDefinition<S, A> {
   /** Sound for an action; defaults to the seat's placement sound. */
   actionSound?: (after: S, action: A, mover: Seat, before: S) => SoundSpec;
   sounds?: Partial<ShellSounds>;
+  /** Offer "Resign" (and "Agree draw" in two-player mode) during play. */
+  resignable?: boolean;
   onRoundEnd?: (event: RoundEndEvent<S>) => void;
+}
+
+/** "m:ss", or "s.t" under ten seconds. */
+export function formatClock(ms: number): string {
+  const clamped = Math.max(0, ms);
+  if (clamped < 10_000) return (Math.floor(clamped / 100) / 10).toFixed(1);
+  const total = Math.ceil(clamped / 1000);
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;
 }
 
 function DefaultSeatIcon({ seat, size }: { seat: Seat; size: number }) {
@@ -155,6 +171,11 @@ export function TwoPlayerGame<S, A>({
   const [hint, setHint] = useState<A | null>(null);
   const [paused, setPaused] = useState(false);
   const [announcement, setAnnouncement] = useState('');
+  const [confirming, setConfirming] = useState<'resign' | 'draw' | null>(null);
+  // Clock: `now` ticks for display; the turn start is kept in a ref (for timers) and in state.
+  const [now, setNow] = useState(0);
+  const [turnStart, setTurnStart] = useState(0);
+  const turnStartRef = useRef(0);
   const matchRef = useLatest(match);
   const agentsRef = useRef<Agents<S, A>>([null, null]);
   const rngRef = useRef(new Rng(randomSeed()));
@@ -183,7 +204,7 @@ export function TwoPlayerGame<S, A>({
   };
 
   const recordRound = (next: MatchState<S>, svc: GameServices): MatchState<S> => {
-    const outcome = rules.outcome(next.round)!;
+    const outcome = flow.roundOutcome(cfg, next)!;
     const { mode, humanSeat } = next.setup;
     if (outcome.winner === null) {
       svc.playSound(sounds.draw);
@@ -214,9 +235,17 @@ export function TwoPlayerGame<S, A>({
       round: next.round,
       outcome: kind,
       humanWon,
+      adjudication: next.adjudication ?? null,
       unlock: svc.unlockAchievement,
     });
     return flow.markRecorded(next);
+  };
+
+  const resetTurnClock = () => {
+    const t = performance.now();
+    turnStartRef.current = t;
+    setTurnStart(t);
+    setNow(t);
   };
 
   /** Applies a new match state with every side effect: sound, announcement, stats, achievements, save. */
@@ -231,7 +260,9 @@ export function TwoPlayerGame<S, A>({
       setAnnouncement(def.describeAction(prev.round, action, next.round, t));
       setHint(null);
     }
-    if (rules.outcome(next.round) && !next.recorded) next = recordRound(next, svc);
+    if (next.round !== prev.round || next.clock !== prev.clock) resetTurnClock();
+    setConfirming(null);
+    if (flow.roundOutcome(cfg, next) && !next.recorded) next = recordRound(next, svc);
     setMatch(next);
     if (next.setup.mode !== 'watch') {
       setSaved(next);
@@ -239,12 +270,23 @@ export function TwoPlayerGame<S, A>({
     }
   };
 
+  /** Applies an action for the side to move, charging its thinking time (or flagging it). */
+  const playAction = (current: MatchState<S>, action: A) => {
+    const elapsed = performance.now() - turnStartRef.current;
+    const seat = rules.toMove(current.round);
+    if (current.clock && flow.timeLeft(current, seat, elapsed) <= 0) {
+      commit(flow.flagFall(cfg, current, seat), current);
+      return;
+    }
+    commit(flow.applyMove(cfg, current, action, elapsed), current, action);
+  };
+
   // Computer moves and watch-mode autoplay. The timer only schedules; the action is computed from
   // the exact state it was scheduled for and discarded if the match changed in the meantime.
   useEffect(() => {
     if (!match) return;
     const { setup: s, round } = match;
-    if (rules.outcome(round)) {
+    if (flow.roundOutcome(cfg, match)) {
       if (s.mode !== 'watch' || paused) return;
       const id = window.setTimeout(() => {
         const current = matchRef.current;
@@ -259,15 +301,41 @@ export function TwoPlayerGame<S, A>({
     const id = window.setTimeout(() => {
       const current = matchRef.current;
       if (current !== match) return;
-      const action = agent.selectAction(def.env, round, seat, { rng: rngRef.current });
-      commit(flow.applyMove(cfg, current, action), current, action);
+      const left = flow.timeLeft(current, seat, performance.now() - turnStartRef.current);
+      const action = agent.selectAction(def.env, round, seat, {
+        rng: rngRef.current,
+        // On the clock the computer budgets its time: a share of what is left plus the increment.
+        timeLimitMs: current.clock
+          ? Math.max(40, left / 30 + current.clock.incrementMs * 0.6)
+          : undefined,
+      });
+      playAction(current, action);
     }, delay);
     return () => window.clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match, paused]);
 
+  // Clock display and flag detection.
+  const clockRunning = !!match?.clock && !flow.roundOutcome(cfg, match);
+  useEffect(() => {
+    if (!clockRunning) return;
+    const id = window.setInterval(() => {
+      const current = matchRef.current;
+      if (!current?.clock || flow.roundOutcome(cfg, current)) return;
+      const t = performance.now();
+      setNow(t);
+      const seat = rules.toMove(current.round);
+      if (flow.timeLeft(current, seat, t - turnStartRef.current) <= 0)
+        commit(flow.flagFall(cfg, current, seat), current);
+    }, 100);
+    return () => window.clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clockRunning]);
+
   const start = (m: MatchState<S>) => {
     agentsRef.current = createAgents(def, m.setup);
+    resetTurnClock();
+    setConfirming(null);
     setPaused(false);
     setHint(null);
     setMatch(m);
@@ -280,17 +348,39 @@ export function TwoPlayerGame<S, A>({
   const act = (action: A) => {
     if (!match) return;
     if (!flow.isHumanTurn(cfg, match) || !rules.isLegal(match.round, action)) {
-      if (!rules.outcome(match.round)) services.playSound(sounds.invalid);
+      if (!flow.roundOutcome(cfg, match)) services.playSound(sounds.invalid);
       return;
     }
-    commit(flow.applyMove(cfg, match, action), match, action);
+    playAction(match, action);
   };
 
   const doUndo = () => match && flow.canUndo(cfg, match) && commit(flow.undo(cfg, match), match);
   const doRestart = () =>
-    match && !rules.outcome(match.round) && commit(flow.restartRound(cfg, match), match);
+    match && !flow.roundOutcome(cfg, match) && commit(flow.restartRound(cfg, match), match);
   const doNext = () =>
-    match && rules.outcome(match.round) && commit(flow.nextRound(cfg, match), match);
+    match && flow.roundOutcome(cfg, match) && commit(flow.nextRound(cfg, match), match);
+  /** Resign (vs computer: the human; two players: the side to move) after a confirming click. */
+  const doResign = () => {
+    if (!match || flow.roundOutcome(cfg, match)) return;
+    if (confirming !== 'resign') return setConfirming('resign');
+    const seat = match.setup.mode === 'ai' ? match.setup.humanSeat : rules.toMove(match.round);
+    commit(
+      flow.resign(
+        cfg,
+        flow.chargeClock(cfg, match, performance.now() - turnStartRef.current),
+        seat,
+      ),
+      match,
+    );
+  };
+  const doAgreeDraw = () => {
+    if (!match || flow.roundOutcome(cfg, match)) return;
+    if (confirming !== 'draw') return setConfirming('draw');
+    commit(
+      flow.agreeDraw(cfg, flow.chargeClock(cfg, match, performance.now() - turnStartRef.current)),
+      match,
+    );
+  };
   const doHint = () => {
     if (!match || !def.hintAgent || !flow.isHumanTurn(cfg, match)) return;
     const seat = rules.toMove(match.round);
@@ -302,6 +392,12 @@ export function TwoPlayerGame<S, A>({
     services.playSound(sounds.hint);
   };
   const toMenu = () => {
+    // Time already spent on the current move stays spent when the match is resumed later.
+    if (match?.clock && match.setup.mode !== 'watch' && !flow.roundOutcome(cfg, match)) {
+      const charged = flow.chargeClock(cfg, match, performance.now() - turnStartRef.current);
+      setSaved(charged);
+      void slotRef.current.save(charged);
+    }
     setMatch(null);
     agentsRef.current = [null, null];
   };
@@ -339,7 +435,7 @@ export function TwoPlayerGame<S, A>({
 
   const { round, setup: s, scores } = match;
   const playerNames = names(s);
-  const outcome = rules.outcome(round);
+  const outcome = flow.roundOutcome(cfg, match);
   const toMove = rules.toMove(round);
   const humanTurn = flow.isHumanTurn(cfg, match);
   const reduced = services.reducedMotion;
@@ -382,6 +478,18 @@ export function TwoPlayerGame<S, A>({
             <span className={styles.scoreValue} data-testid={`score-${seat === 0 ? 'x' : 'o'}`}>
               {seat === 0 ? scores.x : scores.o}
             </span>
+            {match.clock && (
+              <ClockFace
+                ms={flow.timeLeft(
+                  match,
+                  seat,
+                  !outcome && toMove === seat ? Math.max(0, now - turnStart) : 0,
+                )}
+                running={!outcome && toMove === seat}
+                seat={seat}
+                label={t('clock.label', { name: playerNames[seat] })}
+              />
+            )}
           </div>
         ))}
         <div className={styles.score} data-draws>
@@ -395,12 +503,17 @@ export function TwoPlayerGame<S, A>({
       <div className={styles.status} data-tone={tone} data-testid="mnk-status">
         <span className={styles.round}>{t('round', { n: match.roundNumber })}</span>
         <strong>{status}</strong>
+        {match.adjudication && (
+          <span className={styles.detail} data-testid="adjudication">
+            {adjudicationText(match.adjudication, playerNames, t)}
+          </span>
+        )}
         {def.statusInfo?.(round, t) && (
           <span className={styles.detail} data-testid="status-info">
             {def.statusInfo(round, t)}
           </span>
         )}
-        {outcome && def.describeResult?.(round, t) && (
+        {outcome && !match.adjudication && def.describeResult?.(round, t) && (
           <span className={styles.detail}>{def.describeResult(round, t)}</span>
         )}
       </div>
@@ -413,6 +526,7 @@ export function TwoPlayerGame<S, A>({
           animate={!reduced}
           t={t}
           onAction={act}
+          perspective={s.mode === 'ai' ? s.humanSeat : 0}
         />
         {tone === 'win' && !reduced && (
           <div className={styles.burst} aria-hidden="true">
@@ -455,7 +569,7 @@ export function TwoPlayerGame<S, A>({
                 const agent = agentsRef.current[toMove];
                 if (!agent) return;
                 const action = agent.selectAction(def.env, round, toMove, { rng: rngRef.current });
-                commit(flow.applyMove(cfg, match, action), match, action);
+                playAction(match, action);
               }}
             >
               <StepForward size={16} /> {t('action.step')}
@@ -484,6 +598,28 @@ export function TwoPlayerGame<S, A>({
             >
               <RotateCcw size={16} /> {t('action.restart')}
             </button>
+            {def.resignable && s.mode === 'local' && (
+              <button
+                type="button"
+                className={`btn ${confirming === 'draw' ? styles.confirm : ''}`}
+                onClick={doAgreeDraw}
+                data-testid="agree-draw"
+              >
+                <Handshake size={16} />{' '}
+                {confirming === 'draw' ? t('action.confirmDraw') : t('action.agreeDraw')}
+              </button>
+            )}
+            {def.resignable && (
+              <button
+                type="button"
+                className={`btn ${confirming === 'resign' ? styles.confirm : ''}`}
+                onClick={doResign}
+                data-testid="resign"
+              >
+                <Flag size={16} />{' '}
+                {confirming === 'resign' ? t('action.confirmResign') : t('action.resign')}
+              </button>
+            )}
           </>
         )}
         <button type="button" className="btn btn-ghost" onClick={toMenu}>
@@ -495,6 +631,41 @@ export function TwoPlayerGame<S, A>({
         {announcement}
       </div>
     </div>
+  );
+}
+
+function adjudicationText(a: Adjudication, names: [string, string], t: Translator): string {
+  if (a.reason === 'agreement') return t('adjudication.agreement');
+  if (a.reason === 'resign')
+    return t('adjudication.resign', { name: names[a.winner === 0 ? 1 : 0] });
+  // Timeout: the winner's opponent flagged; a draw means the side with time left could not mate.
+  return a.winner === null
+    ? t('adjudication.timeoutDraw')
+    : t('adjudication.timeout', { name: names[a.winner === 0 ? 1 : 0] });
+}
+
+function ClockFace({
+  ms,
+  running,
+  seat,
+  label,
+}: {
+  ms: number;
+  running: boolean;
+  seat: Seat;
+  label: string;
+}) {
+  return (
+    <span
+      className={styles.clock}
+      data-running={running}
+      data-low={ms < 20_000}
+      data-testid={`clock-${seat}`}
+      role="timer"
+      aria-label={label}
+    >
+      {formatClock(ms)}
+    </span>
   );
 }
 
@@ -549,7 +720,7 @@ function Menu<S, A>({
           </div>
         </div>
 
-        {saved && !def.match.rules.outcome(saved.round) && (
+        {saved && !flow.roundOutcome(def.match, saved) && (
           <button
             type="button"
             className={`btn ${styles.resume}`}
@@ -702,6 +873,26 @@ function Menu<S, A>({
                 </select>
               </label>
             </div>
+          </fieldset>
+        )}
+
+        {setup.mode !== 'watch' && def.match.timeControls && (
+          <fieldset className={styles.group}>
+            <legend>{t('menu.clock')}</legend>
+            <div className={styles.segmented}>
+              {['none', ...def.match.timeControls.map((c) => c.id)].map((id) => (
+                <button
+                  key={id}
+                  type="button"
+                  aria-pressed={(setup.timeControl ?? 'none') === id}
+                  onClick={() => update({ timeControl: id })}
+                  data-testid={`clock-${id}`}
+                >
+                  {id === 'none' ? t('clock.none') : id}
+                </button>
+              ))}
+            </div>
+            <p className={styles.hintText}>{t('menu.clockHint')}</p>
           </fieldset>
         )}
 

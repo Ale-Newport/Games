@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 14 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 186
+**Complete:** 15 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 185
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -25,7 +25,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 012 | English Checkers | `english-checkers` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 013 | International Draughts | `international-draughts` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 014 | Spanish Checkers | `spanish-checkers` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 015 | Chess | `chess` | TODO | — | — | — | — | — |  |  |
+| 015 | Chess | `chess` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 016 | Chess960 | `chess960` | TODO | — | — | — | — | — |  |  |
 | 017 | Antichess | `antichess` | TODO | — | — | — | — | — |  |  |
 | 018 | King of the Hill Chess | `king-of-the-hill` | TODO | — | — | — | — | — |  |  |

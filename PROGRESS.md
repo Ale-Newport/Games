@@ -2,6 +2,31 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #015 Chess COMPLETE
+
+- Shared chess family `src/games/shared/chess/`: mailbox `Position` with Zobrist keys, legal move
+  generation, make/unmake and perft (start position to depth 4, Kiwipete, positions 3–6 and three
+  Chess960 positions match the published counts); FEN with Shredder castling letters; immutable
+  game layer with SAN, every automatic draw rule and the five variant goals (#015–#020); replay
+  validation with a prefix cache so validating a game's consecutive states stays linear.
+- `ChessSearchAgent` (negamax alpha-beta, quiescence, TT, MVV-LVA + killers, iterative deepening,
+  PSTs, endgame king activity, mop-up, repetition awareness from the real history). Fixed my own
+  sign error in the variant-win terminal (it made King of the Hill avoid the hill) before shipping.
+- Shell: optional clocks (time controls, increment, flag fall → draw when the opponent cannot
+  mate), resignation and agreed draws with confirmation, `perspective` for boards, `restart` hook;
+  timed rounds have no undo. 2 new match-flow tests; older games unchanged.
+- Original piece set (`ChessPieces.tsx`) and board: click or drag, castling on the rook, promotion
+  picker, last move/check/hint highlights, captured pieces with material balance, SAN move list
+  localized (R D T A C in Spanish), side layout on wide screens.
+- Seeded bench (colors alternated): Easy vs Random 10–0, Medium vs Easy 10–0, Hard vs Medium 6–0,
+  Expert vs Hard 6–0.
+- Played in the browser: drag e2–e4 vs CPU on 3+2 (clock charged + increment), Black perspective,
+  mobile 375 px, desktop 1280×720 (board fits beside the scoreboard). No console errors.
+- Found a flaky pre-existing test: Reversi 6×6 "Hard beats Medium" used a 250 ms wall-clock budget
+  and failed 3–3 under parallel load. Replaced it with a deterministic stand-in (depth 6 + exact
+  last 14 empties; the real Hard reaches depth 8–9 and solves 14+ empties in 800 ms) → 6–0.
+- Verified (actually run): `npm run verify` → 405 unit tests, build, 72 Playwright tests.
+
 ## 2026-11-06 — Session 1: #014 Spanish Checkers COMPLETE
 
 - `SPANISH` variant on the shared draughts family (other parity, flying kings, forward-only men,

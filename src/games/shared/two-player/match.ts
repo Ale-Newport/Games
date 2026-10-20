@@ -11,6 +11,8 @@ export type Speed = 'slow' | 'normal' | 'fast';
 /** The minimal view of a game's rules that the match flow needs. */
 export interface TwoPlayerRules<S, A> {
   create(firstPlayer: Seat): S;
+  /** Fresh copy of this round's starting position (defaults to `create` with the same first mover). */
+  restart?(state: S): S;
   apply(state: S, action: A): S;
   isLegal(state: S, action: A): boolean;
   /** Removes the last `plies` actions (by replaying history). */
@@ -39,6 +41,29 @@ export interface MatchConfig<S, A> {
    * "alternate who starts" option is ignored and hidden; players pick their seat instead.
    */
   fixedFirstSeat?: Seat;
+  /** Chess-style clocks offered in the menu (vs computer and two-player modes). */
+  timeControls?: readonly TimeControl[];
+  /** Whether `seat` can still win when the other side runs out of time (default: yes). */
+  canWinOnTime?: (state: S, seat: Seat) => boolean;
+}
+
+export interface TimeControl {
+  id: string;
+  initialMs: number;
+  incrementMs: number;
+}
+
+/** Remaining time per seat when a time control is active. */
+export interface ClockState {
+  initialMs: number;
+  incrementMs: number;
+  remaining: [number, number];
+}
+
+/** A round ended outside the rules: resignation, flag fall or agreed draw. */
+export interface Adjudication {
+  winner: Seat | null;
+  reason: 'resign' | 'timeout' | 'agreement';
 }
 
 export interface MatchSetup {
@@ -53,6 +78,8 @@ export interface MatchSetup {
   /** Agent preset ids for each seat in watch mode. */
   watchAgents: [string, string];
   speed: Speed;
+  /** Time control id from `MatchConfig.timeControls`; absent or 'none' = untimed. */
+  timeControl?: string;
 }
 
 export interface Scores {
@@ -70,6 +97,8 @@ export interface MatchState<S> {
   scores: Scores;
   /** Whether the finished round has been written to statistics. */
   recorded: boolean;
+  clock?: ClockState | null;
+  adjudication?: Adjudication | null;
 }
 
 export const SPEED_MS: Record<Speed, number> = { slow: 1100, normal: 600, fast: 220 };
@@ -98,6 +127,18 @@ function startingSeat<S, A>(cfg: MatchConfig<S, A>, setup: MatchSetup, roundNumb
   return cfg.fixedFirstSeat ?? firstPlayerFor(setup, roundNumber);
 }
 
+function clockFor<S, A>(cfg: MatchConfig<S, A>, setup: MatchSetup): ClockState | null {
+  if (setup.mode === 'watch') return null;
+  const tc = cfg.timeControls?.find((c) => c.id === setup.timeControl);
+  return tc
+    ? {
+        initialMs: tc.initialMs,
+        incrementMs: tc.incrementMs,
+        remaining: [tc.initialMs, tc.initialMs],
+      }
+    : null;
+}
+
 export function newMatch<S, A>(cfg: MatchConfig<S, A>, setup: MatchSetup): MatchState<S> {
   return {
     setup,
@@ -105,34 +146,102 @@ export function newMatch<S, A>(cfg: MatchConfig<S, A>, setup: MatchSetup): Match
     roundNumber: 1,
     scores: { x: 0, o: 0, draws: 0 },
     recorded: false,
+    clock: clockFor(cfg, setup),
+    adjudication: null,
   };
 }
 
+/** The round's result, from the rules or from an adjudication (resignation, time, agreement). */
+export function roundOutcome<S, A>(
+  cfg: MatchConfig<S, A>,
+  m: MatchState<S>,
+): { winner: Seat | null } | null {
+  return m.adjudication ?? cfg.rules.outcome(m.round);
+}
+
+function addResult(scores: Scores, winner: Seat | null): Scores {
+  if (winner === null) return { ...scores, draws: scores.draws + 1 };
+  return winner === 0 ? { ...scores, x: scores.x + 1 } : { ...scores, o: scores.o + 1 };
+}
+
 export function isHumanTurn<S, A>(cfg: MatchConfig<S, A>, m: MatchState<S>): boolean {
-  if (cfg.rules.outcome(m.round)) return false;
+  if (roundOutcome(cfg, m)) return false;
   if (m.setup.mode === 'local') return true;
   if (m.setup.mode === 'ai') return cfg.rules.toMove(m.round) === m.setup.humanSeat;
   return false;
 }
 
-/** Applies an action and updates scores when it ends the round. */
+/**
+ * Applies an action and updates scores when it ends the round. With a clock, `elapsedMs` (the
+ * mover's thinking time) is charged to the mover, who then receives the increment.
+ */
 export function applyMove<S, A>(
   cfg: MatchConfig<S, A>,
   m: MatchState<S>,
   action: A,
+  elapsedMs = 0,
 ): MatchState<S> {
+  if (m.adjudication) throw new Error('The round is already over');
+  const mover = cfg.rules.toMove(m.round);
   const round = cfg.rules.apply(m.round, action);
   const outcome = cfg.rules.outcome(round);
-  let scores = m.scores;
-  if (outcome) {
-    scores =
-      outcome.winner === null
-        ? { ...scores, draws: scores.draws + 1 }
-        : outcome.winner === 0
-          ? { ...scores, x: scores.x + 1 }
-          : { ...scores, o: scores.o + 1 };
+  const scores = outcome ? addResult(m.scores, outcome.winner) : m.scores;
+  let clock = m.clock ?? null;
+  if (clock) {
+    const remaining: [number, number] = [...clock.remaining];
+    remaining[mover] = Math.max(0, remaining[mover] - elapsedMs) + clock.incrementMs;
+    clock = { ...clock, remaining };
   }
-  return { ...m, round, scores };
+  return { ...m, round, scores, clock };
+}
+
+/** Time `seat` has left after `elapsedMs` more of its current turn (Infinity when untimed). */
+export function timeLeft<S>(m: MatchState<S>, seat: Seat, elapsedMs = 0): number {
+  return m.clock ? m.clock.remaining[seat] - elapsedMs : Infinity;
+}
+
+/** Charges `elapsedMs` to the side to move without moving (e.g. when leaving for the menu). */
+export function chargeClock<S, A>(
+  cfg: MatchConfig<S, A>,
+  m: MatchState<S>,
+  elapsedMs: number,
+): MatchState<S> {
+  if (!m.clock || roundOutcome(cfg, m)) return m;
+  const seat = cfg.rules.toMove(m.round);
+  const remaining: [number, number] = [...m.clock.remaining];
+  remaining[seat] = Math.max(0, remaining[seat] - elapsedMs);
+  return { ...m, clock: { ...m.clock, remaining } };
+}
+
+function adjudicate<S, A>(
+  cfg: MatchConfig<S, A>,
+  m: MatchState<S>,
+  adjudication: Adjudication,
+): MatchState<S> {
+  if (roundOutcome(cfg, m)) return m;
+  return { ...m, adjudication, scores: addResult(m.scores, adjudication.winner) };
+}
+
+export function resign<S, A>(cfg: MatchConfig<S, A>, m: MatchState<S>, seat: Seat): MatchState<S> {
+  return adjudicate(cfg, m, { winner: (1 - seat) as Seat, reason: 'resign' });
+}
+
+export function agreeDraw<S, A>(cfg: MatchConfig<S, A>, m: MatchState<S>): MatchState<S> {
+  return adjudicate(cfg, m, { winner: null, reason: 'agreement' });
+}
+
+/** `seat` ran out of time: it loses, unless the opponent could never win (then it is a draw). */
+export function flagFall<S, A>(
+  cfg: MatchConfig<S, A>,
+  m: MatchState<S>,
+  seat: Seat,
+): MatchState<S> {
+  if (!m.clock || roundOutcome(cfg, m)) return m;
+  const opponent = (1 - seat) as Seat;
+  const remaining: [number, number] = [...m.clock.remaining];
+  remaining[seat] = 0;
+  const winner = (cfg.canWinOnTime?.(m.round, opponent) ?? true) ? opponent : null;
+  return adjudicate(cfg, { ...m, clock: { ...m.clock, remaining } }, { winner, reason: 'timeout' });
 }
 
 function pliesToUndo<S, A>(cfg: MatchConfig<S, A>, m: MatchState<S>): number {
@@ -144,7 +253,8 @@ function pliesToUndo<S, A>(cfg: MatchConfig<S, A>, m: MatchState<S>): number {
 }
 
 export function canUndo<S, A>(cfg: MatchConfig<S, A>, m: MatchState<S>): boolean {
-  if (cfg.rules.outcome(m.round) || m.setup.mode === 'watch') return false;
+  // Taking moves back would make the clocks meaningless, so timed rounds have no undo.
+  if (roundOutcome(cfg, m) || m.setup.mode === 'watch' || m.clock) return false;
   if (m.setup.mode === 'local') return cfg.rules.plies(m.round) > 0;
   return pliesToUndo(cfg, m) > 0;
 }
@@ -157,10 +267,11 @@ export function undo<S, A>(cfg: MatchConfig<S, A>, m: MatchState<S>): MatchState
 }
 
 export function restartRound<S, A>(cfg: MatchConfig<S, A>, m: MatchState<S>): MatchState<S> {
-  if (cfg.rules.outcome(m.round)) return m;
+  if (roundOutcome(cfg, m)) return m;
   const first =
     cfg.rules.plies(m.round) > 0 ? cfg.rules.moverOfPly(m.round, 0) : cfg.rules.toMove(m.round);
-  return { ...m, round: cfg.rules.create(first), recorded: false };
+  const round = cfg.rules.restart?.(m.round) ?? cfg.rules.create(first);
+  return { ...m, round, recorded: false, clock: clockFor(cfg, m.setup) };
 }
 
 export function nextRound<S, A>(cfg: MatchConfig<S, A>, m: MatchState<S>): MatchState<S> {
@@ -170,6 +281,8 @@ export function nextRound<S, A>(cfg: MatchConfig<S, A>, m: MatchState<S>): Match
     round: cfg.rules.create(startingSeat(cfg, m.setup, roundNumber)),
     roundNumber,
     recorded: false,
+    clock: clockFor(cfg, m.setup),
+    adjudication: null,
   };
 }
 
@@ -196,7 +309,33 @@ export function isValidSetup<S, A>(cfg: MatchConfig<S, A>, data: unknown): data 
     Array.isArray(data.watchAgents) &&
     data.watchAgents.length === 2 &&
     data.watchAgents.every((a) => typeof a === 'string' && cfg.agentIds.includes(a)) &&
-    (data.speed === 'slow' || data.speed === 'normal' || data.speed === 'fast')
+    (data.speed === 'slow' || data.speed === 'normal' || data.speed === 'fast') &&
+    (data.timeControl === undefined ||
+      data.timeControl === 'none' ||
+      (cfg.timeControls ?? []).some((c) => c.id === data.timeControl))
+  );
+}
+
+const isTime = (n: unknown) => typeof n === 'number' && Number.isFinite(n) && n >= 0;
+
+function isValidClock(data: unknown): data is ClockState | null | undefined {
+  if (data === undefined || data === null) return true;
+  return (
+    isRecord(data) &&
+    isTime(data.initialMs) &&
+    isTime(data.incrementMs) &&
+    Array.isArray(data.remaining) &&
+    data.remaining.length === 2 &&
+    data.remaining.every(isTime)
+  );
+}
+
+function isValidAdjudication(data: unknown): data is Adjudication | null | undefined {
+  if (data === undefined || data === null) return true;
+  return (
+    isRecord(data) &&
+    (data.winner === 0 || data.winner === 1 || data.winner === null) &&
+    (data.reason === 'resign' || data.reason === 'timeout' || data.reason === 'agreement')
   );
 }
 
@@ -209,7 +348,9 @@ export function isValidMatch<S, A>(cfg: MatchConfig<S, A>, data: unknown): data 
     [s.x, s.o, s.draws].every((n) => Number.isInteger(n) && (n as number) >= 0) &&
     Number.isInteger(data.roundNumber) &&
     (data.roundNumber as number) >= 1 &&
-    typeof data.recorded === 'boolean'
+    typeof data.recorded === 'boolean' &&
+    isValidClock(data.clock) &&
+    isValidAdjudication(data.adjudication)
   );
 }
 
