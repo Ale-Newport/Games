@@ -2,6 +2,13 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #011 Reversi 6×6 COMPLETE
+
+- Thin module on the shared Reversi family; levels tuned for 6×6 (Hard: exact endgame in the last
+  18 of 32 empties). Measured the strong White (second-player) advantage of 6×6; the strength test
+  compares Hard as White vs Medium as Black (majority), since "never loses" was not true.
+- Verified (actually run): `npm run verify` → 314 unit tests, build, 64 Playwright tests.
+
 ## 2026-11-06 — Session 1: #010 Reversi 8×8 COMPLETE
 
 - Shared Reversi family `src/games/shared/reversi/` (engine with explicit pass action and

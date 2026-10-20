@@ -14,6 +14,7 @@ import { manifest as gomoku } from './gomoku/manifest';
 import { manifest as renju } from './renju/manifest';
 import { manifest as pente } from './pente/manifest';
 import { manifest as reversi8 } from './reversi-8x8/manifest';
+import { manifest as reversi6 } from './reversi-6x6/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -26,6 +27,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: renju, load: () => import('./renju/index') },
   { manifest: pente, load: () => import('./pente/index') },
   { manifest: reversi8, load: () => import('./reversi-8x8/index') },
+  { manifest: reversi6, load: () => import('./reversi-6x6/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

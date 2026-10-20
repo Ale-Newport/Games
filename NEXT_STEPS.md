@@ -13,7 +13,8 @@
 - **#008 Renju — COMPLETE** (2026-11-06).
 - **#009 Pente — COMPLETE** (2026-11-06).
 - **#010 Reversi 8×8 — COMPLETE** (2026-11-06).
-- **Current game: #011 Reversi 6×6** (`reversi-6x6`) — TODO: reuse `createReversiDefinition`.
+- **#011 Reversi 6×6 — COMPLETE** (2026-11-06).
+- **Current game: #012 English Checkers** (`english-checkers`) — TODO.
 
 ## Resume instructions
 
@@ -43,16 +44,20 @@ with its own engine, and `src/games/tic-tac-toe-4x4/` for an m,n,k game):
 Gotcha: Prettier reflows long lines — when scripting edits to existing files, re-read them first or
 use exact-match edits, and check that the edit applied.
 
-## Plan for #010 Reversi 8×8 and #011 Reversi 6×6
+## Plan for #012–#014 (checkers family)
 
-- One shared engine for both sizes: `src/games/shared/reversi/` (board N×N, standard start square,
-  flips in 8 directions, pass when no legal move, game ends when neither side can move, disc count
-  scoring; Black first). The pass is a real action for the AI contract (action index N×N = pass).
-- AI: alpha-beta with mobility, corner/X-square/edge weights and disc parity in the endgame; exact
-  endgame solving in the last ~10–12 empties. 6×6 is solved (second player wins 16–20 with perfect
-  play) — verify against our solver if feasible.
-- Board: green felt, discs with flip animation, legal-move dots, last move, live disc counts
-  (`statusInfo`), pass notice.
+- Shared draughts engine `src/games/shared/draughts/` parameterized by: board size (8/10), men
+  move direction, men capture backwards (English no, International yes, Spanish no), flying kings
+  (International/Spanish yes, English no), capture choice rule (English: any capture sequence;
+  International: maximum number of pieces; Spanish: maximum pieces, then maximum kings), promotion
+  mid-capture (International: no — only if the sequence ends on the last row), draw rules
+  (English: 40-move rule without capture/promotion, threefold repetition).
+- Actions are full capture sequences (path of squares) so the AI contract stays one action per
+  turn; the UI lets the user click piece then destination squares step by step, constrained to
+  legal sequences.
+- Board: 8×8 / 10×10 dark squares, wooden pieces with crowns for kings, move highlights.
+- AI: alpha-beta with material (man 100, king ~160), advancement, center control; quiescence on
+  captures.
 
 ## Known follow-ups (platform)
 
