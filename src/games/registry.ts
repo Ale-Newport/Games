@@ -23,6 +23,7 @@ import { manifest as chess960 } from './chess960/manifest';
 import { manifest as antichess } from './antichess/manifest';
 import { manifest as kingOfTheHill } from './king-of-the-hill/manifest';
 import { manifest as threeCheck } from './three-check-chess/manifest';
+import { manifest as gardner } from './gardner-minichess/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -44,6 +45,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: antichess, load: () => import('./antichess/index') },
   { manifest: kingOfTheHill, load: () => import('./king-of-the-hill/index') },
   { manifest: threeCheck, load: () => import('./three-check-chess/index') },
+  { manifest: gardner, load: () => import('./gardner-minichess/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

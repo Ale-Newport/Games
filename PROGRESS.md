@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #020 Gardner Minichess COMPLETE (chess family done)
+
+- Thin module on the shared chess family (`GARDNER`, 5×5): the board, codec (3 752 actions) and
+  tensor follow the variable size; deeper levels (Medium 3, Hard 6 plies).
+- Seeded bench with the module's presets: Easy vs Random 6–0–2, Medium vs Easy 8–0, Hard vs Medium
+  2–0–4 (drawish small-board endings), Expert vs Hard 6–0.
+- Verified (actually run): `npm run verify` → 488 unit tests (incl. the started shogi engine's
+  13), build, 82 Playwright tests.
+
 ## 2026-11-06 — Session 1: #019 Three-Check Chess COMPLETE
 
 - Thin module on the shared chess family (`THREE_CHECK`): counters in the status line next to the
