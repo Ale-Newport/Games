@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b1d29"/><stop offset="1" stop-color="#3a1612"/></linearGradient><linearGradient id="q" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c8473c"/><stop offset="1" stop-color="#8f2a22"/></linearGradient><radialGradient id="w" cx="0.35" cy="0.3" r="0.7"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d8d4cc"/></radialGradient><radialGradient id="b" cx="0.35" cy="0.3" r="0.7"><stop offset="0" stop-color="#6b6b6b"/><stop offset="1" stop-color="#121212"/></radialGradient></defs>
+<rect width="320" height="200" fill="url(#bg)"/>
+<rect x="14" y="10" width="180" height="180" rx="8" fill="#2c2f3a"/>
+<rect x="20" y="16" width="82" height="82" rx="12" fill="url(#q)" />
+<rect x="106" y="16" width="82" height="82" rx="12" fill="url(#q)" transform="rotate(-12 147 57)"/>
+<rect x="20" y="102" width="82" height="82" rx="12" fill="url(#q)" />
+<rect x="106" y="102" width="82" height="82" rx="12" fill="url(#q)" />
+<circle cx="34" cy="30" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="34" cy="30" r="9" fill="url(#w)"/>
+<circle cx="61" cy="30" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="88" cy="30" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="34" cy="57" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="61" cy="57" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="61" cy="57" r="9" fill="url(#w)"/>
+<circle cx="88" cy="57" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="34" cy="84" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="61" cy="84" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="88" cy="84" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="88" cy="84" r="9" fill="url(#w)"/>
+<circle cx="34" cy="116" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="61" cy="116" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="88" cy="116" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="120" cy="116" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="120" cy="116" r="9" fill="url(#w)"/>
+<circle cx="147" cy="116" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="147" cy="116" r="9" fill="url(#b)"/>
+<circle cx="174" cy="116" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="34" cy="143" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="61" cy="143" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="88" cy="143" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="120" cy="143" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="120" cy="143" r="9" fill="url(#b)"/>
+<circle cx="147" cy="143" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="174" cy="143" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="34" cy="170" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="34" cy="170" r="9" fill="url(#w)"/>
+<circle cx="61" cy="170" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="88" cy="170" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="120" cy="170" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="120" cy="170" r="9" fill="url(#b)"/>
+<circle cx="147" cy="170" r="10" fill="rgba(0,0,0,0.3)"/>
+<circle cx="174" cy="170" r="10" fill="rgba(0,0,0,0.3)"/>
+<path d="M232 78 a32 32 0 1 1 18 28" fill="none" stroke="#f4ecd8" stroke-width="6" stroke-linecap="round"/><path d="M244 108 l8 -4 l-2 10 z" fill="#f4ecd8"/>
+<text x="258" y="178" text-anchor="middle" font-family="Outfit, Inter, system-ui, sans-serif" font-size="20" font-weight="800" fill="#f4ecd8">PENTAGO</text></svg>
