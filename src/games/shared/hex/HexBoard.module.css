@@ -1,0 +1,96 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.cell {
+  fill: #e9dcc0;
+  stroke: #7a6a50;
+  stroke-width: 1.2;
+  outline: none;
+}
+
+.open {
+  cursor: pointer;
+}
+
+.open:hover {
+  fill: #f6ecd6;
+}
+
+.cell:focus-visible {
+  stroke: var(--accent-2);
+  stroke-width: 3;
+}
+
+.hint {
+  fill: #cfe0ff;
+  stroke: #1f6fd1;
+  stroke-dasharray: 4 3;
+  stroke-width: 2;
+}
+
+.edgeRed,
+.edgeBlue {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.edgeRed {
+  stroke: #d64545;
+}
+
+.edgeBlue {
+  stroke: #3a6fd8;
+}
+
+.red {
+  fill: #d64545;
+  stroke: #8f2020;
+  stroke-width: 1.5;
+}
+
+.blue {
+  fill: #3a6fd8;
+  stroke: #1d3f8a;
+  stroke-width: 1.5;
+}
+
+.path {
+  stroke: #ffd166;
+  stroke-width: 3.5;
+}
+
+.lastDot {
+  fill: rgba(255, 255, 255, 0.85);
+}
+
+.animated .placed {
+  animation: placed 200ms var(--ease-out);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes placed {
+  from {
+    transform: scale(1.3);
+  }
+}
+
+.hintButton {
+  border-color: #1f6fd1;
+  border-style: dashed;
+}
