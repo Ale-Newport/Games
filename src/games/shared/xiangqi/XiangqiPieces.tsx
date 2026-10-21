@@ -42,3 +42,11 @@ export function XiangqiPiece({ type, side }: { type: number; side: Side }) {
     </svg>
   );
 }
+
+export function XiangqiSeatIcon({ seat, size }: { seat: 0 | 1; size: number }) {
+  return (
+    <span style={{ display: 'grid', width: size + 6, height: size + 6 }}>
+      <XiangqiPiece type={1} side={seat} />
+    </span>
+  );
+}

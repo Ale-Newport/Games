@@ -2,7 +2,9 @@ import type { SoundSpec } from '../../core/audio/audio-engine';
 import type { GameProps } from '../../core/game-engine/types';
 import { xiangqiTwoPlayerRules } from '../shared/xiangqi/environment';
 import { positionOf, type XiangqiState } from '../shared/xiangqi/game';
-import { createXiangqiBoard, XiangqiSeatIcon } from '../shared/xiangqi/XiangqiBoard';
+import { moveAction } from '../shared/xiangqi/position';
+import { createPointBoard } from '../shared/xiangqi/XiangqiBoard';
+import { XiangqiPiece, XiangqiSeatIcon } from '../shared/xiangqi/XiangqiPieces';
 import { TwoPlayerGame, type TwoPlayerGameDefinition } from '../shared/two-player/TwoPlayerGame';
 import { AGENT_PRESETS, DIFFICULTIES } from './ai';
 import { xiangqiEnv } from './ai-adapter';
@@ -45,9 +47,14 @@ export const XIANGQI: TwoPlayerGameDefinition<XiangqiState, string> = {
   env: xiangqiEnv,
   agents: AGENT_PRESETS,
   strings: STRINGS,
-  Board: createXiangqiBoard((type, side, t) =>
-    t('piece.of', { side: t(`seat.${side}`).toLowerCase(), piece: t(`piece.${type}`) }),
-  ),
+  Board: createPointBoard({
+    positionOf,
+    moveAction,
+    Piece: XiangqiPiece,
+    river: true,
+    pieceName: (type, side, t) =>
+      t('piece.of', { side: t(`seat.${side}`).toLowerCase(), piece: t(`piece.${type}`) }),
+  }),
   SeatIcon: XiangqiSeatIcon,
   wideLayout: true,
   hintAgent: 'hard',
