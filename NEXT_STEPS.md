@@ -25,8 +25,8 @@
 - **#020 Gardner Minichess — COMPLETE** (2026-11-06).
 - **#021 Shogi — COMPLETE** (2026-11-06).
 - **#022 Animal Shogi 3×4 — COMPLETE** (2026-11-06).
-- **Current game: #023 Xiangqi** (`xiangqi`) — TODO (shared engine `src/games/shared/xiangqi/`
-  started: position with perft 44 / 1 920 / 79 666 / 3 290 240, game layer, search, tests).
+- **#023 Xiangqi — COMPLETE** (2026-11-06).
+- **Current game: #024 Janggi** (`janggi`) — TODO.
 
 ## Resume instructions
 

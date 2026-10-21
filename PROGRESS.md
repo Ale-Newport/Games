@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #023 Xiangqi COMPLETE
+
+- Shared engine `src/games/shared/xiangqi/`: mutable 9×10 position (palace, river, horse legs,
+  elephant eyes, cannon screens, flying generals) — perft 44 / 1 920 / 79 666 / 3 290 240 matches
+  the published values after fixing my own palace bound bug (generals could step off the board:
+  depth 1 gave 47); immutable layer with stalemate-loses, threefold repetition with perpetual-check
+  loss, 120-ply no-capture and no-attackers draws; search with contempt.
+- Board drawn as lines through intersections with river and palace diagonals; original round
+  pieces with characters and Latin letters.
+- Seeded bench: Easy vs Random 6–0, Medium vs Easy 6–0, Hard vs Medium 4–0, Expert vs Hard 4–0.
+- Played in the browser (mobile): cannon h2–e2, board fits 375 px.
+- Verified (actually run): `npm run verify` → 534 unit tests, build, 88 Playwright tests.
+
 ## 2026-11-06 — Session 1: #022 Animal Shogi 3×4 COMPLETE
 
 - Catalog entry "Dōbutsu Shōgi" shipped under the generic title "Animal Shogi 3×4" with original
