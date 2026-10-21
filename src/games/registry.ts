@@ -28,6 +28,7 @@ import { manifest as shogi } from './shogi/manifest';
 import { manifest as animalShogi } from './dobutsu-shogi/manifest';
 import { manifest as xiangqi } from './xiangqi/manifest';
 import { manifest as janggi } from './janggi/manifest';
+import { manifest as go9 } from './go-9x9/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -54,6 +55,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: animalShogi, load: () => import('./dobutsu-shogi/index') },
   { manifest: xiangqi, load: () => import('./xiangqi/index') },
   { manifest: janggi, load: () => import('./janggi/index') },
+  { manifest: go9, load: () => import('./go-9x9/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

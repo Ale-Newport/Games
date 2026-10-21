@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 24 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 176
+**Complete:** 25 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 175
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -35,7 +35,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 022 | Dōbutsu Shōgi | `dobutsu-shogi` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 023 | Xiangqi | `xiangqi` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 024 | Janggi | `janggi` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 025 | Go 9×9 | `go-9x9` | TODO | — | — | — | — | — |  |  |
+| 025 | Go 9×9 | `go-9x9` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 026 | Go 13×13 | `go-13x13` | TODO | — | — | — | — | — |  |  |
 | 027 | Go 19×19 | `go-19x19` | TODO | — | — | — | — | — |  |  |
 | 028 | Hex 7×7 | `hex-7x7` | TODO | — | — | — | — | — |  |  |

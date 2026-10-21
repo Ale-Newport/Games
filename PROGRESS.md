@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #025 Go 9×9 COMPLETE
+
+- Shared Go family `src/games/shared/go/`: rules with captures, no suicide, positional superko,
+  passing, Tromp–Taylor area scoring with komi 7.5; `GoMctsAgent` (UCT + RAVE, playouts that never
+  fill their own eyes and capture atari groups, passes when ahead after a pass); definition on the
+  shared `GoBoard` with a pass button and the counted territory shown at the end.
+- Found and fixed my own infinite loop in the playout move picker (stale length after removals);
+  made tree tie-breaks deterministic (no `Math.random`) so seeded tests are reproducible.
+- Seeded bench 9×9: Easy vs Random 6–0 (+20.8), Medium vs Easy 6–0 (+22.2), Hard vs Medium 4–0
+  (+21.3), Expert vs Hard 4–0 (+12.5).
+- Played in the browser (mobile): capture, two passes, territory and the area count.
+- Verified (actually run): `npm run verify` → 571 unit tests, build, 92 Playwright tests.
+
 ## 2026-11-06 — Session 1: #024 Janggi COMPLETE
 
 - New `janggi.ts` next to xiangqi: palace diagonals for generals/guards/chariots/cannons/soldiers,
