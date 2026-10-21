@@ -30,6 +30,7 @@ import { manifest as xiangqi } from './xiangqi/manifest';
 import { manifest as janggi } from './janggi/manifest';
 import { manifest as go9 } from './go-9x9/manifest';
 import { manifest as go13 } from './go-13x13/manifest';
+import { manifest as go19x19 } from './go-19x19/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -58,6 +59,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: janggi, load: () => import('./janggi/index') },
   { manifest: go9, load: () => import('./go-9x9/index') },
   { manifest: go13, load: () => import('./go-13x13/index') },
+  { manifest: go19x19, load: () => import('./go-19x19/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

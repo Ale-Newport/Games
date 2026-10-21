@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #027 Go 19×19 COMPLETE
+
+- Thin module on the shared Go family (levels: 200/800 playouts, 2 s); `goPresets` now takes an
+  optional Expert.
+- Seeded bench (two games per pairing; a 19×19 game runs 280–480 plies): Easy vs Random 2–0
+  (+21.5), Medium vs Easy 2–0 (+48), Hard vs Medium 2–0 (+63). A 3 s Expert split 1–1 with Hard,
+  so 19×19 ships with three levels.
+- Verified (actually run): `npm run verify` → 591 unit tests, build, 96 Playwright tests.
+
 ## 2026-11-06 — Session 1: #026 Go 13×13 COMPLETE
 
 - Thin module on the shared Go family (levels: 300/1 500 playouts, 1.5 s, 2.5 s).
