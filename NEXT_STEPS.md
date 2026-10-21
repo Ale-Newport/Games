@@ -32,7 +32,8 @@
 - **#027 Go 19×19 — COMPLETE** (2026-11-06).
 - **#028 Hex 7×7 — COMPLETE** (2026-11-06).
 - **#029 Hex 11×11 — COMPLETE** (2026-11-06).
-- **Current game: #030 Nine Men's Morris** (`nine-mens-morris`) — TODO (module drafted and benched).
+- **#030 Nine Men's Morris — COMPLETE** (2026-11-06).
+- **Current game: #031 Three Men's Morris** (`three-mens-morris`) — TODO (module drafted and benched).
 
 ## Resume instructions
 

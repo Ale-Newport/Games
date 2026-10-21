@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a1d0e"/><stop offset="1" stop-color="#0e1d2a"/></linearGradient></defs>
+<rect width="320" height="200" fill="url(#bg)"/>
+<rect x="16" y="12" width="176" height="176" rx="6" fill="#d9b67a"/>
+<line x1="38.0" y1="34.0" x2="104.0" y2="34.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="104.0" y1="34.0" x2="170.0" y2="34.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="60.0" y1="56.0" x2="104.0" y2="56.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="104.0" y1="56.0" x2="148.0" y2="56.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="82.0" y1="78.0" x2="104.0" y2="78.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="104.0" y1="78.0" x2="126.0" y2="78.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="38.0" y1="100.0" x2="60.0" y2="100.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="60.0" y1="100.0" x2="82.0" y2="100.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="126.0" y1="100.0" x2="148.0" y2="100.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="148.0" y1="100.0" x2="170.0" y2="100.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="82.0" y1="122.0" x2="104.0" y2="122.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="104.0" y1="122.0" x2="126.0" y2="122.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="60.0" y1="144.0" x2="104.0" y2="144.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="104.0" y1="144.0" x2="148.0" y2="144.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="38.0" y1="166.0" x2="104.0" y2="166.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="104.0" y1="166.0" x2="170.0" y2="166.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="38.0" y1="34.0" x2="38.0" y2="100.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="38.0" y1="100.0" x2="38.0" y2="166.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="60.0" y1="56.0" x2="60.0" y2="100.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="60.0" y1="100.0" x2="60.0" y2="144.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="82.0" y1="78.0" x2="82.0" y2="100.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="82.0" y1="100.0" x2="82.0" y2="122.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="104.0" y1="34.0" x2="104.0" y2="56.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="104.0" y1="56.0" x2="104.0" y2="78.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="104.0" y1="122.0" x2="104.0" y2="144.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="104.0" y1="144.0" x2="104.0" y2="166.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="126.0" y1="78.0" x2="126.0" y2="100.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="126.0" y1="100.0" x2="126.0" y2="122.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="148.0" y1="56.0" x2="148.0" y2="100.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="148.0" y1="100.0" x2="148.0" y2="144.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="170.0" y1="34.0" x2="170.0" y2="100.0" stroke="#4a3216" stroke-width="2"/>
+<line x1="170.0" y1="100.0" x2="170.0" y2="166.0" stroke="#4a3216" stroke-width="2"/>
+<circle cx="38.0" cy="34.0" r="7.5" fill="#f4ead2" stroke="#a8895c" stroke-width="2"/>
+<circle cx="104.0" cy="34.0" r="7.5" fill="#2b2420" stroke="#6b5a4a" stroke-width="2"/>
+<circle cx="170.0" cy="34.0" r="7.5" fill="#2b2420" stroke="#6b5a4a" stroke-width="2"/>
+<circle cx="60.0" cy="56.0" r="2.0" fill="#4a3216"/>
+<circle cx="104.0" cy="56.0" r="2.0" fill="#4a3216"/>
+<circle cx="148.0" cy="56.0" r="7.5" fill="#f4ead2" stroke="#a8895c" stroke-width="2"/>
+<circle cx="82.0" cy="78.0" r="7.5" fill="#f4ead2" stroke="#a8895c" stroke-width="2"/>
+<circle cx="104.0" cy="78.0" r="2.0" fill="#4a3216"/>
+<circle cx="126.0" cy="78.0" r="7.5" fill="#f4ead2" stroke="#a8895c" stroke-width="2"/>
+<circle cx="38.0" cy="100.0" r="7.5" fill="#f4ead2" stroke="#a8895c" stroke-width="2"/>
+<circle cx="60.0" cy="100.0" r="2.0" fill="#4a3216"/>
+<circle cx="82.0" cy="100.0" r="7.5" fill="#2b2420" stroke="#6b5a4a" stroke-width="2"/>
+<circle cx="126.0" cy="100.0" r="2.0" fill="#4a3216"/>
+<circle cx="148.0" cy="100.0" r="7.5" fill="#2b2420" stroke="#6b5a4a" stroke-width="2"/>
+<circle cx="170.0" cy="100.0" r="2.0" fill="#4a3216"/>
+<circle cx="82.0" cy="122.0" r="7.5" fill="#f4ead2" stroke="#a8895c" stroke-width="2"/>
+<circle cx="104.0" cy="122.0" r="2.0" fill="#4a3216"/>
+<circle cx="126.0" cy="122.0" r="2.0" fill="#4a3216"/>
+<circle cx="60.0" cy="144.0" r="7.5" fill="#2b2420" stroke="#6b5a4a" stroke-width="2"/>
+<circle cx="104.0" cy="144.0" r="2.0" fill="#4a3216"/>
+<circle cx="148.0" cy="144.0" r="2.0" fill="#4a3216"/>
+<circle cx="38.0" cy="166.0" r="7.5" fill="#f4ead2" stroke="#a8895c" stroke-width="2"/>
+<circle cx="104.0" cy="166.0" r="2.0" fill="#4a3216"/>
+<circle cx="170.0" cy="166.0" r="7.5" fill="#2b2420" stroke="#6b5a4a" stroke-width="2"/>
+<circle cx="258" cy="66" r="26" fill="#f4ead2" stroke="#a8895c" stroke-width="4"/><circle cx="284" cy="96" r="18" fill="#2b2420" stroke="#6b5a4a" stroke-width="4"/>
+<text x="262" y="178" text-anchor="middle" font-family="Outfit, Inter, system-ui, sans-serif" font-size="20" font-weight="800" fill="#f4ecd8">MORRIS 9</text></svg>

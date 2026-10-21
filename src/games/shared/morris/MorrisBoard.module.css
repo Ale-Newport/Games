@@ -1,0 +1,119 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: min(100%, calc(100dvh - 330px), 560px);
+  min-width: 260px;
+  margin-inline: auto;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.wood {
+  fill: #d9b67a;
+  stroke: #6b4a22;
+  stroke-width: 0.8;
+}
+
+.line {
+  stroke: #4a3216;
+  stroke-width: 0.9;
+  stroke-linecap: round;
+}
+
+.hit {
+  fill: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.hit:focus-visible {
+  stroke: var(--accent-2);
+  stroke-width: 0.8;
+}
+
+.target {
+  fill: rgba(255, 209, 102, 0.55);
+}
+
+.hint {
+  stroke: #1f6fd1;
+  stroke-width: 0.7;
+  stroke-dasharray: 1.5 1;
+}
+
+.dot {
+  fill: #4a3216;
+}
+
+.white {
+  fill: #f4ead2;
+  stroke: #a8895c;
+  stroke-width: 0.8;
+}
+
+.black {
+  fill: #2b2420;
+  stroke: #6b5a4a;
+  stroke-width: 0.8;
+}
+
+.selected {
+  stroke: #ffaa1e;
+  stroke-width: 1.4;
+}
+
+.removable {
+  stroke: #e0433a;
+  stroke-width: 1.4;
+  stroke-dasharray: 1.5 1;
+}
+
+.animated .placed {
+  animation: placed 200ms var(--ease-out);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes placed {
+  from {
+    transform: scale(1.3);
+  }
+}
+
+.tray {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  min-height: 20px;
+}
+
+.trayPiece {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid;
+}
+
+.trayPiece.white {
+  background: #f4ead2;
+  border-color: #a8895c;
+}
+
+.trayPiece.black {
+  background: #2b2420;
+  border-color: #6b5a4a;
+}
+
+.prompt {
+  margin: 0;
+  font-weight: 700;
+  color: #e0433a;
+}

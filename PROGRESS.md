@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #030 Nine Men's Morris COMPLETE
+
+- Shared Morris family `src/games/shared/morris/`: one engine for 9/6/3 men (placement, sliding,
+  flying at three, mills with removal choice — pieces in mills protected unless all are — loss at
+  two pieces or when blocked, repetition and quiet-move draws); generic alpha-beta presets with a
+  mobility-aware evaluation; SVG board with the mill drawn, removal step and pieces-in-hand trays.
+- Bench found Hard blocked at the end of placement: mobility now counts in every phase and Medium
+  searches 2 plies. Seeded (12 games per pair): Easy vs Random 12–0–0, Medium vs Easy 12–0–0,
+  Hard vs Medium 11–0–1.
+- Verified (actually run): `npm run verify` → 636 unit tests, build, 102 Playwright tests.
+
 ## 2026-11-06 — Session 1: #029 Hex 11×11 COMPLETE
 
 - Thin module on the shared Hex family (levels: 300 fills with 20% random moves, 6 000 fills,
