@@ -36,6 +36,7 @@ import { manifest as hex11x11 } from './hex-11x11/manifest';
 import { manifest as nineMensMorris } from './nine-mens-morris/manifest';
 import { manifest as threeMensMorris } from './three-mens-morris/manifest';
 import { manifest as sixMensMorris } from './six-mens-morris/manifest';
+import { manifest as quarto } from './quarto/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -70,6 +71,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: nineMensMorris, load: () => import('./nine-mens-morris/index') },
   { manifest: threeMensMorris, load: () => import('./three-mens-morris/index') },
   { manifest: sixMensMorris, load: () => import('./six-mens-morris/index') },
+  { manifest: quarto, load: () => import('./quarto/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

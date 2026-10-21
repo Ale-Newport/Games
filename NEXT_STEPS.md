@@ -35,7 +35,8 @@
 - **#030 Nine Men's Morris — COMPLETE** (2026-11-06).
 - **#031 Three Men's Morris — COMPLETE** (2026-11-06).
 - **#032 Six Men's Morris — COMPLETE** (2026-11-06).
-- **Current game: #033 Quarto** (`quarto`) — TODO (module drafted and benched).
+- **#033 Quarto — COMPLETE** (2026-11-06).
+- **Current game: #034 Pentago** (`pentago`) — TODO (module drafted and benched).
 
 ## Resume instructions
 
