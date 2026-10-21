@@ -32,6 +32,7 @@ import { manifest as go9 } from './go-9x9/manifest';
 import { manifest as go13 } from './go-13x13/manifest';
 import { manifest as go19x19 } from './go-19x19/manifest';
 import { manifest as hex7x7 } from './hex-7x7/manifest';
+import { manifest as hex11x11 } from './hex-11x11/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -62,6 +63,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: go13, load: () => import('./go-13x13/index') },
   { manifest: go19x19, load: () => import('./go-19x19/index') },
   { manifest: hex7x7, load: () => import('./hex-7x7/index') },
+  { manifest: hex11x11, load: () => import('./hex-11x11/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
