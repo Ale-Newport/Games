@@ -2,6 +2,13 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #026 Go 13×13 COMPLETE
+
+- Thin module on the shared Go family (levels: 300/1 500 playouts, 1.5 s, 2.5 s).
+- Seeded bench (two games per pairing): Easy vs Random 2–0 (+46), Medium vs Easy 2–0 (+23.5), Hard
+  vs Medium 2–0 (+63), Expert vs Hard 2–0 (+32).
+- Verified (actually run): `npm run verify` → 581 unit tests, build, 94 Playwright tests.
+
 ## 2026-11-06 — Session 1: #025 Go 9×9 COMPLETE
 
 - Shared Go family `src/games/shared/go/`: rules with captures, no suicide, positional superko,

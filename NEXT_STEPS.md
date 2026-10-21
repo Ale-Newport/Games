@@ -28,7 +28,8 @@
 - **#023 Xiangqi — COMPLETE** (2026-11-06).
 - **#024 Janggi — COMPLETE** (2026-11-06).
 - **#025 Go 9×9 — COMPLETE** (2026-11-06).
-- **Current game: #026 Go 13×13** (`go-13x13`) — TODO (module drafted; needs its bench).
+- **#026 Go 13×13 — COMPLETE** (2026-11-06).
+- **Current game: #027 Go 19×19** (`go-19x19`) — TODO (module drafted; bench running).
 
 ## Resume instructions
 
