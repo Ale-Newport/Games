@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #031 Three Men's Morris COMPLETE
+
+- Thin module on the shared Morris family: 3×3 board with both diagonals, three pieces each,
+  placement then sliding along lines (no flying, no removal); three on a row or column wins (the
+  diagonals are only for moving).
+- Screenshot check: target glows covered the board lines on the small board; they now sit under
+  the lines (shared Morris board).
+- Seeded (12 games per pair): Easy vs Random 12–0–0, Medium vs Easy 8–0–4, Hard vs Medium 0–0–12.
+  The game is a draw with good play, so Medium and Hard are both sound; the spec says so plainly.
+- Verified (actually run): `npm run verify` → 646 unit tests, build, 104 Playwright tests.
+
 ## 2026-11-06 — Session 1: #030 Nine Men's Morris COMPLETE
 
 - Shared Morris family `src/games/shared/morris/`: one engine for 9/6/3 men (placement, sliding,
