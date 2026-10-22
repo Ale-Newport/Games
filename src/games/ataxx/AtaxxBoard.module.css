@@ -1,0 +1,100 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: min(100%, calc(100dvh - 300px), 500px);
+  min-width: 260px;
+  margin-inline: auto;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 6px;
+  border-radius: var(--radius-md);
+  background: #1e2533;
+}
+
+.cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 6px;
+  background: #313b4f;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cell:focus-visible {
+  outline: 3px solid var(--accent-2);
+}
+
+.selected {
+  background: #4b5876;
+  box-shadow: inset 0 0 0 3px #ffd166;
+}
+
+.placed {
+  outline: 3px solid rgba(255, 214, 90, 0.85);
+  outline-offset: 2px;
+}
+
+.hint {
+  box-shadow: inset 0 0 0 3px #7fb0ff;
+}
+
+.piece {
+  width: 74%;
+  height: 74%;
+  border-radius: 50%;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.red {
+  background: radial-gradient(circle at 35% 30%, #ff9a8a, #c62f25 70%);
+}
+
+.blue {
+  background: radial-gradient(circle at 35% 30%, #9ac4ff, #2a63c4 70%);
+}
+
+.clone {
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  background: #6fe39a;
+}
+
+.jump {
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  border: 3px solid #ffbf47;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.count {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.animated .piece {
+  animation: flip 260ms var(--ease-out);
+}
+
+@keyframes flip {
+  from {
+    transform: scale(0.4) rotateY(90deg);
+  }
+}

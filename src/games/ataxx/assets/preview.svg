@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#121826"/><stop offset="1" stop-color="#25142a"/></linearGradient><radialGradient id="r" cx="0.35" cy="0.3" r="0.7"><stop offset="0" stop-color="#ff8a7a"/><stop offset="1" stop-color="#b3261e"/></radialGradient><radialGradient id="b" cx="0.35" cy="0.3" r="0.7"><stop offset="0" stop-color="#8ab8ff"/><stop offset="1" stop-color="#1f4fa8"/></radialGradient></defs>
+<rect width="320" height="200" fill="url(#bg)"/>
+<rect x="14" y="10" width="180" height="180" rx="10" fill="#1e2533"/>
+<rect x="18" y="14" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="29.0" cy="25.0" r="8.5" fill="url(#r)"/>
+<rect x="43" y="14" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="54.0" cy="25.0" r="8.5" fill="url(#r)"/>
+<rect x="68" y="14" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="93" y="14" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="118" y="14" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="143" y="14" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="154.0" cy="25.0" r="8.5" fill="url(#b)"/>
+<rect x="168" y="14" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="179.0" cy="25.0" r="8.5" fill="url(#b)"/>
+<rect x="18" y="39" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="29.0" cy="50.0" r="8.5" fill="url(#r)"/>
+<rect x="43" y="39" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="54.0" cy="50.0" r="8.5" fill="url(#r)"/>
+<rect x="68" y="39" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="79.0" cy="50.0" r="8.5" fill="url(#r)"/>
+<rect x="93" y="39" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="118" y="39" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="143" y="39" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="154.0" cy="50.0" r="8.5" fill="url(#b)"/>
+<rect x="168" y="39" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="179.0" cy="50.0" r="8.5" fill="url(#b)"/>
+<rect x="18" y="64" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="43" y="64" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="54.0" cy="75.0" r="8.5" fill="url(#r)"/>
+<rect x="68" y="64" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="79.0" cy="75.0" r="8.5" fill="url(#r)"/>
+<rect x="93" y="64" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="118" y="64" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="129.0" cy="75.0" r="8.5" fill="url(#b)"/>
+<rect x="143" y="64" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="168" y="64" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="179.0" cy="75.0" r="8.5" fill="url(#b)"/>
+<rect x="18" y="89" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="43" y="89" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="68" y="89" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="93" y="89" width="22" height="22" rx="4" fill="#4b5876" stroke="#ffd166" stroke-width="2"/>
+<circle cx="104.0" cy="100.0" r="8.5" fill="url(#r)"/>
+<rect x="118" y="89" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="129.0" cy="100.0" r="8.5" fill="url(#r)"/>
+<rect x="143" y="89" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="168" y="89" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="18" y="114" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="43" y="114" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="54.0" cy="125.0" r="8.5" fill="url(#b)"/>
+<rect x="68" y="114" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="79.0" cy="125.0" r="8.5" fill="url(#b)"/>
+<rect x="93" y="114" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="104.0" cy="125.0" r="8.5" fill="url(#b)"/>
+<rect x="118" y="114" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="143" y="114" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="168" y="114" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="18" y="139" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="29.0" cy="150.0" r="8.5" fill="url(#b)"/>
+<rect x="43" y="139" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="54.0" cy="150.0" r="8.5" fill="url(#b)"/>
+<rect x="68" y="139" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="93" y="139" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="118" y="139" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="143" y="139" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="154.0" cy="150.0" r="8.5" fill="url(#r)"/>
+<rect x="168" y="139" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="18" y="164" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="29.0" cy="175.0" r="8.5" fill="url(#b)"/>
+<rect x="43" y="164" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="54.0" cy="175.0" r="8.5" fill="url(#b)"/>
+<rect x="68" y="164" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="93" y="164" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="118" y="164" width="22" height="22" rx="4" fill="#313b4f"/>
+<rect x="143" y="164" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="154.0" cy="175.0" r="8.5" fill="url(#r)"/>
+<rect x="168" y="164" width="22" height="22" rx="4" fill="#313b4f"/>
+<circle cx="179.0" cy="175.0" r="8.5" fill="url(#r)"/>
+<circle cx="104.0" cy="75.0" r="4" fill="#5ad19a"/>
+<circle cx="79.0" cy="100.0" r="4" fill="#5ad19a"/>
+<circle cx="129.0" cy="125.0" r="4" fill="#5ad19a"/>
+<circle cx="154.0" cy="125.0" r="4" fill="#5ad19a"/>
+<circle cx="104.0" cy="50.0" r="7" fill="none" stroke="#ffb347" stroke-width="2"/>
+<circle cx="54.0" cy="100.0" r="7" fill="none" stroke="#ffb347" stroke-width="2"/>
+<circle cx="104.0" cy="150.0" r="7" fill="none" stroke="#ffb347" stroke-width="2"/>
+<circle cx="129.0" cy="175.0" r="7" fill="none" stroke="#ffb347" stroke-width="2"/>
+<circle cx="154.0" cy="100.0" r="7" fill="none" stroke="#ffb347" stroke-width="2"/>
+<circle cx="246" cy="70" r="26" fill="url(#r)"/><circle cx="280" cy="96" r="18" fill="url(#b)"/>
+<text x="258" y="178" text-anchor="middle" font-family="Outfit, Inter, system-ui, sans-serif" font-size="22" font-weight="800" fill="#f4ecd8">ATAXX</text></svg>

@@ -39,7 +39,8 @@
 - **#034 Pentago — COMPLETE** (2026-11-06).
 - **#035 Nesting Tic-Tac-Toe — COMPLETE** (2026-11-06).
 - **#036 Teeko — COMPLETE** (2026-11-06).
-- **Current game: #037 Ataxx** (`ataxx`) — TODO (module drafted and benched).
+- **#037 Ataxx — COMPLETE** (2026-11-06).
+- **Current game: #038 Breakthrough** (`breakthrough`) — TODO (module drafted and benched).
 
 ## Resume instructions
 

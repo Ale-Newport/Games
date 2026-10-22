@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #037 Ataxx COMPLETE
+
+- 7×7 open board: clone to a neighbor or jump two cells, converting every adjacent enemy piece;
+  forced pass without a move; ends on a full board, a wipeout, no moves for either side or 400
+  plies (most pieces wins), threefold repetition draws.
+- Alpha-beta presets on piece difference with a small bonus for surrounded pieces, clones first
+  (Easy 1 ply + 25% random, Medium 2, Hard iterative deepening 1 s). Seeded: Easy vs Random 8–0,
+  Medium vs Easy 8–0, Hard vs Medium 7–0–1.
+- Played in the browser (mobile, Spanish) against Medium: clone, jump, conversions both ways; added
+  a ring on the last destination after the screenshot review.
+- Verified (actually run): `npm run verify` → 724 unit tests, build, 116 Playwright tests.
+
 ## 2026-11-06 — Session 1: #036 Teeko COMPLETE
 
 - 5×5 board, four markers each: a drop phase, then single-step moves in eight directions; four in
