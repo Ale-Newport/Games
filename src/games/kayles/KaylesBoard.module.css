@@ -1,0 +1,99 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 640px);
+  margin-inline: auto;
+}
+
+.lane {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  padding: 18px 8px 10px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, #e8c48a 0%, #d2a465 60%, #b98a4d 100%);
+  box-shadow:
+    inset 0 -6px 0 rgba(0, 0, 0, 0.12),
+    0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.slot {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  min-width: 0;
+  height: clamp(70px, 18vw, 110px);
+  border: none;
+  border-radius: 6px;
+  padding: 0;
+  background: transparent;
+  cursor: default;
+}
+
+.can {
+  cursor: pointer;
+}
+
+.can:hover .pinSvg {
+  transform: translateY(-3px);
+}
+
+.pinSvg {
+  width: 100%;
+  max-width: 30px;
+  height: 100%;
+  overflow: visible;
+  transition: transform 120ms var(--ease-out);
+  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.3));
+}
+
+.fallen {
+  transform: translate(0, 46px) rotate(78deg);
+  transform-origin: 10px 57px;
+  opacity: 0.35;
+}
+
+.picked {
+  background: rgba(255, 122, 89, 0.35);
+  box-shadow: inset 0 0 0 2px #ff7a59;
+}
+
+.hint {
+  box-shadow: inset 0 0 0 2px #2f6fd6;
+}
+
+.cursor {
+  outline: 2px solid rgba(60, 35, 15, 0.7);
+  outline-offset: -2px;
+}
+
+.slot:focus-visible {
+  outline: 3px solid var(--accent-2);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+}
+
+.tip {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.animated .justDown .fallen {
+  animation: topple 380ms ease-in;
+}
+
+@keyframes topple {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+}

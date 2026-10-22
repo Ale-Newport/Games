@@ -49,6 +49,7 @@ import { manifest as misereNim } from './misere-nim/manifest';
 import { manifest as wythoff } from './wythoff/manifest';
 import { manifest as subtractionGame } from './subtraction-game/manifest';
 import { manifest as chomp } from './chomp/manifest';
+import { manifest as kayles } from './kayles/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -96,6 +97,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: wythoff, load: () => import('./wythoff/index') },
   { manifest: subtractionGame, load: () => import('./subtraction-game/index') },
   { manifest: chomp, load: () => import('./chomp/index') },
+  { manifest: kayles, load: () => import('./kayles/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
