@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #040 Dots and Boxes COMPLETE
+
+- 4×4 boxes (40 lines); closing a box claims it and draws again; the state records who drew each
+  line so the shell's undo and turn tracking work with repeated turns.
+- Easy/Medium greedy agents (safe lines; Medium gives away the smallest chain) and a Hard negamax
+  with captures as free depth, a line-mask transposition table and double-dealing moves; a unit
+  test checks Hard double-deals in a 4-chain + 12-chain position. Seeded (10 games per pair): Easy
+  vs Random 10–0, Medium vs Easy 8–2, Hard vs Medium 10–0.
+- e2e could not click SVG `<line>` hit targets (zero-height boxes): they are now rectangles that
+  stop short of the dots; the keyboard cursor no longer recolors lines drawn by pointer.
+- Played a full game in the browser (mobile, Spanish) against Hard: lost 0–16 with careless lines.
+- Verified (actually run): `npm run verify` → 766 unit tests, build, 122 Playwright tests.
+
 ## 2026-11-06 — Session 1: #039 Isolation COMPLETE
 
 - 7×7 tiles, one pawn each; a turn is a king step then the removal of any free tile; whoever cannot
