@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #048 Cram COMPLETE
+
+- Thin module on the shared domino family (both orientations for both seats, 5×6). Cram is
+  impartial, so the bench showed a zero evaluation leaving Easy and Medium at chance (5–5, 4–6);
+  leaves now use a parity estimate (dominoes that still fit, packed greedily).
+- Seeded (10 games per pair): Easy vs Random 7–3, Medium vs Easy 10–0, Hard vs Medium 10–0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 885 unit tests, build, 138
+  Playwright tests.
+
 ## 2026-11-06 — Session 1: #047 Domineering COMPLETE
 
 - New shared domino family `src/games/shared/dominoes/` for #047–#048: one engine (per-seat
