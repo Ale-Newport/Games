@@ -41,6 +41,7 @@ import { manifest as pentago } from './pentago/manifest';
 import { manifest as stackingGobblers } from './stacking-gobblers/manifest';
 import { manifest as teeko } from './teeko/manifest';
 import { manifest as ataxx } from './ataxx/manifest';
+import { manifest as breakthrough } from './breakthrough/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -80,6 +81,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: stackingGobblers, load: () => import('./stacking-gobblers/index') },
   { manifest: teeko, load: () => import('./teeko/index') },
   { manifest: ataxx, load: () => import('./ataxx/index') },
+  { manifest: breakthrough, load: () => import('./breakthrough/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

@@ -2,6 +2,21 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #038 Breakthrough COMPLETE
+
+- 8×8, sixteen pawns each: straight steps onto empty cells, diagonal steps that may capture; the
+  first pawn on the far row wins, as does capturing everything. A "no moves" rule was dropped
+  after proving it unreachable (the most advanced pawn always has a free or capturable diagonal).
+- Alpha-beta presets (material, squared advancement, home-row defenders, hanging pawns, decisive
+  bonus for an unstoppable runner); captures first. Easy 1 ply + 25% random, Medium 3, Hard
+  iterative deepening 1 s. Seeded (8 games per pair): Easy vs Random 8–0, Medium vs Easy 7–1,
+  Hard vs Medium 8–0.
+- Board flips for the Black side; original pawn art; no "Agree draw" (the game cannot be drawn).
+- Played in the browser (mobile, Spanish) as Black against Hard: flipped board, steps, AI replies;
+  fixed uneven row heights and a low-contrast last-move mark found there.
+- Verified (actually run): `npm run verify` → 738 unit tests, build, 118 Playwright tests (rerun the
+  Breakthrough unit and e2e tests after the CSS fix).
+
 ## 2026-11-06 — Session 1: #037 Ataxx COMPLETE
 
 - 7×7 open board: clone to a neighbor or jump two cells, converting every adjacent enemy piece;
