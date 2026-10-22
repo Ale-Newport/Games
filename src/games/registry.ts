@@ -50,6 +50,7 @@ import { manifest as wythoff } from './wythoff/manifest';
 import { manifest as subtractionGame } from './subtraction-game/manifest';
 import { manifest as chomp } from './chomp/manifest';
 import { manifest as kayles } from './kayles/manifest';
+import { manifest as domineering } from './domineering/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -98,6 +99,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: subtractionGame, load: () => import('./subtraction-game/index') },
   { manifest: chomp, load: () => import('./chomp/index') },
   { manifest: kayles, load: () => import('./kayles/index') },
+  { manifest: domineering, load: () => import('./domineering/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 46 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 154
+**Complete:** 47 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 153
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -62,7 +62,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 044 | Subtraction Game | `subtraction-game` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 045 | Chomp | `chomp` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 046 | Kayles | `kayles` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 047 | Domineering | `domineering` | TODO | — | — | — | — | — |  |  |
+| 047 | Domineering | `domineering` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 048 | Cram | `cram` | TODO | — | — | — | — | — |  |  |
 | 049 | Sim | `sim` | TODO | — | — | — | — | — |  |  |
 | 050 | SOS | `sos` | TODO | — | — | — | — | — |  |  |

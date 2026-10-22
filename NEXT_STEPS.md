@@ -49,7 +49,8 @@
 - **#044 Subtraction Game — COMPLETE** (2026-11-06).
 - **#045 Chomp — COMPLETE** (2026-11-06).
 - **#046 Kayles — COMPLETE** (2026-11-06).
-- **Current game: #047 Domineering** (`domineering`) — TODO.
+- **#047 Domineering — COMPLETE** (2026-11-06).
+- **Current game: #048 Cram** (`cram`) — TODO.
 
 ## Resume instructions
 
