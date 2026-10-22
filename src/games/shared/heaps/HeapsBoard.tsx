@@ -94,9 +94,15 @@ export function createHeapsBoard(v: HeapsVariant): ComponentType<BoardProps<Heap
       <div className={`${styles.wrap} ${animate ? styles.animated : ''}`} data-testid="heaps-board">
         <div className={styles.heaps} role="group" aria-label={t('board.label')}>
           {state.heaps.map((n, h) => (
-            <div key={h} className={styles.heap} data-testid={`heap-${h}`}>
-              <span className={styles.name}>
-                {t('heap.name', { letter: heapLetter(h) })}
+            <div
+              key={h}
+              className={styles.heap}
+              data-testid={`heap-${h}`}
+              role="group"
+              aria-label={`${t('heap.name', { letter: heapLetter(h) })}: ${n}`}
+            >
+              <span className={styles.name} aria-hidden="true">
+                <span className={styles.letter}>{heapLetter(h)}</span>
                 <span className={styles.count}>{n}</span>
                 {lastLabel(h) && (
                   <span key={state.history.length} className={styles.taken}>

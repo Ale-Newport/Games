@@ -45,7 +45,8 @@
 - **#040 Dots and Boxes — COMPLETE** (2026-11-06).
 - **#041 Nim — COMPLETE** (2026-11-06).
 - **#042 Misère Nim — COMPLETE** (2026-11-06).
-- **Current game: #043 Wythoff's Game** (`wythoff`) — TODO.
+- **#043 Wythoff's Game — COMPLETE** (2026-11-06).
+- **Current game: #044 Subtraction Game** (`subtraction-game`) — TODO.
 
 ## Resume instructions
 
