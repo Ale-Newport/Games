@@ -1,0 +1,159 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 560px);
+  margin-inline: auto;
+}
+
+.heaps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(160deg, #23503c, #163626);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.45);
+}
+
+.heap {
+  display: grid;
+  grid-template-columns: 5.5em 1fr;
+  align-items: center;
+  gap: 8px;
+}
+
+.name {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: #d8eadf;
+}
+
+.count {
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+  font-size: 1.05rem;
+}
+
+.taken {
+  font-size: 0.75rem;
+  color: #ffd166;
+  animation: fade 1.4s ease-out forwards;
+}
+
+.counters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-height: 28px;
+}
+
+.empty {
+  font-size: var(--text-sm);
+  color: rgba(216, 234, 223, 0.55);
+  font-style: italic;
+}
+
+.counter {
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  background: radial-gradient(circle at 35% 30%, #fff5d6, #d9a441 70%, #9a6b1c);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.45);
+  cursor: default;
+  transition:
+    transform 120ms var(--ease-out),
+    opacity 120ms;
+}
+
+.can {
+  cursor: pointer;
+}
+
+.can:hover {
+  transform: translateY(-2px);
+}
+
+.chosen {
+  opacity: 0.45;
+  transform: translateY(-4px) scale(0.92);
+  box-shadow: 0 0 0 2px #ff7a59;
+}
+
+.hint {
+  box-shadow:
+    0 0 0 2px #5aa7ff,
+    0 2px 3px rgba(0, 0, 0, 0.45);
+}
+
+.cursor {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
+.counter:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toggle input {
+  width: 18px;
+  height: 18px;
+}
+
+.animated .counter {
+  animation: pop 200ms var(--ease-out);
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.85);
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .heap {
+    grid-template-columns: 4.6em 1fr;
+  }
+
+  .counter {
+    width: 22px;
+    height: 22px;
+  }
+}

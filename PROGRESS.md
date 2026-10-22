@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #041 Nim COMPLETE
+
+- New shared heap family `src/games/shared/heaps/` for #041–#044: one engine (heaps, allowed
+  amounts, Wythoff's both-heaps move, normal/misère), seeded random setups per round, an exact
+  memoized solver unit-tested against the known theory (nim-sum, misère rule, Wythoff golden-ratio
+  pairs, multiples of four), accuracy-based agents, a counters board with mark-then-confirm.
+- Nim: 3–5 heaps of 1–9. Seeded (40 games per pair): Easy vs Random 29–11, Medium vs Easy 33–7,
+  Hard vs Medium 36–4; Hard never loses a winning start (tested).
+- Verified (actually run): `npm run verify` → 788 unit tests, build, 124 Playwright tests.
+
 ## 2026-11-06 — Session 1: #040 Dots and Boxes COMPLETE
 
 - 4×4 boxes (40 lines); closing a box claims it and draws again; the state records who drew each
