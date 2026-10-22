@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #039 Isolation COMPLETE
+
+- 7×7 tiles, one pawn each; a turn is a king step then the removal of any free tile; whoever cannot
+  step at the start of their turn loses (no draws, no "Agree draw"). Two actions per turn, so the
+  shell's undo against the computer steps back one human action at a time (tested).
+- Alpha-beta on mobility (own steps ×3, opponent's ×4, two-step areas). Tuning found a 4-action
+  search losing 4–8 to a 2-action one (it stops right after the opponent's reply); 6 actions won
+  12–0, so Medium searches 6. Shipped presets: Easy vs Random 8–0, Medium vs Easy 7–1, Hard vs
+  Medium 7–1.
+- Played in the browser (mobile, Spanish) against Medium: two-step turns, status line, the CPU
+  removing a tile next to my pawn.
+- Verified (actually run): `npm run verify` → 752 unit tests, build, 120 Playwright tests.
+
 ## 2026-11-06 — Session 1: #038 Breakthrough COMPLETE
 
 - 8×8, sixteen pawns each: straight steps onto empty cells, diagonal steps that may capture; the

@@ -42,6 +42,7 @@ import { manifest as stackingGobblers } from './stacking-gobblers/manifest';
 import { manifest as teeko } from './teeko/manifest';
 import { manifest as ataxx } from './ataxx/manifest';
 import { manifest as breakthrough } from './breakthrough/manifest';
+import { manifest as isolation } from './isolation/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -82,6 +83,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: teeko, load: () => import('./teeko/index') },
   { manifest: ataxx, load: () => import('./ataxx/index') },
   { manifest: breakthrough, load: () => import('./breakthrough/index') },
+  { manifest: isolation, load: () => import('./isolation/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

@@ -41,7 +41,8 @@
 - **#036 Teeko — COMPLETE** (2026-11-06).
 - **#037 Ataxx — COMPLETE** (2026-11-06).
 - **#038 Breakthrough — COMPLETE** (2026-11-06).
-- **Current game: #039 Isolation** (`isolation`) — TODO (engine, AI and board drafted).
+- **#039 Isolation — COMPLETE** (2026-11-06).
+- **Current game: #040 Dots and Boxes** (`dots-and-boxes`) — TODO (engine and AI drafted).
 
 ## Resume instructions
 
