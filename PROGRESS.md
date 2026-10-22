@@ -2,6 +2,14 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #036 Teeko COMPLETE
+
+- 5×5 board, four markers each: a drop phase, then single-step moves in eight directions; four in
+  a straight line or a 2×2 square wins (44 shapes); repetition and 200-ply draws.
+- Alpha-beta presets with an open-shape evaluation (Easy 2 plies + 25% random, Medium 4, Hard
+  iterative deepening 1 s). Seeded: Easy vs Random 10–0, Medium vs Easy 10–0, Hard vs Medium 10–0.
+- Verified (actually run): `npm run verify` → 710 unit tests, build, 114 Playwright tests.
+
 ## 2026-11-06 — Session 1: #035 Nesting Tic-Tac-Toe COMPLETE
 
 - Catalog "Gobblet Gobblers" under a generic name with original cup art: 3×3, six cups in three
