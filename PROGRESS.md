@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #045 Chomp COMPLETE
+
+- Chocolate bar with a poisoned corner; bites remove everything below/right; bar size drawn per
+  round from five sizes. Exact memoized solver over Young-diagram shapes, unit-tested against the
+  known results (first player wins every rectangle, (1,1) on squares, two-row rule, symmetric L).
+- Seeded (40 games per pair): Easy vs Random 27–13, Medium vs Easy 31–9, Hard vs Medium 36–4; a
+  20-game variant of the ordering test was too noisy and now uses the 40-game setup.
+- Mobile screenshot: uneven rows and a barely visible bite preview; rows are now equal and the
+  preview is hatched and outlined.
+- Verified (actually run): `npm run verify` → 842 unit tests, build, 132 Playwright tests (Chomp
+  unit and e2e tests rerun after the CSS fix).
+
 ## 2026-11-06 — Session 1: #044 Subtraction Game COMPLETE
 
 - Thin module on the shared heap family: one heap of 15–30, take 1–3 (only the last three

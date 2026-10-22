@@ -47,7 +47,8 @@
 - **#042 Misère Nim — COMPLETE** (2026-11-06).
 - **#043 Wythoff's Game — COMPLETE** (2026-11-06).
 - **#044 Subtraction Game — COMPLETE** (2026-11-06).
-- **Current game: #045 Chomp** (`chomp`) — TODO.
+- **#045 Chomp — COMPLETE** (2026-11-06).
+- **Current game: #046 Kayles** (`kayles`) — TODO.
 
 ## Resume instructions
 

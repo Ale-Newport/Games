@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 44 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 156
+**Complete:** 45 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 155
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -60,7 +60,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 042 | Misère Nim | `misere-nim` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 043 | Wythoff's Game | `wythoff` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 044 | Subtraction Game | `subtraction-game` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 045 | Chomp | `chomp` | TODO | — | — | — | — | — |  |  |
+| 045 | Chomp | `chomp` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 046 | Kayles | `kayles` | TODO | — | — | — | — | — |  |  |
 | 047 | Domineering | `domineering` | TODO | — | — | — | — | — |  |  |
 | 048 | Cram | `cram` | TODO | — | — | — | — | — |  |  |

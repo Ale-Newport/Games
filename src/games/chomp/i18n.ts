@@ -1,0 +1,56 @@
+import type { Dictionary, Locale } from '../../core/i18n';
+
+const en: Dictionary = {
+  'menu.title': 'Chomp',
+  'menu.subtitle': 'Bite the chocolate bar, square by square — just don’t eat the poisoned one.',
+  'difficulty.easy': 'Easy',
+  'difficulty.medium': 'Medium',
+  'difficulty.hard': 'Hard',
+  'difficulty.easy.hint': 'Knows the winning bite but rarely takes it.',
+  'difficulty.medium.hint': 'Usually finds the winning bite.',
+  'difficulty.hard.hint': 'Perfect play from an exact solver.',
+  'seat.0': 'Red',
+  'seat.1': 'Blue',
+  'menu.name0': 'First player',
+  'menu.name1': 'Second player',
+  'menu.agent0': 'First agent',
+  'menu.agent1': 'Second agent',
+  'board.label': 'Chocolate bar',
+  'square.piece': 'chocolate',
+  'square.poison': 'poisoned square',
+  'square.eaten': 'eaten',
+  'action.eat': 'Eat {n}',
+  'info.goal': 'Leave your opponent only the poisoned square',
+  'announce.bite': '{seat} bites at {square} and eats {n}.',
+  'result.poison': 'Only the poisoned square is left for {seat}.',
+  keys: 'Keys: arrows pick a square · Enter choose / eat · Esc cancel · U undo · H hint · R restart · N next',
+};
+
+const es: Dictionary = {
+  'menu.title': 'Chomp',
+  'menu.subtitle':
+    'Muerde la tableta de chocolate cuadrado a cuadrado, pero no te comas el envenenado.',
+  'difficulty.easy': 'Fácil',
+  'difficulty.medium': 'Medio',
+  'difficulty.hard': 'Difícil',
+  'difficulty.easy.hint': 'Conoce el mordisco ganador pero casi nunca lo da.',
+  'difficulty.medium.hint': 'Suele encontrar el mordisco ganador.',
+  'difficulty.hard.hint': 'Juego perfecto con un solucionador exacto.',
+  'seat.0': 'Rojo',
+  'seat.1': 'Azul',
+  'menu.name0': 'Primer jugador',
+  'menu.name1': 'Segundo jugador',
+  'menu.agent0': 'Primer agente',
+  'menu.agent1': 'Segundo agente',
+  'board.label': 'Tableta de chocolate',
+  'square.piece': 'chocolate',
+  'square.poison': 'cuadrado envenenado',
+  'square.eaten': 'comido',
+  'action.eat': 'Comer {n}',
+  'info.goal': 'Deja al rival solo el cuadrado envenenado',
+  'announce.bite': '{seat} muerde en {square} y come {n}.',
+  'result.poison': 'Solo le queda el cuadrado envenenado a {seat}.',
+  keys: 'Teclas: flechas elegir cuadrado · Intro elegir / comer · Esc cancelar · U deshacer · H pista · R reiniciar · N siguiente',
+};
+
+export const STRINGS: Record<Locale, Dictionary> = { en, es };
