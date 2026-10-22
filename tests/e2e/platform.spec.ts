@@ -81,7 +81,7 @@ test('AI Lab runs a real evaluation in a worker and stores it in history', async
   await freshStart(page, '/ai-lab');
   await page.getByTestId('agent-a').selectOption('perfect');
   await page.getByTestId('agent-b').selectOption('random');
-  await page.getByLabel('Games').selectOption('10');
+  await page.getByTestId('lab-games').selectOption('10');
   await page.getByTestId('run-evaluation').click();
   const report = page.getByTestId('evaluation-report');
   await expect(report).toBeVisible({ timeout: 20_000 });

@@ -232,6 +232,7 @@ export function AiLabPage() {
                   value={gameId}
                   onChange={(e) => setGameId(e.target.value)}
                   disabled={!!progress}
+                  data-testid="lab-game"
                 >
                   {games.map((g) => (
                     <option key={g.id} value={g.id}>
@@ -279,6 +280,7 @@ export function AiLabPage() {
                   value={count}
                   onChange={(e) => setCount(Number(e.target.value))}
                   disabled={!!progress}
+                  data-testid="lab-games"
                 >
                   {[10, 50, 100, 500, 1000].map((n) => (
                     <option key={n} value={n}>

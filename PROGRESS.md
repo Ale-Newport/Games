@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #044 Subtraction Game COMPLETE
+
+- Thin module on the shared heap family: one heap of 15–30, take 1–3 (only the last three
+  counters are selectable); the solver matches the multiples-of-four theory up to 30.
+- Seeded (40 games per pair): Easy vs Random 27–13, Medium vs Easy 33–7, Hard vs Medium 33–7.
+- The 44th title made the AI Lab "Games" label lookup ambiguous in the platform e2e; the Lab selects
+  now carry `lab-game` / `lab-games` test ids.
+- Verified (actually run): `npm run verify` → 824 unit tests, build, 130 Playwright tests.
+
 ## 2026-11-06 — Session 1: #043 Wythoff's Game COMPLETE
 
 - Thin module on the shared heap family: two heaps of 4–15, take from one heap or the same from
