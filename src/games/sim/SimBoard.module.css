@@ -1,0 +1,110 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  width: min(100%, calc(100dvh - 300px), 480px);
+  min-width: 260px;
+  margin-inline: auto;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  background: radial-gradient(circle at 50% 45%, #1d2640, #0d1220);
+  touch-action: manipulation;
+}
+
+.line {
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+.free {
+  stroke: rgba(220, 228, 245, 0.18);
+  stroke-width: 0.9;
+  stroke-dasharray: 1.6 1.6;
+}
+
+.seat0 {
+  stroke: #ff5a4e;
+  stroke-width: 2.2;
+}
+
+.seat1 {
+  stroke: #4ea3ff;
+  stroke-width: 2.2;
+}
+
+.last {
+  stroke-width: 3.2;
+  filter: drop-shadow(0 0 1.2px rgba(255, 220, 120, 0.95));
+}
+
+.hint {
+  stroke: #46d18a;
+  stroke-width: 2.4;
+  stroke-dasharray: 2.2 1.4;
+}
+
+.cursor {
+  stroke: #b49cff;
+  stroke-width: 2;
+  stroke-dasharray: none;
+}
+
+.hit {
+  fill: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.hit[aria-disabled='true'] {
+  cursor: default;
+}
+
+/* Hover feedback only where a pointer can hover (a tap would leave it stuck on phones). */
+@media (hover: hover) {
+  .hit:not([aria-disabled='true']):hover {
+    fill: rgba(180, 156, 255, 0.22);
+  }
+
+  .hit.danger:hover {
+    fill: rgba(255, 90, 78, 0.28);
+  }
+}
+
+.hit:focus-visible {
+  fill: rgba(180, 156, 255, 0.4);
+}
+
+.point {
+  fill: #f1f4fb;
+  stroke: #0d1220;
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+.label {
+  font-size: 4.2px;
+  font-weight: 700;
+  fill: rgba(241, 244, 251, 0.7);
+  pointer-events: none;
+}
+
+.lost0 {
+  fill: rgba(255, 90, 78, 0.28);
+}
+
+.lost1 {
+  fill: rgba(78, 163, 255, 0.28);
+}
+
+.animated .last {
+  animation: draw 260ms var(--ease-out);
+}
+
+@keyframes draw {
+  from {
+    opacity: 0.2;
+  }
+}
