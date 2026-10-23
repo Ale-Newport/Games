@@ -1,0 +1,117 @@
+.wrap {
+  user-select: none;
+  -webkit-user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: min(100%, calc(100dvh - 320px), 560px);
+  min-width: 260px;
+  margin-inline: auto;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  touch-action: none;
+  cursor: crosshair;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.paper {
+  fill: #f8f4ea;
+}
+
+.curve {
+  fill: none;
+  stroke-width: 0.42;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.seat0 {
+  stroke: #d0453b;
+}
+
+.seat1 {
+  stroke: #2e66c9;
+}
+
+.last {
+  stroke-width: 0.6;
+}
+
+.hint {
+  fill: none;
+  stroke: #2f9e6a;
+  stroke-width: 0.45;
+  stroke-dasharray: 0.8 0.5;
+  pointer-events: none;
+}
+
+.drawing {
+  fill: none;
+  stroke: #6a4fd8;
+  stroke-width: 0.45;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.bad {
+  stroke: #e03b3b;
+  stroke-dasharray: 0.6 0.4;
+}
+
+.spot circle:first-child {
+  stroke: #2b2a33;
+  stroke-width: 0.22;
+}
+
+.alive circle:first-child {
+  fill: #ffffff;
+  cursor: pointer;
+}
+
+.dead circle:first-child {
+  fill: #2b2a33;
+}
+
+.selected circle:first-child {
+  fill: #ffd166;
+  stroke: #b8860b;
+}
+
+.spot:focus-visible {
+  outline: none;
+}
+
+.spot:focus-visible circle:first-child {
+  stroke: var(--accent-2);
+  stroke-width: 0.35;
+}
+
+.life {
+  fill: #2f9e6a;
+  pointer-events: none;
+}
+
+.message {
+  min-height: 1.4em;
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.animated .last {
+  animation: ink 320ms ease-out;
+}
+
+@keyframes ink {
+  from {
+    opacity: 0.2;
+  }
+}
