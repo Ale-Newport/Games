@@ -63,7 +63,8 @@
 - **#058 Bagh-Chal — COMPLETE** (2026-11-06).
 - **#059 Alquerque — COMPLETE** (2026-11-06).
 - **#060 Yoté — COMPLETE** (2026-11-07).
-- **Current game: #061 Kalah Mancala** (`kalah`) — TODO.
+- **#061 Kalah Mancala — COMPLETE** (2026-11-07).
+- **Current game: #062 Oware** (`oware`) — TODO (module drafted and benched).
 
 ## Resume instructions
 
