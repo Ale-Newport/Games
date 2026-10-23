@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 49 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 151
+**Complete:** 50 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 150
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -65,7 +65,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 047 | Domineering | `domineering` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 048 | Cram | `cram` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 049 | Sim | `sim` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 050 | SOS | `sos` | TODO | — | — | — | — | — |  |  |
+| 050 | SOS | `sos` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 051 | Sprouts | `sprouts` | TODO | — | — | — | — | — |  |  |
 | 052 | Clobber | `clobber` | TODO | — | — | — | — | — |  |  |
 | 053 | Konane | `konane` | TODO | — | — | — | — | — |  |  |

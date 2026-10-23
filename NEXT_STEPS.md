@@ -52,7 +52,8 @@
 - **#047 Domineering — COMPLETE** (2026-11-06).
 - **#048 Cram — COMPLETE** (2026-11-06).
 - **#049 Sim — COMPLETE** (2026-11-06).
-- **Current game: #050 SOS** (`sos`) — TODO.
+- **#050 SOS — COMPLETE** (2026-11-06).
+- **Current game: #051 Sprouts** (`sprouts`) — TODO.
 
 ## Resume instructions
 

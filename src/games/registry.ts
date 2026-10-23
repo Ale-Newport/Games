@@ -53,6 +53,7 @@ import { manifest as kayles } from './kayles/manifest';
 import { manifest as domineering } from './domineering/manifest';
 import { manifest as cram } from './cram/manifest';
 import { manifest as sim } from './sim/manifest';
+import { manifest as sos } from './sos/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -104,6 +105,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: domineering, load: () => import('./domineering/index') },
   { manifest: cram, load: () => import('./cram/index') },
   { manifest: sim, load: () => import('./sim/index') },
+  { manifest: sos, load: () => import('./sos/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
