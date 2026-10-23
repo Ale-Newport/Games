@@ -60,7 +60,8 @@
 - **#055 Hnefatafl — COMPLETE** (2026-11-06).
 - **#056 Tablut — COMPLETE** (2026-11-06).
 - **#057 Fox and Geese — COMPLETE** (2026-11-06).
-- **Current game: #058 Bagh-Chal** (`bagh-chal`) — TODO (module drafted and benched).
+- **#058 Bagh-Chal — COMPLETE** (2026-11-06).
+- **Current game: #059 Alquerque** (`alquerque`) — TODO.
 
 ## Resume instructions
 
