@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #053 Konane COMPLETE
+
+- 6×6 full checkerboard; two opening removals (Black middle/corner, White next to the hole), then
+  straight-line jumps with optional multi-jumps; no jump loses. The first bench crashed on an
+  endless capture loop in multi-jumps (it stepped over the landing cell); fixed and covered.
+- Alpha-beta on jump mobility. Seeded (10 games per pair): Easy vs Random 8–2, Medium vs Easy
+  10–0, Hard vs Medium 10–0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 958 unit tests, build, 148
+  Playwright tests (the seat icon colors were swapped on the screenshot; fixed, e2e rerun).
+
 ## 2026-11-06 — Session 1: #052 Clobber COMPLETE
 
 - 6×6 full checkerboard; move onto an adjacent enemy stone to remove it; no move loses.

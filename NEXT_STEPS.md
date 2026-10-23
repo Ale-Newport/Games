@@ -55,7 +55,8 @@
 - **#050 SOS — COMPLETE** (2026-11-06).
 - **#051 Sprouts — COMPLETE** (2026-11-06).
 - **#052 Clobber — COMPLETE** (2026-11-06).
-- **Current game: #053 Konane** (`konane`) — TODO.
+- **#053 Konane — COMPLETE** (2026-11-06).
+- **Current game: #054 Fanorona** (`fanorona`) — TODO.
 
 ## Resume instructions
 
