@@ -57,6 +57,7 @@ import { manifest as sos } from './sos/manifest';
 import { manifest as sprouts } from './sprouts/manifest';
 import { manifest as clobber } from './clobber/manifest';
 import { manifest as konane } from './konane/manifest';
+import { manifest as fanorona } from './fanorona/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -112,6 +113,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: sprouts, load: () => import('./sprouts/index') },
   { manifest: clobber, load: () => import('./clobber/index') },
   { manifest: konane, load: () => import('./konane/index') },
+  { manifest: fanorona, load: () => import('./fanorona/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

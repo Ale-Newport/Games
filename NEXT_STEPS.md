@@ -56,7 +56,8 @@
 - **#051 Sprouts — COMPLETE** (2026-11-06).
 - **#052 Clobber — COMPLETE** (2026-11-06).
 - **#053 Konane — COMPLETE** (2026-11-06).
-- **Current game: #054 Fanorona** (`fanorona`) — TODO.
+- **#054 Fanorona — COMPLETE** (2026-11-06).
+- **Current game: #055 Hnefatafl** (`hnefatafl`) — TODO.
 
 ## Resume instructions
 
