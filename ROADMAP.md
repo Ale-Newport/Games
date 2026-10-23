@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 51 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 149
+**Complete:** 52 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 148
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -67,7 +67,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 049 | Sim | `sim` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 050 | SOS | `sos` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 051 | Sprouts | `sprouts` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 052 | Clobber | `clobber` | TODO | — | — | — | — | — |  |  |
+| 052 | Clobber | `clobber` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 053 | Konane | `konane` | TODO | — | — | — | — | — |  |  |
 | 054 | Fanorona | `fanorona` | TODO | — | — | — | — | — |  |  |
 | 055 | Hnefatafl | `hnefatafl` | TODO | — | — | — | — | — |  |  |

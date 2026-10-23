@@ -54,7 +54,8 @@
 - **#049 Sim — COMPLETE** (2026-11-06).
 - **#050 SOS — COMPLETE** (2026-11-06).
 - **#051 Sprouts — COMPLETE** (2026-11-06).
-- **Current game: #052 Clobber** (`clobber`) — TODO.
+- **#052 Clobber — COMPLETE** (2026-11-06).
+- **Current game: #053 Konane** (`konane`) — TODO.
 
 ## Resume instructions
 
