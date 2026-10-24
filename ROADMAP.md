@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 62 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 138
+**Complete:** 63 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 137
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -78,7 +78,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 060 | Yoté | `yote` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 061 | Kalah Mancala | `kalah` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 062 | Oware | `oware` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 063 | Bao | `bao` | TODO | — | — | — | — | — |  |  |
+| 063 | Bao | `bao` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 064 | Congkak | `congkak` | TODO | — | — | — | — | — |  |  |
 | 065 | Halma | `halma` | TODO | — | — | — | — | — |  |  |
 | 066 | Chinese Checkers | `chinese-checkers` | TODO | — | — | — | — | — |  |  |
