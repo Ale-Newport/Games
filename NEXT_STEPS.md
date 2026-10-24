@@ -71,7 +71,8 @@
 - **#066 Chinese Checkers — COMPLETE** (2026-11-07).
 - **#067 Game of the Amazons — COMPLETE** (2026-11-07).
 - **#068 Lines of Action — COMPLETE** (2026-11-07).
-- **Current game: #069 Paper Soccer** (`paper-soccer`) — TODO.
+- **#069 Paper Soccer — COMPLETE** (2026-11-07).
+- **Current game: #070 Bridg-It** (`bridg-it`) — TODO.
 
 ## Resume instructions
 

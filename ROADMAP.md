@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 68 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 132
+**Complete:** 69 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 131
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -84,7 +84,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 066 | Chinese Checkers | `chinese-checkers` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 067 | Game of the Amazons | `amazons` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 068 | Lines of Action | `lines-of-action` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 069 | Paper Soccer | `paper-soccer` | TODO | — | — | — | — | — |  |  |
+| 069 | Paper Soccer | `paper-soccer` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 070 | Bridg-It | `bridg-it` | TODO | — | — | — | — | — |  |  |
 
 ## Card & Solitaire
