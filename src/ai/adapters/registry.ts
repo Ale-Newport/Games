@@ -77,6 +77,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   alquerque: () => import('../../games/alquerque/ai-adapter').then((m) => m.bundle),
   yote: () => import('../../games/yote/ai-adapter').then((m) => m.bundle),
   kalah: () => import('../../games/kalah/ai-adapter').then((m) => m.bundle),
+  oware: () => import('../../games/oware/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
