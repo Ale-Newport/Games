@@ -66,7 +66,8 @@
 - **#061 Kalah Mancala — COMPLETE** (2026-11-07).
 - **#062 Oware — COMPLETE** (2026-11-07).
 - **#063 Bao — COMPLETE** (2026-11-07).
-- **Current game: #064 Congkak** (`congkak`) — TODO.
+- **#064 Congkak — COMPLETE** (2026-11-07).
+- **Current game: #065 Halma** (`halma`) — TODO.
 
 ## Resume instructions
 

@@ -67,6 +67,7 @@ import { manifest as yote } from './yote/manifest';
 import { manifest as kalah } from './kalah/manifest';
 import { manifest as oware } from './oware/manifest';
 import { manifest as bao } from './bao/manifest';
+import { manifest as congkak } from './congkak/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -132,6 +133,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: kalah, load: () => import('./kalah/index') },
   { manifest: oware, load: () => import('./oware/index') },
   { manifest: bao, load: () => import('./bao/index') },
+  { manifest: congkak, load: () => import('./congkak/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
