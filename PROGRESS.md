@@ -2,6 +2,14 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #072 Klondike — Draw Three COMPLETE
+
+- Thin module on the shared Klondike / solitaire / cards pieces: three cards per draw with the
+  waste fanned, −20 per pass, its own achievements.
+- Deals 1–20: planner 2 solved (avg return 0.22), greedy 0 (0.08), random 0 (0.11).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1247 unit tests, build, 194
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #071 Klondike — Draw One COMPLETE
 
 - New shared card infrastructure: `shared/cards` (card numbering, seeded multi-deck shuffles,
