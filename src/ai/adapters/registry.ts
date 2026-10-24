@@ -85,6 +85,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   amazons: () => import('../../games/amazons/ai-adapter').then((m) => m.bundle),
   'lines-of-action': () => import('../../games/lines-of-action/ai-adapter').then((m) => m.bundle),
   'paper-soccer': () => import('../../games/paper-soccer/ai-adapter').then((m) => m.bundle),
+  'bridg-it': () => import('../../games/bridg-it/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
