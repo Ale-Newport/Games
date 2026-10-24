@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #071 Klondike — Draw One COMPLETE
+
+- New shared card infrastructure: `shared/cards` (card numbering, seeded multi-deck shuffles,
+  names, original SVG card art with a four-color mode), `shared/solitaire` (the patience shell:
+  fitted layout with compressing fans, tap / drag / keyboard, undo, hints, automatic finish, Watch
+  AI, clock, score, stats, saves, `?deal=N`), `shared/klondike` (engine for draw one and three,
+  greedy and planner agents on a masked view that never peeks at face-down cards).
+- `evaluateAgents` now handles single-player environments (both agents play the same deals).
+- Deals 1–20: planner 9 solved (avg return 0.57), greedy 0 (0.17), random 0 (0.14).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1232 unit tests, build, 188
+  Playwright tests (the Klondike spec re-run after clicking the stock's top card and centering
+  the layout).
+
 ## 2026-11-07 — Session 1: #070 Gale (catalog "Bridg-It") COMPLETE
 
 - Shown under the generic name Gale. Two interleaved dot grids on an 11 × 11 lattice, one bridge per

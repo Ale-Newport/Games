@@ -74,6 +74,7 @@ import { manifest as amazons } from './amazons/manifest';
 import { manifest as linesOfAction } from './lines-of-action/manifest';
 import { manifest as paperSoccer } from './paper-soccer/manifest';
 import { manifest as bridgIt } from './bridg-it/manifest';
+import { manifest as klondikeDraw1 } from './klondike-draw-1/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -146,6 +147,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: linesOfAction, load: () => import('./lines-of-action/index') },
   { manifest: paperSoccer, load: () => import('./paper-soccer/index') },
   { manifest: bridgIt, load: () => import('./bridg-it/index') },
+  { manifest: klondikeDraw1, load: () => import('./klondike-draw-1/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

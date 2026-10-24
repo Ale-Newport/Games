@@ -49,13 +49,18 @@ export interface EvaluationReport {
   createdAt: string;
 }
 
-/** Evaluates agent A against agent B in a two-seat environment. */
+/**
+ * Evaluates agent A against agent B in a two-seat environment. In a single-player environment
+ * (solitaire, puzzles) both agents play every deal on their own, on the same seeds, and their
+ * results are compared: a win is a solved deal, a loss an unsolved (or truncated) one.
+ */
 export function evaluateAgents<S, A, C>(
   env: GameEnvironment<S, A, unknown, C>,
   agentA: Agent<S, A>,
   agentB: Agent<S, A>,
   config: EvaluationConfig<C>,
 ): EvaluationReport {
+  if (env.info.maxPlayers === 1) return evaluateSolo(env, agentA, agentB, config);
   const swap = config.swapSeats ?? true;
   const tallies = [newTally(), newTally()];
   let totalMoves = 0;
@@ -118,6 +123,69 @@ export function evaluateAgents<S, A, C>(
     seed: config.seed,
     seeds,
     swapSeats: swap,
+    timeLimitMs: config.timeLimitMs ?? null,
+    createdAt: new Date().toISOString(),
+  };
+}
+
+function evaluateSolo<S, A, C>(
+  env: GameEnvironment<S, A, unknown, C>,
+  agentA: Agent<S, A>,
+  agentB: Agent<S, A>,
+  config: EvaluationConfig<C>,
+): EvaluationReport {
+  const agents = [agentA, agentB] as const;
+  const tallies = [newTally(), newTally()];
+  let totalMoves = 0;
+  let truncated = 0;
+  const seeds: number[] = [];
+  for (let i = 0; i < config.games; i++) {
+    const seed = (config.seed + i) >>> 0;
+    seeds.push(seed);
+    agents.forEach((agent, k) => {
+      const result = playMatch(env, [agent], {
+        seed,
+        config: config.config,
+        maxSteps: config.maxSteps,
+        timeLimitMs: config.timeLimitMs,
+        now: config.now,
+      });
+      totalMoves += result.actions.length / 2;
+      if (result.truncated) truncated++;
+      const tally = tallies[k]!;
+      tally.returns += result.outcome?.returns[0] ?? 0;
+      if (result.outcome?.winners.includes(0)) tally.wins++;
+      else tally.losses++;
+      tally.latencies.push(...(result.latencies[0] ?? []));
+      tally.nodes.push(...(result.nodes[0] ?? []));
+    });
+    config.onProgress?.(i + 1, config.games);
+  }
+  const summarize = (agent: Agent<S, A>, tally: Tally): AgentSummary => ({
+    id: agent.id,
+    label: agent.label,
+    wins: tally.wins,
+    losses: tally.losses,
+    draws: 0,
+    winRate: tally.wins / config.games,
+    lossRate: tally.losses / config.games,
+    drawRate: 0,
+    averageReturn: tally.returns / config.games,
+    averageLatencyMs: mean(tally.latencies),
+    maxLatencyMs: tally.latencies.length ? Math.max(...tally.latencies) : 0,
+    averageNodes: tally.nodes.length ? mean(tally.nodes) : null,
+  });
+  return {
+    gameId: env.id,
+    gameVersion: env.version,
+    rulesetId: env.rulesetId,
+    agents: [summarize(agentA, tallies[0]!), summarize(agentB, tallies[1]!)],
+    games: config.games,
+    truncatedGames: truncated,
+    averageMoves: totalMoves / Math.max(1, config.games),
+    seed: config.seed,
+    seeds,
+    swapSeats: false,
     timeLimitMs: config.timeLimitMs ?? null,
     createdAt: new Date().toISOString(),
   };

@@ -73,7 +73,8 @@
 - **#068 Lines of Action — COMPLETE** (2026-11-07).
 - **#069 Paper Soccer — COMPLETE** (2026-11-07).
 - **#070 Gale (catalog "Bridg-It") — COMPLETE** (2026-11-07).
-- **Current game: #071 Klondike Solitaire — Draw One** (`klondike-draw-1`) — TODO.
+- **#071 Klondike Solitaire — Draw One — COMPLETE** (2026-11-07).
+- **Current game: #072 Klondike Solitaire — Draw Three** (`klondike-draw-3`) — TODO.
 
 ## Resume instructions
 
@@ -81,6 +82,14 @@
 2. `npm ci`; `npx playwright install chromium` (Playwright 1.65 needs chromium-headless-shell v1254).
 3. `npm run verify` should be green before you start.
 4. Follow CLAUDE.md Stages A–G for the current game.
+
+## How to build a patience (solitaire) game
+
+Use `src/games/shared/solitaire/SolitaireGame.tsx` with a `SolitaireDefinition` (see
+`src/games/shared/klondike/definition.ts`): a pure seeded engine (deal, legal moves, apply, replay
+validation), `piles()` describing the layout, `canPick` / `moveTo` / `autoMove` / `stockMove` /
+`finishMove` mapping taps and drops to moves, and an environment with `maxPlayers: 1` (agents never
+peek at hidden cards; `evaluateAgents` compares two agents on the same deals).
 
 ## How to build the next two-player board game
 
