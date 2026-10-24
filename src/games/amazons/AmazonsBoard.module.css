@@ -1,0 +1,133 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: min(100%, calc(100dvh - 320px), 560px);
+  min-width: 280px;
+  margin-inline: auto;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.light {
+  fill: #e6d3ad;
+}
+
+.dark {
+  fill: #9c7a52;
+}
+
+.last {
+  fill: #e2b95a;
+}
+
+.dark.last {
+  fill: #c39a3e;
+}
+
+.burn {
+  fill: #3b2418;
+}
+
+.arrow {
+  fill: none;
+  stroke: #e0782b;
+  stroke-width: 0.07;
+  stroke-linecap: round;
+}
+
+.white {
+  fill: #fbf7ee;
+  stroke: #6b5f4a;
+  stroke-width: 0.04;
+}
+
+.black {
+  fill: #26211c;
+  stroke: #a7987c;
+  stroke-width: 0.04;
+}
+
+.crownW {
+  fill: #c9a227;
+}
+
+.crownB {
+  fill: #e0b13e;
+}
+
+.piece {
+  pointer-events: none;
+}
+
+.movable circle {
+  stroke: #ffd166;
+  stroke-width: 0.06;
+}
+
+.selected circle {
+  stroke: #ff9f1c;
+  stroke-width: 0.1;
+}
+
+.ghost {
+  fill: none;
+  stroke: rgba(40, 30, 20, 0.5);
+  stroke-width: 0.05;
+  stroke-dasharray: 0.1 0.08;
+}
+
+.dot {
+  fill: #2fae66;
+}
+
+.shot {
+  fill: #e0482b;
+}
+
+.hint {
+  fill: none;
+  stroke: #1f6fd1;
+  stroke-width: 0.07;
+  stroke-dasharray: 0.16 0.1;
+}
+
+.cursor {
+  fill: none;
+  stroke: #7c5cff;
+  stroke-width: 0.06;
+}
+
+.hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+}
+
+.phase {
+  font-weight: 700;
+}
+
+.animated .newArrow {
+  animation: burn 320ms var(--ease-out);
+}
+
+@keyframes burn {
+  from {
+    opacity: 0;
+  }
+}
