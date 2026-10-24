@@ -75,7 +75,8 @@
 - **#070 Gale (catalog "Bridg-It") — COMPLETE** (2026-11-07).
 - **#071 Klondike Solitaire — Draw One — COMPLETE** (2026-11-07).
 - **#072 Klondike Solitaire — Draw Three — COMPLETE** (2026-11-07).
-- **Current game: #073 FreeCell** (`freecell`) — TODO.
+- **#073 FreeCell — COMPLETE** (2026-11-07).
+- **Current game: #074 Spider Solitaire — One Suit** (`spider-1-suit`) — TODO.
 
 ## Resume instructions
 

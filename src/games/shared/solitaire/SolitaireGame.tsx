@@ -93,6 +93,8 @@ export interface SolitaireDefinition<S> {
   stockMove(s: S): string | null;
   /** The next move of the automatic finish, when the deal can be finished without choices. */
   finishMove(s: S): string | null;
+  /** A move the shell plays by itself after each of the player's moves (e.g. safe cards home). */
+  autoPlay?: (s: S) => string | null;
   /** Source and target of a move, for hints. */
   moveEnds(s: S, move: string): { from: CardRef | null; to: string } | null;
   describe(before: S, move: string, after: S, t: Translator, locale: Locale): string;
@@ -110,15 +112,13 @@ interface Session<S> {
   undos: number;
   hints: number;
   recorded: boolean;
+  /** Automatic plays at the end of the history (undone together with the move before them). */
+  autoTrail?: number;
+  /** Automatic plays are paused after an undo until the player moves again. */
+  autoPaused?: boolean;
 }
 
-interface Saved<S> {
-  state: S;
-  elapsedMs: number;
-  undos: number;
-  hints: number;
-  recorded: boolean;
-}
+type Saved<S> = Session<S>;
 
 const newSeed = () => (randomSeed() % 999_999) + 1;
 
@@ -326,16 +326,23 @@ export function SolitaireGame<S>({ def, services }: { def: SolitaireDefinition<S
     return next;
   };
 
-  const play = (move: string) => {
+  const play = (move: string, automatic = false) => {
     const current = sessionRef.current;
     if (def.status(current.state) !== 'playing') return;
     const next = def.apply(current.state, move);
     servicesRef.current.playSound(CARD_SOUNDS[def.sound(current.state, move, next)]);
     setAnnouncement(def.describe(current.state, move, next, t, locale));
-    setSelected(null);
+    if (!automatic) setSelected(null);
     setHint(null);
     setNote('');
-    setSession(settle({ ...current, state: next }));
+    setSession(
+      settle({
+        ...current,
+        state: next,
+        autoTrail: automatic ? (current.autoTrail ?? 0) + 1 : 0,
+        autoPaused: false,
+      }),
+    );
   };
 
   const invalid = () => {
@@ -391,7 +398,9 @@ export function SolitaireGame<S>({ def, services }: { def: SolitaireDefinition<S
     const current = sessionRef.current;
     const history = def.historyOf(current.state);
     if (!history.length || def.status(current.state) === 'won') return;
-    const state = def.replay(def.seedOf(current.state), history.slice(0, -1));
+    // The player's last move goes back together with the automatic plays that followed it.
+    const steps = Math.min(history.length, (current.autoTrail ?? 0) + 1);
+    const state = def.replay(def.seedOf(current.state), history.slice(0, -steps));
     setSelected(null);
     setHint(null);
     setNote('');
@@ -400,6 +409,8 @@ export function SolitaireGame<S>({ def, services }: { def: SolitaireDefinition<S
         ...current,
         state,
         undos: current.undos + 1,
+        autoTrail: 0,
+        autoPaused: true,
         recorded: current.recorded && def.status(state) !== 'playing',
       }),
     );
@@ -451,6 +462,16 @@ export function SolitaireGame<S>({ def, services }: { def: SolitaireDefinition<S
     return () => window.clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch, paused, state, status]);
+
+  // Automatic plays after the player's moves (never while watching: the AI plans its own).
+  useEffect(() => {
+    if (watch || finishing || status !== 'playing' || !def.autoPlay || session.autoPaused) return;
+    const move = def.autoPlay(state);
+    if (!move) return;
+    const id = window.setTimeout(() => play(move, true), services.reducedMotion ? 30 : 140);
+    return () => window.clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state, watch, finishing, session.autoPaused]);
 
   // Automatic finish: one move at a time.
   useEffect(() => {

@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #073 FreeCell COMPLETE
+
+- FreeCell on the shared card shell: run limits from free cells and empty columns, safe automatic
+  plays home (new optional `autoPlay` hook in the shell), linear-time replay validation.
+- Best-first solver on canonical positions: deals 1–50 all solved (≤ 0.13 s a decision); greedy 2,
+  random 2.
+- Undo now takes back the player's move together with the automatic plays after it, and pauses
+  automatic plays until the next move.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1269 unit tests, build, 198
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #072 Klondike — Draw Three COMPLETE
 
 - Thin module on the shared Klondike / solitaire / cards pieces: three cards per draw with the
