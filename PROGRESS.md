@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #065 Halma COMPLETE
+
+- New shared jump-race family `src/games/shared/jump-race/` for #065 and #066: graph geometries
+  (16 × 16 square with 8 directions, the 121-hole star), steps and jump chains over either color,
+  pieces locked in the far camp, the anti-blocking win (camp full with at least one own piece), a
+  ply limit decided by distance left, alternating openers, an SVG board that draws the last jump
+  path.
+- Halma 16 × 16 with 19 pieces. Seeded: Easy vs Random 6–0, Medium vs Easy 6–0, Hard vs Medium 4–0;
+  every game ended by filling the camp.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1124 unit tests, build, 172
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #064 Congkak COMPLETE
 
 - Thin module on the shared mancala family: 7 houses × 7 seeds, stores passed only on your own side,

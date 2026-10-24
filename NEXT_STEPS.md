@@ -67,7 +67,8 @@
 - **#062 Oware — COMPLETE** (2026-11-07).
 - **#063 Bao — COMPLETE** (2026-11-07).
 - **#064 Congkak — COMPLETE** (2026-11-07).
-- **Current game: #065 Halma** (`halma`) — TODO.
+- **#065 Halma — COMPLETE** (2026-11-07).
+- **Current game: #066 Chinese Checkers** (`chinese-checkers`) — TODO.
 
 ## Resume instructions
 
