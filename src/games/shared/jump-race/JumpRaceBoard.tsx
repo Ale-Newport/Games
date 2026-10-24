@@ -39,20 +39,23 @@ export function createJumpRaceBoard(
   const square = v.shape === 'square';
   // Square cells are drawn from their corner; star holes are centered on their coordinates.
   const pos = g.xy.map((c) => (square ? { x: c.x + 0.5, y: c.y + 0.5 } : c));
-  const minX = Math.min(...pos.map((p) => p.x)) - (square ? 0.5 : 0.85);
-  const maxX = Math.max(...pos.map((p) => p.x)) + (square ? 0.5 : 0.85);
-  const minY = Math.min(...pos.map((p) => p.y)) - (square ? 0.5 : 0.85);
-  const maxY = Math.max(...pos.map((p) => p.y)) + (square ? 0.5 : 0.85);
+  // The star's outline: two triangles around the hole triangles (circumradius 8·√3/2), widened
+  // so the tip holes keep a margin.
+  const starR = 4 * Math.sqrt(3) + 1.6;
+  const pad = square ? 0.5 : 0.1;
+  const minX = square ? Math.min(...pos.map((p) => p.x)) - pad : (-starR * Math.sqrt(3)) / 2 - pad;
+  const maxX = square ? Math.max(...pos.map((p) => p.x)) + pad : (starR * Math.sqrt(3)) / 2 + pad;
+  const minY = square ? Math.min(...pos.map((p) => p.y)) - pad : -starR - pad;
+  const maxY = square ? Math.max(...pos.map((p) => p.y)) + pad : starR + pad;
   const cx = (minX + maxX) / 2;
   const cy = (minY + maxY) / 2;
   const pieceR = square ? 0.36 : 0.36;
   const camps = [new Set(g.camps[0]), new Set(g.camps[1])];
-  // The star's outline: the two big triangles' corners (hex tips at distance 8 rows from center).
   const tri = (sign: number) =>
     [0, 1, 2]
       .map((k) => {
         const a = ((sign > 0 ? 90 : -90) + k * 120) * (Math.PI / 180);
-        return `${(Math.cos(a) * 9.9).toFixed(2)},${(Math.sin(a) * 9.9).toFixed(2)}`;
+        return `${(Math.cos(a) * starR).toFixed(2)},${(Math.sin(a) * starR).toFixed(2)}`;
       })
       .join(' ');
 
@@ -160,6 +163,9 @@ export function createJumpRaceBoard(
               <>
                 <polygon points={tri(1)} className={styles.star} />
                 <polygon points={tri(-1)} className={styles.star} />
+                {/* Fill again without the outline so the inner edges do not cross the board. */}
+                <polygon points={tri(1)} className={styles.starFill} />
+                <polygon points={tri(-1)} className={styles.starFill} />
                 {pos.map((p, c) => (
                   <circle
                     key={c}

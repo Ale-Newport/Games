@@ -68,7 +68,8 @@
 - **#063 Bao — COMPLETE** (2026-11-07).
 - **#064 Congkak — COMPLETE** (2026-11-07).
 - **#065 Halma — COMPLETE** (2026-11-07).
-- **Current game: #066 Chinese Checkers** (`chinese-checkers`) — TODO.
+- **#066 Chinese Checkers — COMPLETE** (2026-11-07).
+- **Current game: #067 Game of the Amazons** (`amazons`) — TODO.
 
 ## Resume instructions
 

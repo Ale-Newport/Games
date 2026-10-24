@@ -45,6 +45,10 @@
   stroke-linejoin: round;
 }
 
+.starFill {
+  fill: #c99a5c;
+}
+
 .hole,
 .hole0,
 .hole1 {

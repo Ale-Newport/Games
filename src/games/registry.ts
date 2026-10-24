@@ -69,6 +69,7 @@ import { manifest as oware } from './oware/manifest';
 import { manifest as bao } from './bao/manifest';
 import { manifest as congkak } from './congkak/manifest';
 import { manifest as halma } from './halma/manifest';
+import { manifest as chineseCheckers } from './chinese-checkers/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -136,6 +137,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: bao, load: () => import('./bao/index') },
   { manifest: congkak, load: () => import('./congkak/index') },
   { manifest: halma, load: () => import('./halma/index') },
+  { manifest: chineseCheckers, load: () => import('./chinese-checkers/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
