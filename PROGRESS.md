@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #074 Spider — One Suit COMPLETE
+
+- New shared Spider family (`shared/spider`) for #074–#076: two-deck deal for one, two or four
+  suits, any-suit building with one-suit run moves, automatic run removal, deals blocked by empty
+  columns, scoring; masked best-first planner and greedy agents. Shell: optional info line (deals
+  left).
+- Deals 1–10: planner 5 solved (avg share of runs 0.70), greedy 0 (0.17), random 0 (0.04).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1295 unit tests, build, 202
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #073 FreeCell COMPLETE
 
 - FreeCell on the shared card shell: run limits from free cells and empty columns, safe automatic
