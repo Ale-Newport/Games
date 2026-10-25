@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #080 Yukon COMPLETE
+
+- New configurable column-patience family (`shared/columns`: deal, stock kind, building rule, move
+  unit, empty-column rule, foundations or run removal) with Yukon, Scorpion and Forty Thieves
+  variants. Planner: shortest line to real progress (a best-first planner chasing long lines lost
+  to the greedy player and was replaced).
+- Deals 1–30: planner 9 solved (avg share 0.42), greedy 7 (0.31).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1395 unit tests, build, 226
+  Playwright tests (the Yukon spec re-run clicking the visible edge of a fanned card).
+
 ## 2026-11-07 — Session 1: #079 Golf COMPLETE
 
 - Thin module on the shared up-or-down family: no wrap, golf strokes (lower is better, under par
