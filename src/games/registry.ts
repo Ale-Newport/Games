@@ -80,6 +80,7 @@ import { manifest as freecell } from './freecell/manifest';
 import { manifest as spider1Suit } from './spider-1-suit/manifest';
 import { manifest as spider2Suits } from './spider-2-suits/manifest';
 import { manifest as spider4Suits } from './spider-4-suits/manifest';
+import { manifest as pyramidSolitaire } from './pyramid-solitaire/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -158,6 +159,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: spider1Suit, load: () => import('./spider-1-suit/index') },
   { manifest: spider2Suits, load: () => import('./spider-2-suits/index') },
   { manifest: spider4Suits, load: () => import('./spider-4-suits/index') },
+  { manifest: pyramidSolitaire, load: () => import('./pyramid-solitaire/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

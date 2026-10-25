@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #077 Pyramid COMPLETE
+
+- Pyramid on the card shell (free vertical placement and vanishing piles added to the shell):
+  pairs of 13 and lone kings, three passes, masked planner.
+- Deals 1–50: planner 15 cleared (avg share 0.79), random 0 (0.60); greedy 4 of 30 (0.73).
+- Shell: height-placed layouts now size cards to fit the screen height, leaving room for the buttons.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1334 unit tests, build, 214
+  Playwright tests (the Pyramid spec re-run after fitting the height).
+
 ## 2026-11-07 — Session 1: #076 Spider — Four Suits COMPLETE
 
 - Thin module on the shared Spider family (two full decks).
