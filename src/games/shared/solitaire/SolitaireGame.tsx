@@ -55,6 +55,8 @@ export interface PileView {
   empty?: string;
   /** Draw no slot once the pile is empty (cards removed from play, as in a pyramid). */
   vanish?: boolean;
+  /** Make the pile glow (e.g. the pile to turn next). */
+  glow?: boolean;
 }
 
 export interface CardRef {
@@ -633,7 +635,17 @@ export function SolitaireGame<S>({ def, services }: { def: SolitaireDefinition<S
       return true;
     }
     if (key === 'a') {
-      const from = selected ?? { pile: cursorPile.id, index: cursorPile.cards.length - 1 };
+      // The selection, the card under the cursor, or else the first card that has a move.
+      const top = (p: PileView) => ({ pile: p.id, index: p.cards.length - 1 });
+      const playable = piles
+        .map(top)
+        .find((r) => r.index >= 0 && def.canPick(state, r) && def.autoMove(state, r));
+      const cursorRef = top(cursorPile);
+      const from =
+        selected ??
+        (cursorRef.index >= 0 && def.canPick(state, cursorRef)
+          ? cursorRef
+          : (playable ?? cursorRef));
       const m = interactive && from.index >= 0 ? def.autoMove(state, from) : null;
       if (m) play(m);
       else invalid();
@@ -733,7 +745,7 @@ export function SolitaireGame<S>({ def, services }: { def: SolitaireDefinition<S
                 className={[
                   styles.card,
                   isSelected && styles.selected,
-                  isHint && styles.hinted,
+                  (isHint || (p.glow && i === p.cards.length - 1)) && styles.hinted,
                   isCursor && styles.cursor,
                   dragging && styles.dragging,
                 ]
