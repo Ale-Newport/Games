@@ -77,7 +77,8 @@
 - **#072 Klondike Solitaire — Draw Three — COMPLETE** (2026-11-07).
 - **#073 FreeCell — COMPLETE** (2026-11-07).
 - **#074 Spider Solitaire — One Suit — COMPLETE** (2026-11-07).
-- **Current game: #075 Spider Solitaire — Two Suits** (`spider-2-suits`) — TODO.
+- **#075 Spider Solitaire — Two Suits — COMPLETE** (2026-11-07).
+- **Current game: #076 Spider Solitaire — Four Suits** (`spider-4-suits`) — TODO.
 
 ## Resume instructions
 

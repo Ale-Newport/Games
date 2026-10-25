@@ -2,6 +2,13 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #075 Spider — Two Suits COMPLETE
+
+- Thin module on the shared Spider family (spades and hearts).
+- Deals 1–10: planner 2 solved (avg share of runs 0.28), greedy 0 (0.09), random 0 (0.00).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1306 unit tests, build, 206
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #074 Spider — One Suit COMPLETE
 
 - New shared Spider family (`shared/spider`) for #074–#076: two-deck deal for one, two or four

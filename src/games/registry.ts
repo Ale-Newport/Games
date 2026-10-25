@@ -78,6 +78,7 @@ import { manifest as klondikeDraw1 } from './klondike-draw-1/manifest';
 import { manifest as klondikeDraw3 } from './klondike-draw-3/manifest';
 import { manifest as freecell } from './freecell/manifest';
 import { manifest as spider1Suit } from './spider-1-suit/manifest';
+import { manifest as spider2Suits } from './spider-2-suits/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -154,6 +155,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: klondikeDraw3, load: () => import('./klondike-draw-3/index') },
   { manifest: freecell, load: () => import('./freecell/index') },
   { manifest: spider1Suit, load: () => import('./spider-1-suit/index') },
+  { manifest: spider2Suits, load: () => import('./spider-2-suits/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
