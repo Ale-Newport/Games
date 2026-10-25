@@ -81,7 +81,8 @@
 - **#076 Spider Solitaire — Four Suits — COMPLETE** (2026-11-07).
 - **#077 Pyramid Solitaire — COMPLETE** (2026-11-07).
 - **#078 TriPeaks Solitaire — COMPLETE** (2026-11-07).
-- **Current game: #079 Golf Solitaire** (`golf-solitaire`) — TODO.
+- **#079 Golf Solitaire — COMPLETE** (2026-11-07).
+- **Current game: #080 Yukon Solitaire** (`yukon`) — TODO.
 
 ## Resume instructions
 
