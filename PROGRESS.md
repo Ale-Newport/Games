@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #086 Blackjack COMPLETE
+
+- Blackjack table (six decks, S17, 3:2, peek, insurance, DAS, splits to four, chips only) with a
+  basic-strategy hint and Watch AI; one-round AI episodes.
+- 200 000 seeded rounds: basic strategy −0.14%, dealer mimic −5.50%, random −42.5% per round.
+- Fixed `evaluateAgents` overflowing the stack (`Math.max(...latencies)`) on very long runs.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1480 unit tests, build, 250
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #085 Canfield COMPLETE
 
 - Canfield on the card shell: reserve with automatic refills, base-rank foundations wrapping king

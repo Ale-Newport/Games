@@ -108,7 +108,7 @@ export function evaluateAgents<S, A, C>(
     drawRate: tally.draws / config.games,
     averageReturn: tally.returns / config.games,
     averageLatencyMs: mean(tally.latencies),
-    maxLatencyMs: tally.latencies.length ? Math.max(...tally.latencies) : 0,
+    maxLatencyMs: max(tally.latencies),
     averageNodes: tally.nodes.length ? mean(tally.nodes) : null,
   });
 
@@ -172,7 +172,7 @@ function evaluateSolo<S, A, C>(
     drawRate: 0,
     averageReturn: tally.returns / config.games,
     averageLatencyMs: mean(tally.latencies),
-    maxLatencyMs: tally.latencies.length ? Math.max(...tally.latencies) : 0,
+    maxLatencyMs: max(tally.latencies),
     averageNodes: tally.nodes.length ? mean(tally.nodes) : null,
   });
   return {
@@ -202,6 +202,13 @@ interface Tally {
 
 function newTally(): Tally {
   return { wins: 0, losses: 0, draws: 0, returns: 0, latencies: [], nodes: [] };
+}
+
+/** Largest value (0 when empty), without spreading huge arrays into Math.max. */
+function max(values: number[]): number {
+  let m = 0;
+  for (const v of values) if (v > m) m = v;
+  return m;
 }
 
 function mean(values: number[]): number {
