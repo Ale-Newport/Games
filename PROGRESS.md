@@ -2,6 +2,13 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #081 Scorpion COMPLETE
+
+- Thin module on the column family: suit building, group moves, run removal, a three-card reserve.
+- Deals 1–30: planner 2 solved (avg share 0.13), greedy 1 (0.12), random 0 (0.03).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1406 unit tests, build, 230
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #080 Yukon COMPLETE
 
 - New configurable column-patience family (`shared/columns`: deal, stock kind, building rule, move

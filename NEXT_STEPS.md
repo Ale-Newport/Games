@@ -83,7 +83,8 @@
 - **#078 TriPeaks Solitaire — COMPLETE** (2026-11-07).
 - **#079 Golf Solitaire — COMPLETE** (2026-11-07).
 - **#080 Yukon Solitaire — COMPLETE** (2026-11-07).
-- **Current game: #081 Scorpion Solitaire** (`scorpion`) — TODO.
+- **#081 Scorpion Solitaire — COMPLETE** (2026-11-07).
+- **Current game: #082 Forty Thieves Solitaire** (`forty-thieves`) — TODO.
 
 ## Resume instructions
 
