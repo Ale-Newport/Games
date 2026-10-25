@@ -103,6 +103,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'clock-solitaire': () => import('../../games/clock-solitaire/ai-adapter').then((m) => m.bundle),
   canfield: () => import('../../games/canfield/ai-adapter').then((m) => m.bundle),
   blackjack: () => import('../../games/blackjack/ai-adapter').then((m) => m.bundle),
+  'texas-holdem': () => import('../../games/texas-holdem/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

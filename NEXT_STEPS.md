@@ -89,7 +89,8 @@
 - **#084 Clock Solitaire — COMPLETE** (2026-11-07).
 - **#085 Canfield Solitaire — COMPLETE** (2026-11-07).
 - **#086 Blackjack — COMPLETE** (2026-11-07).
-- **Current game: #087 Texas Hold'em Poker** (`texas-holdem`) — TODO.
+- **#087 Texas Hold'em Poker — COMPLETE** (2026-11-07).
+- **Current game: #088 Five Card Draw** (`five-card-draw`) — TODO.
 
 ## Resume instructions
 

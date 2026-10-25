@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #087 Texas Hold'em COMPLETE
+
+- New shared `poker` family: hand scores (7-card and Omaha), a sit-and-go engine (blind levels,
+  no-limit / pot-limit, short all-ins that do not reopen, side pots, eliminations, replay
+  validation), Monte Carlo opponents that read ranges from the chips committed, a one-hand
+  environment with masked observations, and the `PokerTable` UI (menu, coach, Watch AI, saves).
+- 1000 heads-up hands per pairing (bb/hand): Easy vs Random +6.15, Medium vs Random +5.60,
+  Medium vs Easy +1.93, Hard vs Easy +3.22, Hard vs Medium +0.19.
+- Played in the in-app browser (mobile and desktop): found and fixed AIs calling all-ins with junk
+  (range reading), "You wins" phrasing, busted players' shown cards being hidden.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1511 unit tests, build, 254
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #086 Blackjack COMPLETE
 
 - Blackjack table (six decks, S17, 3:2, peek, insurance, DAS, splits to four, chips only) with a
