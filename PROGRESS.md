@@ -2,6 +2,14 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #082 Forty Thieves COMPLETE
+
+- Thin module on the column family: two decks, one-card moves in suit, a single stock pass, eight
+  foundations.
+- Deals 1–20: planner 2 solved (avg share 0.40), greedy 0 (0.32), random 0 (0.17).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1417 unit tests, build, 234
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #081 Scorpion COMPLETE
 
 - Thin module on the column family: suit building, group moves, run removal, a three-card reserve.

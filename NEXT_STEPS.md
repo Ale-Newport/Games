@@ -84,7 +84,8 @@
 - **#079 Golf Solitaire — COMPLETE** (2026-11-07).
 - **#080 Yukon Solitaire — COMPLETE** (2026-11-07).
 - **#081 Scorpion Solitaire — COMPLETE** (2026-11-07).
-- **Current game: #082 Forty Thieves Solitaire** (`forty-thieves`) — TODO.
+- **#082 Forty Thieves Solitaire — COMPLETE** (2026-11-07).
+- **Current game: #083 Accordion Solitaire** (`accordion`) — TODO.
 
 ## Resume instructions
 

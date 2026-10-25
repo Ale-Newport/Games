@@ -85,6 +85,7 @@ import { manifest as tripeaks } from './tripeaks/manifest';
 import { manifest as golfSolitaire } from './golf-solitaire/manifest';
 import { manifest as yukon } from './yukon/manifest';
 import { manifest as scorpion } from './scorpion/manifest';
+import { manifest as fortyThieves } from './forty-thieves/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -168,6 +169,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: golfSolitaire, load: () => import('./golf-solitaire/index') },
   { manifest: yukon, load: () => import('./yukon/index') },
   { manifest: scorpion, load: () => import('./scorpion/index') },
+  { manifest: fortyThieves, load: () => import('./forty-thieves/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
