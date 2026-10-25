@@ -2,6 +2,14 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #083 Accordion COMPLETE
+
+- Accordion on the card shell: deal-as-you-go row, moves one or three to the left on suit or rank,
+  piles-left scoring.
+- Deals 1–200: planner won 1 and left 4.4 piles on average; greedy 10.7; random about the same.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1432 unit tests, build, 238
+  Playwright tests (the Accordion spec re-run dealing by clicking the stock).
+
 ## 2026-11-07 — Session 1: #082 Forty Thieves COMPLETE
 
 - Thin module on the column family: two decks, one-card moves in suit, a single stock pass, eight

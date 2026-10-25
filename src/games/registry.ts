@@ -86,6 +86,7 @@ import { manifest as golfSolitaire } from './golf-solitaire/manifest';
 import { manifest as yukon } from './yukon/manifest';
 import { manifest as scorpion } from './scorpion/manifest';
 import { manifest as fortyThieves } from './forty-thieves/manifest';
+import { manifest as accordion } from './accordion/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -170,6 +171,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: yukon, load: () => import('./yukon/index') },
   { manifest: scorpion, load: () => import('./scorpion/index') },
   { manifest: fortyThieves, load: () => import('./forty-thieves/index') },
+  { manifest: accordion, load: () => import('./accordion/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
