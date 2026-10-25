@@ -78,7 +78,8 @@
 - **#073 FreeCell — COMPLETE** (2026-11-07).
 - **#074 Spider Solitaire — One Suit — COMPLETE** (2026-11-07).
 - **#075 Spider Solitaire — Two Suits — COMPLETE** (2026-11-07).
-- **Current game: #076 Spider Solitaire — Four Suits** (`spider-4-suits`) — TODO.
+- **#076 Spider Solitaire — Four Suits — COMPLETE** (2026-11-07).
+- **Current game: #077 Pyramid Solitaire** (`pyramid-solitaire`) — TODO.
 
 ## Resume instructions
 
