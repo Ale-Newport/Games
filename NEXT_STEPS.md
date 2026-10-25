@@ -87,7 +87,8 @@
 - **#082 Forty Thieves Solitaire — COMPLETE** (2026-11-07).
 - **#083 Accordion Solitaire — COMPLETE** (2026-11-07).
 - **#084 Clock Solitaire — COMPLETE** (2026-11-07).
-- **Current game: #085 Canfield Solitaire** (`canfield`) — TODO.
+- **#085 Canfield Solitaire — COMPLETE** (2026-11-07).
+- **Current game: #086 Blackjack** (`blackjack`) — TODO.
 
 ## Resume instructions
 

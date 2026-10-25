@@ -2,6 +2,14 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #085 Canfield COMPLETE
+
+- Canfield on the card shell: reserve with automatic refills, base-rank foundations wrapping king
+  to ace, draw three with unlimited passes, masked planner.
+- Deals 1–30: planner 3 solved (avg share 0.29), greedy 0 (0.13), random 0 (0.15).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1461 unit tests, build, 246
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #084 Clock COMPLETE
 
 - Clock patience on the card shell (glowing pile to turn, smarter auto-move key): turn and place
