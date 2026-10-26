@@ -70,8 +70,8 @@ the pot odds and what a Medium player would do.
 ## States and actions
 
 `PokerState` = `seed`, `variant`, `seats` (stack, hole, bet this street, total this hand, folded,
-all-in, out, pending, capped), `button`, `handNo`, `deck`, `dealt`, `board`, `street`
-(`preflop` / `flop` / `turn` / `river` / `done`), `toAct`, `currentBet`, `minRaise`, `blinds`,
+all-in, out, pending, capped, drew — draw games only), `button`, `handNo`, `deck`, `dealt`, `board`, `street`
+(`preflop` / `flop` / `turn` / `river` / `done`), `toAct`, `currentBet`, `minRaise`, `bets`, `blinds`,
 `history`, `result` (chips won per seat, seats shown, showdown scores), `champion`; validated by
 replaying the whole tournament from the seed. Actions: `fold`, `check`, `call`, `raise:N` (raise
 the street's bet to N), `next` (deal the next hand).

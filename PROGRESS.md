@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #088 Five Card Draw COMPLETE
+
+- The shared poker engine gained a `DRAW` variant: a discard round (0–3 cards, public counts, all-in
+  players draw too) and fixed-limit betting (1 / 2 big blinds, four-bet cap). `draw-ai.ts`: a simple
+  discard rule, a Monte Carlo discard on common random numbers, and equity that deals opponents hands
+  fitting their draw counts. The table shows five cards, tap-to-discard and draw counts.
+- 2000 heads-up hands per pairing (bb/hand): Easy vs Random +1.45, Medium vs Random +1.34, Medium vs
+  Easy +0.14, Hard vs Easy +0.12, Hard vs Medium +0.02. The first Medium/Hard lost to Easy: bluffs
+  and slow-plays do not work in fixed limit, so they are reduced there and value bets are thinner.
+- Played in the in-app browser (mobile): fixed-limit raise label said "All-in", duplicate draw
+  labels, the player's five cards crowding a neighbour — all fixed.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1533 unit tests, build, 258
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #087 Texas Hold'em COMPLETE
 
 - New shared `poker` family: hand scores (7-card and Omaha), a sit-and-go engine (blind levels,

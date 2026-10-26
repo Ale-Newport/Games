@@ -1,32 +1,55 @@
 /**
- * Community-card poker (#087 Texas Hold'em, #089 Omaha) as a sit-and-go tournament: every seat
- * starts with the same stack, the blinds rise every ten hands, busted seats leave, and the
+ * Poker as a sit-and-go tournament (#087 Texas Hold'em, #088 Five Card Draw, #089 Omaha): every
+ * seat starts with the same stack, the blinds rise every ten hands, busted seats leave, and the
  * tournament ends when one seat holds every chip — or, for the human player, when they bust.
  *
  * A hand: the button moves, the small and big blinds are posted (heads-up the button posts the
- * small blind), every seat gets its hole cards (2 in Hold'em, 4 in Omaha), and four betting rounds
- * follow (pre-flop, flop of three, turn, river). Betting is no-limit (Hold'em) or pot-limit (Omaha):
- * a raise is at least the size of the last bet or raise (or an all-in for less, which does not
- * reopen the betting for players who already acted). When all but one player fold, the last one
- * takes the pot; otherwise the best hands share the pots at showdown, side pots for players all-in
- * for less, odd chips going to the first winner left of the button.
+ * small blind) and every seat gets its hole cards (2 in Hold'em, 4 in Omaha, 5 in Draw). The first
+ * betting round ("preflop") is followed by the variant's streets: the flop of three, the turn and
+ * the river in the community games; in Draw a discard round (each player in turn throws away up to
+ * three cards and is dealt as many) and a final betting round. Betting is no-limit (Hold'em),
+ * pot-limit (Omaha) or fixed-limit (Draw: bets and raises of one big blind before the draw and two
+ * after it, at most four bets a round). A no-limit or pot-limit raise is at least the size of the
+ * last bet or raise; an all-in for less does not reopen the betting for players who already acted.
+ * When all but one player fold, the last one takes the pot; otherwise the best hands share the pots
+ * at showdown, side pots for players all-in for less, odd chips going to the first winner left of
+ * the button.
  *
- * Actions: "fold", "check", "call", "raise:N" (raise the street's bet to N), "next" (deal the next
- * hand once a hand is over).
+ * Actions: "fold", "check", "call", "raise:N" (raise the street's bet to N), "draw:024" (throw away
+ * the cards at those positions; "draw:" stands pat), "next" (deal the next hand once a hand is over).
  */
 import { IllegalActionError } from '../../../ai/protocols/types';
 import { isRecord } from '../../../core/persistence/versioned';
 import { shuffledDeck } from '../cards/cards';
 import { bestScore, omahaScore } from './hands';
 
+export type Street = 'preflop' | 'flop' | 'turn' | 'river' | 'draw' | 'final' | 'done';
+
 export interface PokerVariant {
-  id: 'holdem' | 'omaha';
-  hole: 2 | 4;
-  limit: 'no-limit' | 'pot-limit';
+  id: 'holdem' | 'omaha' | 'draw';
+  hole: 2 | 4 | 5;
+  limit: 'no-limit' | 'pot-limit' | 'fixed-limit';
+  /** The streets after the first betting round, in order. */
+  streets: readonly Street[];
 }
 
-export const HOLDEM: PokerVariant = { id: 'holdem', hole: 2, limit: 'no-limit' };
-export const OMAHA: PokerVariant = { id: 'omaha', hole: 4, limit: 'pot-limit' };
+const COMMUNITY: readonly Street[] = ['flop', 'turn', 'river'];
+export const HOLDEM: PokerVariant = {
+  id: 'holdem',
+  hole: 2,
+  limit: 'no-limit',
+  streets: COMMUNITY,
+};
+export const OMAHA: PokerVariant = { id: 'omaha', hole: 4, limit: 'pot-limit', streets: COMMUNITY };
+export const DRAW: PokerVariant = {
+  id: 'draw',
+  hole: 5,
+  limit: 'fixed-limit',
+  streets: ['draw', 'final'],
+};
+/** Draw: the most cards a player may exchange; fixed limit: the most bets in a round. */
+export const MAX_DRAW = 3;
+export const BET_CAP = 4;
 
 export const BLIND_LEVELS: readonly [number, number][] = [
   [10, 20],
@@ -42,8 +65,6 @@ export const BLIND_LEVELS: readonly [number, number][] = [
 ];
 export const HANDS_PER_LEVEL = 10;
 
-export type Street = 'preflop' | 'flop' | 'turn' | 'river' | 'done';
-
 export interface Seat {
   stack: number;
   hole: number[];
@@ -58,6 +79,8 @@ export interface Seat {
   pending: boolean;
   /** Already acted, then faced a short all-in: may only call or fold. */
   capped: boolean;
+  /** Draw: cards exchanged this hand (−1 before the draw). */
+  drew: number;
 }
 
 export interface HandResult {
@@ -80,9 +103,10 @@ export interface PokerState {
   board: number[];
   street: Street;
   toAct: number;
-  /** The street's highest bet, and the size of the last full raise. */
+  /** The street's highest bet, the size of the last full raise and the number of bets made. */
   currentBet: number;
   minRaise: number;
+  bets: number;
   blinds: [number, number];
   history: string[];
   result: HandResult | null;
@@ -90,7 +114,18 @@ export interface PokerState {
   champion: number | null;
 }
 
-const variantOf = (id: PokerVariant['id']) => (id === 'omaha' ? OMAHA : HOLDEM);
+export const variantOf = (id: PokerVariant['id']) =>
+  id === 'omaha' ? OMAHA : id === 'draw' ? DRAW : HOLDEM;
+
+/** The showdown score of a seat's hand. */
+export function handScore(
+  id: PokerVariant['id'],
+  hole: readonly number[],
+  board: readonly number[],
+): number {
+  if (id === 'omaha') return omahaScore(hole, board);
+  return bestScore([...hole, ...board]);
+}
 
 export function createPoker(
   variant: PokerVariant,
@@ -111,6 +146,7 @@ export function createPoker(
       out: false,
       pending: false,
       capped: false,
+      drew: -1,
     })),
     button: players - 1,
     handNo: 0,
@@ -121,6 +157,7 @@ export function createPoker(
     toAct: -1,
     currentBet: 0,
     minRaise: 0,
+    bets: 0,
     blinds: BLIND_LEVELS[0]!,
     history: [],
     result: null,
@@ -140,7 +177,12 @@ const nextSeat = (s: PokerState, from: number, ok: (i: number) => boolean) => {
   return -1;
 };
 const inHand = (s: PokerState, i: number) => !s.seats[i]!.out && !s.seats[i]!.folded;
-const canAct = (s: PokerState, i: number) => inHand(s, i) && !s.seats[i]!.allIn;
+const canBet = (s: PokerState, i: number) => inHand(s, i) && !s.seats[i]!.allIn;
+/** Whoever is still in draws, all-in or not; only players with chips bet. */
+const canAct = (s: PokerState, i: number) => (s.street === 'draw' ? inHand(s, i) : canBet(s, i));
+
+/** Fixed limit: the bet size of the street (doubled after the draw). */
+const betSize = (s: PokerState) => (s.street === 'final' ? 2 : 1) * s.blinds[1];
 
 function post(s: PokerState, i: number, amount: number) {
   const seat = s.seats[i]!;
@@ -170,6 +212,7 @@ function startHand(s: PokerState) {
       allIn: false,
       pending: false,
       capped: false,
+      drew: -1,
     });
   const headsUp = players.length === 2;
   const sb = headsUp ? s.button : nextSeat(s, s.button, (i) => !s.seats[i]!.out);
@@ -181,6 +224,7 @@ function startHand(s: PokerState) {
   s.street = 'preflop';
   s.currentBet = s.blinds[1];
   s.minRaise = s.blinds[1];
+  s.bets = 1;
   for (const i of players) s.seats[i]!.pending = canAct(s, i);
   s.toAct = nextSeat(s, bb, (i) => canAct(s, i));
   settleIfDone(s);
@@ -190,14 +234,19 @@ export const toCall = (s: PokerState, i = s.toAct) => Math.max(0, s.currentBet -
 
 /** Raise limits for the seat to act: the smallest and largest "raise to" amounts. */
 export function raiseRange(s: PokerState): [number, number] | null {
-  if (s.street === 'done' || s.toAct < 0) return null;
+  if (s.street === 'done' || s.street === 'draw' || s.toAct < 0) return null;
   const seat = s.seats[s.toAct]!;
   const allIn = seat.bet + seat.stack;
   if (allIn <= s.currentBet) return null; // can only call (all-in) or fold
   // Nobody else could call a raise: raising is pointless.
-  if (!s.seats.some((_, i) => i !== s.toAct && canAct(s, i))) return null;
+  if (!s.seats.some((_, i) => i !== s.toAct && canBet(s, i))) return null;
   // Facing only an all-in for less than a full raise after acting: call or fold.
   if (seat.capped) return null;
+  if (variantOf(s.variant).limit === 'fixed-limit') {
+    if (s.bets >= BET_CAP) return null;
+    const to = Math.min(allIn, s.currentBet + betSize(s));
+    return [to, to];
+  }
   const min = Math.min(allIn, s.currentBet + s.minRaise);
   let max = allIn;
   if (variantOf(s.variant).limit === 'pot-limit') {
@@ -208,10 +257,21 @@ export function raiseRange(s: PokerState): [number, number] | null {
   return [min, Math.max(min, max)];
 }
 
+/** Draw: every choice of up to three positions to throw away ("draw:" stands pat). */
+export function drawOptions(cards: number): string[] {
+  const out: string[] = [];
+  for (let mask = 0; mask < 1 << cards; mask++) {
+    const picked = [...Array(cards).keys()].filter((k) => mask & (1 << k));
+    if (picked.length <= MAX_DRAW) out.push(`draw:${picked.join('')}`);
+  }
+  return out.sort((a, b) => a.length - b.length || a.localeCompare(b));
+}
+
 /** Discrete choices for agents: fold / check / call, minimum, half-pot, pot and all-in raises. */
 export function legalPokerActions(s: PokerState): string[] {
   if (s.champion !== null) return [];
   if (s.street === 'done') return ['next'];
+  if (s.street === 'draw') return drawOptions(s.seats[s.toAct]!.hole.length);
   const out: string[] = [];
   if (toCall(s) > 0) out.push('fold', 'call');
   else out.push('check');
@@ -231,6 +291,15 @@ export function legalPokerActions(s: PokerState): string[] {
 export function isLegalPokerAction(s: PokerState, a: string): boolean {
   if (typeof a !== 'string' || s.champion !== null) return false;
   if (s.street === 'done') return a === 'next';
+  if (s.street === 'draw') {
+    const d = /^draw:(\d*)$/.exec(a);
+    if (!d) return false;
+    const idx = d[1]!.split('').map(Number);
+    return (
+      idx.length <= MAX_DRAW &&
+      idx.every((k, j) => k < s.seats[s.toAct]!.hole.length && (j === 0 || k > idx[j - 1]!))
+    );
+  }
   if (a === 'fold' || a === 'call') return toCall(s) > 0;
   if (a === 'check') return toCall(s) === 0;
   const m = /^raise:(\d+)$/.exec(a);
@@ -255,16 +324,19 @@ function settleIfDone(s: PokerState) {
     seat.capped = false;
   }
   s.currentBet = 0;
-  s.minRaise = s.blinds[1];
-  const order: Street[] = ['preflop', 'flop', 'turn', 'river', 'done'];
+  s.bets = 0;
+  const v = variantOf(s.variant);
+  const order: Street[] = ['preflop', ...v.streets, 'done'];
   const next = order[order.indexOf(s.street) + 1]!;
   if (next === 'done') return award(s, true);
   s.street = next;
-  const count = next === 'flop' ? 3 : 1;
+  s.minRaise = v.limit === 'fixed-limit' ? betSize(s) : s.blinds[1];
+  const count = next === 'flop' ? 3 : next === 'turn' || next === 'river' ? 1 : 0;
   for (let k = 0; k < count; k++) s.board.push(s.deck[s.dealt++]!);
-  const actors = contenders.filter((i) => canAct(s, i));
-  // With at most one player able to bet, the board simply runs out.
-  for (const i of contenders) s.seats[i]!.pending = actors.length > 1 && canAct(s, i);
+  const actors = contenders.filter((i) => canBet(s, i));
+  // Everyone still in draws; with at most one player able to bet, the hand runs out.
+  for (const i of contenders)
+    s.seats[i]!.pending = next === 'draw' || (actors.length > 1 && canBet(s, i));
   s.toAct = nextSeat(s, s.button, (i) => s.seats[i]!.pending);
   if (s.toAct === -1) s.toAct = s.button;
   settleIfDone(s);
@@ -279,12 +351,7 @@ function award(s: PokerState, showdown: boolean) {
   if (!showdown) {
     won[contenders[0]!] = s.seats.reduce((a, x) => a + x.total, 0);
   } else {
-    const v = variantOf(s.variant);
-    for (const i of contenders)
-      scores[i] =
-        v.id === 'omaha'
-          ? omahaScore(s.seats[i]!.hole, s.board)
-          : bestScore([...s.seats[i]!.hole, ...s.board]);
+    for (const i of contenders) scores[i] = handScore(s.variant, s.seats[i]!.hole, s.board);
     // Side pots: layer the contributions by the all-in levels of the players still in.
     const levels = [...new Set(contenders.map((i) => s.seats[i]!.total))].sort((a, b) => a - b);
     let floor = 0;
@@ -327,9 +394,14 @@ function shift(s: PokerState, a: string) {
   const seat = s.seats[i]!;
   if (a === 'fold') seat.folded = true;
   else if (a === 'call') post(s, i, toCall(s, i));
-  else if (a.startsWith('raise:')) {
+  else if (a.startsWith('draw:')) {
+    const picked = a.slice(5).split('').map(Number);
+    for (const k of picked) seat.hole[k] = s.deck[s.dealt++]!;
+    seat.drew = picked.length;
+  } else if (a.startsWith('raise:')) {
     const to = Number(a.slice(6));
     const raiseBy = to - s.currentBet;
+    s.bets++;
     post(s, i, to - seat.bet);
     // A full raise reopens the betting; an all-in for less does not.
     if (raiseBy >= s.minRaise) {

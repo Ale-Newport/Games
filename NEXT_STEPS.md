@@ -90,7 +90,8 @@
 - **#085 Canfield Solitaire — COMPLETE** (2026-11-07).
 - **#086 Blackjack — COMPLETE** (2026-11-07).
 - **#087 Texas Hold'em Poker — COMPLETE** (2026-11-07).
-- **Current game: #088 Five Card Draw** (`five-card-draw`) — TODO.
+- **#088 Five Card Draw Poker — COMPLETE** (2026-11-07).
+- **Current game: #089 Omaha Poker** (`omaha`) — TODO.
 
 ## Resume instructions
 

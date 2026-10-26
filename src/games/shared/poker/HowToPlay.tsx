@@ -1,8 +1,9 @@
 import type { Locale } from '../../../core/i18n';
 import type { PokerVariant } from './engine';
 
-/** Rules for the community-card games; the Omaha differences are spelled out where they apply. */
+/** Rules for the poker games; the Omaha differences are spelled out where they apply. */
 export function PokerRules({ locale, variant }: { locale: Locale; variant: PokerVariant }) {
+  if (variant.id === 'draw') return <DrawRules locale={locale} />;
   const omaha = variant.id === 'omaha';
   if (locale === 'es') {
     return (
@@ -128,6 +129,110 @@ export function PokerRules({ locale, variant }: { locale: Locale; variant: Poker
         <li>
           <kbd>F</kbd> fold · <kbd>C</kbd> check/call · <kbd>R</kbd> raise · <kbd>A</kbd> all-in ·{' '}
           <kbd>←</kbd>/<kbd>→</kbd> size · <kbd>H</kbd> hint · <kbd>N</kbd> next hand.
+        </li>
+      </ul>
+    </>
+  );
+}
+
+function DrawRules({ locale }: { locale: Locale }) {
+  if (locale === 'es') {
+    return (
+      <>
+        <h3>Objetivo</h3>
+        <p>
+          Quedarte con todas las fichas de la mesa en un torneo: todos empiezan con 1500 y las
+          ciegas suben cada diez manos. Solo fichas de juego, nunca dinero real.
+        </p>
+        <h3>Una mano</h3>
+        <ul>
+          <li>
+            El botón (D) avanza cada mano; los dos jugadores a su izquierda ponen la{' '}
+            <strong>ciega pequeña</strong> y la <strong>ciega grande</strong>.
+          </li>
+          <li>
+            Cada jugador recibe <strong>cinco cartas tapadas</strong> y hay una ronda de apuestas.
+          </li>
+          <li>
+            <strong>Descarte</strong>: empezando a la izquierda del botón, cada jugador que sigue en
+            la mano tira <strong>hasta tres cartas</strong> y recibe otras tantas (o se queda{' '}
+            <em>servido</em>). Todos ven cuántas cartas cambió cada uno.
+          </li>
+          <li>Otra ronda de apuestas y, si quedan varios, enfrentamiento: gana la mejor mano.</li>
+          <li>
+            <strong>Límite fijo</strong>: antes del descarte se apuesta y se sube de una ciega
+            grande en una; después, de dos en dos. Como mucho cuatro apuestas por ronda (la apuesta
+            y tres subidas).
+          </li>
+          <li>
+            Quien va con todo con menos fichas solo opta al bote que pudo cubrir; el resto va a
+            botes laterales.
+          </li>
+        </ul>
+        <h3>Manos, de mejor a peor</h3>
+        <p>
+          Escalera de color · póker · full · color · escalera (A-2-3-4-5 vale) · trío · doble pareja
+          · pareja · carta alta.
+        </p>
+        <h3>Controles</h3>
+        <ul>
+          <li>
+            Botones para retirarte, pasar o igualar y subir. En el descarte toca las cartas que
+            quieres cambiar (se levantan) y pulsa «Cambiar» o «Servido». «Pista» te aconseja.
+          </li>
+          <li>
+            <kbd>F</kbd> retirarse · <kbd>C</kbd> pasar/igualar · <kbd>R</kbd> subir · <kbd>1</kbd>–
+            <kbd>5</kbd> elegir cartas · <kbd>D</kbd> cambiar · <kbd>H</kbd> pista · <kbd>N</kbd>{' '}
+            siguiente mano.
+          </li>
+        </ul>
+      </>
+    );
+  }
+  return (
+    <>
+      <h3>Goal</h3>
+      <p>
+        Win every chip at the table in a sit-and-go: everyone starts with 1500 and the blinds rise
+        every ten hands. Play chips only, never real money.
+      </p>
+      <h3>A hand</h3>
+      <ul>
+        <li>
+          The button (D) moves round each hand; the two players to its left post the{' '}
+          <strong>small blind</strong> and the <strong>big blind</strong>.
+        </li>
+        <li>
+          Everyone is dealt <strong>five cards face down</strong>, then there is a betting round.
+        </li>
+        <li>
+          <strong>The draw</strong>: starting left of the button, every player still in throws away{' '}
+          <strong>up to three cards</strong> and is dealt as many (or <em>stands pat</em>). Everyone
+          sees how many cards each player took.
+        </li>
+        <li>Another betting round, then a showdown if more than one player is left.</li>
+        <li>
+          <strong>Fixed limit</strong>: before the draw bets and raises are one big blind each;
+          after it, two. At most four bets a round (a bet and three raises).
+        </li>
+        <li>
+          A player all-in for less can only win what they covered; the rest goes to side pots.
+        </li>
+      </ul>
+      <h3>Hands, best first</h3>
+      <p>
+        Straight flush · four of a kind · full house · flush · straight (A-2-3-4-5 counts) · three
+        of a kind · two pair · pair · high card.
+      </p>
+      <h3>Controls</h3>
+      <ul>
+        <li>
+          Buttons to fold, check or call, and raise. In the draw, tap the cards to throw away (they
+          lift) and press Draw or Stand pat. "Hint" gives advice.
+        </li>
+        <li>
+          <kbd>F</kbd> fold · <kbd>C</kbd> check/call · <kbd>R</kbd> raise · <kbd>1</kbd>–
+          <kbd>5</kbd> pick cards · <kbd>D</kbd> draw · <kbd>H</kbd> hint · <kbd>N</kbd> next hand.
         </li>
       </ul>
     </>
