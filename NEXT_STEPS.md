@@ -95,7 +95,8 @@
 - **#090 Seven Card Stud — COMPLETE** (2026-11-07).
 - **#091 Kuhn Poker — COMPLETE** (2026-11-07).
 - **#092 Leduc Poker — COMPLETE** (2026-11-07).
-- **Current game: #093 Hearts** (`hearts`) — TODO.
+- **#093 Hearts — COMPLETE** (2026-11-07).
+- **Current game: #094 Spades** (`spades`) — TODO.
 
 ## Resume instructions
 
