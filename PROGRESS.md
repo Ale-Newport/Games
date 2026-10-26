@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #092 Leduc Poker COMPLETE
+
+- Leduc on the heads-up table (public card slot, split pots, hand names at showdown).
+  `tools/solve-leduc.ts` runs CFR+ (10 000 iterations, 63 s) and writes `strategy.ts` (288
+  information sets): value −0.0855, exploitability 0.0020 (Medium 0.683, Easy 0.842).
+- Exact EV per hand: Nash vs Medium +0.184, vs Easy +0.144; Medium vs Easy +0.062 (100 000 seeded
+  hands agree: +0.180 / +0.137 / +0.061).
+- Played a hand in the in-app browser (mobile): raise, public card, Nash coach, the AI's mix.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1605 unit tests, build, 274
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #091 Kuhn Poker COMPLETE
 
 - New `src/ai/agents/cfr.ts`: CFR+ for small two-player zero-sum games, exact strategy values and
