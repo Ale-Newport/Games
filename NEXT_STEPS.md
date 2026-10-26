@@ -93,7 +93,8 @@
 - **#088 Five Card Draw Poker — COMPLETE** (2026-11-07).
 - **#089 Omaha Hold'em — COMPLETE** (2026-11-07).
 - **#090 Seven Card Stud — COMPLETE** (2026-11-07).
-- **Current game: #091 Kuhn Poker** (`kuhn-poker`) — TODO.
+- **#091 Kuhn Poker — COMPLETE** (2026-11-07).
+- **Current game: #092 Leduc Poker** (`leduc-poker`) — TODO.
 
 ## Resume instructions
 

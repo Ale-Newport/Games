@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #091 Kuhn Poker COMPLETE
+
+- New `src/ai/agents/cfr.ts`: CFR+ for small two-player zero-sum games, exact strategy values and
+  exploitability (best responses by information set). New shared `heads-up-poker` table (match vs
+  one AI, Nash coach on the buttons, the opponent's move probabilities after each hand, watch mode).
+- Kuhn: CFR+ (4000 iterations, ~0.1 s) finds the known equilibrium (α = 0.23, king 3α, queen
+  checks, calls/bluffs 1/3), value −1/18, exploitability 0.0004 (Medium 0.037, Easy 0.217).
+  100 000 hands: Nash vs Random +0.153, vs Easy +0.031, vs Medium +0.003; Medium vs Easy +0.037.
+- Played in the in-app browser (mobile): coach, AI mix, "You win" phrasing fixed.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1592 unit tests, build, 270
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #090 Seven Card Stud COMPLETE
 
 - The shared poker engine gained a `STUD` variant: antes, the bring-in from the lowest up card,
