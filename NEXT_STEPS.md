@@ -101,7 +101,8 @@
 - **#096 Gin Rummy — COMPLETE** (2026-11-07).
 - **#097 Cribbage — COMPLETE** (2026-11-07).
 - **#098 Euchre — COMPLETE** (2026-11-07).
-- **Current game: #099 Crazy Eights** (`crazy-eights`) — TODO.
+- **#099 Crazy Eights — COMPLETE** (2026-11-07).
+- **Current game: #100 Go Fish** (`go-fish`) — TODO.
 
 ## Resume instructions
 
