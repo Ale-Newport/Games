@@ -20,7 +20,16 @@ import type { Rng } from '../../../core/game-engine/random';
 import { suitOf } from '../cards/cards';
 import { CATEGORIES, bestScore, categoryOf, omahaScore, pokerRank } from './hands';
 import { bestDiscard, drawEquity, simpleDiscard } from './draw-ai';
-import { legalPokerActions, potSize, raiseRange, toCall, type PokerState } from './engine';
+import { studEquity } from './stud-ai';
+import {
+  legalPokerActions,
+  potSize,
+  raiseRange,
+  studAnte,
+  studBringIn,
+  toCall,
+  type PokerState,
+} from './engine';
 
 /** A Chen-style pre-flop score of two cards (−1 … 20). */
 function chen(a: number, b: number): number {
@@ -71,8 +80,13 @@ export function holdingStrength(hole: readonly number[], board: readonly number[
 export function rangeFloor(s: PokerState, seat: number): number {
   const x = s.seats[seat]!;
   const committed = x.total / (x.total + x.stack);
-  // The big blind's forced chips say nothing.
-  const forced = s.street === 'preflop' && x.bet <= s.blinds[1] ? x.bet : 0;
+  // Forced chips (blinds, antes, a stud bring-in) say nothing.
+  const forced =
+    s.variant === 'stud'
+      ? studAnte(s) + (s.street === 'third' && x.bet <= studBringIn(s) ? x.bet : 0)
+      : s.street === 'preflop' && x.bet <= s.blinds[1]
+        ? x.bet
+        : 0;
   const voluntary = Math.max(0, x.total - forced) / (x.total + x.stack);
   return Math.min(0.85, 0.9 * Math.sqrt(Math.max(0, Math.min(committed, voluntary))));
 }
@@ -93,6 +107,7 @@ export function estimateEquity(
   const holeSize = me.hole.length;
   const opponents = s.seats.flatMap((x, i) => (i !== seat && !x.out && !x.folded ? [i] : []));
   const floors = opponents.map((i) => (ranges ? rangeFloor(s, i) : 0));
+  if (s.variant === 'stud') return studEquity(s, seat, samples, rng, floors);
   if (s.variant === 'draw') {
     const plan = s.street === 'preflop' ? `draw:${simpleDiscard(me.hole).join('')}` : 'draw:';
     return drawEquity(s, seat, samples, rng, floors, plan);
@@ -222,17 +237,17 @@ export function styleAction(s: PokerState, style: PokerStyle, rng: Rng): string 
     const target = s.currentBet + Math.round((pot + owe) * share);
     return `raise:${Math.min(range[1], Math.max(range[0], target))}`;
   };
-  // Late position plays a little looser (Hard only).
-  if (style.id === 'hard') {
+  // Late position plays a little looser (Hard only; stud has no fixed position).
+  if (style.id === 'hard' && s.variant !== 'stud') {
     const n = s.seats.length;
     const fromButton = (seat - s.button + n) % n;
     if (fromButton === 0) equity += 0.03;
   }
   // Fixed-limit bets are small next to the pot: slow-plays and bluffs (which rarely make anyone
   // fold for one more small bet) do not pay.
-  const fixed = s.variant === 'draw';
+  const fixed = s.variant === 'draw' || s.variant === 'stud';
   // There, betting very thin hands into several callers costs more than it earns.
-  const valueAt = fixed ? Math.max(style.valueAt, 0.1) : style.valueAt;
+  const valueAt = fixed ? Math.max(style.valueAt, 0.12) : style.valueAt;
   if (edge() >= valueAt && range) {
     // Very strong hands go bigger; Hard sometimes slow-plays by just calling or checking.
     if (style.id === 'hard' && !fixed && edge() > 0.7 && rng.chance(0.25))
@@ -245,7 +260,10 @@ export function styleAction(s: PokerState, style: PokerStyle, rng: Rng): string 
     if (range && rng.chance(bluff) && equity < fair) return raiseTo(style.sizing) ?? 'check';
     return 'check';
   }
-  if (equity >= odds + style.callMargin) return 'call';
+  // Loose calls cost in fixed limit, where the next street's bet is already priced in.
+  const margin =
+    fixed && style.callMargin >= 0 ? Math.max(style.callMargin, 0.02) : style.callMargin;
+  if (equity >= odds + margin) return 'call';
   return 'fold';
 }
 

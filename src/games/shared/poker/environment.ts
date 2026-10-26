@@ -14,6 +14,7 @@ import {
   BLIND_LEVELS,
   applyPokerAction,
   createPoker,
+  isUpCard,
   isValidPokerState,
   legalPokerActions,
   type PokerState,
@@ -42,14 +43,20 @@ export function pokerOutcome(s: PokerState): Outcome | null {
   };
 }
 
-/** What `player` may see: their own cards, the board and any cards shown at showdown. */
+/**
+ * What `player` may see: their own cards, the board, the other seats' face-up stud cards and any
+ * cards shown at showdown.
+ */
 export function maskPoker(s: PokerState, player: PlayerId): PokerState {
   const shown = s.result?.shown ?? [];
+  const stud = s.variant === 'stud';
   return {
     ...s,
     deck: [],
     seats: s.seats.map((x, i) =>
-      i === player || shown.includes(i) ? x : { ...x, hole: x.hole.map(() => UNKNOWN) },
+      i === player || shown.includes(i)
+        ? x
+        : { ...x, hole: x.hole.map((c, k) => (stud && isUpCard(k) ? c : UNKNOWN)) },
     ),
   };
 }

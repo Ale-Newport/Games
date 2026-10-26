@@ -2,6 +2,22 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #090 Seven Card Stud COMPLETE
+
+- The shared poker engine gained a `STUD` variant: antes, the bring-in from the lowest up card,
+  completion, up and down cards by position, the best showing hand opening later streets, small
+  then big fixed bets. `stud-ai.ts` removes every visible card from the deck before sampling;
+  observations hide only down cards. The table shows seven cards with the player's own down cards
+  marked.
+- 2000 heads-up hands per pairing: Medium vs Easy +0.62, Hard vs Easy +0.61, Hard vs Medium −0.07
+  (level). Hard first lost to Medium (−0.14): its button allowance means nothing in stud and its
+  thinner bets and looser calls cost in fixed limit — removed / shared thresholds. Draw re-measured
+  with the shared fixed-limit thresholds: +0.27 / +0.20, Hard vs Medium +0.08.
+- Played a full hand in the in-app browser (mobile): "Raise" shown for opening bets and "blinds" in
+  stud texts — fixed.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1577 unit tests, build, 266
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #089 Omaha Hold'em COMPLETE
 
 - Omaha on the shared poker family (four hole cards, two-plus-three scoring, pot-limit); the table's
