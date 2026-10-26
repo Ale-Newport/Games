@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #097 Cribbage COMPLETE
+
+- Cribbage: crib, his heels, pegging with automatic goes, the show (29-hand checked), game to 121
+  with a peg board. Hard averages all 46 starters for its throw and weighs replies when pegging.
+- Measured over 5000 hands: Medium vs Easy +3.0 points a hand, Hard vs Medium +0.7, Hard vs Easy
+  +3.7; decisions under 0.2 ms.
+- Played in the in-app browser (mobile): only the last play's points were shown when the opponent
+  laid two cards in a row — added a play log.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1684 unit tests, build, 294
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #096 Gin Rummy COMPLETE
 
 - Gin rummy: least-deadwood meld search, knock / gin / undercut with lay-offs, void hands, match to 100. Hard throws by expected deadwood after its next draw and samples the opponent's hands to
