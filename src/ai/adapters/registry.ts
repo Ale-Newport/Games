@@ -111,6 +111,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'leduc-poker': () => import('../../games/leduc-poker/ai-adapter').then((m) => m.bundle),
   hearts: () => import('../../games/hearts/ai-adapter').then((m) => m.bundle),
   spades: () => import('../../games/spades/ai-adapter').then((m) => m.bundle),
+  'contract-bridge': () => import('../../games/contract-bridge/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

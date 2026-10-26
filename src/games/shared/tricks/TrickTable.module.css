@@ -279,3 +279,34 @@
     font-size: 0.7rem;
   }
 }
+
+/* An open hand (bridge's dummy): larger face-up cards that may be tapped. */
+.open {
+  --back: clamp(30px, 8.4vw, 50px);
+}
+
+.open .back {
+  padding: 0;
+  border: none;
+  background: none;
+  margin-left: calc(var(--back) * -0.4);
+}
+
+.west .open .back,
+.east .open .back {
+  margin-left: 0;
+  margin-top: calc(var(--back) * -0.95);
+}
+
+.open .back:first-child {
+  margin-left: 0;
+  margin-top: 0;
+}
+
+.open .can {
+  cursor: pointer;
+}
+
+.open .can:hover {
+  transform: translateY(-4px);
+}

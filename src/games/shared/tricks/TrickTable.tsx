@@ -21,6 +21,10 @@ export interface TrickSeat {
   /** Dealer, trump caller, a team colour… */
   badge?: string;
   team?: 0 | 1;
+  /** Show this hand face up and larger (bridge's dummy). */
+  open?: boolean;
+  /** Cards of this (open) hand the player may tap now. */
+  playable?: ReadonlySet<number>;
 }
 
 export interface TrickTableProps {
@@ -34,6 +38,8 @@ export interface TrickTableProps {
   /** Cards just received, outlined. */
   fresh?: ReadonlySet<number>;
   onCard?: (card: number) => void;
+  /** Taps on an open hand of another seat (dummy), when it has playable cards. */
+  onSeatCard?: (seat: number, card: number) => void;
   trick: readonly Play[];
   /** The seat that took the trick on display, if it is complete. */
   winner?: number | null;
@@ -63,17 +69,38 @@ export function TrickTable(props: TrickTableProps) {
               className={`${styles.opponent} ${styles[POSITIONS[i]!]} ${seat.active ? styles.active : ''}`}
               data-testid={`trick-seat-${i}`}
             >
-              <div className={styles.backs} aria-label={`${seat.name}: ${seat.cards.length}`}>
-                {seat.cards.map((c, j) => (
-                  <div
-                    key={reveal ? c : j}
-                    className={styles.back}
-                    role={reveal ? 'img' : undefined}
-                    aria-label={reveal ? cardName(c, locale) : undefined}
-                  >
-                    <CardView card={c} faceUp={!!reveal} fourColor={props.colorblind} />
-                  </div>
-                ))}
+              <div
+                className={`${styles.backs} ${seat.open ? styles.open : ''}`}
+                aria-label={`${seat.name}: ${seat.cards.length}`}
+              >
+                {seat.cards.map((c, j) =>
+                  seat.open && seat.playable ? (
+                    <button
+                      key={c}
+                      type="button"
+                      className={`${styles.back} ${seat.playable.size && !seat.playable.has(c) ? styles.dim : ''} ${seat.playable.has(c) ? styles.can : ''}`}
+                      disabled={!seat.playable.has(c)}
+                      aria-label={cardName(c, locale)}
+                      onClick={() => props.onSeatCard?.(i, c)}
+                      data-card={c}
+                    >
+                      <CardView card={c} faceUp fourColor={props.colorblind} />
+                    </button>
+                  ) : (
+                    <div
+                      key={reveal || seat.open ? c : j}
+                      className={styles.back}
+                      role={reveal || seat.open ? 'img' : undefined}
+                      aria-label={reveal || seat.open ? cardName(c, locale) : undefined}
+                    >
+                      <CardView
+                        card={c}
+                        faceUp={!!reveal || !!seat.open}
+                        fourColor={props.colorblind}
+                      />
+                    </div>
+                  ),
+                )}
               </div>
               <Plate seat={seat} />
             </div>

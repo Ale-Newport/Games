@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #095 Contract Bridge COMPLETE
+
+- Bridge: auction with doubles and redoubles, declarer and dummy (the player declares both N–S
+  hands), duplicate scoring, Chicago vulnerability over four deals. A natural bidding system
+  (openings, competition, placement by combined points and fits); Hard plays by sampled layouts.
+  The shared trick table gained open hands (dummy) that can be tapped.
+- Medium bidding and play make 59% of 199 contracts; Medium vs Easy +58 points a deal (1000 deals),
+  Hard vs Medium +123 and vs Easy +148 (200 deals), 28 ms a decision.
+- Played in the in-app browser (mobile): north's cards were hidden when north declared, the status
+  named the wrong dummy, a responder with 4 points bid 1NT, overcalls in the opponents' suit, a
+  correction of partner's game — all fixed.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1654 unit tests, build, 286
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #094 Spades COMPLETE
 
 - Spades on the shared trick table (partnership colours, bidding grid): nil, bags with the tenth-bag
