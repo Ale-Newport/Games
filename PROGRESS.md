@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #098 Euchre COMPLETE
+
+- Euchre on the shared trick table: 24 cards, bowers, two bidding rounds with stick the dealer,
+  the dealer's pickup and throw, going alone, scoring to 10. Hand values for bidding, partnership
+  play, Hard's sampled-deal play.
+- Measured: Medium vs Easy +0.24 points a hand (10 000 hands), Hard vs Medium +0.06 and vs Easy
+  +0.31 (2000 hands), 4.7 ms a decision.
+- Played in the in-app browser (mobile): bidding hint, the dealer ordering up; fixed a Spanish
+  article in the order prompt.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1700 unit tests, build, 298
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #097 Cribbage COMPLETE
 
 - Cribbage: crib, his heels, pegging with automatic goes, the show (29-hand checked), game to 121
