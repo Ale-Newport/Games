@@ -102,7 +102,8 @@
 - **#097 Cribbage — COMPLETE** (2026-11-07).
 - **#098 Euchre — COMPLETE** (2026-11-07).
 - **#099 Crazy Eights — COMPLETE** (2026-11-07).
-- **Current game: #100 Go Fish** (`go-fish`) — TODO.
+- **#100 Go Fish — COMPLETE** (2026-11-07).
+- **Current game: #101 Classic Sudoku 9×9** (`sudoku-9x9`) — TODO.
 
 ## Resume instructions
 
