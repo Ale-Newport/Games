@@ -43,26 +43,27 @@ hands). Equity is estimated by Monte Carlo: the other contenders are dealt hands
 completed at random, then the hand's share of the pot is compared with the **pot odds**
 (call ÷ (pot + call)).
 
-| Agent    | Play                                                                                                                                                                                                                                                                                                                                                    |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `random` | Any legal action (fold, check, call, min / half-pot / pot / all-in raise).                                                                                                                                                                                                                                                                              |
-| `easy`   | 60 samples against random hands; calls whenever its equity is within 20 points of the pot odds, raises only with a big edge, never bluffs.                                                                                                                                                                                                              |
-| `medium` | 160 samples; **reads ranges**: an opponent who has committed a share _c_ of their chips is only dealt holdings whose strength percentile reaches 0.9·√c (Chen-style pre-flop percentile, or a made hand / flush draw after the flop). Folds below the pot odds, bets or raises 60% of the pot with a clear edge, bluffs 6% of the time when checked to. |
-| `hard`   | 320 samples with range reading, a small allowance on the button, 80% pot value bets (more with very strong hands), slow-plays a quarter of its monsters, bluffs 14% of the time when checked to.                                                                                                                                                        |
+| Agent    | Play                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `random` | Any legal action (fold, check, call, min / half-pot / pot / all-in raise).                                                                                                                                                                                                                                                                                                                                                                      |
+| `easy`   | 60 samples against random hands; calls whenever its equity is within 20 points of the pot odds, raises only with a big edge, never bluffs.                                                                                                                                                                                                                                                                                                      |
+| `medium` | 160 samples; **reads ranges**: an opponent who has committed a share _c_ of their chips is only dealt holdings whose strength percentile reaches 0.9·√c (Chen-style pre-flop percentile, or a made hand / flush draw after the flop). Folds below the pot odds; bets or raises 80% of the pot whenever its edge over a fair share reaches 12% (thin value bets are what beat players who call too much); bluffs 2% of the time when checked to. |
+| `hard`   | 320 samples with range reading, a small allowance on the button, pot-sized value bets from a 6% edge (bigger with very strong hands), slow-plays a quarter of its monsters, bluffs 4% of the time when checked to.                                                                                                                                                                                                                              |
 
-Measured over 1000 seeded heads-up hands per pairing (seats alternate; returns in big blinds per
+Measured over 1500 seeded heads-up hands per pairing (seats alternate; returns in big blinds per
 hand, 1500-chip stacks at 10/20):
 
 | Pairing          | First agent's return | First agent's win rate | Decision time |
 | ---------------- | -------------------- | ---------------------- | ------------- |
-| Easy vs Random   | +6.15 bb             | 55%                    | 1.9 ms        |
-| Medium vs Random | +5.60 bb             | 33%                    | 6.2 ms        |
-| Medium vs Easy   | +1.93 bb             | 51%                    | 6.1 ms        |
-| Hard vs Easy     | +3.22 bb             | 51%                    | 12.2 ms       |
-| Hard vs Medium   | +0.19 bb             | 54%                    | 11.9 ms       |
+| Easy vs Random   | +5.16 bb             | 54%                    | 2.0 ms        |
+| Medium vs Random | +5.13 bb             | 35%                    | 6.3 ms        |
+| Medium vs Easy   | +4.22 bb             | 50%                    | 6.2 ms        |
+| Hard vs Easy     | +5.91 bb             | 50%                    | 12.3 ms       |
+| Hard vs Medium   | +0.33 bb             | 53%                    | 11.9 ms       |
 
 (Range reading makes Medium fold more often to the random player's frequent all-ins, so it wins
-fewer hands against it, but larger pots.)
+fewer hands against it, but larger pots. An earlier tuning that waited for a 25% edge to bet and
+bluffed 6–14% of the time beat Easy by only +1.9 / +3.2 bb per hand.)
 
 The coach ("Hint") runs the same estimate with range reading (800 samples) and shows the chances,
 the pot odds and what a Medium player would do.

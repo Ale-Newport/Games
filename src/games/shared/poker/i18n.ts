@@ -17,6 +17,8 @@ export const POKER_STRINGS: Record<Locale, Dictionary> = {
     pat: 'stood pat',
     'coach.draw': 'A Medium player would throw away: {cards}.',
     'coach.pat': 'A Medium player would stand pat.',
+    'keys.omaha':
+      'Keys: F fold · C check/call · R raise · A largest raise (pot) · ←/→ raise size · H hint · N next hand',
     'keys.draw':
       'Keys: F fold · C check/call · R raise · 1–5 pick cards · D draw · H hint · N next hand',
     'menu.subtitle':
@@ -112,6 +114,8 @@ export const POKER_STRINGS: Record<Locale, Dictionary> = {
     pat: 'servido',
     'coach.draw': 'Un jugador Medio cambiaría: {cards}.',
     'coach.pat': 'Un jugador Medio se quedaría servido.',
+    'keys.omaha':
+      'Teclas: F retirarse · C pasar/igualar · R subir · A subida máxima (bote) · ←/→ tamaño · H pista · N siguiente mano',
     'keys.draw':
       'Teclas: F retirarse · C pasar/igualar · R subir · 1–5 elegir cartas · D cambiar · H pista · N siguiente mano',
     'menu.subtitle':

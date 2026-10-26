@@ -7,8 +7,10 @@
  *
  * - Easy ("calling station"): equity against random hands, calls far too much, raises only very
  *   strong hands, never bluffs.
- * - Medium: folds when the equity is below the pot odds, bets or raises strong hands, rarely bluffs.
- * - Hard: more samples, a position allowance, larger value bets, slow-plays and more bluffs.
+ * - Medium: folds when the equity is below the pot odds, bets or raises any hand with an edge (80%
+ *   of the pot), seldom bluffs. Thin value bets are what beat players who call too much.
+ * - Hard: more samples, thinner pot-sized value bets, a position allowance, slow-plays in big-bet
+ *   games and a few more bluffs.
  */
 import { RandomAgent } from '../../../ai/agents/random-agent';
 import type { Agent, DecisionContext, DecisionStats } from '../../../ai/agents/types';
@@ -151,7 +153,7 @@ export interface PokerStyle {
   ranges: boolean;
   /**
    * Edge needed to bet or raise for value, as a share of the way from a fair share of the pot
-   * (1 / players in the hand) to a sure win: 0.25 means 62.5% heads-up, 37.5% six-handed.
+   * (1 / players in the hand) to a sure win: 0.12 means 56% heads-up, 27% six-handed.
    */
   valueAt: number;
   /** Extra equity demanded over the pot odds before calling (negative = loose). */
@@ -178,20 +180,20 @@ export const STYLES: Record<'easy' | 'medium' | 'hard', PokerStyle> = {
     label: 'Medium',
     samples: 160,
     ranges: true,
-    valueAt: 0.25,
+    valueAt: 0.12,
     callMargin: 0.02,
-    bluff: 0.06,
-    sizing: 0.6,
+    bluff: 0.02,
+    sizing: 0.8,
   },
   hard: {
     id: 'hard',
     label: 'Hard',
     samples: 320,
     ranges: true,
-    valueAt: 0.18,
+    valueAt: 0.06,
     callMargin: 0,
-    bluff: 0.14,
-    sizing: 0.8,
+    bluff: 0.04,
+    sizing: 1,
   },
 };
 
@@ -226,10 +228,11 @@ export function styleAction(s: PokerState, style: PokerStyle, rng: Rng): string 
     const fromButton = (seat - s.button + n) % n;
     if (fromButton === 0) equity += 0.03;
   }
-  // Fixed-limit bets are small next to the pot: thinner value bets pay, slow-plays and bluffs
-  // (which rarely make anyone fold for one more small bet) do not.
+  // Fixed-limit bets are small next to the pot: slow-plays and bluffs (which rarely make anyone
+  // fold for one more small bet) do not pay.
   const fixed = s.variant === 'draw';
-  const valueAt = fixed ? style.valueAt / 2 : style.valueAt;
+  // There, betting very thin hands into several callers costs more than it earns.
+  const valueAt = fixed ? Math.max(style.valueAt, 0.1) : style.valueAt;
   if (edge() >= valueAt && range) {
     // Very strong hands go bigger; Hard sometimes slow-plays by just calling or checking.
     if (style.id === 'hard' && !fixed && edge() > 0.7 && rng.chance(0.25))

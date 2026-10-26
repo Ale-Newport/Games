@@ -91,7 +91,8 @@
 - **#086 Blackjack — COMPLETE** (2026-11-07).
 - **#087 Texas Hold'em Poker — COMPLETE** (2026-11-07).
 - **#088 Five Card Draw Poker — COMPLETE** (2026-11-07).
-- **Current game: #089 Omaha Poker** (`omaha`) — TODO.
+- **#089 Omaha Hold'em — COMPLETE** (2026-11-07).
+- **Current game: #090 Seven Card Stud** (`seven-card-stud`) — TODO.
 
 ## Resume instructions
 
