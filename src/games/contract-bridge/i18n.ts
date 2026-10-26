@@ -128,7 +128,7 @@ export const STRINGS: Record<Locale, Dictionary> = {
     'over.tie': 'Empate a {ns}.',
     'new.game': 'Nuevo Chicago',
     hint: 'Pista',
-    'hint.play': 'Difícil jugaría el {card}.',
+    'hint.play': 'Difícil jugaría: {card}.',
     menu: 'Menú',
     pause: 'Pausa',
     resume: 'Seguir',

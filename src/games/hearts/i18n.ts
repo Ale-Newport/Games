@@ -89,7 +89,7 @@ export const STRINGS: Record<Locale, Dictionary> = {
     'game.lost': '{name} gana la partida con {score} puntos.',
     'new.game': 'Nueva partida',
     hint: 'Pista',
-    'hint.play': 'Difícil jugaría el {card}.',
+    'hint.play': 'Difícil jugaría: {card}.',
     'hint.pass': 'Un buen pase: {cards}.',
     menu: 'Menú',
     pause: 'Pausa',

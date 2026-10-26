@@ -98,7 +98,8 @@
 - **#093 Hearts — COMPLETE** (2026-11-07).
 - **#094 Spades — COMPLETE** (2026-11-07).
 - **#095 Contract Bridge — COMPLETE** (2026-11-07).
-- **Current game: #096 Gin Rummy** (`gin-rummy`) — TODO.
+- **#096 Gin Rummy — COMPLETE** (2026-11-07).
+- **Current game: #097 Cribbage** (`cribbage`) — TODO.
 
 ## Resume instructions
 

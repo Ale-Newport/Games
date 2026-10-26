@@ -96,7 +96,7 @@ export const STRINGS: Record<Locale, Dictionary> = {
     'game.watch': 'Ganan {team}, {a} a {b}.',
     'new.game': 'Nueva partida',
     hint: 'Pista',
-    'hint.play': 'Difícil jugaría el {card}.',
+    'hint.play': 'Difícil jugaría: {card}.',
     menu: 'Menú',
     pause: 'Pausa',
     resume: 'Seguir',

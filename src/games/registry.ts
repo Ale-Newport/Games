@@ -99,6 +99,7 @@ import { manifest as leducPoker } from './leduc-poker/manifest';
 import { manifest as hearts } from './hearts/manifest';
 import { manifest as spades } from './spades/manifest';
 import { manifest as contractBridge } from './contract-bridge/manifest';
+import { manifest as ginRummy } from './gin-rummy/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -196,6 +197,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: hearts, load: () => import('./hearts/index') },
   { manifest: spades, load: () => import('./spades/index') },
   { manifest: contractBridge, load: () => import('./contract-bridge/index') },
+  { manifest: ginRummy, load: () => import('./gin-rummy/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
