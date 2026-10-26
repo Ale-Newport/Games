@@ -23,7 +23,7 @@ import {
   type HeartsState,
 } from './engine';
 import { NAMES, STRINGS } from './i18n';
-import styles from './HeartsGame.module.css';
+import styles from '../shared/tricks/TrickGame.module.css';
 
 type Difficulty = 'easy' | 'medium' | 'hard';
 const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard'];

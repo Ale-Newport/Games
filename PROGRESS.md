@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #094 Spades COMPLETE
+
+- Spades on the shared trick table (partnership colours, bidding grid): nil, bags with the tenth-bag
+  penalty, sets, game to 500 / −200. Medium bids from a trick estimate and plays as a partner;
+  Hard bids from simulated deals and searches its play over sampled deals.
+- Measured: Medium vs Easy +13 points a hand (2000 hands), Hard vs Medium +14 and vs Easy +28
+  (300 hands), 27 ms a decision.
+- Played in the in-app browser (mobile): bidding hint, bids on the plates, spades locked until
+  broken.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1638 unit tests, build, 282
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #093 Hearts COMPLETE
 
 - New shared `tricks` family (rank order, follow suit, trick winner with trump, a four-seat
