@@ -2,6 +2,22 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #101 Classic Sudoku 9×9 COMPLETE
+
+- New shared sudoku core (`src/games/shared/sudoku/`) for #101–#107: geometry for any box shape,
+  irregular regions and diagonals; an exact solver (singles propagation + fewest-candidates search);
+  human techniques up to X-Wing, Y-Wing and Swordfish; a graded generator; play state with notes,
+  undo/redo, mistakes and hints; agents and a puzzle environment; the shared table and rules.
+- Measured over 100 seeds per difficulty: every puzzle at its level (Easy/Medium singles, Hard
+  locked candidates or pairs, Expert triples/X-Wing/Y-Wing/Swordfish), generation ≤ 321 ms;
+  the technique and exact solvers solve 100%, random play 0%.
+- Played in the in-app browser (mobile): hints with explanations, notes, a full solve, watch mode.
+  Fixed: the speed achievement now requires no hints; a naked single reached after eliminations
+  is worded as such.
+- Fixed during verification: the environment id must be the game id, not the ruleset id.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1785 unit tests (the run
+  also covered the unregistered 4×4 and 6×6 modules being built next), build, 310 Playwright tests.
+
 ## 2026-11-07 — Session 1: #100 Go Fish COMPLETE
 
 - Go Fish for 2–4 players: asks, go fish with the lucky draw, books, empty hands drawing, a log of

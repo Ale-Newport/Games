@@ -103,7 +103,8 @@
 - **#098 Euchre — COMPLETE** (2026-11-07).
 - **#099 Crazy Eights — COMPLETE** (2026-11-07).
 - **#100 Go Fish — COMPLETE** (2026-11-07).
-- **Current game: #101 Classic Sudoku 9×9** (`sudoku-9x9`) — TODO.
+- **#101 Classic Sudoku 9×9 — COMPLETE** (2026-11-07).
+- **Current game: #102 Mini Sudoku 4×4** (`sudoku-4x4`) — TODO.
 
 ## Resume instructions
 
