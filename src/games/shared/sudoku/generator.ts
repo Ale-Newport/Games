@@ -3,7 +3,7 @@
  * solution stays unique and the techniques needed stay within the wanted levels.
  */
 import { Rng } from '../../../core/game-engine/random';
-import { gradePuzzle } from './logic';
+import { gradePuzzle, type StepExtra } from './logic';
 import { hasUniqueSolution, randomSolution, type Extra } from './solver';
 import type { Geometry, Shape } from './grid';
 
@@ -27,30 +27,43 @@ export interface PuzzleSpec {
   jigsaw?: boolean;
   /** This difficulty's own grid shape (otherwise the variant's). */
   shape?: Shape;
+  /** Futoshiki: inequality signs on this share of neighbour pairs (see `signs.ts`). */
+  signs?: number;
   /** Calcudoku: no givens, arithmetic cages of these sizes instead (see `calc.ts`). */
   calc?: { min: number; max: number; singles?: number };
   /** Killer sudoku: no givens, cages of these sizes instead (see `killer.ts`). */
   cages?: { min: number; max: number };
 }
 
-export interface Puzzle {
+export interface Puzzle<D = undefined> {
   puzzle: number[];
   solution: number[];
   level: number;
   clues: number;
+  /** What `rules` drew for this solution (e.g. inequality signs). */
+  data?: D;
 }
 
-export function generatePuzzle(
+/** Constraints drawn for a solution (and the techniques that go with them). */
+export interface DrawnRules<D> {
+  extra?: Extra;
+  steps?: StepExtra[];
+  data?: D;
+}
+
+export function generatePuzzle<D = undefined>(
   geo: Geometry,
   seed: number,
   spec: PuzzleSpec,
-  extra?: Extra,
-): Puzzle {
+  rules?: (solution: readonly number[], rng: Rng) => DrawnRules<D>,
+): Puzzle<D> {
   const rng = new Rng(seed);
-  let best: Puzzle | null = null;
+  let best: Puzzle<D> | null = null;
   const attempts = spec.attempts ?? 40;
   for (let attempt = 0; attempt < attempts; attempt++) {
     const solution = randomSolution(geo, rng);
+    const drawn = rules?.(solution, rng) ?? {};
+    const { extra, steps = [] } = drawn;
     const puzzle = [...solution];
     let clues = geo.cells;
     const order = rng.shuffle(Array.from({ length: geo.cells }, (_, c) => c));
@@ -63,15 +76,15 @@ export function generatePuzzle(
       for (const x of group) puzzle[x] = 0;
       if (
         !hasUniqueSolution(geo, puzzle, extra, spec.maxNodes) ||
-        gradePuzzle(geo, puzzle).level > spec.maxLevel
+        gradePuzzle(geo, puzzle, steps).level > spec.maxLevel
       ) {
         for (const x of group) puzzle[x] = solution[x]!;
         continue;
       }
       clues -= group.length;
     }
-    const level = gradePuzzle(geo, puzzle).level;
-    const candidate = { puzzle, solution, level, clues };
+    const level = gradePuzzle(geo, puzzle, steps).level;
+    const candidate: Puzzle<D> = { puzzle, solution, level, clues, data: drawn.data };
     if (level >= spec.minLevel && clues <= spec.maxClues) return candidate;
     if (!best || level > best.level || (level === best.level && clues < best.clues))
       best = candidate;

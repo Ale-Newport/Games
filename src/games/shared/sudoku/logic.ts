@@ -22,7 +22,8 @@ export type Technique =
   | 'cage-combination'
   | 'innie'
   | 'outie'
-  | 'cage-arithmetic';
+  | 'cage-arithmetic'
+  | 'inequality';
 
 export const TECHNIQUE_LEVEL: Record<Technique, number> = {
   'naked-single': 1,
@@ -40,6 +41,7 @@ export const TECHNIQUE_LEVEL: Record<Technique, number> = {
   innie: 2,
   outie: 2,
   'cage-arithmetic': 1,
+  inequality: 1,
 };
 
 export interface Elimination {

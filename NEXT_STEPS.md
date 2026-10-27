@@ -112,7 +112,8 @@
 - **#107 Jigsaw Sudoku — COMPLETE** (2026-11-07).
 - **#108 Kakuro — COMPLETE** (2026-11-07).
 - **#109 Calcudoku (KenKen-style) — COMPLETE** (2026-11-07).
-- **Current game: #110 Futoshiki** (`futoshiki`) — TODO.
+- **#110 Futoshiki — COMPLETE** (2026-11-07).
+- **Current game: #111 Hitori** (`hitori`) — TODO.
 
 ## Resume instructions
 

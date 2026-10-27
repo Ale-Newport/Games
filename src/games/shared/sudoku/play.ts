@@ -8,6 +8,7 @@ import { generatePuzzle, type PuzzleSpec } from './generator';
 import { bit, geometry, type Geometry, type Shape } from './grid';
 import { calcExtra, calcSteps, cageValue, generateCalc, type CalcCage } from './calc';
 import { jigsawRegions, regionsConnected } from './jigsaw';
+import { drawSigns, signExtra, signSteps, type Sign } from './signs';
 import { cageExtra, generateKiller, killerSteps, type Cage } from './killer';
 import { gradePuzzle, type StepExtra } from './logic';
 import { randomSolution, solveSudoku, type Extra } from './solver';
@@ -47,15 +48,18 @@ export interface SudokuState {
   regions?: number[];
   /** Calcudoku: arithmetic cages (no givens then). */
   calc?: CalcCage[];
+  /** Futoshiki: inequality signs between neighbours. */
+  signs?: Sign[];
 }
 
 /** The constraints and techniques beyond the units that a puzzle brings (its killer cages). */
 export function rulesOf(
   geo: Geometry,
-  s: { cages?: readonly Cage[]; calc?: readonly CalcCage[] },
+  s: { cages?: readonly Cage[]; calc?: readonly CalcCage[]; signs?: readonly Sign[] },
 ): { extra?: Extra; steps: StepExtra[] } {
   if (s.cages) return { extra: cageExtra(geo, s.cages), steps: killerSteps(s.cages) };
   if (s.calc) return { extra: calcExtra(geo, s.calc), steps: calcSteps(s.calc) };
+  if (s.signs) return { extra: signExtra(geo, s.signs), steps: signSteps(s.signs) };
   return { steps: [] };
 }
 
@@ -87,6 +91,7 @@ export function newSudoku(v: SudokuVariant, difficulty: string, seed: number): S
   let cages: Cage[] | undefined;
   let regions: number[] | undefined;
   let calc: CalcCage[] | undefined;
+  let signs: Sign[] | undefined;
   if (spec.jigsaw) {
     // Fresh regions for every puzzle (retried in the rare case no grid fits them).
     const rng = new Rng(seed ^ 0x5bd1e995);
@@ -131,6 +136,16 @@ export function newSudoku(v: SudokuVariant, difficulty: string, seed: number): S
     puzzle = Array<number>(geo.cells).fill(0);
     solution = k.solution;
     cages = k.cages;
+  } else if (spec.signs !== undefined) {
+    // Futoshiki: signs drawn over each candidate solution, then givens removed.
+    const share = spec.signs;
+    const p = generatePuzzle<Sign[]>(geo, seed, spec, (sol, rng) => {
+      const drawn = drawSigns(geo, sol, rng, share);
+      return { extra: signExtra(geo, drawn), steps: signSteps(drawn), data: drawn };
+    });
+    puzzle = p.puzzle;
+    solution = p.solution;
+    signs = p.data;
   } else {
     const p = generatePuzzle(geo, seed, spec);
     puzzle = p.puzzle;
@@ -152,6 +167,7 @@ export function newSudoku(v: SudokuVariant, difficulty: string, seed: number): S
     ...(cages ? { cages } : {}),
     ...(regions ? { regions } : {}),
     ...(calc ? { calc } : {}),
+    ...(signs ? { signs } : {}),
   };
 }
 
@@ -371,6 +387,21 @@ export function isValidSudokuState(v: SudokuVariant, data: unknown): data is Sud
       if (cageValue(cage.op as CalcCage['op'], digits) !== cage.target) return false;
     }
     if (seen.size !== n) return false;
+  }
+  if (d.signs !== undefined) {
+    // Signs: between orthogonal neighbours, true of the solution.
+    if (!Array.isArray(d.signs)) return false;
+    for (const sign of d.signs as unknown[]) {
+      if (!isRecord(sign) || !Number.isInteger(sign.less) || !Number.isInteger(sign.more))
+        return false;
+      const a = sign.less as number;
+      const b = sign.more as number;
+      if (a < 0 || b < 0 || a >= n || b >= n) return false;
+      const near =
+        Math.abs(a - b) === size ||
+        (Math.abs(a - b) === 1 && Math.floor(a / size) === Math.floor(b / size));
+      if (!near || d.solution[a]! >= d.solution[b]!) return false;
+    }
   }
   const solved = solveSudoku(geo, d.puzzle, { limit: 2, extra: rulesOf(geo, d).extra });
   return (
