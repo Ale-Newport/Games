@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #102 Mini Sudoku 4×4 COMPLETE
+
+- Mini Sudoku on the shared sudoku core: 4×4 with 2×2 boxes, digits 1–4. Every 4×4 puzzle falls to
+  singles, so the levels are clue counts: Easy 8, Medium 6, Hard 4–5 (measured over 200 seeds each,
+  all unique, < 1 ms to generate). Random play solves 38% / 23% / 8%; both solvers 100%.
+- Played in the in-app browser (mobile): a Hard puzzle with an explained hint, solved to the end.
+  Fixed in the shared table: board rows now keep a fixed height (they collapsed on sparse boards).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1803 unit tests (including
+  the unregistered 6×6 module), build, 314 Playwright tests.
+
 ## 2026-11-07 — Session 1: #101 Classic Sudoku 9×9 COMPLETE
 
 - New shared sudoku core (`src/games/shared/sudoku/`) for #101–#107: geometry for any box shape,
