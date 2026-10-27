@@ -109,7 +109,8 @@
 - **#104 Sudoku 16×16 — COMPLETE** (2026-11-07).
 - **#105 X-Sudoku — COMPLETE** (2026-11-07).
 - **#106 Killer Sudoku — COMPLETE** (2026-11-07).
-- **Current game: #107 Jigsaw Sudoku** (`jigsaw-sudoku`) — TODO.
+- **#107 Jigsaw Sudoku — COMPLETE** (2026-11-07).
+- **Current game: #108 Kakuro** (`kakuro`) — TODO.
 
 ## Resume instructions
 

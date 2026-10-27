@@ -15,6 +15,7 @@ import { stepsToPlacement, type Step } from './logic';
 import {
   eraseCell,
   fillNotes,
+  geoFor,
   geoOf,
   isValidSudokuState,
   newSudoku,
@@ -28,6 +29,7 @@ import {
   type SudokuVariant,
 } from './play';
 import { SUDOKU_STRINGS } from './i18n';
+import { regionColours } from './jigsaw';
 import { SUDOKU_SOUNDS } from './sounds';
 import styles from './SudokuGame.module.css';
 
@@ -91,8 +93,7 @@ export function SudokuGame({
   );
   const t = useMemo(() => createTranslator(dict, locale), [dict, locale]);
   const servicesRef = useLatest(services);
-  const geo = geoOf(variant);
-  const n = geo.size;
+  const n = variant.shape.size;
   const levels = Object.keys(variant.difficulties);
   const slot = useMemo(
     () =>
@@ -125,6 +126,11 @@ export function SudokuGame({
   const [flagged, setFlagged] = useState<number[]>([]);
   const watchSteps = useRef(0);
   const stateRef = useLatest(state);
+  const geo = state ? geoFor(variant, state) : geoOf(variant);
+  const colours = useMemo(
+    () => (state?.regions ? regionColours(n, state.regions) : null),
+    [state?.regions, n],
+  );
   const elapsedRef = useLatest(elapsed);
 
   useEffect(() => {
@@ -540,6 +546,7 @@ export function SudokuGame({
             thickBottom ? styles.thickBottom : '',
             s.puzzle[c] ? styles.given : styles.entered,
             cellClass?.(c) ?? '',
+            colours ? styles[`tint${colours[geo.region[c]!]! % 4}`] : '',
             peers.has(c) ? styles.peer : '',
             pointed.has(c) ? styles.pointed : '',
             focus && v === focus ? styles.same : '',

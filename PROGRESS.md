@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #107 Jigsaw Sudoku COMPLETE
+
+- Jigsaw Sudoku on the shared core, which now carries per-puzzle regions (`geoFor`): the boxes are
+  reshaped by random connectivity-preserving swaps, regions get up to four tints so touching ones
+  differ, and saves validate the regions. Measured over 50 seeds per difficulty: all at their level
+  (Easy/Medium singles, Hard level 2, Expert level 3), generation ≤ 694 ms; both solvers 100%.
+- Played in the in-app browser (mobile): a Hard puzzle with region borders and tints, explained
+  hints, solved to the end.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1874 unit tests, build, 334
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #106 Killer Sudoku COMPLETE
 
 - Killer Sudoku (no givens, cages with sums) on the shared core, which gained: constraint hooks for

@@ -157,6 +157,35 @@
   border-bottom: 2px solid var(--thick);
 }
 
+/* Jigsaw regions: tints layered as images so the highlights (background colours) still show. */
+.tint0 {
+  background-image: linear-gradient(
+    color-mix(in srgb, var(--accent) 9%, transparent),
+    color-mix(in srgb, var(--accent) 9%, transparent)
+  );
+}
+
+.tint1 {
+  background-image: linear-gradient(
+    color-mix(in srgb, var(--warning) 12%, transparent),
+    color-mix(in srgb, var(--warning) 12%, transparent)
+  );
+}
+
+.tint2 {
+  background-image: linear-gradient(
+    color-mix(in srgb, var(--success) 11%, transparent),
+    color-mix(in srgb, var(--success) 11%, transparent)
+  );
+}
+
+.tint3 {
+  background-image: linear-gradient(
+    color-mix(in srgb, var(--accent-2) 12%, transparent),
+    color-mix(in srgb, var(--accent-2) 12%, transparent)
+  );
+}
+
 .digit {
   font-size: calc(60cqi / var(--n));
   font-weight: 600;

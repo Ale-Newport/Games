@@ -15,7 +15,7 @@ import {
 import { candidates, digitsOf, popcount } from './grid';
 import { stepsToPlacement } from './logic';
 import {
-  geoOf,
+  geoFor,
   isValidSudokuState,
   newSudoku,
   placeDigit,
@@ -31,7 +31,7 @@ export interface SudokuConfig {
 
 export function sudokuActions(v: SudokuVariant, s: SudokuState): string[] {
   if (s.solved) return [];
-  const cands = candidates(geoOf(v), s.values);
+  const cands = candidates(geoFor(v, s), s.values);
   const out: string[] = [];
   for (let c = 0; c < cands.length; c++) {
     if (s.values[c]) continue;
@@ -43,10 +43,10 @@ export function sudokuActions(v: SudokuVariant, s: SudokuState): string[] {
 
 /** The technique solver's move: the next logical placement, or a guess when the logic is stuck. */
 export function logicMove(v: SudokuVariant, s: SudokuState): string {
-  const steps = stepsToPlacement(geoOf(v), s.values, rulesOf(geoOf(v), s).steps);
+  const steps = stepsToPlacement(geoFor(v, s), s.values, rulesOf(geoFor(v, s), s).steps);
   const place = steps?.at(-1)?.place;
   if (place) return `${place.cell}:${place.digit}`;
-  const cands = candidates(geoOf(v), s.values);
+  const cands = candidates(geoFor(v, s), s.values);
   let best = -1;
   for (let c = 0; c < cands.length; c++)
     if (!s.values[c] && (best < 0 || popcount(cands[c]!) < popcount(cands[best]!))) best = c;
@@ -55,7 +55,7 @@ export function logicMove(v: SudokuVariant, s: SudokuState): string {
 
 /** The exact solver's move: the first empty cell's digit in the (unique) solution of the puzzle. */
 export function solverMove(v: SudokuVariant, s: SudokuState): string {
-  const geo = geoOf(v);
+  const geo = geoFor(v, s);
   const solved =
     solveSudoku(geo, s.values, { limit: 1, extra: rulesOf(geo, s).extra }).solution ??
     solveSudoku(geo, s.puzzle, { limit: 1, extra: rulesOf(geo, s).extra }).solution!;
