@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #112 Nonogram COMPLETE
+
+- Nonogram with a dynamic-programming line solver, an exact solver (line propagation + search), a
+  generator (smoothed noise repaired by flipping undecided cells until the line solver finishes) and
+  ten original hand-drawn pictures (four needed redrawing to become line-solvable). Measured over 40
+  seeds per size: line-solvable and unique, ≤ 74 ms.
+- Played in the in-app browser (mobile): 15×15 fits a phone with its clues; drag painting locked to a
+  line, undo of a whole drag, hints, the picture gallery (heart solved and revealed).
+- Fixed during verification: on a 1280×720 desktop the board overflowed its height cap and covered
+  the buttons (E2E click timed out); the cell size now also respects the available height.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1964 unit tests, build, 354
+  Playwright tests (full rerun after the fix).
+
 ## 2026-11-07 — Session 1: #111 Hitori COMPLETE
 
 - Hitori (5×5 to 10×10) with its own engine: exact solver (propagation + connectivity + search),

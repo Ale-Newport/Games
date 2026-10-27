@@ -115,6 +115,7 @@ import { manifest as kakuro } from './kakuro/manifest';
 import { manifest as calcudoku } from './calcudoku/manifest';
 import { manifest as futoshiki } from './futoshiki/manifest';
 import { manifest as hitori } from './hitori/manifest';
+import { manifest as nonogram } from './nonogram/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -228,6 +229,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: calcudoku, load: () => import('./calcudoku/index') },
   { manifest: futoshiki, load: () => import('./futoshiki/index') },
   { manifest: hitori, load: () => import('./hitori/index') },
+  { manifest: nonogram, load: () => import('./nonogram/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

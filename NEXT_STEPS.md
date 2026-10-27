@@ -114,7 +114,8 @@
 - **#109 Calcudoku (KenKen-style) — COMPLETE** (2026-11-07).
 - **#110 Futoshiki — COMPLETE** (2026-11-07).
 - **#111 Hitori — COMPLETE** (2026-11-07).
-- **Current game: #112 Nonogram** (`nonogram`) — TODO.
+- **#112 Nonogram — COMPLETE** (2026-11-07).
+- **Current game: #113 Slitherlink** (`slitherlink`) — TODO.
 
 ## Resume instructions
 
