@@ -21,7 +21,8 @@ export type Technique =
   | 'swordfish'
   | 'cage-combination'
   | 'innie'
-  | 'outie';
+  | 'outie'
+  | 'cage-arithmetic';
 
 export const TECHNIQUE_LEVEL: Record<Technique, number> = {
   'naked-single': 1,
@@ -38,6 +39,7 @@ export const TECHNIQUE_LEVEL: Record<Technique, number> = {
   'cage-combination': 1,
   innie: 2,
   outie: 2,
+  'cage-arithmetic': 1,
 };
 
 export interface Elimination {

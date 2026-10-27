@@ -5,7 +5,7 @@
 import { Rng } from '../../../core/game-engine/random';
 import { gradePuzzle } from './logic';
 import { hasUniqueSolution, randomSolution, type Extra } from './solver';
-import type { Geometry } from './grid';
+import type { Geometry, Shape } from './grid';
 
 export interface PuzzleSpec {
   /** The hardest technique level must lie in this range (see `logic.ts`). */
@@ -25,6 +25,10 @@ export interface PuzzleSpec {
   maxNodes?: number;
   /** Jigsaw sudoku: every puzzle gets its own irregular regions (see `jigsaw.ts`). */
   jigsaw?: boolean;
+  /** This difficulty's own grid shape (otherwise the variant's). */
+  shape?: Shape;
+  /** Calcudoku: no givens, arithmetic cages of these sizes instead (see `calc.ts`). */
+  calc?: { min: number; max: number; singles?: number };
   /** Killer sudoku: no givens, cages of these sizes instead (see `killer.ts`). */
   cages?: { min: number; max: number };
 }

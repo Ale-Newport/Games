@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #109 Calcudoku COMPLETE
+
+- Calcudoku (original arithmetic-cage puzzle, generic name for the KenKen style) on the shared sudoku
+  core, which gained Latin-square geometry (no boxes), per-difficulty board sizes (4×4 to 7×7 in one
+  game), arithmetic cages (tuple propagator, cage-arithmetic technique, generator that re-rolls an
+  operation or splits a cage where a second solution differs) and a shared cage overlay (Killer
+  Sudoku now uses it too).
+- Measured over 40 seeds per size: unique, technique-solvable at the wanted levels, ≤ 360 ms to
+  generate, at most ~2 one-cell cages on 7×7; both solvers 100%.
+- Played in the in-app browser (mobile): 6×6 with "540×"/"4÷" cages, explained hints, solved; Killer
+  Sudoku re-checked after the overlay refactor.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1906 unit tests, build, 342
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #108 Kakuro COMPLETE
 
 - Kakuro with its own engine: run combinations, an exact solver with combination propagation,

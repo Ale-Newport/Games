@@ -5,7 +5,10 @@
  */
 export interface Shape {
   size: number;
-  /** Box height and width for the standard regions (ignored when `regions` is given). */
+  /**
+   * Box height and width for the standard regions (ignored when `regions` is given). A box height
+   * of 0 makes a Latin square: rows and columns only (the width then only lays out pencil marks).
+   */
   boxRows: number;
   boxCols: number;
   /** Region index of every cell, for irregular (jigsaw) regions. */
@@ -42,6 +45,7 @@ export function geometry(shape: Shape): Geometry {
   const cells = n * n;
   const region = Array.from({ length: cells }, (_, c) => {
     if (shape.regions) return shape.regions[c]!;
+    if (!shape.boxRows) return 0;
     const r = Math.floor(c / n);
     const col = c % n;
     return Math.floor(r / shape.boxRows) * (n / shape.boxCols) + Math.floor(col / shape.boxCols);
@@ -56,7 +60,7 @@ export function geometry(shape: Shape): Geometry {
     units.push(Array.from({ length: n }, (_, r) => r * n + c));
     unitKinds.push('col');
   }
-  for (let b = 0; b < n; b++) {
+  for (let b = 0; b < (shape.boxRows || shape.regions ? n : 0); b++) {
     units.push(region.flatMap((x, c) => (x === b ? [c] : [])));
     unitKinds.push('box');
   }
