@@ -76,15 +76,18 @@ export interface SolveResult {
   solution: number[] | null;
   /** Search nodes, as a rough measure of difficulty for a computer. */
   nodes: number;
+  /** The search gave up at `maxNodes` (the count is then a lower bound). */
+  aborted: boolean;
 }
 
 export function solveSudoku(
   geo: Geometry,
   grid: readonly number[],
-  options: { limit?: number; rng?: Rng; extra?: ExtraCheck } = {},
+  options: { limit?: number; rng?: Rng; extra?: ExtraCheck; maxNodes?: number } = {},
 ): SolveResult {
   const limit = options.limit ?? 2;
-  const result: SolveResult = { count: 0, solution: null, nodes: 0 };
+  const result: SolveResult = { count: 0, solution: null, nodes: 0, aborted: false };
+  const maxNodes = options.maxNodes ?? Infinity;
   const start: Search = {
     values: Int8Array.from(grid.map(() => 0)),
     masks: Int32Array.from(
@@ -97,7 +100,10 @@ export function solveSudoku(
   for (let c = 0; c < geo.cells; c++)
     if (grid[c] && !assign(geo, start, c, grid[c]!, options.extra)) return result;
   const search = (s: Search) => {
-    result.nodes++;
+    if (++result.nodes > maxNodes) {
+      result.aborted = true;
+      return;
+    }
     if (!propagate(geo, s, options.extra)) return;
     let best = -1;
     let bestCount = 99;
@@ -120,19 +126,34 @@ export function solveSudoku(
     for (const d of options.rng ? options.rng.shuffle(digits) : digits) {
       const next: Search = { values: Int8Array.from(s.values), masks: Int32Array.from(s.masks) };
       if (assign(geo, next, best, d, options.extra)) search(next);
-      if (result.count >= limit) return;
+      if (result.count >= limit || result.aborted) return;
     }
   };
   search(start);
   return result;
 }
 
-export const hasUniqueSolution = (geo: Geometry, grid: readonly number[], extra?: ExtraCheck) =>
-  solveSudoku(geo, grid, { limit: 2, extra }).count === 1;
+/** True when the grid has exactly one solution; with a node budget, false when it runs out. */
+export function hasUniqueSolution(
+  geo: Geometry,
+  grid: readonly number[],
+  extra?: ExtraCheck,
+  maxNodes?: number,
+): boolean {
+  const r = solveSudoku(geo, grid, { limit: 2, extra, maxNodes });
+  return r.count === 1 && !r.aborted;
+}
 
 /** A random complete grid. */
 export function randomSolution(geo: Geometry, rng: Rng): number[] {
-  const r = solveSudoku(geo, Array<number>(geo.cells).fill(0), { limit: 1, rng });
-  if (!r.solution) throw new Error('No solution for this shape');
-  return r.solution;
+  // Big grids occasionally wander into a long dead end: restart with fresh choices.
+  for (let tries = 0; tries < 50; tries++) {
+    const r = solveSudoku(geo, Array<number>(geo.cells).fill(0), {
+      limit: 1,
+      rng,
+      maxNodes: geo.cells * 40,
+    });
+    if (r.solution) return r.solution;
+  }
+  throw new Error('No solution for this shape');
 }

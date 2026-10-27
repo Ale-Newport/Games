@@ -106,7 +106,8 @@
 - **#101 Classic Sudoku 9×9 — COMPLETE** (2026-11-07).
 - **#102 Mini Sudoku 4×4 — COMPLETE** (2026-11-07).
 - **#103 Sudoku 6×6 — COMPLETE** (2026-11-07).
-- **Current game: #104 Sudoku 16×16** (`sudoku-16x16`) — TODO.
+- **#104 Sudoku 16×16 — COMPLETE** (2026-11-07).
+- **Current game: #105 X-Sudoku** (`x-sudoku`) — TODO.
 
 ## Resume instructions
 

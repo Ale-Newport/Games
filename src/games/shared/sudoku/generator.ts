@@ -18,6 +18,11 @@ export interface PuzzleSpec {
   /** Remove clues in pairs symmetric through the centre. */
   symmetric?: boolean;
   attempts?: number;
+  /**
+   * Search budget for each uniqueness check; a check that runs out keeps the clue (so puzzles
+   * stay provably unique). Needed for 16×16 grids, where rare checks explode.
+   */
+  maxNodes?: number;
 }
 
 export interface Puzzle {
@@ -49,7 +54,7 @@ export function generatePuzzle(
       if (clues - group.length < spec.minClues) continue;
       for (const x of group) puzzle[x] = 0;
       if (
-        !hasUniqueSolution(geo, puzzle, extra) ||
+        !hasUniqueSolution(geo, puzzle, extra, spec.maxNodes) ||
         gradePuzzle(geo, puzzle).level > spec.maxLevel
       ) {
         for (const x of group) puzzle[x] = solution[x]!;

@@ -72,6 +72,26 @@ describe('sudoku solver and generator', () => {
     expect(solveSudoku(geo9, broken).count).toBe(0);
   });
 
+  it('gives up at the search budget, never claiming uniqueness it did not prove', () => {
+    const open = [...EASY];
+    open.fill(0, 0, 40);
+    const r = solveSudoku(geo9, open, { maxNodes: 3 });
+    expect(r.aborted).toBe(true);
+    expect(hasUniqueSolution(geo9, EASY, undefined, 1000)).toBe(true);
+    expect(hasUniqueSolution(geo9, open, undefined, 3)).toBe(false);
+    const g16 = geometry({ size: 16, boxRows: 4, boxCols: 4 });
+    const p = generatePuzzle(g16, 2, {
+      minLevel: 1,
+      maxLevel: 1,
+      minClues: 130,
+      maxClues: 130,
+      symmetric: true,
+      maxNodes: 200,
+    });
+    expect(hasUniqueSolution(g16, p.puzzle)).toBe(true);
+    expect(isComplete(g16, p.solution)).toBe(true);
+  });
+
   it('fills random grids and generates graded puzzles with a unique solution', () => {
     const full = randomSolution(geo9, new Rng(3));
     expect(isComplete(geo9, full)).toBe(true);
