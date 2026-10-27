@@ -1,0 +1,19 @@
+/* Diagonal cells: a tint layered as an image so the shared highlights (background colours) still show. */
+.diag {
+  background-image: linear-gradient(
+    color-mix(in srgb, var(--warning) 16%, transparent),
+    color-mix(in srgb, var(--warning) 16%, transparent)
+  );
+}
+
+.lines {
+  width: 100%;
+  height: 100%;
+}
+
+.lines line {
+  stroke: var(--warning);
+  stroke-opacity: 0.35;
+  stroke-width: 0.4;
+  stroke-dasharray: 1.2 1.2;
+}
