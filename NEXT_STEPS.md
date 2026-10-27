@@ -113,7 +113,8 @@
 - **#108 Kakuro — COMPLETE** (2026-11-07).
 - **#109 Calcudoku (KenKen-style) — COMPLETE** (2026-11-07).
 - **#110 Futoshiki — COMPLETE** (2026-11-07).
-- **Current game: #111 Hitori** (`hitori`) — TODO.
+- **#111 Hitori — COMPLETE** (2026-11-07).
+- **Current game: #112 Nonogram** (`nonogram`) — TODO.
 
 ## Resume instructions
 

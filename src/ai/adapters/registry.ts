@@ -127,6 +127,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   kakuro: () => import('../../games/kakuro/ai-adapter').then((m) => m.bundle),
   calcudoku: () => import('../../games/calcudoku/ai-adapter').then((m) => m.bundle),
   futoshiki: () => import('../../games/futoshiki/ai-adapter').then((m) => m.bundle),
+  hitori: () => import('../../games/hitori/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
