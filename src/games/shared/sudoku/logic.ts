@@ -18,7 +18,10 @@ export type Technique =
   | 'hidden-triple'
   | 'x-wing'
   | 'y-wing'
-  | 'swordfish';
+  | 'swordfish'
+  | 'cage-combination'
+  | 'innie'
+  | 'outie';
 
 export const TECHNIQUE_LEVEL: Record<Technique, number> = {
   'naked-single': 1,
@@ -32,6 +35,9 @@ export const TECHNIQUE_LEVEL: Record<Technique, number> = {
   'x-wing': 3,
   'y-wing': 3,
   swordfish: 3,
+  'cage-combination': 1,
+  innie: 2,
+  outie: 2,
 };
 
 export interface Elimination {
@@ -51,6 +57,14 @@ export interface Step {
   digits: number[];
   /** The unit the pattern lives in (index into `geo.units`), when there is one. */
   unit?: number;
+  /** A cage sum the step relies on (killer techniques). */
+  sum?: number;
+}
+
+/** A variant's own technique, tried after the built-in ones of the same level. */
+export interface StepExtra {
+  level: number;
+  find: (geo: Geometry, st: LogicState) => Step | null;
 }
 
 /** Placed digits and candidate masks (0 for filled cells). */
@@ -266,18 +280,33 @@ function yWing(geo: Geometry, st: LogicState): Step | null {
 }
 
 /** The easiest step that makes progress, or null when none of the techniques apply. */
-export function nextStep(geo: Geometry, st: LogicState): Step | null {
+export function nextStep(
+  geo: Geometry,
+  st: LogicState,
+  extras: readonly StepExtra[] = [],
+): Step | null {
+  const extra = (level: number) => {
+    for (const x of extras)
+      if (x.level === level) {
+        const step = x.find(geo, st);
+        if (step) return step;
+      }
+    return null;
+  };
   return (
     nakedSingle(geo, st) ??
     hiddenSingle(geo, st) ??
+    extra(1) ??
     lockedCandidates(geo, st) ??
     nakedSubset(geo, st, 2) ??
     hiddenSubset(geo, st, 2) ??
+    extra(2) ??
     nakedSubset(geo, st, 3) ??
     hiddenSubset(geo, st, 3) ??
     fish(geo, st, 2) ??
     yWing(geo, st) ??
-    fish(geo, st, 3)
+    fish(geo, st, 3) ??
+    extra(3)
   );
 }
 
@@ -300,7 +329,12 @@ export interface Grade {
 }
 
 /** Solves with the techniques alone, easiest first, and reports the hardest one needed. */
-export function gradePuzzle(geo: Geometry, grid: readonly number[], maxSteps = 2000): Grade {
+export function gradePuzzle(
+  geo: Geometry,
+  grid: readonly number[],
+  extras: readonly StepExtra[] = [],
+  maxSteps = 2000,
+): Grade {
   const st = logicState(geo, grid);
   const grade: Grade = { solved: false, level: 1, steps: 0, used: {} };
   for (; grade.steps < maxSteps; grade.steps++) {
@@ -308,7 +342,7 @@ export function gradePuzzle(geo: Geometry, grid: readonly number[], maxSteps = 2
       grade.solved = true;
       return grade;
     }
-    const step = nextStep(geo, st);
+    const step = nextStep(geo, st, extras);
     if (!step) break;
     grade.level = Math.max(grade.level, TECHNIQUE_LEVEL[step.technique]);
     grade.used[step.technique] = (grade.used[step.technique] ?? 0) + 1;
@@ -322,11 +356,15 @@ export function gradePuzzle(geo: Geometry, grid: readonly number[], maxSteps = 2
  * The steps from a position up to (and including) the next placement: the eliminations a person
  * would need first, then the digit. Null when the techniques get stuck.
  */
-export function stepsToPlacement(geo: Geometry, grid: readonly number[]): Step[] | null {
+export function stepsToPlacement(
+  geo: Geometry,
+  grid: readonly number[],
+  extras: readonly StepExtra[] = [],
+): Step[] | null {
   const st = logicState(geo, grid);
   const steps: Step[] = [];
   for (let i = 0; i < 400; i++) {
-    const step = nextStep(geo, st);
+    const step = nextStep(geo, st, extras);
     if (!step) return null;
     steps.push(step);
     if (step.place) return steps;

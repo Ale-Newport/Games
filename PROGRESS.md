@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #106 Killer Sudoku COMPLETE
+
+- Killer Sudoku (no givens, cages with sums) on the shared core, which gained: constraint hooks for
+  the exact solver (a cage propagator over the valid digit combinations), variant techniques in the
+  technique solver (cage combinations; the 45 rule's innies and outies), cages in the play state and
+  save validation, and a cage generator that splits a cage wherever a second solution differs.
+- Measured over 40 seeds: Easy (cages 2–3) all level 1, Medium (2–4) levels 1–2, Hard (3–6) levels
+  2–3, generation ≤ 777 ms; the technique solver solves 100% without guessing, as does the exact
+  solver.
+- Played in the in-app browser (mobile): cage outlines and sums, a "45 rule" hint over a column,
+  Medium and Hard solved through hints. Hints now highlight only the last steps before a placement.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1856 unit tests, build, 330
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #105 X-Sudoku COMPLETE
 
 - X-Sudoku on the shared core (the diagonals are units for the solver, every technique and the

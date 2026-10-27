@@ -208,6 +208,15 @@
   line-height: 1;
 }
 
+.sums .notes {
+  padding: 24% 2px 1px;
+  font-size: calc(22cqi / var(--n));
+}
+
+.sums .digit {
+  margin-top: 12%;
+}
+
 .notes span {
   display: flex;
   align-items: center;

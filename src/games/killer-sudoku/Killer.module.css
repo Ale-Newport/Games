@@ -1,0 +1,31 @@
+.cages {
+  width: 100%;
+  height: 100%;
+}
+
+.cages path {
+  fill: none;
+  stroke: color-mix(in srgb, var(--text) 55%, transparent);
+  stroke-width: 0.025;
+  stroke-dasharray: 0.08 0.06;
+}
+
+.cages path.bad {
+  stroke: var(--danger);
+  stroke-width: 0.04;
+}
+
+.cages rect {
+  fill: var(--surface);
+}
+
+.cages text {
+  fill: var(--text);
+  font-size: 0.22px;
+  font-weight: 700;
+  font-family: var(--font-body);
+}
+
+.badSum text {
+  fill: var(--danger);
+}

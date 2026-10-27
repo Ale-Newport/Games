@@ -20,6 +20,7 @@ import {
   newSudoku,
   placeDigit,
   redoMove,
+  rulesOf,
   toggleNote,
   undoMove,
   wrongCells,
@@ -66,6 +67,8 @@ export interface SudokuGameProps {
   overlay?: (geo: Geometry, state: SudokuState) => ReactNode;
   /** Extra class per cell (e.g. diagonal shading). */
   cellClass?: (cell: number) => string;
+  /** Leave room above the notes for cage sums. */
+  roomForSums?: boolean;
 }
 
 export function SudokuGame({
@@ -76,6 +79,7 @@ export function SudokuGame({
   speed,
   overlay,
   cellClass,
+  roomForSums,
 }: SudokuGameProps) {
   const { locale } = services;
   const dict = useMemo(
@@ -248,11 +252,18 @@ export function SudokuGame({
             cell: cellName(cell),
             digit: symbol(digit),
           })
-        : t('hint.hidden-single', {
-            unit: unitName(last.unit ?? geo.unitsOf[cell]![0]!),
-            digit: symbol(digit),
-            cell: cellName(cell),
-          });
+        : last.technique === 'innie' || last.technique === 'outie'
+          ? t(`hint.${last.technique}`, {
+              unit: unitName(last.unit!),
+              sum: last.sum ?? 0,
+              cell: cellName(cell),
+              digit: symbol(digit),
+            })
+          : t('hint.hidden-single', {
+              unit: unitName(last.unit ?? geo.unitsOf[cell]![0]!),
+              digit: symbol(digit),
+              cell: cellName(cell),
+            });
     const before = [...new Set(steps.slice(0, -1).map((s) => t(`tech.${s.technique}`)))];
     return before.length ? `${t('hint.before', { techniques: before.join(', ') })} ${text}` : text;
   };
@@ -274,10 +285,11 @@ export function SudokuGame({
       );
       return;
     }
-    const steps = stepsToPlacement(geo, s.values);
+    const steps = stepsToPlacement(geo, s.values, rulesOf(geo, s).steps);
     if (steps) {
       const { cell, digit } = steps.at(-1)!.place!;
-      const cells = [...new Set(steps.flatMap((x) => x.cells))];
+      // The placement and the last couple of steps leading to it (earlier ones would flood the board).
+      const cells = [...new Set(steps.slice(-3).flatMap((x) => x.cells))];
       const unit = steps.at(-1)!.unit;
       setHint({ cell, digit, cells: unit !== undefined ? [...cells, ...geo.units[unit]!] : cells });
       setSelected(cell);
@@ -300,13 +312,13 @@ export function SudokuGame({
   useEffect(() => {
     if (mode !== 'watch' || !state || paused || state.solved) return;
     const id = window.setTimeout(() => {
-      const steps = stepsToPlacement(geo, state.values);
+      const steps = stepsToPlacement(geo, state.values, rulesOf(geo, state).steps);
       let next: SudokuState;
       if (steps) {
         const { cell, digit } = steps.at(-1)!.place!;
         next = placeDigit(variant, state, cell, digit);
         setMessage(t('watch.step', { text: explain(steps) }));
-        setHint({ cell, digit, cells: steps.flatMap((x) => x.cells) });
+        setHint({ cell, digit, cells: steps.slice(-3).flatMap((x) => x.cells) });
         setSelected(cell);
       } else {
         const cell = state.values.findIndex((x) => !x);
@@ -510,7 +522,7 @@ export function SudokuGame({
         )}
       </div>
       <div
-        className={`${styles.board} ${hidden ? styles.hidden : ''}`}
+        className={`${styles.board} ${hidden ? styles.hidden : ''} ${roomForSums ? styles.sums : ''}`}
         style={{ ['--n' as string]: n }}
         role="grid"
         aria-label={t('title')}

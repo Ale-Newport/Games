@@ -6,15 +6,20 @@
 import type { Rng } from '../../../core/game-engine/random';
 import { bit, candidates, popcount, type Geometry } from './grid';
 
-/** An extra check for variants with constraints beyond the units (killer cages). */
-export type ExtraCheck = (values: Int8Array, cell: number) => boolean;
+/** Constraints beyond the units (killer cages). */
+export interface Extra {
+  /** After a digit is placed in `cell`: false on a contradiction. */
+  check?: (values: Int8Array, cell: number) => boolean;
+  /** Narrows candidate masks in place: -1 contradiction, 0 nothing changed, 1 changed. */
+  prune?: (values: Int8Array, masks: Int32Array) => -1 | 0 | 1;
+}
 
 interface Search {
   values: Int8Array;
   masks: Int32Array;
 }
 
-function assign(geo: Geometry, s: Search, cell: number, d: number, extra?: ExtraCheck): boolean {
+function assign(geo: Geometry, s: Search, cell: number, d: number, extra?: Extra): boolean {
   s.values[cell] = d;
   s.masks[cell] = 0;
   const b = bit(d);
@@ -28,11 +33,11 @@ function assign(geo: Geometry, s: Search, cell: number, d: number, extra?: Extra
       if (!s.masks[p]) return false;
     }
   }
-  return !extra || extra(s.values, cell);
+  return !extra?.check || extra.check(s.values, cell);
 }
 
 /** Naked and hidden singles until nothing changes; false on a contradiction. */
-function propagate(geo: Geometry, s: Search, extra?: ExtraCheck): boolean {
+function propagate(geo: Geometry, s: Search, extra?: Extra): boolean {
   for (let changed = true; changed;) {
     changed = false;
     for (let c = 0; c < geo.cells; c++) {
@@ -65,6 +70,11 @@ function propagate(geo: Geometry, s: Search, extra?: ExtraCheck): boolean {
         }
       }
     }
+    if (!changed && extra?.prune) {
+      const r = extra.prune(s.values, s.masks);
+      if (r < 0) return false;
+      changed = r > 0;
+    }
   }
   return true;
 }
@@ -78,15 +88,17 @@ export interface SolveResult {
   nodes: number;
   /** The search gave up at `maxNodes` (the count is then a lower bound). */
   aborted: boolean;
+  /** Every solution found, when asked to keep them. */
+  solutions: number[][];
 }
 
 export function solveSudoku(
   geo: Geometry,
   grid: readonly number[],
-  options: { limit?: number; rng?: Rng; extra?: ExtraCheck; maxNodes?: number } = {},
+  options: { limit?: number; rng?: Rng; extra?: Extra; maxNodes?: number; keep?: boolean } = {},
 ): SolveResult {
   const limit = options.limit ?? 2;
-  const result: SolveResult = { count: 0, solution: null, nodes: 0, aborted: false };
+  const result: SolveResult = { count: 0, solution: null, nodes: 0, aborted: false, solutions: [] };
   const maxNodes = options.maxNodes ?? Infinity;
   const start: Search = {
     values: Int8Array.from(grid.map(() => 0)),
@@ -119,6 +131,7 @@ export function solveSudoku(
     if (best < 0) {
       result.count++;
       result.solution ??= Array.from(s.values);
+      if (options.keep) result.solutions.push(Array.from(s.values));
       return;
     }
     const digits: number[] = [];
@@ -137,7 +150,7 @@ export function solveSudoku(
 export function hasUniqueSolution(
   geo: Geometry,
   grid: readonly number[],
-  extra?: ExtraCheck,
+  extra?: Extra,
   maxNodes?: number,
 ): boolean {
   const r = solveSudoku(geo, grid, { limit: 2, extra, maxNodes });
