@@ -115,7 +115,8 @@
 - **#110 Futoshiki — COMPLETE** (2026-11-07).
 - **#111 Hitori — COMPLETE** (2026-11-07).
 - **#112 Nonogram — COMPLETE** (2026-11-07).
-- **Current game: #113 Slitherlink** (`slitherlink`) — TODO.
+- **#113 Slitherlink — COMPLETE** (2026-11-07).
+- **Current game: #114 Hashiwokakero** (`hashiwokakero`) — TODO.
 
 ## Resume instructions
 

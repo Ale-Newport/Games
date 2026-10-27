@@ -1,0 +1,83 @@
+import type { Dictionary, Locale } from '../../core/i18n';
+import { SUDOKU_STRINGS } from '../shared/sudoku/i18n';
+
+const SLITHER: Record<Locale, Dictionary> = {
+  en: {
+    title: 'Slitherlink',
+    'menu.subtitle':
+      'Draw one closed loop along the dotted lines. Each number says how many of its four sides the loop uses.',
+    'difficulty.easy': '5×5',
+    'difficulty.medium': '7×7',
+    'difficulty.hard': '10×10',
+    'difficulty.expert': '12×12',
+    'difficulty.easy.hint': 'A small loop to learn the patterns.',
+    'difficulty.medium.hint': 'Watch for loops that would close too early.',
+    'difficulty.hard.hint': 'A long loop across the board.',
+    'difficulty.expert.hint': 'The big one.',
+    'select.cell':
+      'Tap between two dots to draw a line, again to cross it, again to clear it — or drag from dot to dot.',
+    line: 'Line',
+    cross: 'Cross',
+    'mode.cycle': 'Cycle',
+    'mode.line': 'Line',
+    'mode.cross': 'Cross',
+    'hint.cell-count.line': 'The {n} at {cell} needs every side still open: draw them.',
+    'hint.cell-count.cross': 'The {n} at {cell} is already met: cross its other sides.',
+    'hint.vertex.full': 'Two lines already meet at this dot: cross the others.',
+    'hint.vertex.dead': 'Only one way is left at this dot, so the line cannot pass it: cross it.',
+    'hint.vertex.go': 'The line reaching this dot can only leave one way: draw it.',
+    'hint.loop': 'This edge would close a loop too early: cross it.',
+    'hint.guess': 'No simple step from here: {what}.',
+    'hint.guess.line': 'draw the highlighted edge',
+    'hint.guess.cross': 'cross the highlighted edge',
+    'hint.wrongEdge': 'The highlighted edge is wrong: clear it first.',
+    'hint.wrongEdges': '{n} edges are wrong (highlighted): clear them first.',
+    'hint.fill': 'Apply',
+    'board.label': 'Slitherlink grid, {lines} lines drawn',
+    solved: 'Solved in {time}! Mistakes {mistakes} · hints {hints}',
+    'watch.done': 'The AI closed the loop in {steps} steps.',
+    keys: 'Keys: U undo · R redo · H hint · Enter apply the hint · P pause',
+  },
+  es: {
+    title: 'Slitherlink',
+    'menu.subtitle':
+      'Dibuja un único lazo cerrado por las líneas punteadas. Cada número dice cuántos de sus cuatro lados usa el lazo.',
+    'difficulty.easy': '5×5',
+    'difficulty.medium': '7×7',
+    'difficulty.hard': '10×10',
+    'difficulty.expert': '12×12',
+    'difficulty.easy.hint': 'Un lazo pequeño para aprender los patrones.',
+    'difficulty.medium.hint': 'Cuidado con los lazos que se cerrarían antes de tiempo.',
+    'difficulty.hard.hint': 'Un lazo largo por todo el tablero.',
+    'difficulty.expert.hint': 'El grande.',
+    'select.cell':
+      'Toca entre dos puntos para trazar una línea, otra vez para tacharla y otra para borrarla, o arrastra de punto a punto.',
+    line: 'Línea',
+    cross: 'Tachar',
+    'mode.cycle': 'Alternar',
+    'mode.line': 'Línea',
+    'mode.cross': 'Tachar',
+    'hint.cell-count.line': 'El {n} de {cell} necesita todos los lados que le quedan: trázalos.',
+    'hint.cell-count.cross': 'El {n} de {cell} ya está cumplido: tacha sus otros lados.',
+    'hint.vertex.full': 'En este punto ya se juntan dos líneas: tacha las demás.',
+    'hint.vertex.dead':
+      'En este punto solo queda una salida, así que la línea no puede pasar: táchala.',
+    'hint.vertex.go': 'La línea que llega a este punto solo puede salir por un lado: trázalo.',
+    'hint.loop': 'Este borde cerraría un lazo antes de tiempo: táchalo.',
+    'hint.guess': 'No hay un paso sencillo desde aquí: {what}.',
+    'hint.guess.line': 'traza el borde resaltado',
+    'hint.guess.cross': 'tacha el borde resaltado',
+    'hint.wrongEdge': 'El borde resaltado está mal: bórralo primero.',
+    'hint.wrongEdges': 'Hay {n} bordes mal (resaltados): bórralos primero.',
+    'hint.fill': 'Aplicar',
+    'board.label': 'Tablero de slitherlink, {lines} líneas trazadas',
+    solved: '¡Resuelto en {time}! Errores {mistakes} · pistas {hints}',
+    'watch.done': 'La IA cerró el lazo en {steps} pasos.',
+    keys: 'Teclas: U deshacer · R rehacer · H pista · Intro aplicar la pista · P pausa',
+  },
+};
+
+export const STRINGS: Record<Locale, Dictionary> = {
+  en: { ...SUDOKU_STRINGS.en, ...SLITHER.en },
+  es: { ...SUDOKU_STRINGS.es, ...SLITHER.es },
+};

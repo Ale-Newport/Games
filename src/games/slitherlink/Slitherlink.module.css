@@ -1,0 +1,81 @@
+.wrap {
+  position: relative;
+  width: min(100%, 540px, calc(100dvh - 290px));
+}
+
+.board {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  background: var(--surface);
+  touch-action: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.dot {
+  fill: var(--text);
+}
+
+.dotHot {
+  fill: var(--danger);
+  r: 0.12;
+}
+
+.slot {
+  stroke: color-mix(in srgb, var(--text) 14%, transparent);
+  stroke-width: 0.03;
+  stroke-dasharray: 0.06 0.08;
+}
+
+.line {
+  stroke: var(--accent);
+  stroke-width: 0.12;
+  stroke-linecap: round;
+}
+
+.done .line {
+  stroke: var(--success);
+}
+
+.cross {
+  stroke: var(--text-muted);
+  stroke-width: 0.04;
+  fill: none;
+}
+
+.wrongCross {
+  stroke: var(--danger);
+}
+
+.wrong {
+  stroke: var(--danger);
+}
+
+.hintEdge {
+  stroke: var(--warning);
+  stroke-width: 0.12;
+  stroke-dasharray: none;
+  opacity: 0.85;
+}
+
+.hintCell {
+  fill: color-mix(in srgb, var(--warning) 22%, transparent);
+}
+
+.clue {
+  fill: var(--text);
+  font-size: 0.55px;
+  font-weight: 800;
+  font-family: var(--font-body);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.met {
+  fill: var(--text-faint);
+}
+
+.broken {
+  fill: var(--danger);
+}
