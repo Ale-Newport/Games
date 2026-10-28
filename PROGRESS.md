@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #126 Traffic Jam COMPLETE
+
+- Sliding-block parking puzzle under a generic name with an original bank of 310 puzzles generated
+  offline by `tools/generate-traffic-jam.ts` (whole reachable space explored, farthest position
+  kept): easy 6–11, medium 12–19, hard 20–37 fewest moves. Breadth-first solver for hints (8–98 ms).
+- Played in the in-app browser (mobile, Spanish): dragged a car along its lane and finished with
+  hints. Fixed on the way: a rose vehicle could be mistaken for the red car; vehicle hues now avoid
+  red and their names were updated.
+- Verified (actually run): lint, typecheck, 2234 unit tests (295 files), build, 410 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #125 15-Puzzle COMPLETE
 
 - 15-Puzzle on the shared sliding core: easy/medium walk scrambles and random boards; optimal IDA*

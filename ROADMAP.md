@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 125 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 75
+**Complete:** 126 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 74
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -151,7 +151,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 123 | Zip — Numbered Hamiltonian Path Puzzle | `zip` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 124 | 8-Puzzle | `eight-puzzle` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 125 | 15-Puzzle | `fifteen-puzzle` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 126 | Rush Hour | `traffic-jam` | TODO | — | — | — | — | — |  |  |
+| 126 | Rush Hour | `traffic-jam` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 127 | Sokoban | `sokoban` | TODO | — | — | — | — | — |  |  |
 | 128 | Peg Solitaire | `peg-solitaire` | TODO | — | — | — | — | — |  |  |
 | 129 | Lights Out | `lights-out` | TODO | — | — | — | — | — |  |  |
