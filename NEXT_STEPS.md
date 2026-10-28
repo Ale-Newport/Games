@@ -121,7 +121,8 @@
 - **#116 Classic Minesweeper — COMPLETE** (2026-11-07).
 - **#117 No-Guess Minesweeper — COMPLETE** (2026-11-07).
 - **#118 Code Breaker — COMPLETE** (2026-11-07).
-- **Current game: #119 Bulls and Cows** (`bulls-and-cows`) — TODO (reuse `src/games/shared/codeguess/`).
+- **#119 Bulls and Cows — COMPLETE** (2026-11-07).
+- **Current game: #120 Five-Letter Word Guessing Game** (`word-guess`) — TODO (generic name; original word lists).
 
 ## Resume instructions
 
