@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #123 Number Trail (Zip) COMPLETE
+
+- Numbered path puzzle under a generic name: 5×5 to 8×8 generated from a seed; a pruned path
+  counter (parity, reachability, two-ways-in forcing) drives a repair loop that adds walls or
+  numbers until the trail is unique (8×8 in 0.46 s on average).
+- Played in the in-app browser (mobile, Spanish): dragged the trail, extended with the arrows, got
+  the "go back" hint after leaving the solution and finished with hints. Fixed on the way: fast
+  drags skipped cells and were ignored; the trail now walks step by step toward the pointer.
+- Verified (actually run): lint, typecheck, 2182 unit tests (289 files), build, 398 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #122 Royal Regions (Queens) COMPLETE
 
 - Colored-regions queens puzzle under a generic name: 6×6 to 10×10 generated from a seed, with a
