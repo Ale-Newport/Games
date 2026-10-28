@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #125 15-Puzzle COMPLETE
+
+- 15-Puzzle on the shared sliding core: easy/medium walk scrambles and random boards; optimal IDA*
+  within a budget, weighted A* beyond it (54.2 moves on random boards vs about 52.6 optimal), with
+  the plan cached so that following hints costs one search.
+- Played in the in-app browser (desktop, Spanish): a random board solved through hints (first hint
+  in 95 ms, 59 moves).
+- Verified (actually run): lint, typecheck, 2215 unit tests (293 files), build, 406 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #124 8-Puzzle COMPLETE
 
 - New shared sliding core `src/games/shared/sliding/` (solvability, seeded scrambles, line slides,
