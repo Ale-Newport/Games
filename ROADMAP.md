@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 116 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 84
+**Complete:** 117 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 83
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -142,7 +142,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 114 | Hashiwokakero | `hashiwokakero` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 115 | Nurikabe | `nurikabe` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 116 | Classic Minesweeper | `minesweeper` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 117 | No-Guess Minesweeper | `minesweeper-no-guess` | TODO | — | — | — | — | — |  |  |
+| 117 | No-Guess Minesweeper | `minesweeper-no-guess` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 118 | Mastermind | `code-breaker` | TODO | — | — | — | — | — |  |  |
 | 119 | Bulls and Cows | `bulls-and-cows` | TODO | — | — | — | — | — |  |  |
 | 120 | Five-Letter Word Guessing Game | `word-guess` | TODO | — | — | — | — | — |  |  |

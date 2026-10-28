@@ -54,8 +54,8 @@ export const manifest: GameManifest = {
       id: 'no-flags',
       title: { en: 'No Flags Needed', es: 'Sin banderas' },
       description: {
-        en: 'Clear a board without placing a flag.',
-        es: 'Despeja un tablero sin poner ninguna bandera.',
+        en: 'Clear a board without placing a flag or taking a hint.',
+        es: 'Despeja un tablero sin poner banderas ni pedir pistas.',
       },
     },
   ],

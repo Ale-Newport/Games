@@ -119,7 +119,8 @@
 - **#114 Hashiwokakero (Bridges) — COMPLETE** (2026-11-07).
 - **#115 Nurikabe — COMPLETE** (2026-11-07).
 - **#116 Classic Minesweeper — COMPLETE** (2026-11-07).
-- **Current game: #117 No-Guess Minesweeper** (`minesweeper-no-guess`) — TODO.
+- **#117 No-Guess Minesweeper — COMPLETE** (2026-11-07).
+- **Current game: #118 Code Breaker (Mastermind-style)** (`code-breaker`) — TODO.
 
 ## Resume instructions
 

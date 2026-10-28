@@ -47,13 +47,13 @@ until the game ends (hidden information).
 
 ## Achievements
 
-| id                 | Condition                             |
-| ------------------ | ------------------------------------- |
-| `first`            | Clear a board.                        |
-| `speed`            | Clear Beginner in under 30 seconds.   |
-| `win-intermediate` | Clear Intermediate.                   |
-| `win-expert`       | Clear Expert.                         |
-| `no-flags`         | Clear a board without placing a flag. |
+| id                 | Condition                                              |
+| ------------------ | ------------------------------------------------------ |
+| `first`            | Clear a board.                                         |
+| `speed`            | Clear Beginner in under 30 seconds.                    |
+| `win-intermediate` | Clear Intermediate.                                    |
+| `win-expert`       | Clear Expert.                                          |
+| `no-flags`         | Clear a board without placing a flag or taking a hint. |
 
 ## Controls
 
