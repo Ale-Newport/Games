@@ -125,6 +125,7 @@ import { manifest as codeBreaker } from './code-breaker/manifest';
 import { manifest as bulls } from './bulls-and-cows/manifest';
 import { manifest as wordGuess } from './word-guess/manifest';
 import { manifest as hangman } from './hangman/manifest';
+import { manifest as queens } from './queens/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -248,6 +249,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: bulls, load: () => import('./bulls-and-cows/index') },
   { manifest: wordGuess, load: () => import('./word-guess/index') },
   { manifest: hangman, load: () => import('./hangman/index') },
+  { manifest: queens, load: () => import('./queens/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
