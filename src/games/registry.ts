@@ -121,6 +121,7 @@ import { manifest as hashiwokakero } from './hashiwokakero/manifest';
 import { manifest as nurikabe } from './nurikabe/manifest';
 import { manifest as minesweeper } from './minesweeper/manifest';
 import { manifest as minesweeperNoGuess } from './minesweeper-no-guess/manifest';
+import { manifest as codeBreaker } from './code-breaker/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -240,6 +241,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: nurikabe, load: () => import('./nurikabe/index') },
   { manifest: minesweeper, load: () => import('./minesweeper/index') },
   { manifest: minesweeperNoGuess, load: () => import('./minesweeper-no-guess/index') },
+  { manifest: codeBreaker, load: () => import('./code-breaker/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
