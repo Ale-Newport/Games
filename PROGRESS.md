@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #115 Nurikabe COMPLETE
+
+- Nurikabe (5×5 to 8×8) with its own engine: techniques for hints (complete island, between two
+  islands, unreachable, pool, island and sea exits), an exact solver using them as propagation plus
+  search, and an island-growing generator that breaks 2×2 pools in place (without it 3 of 5 7×7 seeds
+  failed). Measured over 20 seeds per size: unique, technique-solvable, ≤ 434 ms. 9×9 and larger were
+  tried and dropped (rarely unique, up to 11 s).
+- Played in the in-app browser (mobile): hints of every technique, a 7×7 solved. Fixed: the board
+  size came from a Hitori field (layout broke); hints now apply every cell a step decides.
+- The first full run timed out one older contract suite (Halma) under load; Vitest's per-test
+  timeout is now 20 s (contract suites play whole games), and the rerun passed.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 2011 unit tests, build, 366
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #114 Hashiwokakero (Bridges) COMPLETE
 
 - Bridges with its own engine: facing pairs and crossings, bound-based techniques for hints (full

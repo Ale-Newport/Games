@@ -118,6 +118,7 @@ import { manifest as hitori } from './hitori/manifest';
 import { manifest as nonogram } from './nonogram/manifest';
 import { manifest as slitherlink } from './slitherlink/manifest';
 import { manifest as hashiwokakero } from './hashiwokakero/manifest';
+import { manifest as nurikabe } from './nurikabe/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -234,6 +235,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: nonogram, load: () => import('./nonogram/index') },
   { manifest: slitherlink, load: () => import('./slitherlink/index') },
   { manifest: hashiwokakero, load: () => import('./hashiwokakero/index') },
+  { manifest: nurikabe, load: () => import('./nurikabe/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
