@@ -1,0 +1,74 @@
+.wrap {
+  position: relative;
+  width: min(100%, 540px, calc(100dvh - 290px));
+}
+
+.board {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.06), transparent 60%),
+    color-mix(in srgb, #2a7fbf 22%, var(--surface));
+  touch-action: manipulation;
+  user-select: none;
+  cursor: pointer;
+}
+
+.bridge {
+  stroke: color-mix(in srgb, var(--text) 85%, transparent);
+  stroke-width: 0.07;
+  stroke-linecap: round;
+}
+
+.done .bridge {
+  stroke: var(--success);
+}
+
+.wrong {
+  stroke: var(--danger);
+}
+
+.hinted {
+  stroke: var(--warning);
+}
+
+.hintSlot {
+  stroke: var(--warning);
+  stroke-width: 0.07;
+  stroke-dasharray: 0.12 0.1;
+}
+
+.island {
+  fill: var(--surface);
+  stroke: color-mix(in srgb, var(--text) 75%, transparent);
+  stroke-width: 0.05;
+}
+
+.full {
+  fill: color-mix(in srgb, var(--success) 35%, var(--surface));
+}
+
+.over {
+  fill: color-mix(in srgb, var(--danger) 40%, var(--surface));
+}
+
+.picked {
+  stroke: var(--accent);
+  stroke-width: 0.1;
+}
+
+.hintIsland {
+  stroke: var(--warning);
+  stroke-width: 0.1;
+}
+
+.num {
+  fill: var(--text);
+  font-size: 0.42px;
+  font-weight: 800;
+  font-family: var(--font-body);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}

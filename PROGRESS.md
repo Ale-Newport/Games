@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #114 Hashiwokakero (Bridges) COMPLETE
+
+- Bridges with its own engine: facing pairs and crossings, bound-based techniques for hints (full
+  island, forced bridge, finished island, crossings, isolation), an exact solver (bounds, crossing
+  exclusion, search, connectivity) and an island-growing generator. Measured over 30 seeds per size:
+  unique, technique-solvable, ≤ 9 ms.
+- Played in the in-app browser (mobile): hints, island-to-island taps, a 9×9 solved. Hints now ring
+  only the island they talk about.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1998 unit tests, build, 362
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #113 Slitherlink COMPLETE
 
 - Slitherlink (5×5 to 12×12) with its own engine: edge/dot geometry, an exact solver (number and dot
