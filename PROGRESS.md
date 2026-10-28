@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #124 8-Puzzle COMPLETE
+
+- New shared sliding core `src/games/shared/sliding/` (solvability, seeded scrambles, line slides,
+  IDA* with Manhattan + linear conflicts, weighted A* fallback, state with undo, agents, table with
+  number or picture tiles) for #124 and #125.
+- 8-Puzzle: optimal solver in about 1 ms (22.2 moves on average for random boards; the hardest
+  board in 31), hints that name the next tile and the moves left, a counter against the best.
+- Played in the in-app browser (mobile, Spanish): number and picture tiles, taps and arrows, hints
+  to the end (14 moves after one detour, optimal 12). Shortened the counters so they fit on phones.
+- Verified (actually run): lint, typecheck, 2203 unit tests (291 files), build, 402 Playwright tests (desktop + mobile; the new 8-Puzzle spec re-run after waiting for the board) — all green.
+
 ## 2026-11-07 — Session 1: #123 Number Trail (Zip) COMPLETE
 
 - Numbered path puzzle under a generic name: 5×5 to 8×8 generated from a seed; a pruned path

@@ -126,7 +126,8 @@
 - **#121 Hangman — COMPLETE** (2026-11-07).
 - **#122 Royal Regions (Queens) — COMPLETE** (2026-11-07).
 - **#123 Number Trail (Zip) — COMPLETE** (2026-11-07).
-- **Current game: #124 8-Puzzle** (`eight-puzzle`) — TODO (sliding tiles; exact A*/IDA* oracle).
+- **#124 8-Puzzle — COMPLETE** (2026-11-07).
+- **Current game: #125 15-Puzzle** (`fifteen-puzzle`) — TODO (reuse `src/games/shared/sliding/`).
 
 ## Resume instructions
 
