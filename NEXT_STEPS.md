@@ -123,7 +123,8 @@
 - **#118 Code Breaker — COMPLETE** (2026-11-07).
 - **#119 Bulls and Cows — COMPLETE** (2026-11-07).
 - **#120 Word Guess — COMPLETE** (2026-11-07).
-- **Current game: #121 Hangman** (`hangman`) — TODO (reuse `src/games/word-guess/words.ts` ideas; original art).
+- **#121 Hangman — COMPLETE** (2026-11-07).
+- **Current game: #122 Queens — Colored Regions Puzzle** (`queens`) — TODO (generic name, original puzzles).
 
 ## Resume instructions
 

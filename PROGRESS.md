@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #121 Hangman COMPLETE
+
+- Hangman with original lists (six categories, 280 English / 262 Spanish words), three levels, daily
+  word, two players with a typed secret word, an SVG drawing with the strokes to come shown faintly.
+- Word-list solver: every listed word solved on every level (0.24–0.84 misses on average); letter
+  frequency alone solves 5–35%.
+- Played in the in-app browser (mobile, Spanish): a word solved with hints and a friend's accented
+  word ("Pingüino") normalized and played.
+- Verified (actually run): lint, typecheck, 2140 unit tests (285 files), build, 390 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #120 Word Guess COMPLETE
 
 - Word Guess (generic five-letter word game) in English and Spanish: hand-picked answer lists (981 /
