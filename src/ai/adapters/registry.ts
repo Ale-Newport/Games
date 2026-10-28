@@ -132,6 +132,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   slitherlink: () => import('../../games/slitherlink/ai-adapter').then((m) => m.bundle),
   hashiwokakero: () => import('../../games/hashiwokakero/ai-adapter').then((m) => m.bundle),
   nurikabe: () => import('../../games/nurikabe/ai-adapter').then((m) => m.bundle),
+  minesweeper: () => import('../../games/minesweeper/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

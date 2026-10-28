@@ -1,0 +1,141 @@
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: min(100%, 560px);
+}
+
+.counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 96px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.counter:last-child {
+  justify-content: flex-end;
+}
+
+.face {
+  min-width: 48px;
+  font-size: 1.1rem;
+}
+
+.wrap {
+  width: min(100%, 720px);
+  container-type: inline-size;
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  --u: min(calc(100cqi / var(--cols)), calc((100dvh - 280px) / var(--rows)));
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--u));
+  grid-template-rows: repeat(var(--rows), var(--u));
+  padding: 3px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--text) 18%, var(--surface));
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  margin: 1px;
+  padding: 0;
+  border: none;
+  border-radius: calc(var(--u) * 0.12);
+  font: inherit;
+  font-size: calc(var(--u) * 0.56);
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+}
+
+.closed {
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--accent) 38%, #c9d2e3),
+    color-mix(in srgb, var(--accent) 28%, #8e9ab3)
+  );
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.18);
+  color: #d1243a;
+}
+
+.closed:hover {
+  filter: brightness(1.08);
+}
+
+.open {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.open[data-n='1'] {
+  color: #2f6fe0;
+}
+
+.open[data-n='2'] {
+  color: #2e9a4a;
+}
+
+.open[data-n='3'] {
+  color: #d1243a;
+}
+
+.open[data-n='4'] {
+  color: #6a3fc8;
+}
+
+.open[data-n='5'] {
+  color: #b5531b;
+}
+
+.open[data-n='6'] {
+  color: #148a8a;
+}
+
+.open[data-n='7'] {
+  color: var(--text);
+}
+
+.open[data-n='8'] {
+  color: var(--text-muted);
+}
+
+.mine {
+  color: var(--text);
+}
+
+.exploded {
+  background: var(--danger);
+  color: #fff;
+}
+
+.pointed {
+  outline: 3px solid var(--warning);
+  outline-offset: -3px;
+}
+
+.cursor {
+  box-shadow: inset 0 0 0 2px var(--text);
+}
+
+.wrongFlag {
+  outline: 3px dashed var(--danger);
+  outline-offset: -3px;
+}
+
+.hidden .cell {
+  visibility: hidden;
+}
