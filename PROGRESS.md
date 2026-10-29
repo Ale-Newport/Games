@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #137 Merge to 2048 COMPLETE
+
+- A shared sliding-merge core (`src/games/shared/merge`): rules as data, seeded spawns, one-step
+  undo, replay validation, expectimax search, the table with keys and swipes. Merge to 2048 on
+  3×3, 4×4 and 5×5; the search reaches 2048 in 5 of 6 games at 1.2 ms a move.
+- Played in the in-app browser (mobile, Spanish): keys, a swipe, hints applied for 30 moves.
+- Verified (actually run): lint, typecheck, 2444 unit tests (317 files), build, 454 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #136 Twisty Cube 4×4 COMPLETE
 
 - The 4×4 on the shared cube core with wide (two-layer) turns by a switch or the W key; 3- and
