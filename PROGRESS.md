@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #128 Peg Solitaire COMPLETE
+
+- Peg Solitaire on the English (33, centre finish), European (37, a start hole found by search to
+  allow one peg) and triangle (15, six directions) boards; a depth-first solver with dead-position
+  memory finishes from the start in 1 / 33 / 350 ms and proves hopeless positions for hints.
+- Played in the in-app browser (mobile, Spanish): the triangle drawn as a triangle, a jump by taps,
+  then hints to a single peg.
+- Verified (actually run): lint, typecheck, 2272 unit tests (299 files), build, 418 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #127 Sokoban COMPLETE
 
 - Sokoban with an original bank of 152 warehouses generated offline by `tools/generate-sokoban.ts`
