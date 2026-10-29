@@ -133,6 +133,7 @@ import { manifest as trafficJam } from './traffic-jam/manifest';
 import { manifest as sokoban } from './sokoban/manifest';
 import { manifest as pegSolitaire } from './peg-solitaire/manifest';
 import { manifest as lightsOut } from './lights-out/manifest';
+import { manifest as colorLinks } from './flow/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -264,6 +265,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: sokoban, load: () => import('./sokoban/index') },
   { manifest: pegSolitaire, load: () => import('./peg-solitaire/index') },
   { manifest: lightsOut, load: () => import('./lights-out/index') },
+  { manifest: colorLinks, load: () => import('./flow/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

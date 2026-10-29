@@ -132,7 +132,8 @@
 - **#127 Sokoban — COMPLETE** (2026-11-07).
 - **#128 Peg Solitaire — COMPLETE** (2026-11-07).
 - **#129 Lights Out — COMPLETE** (2026-11-07).
-- **Current game: #130 Color Links (Flow)** (`flow`) — TODO (draft in scratch).
+- **#130 Color Links (Flow) — COMPLETE** (2026-11-07).
+- **Current game: #131 Water Sort** (`water-sort`) — TODO (shared sorting core drafted in scratch).
 
 ## Resume instructions
 
