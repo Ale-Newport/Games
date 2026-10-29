@@ -2,6 +2,14 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #129 Lights Out COMPLETE
+
+- Lights Out on 4×4, 5×5, 7×7 and a diagonal 5×5; scrambles are random presses (always solvable);
+  a GF(2) solver tries the whole null space for the fewest presses (the all-on 5×5 needs 15, the
+  known minimum). Light chasing solves everything but with 2–3× the presses.
+- Played in the in-app browser (mobile, Spanish): a press, then hints to all dark.
+- Verified (actually run): lint, typecheck, 2291 unit tests (301 files), build, 422 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #128 Peg Solitaire COMPLETE
 
 - Peg Solitaire on the English (33, centre finish), European (37, a start hole found by search to
