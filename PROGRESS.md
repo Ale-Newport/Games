@@ -2,6 +2,14 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #132 Ball Sort COMPLETE
+
+- Ball Sort on the shared sorting core: one ball per move, 4–12 colors with tubes of four or five;
+  the solver finishes any level in 0.1–10 ms.
+- Played in the in-app browser (mobile, Spanish): moved a ball with the number keys and finished
+  with hints.
+- Verified (actually run): lint, typecheck, 2345 unit tests (307 files), build, 434 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #131 Water Sort COMPLETE
 
 - New shared tube-sorting core `src/games/shared/sorting/` (pour rules, a depth-first solver with

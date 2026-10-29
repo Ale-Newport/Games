@@ -135,6 +135,7 @@ import { manifest as pegSolitaire } from './peg-solitaire/manifest';
 import { manifest as lightsOut } from './lights-out/manifest';
 import { manifest as colorLinks } from './flow/manifest';
 import { manifest as waterSort } from './water-sort/manifest';
+import { manifest as ballSort } from './ball-sort/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -268,6 +269,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: lightsOut, load: () => import('./lights-out/index') },
   { manifest: colorLinks, load: () => import('./flow/index') },
   { manifest: waterSort, load: () => import('./water-sort/index') },
+  { manifest: ballSort, load: () => import('./ball-sort/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
