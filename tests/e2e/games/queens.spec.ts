@@ -22,7 +22,7 @@ test('Royal Regions: cross, crown, and solve with hints', async ({ page }) => {
 });
 
 test('Royal Regions: watch the AI', async ({ page }) => {
-  await freshStart(page, '/game/queens?mode=watch');
+  await freshStart(page, '/game/queens?mode=watch&deal=4');
   await expect(page.getByTestId('qn-board').locator('[data-mark="2"]').first()).toBeVisible({
     timeout: 10_000,
   });
