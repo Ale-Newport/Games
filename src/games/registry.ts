@@ -139,6 +139,7 @@ import { manifest as ballSort } from './ball-sort/manifest';
 import { manifest as hanoi } from './towers-of-hanoi/manifest';
 import { manifest as cube2 } from './twisty-cube-2x2/manifest';
 import { manifest as cube3 } from './twisty-cube-3x3/manifest';
+import { manifest as cube4 } from './twisty-cube-4x4/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -276,6 +277,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: hanoi, load: () => import('./towers-of-hanoi/index') },
   { manifest: cube2, load: () => import('./twisty-cube-2x2/index') },
   { manifest: cube3, load: () => import('./twisty-cube-3x3/index') },
+  { manifest: cube4, load: () => import('./twisty-cube-4x4/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
