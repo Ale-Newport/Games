@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #133 Towers of Hanoi COMPLETE
+
+- Towers of Hanoi with 3, 5 and 7 disks on three pegs and 6 disks on four; an exact breadth-first
+  distance table over every position gives optimal hints from anywhere (17 moves for the four-peg
+  tower). The cyclic hand rule is optimal on three pegs and takes 63 on four.
+- Played in the in-app browser (mobile, Spanish): the four-peg tower, a first move by keys, then
+  hints to the 17-move optimum.
+- Verified (actually run): lint, typecheck, 2363 unit tests (309 files), build, 438 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #132 Ball Sort COMPLETE
 
 - Ball Sort on the shared sorting core: one ball per move, 4–12 colors with tubes of four or five;

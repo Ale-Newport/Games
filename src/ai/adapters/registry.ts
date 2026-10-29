@@ -150,6 +150,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   flow: () => import('../../games/flow/ai-adapter').then((m) => m.bundle),
   'water-sort': () => import('../../games/water-sort/ai-adapter').then((m) => m.bundle),
   'ball-sort': () => import('../../games/ball-sort/ai-adapter').then((m) => m.bundle),
+  'towers-of-hanoi': () => import('../../games/towers-of-hanoi/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

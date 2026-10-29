@@ -135,7 +135,8 @@
 - **#130 Color Links (Flow) — COMPLETE** (2026-11-07).
 - **#131 Water Sort — COMPLETE** (2026-11-07).
 - **#132 Ball Sort — COMPLETE** (2026-11-07).
-- **Current game: #133 Towers of Hanoi** (`towers-of-hanoi`) — TODO (draft in scratch).
+- **#133 Towers of Hanoi — COMPLETE** (2026-11-07).
+- **Current game: #134 Twisty Cube 2×2** (`twisty-cube-2x2`) — TODO (shared cube core with 3D CSS view, optimal 2×2 solver and Kociemba two-phase drafted in scratch).
 
 ## Resume instructions
 

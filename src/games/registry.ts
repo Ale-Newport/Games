@@ -136,6 +136,7 @@ import { manifest as lightsOut } from './lights-out/manifest';
 import { manifest as colorLinks } from './flow/manifest';
 import { manifest as waterSort } from './water-sort/manifest';
 import { manifest as ballSort } from './ball-sort/manifest';
+import { manifest as hanoi } from './towers-of-hanoi/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -270,6 +271,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: colorLinks, load: () => import('./flow/index') },
   { manifest: waterSort, load: () => import('./water-sort/index') },
   { manifest: ballSort, load: () => import('./ball-sort/index') },
+  { manifest: hanoi, load: () => import('./towers-of-hanoi/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
