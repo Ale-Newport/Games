@@ -133,7 +133,8 @@
 - **#128 Peg Solitaire — COMPLETE** (2026-11-07).
 - **#129 Lights Out — COMPLETE** (2026-11-07).
 - **#130 Color Links (Flow) — COMPLETE** (2026-11-07).
-- **Current game: #131 Water Sort** (`water-sort`) — TODO (shared sorting core drafted in scratch).
+- **#131 Water Sort — COMPLETE** (2026-11-07).
+- **Current game: #132 Ball Sort** (`ball-sort`) — TODO (reuse `src/games/shared/sorting/`).
 
 ## Resume instructions
 
