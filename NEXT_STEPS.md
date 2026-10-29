@@ -136,7 +136,8 @@
 - **#131 Water Sort — COMPLETE** (2026-11-07).
 - **#132 Ball Sort — COMPLETE** (2026-11-07).
 - **#133 Towers of Hanoi — COMPLETE** (2026-11-07).
-- **Current game: #134 Twisty Cube 2×2** (`twisty-cube-2x2`) — TODO (shared cube core with 3D CSS view, optimal 2×2 solver and Kociemba two-phase drafted in scratch).
+- **#134 Twisty Cube 2×2 — COMPLETE** (2026-11-07).
+- **Current game: #135 Twisty Cube 3×3** (`twisty-cube-3x3`) — TODO (shared cube core in `src/games/shared/cube`; Kociemba two-phase solver in `twophase.ts`; 3×3 module drafted in scratch).
 
 ## Resume instructions
 
