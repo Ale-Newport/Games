@@ -129,7 +129,8 @@
 - **#124 8-Puzzle — COMPLETE** (2026-11-07).
 - **#125 15-Puzzle — COMPLETE** (2026-11-07).
 - **#126 Traffic Jam — COMPLETE** (2026-11-07).
-- **Current game: #127 Sokoban** (`sokoban`) — TODO (levels generated offline by reverse pulls; draft in scratch).
+- **#127 Sokoban — COMPLETE** (2026-11-07).
+- **Current game: #128 Peg Solitaire** (`peg-solitaire`) — TODO.
 
 ## Resume instructions
 

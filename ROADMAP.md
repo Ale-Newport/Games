@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 126 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 74
+**Complete:** 127 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 73
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -152,7 +152,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 124 | 8-Puzzle | `eight-puzzle` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 125 | 15-Puzzle | `fifteen-puzzle` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 126 | Rush Hour | `traffic-jam` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 127 | Sokoban | `sokoban` | TODO | — | — | — | — | — |  |  |
+| 127 | Sokoban | `sokoban` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 128 | Peg Solitaire | `peg-solitaire` | TODO | — | — | — | — | — |  |  |
 | 129 | Lights Out | `lights-out` | TODO | — | — | — | — | — |  |  |
 | 130 | Flow Path Connection Puzzle | `flow` | TODO | — | — | — | — | — |  |  |

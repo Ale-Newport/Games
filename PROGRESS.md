@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #127 Sokoban COMPLETE
+
+- Sokoban with an original bank of 152 warehouses generated offline by `tools/generate-sokoban.ts`
+  (crates on goals pulled back as far as possible): 2 / 3 / 4 crates, 10–41 fewest pushes. A push
+  solver (breadth-first over crates and keeper region, dead cells pruned) gives optimal hints.
+- Played in the in-app browser (mobile, Spanish): pushed with the keys, walked by tapping and
+  finished with hints in the fewest pushes.
+- Verified (actually run): lint, typecheck, 2253 unit tests (297 files), build, 414 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #126 Traffic Jam COMPLETE
 
 - Sliding-block parking puzzle under a generic name with an original bank of 310 puzzles generated
