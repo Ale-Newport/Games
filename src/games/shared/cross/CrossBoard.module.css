@@ -1,0 +1,72 @@
+.board {
+  width: min(100%, 520px);
+  height: auto;
+  max-height: calc(100dvh - 280px);
+  display: block;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.frame {
+  fill: #2b2f3d;
+}
+
+.yardInner {
+  fill: rgb(255 255 255 / 0.85);
+}
+
+.square {
+  fill: #f5f1e6;
+  stroke: #9a927f;
+  stroke-width: 1;
+}
+
+.star {
+  fill: #8a8270;
+  font-size: 16px;
+}
+
+.token {
+  outline: none;
+}
+
+.disc {
+  stroke: #1b1b22;
+  stroke-width: 2;
+}
+
+.cap {
+  fill: rgb(255 255 255 / 0.55);
+}
+
+.movable {
+  cursor: pointer;
+}
+
+.movable .disc {
+  stroke: #fff;
+  stroke-width: 3.5;
+  animation: pulse 1.1s ease-in-out infinite;
+}
+
+.pointed .disc {
+  stroke: #f1c40f;
+  stroke-width: 4;
+  stroke-dasharray: 5 3;
+}
+
+.movable:focus-visible .disc {
+  stroke: #f1c40f;
+}
+
+@keyframes pulse {
+  50% {
+    stroke-opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .movable .disc {
+    animation: none;
+  }
+}
