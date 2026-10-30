@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #144 Senet COMPLETE
+
+- Kendall's reconstruction: the S-shaped route, four throw sticks with extra throws on 1, 4 and 5,
+  swaps with lone pieces, protective pairs and blocking threes, the stop on 26, the Water and the
+  exact exits. Expectiminimax two moves deep beat greedy 60 of 100 (a game of much chance).
+- Played in the in-app browser (mobile, Spanish): throws, moves by taps, a hint, extra throws.
+- Verified (actually run): lint, typecheck, 2571 unit tests (331 files), build, 482 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #143 Royal Game of Ur COMPLETE
 
 - Finkel's rules: four binary dice, seven pieces a side, captures on the shared row, rosettes for

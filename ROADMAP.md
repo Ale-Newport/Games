@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 143 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 57
+**Complete:** 144 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 56
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -174,7 +174,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 141 | Backgammon | `backgammon` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 142 | Narde | `narde` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 143 | Royal Game of Ur | `royal-game-of-ur` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 144 | Senet | `senet` | TODO | — | — | — | — | — |  |  |
+| 144 | Senet | `senet` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 145 | Ludo | `ludo` | TODO | — | — | — | — | — |  |  |
 | 146 | Pachisi | `pachisi` | TODO | — | — | — | — | — |  |  |
 | 147 | Parchís | `parchis` | TODO | — | — | — | — | — |  |  |

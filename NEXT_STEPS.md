@@ -146,7 +146,8 @@
 - **#141 Backgammon — COMPLETE** (2026-11-07).
 - **#142 Narde — COMPLETE** (2026-11-07).
 - **#143 Royal Game of Ur — COMPLETE** (2026-11-07).
-- **Current game: #144 Senet** (`senet`) — TODO.
+- **#144 Senet — COMPLETE** (2026-11-07).
+- **Current game: #145 Ludo** (`ludo`) — TODO (plan: a cross-board race core with arm length 6 for Ludo and 8 for Pachisi and Parchís).
 
 ## Resume instructions
 
