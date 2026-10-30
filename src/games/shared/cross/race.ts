@@ -1,17 +1,18 @@
 /**
  * The race engine shared by the cross-board games. Each player has tokens that wait in a yard,
  * enter on their start square with an exit throw, run the loop round to their own arm and up their
- * home column to home. Token positions are steps along the player's route: −1 in the yard, 0 the
- * start square, up to `last` (home). The rules that differ between games are options: which throws
- * let a token out, extra throws on sixes and the penalty for three in a row, what a capture and a
- * token home earn (another throw, or a bonus move of so many squares), whether two tokens of one
- * colour block the way, the safe squares, and whether a six counts as seven once every token is out.
+ * home column to home (or a route of its own). Token positions are steps along the route: −1 in the
+ * yard, 0 the start square, up to `last` (home). The rules that differ between games are options:
+ * the throw (a die or cowrie shells), which throws let a token out and which give another throw
+ * (with a penalty for three in a row), what a capture and a token home earn (another throw, or a
+ * bonus move of so many squares), whether two tokens of one colour are safe or a barrier, the safe
+ * squares, six counting as seven once every token is out, the route, and partnerships.
  *
  * Throws come from a generator stored in the state, so a game replays exactly from its seed and
  * actions: "roll", "pass", "move:<token>" and "bonus:<token>" (a bonus move).
  */
 import { nextUint32, seedRng, type RngState } from '../../../core/game-engine/random';
-import { crossGeometry, route, startIndex, type CrossGeometry } from './geometry';
+import { crossGeometry, route, startIndex, type Cell, type CrossGeometry } from './geometry';
 
 export interface RaceRules {
   /** Arm length of the board. */
@@ -20,17 +21,27 @@ export interface RaceRules {
   /** Throws that bring a token out of the yard (it lands on the start square). */
   exitRolls: number[];
   /** A six gives another throw; three sixes in a row end the turn ('forfeit') or also send the last token moved home to the yard ('yard'). */
-  extraOnSix: boolean;
-  threeSixes: 'forfeit' | 'yard';
-  /** What a capture and a token reaching home earn: another throw, or a bonus move of n squares. */
+  extraOn: number[];
+  threeSixes: 'forfeit' | 'yard' | 'none';
+  /** What a capture and a token reaching home earn: another throw, or a bonus move of n squares (0: nothing). */
   onCapture: 'roll' | number;
   onHome: 'roll' | number;
   /** Two tokens of one colour on a square: 'safe' cannot be captured; 'barrier' also cannot be passed or landed on by anyone. */
-  pairs: 'safe' | 'barrier';
+  pairs: 'safe' | 'barrier' | 'none';
   /** Loop indices of the safe squares. */
   safe: (g: CrossGeometry) => number[];
   /** Once all of a player's tokens are out of the yard, a six moves seven. */
   sixAsSeven: boolean;
+  /** The throw and what to show for it (a die by default). */
+  throwValue?: (rng: RngState) => [number, RngState, boolean[]?];
+  /** Each colour's route: the cells and, per step, the loop index (−1 off the loop). */
+  route?: (geo: CrossGeometry, colour: number) => { cells: Cell[]; loop: number[] };
+  /** With four players, partners on opposite arms never capture each other and win together. */
+  teams?: boolean;
+  /** An exit throw must bring a token out when one can come out. */
+  exitMandatory?: boolean;
+  /** Home needs the exact throw (the default); otherwise any throw that reaches it will do. */
+  exactHome?: boolean;
 }
 
 export interface RaceState {
@@ -42,7 +53,9 @@ export interface RaceState {
   tokens: number[][];
   turn: number;
   die: number | null;
-  /** Sixes thrown in a row this turn. */
+  /** What the throw showed, when it is not a plain die (cowrie mouths up). */
+  faces: boolean[] | null;
+  /** Extra throws in a row this turn. */
   sixes: number;
   /** A pending bonus move of this many squares. */
   bonus: number;
@@ -66,24 +79,47 @@ export interface RaceGame {
   rules: RaceRules;
   geo: CrossGeometry;
   /** Route cells per colour. */
-  routes: ReturnType<typeof route>[];
+  routes: Cell[][];
+  /** Loop index per colour and step (−1 off the loop). */
+  loopAt: number[][];
   /** Steps from the start square to home. */
   last: number;
   safeSet: Set<number>;
 }
 
+/** The default route: the loop from the start square round to the arm's tip, then the home column. */
+function loopRoute(geo: CrossGeometry, colour: number) {
+  const cells = route(geo, colour);
+  const loopSteps = geo.loop.length - 1;
+  return {
+    cells,
+    loop: cells.map((_, step) =>
+      step < loopSteps ? (startIndex(geo, colour) + step) % geo.loop.length : -1,
+    ),
+  };
+}
+
 export function raceGame(rules: RaceRules): RaceGame {
   const geo = crossGeometry(rules.L);
-  const routes = [0, 1, 2, 3].map((p) => route(geo, p));
-  return { rules, geo, routes, last: routes[0]!.length, safeSet: new Set(rules.safe(geo)) };
+  const made = [0, 1, 2, 3].map((p) => (rules.route ?? loopRoute)(geo, p));
+  return {
+    rules,
+    geo,
+    routes: made.map((r) => r.cells),
+    loopAt: made.map((r) => r.loop),
+    last: made[0]!.cells.length,
+    safeSet: new Set(rules.safe(geo)),
+  };
 }
 
 /** Loop index of a colour's step, or −1 off the loop (yard, home column, home). */
 export function loopIndex(game: RaceGame, colour: number, step: number): number {
-  const loopSteps = game.geo.loop.length - 1;
-  if (step < 0 || step >= loopSteps) return -1;
-  return (startIndex(game.geo, colour) + step) % game.geo.loop.length;
+  return step < 0 || step >= game.last ? -1 : game.loopAt[colour]![step]!;
 }
+
+/** The partner of a seat when partnerships are on (four players), or null. */
+export const partnerOf = (game: RaceGame, s: RaceState, seat: number) =>
+  game.rules.teams && s.seats.length === 4 ? (seat + 2) % 4 : null;
 
 export function newRace(game: RaceGame, seats: number[], seed: number): RaceState {
   return {
@@ -93,6 +129,7 @@ export function newRace(game: RaceGame, seats: number[], seed: number): RaceStat
     tokens: seats.map(() => new Array<number>(game.rules.tokens).fill(-1)),
     turn: 0,
     die: null,
+    faces: null,
     sixes: 0,
     bonus: 0,
     lastMoved: null,
@@ -146,8 +183,12 @@ export function movesFor(
       if (isBonus || !rules.exitRolls.includes(distance)) return;
       to = 0;
     } else {
+      if (from >= game.last) return;
       to = from + d;
-      if (to > game.last) return;
+      if (to > game.last) {
+        if (rules.exactHome !== false) return;
+        to = game.last;
+      }
     }
     // Barriers cannot be passed (nor the start square entered while one stands on it).
     if (rules.pairs === 'barrier') {
@@ -161,7 +202,8 @@ export function movesFor(
     const li = loopIndex(game, colour, to);
     const captured: [number, number][] = [];
     if (li >= 0) {
-      const there = occupants(game, s, li).filter(([st]) => st !== seat);
+      const partner = partnerOf(game, s, seat);
+      const there = occupants(game, s, li).filter(([st]) => st !== seat && st !== partner);
       if (there.length) {
         const safe = game.safeSet.has(li);
         const pair = there.length >= 2 && there.every(([st]) => st === there[0]![0]);
@@ -176,12 +218,26 @@ export function movesFor(
     }
     out.push({ token, from, to, captured });
   });
+  if (
+    rules.exitMandatory &&
+    !isBonus &&
+    rules.exitRolls.includes(distance) &&
+    out.some((m) => m.from < 0)
+  )
+    return out.filter((m) => m.from < 0);
   return out;
 }
 
-function roll(rng: RngState): [number, RngState] {
+function roll(rng: RngState): [number, RngState, boolean[]?] {
   const [x, next] = nextUint32(rng);
   return [1 + (x % 6), next];
+}
+
+/** Whether a seat (and its partner, with partnerships) has every token home. */
+function finished(game: RaceGame, s: RaceState, tokens: number[][], seat: number): boolean {
+  const partner = partnerOf(game, s, seat);
+  const done = (st: number) => tokens[st]!.every((x) => x === game.last);
+  return done(seat) && (partner === null || done(partner));
 }
 
 const nextSeat = (s: RaceState) => (s.turn + 1) % s.seats.length;
@@ -217,9 +273,9 @@ function actInner(game: RaceGame, s: RaceState, action: string): RaceState {
   const { rules } = game;
   if (s.phase === 'roll') {
     if (action !== 'roll') return s;
-    const [die, rng] = roll(s.rng);
-    const sixes = die === 6 && rules.extraOnSix ? s.sixes + 1 : 0;
-    if (sixes >= 3) {
+    const [die, rng, faces] = (rules.throwValue ?? roll)(s.rng);
+    const sixes = rules.extraOn.includes(die) ? s.sixes + 1 : 0;
+    if (sixes >= 3 && rules.threeSixes !== 'none') {
       // Three sixes in a row: the turn ends (and in some games the last token moved goes back).
       const tokens = s.tokens.map((row) => [...row]);
       if (rules.threeSixes === 'yard' && s.lastMoved !== null) {
@@ -231,17 +287,18 @@ function actInner(game: RaceGame, s: RaceState, action: string): RaceState {
         rng,
         tokens,
         die,
+        faces: faces ?? null,
         sixes: 0,
         lastMoved: null,
         phase: 'roll',
         turn: nextSeat(s),
       };
     }
-    return { ...s, rng, die, sixes, phase: 'move' };
+    return { ...s, rng, die, faces: faces ?? null, sixes, phase: 'move' };
   }
   if (s.phase !== 'move' && s.phase !== 'bonus') return s;
   const moves = currentMoves(game, s);
-  const again = s.phase === 'move' && s.die === 6 && rules.extraOnSix;
+  const again = s.phase === 'move' && s.die !== null && rules.extraOn.includes(s.die);
   if (action === 'pass') {
     if (moves.length) return s;
     return s.phase === 'bonus' ? endTurn({ ...s }, s.sixes > 0) : endTurn(s, again);
@@ -256,12 +313,12 @@ function actInner(game: RaceGame, s: RaceState, action: string): RaceState {
   const captures = [...s.captures];
   captures[s.turn] = captures[s.turn]! + m.captured.length;
   let next: RaceState = { ...s, tokens, captures, lastMoved: m.token };
-  if (tokens[s.turn]!.every((x) => x === game.last))
+  if (finished(game, s, tokens, s.turn))
     return { ...next, die: null, phase: 'over', winner: s.turn };
   // What the move earned: another throw or a bonus move.
   const earned: ('roll' | number)[] = [];
   if (m.captured.length) earned.push(rules.onCapture);
-  if (m.to === game.last) earned.push(rules.onHome);
+  if (m.to === game.last && rules.onHome !== 0) earned.push(rules.onHome);
   const bonus = earned.find((e): e is number => typeof e === 'number');
   const extraRoll = earned.includes('roll');
   if (bonus !== undefined) {

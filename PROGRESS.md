@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #146 Pachisi COMPLETE
+
+- On the cross-board core at arm length 8: cowrie throws (25, 10, 2–6), grace throws to enter and
+  throw again, the route down the arm, round and back up, twelve castles, partnerships. The engine
+  gained a custom throw and route, partnerships and a non-exact homecoming (cowries never show 1,
+  which first left pieces stranded one square from home — found by a stalled test and fixed).
+- The heuristic partnership won 145 of 200 games against a simple one.
+- Played in the in-app browser (mobile, Spanish): four players, cowrie throws, moves by taps.
+- Verified (actually run): lint, typecheck, 2611 unit tests (335 files), build, 490 Playwright tests
+  (desktop + mobile): 488 green; the Ludo test ran into the 30 s limit (it needs ~29 s to roll a six
+  and move twice), so it now waits for each decision with a 90 s budget (re-run green, separate
+  commit).
+
 ## 2026-11-07 — Session 1: #145 Ludo COMPLETE
 
 - A shared cross-board race core (`src/games/shared/cross`): the board for any arm length, a rules

@@ -44,8 +44,9 @@ export function CrossBoard({
   const { geo } = game;
   const { N, L } = geo;
   const size = N * U;
+  // Each colour's start square (the first square of its route) is painted in its colour.
   const loopColour = new Map<string, number>();
-  [0, 1, 2, 3].forEach((p) => loopColour.set(geo.loop[p * geo.perArm]!.join(), p));
+  [0, 1, 2, 3].forEach((p) => loopColour.set(game.routes[p]![0]!.join(), p));
   // Where each token stands: [x, y] centre, grouped per cell to fan out stacks.
   const spots = new Map<string, { seat: number; token: number }[]>();
   const place = (key: string, seat: number, token: number) => {

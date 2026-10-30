@@ -1,0 +1,30 @@
+.row {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.shell {
+  width: 20px;
+  height: 28px;
+}
+
+.idle {
+  opacity: 0.4;
+}
+
+.back {
+  fill: #f3ead8;
+  stroke: #8a7a5c;
+  stroke-width: 1.5;
+}
+
+.mouth {
+  fill: #6b4a2f;
+}
+
+.value {
+  min-width: 1.6em;
+  margin-left: 6px;
+  font: 800 1.4rem var(--font-display);
+}

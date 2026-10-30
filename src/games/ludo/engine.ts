@@ -5,7 +5,7 @@ export const LUDO: RaceRules = {
   L: 6,
   tokens: 4,
   exitRolls: [6],
-  extraOnSix: true,
+  extraOn: [6],
   threeSixes: 'forfeit',
   onCapture: 'roll',
   onHome: 'roll',
