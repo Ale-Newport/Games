@@ -141,7 +141,8 @@
 - **#136 Twisty Cube 4×4 — COMPLETE** (2026-11-07).
 - **#137 Merge to 2048 — COMPLETE** (2026-11-07).
 - **#138 Number Trios — COMPLETE** (2026-11-07).
-- **Current game: #139 Fibonacci Merge** (`fibonacci-2048`) — TODO (on the shared merge core; module drafted in scratch).
+- **#139 Fibonacci Merge — COMPLETE** (2026-11-07).
+- **Current game: #140 Sliding Blocks** (`klotski`) — TODO (4×5 tray, generated bank with proven minima, breadth-first solver; drafted in scratch).
 
 ## Resume instructions
 
