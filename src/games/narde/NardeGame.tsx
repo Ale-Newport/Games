@@ -116,6 +116,10 @@ export function NardeGame({ services }: { services: GameServices }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
 
+  const isYou = (side: Side) => mode === 'play' && opponent !== 'two' && side === 0;
+  /** A message about `side`: the player's own wording when it is the person against the computer. */
+  const say = (key: string, side: Side, params: Record<string, string | number> = {}) =>
+    t(isYou(side) ? `${key}.you` : key, { side: name(side), ...params });
   const name = (side: Side) =>
     opponent === 'two' || mode === 'watch'
       ? t(side === 0 ? 'side.light' : 'side.dark')
@@ -143,12 +147,10 @@ export function NardeGame({ services }: { services: GameServices }) {
     setState(next);
     if ((next.phase === 'game-over' || next.phase === 'match-over') && next.lastWin) {
       const w = next.lastWin;
-      const end = t(w.mars ? 'end.mars' : 'end.oin', { side: name(w.side), points: w.points });
+      const end = say(w.mars ? 'end.mars' : 'end.oin', w.side, { points: w.points });
       if (next.phase === 'match-over') {
         const winner: Side = next.score[0] >= next.matchTo ? 0 : 1;
-        setMessage(
-          `${end} ${t('match.won', { side: name(winner), a: next.score[0], b: next.score[1] })}`,
-        );
+        setMessage(`${end} ${say('match.won', winner, { a: next.score[0], b: next.score[1] })}`);
         if (mode === 'play') {
           if (opponent !== 'two') {
             svc.playSound(winner === 0 ? NARDE_SOUNDS.win : NARDE_SOUNDS.lose);
@@ -172,7 +174,7 @@ export function NardeGame({ services }: { services: GameServices }) {
       }
       if (mode === 'play' && opponent !== 'two' && w.side === 0 && w.mars)
         svc.unlockAchievement('mars');
-    } else if (action === 'pass') setMessage(t('passed', { side: name(before.turn) }));
+    } else if (action === 'pass') setMessage(say('passed', before.turn));
     else setMessage('');
     if (mode === 'play' && next.phase !== 'match-over') void slot.save({ state: next, opponent });
   };
@@ -409,9 +411,7 @@ export function NardeGame({ services }: { services: GameServices }) {
     if (p === OFF) return t('label.off', { a: shownPos.off[0], b: shownPos.off[1] });
     if (p > 24) return t('label.middle');
     const pv = points[p]!;
-    return pv.count
-      ? t('label.point', { p, n: pv.count, side: name(pv.owner) })
-      : t('label.empty', { p });
+    return pv.count ? t(`label.point.${pv.owner}`, { p, n: pv.count }) : t('label.empty', { p });
   };
   const openingNote =
     s.phase === 'roll' && s.first[0] && s.first[1]

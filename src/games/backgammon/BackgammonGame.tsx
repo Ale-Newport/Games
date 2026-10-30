@@ -128,6 +128,10 @@ export function BackgammonGame({ services }: { services: GameServices }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
 
+  const isYou = (side: Side) => mode === 'play' && opponent !== 'two' && side === 0;
+  /** A message about `side`: the player's own wording when it is the person against the computer. */
+  const say = (key: string, side: Side, params: Record<string, string | number> = {}) =>
+    t(isYou(side) ? `${key}.you` : key, { side: name(side), ...params });
   const name = (side: Side) =>
     opponent === 'two' || mode === 'watch'
       ? t(side === 0 ? 'side.light' : 'side.dark')
@@ -142,7 +146,7 @@ export function BackgammonGame({ services }: { services: GameServices }) {
         : w.kind === 2
           ? 'gammon'
           : 'single';
-    return t(`end.${kind}`, { side: name(w.side), points: w.points });
+    return say(`end.${kind}`, w.side, { points: w.points });
   };
 
   const commit = (next: MatchState, action: string) => {
@@ -172,7 +176,7 @@ export function BackgammonGame({ services }: { services: GameServices }) {
       if (next.phase === 'match-over') {
         const winner = next.score[0] >= next.matchTo ? 0 : 1;
         setMessage(
-          `${end} ${t('match.won', { side: name(winner as Side), a: next.score[0], b: next.score[1] })}`,
+          `${end} ${say('match.won', winner as Side, { a: next.score[0], b: next.score[1] })}`,
         );
         if (mode === 'play') {
           if (opponent !== 'two') {
@@ -203,11 +207,9 @@ export function BackgammonGame({ services }: { services: GameServices }) {
         !next.lastWin.dropped
       )
         svc.unlockAchievement('gammon');
-    } else if (action === 'double')
-      setMessage(t('doubled', { side: name(next.turn), cube: next.cube * 2 }));
-    else if (action === 'take')
-      setMessage(t('took', { side: name(opp(next.turn)), cube: next.cube }));
-    else if (action === 'pass') setMessage(t('passed', { side: name(before.turn) }));
+    } else if (action === 'double') setMessage(say('doubled', next.turn, { cube: next.cube * 2 }));
+    else if (action === 'take') setMessage(say('took', opp(next.turn), { cube: next.cube }));
+    else if (action === 'pass') setMessage(say('passed', before.turn));
     else setMessage('');
     if (mode === 'play' && next.phase !== 'match-over') void slot.save({ state: next, opponent });
   };
@@ -448,9 +450,7 @@ export function BackgammonGame({ services }: { services: GameServices }) {
     if (p === BAR) return t('label.bar', { a: shownPos.bar[0], b: shownPos.bar[1] });
     if (p === OFF) return t('label.off', { a: shownPos.off[0], b: shownPos.off[1] });
     const pv = points[p]!;
-    return pv.count
-      ? t('label.point', { p, n: pv.count, side: name(pv.owner) })
-      : t('label.empty', { p });
+    return pv.count ? t(`label.point.${pv.owner}`, { p, n: pv.count }) : t('label.empty', { p });
   };
   const cubeAt = s.cubeOwner === null ? 'middle' : s.cubeOwner === 0 ? 'bottom' : 'top';
 
