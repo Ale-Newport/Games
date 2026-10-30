@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #143 Royal Game of Ur COMPLETE
+
+- Finkel's rules: four binary dice, seven pieces a side, captures on the shared row, rosettes for
+  another throw and a safe central rosette; the board in its historical shape. An expectiminimax
+  search three moves deep over the throws beat the greedy player 59 of 60.
+- Also fixed the Backgammon and Narde messages to read naturally for the player ("You win",
+  "Ganas") with singular side names (separate commit).
+- Played in the in-app browser (mobile, Spanish): throws, entering by taps, a hint, a rosette's
+  extra throw.
+- Verified (actually run): lint, typecheck, 2557 unit tests (329 files), build, 478 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #142 Narde COMPLETE
 
 - Long narde on the shared race board: both sides the same way round from opposite heads, single

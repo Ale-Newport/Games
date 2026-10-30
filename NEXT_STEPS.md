@@ -145,7 +145,8 @@
 - **#140 Sliding Blocks — COMPLETE** (2026-11-07).
 - **#141 Backgammon — COMPLETE** (2026-11-07).
 - **#142 Narde — COMPLETE** (2026-11-07).
-- **Current game: #143 Royal Game of Ur** (`royal-game-of-ur`) — TODO (Finkel's rules; engine and expectiminimax drafted in scratch).
+- **#143 Royal Game of Ur — COMPLETE** (2026-11-07).
+- **Current game: #144 Senet** (`senet`) — TODO.
 
 ## Resume instructions
 
