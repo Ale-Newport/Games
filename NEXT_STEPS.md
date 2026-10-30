@@ -151,7 +151,8 @@
 - **#146 Pachisi — COMPLETE** (2026-11-07).
 - **#147 Parchís — COMPLETE** (2026-11-07).
 - **#148 Snakes and Ladders — COMPLETE** (2026-11-07).
-- **Current game: #149 Five Dice** (`five-dice`) — TODO (shared scorecard core with an exact turn planner, drafted in scratch; Generala #150 on the same core).
+- **#149 Five Dice — COMPLETE** (2026-11-07).
+- **Current game: #150 Generala** (`generala`) — TODO (on `src/games/shared/scorecard`; drafted in scratch).
 
 ## Resume instructions
 

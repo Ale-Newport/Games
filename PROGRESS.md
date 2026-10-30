@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #149 Five Dice COMPLETE
+
+- A shared scorecard dice core (`src/games/shared/scorecard`): an exact turn planner over the 252
+  hands of five dice, the state and actions for any scorecard rules, the computer players and the
+  table with holds and previews.
+- Five Dice (a generic name) with the upper bonus, five-of-a-kind extras and the joker rule; the
+  planner averaged 240.6 points solo and won 160 of 200 games against the simple player.
+- Played in the in-app browser (mobile, Spanish): hinted turns to a five of a kind, chance and fives.
+- Verified (actually run): lint, typecheck, 2672 unit tests (341 files), build, 502 Playwright tests
+  (desktop + mobile) — all green (a first run caught the AI bundle missing from the registry; fixed
+  and re-run).
+
 ## 2026-11-07 — Session 1: #148 Snakes and Ladders COMPLETE
 
 - A board of its own (nine ladders, ten snakes, exact finish), the classic one-die game and a Choice
