@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #141 Backgammon COMPLETE
+
+- Full backgammon: bar, hits, bearing off, the use-most-dice and larger-die rules, gammons and
+  backgammons, the doubling cube with the Crawford rule in matches to 1, 3 or 5. A shared SVG
+  race board (`src/games/shared/raceboard`) for Backgammon and Narde.
+- Computer players: greedy (hand-weighted evaluation) and expectimax over the 21 replies, which
+  beat greedy 75 of 120; doubling by an estimated win chance.
+- Played in the in-app browser (mobile, Spanish): a 3-3 played by taps, hinted turns, a computer
+  double taken (cube to 2, owned by the player).
+- Verified (actually run): lint, typecheck, 2526 unit tests (325 files), build, 470 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #140 Sliding Blocks COMPLETE
 
 - The klotski-style 4×5 tray under a generic name: free-path moves (one block, any distance, round

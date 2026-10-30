@@ -143,7 +143,8 @@
 - **#138 Number Trios — COMPLETE** (2026-11-07).
 - **#139 Fibonacci Merge — COMPLETE** (2026-11-07).
 - **#140 Sliding Blocks — COMPLETE** (2026-11-07).
-- **Current game: #141 Backgammon** (`backgammon`) — TODO (engine, evaluation, match with the cube, shared race-board view and table drafted in scratch). Category E (dice, tiles and casual) starts here.
+- **#141 Backgammon — COMPLETE** (2026-11-07).
+- **Current game: #142 Narde** (`narde`) — TODO (long narde rules, tuned evaluation and agents drafted in scratch; reuse `src/games/shared/raceboard/BoardView.tsx`).
 
 ## Resume instructions
 
