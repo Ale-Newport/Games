@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #147 Parchís COMPLETE
+
+- Spanish parchís on the cross-board core: a 5 to come out (obligatory), sixes that roll again and
+  count seven with every pawn out, three sixes sending the last pawn home, barriers, twelve safe
+  squares, bonus moves of 20 for a capture and 10 for the goal. The heuristic won 131 of 200
+  two-player games against the simple rule.
+- Played in the in-app browser (mobile, Spanish): four players, an exit on a five, sixes rolling
+  again, moves by taps.
+- Verified (actually run): lint, typecheck, 2631 unit tests (337 files), build, 494 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #146 Pachisi COMPLETE
 
 - On the cross-board core at arm length 8: cowrie throws (25, 10, 2–6), grace throws to enter and

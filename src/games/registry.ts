@@ -150,6 +150,7 @@ import { manifest as ur } from './royal-game-of-ur/manifest';
 import { manifest as senet } from './senet/manifest';
 import { manifest as ludo } from './ludo/manifest';
 import { manifest as pachisi } from './pachisi/manifest';
+import { manifest as parchis } from './parchis/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -298,6 +299,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: senet, load: () => import('./senet/index') },
   { manifest: ludo, load: () => import('./ludo/index') },
   { manifest: pachisi, load: () => import('./pachisi/index') },
+  { manifest: parchis, load: () => import('./parchis/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
