@@ -1,0 +1,105 @@
+.scores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  width: min(100%, 480px);
+}
+
+.chip {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(255 255 255 / 0.15);
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.current {
+  border-color: #f1c40f;
+  background: rgb(241 196 15 / 0.12);
+}
+
+.bar {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: rgb(255 255 255 / 0.1);
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: #30a46c;
+}
+
+.aside {
+  display: flex;
+  gap: 4px;
+  min-height: 30px;
+}
+
+.small {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  padding: 2px;
+  border-radius: 6px;
+  background: rgb(248 244 234 / 0.6);
+}
+
+.diceRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  min-height: 56px;
+}
+
+.die {
+  width: 54px;
+  height: 54px;
+  padding: 4px;
+  border: 0;
+  border-radius: 12px;
+  background: #f8f4ea;
+  box-shadow: inset 0 -4px 0 rgb(0 0 0 / 0.2);
+  cursor: pointer;
+  transition: transform 120ms var(--ease-out);
+}
+
+.die:disabled {
+  cursor: default;
+}
+
+.picked {
+  outline: 3px solid #f1c40f;
+  transform: translateY(-6px);
+}
+
+.face {
+  width: 100%;
+  height: 100%;
+  fill: #1b1b22;
+}
+
+.placeholder {
+  align-self: center;
+  color: var(--text-muted);
+}
+
+.stake {
+  margin: 0;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .die {
+    transition: none;
+  }
+}

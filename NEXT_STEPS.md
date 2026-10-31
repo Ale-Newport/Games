@@ -153,7 +153,8 @@
 - **#148 Snakes and Ladders — COMPLETE** (2026-11-07).
 - **#149 Five Dice — COMPLETE** (2026-11-07).
 - **#150 Generala — COMPLETE** (2026-11-07).
-- **Current game: #151 Farkle** (`farkle`) — TODO (dynamic-programming turn tables; drafted in scratch).
+- **#151 Farkle — COMPLETE** (2026-11-07).
+- **Current game: #152 Pig** (`pig`) — TODO (solved by value iteration; drafted in scratch).
 
 ## Resume instructions
 

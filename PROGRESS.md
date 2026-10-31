@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #151 Farkle COMPLETE
+
+- Farkle to 10 000 with the 500 opening, hot dice and a final round; the planner plays each turn by
+  dynamic programming over dice left and points at stake (600.7 expected from a fresh turn) and won
+  241 of 400 games against the cautious player; solo it needs 17.4 turns against 19.2.
+- Played in the in-app browser (mobile, Spanish): followed hints to three 3s and a 5, then hot dice
+  and a 550 opening bank. Fixed the mid-turn prompt that still said "roll to start the turn".
+- Verified (actually run): lint, typecheck, 2711 unit tests (345 files), build, 510 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #150 Generala COMPLETE
 
 - Generala on the shared scorecard core: eleven boxes, the three straights, served bonuses, double
