@@ -162,7 +162,8 @@
 - **#157 Draw Dominoes — COMPLETE** (2026-11-07).
 - **#158 All Fives Dominoes — COMPLETE** (2026-11-07).
 - **#159 Mahjong Solitaire — COMPLETE** (2026-11-07).
-- **Current game: #160 Riichi Mahjong** (`riichi-mahjong`) — TODO (East-only four-player game; engine, scoring and table drafted in scratch).
+- **#160 Riichi Mahjong — COMPLETE** (2026-11-07).
+- **Current game: #161 Tile Rummy** (`tile-rummy`) — TODO (numbered-tile rummy with table rearrangement; generic name).
 
 ## Resume instructions
 
