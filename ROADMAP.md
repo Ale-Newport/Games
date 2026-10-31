@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 151 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 49
+**Complete:** 152 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 48
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -182,7 +182,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 149 | Yahtzee | `five-dice` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 150 | Generala | `generala` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 151 | Farkle | `farkle` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 152 | Pig Dice | `pig` | TODO | — | — | — | — | — |  |  |
+| 152 | Pig Dice | `pig` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 153 | Can't Stop | `cant-stop` | TODO | — | — | — | — | — |  |  |
 | 154 | Shut the Box | `shut-the-box` | TODO | — | — | — | — | — |  |  |
 | 155 | Qwixx | `qwixx` | TODO | — | — | — | — | — |  |  |

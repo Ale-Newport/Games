@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #152 Pig COMPLETE
+
+- Pig to 100 with one die, solved by value iteration over both scores and the turn total (10⁶
+  states, about 0.7 s once): the first player wins 53.06% with perfect play, as published. The
+  optimal player beat hold-at-20 in 53.9% of 4000 games; hints give the exact chance to win.
+- The first unit test of optimal against hold-at-20 used 400 games and failed by chance (197 wins);
+  it now plays 4000 fixed games.
+- Played in the in-app browser (mobile, Spanish): a hint (53%), three rolls to 12, a hold, and the
+  computer losing its turn on a 1.
+- Verified (actually run): lint, typecheck, 2723 unit tests (347 files), build, 514 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #151 Farkle COMPLETE
 
 - Farkle to 10 000 with the 500 opening, hot dice and a final round; the planner plays each turn by
