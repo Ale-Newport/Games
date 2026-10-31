@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #155 Colour Rows COMPLETE
+
+- Colour Rows (catalog id `qwixx`, original name, art and text): a roll-and-cross game for 1–4 with
+  four coloured rows, the white step for everyone and the colour step for the thrower, left-to-right
+  crossing, five-cross locks, penalties and triangular row scores. The planner values sheets by
+  crosses plus the crosses still expected (weighted by two-dice odds, factor 0.8 tuned over
+  0.3–1.2) and plans both steps of its throw: it beat the careful player in 923 of 1000 games and
+  averages 96.8 solo (careful 69.4).
+- Played in the in-app browser (mobile, Spanish): a hinted 11 in green, the computer's white-step
+  cross and the colour step lit for the thrower.
+- Verified (actually run): lint, typecheck, 2798 unit tests (353 files), build, 526 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #154 Shut the Box COMPLETE
 
 - Shut the Box (tiles 1–9, one die once the open tiles add up to 6 or less), solo or 2–4 players,

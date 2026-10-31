@@ -157,7 +157,8 @@
 - **#152 Pig — COMPLETE** (2026-11-07).
 - **#153 Summit Rush — COMPLETE** (2026-11-07).
 - **#154 Shut the Box — COMPLETE** (2026-11-07).
-- **Current game: #155 Colour Rows** (`qwixx`) — TODO (roll-and-cross; drafted in scratch).
+- **#155 Colour Rows — COMPLETE** (2026-11-07).
+- **Current game: #156 Block Dominoes** (`block-dominoes`) — TODO (shared domino core `shared/bones` for #156–#158; drafted in scratch).
 
 ## Resume instructions
 
