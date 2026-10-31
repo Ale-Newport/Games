@@ -160,6 +160,7 @@ import { manifest as summit } from './cant-stop/manifest';
 import { manifest as shutTheBox } from './shut-the-box/manifest';
 import { manifest as colourRows } from './qwixx/manifest';
 import { manifest as blockDominoes } from './block-dominoes/manifest';
+import { manifest as drawDominoes } from './draw-dominoes/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -318,6 +319,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: shutTheBox, load: () => import('./shut-the-box/index') },
   { manifest: colourRows, load: () => import('./qwixx/index') },
   { manifest: blockDominoes, load: () => import('./block-dominoes/index') },
+  { manifest: drawDominoes, load: () => import('./draw-dominoes/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

@@ -175,6 +175,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'shut-the-box': () => import('../../games/shut-the-box/ai-adapter').then((m) => m.bundle),
   qwixx: () => import('../../games/qwixx/ai-adapter').then((m) => m.bundle),
   'block-dominoes': () => import('../../games/block-dominoes/ai-adapter').then((m) => m.bundle),
+  'draw-dominoes': () => import('../../games/draw-dominoes/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

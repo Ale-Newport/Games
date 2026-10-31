@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 156 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 44
+**Complete:** 157 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 43
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -187,7 +187,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 154 | Shut the Box | `shut-the-box` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 155 | Qwixx | `qwixx` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 156 | Block Dominoes | `block-dominoes` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 157 | Draw Dominoes | `draw-dominoes` | TODO | — | — | — | — | — |  |  |
+| 157 | Draw Dominoes | `draw-dominoes` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 158 | All Fives Dominoes | `all-fives-dominoes` | TODO | — | — | — | — | — |  |  |
 | 159 | Mahjong Solitaire | `mahjong-solitaire` | TODO | — | — | — | — | — |  |  |
 | 160 | Riichi Mahjong | `riichi-mahjong` | TODO | — | — | — | — | — |  |  |
