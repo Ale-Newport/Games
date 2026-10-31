@@ -157,6 +157,7 @@ import { manifest as generala } from './generala/manifest';
 import { manifest as farkle } from './farkle/manifest';
 import { manifest as pig } from './pig/manifest';
 import { manifest as summit } from './cant-stop/manifest';
+import { manifest as shutTheBox } from './shut-the-box/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -312,6 +313,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: farkle, load: () => import('./farkle/index') },
   { manifest: pig, load: () => import('./pig/index') },
   { manifest: summit, load: () => import('./cant-stop/index') },
+  { manifest: shutTheBox, load: () => import('./shut-the-box/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
