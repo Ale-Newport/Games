@@ -1,0 +1,166 @@
+.score {
+  margin: 0;
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.score strong {
+  font-size: 1.5rem;
+}
+
+.arena {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+.hand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 110px;
+  padding: 10px;
+  border-radius: 16px;
+  background: rgb(255 255 255 / 0.06);
+  border: 3px solid transparent;
+  animation: pop 0.25s ease-out;
+}
+
+.hand svg {
+  width: 72px;
+  height: 72px;
+}
+
+.wait {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  font-size: 2.4rem;
+  font-weight: 900;
+  opacity: 0.4;
+}
+
+.won {
+  border-color: #30a46c;
+}
+
+.lost {
+  border-color: #e5484d;
+  opacity: 0.8;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.85);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hand {
+    animation: none;
+  }
+}
+
+.throws {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  width: min(100%, 520px);
+}
+
+.throw {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 84px;
+  padding: 8px 4px;
+  border: 2px solid rgb(255 255 255 / 0.15);
+  border-radius: 14px;
+  background: rgb(255 255 255 / 0.05);
+  color: inherit;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.throw svg {
+  width: 48px;
+  height: 48px;
+}
+
+.throw:hover {
+  border-color: #7c5cff;
+}
+
+.hinted {
+  border-color: #7c5cff;
+  box-shadow: 0 0 0 2px #7c5cff;
+}
+
+.read {
+  margin: 0;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.link {
+  margin-right: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #9d87ff;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.history {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  min-height: 24px;
+}
+
+.pair {
+  display: inline-flex;
+  padding: 1px;
+  border-radius: 6px;
+  border: 2px solid rgb(255 255 255 / 0.12);
+}
+
+.pair svg {
+  width: 18px;
+  height: 18px;
+}
+
+.stats {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  height: 64px;
+}
+
+.bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 46px;
+  height: 100%;
+  font-size: 0.68rem;
+}
+
+.barFill {
+  width: 18px;
+  min-height: 2px;
+  border-radius: 4px 4px 0 0;
+  background: #7c5cff;
+}

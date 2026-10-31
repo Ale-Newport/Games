@@ -165,6 +165,7 @@ import { manifest as allFivesDominoes } from './all-fives-dominoes/manifest';
 import { manifest as mahjongSolitaire } from './mahjong-solitaire/manifest';
 import { manifest as riichiMahjong } from './riichi-mahjong/manifest';
 import { manifest as tileRummy } from './tile-rummy/manifest';
+import { manifest as rockPaperScissors } from './rock-paper-scissors/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -328,6 +329,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: mahjongSolitaire, load: () => import('./mahjong-solitaire/index') },
   { manifest: riichiMahjong, load: () => import('./riichi-mahjong/index') },
   { manifest: tileRummy, load: () => import('./tile-rummy/index') },
+  { manifest: rockPaperScissors, load: () => import('./rock-paper-scissors/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

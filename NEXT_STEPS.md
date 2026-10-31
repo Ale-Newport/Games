@@ -164,7 +164,8 @@
 - **#159 Mahjong Solitaire — COMPLETE** (2026-11-07).
 - **#160 Riichi Mahjong — COMPLETE** (2026-11-07).
 - **#161 Tile Rummy — COMPLETE** (2026-11-07).
-- **Current game: #162 Rock Paper Scissors** (`rock-paper-scissors`) — TODO (pattern-learning opponents).
+- **#162 Rock Paper Scissors — COMPLETE** (2026-11-07).
+- **Current game: #163 Rock Paper Scissors Lizard Wizard** (`rpsls`) — TODO (five throws on the shared core; original cast).
 
 ## Resume instructions
 

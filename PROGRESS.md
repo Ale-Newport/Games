@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #162 Rock Paper Scissors COMPLETE
+
+- New shared core `shared/throws` (duel engine with a hidden pending throw, readers, environment,
+  table, original SVG throws) for #162–#163. Readers: coin flip, counter (frequency), pattern
+  reader (Markov on two rounds) and a mind reader (an ensemble with second-guessing shifts).
+- The first mind reader skipped empty predictors, so its candidates changed places between rounds
+  and their scores were mixed up (48% against the pattern reader); with fixed positions it wins 91%
+  against the pattern reader, 99% against the counter and 50% against random throws.
+- Played in the in-app browser (mobile, Spanish): four rocks in a row, the computer's paper after
+  the first, and its revealed read ("its throw beats Rock").
+- Verified (actually run): lint, typecheck, 2970 unit tests (370 files), build, 554 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #161 Tile Rummy COMPLETE
 
 - Tile Rummy (generic name, original art): 106 tiles with jokers, plays validated as whole tables,
