@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #159 Mahjong Solitaire COMPLETE
+
+- Mahjong solitaire on two original layouts (Crossroads, 84 tiles; Pyramid, 144) with original SVG
+  tile faces (`shared/mjtiles/Face.tsx`, also for #160). Deals are built solvable by removing free
+  pairs from the layout in turn (the tests replay that order to clear every deal), shuffles redeal
+  solvably, undo and hints. The strategist, which sees only uncovered faces, cleared 154 of 200
+  Crossroads deals without a shuffle (random play: 51) and 189 with shuffles.
+- The first deal builder gave a pair's second tile that was only free once the first had gone; both
+  are now chosen free together.
+- Played in the in-app browser (mobile, Spanish) on the Pyramid: a hinted pair of 1-dots removed, a
+  blocked tile refused with its reason.
+- Verified (actually run): lint, typecheck, 2895 unit tests (362 files), build, 542 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #158 All Fives Dominoes COMPLETE
 
 - All Fives Dominoes to 150 on the shared domino core: a spinner on the opening double, multiples of

@@ -162,6 +162,7 @@ import { manifest as colourRows } from './qwixx/manifest';
 import { manifest as blockDominoes } from './block-dominoes/manifest';
 import { manifest as drawDominoes } from './draw-dominoes/manifest';
 import { manifest as allFivesDominoes } from './all-fives-dominoes/manifest';
+import { manifest as mahjongSolitaire } from './mahjong-solitaire/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -322,6 +323,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: blockDominoes, load: () => import('./block-dominoes/index') },
   { manifest: drawDominoes, load: () => import('./draw-dominoes/index') },
   { manifest: allFivesDominoes, load: () => import('./all-fives-dominoes/index') },
+  { manifest: mahjongSolitaire, load: () => import('./mahjong-solitaire/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
