@@ -402,7 +402,7 @@ export function BonesTable({ services, rules, prefix, strings, onGameEnd }: Bone
             <strong>
               {name(p)} · {g.scores[p]}
             </strong>
-            <small>{t('tiles', { n: h.length })}</small>
+            <small>{h.length === 1 ? t('tiles.one') : t('tiles', { n: h.length })}</small>
           </span>
         ))}
       </div>

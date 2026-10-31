@@ -55,7 +55,9 @@ describe('Block Dominoes UI', () => {
     }
     expect(played).toBeGreaterThan(0);
     expect(screen.getByTestId('bd-reveal')).toBeTruthy();
-    expect(screen.getByTestId('bd-message').textContent).toMatch(/plays out|Blocked|wins the game/);
+    expect(screen.getByTestId('bd-message').textContent).toMatch(
+      /play(s)? out|Blocked|win(s)? the game/,
+    );
   });
 
   it('watch mode plays a computer game', async () => {

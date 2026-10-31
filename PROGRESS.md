@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #158 All Fives Dominoes COMPLETE
+
+- All Fives Dominoes to 150 on the shared domino core: a spinner on the opening double, multiples of
+  five scored at once (doubles at an end and a one-sided spinner counting whole), and hand bonuses
+  rounded to five. The planner beat the heavy player in 72 of 100 two-player games and won 45 of 100
+  four-player games against three heavy players.
+- Watched a computer game in the in-app browser (mobile, Spanish): the spinner opened its top arm
+  and a 2–2 scored 10. Fixed "1 fichas" on the score chips, and the hand-end check of the domino
+  UI tests, which only matched the computer's wording.
+- Verified (actually run): lint, typecheck, 2873 unit tests (360 files), build, 538 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #157 Draw Dominoes COMPLETE
 
 - Draw Dominoes to 100 on the shared domino core: seven tiles each for two players, five for three

@@ -160,7 +160,8 @@
 - **#155 Colour Rows — COMPLETE** (2026-11-07).
 - **#156 Block Dominoes — COMPLETE** (2026-11-07).
 - **#157 Draw Dominoes — COMPLETE** (2026-11-07).
-- **Current game: #158 All Fives Dominoes** (`all-fives-dominoes`) — TODO (on the shared domino core; drafted in scratch).
+- **#158 All Fives Dominoes — COMPLETE** (2026-11-07).
+- **Current game: #159 Mahjong Solitaire** (`mahjong-solitaire`) — TODO (solvable deals on original layouts; drafted in scratch).
 
 ## Resume instructions
 
