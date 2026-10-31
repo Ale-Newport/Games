@@ -163,7 +163,8 @@
 - **#158 All Fives Dominoes — COMPLETE** (2026-11-07).
 - **#159 Mahjong Solitaire — COMPLETE** (2026-11-07).
 - **#160 Riichi Mahjong — COMPLETE** (2026-11-07).
-- **Current game: #161 Tile Rummy** (`tile-rummy`) — TODO (numbered-tile rummy with table rearrangement; generic name).
+- **#161 Tile Rummy — COMPLETE** (2026-11-07).
+- **Current game: #162 Rock Paper Scissors** (`rock-paper-scissors`) — TODO (pattern-learning opponents).
 
 ## Resume instructions
 
