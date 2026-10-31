@@ -2,6 +2,21 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #156 Block Dominoes COMPLETE
+
+- New shared domino core `shared/bones` (engine, players, environment, table, SVG tiles) for
+  #156–#158: double-six deals fixed by the seed, the opening double, two-arm lines and the all-fives
+  spinner, drawing and passing, blocked hands, hidden hands in observations and known voids.
+- Block Dominoes to 50: the planner (determinized Monte Carlo over 160 deals consistent with what it
+  has seen) beat the heavy player in 88 of 100 two-player games and won 68 of 100 four-player games
+  against three heavy players.
+- The first heavy player evaluated all-fives plays by applying them to its hidden-hand view, which
+  crashed when a play ended the hand; it now scores the layout directly.
+- Played in the in-app browser (mobile, Spanish): a hinted 0–3 on a chosen end and the computer's
+  reply.
+- Verified (actually run): lint, typecheck, 2829 unit tests (356 files), build, 530 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #155 Colour Rows COMPLETE
 
 - Colour Rows (catalog id `qwixx`, original name, art and text): a roll-and-cross game for 1–4 with

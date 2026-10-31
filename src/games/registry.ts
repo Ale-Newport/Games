@@ -159,6 +159,7 @@ import { manifest as pig } from './pig/manifest';
 import { manifest as summit } from './cant-stop/manifest';
 import { manifest as shutTheBox } from './shut-the-box/manifest';
 import { manifest as colourRows } from './qwixx/manifest';
+import { manifest as blockDominoes } from './block-dominoes/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -316,6 +317,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: summit, load: () => import('./cant-stop/index') },
   { manifest: shutTheBox, load: () => import('./shut-the-box/index') },
   { manifest: colourRows, load: () => import('./qwixx/index') },
+  { manifest: blockDominoes, load: () => import('./block-dominoes/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
