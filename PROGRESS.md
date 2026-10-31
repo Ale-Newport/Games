@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #150 Generala COMPLETE
+
+- Generala on the shared scorecard core: eleven boxes, the three straights, served bonuses, double
+  generala and the instant win of a served generala; the planner stands early on served hands and
+  won 146 of 200 games against the simple player.
+- Played in the in-app browser (mobile, Spanish): hinted turns to a full house and a four of a kind.
+- Verified (actually run): lint, typecheck, 2691 unit tests (343 files), build, 506 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #149 Five Dice COMPLETE
 
 - A shared scorecard dice core (`src/games/shared/scorecard`): an exact turn planner over the 252
