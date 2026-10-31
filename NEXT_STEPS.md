@@ -155,7 +155,8 @@
 - **#150 Generala — COMPLETE** (2026-11-07).
 - **#151 Farkle — COMPLETE** (2026-11-07).
 - **#152 Pig — COMPLETE** (2026-11-07).
-- **Current game: #153 Summit Rush** (`cant-stop`) — TODO (rule of 28 and exact bust chances; drafted in scratch).
+- **#153 Summit Rush — COMPLETE** (2026-11-07).
+- **Current game: #154 Shut the Box** (`shut-the-box`) — TODO (solved over 512 boxes; drafted in scratch).
 
 ## Resume instructions
 
