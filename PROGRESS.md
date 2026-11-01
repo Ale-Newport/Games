@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #173 Wraparound Snake COMPLETE
+
+- The snake without walls (the edges lead round), on the core shared with #172: a grey block lands
+  on the board every five apples, a golden fruit appears now and then for a few seconds, and a
+  one-minute sprint mode joins the endless one.
+- Played in the in-app browser (mobile, Spanish): a pixel-reading script steered with the real arrow
+  keys through two sprints — wrapping over the edges, eight blocks after 44 apples, the golden fruit
+  and its achievement, the clock counting down, and a crash into a block at length 47 (1340 points).
+- Verified (actually run): lint, typecheck, 3148 unit tests (394 files), build, 598 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #172 Classic Snake COMPLETE
 
 - The classic snake on a 20 × 20 board, with walls: apples grow it and score more as it lengthens, and

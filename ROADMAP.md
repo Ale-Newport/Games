@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 172 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 28
+**Complete:** 173 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 27
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -208,7 +208,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 170 | Galaxian-Style Shooter | `diving-swarm` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 171 | Asteroids | `asteroids` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 172 | Classic Snake | `snake` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 173 | Wraparound Snake | `wraparound-snake` | TODO | — | — | — | — | — |  |  |
+| 173 | Wraparound Snake | `wraparound-snake` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 174 | Guideline-Style Tetris | `falling-blocks` | TODO | — | — | — | — | — |  |  |
 | 175 | NES-Style Tetris | `falling-blocks-classic` | TODO | — | — | — | — | — |  |  |
 | 176 | Classic Maze-Chase Game | `maze-chase` | TODO | — | — | — | — | — |  |  |
