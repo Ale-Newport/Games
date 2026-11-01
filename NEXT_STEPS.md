@@ -168,7 +168,8 @@
 - **#163 Rock Paper Scissors Lizard Wizard — COMPLETE** (2026-11-07).
 - **#164 Naval Battle — COMPLETE** (2026-11-07).
 - **#165 Memory Pairs — COMPLETE** (2026-11-07).
-- **Current game: #166 Pong** (`pong`) — TODO (first arcade game on the new shared real-time shell `shared/arcade`; drafted in scratch).
+- **#166 Pong — COMPLETE** (2026-11-07).
+- **Current game: #167 Breakout** (`breakout`) — TODO (shared brick core `shared/bricks` with #168; drafted in scratch).
 
 ## Resume instructions
 

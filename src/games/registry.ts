@@ -169,6 +169,7 @@ import { manifest as rockPaperScissors } from './rock-paper-scissors/manifest';
 import { manifest as rpsls } from './rpsls/manifest';
 import { manifest as navalBattle } from './naval-battle/manifest';
 import { manifest as memoryPairs } from './memory-pairs/manifest';
+import { manifest as pong } from './pong/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -336,6 +337,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: rpsls, load: () => import('./rpsls/index') },
   { manifest: navalBattle, load: () => import('./naval-battle/index') },
   { manifest: memoryPairs, load: () => import('./memory-pairs/index') },
+  { manifest: pong, load: () => import('./pong/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
