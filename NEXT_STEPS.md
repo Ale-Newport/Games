@@ -165,7 +165,8 @@
 - **#160 Riichi Mahjong — COMPLETE** (2026-11-07).
 - **#161 Tile Rummy — COMPLETE** (2026-11-07).
 - **#162 Rock Paper Scissors — COMPLETE** (2026-11-07).
-- **Current game: #163 Rock Paper Scissors Lizard Wizard** (`rpsls`) — TODO (five throws on the shared core; original cast).
+- **#163 Rock Paper Scissors Lizard Wizard — COMPLETE** (2026-11-07).
+- **Current game: #164 Naval Battle** (`naval-battle`) — TODO (hidden fleets; hunter and probability-density players; drafted in scratch).
 
 ## Resume instructions
 

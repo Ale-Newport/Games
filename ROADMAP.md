@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 162 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 38
+**Complete:** 163 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 37
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -193,7 +193,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 160 | Riichi Mahjong | `riichi-mahjong` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 161 | Tile Rummy | `tile-rummy` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 162 | Rock Paper Scissors | `rock-paper-scissors` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 163 | Rock Paper Scissors Lizard Spock | `rpsls` | TODO | — | — | — | — | — |  |  |
+| 163 | Rock Paper Scissors Lizard Spock | `rpsls` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 164 | Battleship | `naval-battle` | TODO | — | — | — | — | — |  |  |
 | 165 | Memory Pairs | `memory-pairs` | TODO | — | — | — | — | — |  |  |
 

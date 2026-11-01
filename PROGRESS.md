@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #163 Rock Paper Scissors Lizard Wizard COMPLETE
+
+- The five-throw extension on the shared `shared/throws` core with an original cast (a wizard in
+  the fifth place: it melts rock and enchants scissors; paper binds it; the lizard bites it). Each
+  throw beats two and loses to two; the mind reader wins 98% of rounds against the counter, 75%
+  against the pattern reader and 51% against random throws.
+- Played in the in-app browser (mobile, Spanish): a wizard and a lizard, the verbs of both rounds
+  shown, the throw counts updating.
+- Verified (actually run): lint, typecheck, 2992 unit tests (372 files), build, 558 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #162 Rock Paper Scissors COMPLETE
 
 - New shared core `shared/throws` (duel engine with a hidden pending throw, readers, environment,

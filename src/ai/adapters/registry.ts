@@ -184,6 +184,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'tile-rummy': () => import('../../games/tile-rummy/ai-adapter').then((m) => m.bundle),
   'rock-paper-scissors': () =>
     import('../../games/rock-paper-scissors/ai-adapter').then((m) => m.bundle),
+  rpsls: () => import('../../games/rpsls/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
