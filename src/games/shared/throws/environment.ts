@@ -98,7 +98,8 @@ export function duelEnv(
     version,
     rulesetId,
     info: {
-      kind: 'turn-based',
+      // Simultaneous throws as sequential commitment: seat 1 never sees seat 0's pending throw.
+      kind: 'simultaneous',
       minPlayers: 2,
       maxPlayers: 2,
       stochastic: false,

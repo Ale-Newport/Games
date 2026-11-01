@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #165 Memory Pairs COMPLETE
+
+- Memory Pairs (concentration) on 4 × 4, 4 × 6 and 6 × 6 grids with original faces, solo or against
+  a computer that remembers the last 6 or 14 cards turned over, or all of them. Solo on 4 × 4 the
+  perfect memory needs 12.4 turns on average, the forgetful one 16.2; perfect beat forgetful in 349
+  of 400 games (27 ties).
+- The throw duels (#162, #163) now declare their environment kind as `simultaneous`, the documented
+  convention for sequential commitment with a hidden pending throw.
+- Played in the in-app browser (mobile, Spanish) against the attentive computer: a missed pair, then
+  the computer's turn.
+- Verified (actually run): lint, typecheck, 3032 unit tests (376 files), build, 566 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #164 Naval Battle COMPLETE
 
 - Naval Battle (generic name, original art): 10 × 10 hidden fleets of 5-4-3-3-2, manual or random
