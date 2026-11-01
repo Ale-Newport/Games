@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #175 Falling Blocks Classic COMPLETE
+
+- The 8-bit way on the core shared with #174: a nearly-uniform draw, one piece of preview, no hold,
+  soft drop only, no wall kicks, slower auto-repeat, the classic gravity table and scoring; start at
+  level 0, 9 or 18. The planner was still playing after 30 minutes from level 0 (about 1120 lines).
+- Played in the in-app browser (mobile, Spanish): rotated and moved at level 18 until the well filled
+  up. Fixed: the "Level 10" achievement unlocked just by starting at level 18; it now needs the
+  level climbed by clearing lines.
+- Verified (actually run): lint, typecheck, 3174 unit tests (399 files), build, 606 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #174 Falling Blocks COMPLETE
 
 - A modern falling-blocks game with an original name: seven-piece bags, five pieces of preview,

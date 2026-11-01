@@ -178,6 +178,7 @@ import { manifest as spaceRocks } from './asteroids/manifest';
 import { manifest as classicSnake } from './snake/manifest';
 import { manifest as wraparoundSnake } from './wraparound-snake/manifest';
 import { manifest as fallingBlocks } from './falling-blocks/manifest';
+import { manifest as fallingBlocksClassic } from './falling-blocks-classic/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -354,6 +355,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: classicSnake, load: () => import('./snake/index') },
   { manifest: wraparoundSnake, load: () => import('./wraparound-snake/index') },
   { manifest: fallingBlocks, load: () => import('./falling-blocks/index') },
+  { manifest: fallingBlocksClassic, load: () => import('./falling-blocks-classic/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
