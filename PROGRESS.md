@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #168 Enhanced Brick Breaker COMPLETE
+
+- Five designed walls on the shared brick core: one-, two- and three-hit bricks (coloured and
+  numbered), unbreakable gold blocks, and capsules (wide paddle, multi-ball, slow, laser, extra
+  life). The planner averaged 1998 points and cleared all five walls in 33 of 40 runs; the follower
+  1658 and none within 15 minutes (its steep rallies are slow, not stuck).
+- Watched the AI in the in-app browser (mobile, Spanish): numbered two-hit bricks, a caught extra
+  life.
+- Verified (actually run): lint, typecheck, 3080 unit tests (383 files), build, 578 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #167 Breakout COMPLETE
 
 - New shared brick core `shared/bricks` (simulation, rule sets, players, drawing) for #167–#168.
