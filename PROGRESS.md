@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #164 Naval Battle COMPLETE
+
+- Naval Battle (generic name, original art): 10 × 10 hidden fleets of 5-4-3-3-2, manual or random
+  placement, alternating shots with miss / hit / sunk. The analyst (probability density over the
+  placements of the ships still afloat) sinks a fleet in 45.3 shots on average, the hunter
+  (checkerboard search, then closing in) in 51.6, random fire in 95.3; analyst beat hunter 203/300.
+- Played in the in-app browser (mobile, Spanish): a 5-ship placed across row A, a 4-ship rotated
+  upright, a random fleet, a hinted hit on F5 and the computer's reply. Your shot's result now stays
+  on screen with the computer's answer after it.
+- Verified (actually run): lint, typecheck, 3006 unit tests (374 files), build, 562 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #163 Rock Paper Scissors Lizard Wizard COMPLETE
 
 - The five-throw extension on the shared `shared/throws` core with an original cast (a wizard in

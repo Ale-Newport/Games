@@ -1,0 +1,132 @@
+.heading {
+  margin: 0;
+}
+
+.status {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-muted, #9aa0b4);
+}
+
+.ships {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.shipBtn {
+  padding: 4px 10px;
+  border: 2px solid rgb(255 255 255 / 0.2);
+  border-radius: 999px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 0.8rem;
+}
+
+.current {
+  border-color: #f1c40f;
+}
+
+.placed {
+  background: rgb(125 140 160 / 0.35);
+}
+
+.gridWrap {
+  width: min(100%, 420px);
+}
+
+.small {
+  width: min(70%, 300px);
+}
+
+.gridLabel {
+  margin-bottom: 3px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted, #9aa0b4);
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.7fr repeat(10, 1fr);
+  gap: 2px;
+  padding: 6px;
+  border-radius: 12px;
+  background: #13324d;
+}
+
+.axis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  color: #8fb3d1;
+}
+
+.cell {
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: #1e4d73;
+  position: relative;
+}
+
+.cell:disabled {
+  cursor: default;
+}
+
+.open {
+  cursor: crosshair;
+}
+
+.open:hover {
+  background: #2a6496;
+}
+
+.ship {
+  background: #7d8ca0;
+}
+
+.reveal {
+  background: rgb(125 140 160 / 0.55);
+}
+
+.miss::after,
+.hit::after,
+.sunk::after {
+  content: '';
+  position: absolute;
+  inset: 30%;
+  border-radius: 50%;
+}
+
+.miss::after {
+  background: #cfe3f2;
+  opacity: 0.7;
+}
+
+.hit {
+  background: #6b2a2a;
+}
+
+.hit::after {
+  background: #ff6b4a;
+}
+
+.sunk {
+  background: #3a1717;
+}
+
+.sunk::after {
+  inset: 18%;
+  background: #e5484d;
+}
+
+.hinted {
+  box-shadow: inset 0 0 0 2px #f1c40f;
+}
