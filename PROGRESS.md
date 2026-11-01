@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #170 Diving Swarm COMPLETE
+
+- A swarm shooter with an original name and sprites: 36 fliers swaying in formation, looping dives
+  that end in a run at your ship with aimed bullets, commanders diving with their guards, double
+  points for divers, quicker swarms. The pilot (dodges bullets and divers, hunts divers first)
+  averaged 6426 points and nearly three swarms; standing still scores nothing.
+- Watched the AI in the in-app browser (mobile, Spanish): a diver coming down firing at the ship.
+- Verified (actually run): lint, typecheck, 3108 unit tests, build, 584 of 586 Playwright tests; the two
+  failures were this game's stand-still spec on a seed that lasts 87 s (budget 80 s); moved to a seed
+  that lasts 31 s and re-run: 4 of 4 Diving Swarm specs green.
+
 ## 2026-11-07 — Session 1: #169 Invaders from Above COMPLETE
 
 - A fixed shooter in the classic mould with an original name and pixel sprites: a 55-invader
