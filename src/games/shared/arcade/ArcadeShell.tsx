@@ -6,6 +6,7 @@
  * achievements; a save of an interrupted run.
  */
 import {
+  Archive,
   ArrowDown,
   ArrowLeft,
   ArrowRight,
@@ -14,6 +15,7 @@ import {
   Pause,
   Play,
   RotateCcw,
+  Sparkles,
   Zap,
 } from 'lucide-react';
 import {
@@ -59,6 +61,10 @@ const KEYS: Record<string, Control> = {
   Shift: 'alt',
   x: 'alt',
   X: 'alt',
+  z: 'ccw',
+  Z: 'ccw',
+  c: 'hold',
+  C: 'hold',
 };
 
 const ICONS: Record<Control, typeof ArrowLeft> = {
@@ -67,7 +73,9 @@ const ICONS: Record<Control, typeof ArrowLeft> = {
   up: ArrowUp,
   down: ArrowDown,
   fire: Zap,
-  alt: RotateCcw,
+  alt: Sparkles,
+  ccw: RotateCcw,
+  hold: Archive,
 };
 
 export function ArcadeShell<S, A extends string>({

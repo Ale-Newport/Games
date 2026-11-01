@@ -176,7 +176,8 @@
 - **#171 Space Rocks — COMPLETE** (2026-11-07).
 - **#172 Classic Snake — COMPLETE** (2026-11-07).
 - **#173 Wraparound Snake — COMPLETE** (2026-11-07).
-- **Current game: #174 Falling Blocks** (`falling-blocks`) — TODO (shared blocks core with #175; drafted in scratch).
+- **#174 Falling Blocks — COMPLETE** (2026-11-07).
+- **Current game: #175 Falling Blocks Classic** (`falling-blocks-classic`) — TODO (on `src/games/shared/blocks`).
 
 ## Resume instructions
 

@@ -9,7 +9,7 @@ import type { GameResult } from '../../../core/profiles/profile-store';
 import type { Dictionary, Locale } from '../../../core/i18n';
 
 /** Held controls, from keys, touch buttons or a pointer. */
-export type Control = 'left' | 'right' | 'up' | 'down' | 'fire' | 'alt';
+export type Control = 'left' | 'right' | 'up' | 'down' | 'fire' | 'alt' | 'ccw' | 'hold';
 
 export interface ArcadeOption {
   id: string;
