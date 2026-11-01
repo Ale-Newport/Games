@@ -174,6 +174,7 @@ import { manifest as breakout } from './breakout/manifest';
 import { manifest as brickBreaker } from './brick-breaker/manifest';
 import { manifest as invaders } from './invaders/manifest';
 import { manifest as divingSwarm } from './diving-swarm/manifest';
+import { manifest as spaceRocks } from './asteroids/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -346,6 +347,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: brickBreaker, load: () => import('./brick-breaker/index') },
   { manifest: invaders, load: () => import('./invaders/index') },
   { manifest: divingSwarm, load: () => import('./diving-swarm/index') },
+  { manifest: spaceRocks, load: () => import('./asteroids/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

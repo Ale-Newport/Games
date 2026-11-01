@@ -173,7 +173,8 @@
 - **#168 Enhanced Brick Breaker — COMPLETE** (2026-11-07).
 - **#169 Invaders from Above — COMPLETE** (2026-11-07).
 - **#170 Diving Swarm — COMPLETE** (2026-11-07).
-- **Current game: #171 Space Rocks** (`asteroids`) — TODO (vector shooter; drafted in scratch).
+- **#171 Space Rocks — COMPLETE** (2026-11-07).
+- **Current game: #172 Classic Snake** (`snake`) — TODO (shared snake core with #173; drafted in scratch).
 
 ## Resume instructions
 

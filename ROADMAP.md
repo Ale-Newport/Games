@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 170 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 30
+**Complete:** 171 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 29
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -206,7 +206,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 168 | Enhanced Brick Breaker | `brick-breaker` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 169 | Space Invaders-Style Shooter | `invaders` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 170 | Galaxian-Style Shooter | `diving-swarm` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 171 | Asteroids | `asteroids` | TODO | — | — | — | — | — |  |  |
+| 171 | Asteroids | `asteroids` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 172 | Classic Snake | `snake` | TODO | — | — | — | — | — |  |  |
 | 173 | Wraparound Snake | `wraparound-snake` | TODO | — | — | — | — | — |  |  |
 | 174 | Guideline-Style Tetris | `falling-blocks` | TODO | — | — | — | — | — |  |  |

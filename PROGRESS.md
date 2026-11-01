@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #171 Space Rocks COMPLETE
+
+- A vector space shooter on a wrap-around field with an original name and art: a ship with
+  momentum and drag, four short-lived shots, rocks splitting in three sizes, saucers that aim at
+  you, hyperspace, extra ships every 10 000. The pilot (leads its shots, thrusts out of collisions,
+  jumps only when cornered) averaged 8283 points and 2.7 fields; a spinning turret 2428.
+- Watched the AI in the in-app browser (mobile, Spanish): rocks split, the ship drawn on both edges
+  as it wraps.
+- Verified (actually run): lint, typecheck, 3122 unit tests (389 files), build, 590 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #170 Diving Swarm COMPLETE
 
 - A swarm shooter with an original name and sprites: 36 fliers swaying in formation, looping dives
