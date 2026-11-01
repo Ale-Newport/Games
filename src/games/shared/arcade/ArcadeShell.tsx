@@ -113,6 +113,8 @@ export function ArcadeShell<S, A extends string>({
   const [runId, setRunId] = useState(0);
   const stateRef = useRef<S | null>(null);
   const heldRef = useRef(new Set<Control>());
+  // Presses since the last step, so a tap shorter than one step still counts.
+  const tappedRef = useRef(new Set<Control>());
   const pointerRef = useRef<{ x: number; y: number } | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const pausedRef = useLatest(paused);
@@ -141,6 +143,7 @@ export function ArcadeShell<S, A extends string>({
     if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     stateRef.current = state;
     heldRef.current.clear();
+    tappedRef.current.clear();
     setOptions(opts);
     setMode(m);
     setPaused(false);
@@ -180,7 +183,12 @@ export function ArcadeShell<S, A extends string>({
         const action =
           modeRef.current === 'watch'
             ? watchPolicy(s)
-            : def.control(s, heldRef.current, pointerRef.current);
+            : def.control(
+                s,
+                new Set([...heldRef.current, ...tappedRef.current]),
+                pointerRef.current,
+              );
+        tappedRef.current.clear();
         const next = def.step(s, action);
         stateRef.current = next;
         for (const k of def.sounds(s, next)) {
@@ -233,6 +241,7 @@ export function ArcadeShell<S, A extends string>({
       const c = KEYS[e.key];
       if (c && modeRef.current === 'play') {
         heldRef.current.add(c);
+        tappedRef.current.add(c);
         e.preventDefault();
       } else if (e.key === 'p' || e.key === 'P' || e.key === 'Escape') {
         setPaused((p) => !p);
@@ -344,8 +353,10 @@ export function ArcadeShell<S, A extends string>({
   }
 
   const press = (c: Control, on: boolean) => {
-    if (on) heldRef.current.add(c);
-    else heldRef.current.delete(c);
+    if (on) {
+      heldRef.current.add(c);
+      tappedRef.current.add(c);
+    } else heldRef.current.delete(c);
   };
 
   return (

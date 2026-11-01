@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #172 Classic Snake COMPLETE
+
+- The classic snake on a 20 × 20 board, with walls: apples grow it and score more as it lengthens, and
+  it quickens every four apples (150 ms a cell down to 50). Shares its core with #173. The pathfinder
+  (breadth-first search to the apple, kept only if it can still reach its tail) averaged length 105
+  and 7145 points; greedy traps itself at length 31.
+- Played in the in-app browser (mobile, Spanish): a pixel-reading script steered with the real arrow
+  keys to 15 apples, then crashes, the achievement toast and the AI watch mode. Fixed in the arcade
+  shell: a tap on an on-screen arrow shorter than one step was lost; presses are now kept until the
+  next step reads them.
+- Verified (actually run): lint, typecheck, 3138 unit tests (392 files), build, 594 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #171 Space Rocks COMPLETE
 
 - A vector space shooter on a wrap-around field with an original name and art: a ship with
