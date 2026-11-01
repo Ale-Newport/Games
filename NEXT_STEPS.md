@@ -169,7 +169,8 @@
 - **#164 Naval Battle — COMPLETE** (2026-11-07).
 - **#165 Memory Pairs — COMPLETE** (2026-11-07).
 - **#166 Pong — COMPLETE** (2026-11-07).
-- **Current game: #167 Breakout** (`breakout`) — TODO (shared brick core `shared/bricks` with #168; drafted in scratch).
+- **#167 Breakout — COMPLETE** (2026-11-07).
+- **Current game: #168 Enhanced Brick Breaker** (`brick-breaker`) — TODO (on the shared brick core; drafted in scratch).
 
 ## Resume instructions
 

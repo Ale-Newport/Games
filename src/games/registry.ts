@@ -170,6 +170,7 @@ import { manifest as rpsls } from './rpsls/manifest';
 import { manifest as navalBattle } from './naval-battle/manifest';
 import { manifest as memoryPairs } from './memory-pairs/manifest';
 import { manifest as pong } from './pong/manifest';
+import { manifest as breakout } from './breakout/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -338,6 +339,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: navalBattle, load: () => import('./naval-battle/index') },
   { manifest: memoryPairs, load: () => import('./memory-pairs/index') },
   { manifest: pong, load: () => import('./pong/index') },
+  { manifest: breakout, load: () => import('./breakout/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
