@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 183 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 17
+**Complete:** 184 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 16
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -219,7 +219,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 181 | Classic Side-Scrolling Platformer | `platformer` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 182 | Precision Platformer | `precision-platformer` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 183 | Flappy Bird-Style Game | `flappy` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 184 | Lunar Lander | `lunar-lander` | TODO | — | — | — | — | — |  |  |
+| 184 | Lunar Lander | `lunar-lander` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 185 | Missile Command | `missile-command` | TODO | — | — | — | — | — |  |  |
 | 186 | Centipede-Style Arcade Game | `centipede` | TODO | — | — | — | — | — |  |  |
 | 187 | Isometric Tile-Hopping Arcade Game | `tile-hopper` | TODO | — | — | — | — | — |  |  |

@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #184 Moon Touchdown COMPLETE
+
+- A lunar landing game with an original name and look: gravity, turning and thrust along the axis,
+  1500 fuel, generated ground each round with ×5/×3/×2 pads (narrower pays more), safe-touchdown
+  limits on fall, drift and tilt shown by green/red instruments, crashes costing 200 fuel, wrapping
+  sky. The pilot averaged 8.4 touchdowns and 2515 points; the braker 0.5 touchdowns.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script steered to the nearest pad with real tilt-and-burn key pulses and set down
+  softly on the ×5 pad (300 points); an earlier version without pad-seeking crashed on rough ground
+  with green instruments, as the rules say it should.
+- Verified (actually run): lint, typecheck, 3326 unit tests (424 files), build, 642 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #183 Puffin Flap COMPLETE
 
 - A one-button flying game with an original name, puffin and sea stacks, in a portrait view: hover
