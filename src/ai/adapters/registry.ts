@@ -210,6 +210,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   flappy: () => import('../../games/flappy/ai-adapter').then((m) => m.bundle),
   'lunar-lander': () => import('../../games/lunar-lander/ai-adapter').then((m) => m.bundle),
   'missile-command': () => import('../../games/missile-command/ai-adapter').then((m) => m.bundle),
+  centipede: () => import('../../games/centipede/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

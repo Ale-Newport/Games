@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 185 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 15
+**Complete:** 186 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 14
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -221,7 +221,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 183 | Flappy Bird-Style Game | `flappy` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 184 | Lunar Lander | `lunar-lander` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 185 | Missile Command | `missile-command` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 186 | Centipede-Style Arcade Game | `centipede` | TODO | — | — | — | — | — |  |  |
+| 186 | Centipede-Style Arcade Game | `centipede` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 187 | Isometric Tile-Hopping Arcade Game | `tile-hopper` | TODO | — | — | — | — | — |  |  |
 | 188 | Boulder Dash-Style Game | `boulder-dig` | TODO | — | — | — | — | — |  |  |
 | 189 | Bomberman-Style Arena Game | `bomber-arena` | TODO | — | — | — | — | — |  |  |

@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #186 Garden Guard COMPLETE
+
+- A crawler shooter with an original name and look: a twelve-segment caterpillar winding down a
+  garden of three-hit stones, splitting into stones and new heads when hit, a beetle zigzagging
+  through the gardener's patch, acorns when the patch is bare, faster waves with loose heads. Hold a
+  finger to walk towards it while squirting. The gunner reached wave 11.3 on average (18 578 points);
+  the sprinkler 1.9.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden) by holding the
+  real pointer on the canvas and following the lowest segment: the first caterpillar cleared, wave 2
+  reached with 2961 points, pieces with their own heads and the beetle in the patch.
+- Verified (actually run): lint, typecheck, 3365 unit tests (430 files), build, 650 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #185 City Shield COMPLETE
 
 - A city-defence game with an original name and look: rockets in waves (splitting from wave 3) on

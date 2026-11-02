@@ -188,7 +188,8 @@
 - **#183 Puffin Flap — COMPLETE** (2026-11-07).
 - **#184 Moon Touchdown — COMPLETE** (2026-11-07).
 - **#185 City Shield — COMPLETE** (2026-11-07).
-- **Current game: #186 Centipede-style game** (`centipede`) — TODO.
+- **#186 Garden Guard — COMPLETE** (2026-11-07).
+- **Current game: #187 Isometric tile-hopper** (`tile-hopper`) — TODO.
 
 ## Resume instructions
 
