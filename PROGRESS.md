@@ -2,6 +2,21 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #182 Spike Hop COMPLETE
+
+- A precision platformer with an original name, hero and eight single-screen rooms on the shared
+  tile physics: variable jumps, wall slides and wall jumps, one air dash in eight directions
+  (refilled on landing, shown by a lantern), springs, floor and ceiling spikes with instant
+  respawn, a death count and a ten-minute limit. The planner (a beam search; the rooms hold no
+  chance) cleared all eight rooms in 22 s without dying; the hopper stalls at the chimney.
+- Fixed while testing: a spring only threw the hero high if jump happened to be held; the rise from
+  a spring now always uses the light gravity.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script ran, jumped and dashed with the real keys through room 1 and died 22 times
+  on room 2's stairway — respawns, sparks and the death counter all working.
+- Verified (actually run): lint, typecheck, 3295 unit tests (418 files), build, 634 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #181 Sunny Trail COMPLETE
 
 - A side-scrolling platformer with an original hero and three levels built from feature lists, on a

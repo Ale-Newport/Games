@@ -184,7 +184,8 @@
 - **#179 Endless Crossing — COMPLETE** (2026-11-07).
 - **#180 Girder Climb — COMPLETE** (2026-11-07).
 - **#181 Sunny Trail — COMPLETE** (2026-11-07).
-- **Current game: #182 Precision Platformer** (`precision-platformer`) — TODO (on `src/games/shared/platform`).
+- **#182 Spike Hop — COMPLETE** (2026-11-07).
+- **Current game: #183 Flappy-style game** (`flappy`) — TODO.
 
 ## Resume instructions
 
