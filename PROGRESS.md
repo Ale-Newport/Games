@@ -2,6 +2,21 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #178 Hedgehog Crossing COMPLETE
+
+- A crossing game with an original hedgehog: five road lanes, a river of logs and turtles (some
+  dive), five burrows in a hedge, a visiting beetle, 30 seconds per crossing, faster levels. Shares
+  its core with #179. The planner (a beam search over the next six hops or waits) averaged 40 496
+  points and 14 levels in 10-minute runs; the hopper 1015.
+- The planner first lost most lives to being carried off the edge: a blocked sideways hop counted as
+  a free move in its search. Blocked hops are now discarded, river edges and diving turtles are
+  scored, and planned waits are remembered so the search runs once per hop.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script hopped with the real arrow keys across the road and river into a burrow
+  (414 points) before losing its three lives.
+- Verified (actually run): lint, typecheck, 3227 unit tests (407 files), build, 618 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #177 Shifting Mazes COMPLETE
 
 - The advanced maze chase on the core shared with #176: four generated mazes changing every two

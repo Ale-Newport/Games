@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 177 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 23
+**Complete:** 178 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 22
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -213,7 +213,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 175 | NES-Style Tetris | `falling-blocks-classic` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 176 | Classic Maze-Chase Game | `maze-chase` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 177 | Advanced Maze-Chase Variant | `maze-chase-advanced` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 178 | Frogger-Style Crossing Game | `crossing` | TODO | — | — | — | — | — |  |  |
+| 178 | Frogger-Style Crossing Game | `crossing` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 179 | Crossy Road-Style Endless Crossing | `endless-crossing` | TODO | — | — | — | — | — |  |  |
 | 180 | Donkey Kong-Style Platform Arcade | `girder-climb` | TODO | — | — | — | — | — |  |  |
 | 181 | Classic Side-Scrolling Platformer | `platformer` | TODO | — | — | — | — | — |  |  |
