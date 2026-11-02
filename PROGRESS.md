@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #185 City Shield COMPLETE
+
+- A city-defence game with an original name and look: rockets in waves (splitting from wave 3) on
+  six cities and three launchers, interceptors that burst into growing blasts with chain bursts,
+  wave bonuses and multipliers, rebuilt cities. Tapping the sky fires there: the controls are
+  discrete aim-and-fire actions over a 16 × 12 grid (plus a keyboard crosshair), so the AI uses the
+  same moves. The defender (leads its shots) reached wave 10.4 on average; the sniper 7.5.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden) with real
+  touchscreen taps from Playwright aimed just ahead of the lowest rocket: two waves cleared with all
+  six cities standing, 4050 points, the wave bonus shown between waves.
+- Verified (actually run): lint, typecheck, 3345 unit tests (427 files), build, 646 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #184 Moon Touchdown COMPLETE
 
 - A lunar landing game with an original name and look: gravity, turning and thrust along the axis,
