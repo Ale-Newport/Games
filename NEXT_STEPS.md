@@ -190,7 +190,8 @@
 - **#185 City Shield — COMPLETE** (2026-11-07).
 - **#186 Garden Guard — COMPLETE** (2026-11-07).
 - **#187 Cube Hopper — COMPLETE** (2026-11-07).
-- **Current game: #188 Boulder-dig game** (`boulder-dig`) — TODO.
+- **#188 Gem Digger — COMPLETE** (2026-11-07).
+- **Current game: #189 Bomber arena** (`bomber-arena`) — TODO.
 
 ## Resume instructions
 
