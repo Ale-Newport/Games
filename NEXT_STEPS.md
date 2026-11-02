@@ -189,7 +189,8 @@
 - **#184 Moon Touchdown — COMPLETE** (2026-11-07).
 - **#185 City Shield — COMPLETE** (2026-11-07).
 - **#186 Garden Guard — COMPLETE** (2026-11-07).
-- **Current game: #187 Isometric tile-hopper** (`tile-hopper`) — TODO.
+- **#187 Cube Hopper — COMPLETE** (2026-11-07).
+- **Current game: #188 Boulder-dig game** (`boulder-dig`) — TODO.
 
 ## Resume instructions
 
