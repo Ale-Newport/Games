@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #176 Maze Chase COMPLETE
+
+- A maze chase with an original name, generated maze and art (a rover and four diamond-shaped
+  sentinels): seeds, power cells, sentinels that each hunt in their own way along the shortest
+  corridors and alternate with scatter spells, eyes going home, a bonus gem, levels that speed up.
+  Shares its core with #177. The runner averaged 8494 points and one maze cleared; the grazer 4071.
+- Fixed while testing: one maze had a dead end above the house door (the door counted as a way
+  out); eyes wandered inside the house instead of going straight to its middle.
+- Played in headless Chromium (Pixel 7 emulation, Spanish) — the in-app browser pane was hidden, so
+  its game loop would not run: a pixel-reading script steered with the real arrow keys, cleared the
+  first maze, met blue sentinels and lost three lives on level 2 (4540 points, Spanish ending).
+- Verified (actually run): lint, typecheck, 3197 unit tests (402 files), build, 610 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #175 Falling Blocks Classic COMPLETE
 
 - The 8-bit way on the core shared with #174: a nearly-uniform draw, one piece of preview, no hold,

@@ -178,7 +178,8 @@
 - **#173 Wraparound Snake — COMPLETE** (2026-11-07).
 - **#174 Falling Blocks — COMPLETE** (2026-11-07).
 - **#175 Falling Blocks Classic — COMPLETE** (2026-11-07).
-- **Current game: #176 Maze Chase** (`maze-chase`) — TODO (shared maze core with #177; drafted in scratch).
+- **#176 Maze Chase — COMPLETE** (2026-11-07).
+- **Current game: #177 Shifting Mazes** (`maze-chase-advanced`) — TODO (on `src/games/shared/maze`).
 
 ## Resume instructions
 

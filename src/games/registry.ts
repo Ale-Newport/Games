@@ -179,6 +179,7 @@ import { manifest as classicSnake } from './snake/manifest';
 import { manifest as wraparoundSnake } from './wraparound-snake/manifest';
 import { manifest as fallingBlocks } from './falling-blocks/manifest';
 import { manifest as fallingBlocksClassic } from './falling-blocks-classic/manifest';
+import { manifest as mazeChase } from './maze-chase/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -356,6 +357,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: wraparoundSnake, load: () => import('./wraparound-snake/index') },
   { manifest: fallingBlocks, load: () => import('./falling-blocks/index') },
   { manifest: fallingBlocksClassic, load: () => import('./falling-blocks-classic/index') },
+  { manifest: mazeChase, load: () => import('./maze-chase/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
