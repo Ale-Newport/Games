@@ -182,7 +182,8 @@
 - **#177 Shifting Mazes — COMPLETE** (2026-11-07).
 - **#178 Hedgehog Crossing — COMPLETE** (2026-11-07).
 - **#179 Endless Crossing — COMPLETE** (2026-11-07).
-- **Current game: #180 Girder Climb** (`girder-climb`) — TODO (drafted in scratch).
+- **#180 Girder Climb — COMPLETE** (2026-11-07).
+- **Current game: #181 Sunny Trail** (`platformer`) — TODO (shared platform physics with #182; drafted in scratch).
 
 ## Resume instructions
 
