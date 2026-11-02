@@ -185,7 +185,8 @@
 - **#180 Girder Climb — COMPLETE** (2026-11-07).
 - **#181 Sunny Trail — COMPLETE** (2026-11-07).
 - **#182 Spike Hop — COMPLETE** (2026-11-07).
-- **Current game: #183 Flappy-style game** (`flappy`) — TODO.
+- **#183 Puffin Flap — COMPLETE** (2026-11-07).
+- **Current game: #184 Lunar Lander** (`lunar-lander`) — TODO.
 
 ## Resume instructions
 

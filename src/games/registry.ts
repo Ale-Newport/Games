@@ -186,6 +186,7 @@ import { manifest as endlessCrossing } from './endless-crossing/manifest';
 import { manifest as girderClimb } from './girder-climb/manifest';
 import { manifest as platformer } from './platformer/manifest';
 import { manifest as precisionPlatformer } from './precision-platformer/manifest';
+import { manifest as flappy } from './flappy/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -370,6 +371,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: girderClimb, load: () => import('./girder-climb/index') },
   { manifest: platformer, load: () => import('./platformer/index') },
   { manifest: precisionPlatformer, load: () => import('./precision-platformer/index') },
+  { manifest: flappy, load: () => import('./flappy/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
