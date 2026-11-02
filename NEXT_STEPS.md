@@ -183,7 +183,8 @@
 - **#178 Hedgehog Crossing — COMPLETE** (2026-11-07).
 - **#179 Endless Crossing — COMPLETE** (2026-11-07).
 - **#180 Girder Climb — COMPLETE** (2026-11-07).
-- **Current game: #181 Sunny Trail** (`platformer`) — TODO (shared platform physics with #182; drafted in scratch).
+- **#181 Sunny Trail — COMPLETE** (2026-11-07).
+- **Current game: #182 Precision Platformer** (`precision-platformer`) — TODO (on `src/games/shared/platform`).
 
 ## Resume instructions
 

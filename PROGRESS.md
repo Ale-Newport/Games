@@ -2,6 +2,23 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #181 Sunny Trail COMPLETE
+
+- A side-scrolling platformer with an original hero and three levels built from feature lists, on a
+  new shared tile physics (`shared/platform/physics.ts`, also for #182): momentum, variable jumps
+  with coyote time and buffering, one-way ledges, beetles to stomp (spiky ones not), prize boxes, a
+  berry shield, coins, pits, a checkpoint, a flag and a timer. The planner (a beam search over
+  eight-step moves; the game has no chance) finished all three levels in 81 s; the runner fell into a
+  level-2 pit.
+- Fixed while testing: a dip between two staircases on level 1 was a trap (a 4-tile wall nobody can
+  jump); the stairs are now a pyramid. Ledges four tiles up were out of jumping reach; the jump is a
+  little stronger.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script ran and jumped with the real keys through level 1 to the flag and lost its
+  lives on level 2 (3720 points).
+- Verified (actually run): lint, typecheck, 3276 unit tests (415 files), build, 630 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #180 Girder Climb COMPLETE
 
 - A girder-climbing arcade game with an original name, cast and layout: six sloping girders, whole
