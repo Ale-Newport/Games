@@ -2,6 +2,24 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-08 — Session 1: #200 Wanderer Rescue COMPLETE
+
+- A puzzle platformer in the style of the classic lead-the-walkers-home games, with an original
+  name, look and six original levels: wanderers walk on their own over a cell terrain (earth,
+  steel, water); the player hands out limited skills (climber, floater, blocker, digger, basher,
+  builder) by tapping them, or with the keys; three tries; any level can be chosen to start. The
+  planner AI (a beam search over skill orders played out with the real rules) clears all six
+  levels without losing a try; the onlooker clears none.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden) with real
+  touchscreen taps on the skill bar and on the wanderers: levels 1–3 cleared (level 1 on the second
+  try — the first tap came a tick late and the builder started over the gap's edge). That play
+  found a fairness bug: in Dig Deep, digging early let the followers fall 18 cells down the
+  finished shaft; the lower floor was raised. Also fixed while building: the planner valued staying
+  alive and waited for the clock before digging (those still out at the end now count as lost).
+- This completes the 200-game roadmap.
+- Verified (actually run): lint, typecheck, 3649 unit tests (472 files), build, 706 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-08 — Session 1: #199 Bubble Cannon COMPLETE
 
 - A bubble shooter with an original name and look: a honeycomb of up to six colours (each with its

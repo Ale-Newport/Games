@@ -202,7 +202,8 @@
 - **#197 Cloud Climber — COMPLETE** (2026-11-08).
 - **#198 Balancing Cart — COMPLETE** (2026-11-08).
 - **#199 Bubble Cannon — COMPLETE** (2026-11-08).
-- **Current game: #200 Lemmings-style puzzle platformer** (`rescue-walkers`) — TODO.
+- **#200 Wanderer Rescue — COMPLETE** (2026-11-08).
+- **All 200 games are complete.**
 
 ## Resume instructions
 
