@@ -2,6 +2,22 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #189 Blast Arena COMPLETE
+
+- A bomb-laying arena game with an original name and look: the player and three computer blasters,
+  pillars and crates with power-ups, chain bursts, a closing arena in the last 40 seconds, best of
+  three rounds. Against three tacticians, the tactician won 2 of 10 matches; the rookie and an idle
+  player none.
+- Fixed while balancing: the computer blasters mostly blew themselves up — fire counted as dangerous
+  only at the moment it started, unhurried routes crossed lines about to burn, and escape routes ran
+  through cells other blasters held. With those fixed, rounds stalled into draws, so the arena now
+  closes in at the end of each round.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script dropped 48 bombs with the real keys and ran out of the lines of fire,
+  burning 8 crates before a rival's flame caught it.
+- Verified (actually run): lint, typecheck, 3421 unit tests (439 files), build, 662 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #188 Gem Digger COMPLETE
 
 - A cave-digging game with an original name and look: caves generated from the run's seed (earth,

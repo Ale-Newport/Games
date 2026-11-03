@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 188 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 12
+**Complete:** 189 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 11
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -224,7 +224,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 186 | Centipede-Style Arcade Game | `centipede` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 187 | Isometric Tile-Hopping Arcade Game | `tile-hopper` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 188 | Boulder Dash-Style Game | `boulder-dig` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 189 | Bomberman-Style Arena Game | `bomber-arena` | TODO | — | — | — | — | — |  |  |
+| 189 | Bomberman-Style Arena Game | `bomber-arena` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 190 | Light Cycles | `light-cycles` | TODO | — | — | — | — | — |  |  |
 | 191 | Joust-Style Arcade Game | `joust` | TODO | — | — | — | — | — |  |  |
 | 192 | Spacewar! | `spacewar` | TODO | — | — | — | — | — |  |  |
