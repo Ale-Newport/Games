@@ -195,7 +195,8 @@
 - **#190 Neon Trails — COMPLETE** (2026-11-07).
 - **#191 Sky Lances — COMPLETE** (2026-11-07).
 - **#192 Star Duel — COMPLETE** (2026-11-07).
-- **Current game: #193 Vertical shoot-'em-up** (`vertical-shmup`) — TODO.
+- **#193 Nebula Strike — COMPLETE** (2026-11-07).
+- **Current game: #194 River raid-style shooter** (`river-raid`) — TODO.
 
 ## Resume instructions
 
