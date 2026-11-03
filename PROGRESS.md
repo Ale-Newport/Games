@@ -2,6 +2,24 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-08 — Session 1: #195 Circuit Sprint COMPLETE
+
+- A top-down racing game with an original name and circuits: three laps against three computer
+  drivers on an Oval, a Kidney or a twisting Loop (smoothed centre lines), throttle, brake and
+  reverse, steering that needs speed, grass that slows you, bumps, a start-light countdown and
+  standings. Steer with the keys, the pad, or point a finger. Over 6 races per circuit the driver
+  won every Oval and Kidney race and came third on every Loop race; the cautious driver came third
+  or fourth.
+- First drafts had hairpins tighter than a car can turn (the circuits were redrawn), a lap-progress
+  bug for cars still behind the line, and a driver that braked into reverse and stalled before
+  sharp bends; all fixed and covered by tests.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script found the red car, cast rays over the tarmac and drove with the real keys,
+  finishing the Oval in 24.4 s (4th) and, picking the Loop on the menu, 33.2 s (3rd). Pointing a
+  finger to steer is covered by the shell's pointer tests, not by this play.
+- Verified (actually run): lint, typecheck, 3529 unit tests (457 files), build, 686 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-08 — Session 1: #194 Canyon Run COMPLETE
 
 - A river-raid style shooter with an original name and look: a winding river derived from the seed

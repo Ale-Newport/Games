@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 194 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 6
+**Complete:** 195 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 5
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -230,7 +230,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 192 | Spacewar! | `spacewar` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 193 | Vertical Scrolling Shoot-'Em-Up | `vertical-shmup` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 194 | River Raid-Style Shooter | `river-raid` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 195 | Top-Down Racing Game | `top-down-racing` | TODO | — | — | — | — | — |  |  |
+| 195 | Top-Down Racing Game | `top-down-racing` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 196 | Endless Runner | `endless-runner` | TODO | — | — | — | — | — |  |  |
 | 197 | Vertical Jumping Platform Game | `vertical-jumper` | TODO | — | — | — | — | — |  |  |
 | 198 | CartPole Balancing Game | `cartpole` | TODO | — | — | — | — | — |  |  |
