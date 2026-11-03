@@ -197,6 +197,7 @@ import { manifest as lightCycles } from './light-cycles/manifest';
 import { manifest as joust } from './joust/manifest';
 import { manifest as spacewar } from './spacewar/manifest';
 import { manifest as verticalShmup } from './vertical-shmup/manifest';
+import { manifest as riverRaid } from './river-raid/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -392,6 +393,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: joust, load: () => import('./joust/index') },
   { manifest: spacewar, load: () => import('./spacewar/index') },
   { manifest: verticalShmup, load: () => import('./vertical-shmup/index') },
+  { manifest: riverRaid, load: () => import('./river-raid/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

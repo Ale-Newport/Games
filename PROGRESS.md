@@ -2,6 +2,22 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-08 — Session 1: #194 Canyon Run COMPLETE
+
+- A river-raid style shooter with an original name and look: a winding river derived from the seed
+  row by row (channels, islands, a bridge at each stretch's end), speed control, fuel that burns
+  faster at speed, depots to refuel over (or shoot), weaving boats and helicopters, crossing jets,
+  bridges as checkpoints. The pilot averaged 11.5 bridges in 10-minute runs; the cruiser never
+  passes the first.
+- The pilot first flew into islands: its target looked past an island's end while it was still
+  beside it, and later it turned with its tail beside one; it now keeps within its own stretch of
+  water from the row behind to four rows ahead.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script steered through the widest water and fired at what lay ahead with the real
+  keys, shooting down 2 bridges (1240 points) before its fourth jet hit an island tip.
+- Verified (actually run): lint, typecheck, 3509 unit tests (454 files), build, 682 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #193 Nebula Strike COMPLETE
 
 - A vertical scrolling shooter with an original name and look: auto-fire with a power fan up to five
