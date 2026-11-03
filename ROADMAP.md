@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 191 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 9
+**Complete:** 192 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 8
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -227,7 +227,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 189 | Bomberman-Style Arena Game | `bomber-arena` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 190 | Light Cycles | `light-cycles` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 191 | Joust-Style Arcade Game | `joust` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 192 | Spacewar! | `spacewar` | TODO | — | — | — | — | — |  |  |
+| 192 | Spacewar! | `spacewar` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 193 | Vertical Scrolling Shoot-'Em-Up | `vertical-shmup` | TODO | — | — | — | — | — |  |  |
 | 194 | River Raid-Style Shooter | `river-raid` | TODO | — | — | — | — | — |  |  |
 | 195 | Top-Down Racing Game | `top-down-racing` | TODO | — | — | — | — | — |  |  |
