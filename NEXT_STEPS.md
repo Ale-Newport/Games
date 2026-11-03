@@ -199,7 +199,8 @@
 - **#194 Canyon Run — COMPLETE** (2026-11-08).
 - **#195 Circuit Sprint — COMPLETE** (2026-11-08).
 - **#196 Rooftop Dash — COMPLETE** (2026-11-08).
-- **Current game: #197 Vertical jumping platform game** (`vertical-jumper`) — TODO.
+- **#197 Cloud Climber — COMPLETE** (2026-11-08).
+- **Current game: #198 CartPole balancing game** (`cartpole`) — TODO.
 
 ## Resume instructions
 
