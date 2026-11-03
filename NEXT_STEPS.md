@@ -192,7 +192,8 @@
 - **#187 Cube Hopper — COMPLETE** (2026-11-07).
 - **#188 Gem Digger — COMPLETE** (2026-11-07).
 - **#189 Blast Arena — COMPLETE** (2026-11-07).
-- **Current game: #190 Light cycles** (`light-cycles`) — TODO.
+- **#190 Neon Trails — COMPLETE** (2026-11-07).
+- **Current game: #191 Joust-style game** (`joust`) — TODO.
 
 ## Resume instructions
 

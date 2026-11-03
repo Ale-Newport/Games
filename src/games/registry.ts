@@ -193,6 +193,7 @@ import { manifest as centipede } from './centipede/manifest';
 import { manifest as tileHopper } from './tile-hopper/manifest';
 import { manifest as boulderDig } from './boulder-dig/manifest';
 import { manifest as bomberArena } from './bomber-arena/manifest';
+import { manifest as lightCycles } from './light-cycles/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -384,6 +385,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: tileHopper, load: () => import('./tile-hopper/index') },
   { manifest: boulderDig, load: () => import('./boulder-dig/index') },
   { manifest: bomberArena, load: () => import('./bomber-arena/index') },
+  { manifest: lightCycles, load: () => import('./light-cycles/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
