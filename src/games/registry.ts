@@ -202,6 +202,7 @@ import { manifest as topDownRacing } from './top-down-racing/manifest';
 import { manifest as endlessRunner } from './endless-runner/manifest';
 import { manifest as verticalJumper } from './vertical-jumper/manifest';
 import { manifest as cartpole } from './cartpole/manifest';
+import { manifest as bubbleShooter } from './bubble-shooter/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -402,6 +403,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: endlessRunner, load: () => import('./endless-runner/index') },
   { manifest: verticalJumper, load: () => import('./vertical-jumper/index') },
   { manifest: cartpole, load: () => import('./cartpole/index') },
+  { manifest: bubbleShooter, load: () => import('./bubble-shooter/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
