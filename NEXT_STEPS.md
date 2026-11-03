@@ -193,7 +193,8 @@
 - **#188 Gem Digger — COMPLETE** (2026-11-07).
 - **#189 Blast Arena — COMPLETE** (2026-11-07).
 - **#190 Neon Trails — COMPLETE** (2026-11-07).
-- **Current game: #191 Joust-style game** (`joust`) — TODO.
+- **#191 Sky Lances — COMPLETE** (2026-11-07).
+- **Current game: #192 Spacewar-style duel** (`spacewar`) — TODO.
 
 ## Resume instructions
 

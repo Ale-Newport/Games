@@ -194,6 +194,7 @@ import { manifest as tileHopper } from './tile-hopper/manifest';
 import { manifest as boulderDig } from './boulder-dig/manifest';
 import { manifest as bomberArena } from './bomber-arena/manifest';
 import { manifest as lightCycles } from './light-cycles/manifest';
+import { manifest as joust } from './joust/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -386,6 +387,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: boulderDig, load: () => import('./boulder-dig/index') },
   { manifest: bomberArena, load: () => import('./bomber-arena/index') },
   { manifest: lightCycles, load: () => import('./light-cycles/index') },
+  { manifest: joust, load: () => import('./joust/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

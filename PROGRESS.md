@@ -2,6 +2,21 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #191 Sky Lances COMPLETE
+
+- An aerial jousting game with an original name and look: flap-and-drift flight over a lava pit with
+  wrapping sides, ledges, rival riders of three ranks hunting in spells, the higher lance winning,
+  eggs to grab before they hatch fiercer riders, waves. The lancer reached wave 7 on average
+  (80 594 points); the glider never left wave 1.
+- Fixed while balancing: rivals chose afresh each step whether to chase, so in practice they stayed
+  high and a rider standing still was never reached; they now hunt in spells. The contract suite
+  also caught the rivals' flap cooldown being changed on the previous state; fixed.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script flapped and steered with the real keys to stay above the nearest rival,
+  unhorsing riders for 4250 points before losing its three lives in wave 1.
+- Verified (actually run): lint, typecheck, 3456 unit tests (445 files), build, 670 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #190 Neon Trails COMPLETE
 
 - A trail-racing game with an original name and look: the player against one or three computer
