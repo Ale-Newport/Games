@@ -2,6 +2,22 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-08 — Session 1: #198 Balancing Cart COMPLETE
+
+- The classic cart-and-pole problem as a hand-played game (generic name): textbook equations at 60
+  Hz, a 4 N push, a long (6 m) or short (4 m) pole, failure past 24° or off the 2.4 m rail, 20 calm
+  seconds and then growing gusts; score in tenths of a second. The textbook 1 m pole with a 10 N
+  push is beyond human reactions (a simulated quarter-second reaction lasted 0.3 s), so the poles
+  are tall and the push gentler — documented in the spec. The balancer AI (a linear controller,
+  grid-searched gains) held both poles for 10 minutes on all 6 seeds; the leaner drifted off the
+  rail in 11–18 s.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a script
+  read the cart and the pole's weight from the canvas and pushed with the real keys: 55.4 s with the
+  long pole and, picking the short pole on the menu, 15.7 s — both ended off the rail once the
+  gusts grew.
+- Verified (actually run): lint, typecheck, 3597 unit tests (466 files), build, 698 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-08 — Session 1: #197 Cloud Climber COMPLETE
 
 - A vertical jumping game with an original name and look: the climber bounces by herself on clouds
