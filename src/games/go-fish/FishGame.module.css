@@ -87,7 +87,7 @@ button.pile:not(:disabled) {
   right: -8px;
   bottom: -8px;
   padding: 0 6px;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: #10141a;
   color: #fff;
   font-size: 0.72rem;

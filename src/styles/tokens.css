@@ -1,7 +1,10 @@
-/* Design tokens. Themes switch via [data-theme] on <html>. */
+/* Design tokens — "cabinet" theme: night-time arcade hall (dark) and daylight flyer (light).
+   Themes switch via [data-theme] on <html>. Games read these tokens, so changing them here
+   restyles every page and every game shell. */
 :root {
-  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Outfit Variable', 'Inter Variable', system-ui, sans-serif;
+  --font-body: 'Chakra Petch', 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+  --font-display: 'Press Start 2P', 'Chakra Petch', ui-monospace, monospace;
+  --font-pixel: 'Press Start 2P', ui-monospace, monospace;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
   --space-1: 4px;
@@ -13,11 +16,13 @@
   --space-7: 48px;
   --space-8: 64px;
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 26px;
-  --radius-full: 999px;
+  /* Arcade hardware is squared off: tiny radii everywhere, circles stay circles (50%). */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+  --radius-full: 4px;
+  --radius-screen: 14px;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -27,85 +32,105 @@
   --text-2xl: 1.75rem;
   --text-3xl: clamp(2rem, 4vw, 2.75rem);
 
+  /* Pixel-font sizes: Press Start 2P is a wide 8px grid font, so it needs its own scale. */
+  --pixel-xs: 0.5rem;
+  --pixel-sm: 0.625rem;
+  --pixel-md: 0.75rem;
+  --pixel-lg: 1rem;
+  --pixel-xl: clamp(1.1rem, 3.2vw, 1.75rem);
+  --pixel-hero: clamp(1.4rem, 5.4vw, 3rem);
+
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --dur-fast: 120ms;
-  --dur-med: 220ms;
-  --dur-slow: 420ms;
+  --ease-step: steps(4, end);
+  --dur-fast: 100ms;
+  --dur-med: 200ms;
+  --dur-slow: 380ms;
 
-  --header-h: 64px;
+  --header-h: 68px;
   --content-max: 1240px;
 
   /* Player colors (games may use these for P1/P2). Colorblind mode swaps them below. */
-  --player-1: #ff5d73;
-  --player-2: #3fb8ff;
-  --player-3: #ffc94a;
-  --player-4: #4ade80;
+  --player-1: #ff4d6d;
+  --player-2: #35c8ff;
+  --player-3: #ffd23f;
+  --player-4: #4dff9a;
 }
 
 :root,
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --bg: #0a0e1a;
-  --bg-elevated: #0f1424;
-  --surface: #141a2e;
-  --surface-2: #1b2340;
-  --surface-3: #232d50;
-  --border: rgba(160, 175, 230, 0.12);
-  --border-strong: rgba(160, 175, 230, 0.24);
-  --text: #eaeefb;
-  --text-muted: #9aa5c4;
-  --text-faint: #6b7596;
-  --accent: #8b6cff;
-  --accent-strong: #a48bff;
-  --accent-contrast: #ffffff;
-  --accent-2: #2fd4f0;
-  --accent-soft: rgba(139, 108, 255, 0.16);
-  --success: #3ddc97;
-  --warning: #ffc24b;
-  --danger: #ff6b7d;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.5);
-  --glow: 0 0 0 1px rgba(139, 108, 255, 0.35), 0 10px 40px rgba(139, 108, 255, 0.25);
-  --hero-gradient:
-    radial-gradient(1200px 400px at 10% -10%, rgba(139, 108, 255, 0.35), transparent 60%),
-    radial-gradient(900px 380px at 100% 0%, rgba(47, 212, 240, 0.22), transparent 60%);
-  --board-bg: #1a2240;
-  --board-line: #c9d2ff;
+  --bg: #0b0616;
+  --bg-elevated: #130a24;
+  --surface: #190f2e;
+  --surface-2: #241645;
+  --surface-3: #33205f;
+  --screen: #05030b;
+  --border: #3a2868;
+  --border-strong: #6247b0;
+  --ink: #05030b;
+  --text: #f6f1ff;
+  --text-muted: #bcaedf;
+  --text-faint: #9486c0;
+  --accent: #ff3d8b;
+  --accent-strong: #ff80b4;
+  --accent-contrast: #1c0713;
+  --accent-edge: #94104d;
+  --accent-2: #22e5ff;
+  --accent-3: #ffd23f;
+  /* Lit readout color for numbers/labels on the page background (not on --screen). */
+  --lit: #ffd23f;
+  --accent-soft: rgba(255, 61, 139, 0.18);
+  --success: #3dff9a;
+  --warning: #ffd23f;
+  --danger: #ff5a73;
+  --shadow-sm: 2px 2px 0 rgba(0, 0, 0, 0.6);
+  --shadow-md: 4px 4px 0 rgba(0, 0, 0, 0.6);
+  --shadow-lg: 6px 6px 0 rgba(0, 0, 0, 0.65);
+  --glow: 0 0 0 2px var(--accent), 0 0 22px rgba(255, 61, 139, 0.55);
+  --glow-cyan: 0 0 0 2px var(--accent-2), 0 0 22px rgba(34, 229, 255, 0.5);
+  --hero-gradient: linear-gradient(transparent, transparent);
+  --board-bg: #1a1236;
+  --board-line: #cbd2ff;
+  --scanline: rgba(0, 0, 0, 0.22);
 }
 
 :root[data-theme='light'] {
   color-scheme: light;
-  --bg: #f3f5fb;
-  --bg-elevated: #ffffff;
-  --surface: #ffffff;
-  --surface-2: #eef1f9;
-  --surface-3: #e2e7f4;
-  --border: rgba(20, 30, 70, 0.1);
-  --border-strong: rgba(20, 30, 70, 0.2);
-  --text: #121833;
-  --text-muted: #525c7a;
-  --text-faint: #7d86a3;
-  --accent: #6a46ff;
-  --accent-strong: #5532f0;
+  --bg: #f3e9d2;
+  --bg-elevated: #fff8e8;
+  --surface: #fffaf0;
+  --surface-2: #f4e8cc;
+  --surface-3: #e8d6ab;
+  --screen: #1a1030;
+  --border: #c9b78a;
+  --border-strong: #4a3a78;
+  --ink: #1a1030;
+  --text: #1a1030;
+  --text-muted: #4f4378;
+  --text-faint: #6f6396;
+  --accent: #d6246e;
+  --accent-strong: #b3135a;
   --accent-contrast: #ffffff;
-  --accent-2: #0a9bbd;
-  --accent-soft: rgba(106, 70, 255, 0.1);
-  --success: #12a46b;
-  --warning: #c98500;
-  --danger: #e0354d;
-  --shadow-sm: 0 1px 2px rgba(18, 24, 51, 0.08);
-  --shadow-md: 0 8px 24px rgba(18, 24, 51, 0.1);
-  --shadow-lg: 0 24px 60px rgba(18, 24, 51, 0.16);
-  --glow: 0 0 0 1px rgba(106, 70, 255, 0.3), 0 10px 30px rgba(106, 70, 255, 0.18);
-  --hero-gradient:
-    radial-gradient(1200px 400px at 10% -10%, rgba(106, 70, 255, 0.18), transparent 60%),
-    radial-gradient(900px 380px at 100% 0%, rgba(10, 155, 189, 0.14), transparent 60%);
-  --board-bg: #ffffff;
-  --board-line: #2b3566;
-  --player-1: #e23a55;
-  --player-2: #1683d8;
+  --accent-edge: #7d0a3d;
+  --accent-2: #007c99;
+  --accent-3: #e0a000;
+  --lit: #b3135a;
+  --accent-soft: rgba(214, 36, 110, 0.14);
+  --success: #0b8a4d;
+  --warning: #a86d00;
+  --danger: #cc2340;
+  --shadow-sm: 2px 2px 0 rgba(26, 16, 48, 0.8);
+  --shadow-md: 4px 4px 0 rgba(26, 16, 48, 0.8);
+  --shadow-lg: 6px 6px 0 rgba(26, 16, 48, 0.85);
+  --glow: 0 0 0 2px var(--accent), 3px 3px 0 2px var(--ink);
+  --glow-cyan: 0 0 0 2px var(--accent-2), 3px 3px 0 2px var(--ink);
+  --hero-gradient: linear-gradient(transparent, transparent);
+  --board-bg: #fffaf0;
+  --board-line: #2b2356;
+  --scanline: rgba(26, 16, 48, 0.1);
+  --player-1: #d6243f;
+  --player-2: #1170c9;
 }
 
 /* Okabe–Ito based colorblind-safe player colors. */

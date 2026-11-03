@@ -131,6 +131,6 @@ function useDocumentPreferences(settings: Settings) {
     root.lang = settings.locale;
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', theme === 'dark' ? '#0a0e1a' : '#f4f6fb');
+      ?.setAttribute('content', theme === 'dark' ? '#0b0616' : '#f3e9d2');
   }, [theme, reduce, settings.colorblind, settings.locale]);
 }

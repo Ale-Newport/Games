@@ -85,7 +85,7 @@ button.pile:not(:disabled) {
   right: -8px;
   bottom: -8px;
   padding: 0 6px;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: #10141a;
   color: #fff;
   font-size: 0.72rem;
@@ -94,7 +94,7 @@ button.pile:not(:disabled) {
 
 .suit {
   padding: 2px 10px;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: rgba(0, 0, 0, 0.4);
   color: #fff;
   font-weight: 800;

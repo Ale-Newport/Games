@@ -1,13 +1,6 @@
-import {
-  Bot,
-  Gamepad2,
-  House,
-  LibraryBig,
-  Map as MapIcon,
-  Settings,
-  UserRound,
-} from 'lucide-react';
+import { Bot, House, LibraryBig, Map as MapIcon, Settings, UserRound } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { PixelLogo } from '../../components/PixelLogo';
 import { Toasts } from '../../components/Toasts';
 import { useT } from '../platform';
 import { href, type Route } from '../router';
@@ -52,7 +45,7 @@ export function AppShell({
         <div className={styles.headerInner}>
           <a href={href('/')} className={styles.brand}>
             <span className={styles.logo} aria-hidden="true">
-              <Gamepad2 size={20} />
+              <PixelLogo size={30} />
             </span>
             <span className={styles.brandText}>{t('brand.name')}</span>
           </a>

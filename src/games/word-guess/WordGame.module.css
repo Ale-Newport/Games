@@ -40,7 +40,8 @@
   border: 2px solid var(--border);
   border-radius: var(--radius-md);
   background: var(--surface);
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: calc(var(--t) * 0.5);
   font-weight: 800;
   text-transform: uppercase;

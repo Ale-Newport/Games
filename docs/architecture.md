@@ -81,7 +81,23 @@ src/games/<id>/
 
 Design tokens in `src/styles/tokens.css` (dark default, light theme, colorblind player palette),
 global primitives in `src/styles/global.css` (`.btn`, `.chip`, `.panel`, `.page`), and CSS Modules
-per component. Fonts (Inter, Outfit) are bundled from `@fontsource-variable` (OFL).
+per component. Fonts (Press Start 2P, Chakra Petch) are bundled from `@fontsource` (OFL).
+
+The look is an arcade-hall cabinet: a lit marquee header, a neon-on-night palette (daylight
+"flyer" in the light theme), squared corners, chunky buttons with a hard bottom edge, hard offset
+shadows instead of soft blurs, and the game stage framed as a CRT monitor (bezel, rounded glass,
+faint scanlines). Rules for staying consistent:
+
+- Use tokens, never raw colors, for chrome: `--ink` (outlines), `--screen` (always-dark monitor
+  fields, so text on it is light in both themes), `--accent` (hot pink, primary), `--accent-2`
+  (cyan), `--accent-3` (yellow, scores and "lit" states), `--border-strong`.
+- Pixel type (`--font-display` / `--font-pixel`, sizes `--pixel-*`) is for titles, labels and score
+  readouts only. It is wide and has one weight; text inside boards (tile numbers, letters) uses
+  `--font-body` so it fits the cell.
+- Radii are `--radius-sm/md/lg/xl` (2–6px). `--radius-full` is a squared "pill" on purpose; real
+  circles use `50%`.
+- Game boards keep their own materials (wood, felt, glossy stones); the chrome around them
+  (menus, scoreboards, buttons, status) comes from the shared tokens.
 
 ## AI subsystem
 
