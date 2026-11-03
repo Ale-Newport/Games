@@ -220,6 +220,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'vertical-shmup': () => import('../../games/vertical-shmup/ai-adapter').then((m) => m.bundle),
   'river-raid': () => import('../../games/river-raid/ai-adapter').then((m) => m.bundle),
   'top-down-racing': () => import('../../games/top-down-racing/ai-adapter').then((m) => m.bundle),
+  'endless-runner': () => import('../../games/endless-runner/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

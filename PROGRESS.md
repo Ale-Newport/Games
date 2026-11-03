@@ -2,6 +2,22 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-08 — Session 1: #196 Rooftop Dash COMPLETE
+
+- An endless runner with an original name and look: a courier runs across generated rooftops on
+  her own, faster with the distance; the player jumps (held = higher, with a short grace after an
+  edge) and slides (under drones; in the air it dives). Gaps are capped at two thirds of a full
+  jump at that speed. The runner AI (a one-second planner over jumps and slides using the real
+  movement code) was still running after 10 minutes on all 6 seeds (10 027 m, 831–952 coins); the
+  hopper fell or crashed at 437–805 m.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script found roof edges, chimneys, drones and the courier's cap and used the real
+  keys, best run 467 m with 16 coins (627 points). Its first versions jumped chimneys with full
+  jumps and came down in the following gap — a short jump is the answer, as the planner does.
+  The jump button on the touch pad showed a lightning icon; it is now an up arrow.
+- Verified (actually run): lint, typecheck, 3550 unit tests (460 files), build, 690 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-08 — Session 1: #195 Circuit Sprint COMPLETE
 
 - A top-down racing game with an original name and circuits: three laps against three computer
