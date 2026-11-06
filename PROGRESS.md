@@ -2,6 +2,21 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #051 Sprouts COMPLETE
+
+- Real-geometry Sprouts on a fine grid: curves are cell paths, living spots keep reserved room,
+  regions decide which spots can be joined, the new spot goes on a roomy straight stretch. A
+  bounds check (every game between 2n and 3n − 1 moves) caught two discretization artifacts —
+  reserved cells of dead spots walling off corridors, and new spots born boxed in on a bend — both
+  fixed; 600 random games then stayed within bounds.
+- Freehand drawing (drag, rub out, snap to a spot) plus tap-two-spots auto-routing; Monte Carlo
+  agents over routed candidate curves. Seeded (12 games per pair): Easy vs Random 10–2, Medium vs
+  Easy 8–4, Hard vs Medium 11–1 (Medium lightened after tying a first Hard 6–6).
+- Played a full game in the browser (mobile, Spanish) against Medium; added curve simplification
+  (no cell staircase) and no text selection while drawing after that check.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 931 unit tests, build, 144
+  Playwright tests (Sprouts unit and e2e tests rerun after the visual fixes).
+
 ## 2026-11-06 — Session 1: #050 SOS COMPLETE
 
 - 6×6 grid, write S or O; each S-O-S through the new letter scores and grants another turn (the

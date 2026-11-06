@@ -53,7 +53,8 @@
 - **#048 Cram — COMPLETE** (2026-11-06).
 - **#049 Sim — COMPLETE** (2026-11-06).
 - **#050 SOS — COMPLETE** (2026-11-06).
-- **Current game: #051 Sprouts** (`sprouts`) — TODO.
+- **#051 Sprouts — COMPLETE** (2026-11-06).
+- **Current game: #052 Clobber** (`clobber`) — TODO.
 
 ## Resume instructions
 
