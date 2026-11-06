@@ -1,0 +1,142 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, calc(100dvh - 340px), 480px);
+  min-width: 260px;
+  margin-inline: auto;
+}
+
+.picker {
+  display: flex;
+  gap: 8px;
+}
+
+.letterBtn {
+  width: 56px;
+  height: 44px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 1.4rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.boardBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #fbf7ee;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.cell {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 0;
+  border: none;
+  border-right: 1px solid #d9cfba;
+  border-bottom: 1px solid #d9cfba;
+  padding: 0;
+  background: transparent;
+  cursor: default;
+}
+
+.can {
+  cursor: pointer;
+}
+
+.letter {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.4rem, 7vw, 2.4rem);
+  font-weight: 700;
+  color: #2a2a35;
+}
+
+.ghost {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.4rem, 7vw, 2.4rem);
+  font-weight: 700;
+  color: transparent;
+}
+
+@media (hover: hover) {
+  .can:hover .ghost {
+    color: rgba(42, 42, 53, 0.25);
+  }
+}
+
+.last {
+  background: rgba(255, 209, 102, 0.35);
+}
+
+.hint {
+  box-shadow: inset 0 0 0 3px #3d8bff;
+}
+
+.cursor {
+  box-shadow: inset 0 0 0 2px #7c5cff;
+}
+
+.cell:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: -3px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sos {
+  stroke-width: 0.12;
+  stroke-linecap: round;
+  opacity: 0.65;
+}
+
+.seat0 {
+  stroke: #e2453a;
+}
+
+.seat1 {
+  stroke: #2f6fd6;
+}
+
+.bar {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.animated .letter {
+  animation: ink 220ms var(--ease-out);
+}
+
+@keyframes ink {
+  from {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}

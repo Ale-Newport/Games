@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #050 SOS COMPLETE
+
+- 6×6 grid, write S or O; each S-O-S through the new letter scores and grants another turn (the
+  state records each writer for undo); scored lines drawn in the scorer's color; letter picker.
+- Greedy Easy/Medium (safe moves, cheapest sacrifice) and a Hard alpha-beta over net points.
+  Seeded (10 games per pair): Easy vs Random 10–0, Medium vs Easy 8–0–2, Hard vs Medium 6–3–1
+  (a modest margin, documented as such).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 915 unit tests, build, 142
+  Playwright tests.
+
 ## 2026-11-06 — Session 1: #049 Sim COMPLETE
 
 - Six points, 15 lines; closing a triangle of your own color loses. An exact memoized solver
