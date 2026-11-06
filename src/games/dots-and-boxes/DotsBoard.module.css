@@ -1,0 +1,123 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: min(100%, calc(100dvh - 300px), 500px);
+  min-width: 260px;
+  margin-inline: auto;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  touch-action: manipulation;
+}
+
+.paper {
+  fill: #f6f1e4;
+  stroke: #d8ccb0;
+  stroke-width: 0.6;
+}
+
+.dot {
+  fill: #2b2a33;
+  pointer-events: none;
+}
+
+.line {
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+.free {
+  stroke: rgba(43, 42, 51, 0.12);
+  stroke-width: 1;
+  stroke-dasharray: 1.2 1.6;
+}
+
+.line0 {
+  stroke: #e0572b;
+  stroke-width: 1.8;
+}
+
+.line1 {
+  stroke: #2b6fd6;
+  stroke-width: 1.8;
+}
+
+.last {
+  stroke-width: 2.6;
+  filter: drop-shadow(0 0 1.2px rgba(255, 190, 40, 0.95));
+}
+
+.hint {
+  stroke: #1fa37a;
+  stroke-width: 2.2;
+  stroke-dasharray: 2 1.2;
+}
+
+.cursor {
+  stroke: #7c5cff;
+  stroke-width: 2.2;
+  stroke-dasharray: none;
+}
+
+.hit {
+  fill: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.hit[aria-disabled='true'] {
+  cursor: default;
+}
+
+.hit:not([aria-disabled='true']):hover {
+  fill: rgba(124, 92, 255, 0.16);
+}
+
+.hit:focus-visible {
+  fill: rgba(124, 92, 255, 0.3);
+}
+
+.box0 {
+  fill: rgba(224, 87, 43, 0.28);
+}
+
+.box1 {
+  fill: rgba(43, 111, 214, 0.26);
+}
+
+.initial {
+  font-size: 9px;
+  font-weight: 800;
+  fill: rgba(43, 42, 51, 0.7);
+  pointer-events: none;
+}
+
+.open {
+  fill: none;
+  stroke: rgba(255, 170, 30, 0.8);
+  stroke-width: 0.8;
+  stroke-dasharray: 1.5 1;
+  pointer-events: none;
+}
+
+.bar {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.animated .claim {
+  animation: fill-in 260ms var(--ease-out);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes fill-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}

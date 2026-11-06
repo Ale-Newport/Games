@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 39 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 161
+**Complete:** 40 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 160
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -50,7 +50,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 037 | Ataxx | `ataxx` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 038 | Breakthrough | `breakthrough` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 039 | Isolation | `isolation` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 040 | Dots and Boxes | `dots-and-boxes` | TODO | — | — | — | — | — |  |  |
+| 040 | Dots and Boxes | `dots-and-boxes` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 
 ## Mathematical, Historical & Additional Strategy
 

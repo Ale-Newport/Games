@@ -42,7 +42,8 @@
 - **#037 Ataxx — COMPLETE** (2026-11-06).
 - **#038 Breakthrough — COMPLETE** (2026-11-06).
 - **#039 Isolation — COMPLETE** (2026-11-06).
-- **Current game: #040 Dots and Boxes** (`dots-and-boxes`) — TODO (engine and AI drafted).
+- **#040 Dots and Boxes — COMPLETE** (2026-11-06).
+- **Current game: #041 Nim** (`nim`) — TODO.
 
 ## Resume instructions
 
