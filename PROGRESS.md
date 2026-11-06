@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #017 Antichess COMPLETE
+
+- Thin module on the shared chess family (`ANTICHESS`): compulsory captures, non-royal king,
+  king promotion, win by losing everything or being blocked, opposite-colored-bishops dead draw
+  (new `bishopsNeverMeet`), status line with pieces left and "You must capture".
+- Found a real engine flaw through the bench: Easy only scored 4–3–1 against Random because the
+  quiescence search allowed "stand pat" while a capture was compulsory. Added a dedicated antichess
+  quiescence (forced capture chains, no stand pat) → Easy vs Random 8–0, Medium vs Easy 8–0, Hard
+  vs Medium 3–1, Expert vs Hard 4–0. Standard-chess tactics checks unchanged.
+- Shared changes riding along (used by #018/#019): hill-square marking on the board, check
+  indicator shown together with the Three-Check counters.
+- Verified (actually run): `npm run verify` → 462 unit tests (incl. drafted #018/#019 modules),
+  build, 76 Playwright tests.
+
 ## 2026-11-06 — Session 1: #016 Chess960 COMPLETE
 
 - Thin module on the shared chess family: random start per round via the definition's `seed`,

@@ -362,6 +362,8 @@ export class ChessSearchAgent implements Agent<ChessState, string> {
 
   private quiesce(pos: Position, alpha: number, beta: number, ply: number, qdepth: number): number {
     this.tick();
+    if (this.variant.goal === 'antichess')
+      return this.quiesceAntichess(pos, alpha, beta, ply, qdepth);
     const me = pos.side;
     const inCheck = !this.variant.rules.antichess && pos.inCheck(me);
     const stand = this.evaluate(pos);
@@ -372,15 +374,13 @@ export class ChessSearchAgent implements Agent<ChessState, string> {
     }
     let legalCount = 0;
     const moves = this.children(pos).filter(
-      (m) => inCheck || m.captured !== EMPTY || m.promo !== 0 || this.variant.goal === 'antichess',
+      (m) => inCheck || m.captured !== EMPTY || m.promo !== 0,
     );
     let best = inCheck ? -Infinity : stand;
     for (const m of this.ordered(pos, moves, ply, -1)) {
-      if (this.variant.goal === 'antichess' && m.captured === EMPTY && !inCheck && qdepth > 0)
-        continue;
       if (m.flags & FLAG_CASTLE) continue;
       const u = this.makeTracked(pos, m);
-      if (!this.variant.rules.antichess && pos.inCheck(me)) {
+      if (pos.inCheck(me)) {
         this.unmakeTracked(pos, m, u);
         continue;
       }
@@ -392,6 +392,32 @@ export class ChessSearchAgent implements Agent<ChessState, string> {
       if (alpha >= beta) break;
     }
     if (inCheck && legalCount === 0) return -(MATE - ply);
+    return best;
+  }
+
+  /**
+   * Antichess quiescence: captures are compulsory, so there is no "stand pat" while one exists —
+   * every forced capture sequence is searched until the position is quiet.
+   */
+  private quiesceAntichess(
+    pos: Position,
+    alpha: number,
+    beta: number,
+    ply: number,
+    qdepth: number,
+  ): number {
+    const moves = this.children(pos);
+    if (moves.length === 0) return MATE - ply; // no pieces or no moves: the side to move wins
+    if (moves[0]!.captured === EMPTY || qdepth > 10) return this.evaluate(pos);
+    let best = -Infinity;
+    for (const m of this.ordered(pos, moves, ply, -1)) {
+      const u = this.makeTracked(pos, m);
+      const v = -this.quiesce(pos, -beta, -alpha, ply + 1, qdepth + 1);
+      this.unmakeTracked(pos, m, u);
+      if (v > best) best = v;
+      if (v > alpha) alpha = v;
+      if (alpha >= beta) break;
+    }
     return best;
   }
 }

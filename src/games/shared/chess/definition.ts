@@ -109,7 +109,7 @@ export function createChessDefinition(
             b: s.checks[1],
           }),
         );
-      else if (!s.result && v.goal !== 'antichess' && positionOf(v, s).inCheck())
+      if (!s.result && v.goal !== 'antichess' && positionOf(v, s).inCheck())
         parts.push(t('info.check'));
       return parts.filter(Boolean).join(' · ') || null;
     },
