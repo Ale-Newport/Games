@@ -34,6 +34,11 @@ export interface MatchConfig<S, A> {
   agentIds: readonly string[];
   defaultDifficulty: string;
   defaultWatch: [string, string];
+  /**
+   * Seat that always moves first (e.g. Black in Gomoku, Go and Reversi). When set, the
+   * "alternate who starts" option is ignored and hidden; players pick their seat instead.
+   */
+  fixedFirstSeat?: Seat;
 }
 
 export interface MatchSetup {
@@ -89,10 +94,14 @@ export function firstPlayerFor(setup: MatchSetup, roundNumber: number): Seat {
   return setup.alternate && roundNumber % 2 === 0 ? 1 : 0;
 }
 
+function startingSeat<S, A>(cfg: MatchConfig<S, A>, setup: MatchSetup, roundNumber: number): Seat {
+  return cfg.fixedFirstSeat ?? firstPlayerFor(setup, roundNumber);
+}
+
 export function newMatch<S, A>(cfg: MatchConfig<S, A>, setup: MatchSetup): MatchState<S> {
   return {
     setup,
-    round: cfg.rules.create(firstPlayerFor(setup, 1)),
+    round: cfg.rules.create(startingSeat(cfg, setup, 1)),
     roundNumber: 1,
     scores: { x: 0, o: 0, draws: 0 },
     recorded: false,
@@ -158,7 +167,7 @@ export function nextRound<S, A>(cfg: MatchConfig<S, A>, m: MatchState<S>): Match
   const roundNumber = m.roundNumber + 1;
   return {
     ...m,
-    round: cfg.rules.create(firstPlayerFor(m.setup, roundNumber)),
+    round: cfg.rules.create(startingSeat(cfg, m.setup, roundNumber)),
     roundNumber,
     recorded: false,
   };

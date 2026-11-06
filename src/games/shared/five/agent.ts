@@ -27,8 +27,8 @@ export interface FiveAgentOptions {
   /** Probability of a random nearby move — difficulty tuning. */
   randomness?: number;
   timeLimitMs?: number;
-  /** Renju: points the side to move may not play. */
-  isForbidden?: (state: MnkState, index: number) => boolean;
+  /** Renju: board-level check for points `mark` may not play (applied inside the search too). */
+  forbiddenOnBoard?: (board: Int8Array, index: number, mark: number) => boolean;
   now?: () => number;
 }
 
@@ -227,7 +227,12 @@ export class FiveInRowAgent implements Agent<MnkState, number> {
       (this.options.now ?? (() => performance.now()))() > this.deadline
     )
       throw new Timeout();
-    const ranked = this.candidates(board, mark, () => true).slice(0, this.options.breadth);
+    const forbidden = this.options.forbiddenOnBoard;
+    const ranked = this.candidates(
+      board,
+      mark,
+      forbidden ? (i) => !forbidden(board, i, mark) : () => true,
+    ).slice(0, this.options.breadth);
     if (ranked.length === 0) return 0;
     for (const i of ranked) if (this.makesFive(board, i, mark)) return WIN - ply;
     if (depth <= 0) return this.evaluate(board, mark);

@@ -698,7 +698,7 @@ function Menu<S, A>({
           </fieldset>
         )}
 
-        {setup.mode !== 'watch' && (
+        {setup.mode !== 'watch' && def.match.fixedFirstSeat === undefined && (
           <label className={styles.toggle}>
             <input
               type="checkbox"

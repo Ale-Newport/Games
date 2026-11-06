@@ -10,7 +10,8 @@
 - **#005 Four in a Row — COMPLETE** (2026-11-06).
 - **#006 Connect Five Gravity — COMPLETE** (2026-11-06).
 - **#007 Gomoku — COMPLETE** (2026-11-06).
-- **Current game: #008 Renju** (`renju`) — TODO.
+- **#008 Renju — COMPLETE** (2026-11-06).
+- **Current game: #009 Pente** (`pente`) — TODO.
 
 ## Resume instructions
 
@@ -40,7 +41,7 @@ with its own engine, and `src/games/tic-tac-toe-4x4/` for an m,n,k game):
 Gotcha: Prettier reflows long lines — when scripting edits to existing files, re-read them first or
 use exact-match edits, and check that the edit applied.
 
-## Plan for #008 Renju and #009 Pente
+## Plan for #009 Pente
 
 - Reuse `createStoneGame` (`src/games/shared/goban/stone-game.tsx`) and `FiveInRowAgent`
   (`src/games/shared/five/agent.ts`; it already accepts `isForbidden` at the root — Renju must also

@@ -55,6 +55,7 @@ export function createStoneGame(o: StoneGameOptions): TwoPlayerGameDefinition<Mn
     onAction,
   }: BoardProps<MnkState, number>) {
     const result = state.result;
+    const marks = o.marks?.(state);
     return (
       <GoBoard
         size={size}
@@ -63,13 +64,22 @@ export function createStoneGame(o: StoneGameOptions): TwoPlayerGameDefinition<Mn
         winLine={result?.kind === 'win' ? result.line : null}
         hint={hint}
         ghost={interactive ? (state.toMove === 0 ? 1 : 2) : null}
-        marks={o.marks?.(state)}
+        marks={marks}
         animate={animate}
         label={t('board.label')}
         pointLabel={(i, stone) =>
-          t(stone === 0 ? 'point.empty' : stone === 1 ? 'point.black' : 'point.white', {
-            point: pointName(i, size),
-          })
+          t(
+            stone === 0
+              ? marks?.get(i) === 'forbidden'
+                ? 'point.forbidden'
+                : 'point.empty'
+              : stone === 1
+                ? 'point.black'
+                : 'point.white',
+            {
+              point: pointName(i, size),
+            },
+          )
         }
         confirmText={t('touch.confirm')}
         isPlayable={(i) => rules.isLegal(state, i)}
@@ -84,6 +94,8 @@ export function createStoneGame(o: StoneGameOptions): TwoPlayerGameDefinition<Mn
       agentIds: o.agents.map((a) => a.id),
       defaultDifficulty: o.defaultDifficulty,
       defaultWatch: o.defaultWatch,
+      // Black always moves first in stone games: players choose a color instead of alternating.
+      fixedFirstSeat: 0,
     },
     env: o.env,
     agents: o.agents,
