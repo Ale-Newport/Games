@@ -16,7 +16,8 @@
 - **#011 Reversi 6×6 — COMPLETE** (2026-11-06).
 - **#012 English Checkers — COMPLETE** (2026-11-06).
 - **#013 International Draughts — COMPLETE** (2026-11-06).
-- **Current game: #014 Spanish Checkers** (`spanish-checkers`) — TODO: variant `SPANISH` ready.
+- **#014 Spanish Checkers — COMPLETE** (2026-11-06).
+- **Current game: #015 Chess** (`chess`) — TODO.
 
 ## Resume instructions
 
@@ -46,20 +47,22 @@ with its own engine, and `src/games/tic-tac-toe-4x4/` for an m,n,k game):
 Gotcha: Prettier reflows long lines — when scripting edits to existing files, re-read them first or
 use exact-match edits, and check that the edit applied.
 
-## Plan for #012–#014 (checkers family)
+## Plan for #015–#020 (chess family)
 
-- Shared draughts engine `src/games/shared/draughts/` parameterized by: board size (8/10), men
-  move direction, men capture backwards (English no, International yes, Spanish no), flying kings
-  (International/Spanish yes, English no), capture choice rule (English: any capture sequence;
-  International: maximum number of pieces; Spanish: maximum pieces, then maximum kings), promotion
-  mid-capture (International: no — only if the sequence ends on the last row), draw rules
-  (English: 40-move rule without capture/promotion, threefold repetition).
-- Actions are full capture sequences (path of squares) so the AI contract stays one action per
-  turn; the UI lets the user click piece then destination squares step by step, constrained to
-  legal sequences.
-- Board: 8×8 / 10×10 dark squares, wooden pieces with crowns for kings, move highlights.
-- AI: alpha-beta with material (man 100, king ~160), advancement, center control; quiescence on
-  captures.
+- Shared chess engine `src/games/shared/chess/`: 0x88 or 10×12 mailbox board, full legal move
+  generation (pins/checks via make-unmake + king safety), castling (with Chess960-compatible
+  representation: king and rook squares, castling rights per rook file), en passant, promotion
+  (Q/R/B/N), check/checkmate/stalemate, draws: 50-move rule, threefold repetition (position keys
+  incl. castling/en passant rights), insufficient material; FEN import/export; SAN notation.
+- Variants on the same engine: #016 Chess960 (518/960 start positions, castling to standard
+  squares), #017 Antichess (captures compulsory, king is a normal piece, win by losing all pieces or
+  being stalemated), #018 King of the Hill (king on d4/e4/d5/e5 wins), #019 Three-Check (third
+  check wins), #020 Gardner minichess (5×5 board, no castling/double push).
+- Clocks for #015 (spec requires clocks): optional time controls (e.g. 5+0, 10+5, none) handled in
+  the UI layer with timeouts as a result reason (`flag`), not in the pure engine.
+- AI: alpha-beta with piece-square tables, quiescence search on captures, MVV-LVA ordering,
+  iterative deepening; consider a Web Worker for Hard.
+- Validate with perft counts (start position depth 1–4: 20, 400, 8,902, 197,281; Kiwipete).
 
 ## Known follow-ups (platform)
 
