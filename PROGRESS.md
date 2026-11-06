@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #049 Sim COMPLETE
+
+- Six points, 15 lines; closing a triangle of your own color loses. An exact memoized solver
+  (~112 000 positions, milliseconds) confirms the known second-player win; Hard never loses as
+  second (tested). Hexagon board with polygon touch areas and a "would close your triangle" warning.
+- Seeded (40 games per pair): Easy vs Random 38–2, Medium vs Easy 33–7, Hard vs Medium 28–12.
+- The e2e hung clicking a line whose center lies under a crossing line's touch area; the spec now
+  dispatches clicks on the line, and hover tints only apply on devices that can hover.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 901 unit tests, build, 140
+  Playwright tests (Sim e2e rerun after the fix).
+
 ## 2026-11-06 — Session 1: #048 Cram COMPLETE
 
 - Thin module on the shared domino family (both orientations for both seats, 5×6). Cram is

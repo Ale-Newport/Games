@@ -51,7 +51,8 @@
 - **#046 Kayles — COMPLETE** (2026-11-06).
 - **#047 Domineering — COMPLETE** (2026-11-06).
 - **#048 Cram — COMPLETE** (2026-11-06).
-- **Current game: #049 Sim** (`sim`) — TODO.
+- **#049 Sim — COMPLETE** (2026-11-06).
+- **Current game: #050 SOS** (`sos`) — TODO.
 
 ## Resume instructions
 
