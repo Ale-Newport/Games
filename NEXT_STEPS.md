@@ -22,7 +22,9 @@
 - **#017 Antichess — COMPLETE** (2026-11-06).
 - **#018 King of the Hill Chess — COMPLETE** (2026-11-06).
 - **#019 Three-Check Chess — COMPLETE** (2026-11-06).
-- **Current game: #020 Gardner Minichess** (`gardner-minichess`) — TODO (drafted in the working tree).
+- **#020 Gardner Minichess — COMPLETE** (2026-11-06).
+- **Current game: #021 Shogi** (`shogi`) — TODO (shared engine `src/games/shared/shogi/` started:
+  position, perft, game layer and tests).
 
 ## Resume instructions
 
@@ -52,21 +54,18 @@ with its own engine, and `src/games/tic-tac-toe-4x4/` for an m,n,k game):
 Gotcha: Prettier reflows long lines — when scripting edits to existing files, re-read them first or
 use exact-match edits, and check that the edit applied.
 
-## Plan for #016–#020 (chess family)
+## Plan for #021–#022 (shogi family)
 
-The shared family is done (`src/games/shared/chess/`, see `src/games/chess/README.md`). Each
-variant is a thin module like `src/games/chess/` with its own `VARIANT`, levels (`chessPresets`),
-strings, rules page, achievements, preview (same generator approach: render `PieceGlyph` paths into
-an SVG) and tests:
-
-- #016 Chess960: `CHESS960` variant; pass `seed: () => random 0–959` to `createChessDefinition`
-  (`restart` keeps the same start); show the start number; castling by king-onto-rook is already
-  supported by the board; perft for 960 is in `tests/perft.test.ts`.
-- #017 Antichess: `ANTICHESS` (captures compulsory, king promotion allowed, win with no pieces or
-  moves); evaluation is negated material; check SAN/UI have no check markers.
-- #018 King of the Hill: `KING_OF_THE_HILL`; highlight d4/e4/d5/e5 on the board.
-- #019 Three-Check: `THREE_CHECK`; `statusInfo` already shows the check counts.
-- #020 Gardner Minichess: `GARDNER` 5×5 (no double push/castling); the board handles W×H.
+Shared engine `src/games/shared/shogi/` (started, tested): `variants.ts` (piece tables with
+oriented vectors, promotion, dead rows, values; `SHOGI` and `ANIMAL` 3×4), `position.ts` (mutable
+position, legal moves incl. drops/nifu/uchifuzume, make/unmake, Zobrist, perft = 30/900/25 470/
+719 731), `game.ts` (immutable state, Western notation, checkmate/capture/try results, fourfold
+repetition with perpetual-check loss, move limit, replay validation with prefix cache). Still to
+do: `search.ts` (alpha-beta + quiescence + TT, hand-piece values), `agents.ts`, `environment.ts`
+(codec: board moves `(from·N + to)·2 + promote`, drops `N²·2 + kind·N + to`), `ShogiBoard.tsx`
+(pentagon pieces with kanji, rotated for Gote; hands as clickable trays; promotion yes/no
+prompt), `definition.ts`, `i18n.ts`; then the #021 and #022 modules. #022 uses a generic title
+("Animal Shogi 3×4") with original animal art, since the original product name is a trademark.
 
 ## Known follow-ups (platform)
 

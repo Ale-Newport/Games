@@ -32,6 +32,8 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'king-of-the-hill': () => import('../../games/king-of-the-hill/ai-adapter').then((m) => m.bundle),
   'three-check-chess': () =>
     import('../../games/three-check-chess/ai-adapter').then((m) => m.bundle),
+  'gardner-minichess': () =>
+    import('../../games/gardner-minichess/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
