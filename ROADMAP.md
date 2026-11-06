@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 9 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 191
+**Complete:** 10 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 190
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -20,7 +20,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 007 | Gomoku | `gomoku` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 008 | Renju | `renju` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 009 | Pente | `pente` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 010 | Othello / Reversi 8×8 | `reversi-8x8` | TODO | — | — | — | — | — |  |  |
+| 010 | Othello / Reversi 8×8 | `reversi-8x8` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 011 | Othello / Reversi 6×6 | `reversi-6x6` | TODO | — | — | — | — | — |  |  |
 | 012 | English Checkers | `english-checkers` | TODO | — | — | — | — | — |  |  |
 | 013 | International Draughts | `international-draughts` | TODO | — | — | — | — | — |  |  |
