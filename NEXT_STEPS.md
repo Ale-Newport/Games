@@ -44,7 +44,8 @@
 - **#039 Isolation — COMPLETE** (2026-11-06).
 - **#040 Dots and Boxes — COMPLETE** (2026-11-06).
 - **#041 Nim — COMPLETE** (2026-11-06).
-- **Current game: #042 Misère Nim** (`misere-nim`) — TODO.
+- **#042 Misère Nim — COMPLETE** (2026-11-06).
+- **Current game: #043 Wythoff's Game** (`wythoff`) — TODO.
 
 ## Resume instructions
 

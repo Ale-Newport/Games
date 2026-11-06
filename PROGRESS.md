@@ -2,6 +2,13 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #042 Misère Nim COMPLETE
+
+- Thin module on the shared heap family (misère flag): the last counter loses; the solver's
+  misère results are unit-tested against the classic rule (nim-sum, except all-single heaps).
+- Seeded (40 games per pair): Easy vs Random 27–13, Medium vs Easy 35–5, Hard vs Medium 35–5.
+- Verified (actually run): `npm run verify` → 800 unit tests, build, 126 Playwright tests.
+
 ## 2026-11-06 — Session 1: #041 Nim COMPLETE
 
 - New shared heap family `src/games/shared/heaps/` for #041–#044: one engine (heaps, allowed

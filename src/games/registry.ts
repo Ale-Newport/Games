@@ -45,6 +45,7 @@ import { manifest as breakthrough } from './breakthrough/manifest';
 import { manifest as isolation } from './isolation/manifest';
 import { manifest as dotsAndBoxes } from './dots-and-boxes/manifest';
 import { manifest as nim } from './nim/manifest';
+import { manifest as misereNim } from './misere-nim/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -88,6 +89,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: isolation, load: () => import('./isolation/index') },
   { manifest: dotsAndBoxes, load: () => import('./dots-and-boxes/index') },
   { manifest: nim, load: () => import('./nim/index') },
+  { manifest: misereNim, load: () => import('./misere-nim/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
