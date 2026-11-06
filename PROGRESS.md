@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #006 Connect Five Gravity COMPLETE
+
+- 9×7 gravity board, five in a row (six+ also wins), on the shared gravity family. Levels tuned by
+  measurement: Easy vs Random 29–0–1, Medium (4 plies) vs Easy 18–1–1, Hard (600 ms, ≈ depth 12)
+  vs Medium 12–0. 6 achievements (incl. six-run, diagonal).
+- Fix found in screenshot review (shared with #005): winning-disc rings were drawn under the board
+  frame and invisible; they now render above it.
+- Verified (actually run): `npm run verify` → 228 unit tests, build, 50 Playwright tests.
+
 ## 2026-11-06 — Session 1: #005 Four in a Row (Connect Four) COMPLETE
 
 - Git history rewritten on request to remove the Co-Authored-By trailers (trees unchanged; force
