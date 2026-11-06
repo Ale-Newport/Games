@@ -43,7 +43,8 @@
 - **#038 Breakthrough — COMPLETE** (2026-11-06).
 - **#039 Isolation — COMPLETE** (2026-11-06).
 - **#040 Dots and Boxes — COMPLETE** (2026-11-06).
-- **Current game: #041 Nim** (`nim`) — TODO.
+- **#041 Nim — COMPLETE** (2026-11-06).
+- **Current game: #042 Misère Nim** (`misere-nim`) — TODO.
 
 ## Resume instructions
 

@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 40 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 160
+**Complete:** 41 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 159
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -56,7 +56,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 
 | # | Game | ID | Status | Engine | Graphics | Content | Tests | AI | Completed | Known issues |
 |---:|---|---|---|:-:|:-:|:-:|:-:|:-:|---|---|
-| 041 | Nim | `nim` | TODO | — | — | — | — | — |  |  |
+| 041 | Nim | `nim` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 042 | Misère Nim | `misere-nim` | TODO | — | — | — | — | — |  |  |
 | 043 | Wythoff's Game | `wythoff` | TODO | — | — | — | — | — |  |  |
 | 044 | Subtraction Game | `subtraction-game` | TODO | — | — | — | — | — |  |  |
