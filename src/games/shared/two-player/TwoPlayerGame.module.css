@@ -218,11 +218,17 @@
   border: 1px solid var(--border-strong);
 }
 
-.menuLogo svg:first-child {
+.logoSeat0,
+.logoSeat1 {
+  display: grid;
+  place-items: center;
+}
+
+.logoSeat0 {
   color: var(--player-1);
 }
 
-.menuLogo svg:nth-child(2) {
+.logoSeat1 {
   color: var(--player-2);
 }
 
