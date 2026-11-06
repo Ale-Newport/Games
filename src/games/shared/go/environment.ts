@@ -107,7 +107,8 @@ export interface GoLevels {
   easy: { playouts: number; randomness: number };
   medium: { playouts: number };
   hard: { timeLimitMs: number };
-  expert: { timeLimitMs: number };
+  /** Omitted on boards where a longer budget did not measurably beat Hard. */
+  expert?: { timeLimitMs: number };
 }
 
 export function goPresets(rules: GoRules, levels: GoLevels): AgentPreset<GoState, number>[] {
@@ -117,7 +118,7 @@ export function goPresets(rules: GoRules, levels: GoLevels): AgentPreset<GoState
     o: { playouts?: number; timeLimitMs?: number; randomness?: number },
   ) => new GoMctsAgent({ id, label, rules, ...o });
   const { easy, medium, hard, expert } = levels;
-  return [
+  const presets: AgentPreset<GoState, number>[] = [
     {
       id: 'random',
       kind: 'random',
@@ -158,7 +159,9 @@ export function goPresets(rules: GoRules, levels: GoLevels): AgentPreset<GoState
       },
       create: () => mcts('hard', 'Hard', hard),
     },
-    {
+  ];
+  if (expert)
+    presets.push({
       id: 'expert',
       kind: 'mcts',
       label: { en: 'Expert', es: 'Experto' },
@@ -167,6 +170,6 @@ export function goPresets(rules: GoRules, levels: GoLevels): AgentPreset<GoState
         es: `Búsqueda en árbol Monte Carlo durante ${expert.timeLimitMs} ms por jugada.`,
       },
       create: () => mcts('expert', 'Expert', expert),
-    },
-  ];
+    });
+  return presets;
 }

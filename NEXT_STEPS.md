@@ -29,7 +29,8 @@
 - **#024 Janggi — COMPLETE** (2026-11-06).
 - **#025 Go 9×9 — COMPLETE** (2026-11-06).
 - **#026 Go 13×13 — COMPLETE** (2026-11-06).
-- **Current game: #027 Go 19×19** (`go-19x19`) — TODO (module drafted; bench running).
+- **#027 Go 19×19 — COMPLETE** (2026-11-06).
+- **Current game: #028 Hex 7×7** (`hex-7x7`) — TODO (module drafted and benched).
 
 ## Resume instructions
 
