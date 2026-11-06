@@ -20,18 +20,28 @@
 
 .heap {
   display: grid;
-  grid-template-columns: 5.5em 1fr;
+  grid-template-columns: 3.6em 1fr;
   align-items: center;
   gap: 8px;
 }
 
 .name {
   display: flex;
+  white-space: nowrap;
   align-items: baseline;
   gap: 6px;
   font-size: var(--text-sm);
   font-weight: 700;
   color: #d8eadf;
+}
+
+.letter {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .count {
@@ -148,10 +158,6 @@
 }
 
 @media (max-width: 420px) {
-  .heap {
-    grid-template-columns: 4.6em 1fr;
-  }
-
   .counter {
     width: 22px;
     height: 22px;

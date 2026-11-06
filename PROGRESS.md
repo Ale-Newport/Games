@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #043 Wythoff's Game COMPLETE
+
+- Thin module on the shared heap family: two heaps of 4–15, take from one heap or the same from
+  both (the board's "From both heaps" toggle / `B`); the solver matches the golden-ratio pairs on
+  every position up to 15 × 15.
+- Seeded (40 games per pair): Easy vs Random 28–12, Medium vs Easy 34–6, Hard vs Medium 31–9.
+- Mobile screenshot: two-digit heap labels wrapped; the shared board now shows a letter tile and
+  the size (full names stay in the accessible labels).
+- Verified (actually run): `npm run verify` → 812 unit tests, build, 128 Playwright tests (Nim/Wythoff
+  unit and e2e tests rerun after the label change).
+
 ## 2026-11-06 — Session 1: #042 Misère Nim COMPLETE
 
 - Thin module on the shared heap family (misère flag): the last counter loses; the solver's
