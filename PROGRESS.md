@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #058 Bagh-Chal COMPLETE
+
+- Thin module on the shared hunt family: 5×5 board with alternate diagonals, four tigers in the
+  corners, twenty goats placed one per turn and then moved; single tiger jumps, five captures win
+  for the tigers, immobilized tigers lose; repetition or 300 plies draw.
+- Seeded (10 games per pair): Easy vs Random 7–0–3, Medium vs Easy 8–1–1, Hard vs Medium 10–0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1025 unit tests, build, 158
+  Playwright tests.
+
 ## 2026-11-06 — Session 1: #057 Fox and Geese COMPLETE
 
 - New shared hunt family `src/games/shared/hunt/` for #057–#058: point-graph boards (holes and
