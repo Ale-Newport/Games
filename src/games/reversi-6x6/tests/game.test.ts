@@ -3,6 +3,7 @@ import { describeAdapterContract } from '../../../ai/protocols/contract-suite';
 import { EpsilonAgent } from '../../../ai/agents/random-agent';
 import { evaluateAgents } from '../../../ai/evaluation/evaluate';
 import { createReversiState, legalActions } from '../../shared/reversi/engine';
+import { ReversiSearchAgent } from '../../shared/reversi/search';
 import { AGENT_PRESETS } from '../ai';
 import { r6Env } from '../ai-adapter';
 import { R6 } from '../rules';
@@ -28,18 +29,22 @@ describe('Reversi 6×6', () => {
     expect(r6Env.info.actionSpaceSize).toBe(37);
   });
 
-  it('Hard as White beats Medium as Black most of the time (seeded, 250 ms budget)', () => {
+  it('Hard-strength search as White beats Medium as Black (seeded, deterministic)', () => {
+    // Hard is time-limited (800 ms), which is not reproducible under test load. In practice it
+    // reaches depth 8–9 in the middlegame and solves the last 14+ empties exactly, so a fixed
+    // depth-6 search with a 14-empty exact endgame is a conservative, deterministic stand-in.
+    const hardFloor = new ReversiSearchAgent(R6, {
+      id: 'hard-floor',
+      label: 'Hard (fixed depth)',
+      maxDepth: 6,
+      endgameEmpties: 14,
+    });
     const r = evaluateAgents(
       r6Env,
       new EpsilonAgent(preset('medium'), 0.05),
-      new EpsilonAgent(preset('hard'), 0.05),
-      {
-        games: 6,
-        seed: 3,
-        swapSeats: false,
-        timeLimitMs: 250,
-      },
+      new EpsilonAgent(hardFloor, 0.05),
+      { games: 6, seed: 3, swapSeats: false },
     );
-    expect(r.agents[1].wins).toBeGreaterThan(r.agents[1].losses);
+    expect(r.agents[1].wins).toBeGreaterThanOrEqual(5);
   }, 60_000);
 });

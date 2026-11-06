@@ -46,6 +46,18 @@ const en: Dictionary = {
   'action.pause': 'Pause',
   'action.resume': 'Resume',
   'action.step': 'Step',
+  'action.resign': 'Resign',
+  'action.confirmResign': 'Confirm resign',
+  'action.agreeDraw': 'Agree draw',
+  'action.confirmDraw': 'Confirm draw',
+  'menu.clock': 'Clock',
+  'menu.clockHint': 'Minutes per side + seconds added after each move. Timed games have no undo.',
+  'clock.none': 'None',
+  'clock.label': "{name}'s clock",
+  'adjudication.resign': '{name} resigned',
+  'adjudication.timeout': '{name} ran out of time',
+  'adjudication.timeoutDraw': 'Time ran out, but the other side cannot checkmate: draw',
+  'adjudication.agreement': 'Draw by agreement',
   keys: 'Keys: arrows/WASD move · Enter place · U undo · H hint · R restart · N next',
 };
 
@@ -94,6 +106,19 @@ const es: Dictionary = {
   'action.pause': 'Pausa',
   'action.resume': 'Continuar',
   'action.step': 'Paso',
+  'action.resign': 'Rendirse',
+  'action.confirmResign': 'Confirmar rendición',
+  'action.agreeDraw': 'Acordar tablas',
+  'action.confirmDraw': 'Confirmar tablas',
+  'menu.clock': 'Reloj',
+  'menu.clockHint':
+    'Minutos por bando + segundos añadidos tras cada jugada. Sin deshacer en partidas con reloj.',
+  'clock.none': 'Sin reloj',
+  'clock.label': 'Reloj de {name}',
+  'adjudication.resign': '{name} se rindió',
+  'adjudication.timeout': 'A {name} se le acabó el tiempo',
+  'adjudication.timeoutDraw': 'Se acabó el tiempo, pero el rival no puede dar mate: tablas',
+  'adjudication.agreement': 'Tablas por acuerdo',
   keys: 'Teclas: flechas/WASD mover · Intro colocar · U deshacer · H pista · R reiniciar · N siguiente',
 };
 

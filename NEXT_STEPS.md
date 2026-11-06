@@ -17,7 +17,8 @@
 - **#012 English Checkers — COMPLETE** (2026-11-06).
 - **#013 International Draughts — COMPLETE** (2026-11-06).
 - **#014 Spanish Checkers — COMPLETE** (2026-11-06).
-- **Current game: #015 Chess** (`chess`) — TODO.
+- **#015 Chess — COMPLETE** (2026-11-06).
+- **Current game: #016 Chess960** (`chess960`) — TODO.
 
 ## Resume instructions
 
@@ -47,22 +48,21 @@ with its own engine, and `src/games/tic-tac-toe-4x4/` for an m,n,k game):
 Gotcha: Prettier reflows long lines — when scripting edits to existing files, re-read them first or
 use exact-match edits, and check that the edit applied.
 
-## Plan for #015–#020 (chess family)
+## Plan for #016–#020 (chess family)
 
-- Shared chess engine `src/games/shared/chess/`: 0x88 or 10×12 mailbox board, full legal move
-  generation (pins/checks via make-unmake + king safety), castling (with Chess960-compatible
-  representation: king and rook squares, castling rights per rook file), en passant, promotion
-  (Q/R/B/N), check/checkmate/stalemate, draws: 50-move rule, threefold repetition (position keys
-  incl. castling/en passant rights), insufficient material; FEN import/export; SAN notation.
-- Variants on the same engine: #016 Chess960 (518/960 start positions, castling to standard
-  squares), #017 Antichess (captures compulsory, king is a normal piece, win by losing all pieces or
-  being stalemated), #018 King of the Hill (king on d4/e4/d5/e5 wins), #019 Three-Check (third
-  check wins), #020 Gardner minichess (5×5 board, no castling/double push).
-- Clocks for #015 (spec requires clocks): optional time controls (e.g. 5+0, 10+5, none) handled in
-  the UI layer with timeouts as a result reason (`flag`), not in the pure engine.
-- AI: alpha-beta with piece-square tables, quiescence search on captures, MVV-LVA ordering,
-  iterative deepening; consider a Web Worker for Hard.
-- Validate with perft counts (start position depth 1–4: 20, 400, 8,902, 197,281; Kiwipete).
+The shared family is done (`src/games/shared/chess/`, see `src/games/chess/README.md`). Each
+variant is a thin module like `src/games/chess/` with its own `VARIANT`, levels (`chessPresets`),
+strings, rules page, achievements, preview (same generator approach: render `PieceGlyph` paths into
+an SVG) and tests:
+
+- #016 Chess960: `CHESS960` variant; pass `seed: () => random 0–959` to `createChessDefinition`
+  (`restart` keeps the same start); show the start number; castling by king-onto-rook is already
+  supported by the board; perft for 960 is in `tests/perft.test.ts`.
+- #017 Antichess: `ANTICHESS` (captures compulsory, king promotion allowed, win with no pieces or
+  moves); evaluation is negated material; check SAN/UI have no check markers.
+- #018 King of the Hill: `KING_OF_THE_HILL`; highlight d4/e4/d5/e5 on the board.
+- #019 Three-Check: `THREE_CHECK`; `statusInfo` already shows the check counts.
+- #020 Gardner Minichess: `GARDNER` 5×5 (no double push/castling); the board handles W×H.
 
 ## Known follow-ups (platform)
 

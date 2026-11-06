@@ -1,6 +1,21 @@
 import { describe, expect, it } from 'vitest';
 import { mnkTwoPlayerRules } from '../../mnk/match';
-import { applyMove, defaultSetup, newMatch, nextRound, type MatchConfig } from '../match';
+import {
+  agreeDraw,
+  applyMove,
+  canUndo,
+  chargeClock,
+  defaultSetup,
+  flagFall,
+  isValidMatch,
+  newMatch,
+  nextRound,
+  resign,
+  restartRound,
+  roundOutcome,
+  timeLeft,
+  type MatchConfig,
+} from '../match';
 import type { MnkState } from '../../mnk/engine';
 
 const base: MatchConfig<MnkState, number> = {
@@ -26,5 +41,45 @@ describe('two-player match flow', () => {
       expect(m.round.toMove).toBe(0);
       m = nextRound(cfg, applyMove(cfg, m, 4));
     }
+  });
+
+  const timed: MatchConfig<MnkState, number> = {
+    ...base,
+    timeControls: [{ id: '1+2', initialMs: 60_000, incrementMs: 2_000 }],
+  };
+
+  it('charges thinking time to the mover and adds the increment', () => {
+    let m = newMatch(timed, { ...defaultSetup(timed), timeControl: '1+2' });
+    expect(m.clock?.remaining).toEqual([60_000, 60_000]);
+    m = applyMove(timed, m, 4, 5_000);
+    expect(m.clock?.remaining).toEqual([57_000, 60_000]);
+    expect(timeLeft(m, 1, 1_500)).toBe(58_500);
+    expect(canUndo(timed, m)).toBe(false); // no take-backs on the clock
+    m = chargeClock(timed, m, 10_000);
+    expect(m.clock?.remaining).toEqual([57_000, 50_000]);
+    expect(restartRound(timed, m).clock?.remaining).toEqual([60_000, 60_000]);
+    expect(isValidMatch(timed, JSON.parse(JSON.stringify(m)))).toBe(true);
+    expect(isValidMatch(timed, { ...m, clock: { ...m.clock, remaining: [-1, 3] } })).toBe(false);
+    expect(
+      newMatch(timed, { ...defaultSetup(timed), mode: 'watch', timeControl: '1+2' }).clock,
+    ).toBe(null);
+  });
+
+  it('ends a round by flag fall, resignation or agreement and scores it', () => {
+    const m = newMatch(timed, { ...defaultSetup(timed), timeControl: '1+2' });
+    const flagged = flagFall(timed, m, 0);
+    expect(roundOutcome(timed, flagged)).toEqual({ winner: 1, reason: 'timeout' });
+    expect(flagged.scores).toEqual({ x: 0, o: 1, draws: 0 });
+    expect(() => applyMove(timed, flagged, 4)).toThrow();
+    // The side with time left cannot win (e.g. a lone king): the flag fall is a draw.
+    const cannotMate = { ...timed, canWinOnTime: () => false };
+    expect(roundOutcome(cannotMate, flagFall(cannotMate, m, 0))?.winner).toBe(null);
+    const resigned = resign(timed, m, 1);
+    expect(roundOutcome(timed, resigned)).toEqual({ winner: 0, reason: 'resign' });
+    expect(resign(timed, resigned, 0)).toBe(resigned); // already over
+    expect(agreeDraw(timed, m).scores.draws).toBe(1);
+    const next = nextRound(timed, resigned);
+    expect(next.adjudication).toBe(null);
+    expect(roundOutcome(timed, next)).toBe(null);
   });
 });
