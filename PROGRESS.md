@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #033 Quarto COMPLETE
+
+- 16 pieces with four binary traits (original SVG art: tall/short, dark/light, square/round,
+  hollow/solid); each turn places the given piece and chooses the opponent's next one; any line of
+  four sharing a trait wins at once (automatic "Quarto!").
+- `QuartoSearchAgent`: negamax over whole turns, winning placements first, poisoned gives last,
+  safe-piece count at the leaves. Seeded: Easy vs Random 10–0, Medium vs Easy 9–0–1, Hard vs
+  Medium 8–0–2.
+- Mobile screenshot showed stretched oval cells spilling off the round board; the grid now has
+  square rows and is inscribed in the circle.
+- Verified (actually run): `npm run verify` → 670 unit tests, build, 108 Playwright tests.
+
 ## 2026-11-06 — Session 1: #032 Six Men's Morris COMPLETE
 
 - Thin module on the shared Morris family: two concentric squares (16 points, 8 mills), six pieces
