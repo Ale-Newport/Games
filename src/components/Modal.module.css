@@ -1,0 +1,95 @@
+.dialog {
+  width: min(560px, calc(100vw - 24px));
+  max-height: min(86dvh, 900px);
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  color: var(--text);
+  box-shadow: var(--shadow-lg);
+}
+
+.lg {
+  width: min(760px, calc(100vw - 24px));
+}
+
+.dialog::backdrop {
+  background: rgba(5, 8, 18, 0.62);
+  backdrop-filter: blur(4px);
+}
+
+.dialog[open] {
+  animation: pop var(--dur-med) var(--ease-out);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  font-size: var(--text-xl);
+}
+
+.body {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+.body h3 {
+  font-size: var(--text-lg);
+  margin: var(--space-4) 0 var(--space-2);
+}
+
+.body h3:first-child {
+  margin-top: 0;
+}
+
+.body ul,
+.body ol {
+  padding-left: 1.25em;
+  margin: var(--space-2) 0;
+}
+
+.body li + li {
+  margin-top: 4px;
+}
+
+.body p + p {
+  margin-top: var(--space-2);
+}
+
+.body kbd {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  padding: 1px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5) var(--space-4);
+  border-top: 1px solid var(--border);
+}

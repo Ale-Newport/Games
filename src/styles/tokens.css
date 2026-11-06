@@ -1,0 +1,117 @@
+/* Design tokens. Themes switch via [data-theme] on <html>. */
+:root {
+  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Outfit Variable', 'Inter Variable', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-full: 999px;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: clamp(2rem, 4vw, 2.75rem);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 120ms;
+  --dur-med: 220ms;
+  --dur-slow: 420ms;
+
+  --header-h: 64px;
+  --content-max: 1240px;
+
+  /* Player colors (games may use these for P1/P2). Colorblind mode swaps them below. */
+  --player-1: #ff5d73;
+  --player-2: #3fb8ff;
+  --player-3: #ffc94a;
+  --player-4: #4ade80;
+}
+
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0a0e1a;
+  --bg-elevated: #0f1424;
+  --surface: #141a2e;
+  --surface-2: #1b2340;
+  --surface-3: #232d50;
+  --border: rgba(160, 175, 230, 0.12);
+  --border-strong: rgba(160, 175, 230, 0.24);
+  --text: #eaeefb;
+  --text-muted: #9aa5c4;
+  --text-faint: #6b7596;
+  --accent: #8b6cff;
+  --accent-strong: #a48bff;
+  --accent-contrast: #ffffff;
+  --accent-2: #2fd4f0;
+  --accent-soft: rgba(139, 108, 255, 0.16);
+  --success: #3ddc97;
+  --warning: #ffc24b;
+  --danger: #ff6b7d;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.5);
+  --glow: 0 0 0 1px rgba(139, 108, 255, 0.35), 0 10px 40px rgba(139, 108, 255, 0.25);
+  --hero-gradient:
+    radial-gradient(1200px 400px at 10% -10%, rgba(139, 108, 255, 0.35), transparent 60%),
+    radial-gradient(900px 380px at 100% 0%, rgba(47, 212, 240, 0.22), transparent 60%);
+  --board-bg: #1a2240;
+  --board-line: #c9d2ff;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f3f5fb;
+  --bg-elevated: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #eef1f9;
+  --surface-3: #e2e7f4;
+  --border: rgba(20, 30, 70, 0.1);
+  --border-strong: rgba(20, 30, 70, 0.2);
+  --text: #121833;
+  --text-muted: #525c7a;
+  --text-faint: #7d86a3;
+  --accent: #6a46ff;
+  --accent-strong: #5532f0;
+  --accent-contrast: #ffffff;
+  --accent-2: #0a9bbd;
+  --accent-soft: rgba(106, 70, 255, 0.1);
+  --success: #12a46b;
+  --warning: #c98500;
+  --danger: #e0354d;
+  --shadow-sm: 0 1px 2px rgba(18, 24, 51, 0.08);
+  --shadow-md: 0 8px 24px rgba(18, 24, 51, 0.1);
+  --shadow-lg: 0 24px 60px rgba(18, 24, 51, 0.16);
+  --glow: 0 0 0 1px rgba(106, 70, 255, 0.3), 0 10px 30px rgba(106, 70, 255, 0.18);
+  --hero-gradient:
+    radial-gradient(1200px 400px at 10% -10%, rgba(106, 70, 255, 0.18), transparent 60%),
+    radial-gradient(900px 380px at 100% 0%, rgba(10, 155, 189, 0.14), transparent 60%);
+  --board-bg: #ffffff;
+  --board-line: #2b3566;
+  --player-1: #e23a55;
+  --player-2: #1683d8;
+}
+
+/* Okabe–Ito based colorblind-safe player colors. */
+:root[data-colorblind='on'] {
+  --player-1: #e69f00;
+  --player-2: #0072b2;
+  --player-3: #cc79a7;
+  --player-4: #009e73;
+}

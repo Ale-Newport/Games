@@ -1,0 +1,285 @@
+/**
+ * The definitive 200-game development roadmap.
+ *
+ * This file is the single source of truth for development status. ROADMAP.md is generated from it
+ * (`npm run roadmap`) and tests/platform/roadmap.test.ts validates it against the game registry.
+ * The public library never reads this file to decide playability: only registered, COMPLETE games
+ * are shown (see src/games/registry.ts).
+ *
+ * Keep this module dependency-free so Node tooling can import it directly.
+ */
+
+export type CategoryId = 'board' | 'strategy' | 'cards' | 'puzzle' | 'dice' | 'arcade';
+
+export type DevStatus = 'TODO' | 'IN_PROGRESS' | 'TESTING' | 'COMPLETE' | 'BLOCKED';
+
+/** Status of one aspect of a game's implementation. */
+export type PartStatus = 'none' | 'partial' | 'done';
+
+export interface RoadmapEntry {
+  number: number;
+  id: string;
+  name: string;
+  category: CategoryId;
+  status: DevStatus;
+  engine: PartStatus;
+  graphics: PartStatus;
+  content: PartStatus;
+  tests: PartStatus;
+  ai: PartStatus;
+  /** ISO date (YYYY-MM-DD) the game was marked COMPLETE. */
+  completed?: string;
+  issues?: string;
+}
+
+export const CATEGORY_NAMES: Record<CategoryId, string> = {
+  board: 'Classic Board & Abstract Strategy',
+  strategy: 'Mathematical, Historical & Additional Strategy',
+  cards: 'Card & Solitaire',
+  puzzle: 'Puzzles, Logic & Solving',
+  dice: 'Dice, Dominoes, Chance & Social',
+  arcade: 'Arcade, Platformers & Physics',
+};
+
+type Def = [number, string, string, CategoryId];
+
+const DEFINITIONS: Def[] = [
+  // Category A — Classic board and abstract strategy (001–040)
+  [1, 'tic-tac-toe', 'Tic-Tac-Toe 3×3', 'board'],
+  [2, 'tic-tac-toe-4x4', 'Tic-Tac-Toe 4×4', 'board'],
+  [3, 'ultimate-tic-tac-toe', 'Ultimate Tic-Tac-Toe', 'board'],
+  [4, 'misere-tic-tac-toe', 'Misère Tic-Tac-Toe', 'board'],
+  [5, 'four-in-a-row', 'Connect Four', 'board'],
+  [6, 'connect-five-gravity', 'Connect Five Gravity', 'board'],
+  [7, 'gomoku', 'Gomoku', 'board'],
+  [8, 'renju', 'Renju', 'board'],
+  [9, 'pente', 'Pente', 'board'],
+  [10, 'reversi-8x8', 'Othello / Reversi 8×8', 'board'],
+  [11, 'reversi-6x6', 'Othello / Reversi 6×6', 'board'],
+  [12, 'english-checkers', 'English Checkers', 'board'],
+  [13, 'international-draughts', 'International Draughts', 'board'],
+  [14, 'spanish-checkers', 'Spanish Checkers', 'board'],
+  [15, 'chess', 'Chess', 'board'],
+  [16, 'chess960', 'Chess960', 'board'],
+  [17, 'antichess', 'Antichess', 'board'],
+  [18, 'king-of-the-hill', 'King of the Hill Chess', 'board'],
+  [19, 'three-check-chess', 'Three-Check Chess', 'board'],
+  [20, 'gardner-minichess', 'Gardner Minichess', 'board'],
+  [21, 'shogi', 'Shogi', 'board'],
+  [22, 'dobutsu-shogi', 'Dōbutsu Shōgi', 'board'],
+  [23, 'xiangqi', 'Xiangqi', 'board'],
+  [24, 'janggi', 'Janggi', 'board'],
+  [25, 'go-9x9', 'Go 9×9', 'board'],
+  [26, 'go-13x13', 'Go 13×13', 'board'],
+  [27, 'go-19x19', 'Go 19×19', 'board'],
+  [28, 'hex-7x7', 'Hex 7×7', 'board'],
+  [29, 'hex-11x11', 'Hex 11×11', 'board'],
+  [30, 'nine-mens-morris', "Nine Men's Morris", 'board'],
+  [31, 'three-mens-morris', "Three Men's Morris", 'board'],
+  [32, 'six-mens-morris', "Six Men's Morris", 'board'],
+  [33, 'quarto', 'Quarto', 'board'],
+  [34, 'pentago', 'Pentago', 'board'],
+  [35, 'stacking-gobblers', 'Gobblet Gobblers', 'board'],
+  [36, 'teeko', 'Teeko', 'board'],
+  [37, 'ataxx', 'Ataxx', 'board'],
+  [38, 'breakthrough', 'Breakthrough', 'board'],
+  [39, 'isolation', 'Isolation', 'board'],
+  [40, 'dots-and-boxes', 'Dots and Boxes', 'board'],
+
+  // Category B — Mathematical, historical and additional strategy (041–070)
+  [41, 'nim', 'Nim', 'strategy'],
+  [42, 'misere-nim', 'Misère Nim', 'strategy'],
+  [43, 'wythoff', "Wythoff's Game", 'strategy'],
+  [44, 'subtraction-game', 'Subtraction Game', 'strategy'],
+  [45, 'chomp', 'Chomp', 'strategy'],
+  [46, 'kayles', 'Kayles', 'strategy'],
+  [47, 'domineering', 'Domineering', 'strategy'],
+  [48, 'cram', 'Cram', 'strategy'],
+  [49, 'sim', 'Sim', 'strategy'],
+  [50, 'sos', 'SOS', 'strategy'],
+  [51, 'sprouts', 'Sprouts', 'strategy'],
+  [52, 'clobber', 'Clobber', 'strategy'],
+  [53, 'konane', 'Konane', 'strategy'],
+  [54, 'fanorona', 'Fanorona', 'strategy'],
+  [55, 'hnefatafl', 'Hnefatafl', 'strategy'],
+  [56, 'tablut', 'Tablut', 'strategy'],
+  [57, 'fox-and-geese', 'Fox and Geese', 'strategy'],
+  [58, 'bagh-chal', 'Bagh-Chal', 'strategy'],
+  [59, 'alquerque', 'Alquerque', 'strategy'],
+  [60, 'yote', 'Yoté', 'strategy'],
+  [61, 'kalah', 'Kalah Mancala', 'strategy'],
+  [62, 'oware', 'Oware', 'strategy'],
+  [63, 'bao', 'Bao', 'strategy'],
+  [64, 'congkak', 'Congkak', 'strategy'],
+  [65, 'halma', 'Halma', 'strategy'],
+  [66, 'chinese-checkers', 'Chinese Checkers', 'strategy'],
+  [67, 'amazons', 'Game of the Amazons', 'strategy'],
+  [68, 'lines-of-action', 'Lines of Action', 'strategy'],
+  [69, 'paper-soccer', 'Paper Soccer', 'strategy'],
+  [70, 'bridg-it', 'Bridg-It', 'strategy'],
+
+  // Category C — Card and solitaire (071–100)
+  [71, 'klondike-draw-1', 'Klondike Solitaire — Draw One', 'cards'],
+  [72, 'klondike-draw-3', 'Klondike Solitaire — Draw Three', 'cards'],
+  [73, 'freecell', 'FreeCell', 'cards'],
+  [74, 'spider-1-suit', 'Spider Solitaire — One Suit', 'cards'],
+  [75, 'spider-2-suits', 'Spider Solitaire — Two Suits', 'cards'],
+  [76, 'spider-4-suits', 'Spider Solitaire — Four Suits', 'cards'],
+  [77, 'pyramid-solitaire', 'Pyramid Solitaire', 'cards'],
+  [78, 'tripeaks', 'TriPeaks Solitaire', 'cards'],
+  [79, 'golf-solitaire', 'Golf Solitaire', 'cards'],
+  [80, 'yukon', 'Yukon Solitaire', 'cards'],
+  [81, 'scorpion', 'Scorpion Solitaire', 'cards'],
+  [82, 'forty-thieves', 'Forty Thieves Solitaire', 'cards'],
+  [83, 'accordion', 'Accordion Solitaire', 'cards'],
+  [84, 'clock-solitaire', 'Clock Solitaire', 'cards'],
+  [85, 'canfield', 'Canfield Solitaire', 'cards'],
+  [86, 'blackjack', 'Blackjack', 'cards'],
+  [87, 'texas-holdem', "Texas Hold'em Poker", 'cards'],
+  [88, 'five-card-draw', 'Five Card Draw Poker', 'cards'],
+  [89, 'omaha', "Omaha Hold'em", 'cards'],
+  [90, 'seven-card-stud', 'Seven Card Stud', 'cards'],
+  [91, 'kuhn-poker', 'Kuhn Poker', 'cards'],
+  [92, 'leduc-poker', 'Leduc Poker', 'cards'],
+  [93, 'hearts', 'Hearts', 'cards'],
+  [94, 'spades', 'Spades', 'cards'],
+  [95, 'contract-bridge', 'Contract Bridge', 'cards'],
+  [96, 'gin-rummy', 'Gin Rummy', 'cards'],
+  [97, 'cribbage', 'Cribbage', 'cards'],
+  [98, 'euchre', 'Euchre', 'cards'],
+  [99, 'crazy-eights', 'Crazy Eights', 'cards'],
+  [100, 'go-fish', 'Go Fish', 'cards'],
+
+  // Category D — Puzzles, logic and solving (101–140)
+  [101, 'sudoku-9x9', 'Classic Sudoku 9×9', 'puzzle'],
+  [102, 'sudoku-4x4', 'Mini Sudoku 4×4', 'puzzle'],
+  [103, 'sudoku-6x6', 'Sudoku 6×6', 'puzzle'],
+  [104, 'sudoku-16x16', 'Sudoku 16×16', 'puzzle'],
+  [105, 'x-sudoku', 'X-Sudoku', 'puzzle'],
+  [106, 'killer-sudoku', 'Killer Sudoku', 'puzzle'],
+  [107, 'jigsaw-sudoku', 'Jigsaw Sudoku', 'puzzle'],
+  [108, 'kakuro', 'Kakuro', 'puzzle'],
+  [109, 'calcudoku', 'KenKen', 'puzzle'],
+  [110, 'futoshiki', 'Futoshiki', 'puzzle'],
+  [111, 'hitori', 'Hitori', 'puzzle'],
+  [112, 'nonogram', 'Nonogram / Picross', 'puzzle'],
+  [113, 'slitherlink', 'Slitherlink', 'puzzle'],
+  [114, 'hashiwokakero', 'Hashiwokakero', 'puzzle'],
+  [115, 'nurikabe', 'Nurikabe', 'puzzle'],
+  [116, 'minesweeper', 'Classic Minesweeper', 'puzzle'],
+  [117, 'minesweeper-no-guess', 'No-Guess Minesweeper', 'puzzle'],
+  [118, 'code-breaker', 'Mastermind', 'puzzle'],
+  [119, 'bulls-and-cows', 'Bulls and Cows', 'puzzle'],
+  [120, 'word-guess', 'Five-Letter Word Guessing Game', 'puzzle'],
+  [121, 'hangman', 'Hangman', 'puzzle'],
+  [122, 'queens', 'Queens — Colored Regions Puzzle', 'puzzle'],
+  [123, 'zip', 'Zip — Numbered Hamiltonian Path Puzzle', 'puzzle'],
+  [124, 'eight-puzzle', '8-Puzzle', 'puzzle'],
+  [125, 'fifteen-puzzle', '15-Puzzle', 'puzzle'],
+  [126, 'traffic-jam', 'Rush Hour', 'puzzle'],
+  [127, 'sokoban', 'Sokoban', 'puzzle'],
+  [128, 'peg-solitaire', 'Peg Solitaire', 'puzzle'],
+  [129, 'lights-out', 'Lights Out', 'puzzle'],
+  [130, 'flow', 'Flow Path Connection Puzzle', 'puzzle'],
+  [131, 'water-sort', 'Water Sort Puzzle', 'puzzle'],
+  [132, 'ball-sort', 'Ball Sort Puzzle', 'puzzle'],
+  [133, 'towers-of-hanoi', 'Towers of Hanoi', 'puzzle'],
+  [134, 'twisty-cube-2x2', "Rubik's Cube 2×2", 'puzzle'],
+  [135, 'twisty-cube-3x3', "Rubik's Cube 3×3", 'puzzle'],
+  [136, 'twisty-cube-4x4', "Rubik's Cube 4×4", 'puzzle'],
+  [137, 'game-2048', '2048', 'puzzle'],
+  [138, 'threes', 'Threes-Style Number-Merging Game', 'puzzle'],
+  [139, 'fibonacci-2048', 'Fibonacci 2048', 'puzzle'],
+  [140, 'klotski', 'Klotski Sliding Block Puzzle', 'puzzle'],
+
+  // Category E — Dice, dominoes, chance and social (141–165)
+  [141, 'backgammon', 'Backgammon', 'dice'],
+  [142, 'narde', 'Narde', 'dice'],
+  [143, 'royal-game-of-ur', 'Royal Game of Ur', 'dice'],
+  [144, 'senet', 'Senet', 'dice'],
+  [145, 'ludo', 'Ludo', 'dice'],
+  [146, 'pachisi', 'Pachisi', 'dice'],
+  [147, 'parchis', 'Parchís', 'dice'],
+  [148, 'snakes-and-ladders', 'Snakes and Ladders', 'dice'],
+  [149, 'five-dice', 'Yahtzee', 'dice'],
+  [150, 'generala', 'Generala', 'dice'],
+  [151, 'farkle', 'Farkle', 'dice'],
+  [152, 'pig', 'Pig Dice', 'dice'],
+  [153, 'cant-stop', "Can't Stop", 'dice'],
+  [154, 'shut-the-box', 'Shut the Box', 'dice'],
+  [155, 'qwixx', 'Qwixx', 'dice'],
+  [156, 'block-dominoes', 'Block Dominoes', 'dice'],
+  [157, 'draw-dominoes', 'Draw Dominoes', 'dice'],
+  [158, 'all-fives-dominoes', 'All Fives Dominoes', 'dice'],
+  [159, 'mahjong-solitaire', 'Mahjong Solitaire', 'dice'],
+  [160, 'riichi-mahjong', 'Riichi Mahjong', 'dice'],
+  [161, 'tile-rummy', 'Tile Rummy', 'dice'],
+  [162, 'rock-paper-scissors', 'Rock Paper Scissors', 'dice'],
+  [163, 'rpsls', 'Rock Paper Scissors Lizard Spock', 'dice'],
+  [164, 'naval-battle', 'Battleship', 'dice'],
+  [165, 'memory-pairs', 'Memory Pairs', 'dice'],
+
+  // Category F — Arcade, platformers and physics (166–200)
+  [166, 'pong', 'Pong', 'arcade'],
+  [167, 'breakout', 'Breakout', 'arcade'],
+  [168, 'brick-breaker', 'Enhanced Brick Breaker', 'arcade'],
+  [169, 'invaders', 'Space Invaders-Style Shooter', 'arcade'],
+  [170, 'diving-swarm', 'Galaxian-Style Shooter', 'arcade'],
+  [171, 'asteroids', 'Asteroids', 'arcade'],
+  [172, 'snake', 'Classic Snake', 'arcade'],
+  [173, 'wraparound-snake', 'Wraparound Snake', 'arcade'],
+  [174, 'falling-blocks', 'Guideline-Style Tetris', 'arcade'],
+  [175, 'falling-blocks-classic', 'NES-Style Tetris', 'arcade'],
+  [176, 'maze-chase', 'Classic Maze-Chase Game', 'arcade'],
+  [177, 'maze-chase-advanced', 'Advanced Maze-Chase Variant', 'arcade'],
+  [178, 'crossing', 'Frogger-Style Crossing Game', 'arcade'],
+  [179, 'endless-crossing', 'Crossy Road-Style Endless Crossing', 'arcade'],
+  [180, 'girder-climb', 'Donkey Kong-Style Platform Arcade', 'arcade'],
+  [181, 'platformer', 'Classic Side-Scrolling Platformer', 'arcade'],
+  [182, 'precision-platformer', 'Precision Platformer', 'arcade'],
+  [183, 'flappy', 'Flappy Bird-Style Game', 'arcade'],
+  [184, 'lunar-lander', 'Lunar Lander', 'arcade'],
+  [185, 'missile-command', 'Missile Command', 'arcade'],
+  [186, 'centipede', 'Centipede-Style Arcade Game', 'arcade'],
+  [187, 'tile-hopper', 'Isometric Tile-Hopping Arcade Game', 'arcade'],
+  [188, 'boulder-dig', 'Boulder Dash-Style Game', 'arcade'],
+  [189, 'bomber-arena', 'Bomberman-Style Arena Game', 'arcade'],
+  [190, 'light-cycles', 'Light Cycles', 'arcade'],
+  [191, 'joust', 'Joust-Style Arcade Game', 'arcade'],
+  [192, 'spacewar', 'Spacewar!', 'arcade'],
+  [193, 'vertical-shmup', "Vertical Scrolling Shoot-'Em-Up", 'arcade'],
+  [194, 'river-raid', 'River Raid-Style Shooter', 'arcade'],
+  [195, 'top-down-racing', 'Top-Down Racing Game', 'arcade'],
+  [196, 'endless-runner', 'Endless Runner', 'arcade'],
+  [197, 'vertical-jumper', 'Vertical Jumping Platform Game', 'arcade'],
+  [198, 'cartpole', 'CartPole Balancing Game', 'arcade'],
+  [199, 'bubble-shooter', 'Bubble Shooter', 'arcade'],
+  [200, 'rescue-walkers', 'Lemmings-Style Puzzle Platformer', 'arcade'],
+];
+
+/**
+ * Development progress per game. Anything not listed here is TODO with nothing implemented.
+ * Never mark a game COMPLETE unless it satisfies docs/game-standards.md.
+ */
+const PROGRESS: Record<
+  string,
+  Partial<Omit<RoadmapEntry, 'number' | 'id' | 'name' | 'category'>>
+> = {};
+
+export const ROADMAP: readonly RoadmapEntry[] = DEFINITIONS.map(([number, id, name, category]) => ({
+  number,
+  id,
+  name,
+  category,
+  status: 'TODO',
+  engine: 'none',
+  graphics: 'none',
+  content: 'none',
+  tests: 'none',
+  ai: 'none',
+  ...PROGRESS[id],
+}));
+
+export function roadmapEntry(id: string): RoadmapEntry | undefined {
+  return ROADMAP.find((entry) => entry.id === id);
+}

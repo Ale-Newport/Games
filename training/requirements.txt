@@ -1,0 +1,5 @@
+# Core bridge has no third-party dependencies (standard library only).
+# Optional, for future learning agents:
+# torch>=2.4
+# numpy>=2.0
+# onnx>=1.16
