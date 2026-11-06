@@ -6,7 +6,9 @@
 - **#001 Tic-Tac-Toe 3×3 — COMPLETE** (2026-11-06).
 - **#002 Tic-Tac-Toe 4×4 — COMPLETE** (2026-11-06).
 - **#003 Ultimate Tic-Tac-Toe — COMPLETE** (2026-11-06).
-- **Current game: #004 Misère Tic-Tac-Toe** — TODO (start at Stage A).
+- **#004 Misère Tic-Tac-Toe — COMPLETE** (2026-11-06).
+- **Current game: #005 Connect Four (public title "Four in a Row", id `four-in-a-row`)** — TODO
+  (start at Stage A).
 
 ## Resume instructions
 
@@ -15,19 +17,26 @@
 3. `npm run verify` should be green before you start.
 4. Follow CLAUDE.md Stages A–G for the current game.
 
-## Plan for #004 Misère Tic-Tac-Toe
+## How to build the next two-player board game
 
-- Reuse the m,n,k family: `{ rows: 3, cols: 3, k: 3, misere: true }`. Engine, solver, environment,
-  match flow, board and `MnkGame` already support misère (completing a line loses; the board shows
-  the line in the loser's color — `MnkBoard` adapter handles `reason: 'misere-line'`).
-- Solver facts (already tested in `src/games/shared/mnk/tests/solver.test.ts`): misère 3×3 is a
-  draw, and the center is the only first move that keeps the draw for X.
-- Perfect agent: `MnkSolverAgent` with misère rules (no opening book needed — the tree is tiny).
-  Easy/Medium: alpha-beta with `lineHeuristic` (sign already flipped for misère) + ε.
-- UI text must explain the inverted goal clearly (title, subtitle, status "X completed a line —
-  O wins"). Consider a status string for misère losses; the shell's generic texts say "{name} wins".
-- Achievements idea: survive Perfect (draw), win vs Medium, force the opponent to complete a line
-  on the last empty cell, win as O, hot-seat.
+Use `src/games/shared/two-player/` (see `src/games/ultimate-tic-tac-toe/` as the template for a game
+with its own engine, and `src/games/tic-tac-toe-4x4/` for an m,n,k game):
+
+1. `engine.ts` (pure rules, `isValidState` by history replay) + `rules-meta.ts`.
+2. `rules.ts`: a `TwoPlayerRules<S, A>` binding (create/apply/isLegal/undo/toMove/plies/
+   moverOfPly/outcome/validate) + achievement predicates.
+3. `ai.ts` presets, `ai-adapter.ts` (`GameEnvironment` + `AiBundle`), heuristics in their own file.
+4. A `Board` component taking `BoardProps<S, A>` (own cursor + arrow keys via `useKeyboard`).
+5. `Game.tsx`: a `TwoPlayerGameDefinition` (match config, strings, Board, describeAction,
+   optional actionSound/describeResult/SeatIcon/badge, onRoundEnd achievements).
+6. `HowToPlay.tsx` (export `Rules`), `i18n.ts`, `manifest.ts`, `assets/preview.svg`, `README.md`,
+   `GAME_SPEC.md`, `tests/` (engine, adapter contract, AI ordering, UI) and
+   `tests/e2e/games/<id>.spec.ts`.
+7. Register in `src/games/registry.ts` and `src/ai/adapters/registry.ts`; mark COMPLETE in
+   `src/data/roadmap.ts`; `npm run roadmap`; `npm run verify`.
+
+Gotcha: Prettier reflows long lines — when scripting edits to existing files, re-read them first or
+use exact-match edits, and check that the edit applied.
 
 ## Plan for #005 Connect Four (Four in a Row)
 

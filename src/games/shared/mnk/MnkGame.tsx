@@ -32,6 +32,7 @@ export interface MnkGameDefinition {
   hintAgent: string;
   unbeatableDifficulty?: string;
   onRoundEnd?: (event: RoundEndEvent<MnkState>) => void;
+  describeResult?: TwoPlayerGameDefinition<MnkState, number>['describeResult'];
 }
 
 function createBoard(rules: MnkRules, digitKeys?: Readonly<Record<string, number>>) {
@@ -123,6 +124,7 @@ export function toTwoPlayerDefinition(
       unbeatableDifficulty: def.unbeatableDifficulty,
       sounds: def.sounds,
       onRoundEnd: def.onRoundEnd,
+      describeResult: def.describeResult,
       describeAction: (_before, cell, after, t) =>
         t('announce.move', {
           mark: after.board[cell] === 1 ? 'X' : 'O',

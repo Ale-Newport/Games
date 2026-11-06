@@ -52,8 +52,10 @@ date), `npm run roadmap`, `PROGRESS.md`, `NEXT_STEPS.md`, then a dedicated commi
 - `src/app/` shell, router (hash-based), pages. `src/components/` shared UI.
 - `src/core/` platform infrastructure (game-engine contracts, random, grid, input, audio,
   persistence, profiles, settings, replay, achievements, levels, rendering loop, i18n).
-- `src/games/<id>/` one self-contained module per game. `src/games/shared/<family>/` engines
-  genuinely shared by a family (e.g. m,n,k line games).
+- `src/games/<id>/` one self-contained module per game. `src/games/shared/<family>/` code
+  genuinely shared by a family: `two-player/` (match shell for every two-player game: menu,
+  scoreboard, CPU/watch scheduling, undo, saves, stats) and `mnk/` (m,n,k line games: engine,
+  exact solver, agents, board).
 - `src/ai/` protocols (environment contract, contract test suite), agents, evaluation, registry.
 - `tools/` node scripts (roadmap generator, env server, evaluation CLI). `training/` Python side.
 - `tests/platform/` platform tests (roadmap validation), `tests/e2e/` Playwright.

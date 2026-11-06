@@ -55,3 +55,27 @@
   display: block;
   font-weight: 700;
 }
+
+/* On phones the bottom of the screen holds game controls: show toasts under the header instead. */
+@media (max-width: 640px) {
+  .region {
+    top: calc(var(--header-h) + var(--space-2));
+    bottom: auto;
+    left: var(--space-3);
+    right: var(--space-3);
+    align-items: center;
+  }
+
+  .toast {
+    min-width: 0;
+    width: 100%;
+    animation-name: drop;
+  }
+
+  @keyframes drop {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+  }
+}

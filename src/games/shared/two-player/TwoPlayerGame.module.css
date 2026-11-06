@@ -85,6 +85,11 @@
   font-family: var(--font-display);
 }
 
+.detail {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
 .status[data-tone='win'] strong {
   color: var(--success);
 }

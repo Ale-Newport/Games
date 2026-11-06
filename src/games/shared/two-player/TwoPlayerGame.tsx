@@ -79,6 +79,8 @@ export interface TwoPlayerGameDefinition<S, A> {
   unbeatableDifficulty?: string;
   /** Screen-reader announcement for an action that was just applied. */
   describeAction: (before: S, action: A, after: S, t: Translator) => string;
+  /** Optional extra line under the result (e.g. why a misère round was lost). */
+  describeResult?: (state: S, t: Translator) => string | null;
   /** Sound for an action; defaults to the seat's placement sound. */
   actionSound?: (after: S, action: A, mover: Seat) => SoundSpec;
   sounds?: Partial<ShellSounds>;
@@ -389,6 +391,9 @@ export function TwoPlayerGame<S, A>({
       <div className={styles.status} data-tone={tone} data-testid="mnk-status">
         <span className={styles.round}>{t('round', { n: match.roundNumber })}</span>
         <strong>{status}</strong>
+        {outcome && def.describeResult?.(round, t) && (
+          <span className={styles.detail}>{def.describeResult(round, t)}</span>
+        )}
       </div>
 
       <div className={styles.boardWrap}>
