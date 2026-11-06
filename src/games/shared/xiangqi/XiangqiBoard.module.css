@@ -171,3 +171,7 @@
 .empty {
   color: var(--text-muted);
 }
+
+.pass {
+  align-self: center;
+}

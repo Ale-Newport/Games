@@ -2,6 +2,21 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #024 Janggi COMPLETE
+
+- New `janggi.ts` next to xiangqi: palace diagonals for generals/guards/chariots/cannons/soldiers,
+  long elephant, cannons that need a non-cannon screen to move or capture, passing, bikjang and
+  two passes / 300 plies decided on points (Han +1.5), threefold repetition with perpetual-check
+  loss; four horse/elephant setups per side drawn per round and validated in saves. Start move
+  count (31 + pass) checked by hand.
+- The point board became generic (`createPointBoard`: river on/off, pass button); original
+  octagonal pieces sized by rank.
+- Search found by the bench: Easy lost one game on points by passing back while behind → the
+  search now scores a pass after a pass as a points win/loss. Seeded: Easy vs Random 8–0, Medium
+  vs Easy 8–0, Hard vs Medium 4–0, Expert vs Hard 4–0.
+- Played in the browser (1280×800): setups line, palace move, pass button.
+- Verified (actually run): `npm run verify` → 555 unit tests, build, 90 Playwright tests.
+
 ## 2026-11-06 — Session 1: #023 Xiangqi COMPLETE
 
 - Shared engine `src/games/shared/xiangqi/`: mutable 9×10 position (palace, river, horse legs,

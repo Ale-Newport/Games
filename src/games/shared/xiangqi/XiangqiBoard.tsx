@@ -1,20 +1,39 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { moveCursor } from '../../../core/game-engine/grid';
 import { arrowDirection, useKeyboard } from '../../../core/input/keyboard';
+import type { ComponentType } from 'react';
 import type { Translator } from '../../../core/i18n';
 import type { BoardProps } from '../two-player/TwoPlayerGame';
-import { positionOf, type XiangqiState } from './game';
-import { COLS, ROWS, moveAction, parseSquare, squareName, type Side, type XMove } from './position';
-import { XiangqiPiece } from './XiangqiPieces';
+import { COLS, ROWS, parseSquare, squareName, type Side } from './position';
 import styles from './XiangqiBoard.module.css';
 
-function Lines() {
+/** What the point board needs from a xiangqi-family position. */
+export interface PointPosition<M extends { from: number; to: number; captured: number }> {
+  board: Int8Array;
+  side: Side;
+  generals: [number, number];
+  legalMoves(): M[];
+  inCheck(): boolean;
+}
+
+export interface PointBoardConfig<S, M extends { from: number; to: number; captured: number }> {
+  positionOf: (s: S) => PointPosition<M>;
+  moveAction: (m: M) => string;
+  Piece: ComponentType<{ type: number; side: Side }>;
+  pieceName: (type: number, side: Side, t: Translator) => string;
+  /** Xiangqi draws the river (gap in the files and its inscription); janggi does not. */
+  river: boolean;
+  /** Action for passing, when the game allows it (janggi). */
+  passAction?: string;
+}
+
+function Lines({ river }: { river: boolean }) {
   const x = (c: number) => 50 + c * 100;
   const y = (r: number) => 50 + r * 100;
   const lines: string[] = [];
   for (let r = 0; r < ROWS; r++) lines.push(`M${x(0)} ${y(r)} H${x(8)}`);
   for (let c = 0; c < COLS; c++) {
-    if (c === 0 || c === 8) lines.push(`M${x(c)} ${y(0)} V${y(9)}`);
+    if (c === 0 || c === 8 || !river) lines.push(`M${x(c)} ${y(0)} V${y(9)}`);
     else lines.push(`M${x(c)} ${y(0)} V${y(4)} M${x(c)} ${y(5)} V${y(9)}`);
   }
   // Palace diagonals.
@@ -28,12 +47,16 @@ function Lines() {
       preserveAspectRatio="none"
     >
       <path d={lines.join(' ')} stroke="#5b3a1a" strokeWidth="3" fill="none" />
-      <text x="250" y="518" textAnchor="middle" fontSize="44" fill="#5b3a1a" opacity="0.55">
-        楚 河
-      </text>
-      <text x="650" y="518" textAnchor="middle" fontSize="44" fill="#5b3a1a" opacity="0.55">
-        漢 界
-      </text>
+      {river && (
+        <>
+          <text x="250" y="518" textAnchor="middle" fontSize="44" fill="#5b3a1a" opacity="0.55">
+            楚 河
+          </text>
+          <text x="650" y="518" textAnchor="middle" fontSize="44" fill="#5b3a1a" opacity="0.55">
+            漢 界
+          </text>
+        </>
+      )}
     </svg>
   );
 }
@@ -43,7 +66,11 @@ function actionSquares(action: string | null | undefined): number[] {
   return m ? [parseSquare(m[1]!), parseSquare(m[2]!)] : [];
 }
 
-export function createXiangqiBoard(pieceName: (type: number, side: Side, t: Translator) => string) {
+export function createPointBoard<
+  S extends { history: string[]; notation: string[] },
+  M extends { from: number; to: number; captured: number },
+>(config: PointBoardConfig<S, M>) {
+  const { positionOf, moveAction, Piece, pieceName, river, passAction } = config;
   return function XiangqiBoard({
     state,
     interactive,
@@ -52,7 +79,7 @@ export function createXiangqiBoard(pieceName: (type: number, side: Side, t: Tran
     t,
     onAction,
     perspective,
-  }: BoardProps<XiangqiState, string>) {
+  }: BoardProps<S, string>) {
     const pos = useMemo(() => positionOf(state), [state]);
     const moves = useMemo(() => (interactive ? pos.legalMoves() : []), [pos, interactive]);
     const turn = state.history.length;
@@ -68,7 +95,7 @@ export function createXiangqiBoard(pieceName: (type: number, side: Side, t: Tran
     }
     const sqAt = (u: number) => (perspective === 0 ? u : 89 - u);
     const uiOf = (sq: number) => (perspective === 0 ? sq : 89 - sq);
-    const targets = new Map<number, XMove>();
+    const targets = new Map<number, M>();
     for (const m of moves) if (m.from === selected) targets.set(m.to, m);
     const movable = new Set(moves.map((m) => m.from));
 
@@ -129,7 +156,7 @@ export function createXiangqiBoard(pieceName: (type: number, side: Side, t: Tran
             aria-label={t('board.label')}
             data-flipped={perspective === 1}
           >
-            <Lines />
+            <Lines river={river} />
             {Array.from({ length: ROWS }, (_, r) => (
               <div key={r} role="row" className={styles.row}>
                 {Array.from({ length: COLS }, (_, c) => {
@@ -174,7 +201,7 @@ export function createXiangqiBoard(pieceName: (type: number, side: Side, t: Tran
                           key={last[1] === sq ? `placed-${turn}` : 'still'}
                           className={`${styles.piece} ${last[1] === sq ? styles.placed : ''}`}
                         >
-                          <XiangqiPiece type={Math.abs(code)} side={side} />
+                          <Piece type={Math.abs(code)} side={side} />
                         </span>
                       )}
                       {target && <span className={code ? styles.ring : styles.dot} />}
@@ -185,6 +212,16 @@ export function createXiangqiBoard(pieceName: (type: number, side: Side, t: Tran
             ))}
           </div>
         </div>
+        {passAction && interactive && !pos.inCheck() && (
+          <button
+            type="button"
+            className={`btn ${styles.pass}`}
+            onClick={() => onAction(passAction)}
+            data-testid="pass"
+          >
+            {t('action.pass')}
+          </button>
+        )}
         <ol
           ref={listRef}
           className={styles.moves}
@@ -202,12 +239,4 @@ export function createXiangqiBoard(pieceName: (type: number, side: Side, t: Tran
       </div>
     );
   };
-}
-
-export function XiangqiSeatIcon({ seat, size }: { seat: 0 | 1; size: number }) {
-  return (
-    <span style={{ display: 'grid', width: size + 6, height: size + 6 }}>
-      <XiangqiPiece type={1} side={seat} />
-    </span>
-  );
 }

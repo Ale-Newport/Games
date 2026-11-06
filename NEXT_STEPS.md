@@ -26,7 +26,9 @@
 - **#021 Shogi — COMPLETE** (2026-11-06).
 - **#022 Animal Shogi 3×4 — COMPLETE** (2026-11-06).
 - **#023 Xiangqi — COMPLETE** (2026-11-06).
-- **Current game: #024 Janggi** (`janggi`) — TODO.
+- **#024 Janggi — COMPLETE** (2026-11-06).
+- **Current game: #025 Go 9×9** (`go-9x9`) — TODO (engine and MCTS drafted in
+  `src/games/shared/go/`).
 
 ## Resume instructions
 
@@ -56,18 +58,14 @@ with its own engine, and `src/games/tic-tac-toe-4x4/` for an m,n,k game):
 Gotcha: Prettier reflows long lines — when scripting edits to existing files, re-read them first or
 use exact-match edits, and check that the edit applied.
 
-## Plan for #023–#024 (xiangqi / janggi)
+## Plan for #025–#027 (Go)
 
-- `src/games/shared/xiangqi/` (started): `position.ts` (intersections 9×10, palace, river, horse
-  legs, elephant eyes, cannon screens, flying generals, Zobrist, perft), `game.ts` (stalemate loses,
-  threefold repetition with perpetual-check loss, 120-ply no-capture draw, no-attackers draw,
-  coordinate notation), `search.ts`. Still to do: environment + codec (`from·90 + to`), agents,
-  board UI (lines on intersections, river, palace diagonals, round pieces with original-style
-  characters), definition, i18n, the #023 module. Perpetual chase rules are not implemented
-  (document it).
-- #024 Janggi needs its own position class (palace diagonals for all pieces, different elephant,
-  cannon jumps for moves too and never over/onto cannons, passing, bikjang) but can reuse the
-  board UI and search structure.
+- `src/games/shared/go/engine.ts` (drafted): captures, no suicide, positional superko, passing,
+  area scoring (Tromp–Taylor) with komi 7.5, max plies. `mcts.ts` (drafted): UCT + RAVE with fast
+  playouts (no own-eye filling, captures of atari groups), passes when ahead after a pass.
+- Still to do: tests (captures, suicide, ko/superko, scoring examples), environment + codec
+  (`size²` points + pass), board via the existing `GoBoard` (captures counter, territory marks at
+  the end), levels by playouts/time per size, the three modules.
 
 ## Known follow-ups (platform)
 
