@@ -48,7 +48,8 @@
 - **#043 Wythoff's Game — COMPLETE** (2026-11-06).
 - **#044 Subtraction Game — COMPLETE** (2026-11-06).
 - **#045 Chomp — COMPLETE** (2026-11-06).
-- **Current game: #046 Kayles** (`kayles`) — TODO.
+- **#046 Kayles — COMPLETE** (2026-11-06).
+- **Current game: #047 Domineering** (`domineering`) — TODO.
 
 ## Resume instructions
 

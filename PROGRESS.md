@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #046 Kayles COMPLETE
+
+- Row of 10–20 pins (drawn per round); knock one pin or two neighbors; last pin wins. Grundy
+  table checked against the published sequence and a brute-force search of all 10-pin positions;
+  original pin art that topples.
+- Seeded (40 games per pair): Easy vs Random 25–15, Medium vs Easy 34–6, Hard vs Medium 34–6.
+- Verified (actually run): the first `npm run verify` hit 55–77 timeouts while the machine was at
+  load 28–38 from other apps (no assertion failures except a time-limited Gomoku strength check);
+  rerun as its steps: lint, typecheck, `vitest run --maxWorkers=4` → 858 unit tests, build, 134
+  Playwright tests, all passing.
+
 ## 2026-11-06 — Session 1: #045 Chomp COMPLETE
 
 - Chocolate bar with a poisoned corner; bites remove everything below/right; bar size drawn per
