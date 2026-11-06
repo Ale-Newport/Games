@@ -90,6 +90,11 @@
   background: rgba(255, 255, 255, 0.06);
 }
 
+/* The 3×4 board is portrait: size it by the height left for it. */
+.wrap.animal {
+  width: min(100%, calc((100dvh - 400px) * 0.75), 420px);
+}
+
 .animal .board {
   aspect-ratio: calc(var(--cols)) / calc(var(--rows));
   background: #d9eed0;

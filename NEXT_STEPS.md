@@ -24,7 +24,9 @@
 - **#019 Three-Check Chess — COMPLETE** (2026-11-06).
 - **#020 Gardner Minichess — COMPLETE** (2026-11-06).
 - **#021 Shogi — COMPLETE** (2026-11-06).
-- **Current game: #022 Animal Shogi 3×4** (`dobutsu-shogi`) — TODO (drafted in the working tree).
+- **#022 Animal Shogi 3×4 — COMPLETE** (2026-11-06).
+- **Current game: #023 Xiangqi** (`xiangqi`) — TODO (shared engine `src/games/shared/xiangqi/`
+  started: position with perft 44 / 1 920 / 79 666 / 3 290 240, game layer, search, tests).
 
 ## Resume instructions
 
@@ -54,18 +56,18 @@ with its own engine, and `src/games/tic-tac-toe-4x4/` for an m,n,k game):
 Gotcha: Prettier reflows long lines — when scripting edits to existing files, re-read them first or
 use exact-match edits, and check that the edit applied.
 
-## Plan for #021–#022 (shogi family)
+## Plan for #023–#024 (xiangqi / janggi)
 
-Shared engine `src/games/shared/shogi/` (started, tested): `variants.ts` (piece tables with
-oriented vectors, promotion, dead rows, values; `SHOGI` and `ANIMAL` 3×4), `position.ts` (mutable
-position, legal moves incl. drops/nifu/uchifuzume, make/unmake, Zobrist, perft = 30/900/25 470/
-719 731), `game.ts` (immutable state, Western notation, checkmate/capture/try results, fourfold
-repetition with perpetual-check loss, move limit, replay validation with prefix cache). Still to
-do: `search.ts` (alpha-beta + quiescence + TT, hand-piece values), `agents.ts`, `environment.ts`
-(codec: board moves `(from·N + to)·2 + promote`, drops `N²·2 + kind·N + to`), `ShogiBoard.tsx`
-(pentagon pieces with kanji, rotated for Gote; hands as clickable trays; promotion yes/no
-prompt), `definition.ts`, `i18n.ts`; then the #021 and #022 modules. #022 uses a generic title
-("Animal Shogi 3×4") with original animal art, since the original product name is a trademark.
+- `src/games/shared/xiangqi/` (started): `position.ts` (intersections 9×10, palace, river, horse
+  legs, elephant eyes, cannon screens, flying generals, Zobrist, perft), `game.ts` (stalemate loses,
+  threefold repetition with perpetual-check loss, 120-ply no-capture draw, no-attackers draw,
+  coordinate notation), `search.ts`. Still to do: environment + codec (`from·90 + to`), agents,
+  board UI (lines on intersections, river, palace diagonals, round pieces with original-style
+  characters), definition, i18n, the #023 module. Perpetual chase rules are not implemented
+  (document it).
+- #024 Janggi needs its own position class (palace diagonals for all pieces, different elephant,
+  cannon jumps for moves too and never over/onto cannons, passing, bikjang) but can reuse the
+  board UI and search structure.
 
 ## Known follow-ups (platform)
 

@@ -35,6 +35,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'gardner-minichess': () =>
     import('../../games/gardner-minichess/ai-adapter').then((m) => m.bundle),
   shogi: () => import('../../games/shogi/ai-adapter').then((m) => m.bundle),
+  'dobutsu-shogi': () => import('../../games/dobutsu-shogi/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
