@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 29 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 171
+**Complete:** 30 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 170
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -40,7 +40,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 027 | Go 19×19 | `go-19x19` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 028 | Hex 7×7 | `hex-7x7` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 029 | Hex 11×11 | `hex-11x11` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 030 | Nine Men's Morris | `nine-mens-morris` | TODO | — | — | — | — | — |  |  |
+| 030 | Nine Men's Morris | `nine-mens-morris` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 031 | Three Men's Morris | `three-mens-morris` | TODO | — | — | — | — | — |  |  |
 | 032 | Six Men's Morris | `six-mens-morris` | TODO | — | — | — | — | — |  |  |
 | 033 | Quarto | `quarto` | TODO | — | — | — | — | — |  |  |
