@@ -82,4 +82,5 @@ date), `npm run roadmap`, `PROGRESS.md`, `NEXT_STEPS.md`, then a dedicated commi
   (`services.reducedMotion`), colorblind mode (`services.colorblind`, `--player-*` tokens).
 - Keyboard, mouse and touch for every game. Clean up listeners/animation frames on unmount.
 - Saves use `services.saveSlot({ schema, validate, migrations })` — versioned and validated.
-- Commit messages: conventional style. End with the Co-Authored-By line from the session.
+- Commit messages: conventional style (`feat(games): complete #NNN <Name>`). **Never add a
+  `Co-Authored-By` trailer or any Claude attribution** — the project owner asked for none.
