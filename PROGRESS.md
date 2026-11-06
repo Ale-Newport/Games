@@ -2,6 +2,14 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #032 Six Men's Morris COMPLETE
+
+- Thin module on the shared Morris family: two concentric squares (16 points, 8 mills), six pieces
+  each, placement, sliding (no flying), removal on a mill, loss at two pieces or blocked.
+- Seeded (12 games per pair): Easy vs Random 10–0–2, Medium vs Easy 10–0–2, Hard vs Medium 7–0–5
+  (the draws are repetitions between two careful players).
+- Verified (actually run): `npm run verify` → 656 unit tests, build, 106 Playwright tests.
+
 ## 2026-11-06 — Session 1: #031 Three Men's Morris COMPLETE
 
 - Thin module on the shared Morris family: 3×3 board with both diagonals, three pieces each,
