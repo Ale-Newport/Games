@@ -6,10 +6,12 @@
 import type { GameManifest, GameRegistration } from '../core/game-engine/types';
 import { manifest as ticTacToe } from './tic-tac-toe/manifest';
 import { manifest as ticTacToe4x4 } from './tic-tac-toe-4x4/manifest';
+import { manifest as ultimate } from './ultimate-tic-tac-toe/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
   { manifest: ticTacToe4x4, load: () => import('./tic-tac-toe-4x4/index') },
+  { manifest: ultimate, load: () => import('./ultimate-tic-tac-toe/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

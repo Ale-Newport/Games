@@ -5,7 +5,8 @@
 - Platform foundation: done (see PROGRESS.md).
 - **#001 Tic-Tac-Toe 3×3 — COMPLETE** (2026-11-06).
 - **#002 Tic-Tac-Toe 4×4 — COMPLETE** (2026-11-06).
-- **Current game: #003 Ultimate Tic-Tac-Toe** — TODO (start at Stage A).
+- **#003 Ultimate Tic-Tac-Toe — COMPLETE** (2026-11-06).
+- **Current game: #004 Misère Tic-Tac-Toe** — TODO (start at Stage A).
 
 ## Resume instructions
 
@@ -14,28 +15,31 @@
 3. `npm run verify` should be green before you start.
 4. Follow CLAUDE.md Stages A–G for the current game.
 
-## Plan for #003 Ultimate Tic-Tac-Toe
+## Plan for #004 Misère Tic-Tac-Toe
 
-- Ruleset to document: 9 local 3×3 boards in a 3×3 global board. A move in cell c of a local board
-  sends the opponent to local board c. If that board is won or full, the opponent may play in any
-  open board (free choice). A local board is won by three in a row (it then counts for that player
-  on the global board); a full local board with no line is drawn and counts for nobody. The game
-  is won by three local boards in a row; if no open boards remain, it is a draw. (Decide and
-  document whether drawn boards can count for both — the common competitive ruleset says no.)
-- This is NOT an m,n,k game: write a new engine `src/games/ultimate-tic-tac-toe/engine.ts`
-  (bitboards per local board recommended for AI speed). Reuse `lineThrough`/grid helpers and the
-  `MnkBoard` visual language where sensible, but build a dedicated 9×9 board component that shows
-  the active board(s), won-board overlays (big X/O), and legal-target highlighting.
-- AI: tree is far too large for exact solving. Use `MctsAgent` (already generic) and/or
-  `AlphaBetaAgent` with a heuristic (local-board wins, global two-in-a-rows, sending penalties).
-  Measure latency in the browser; keep decisions ≤ ~300 ms or move search to a worker.
-- Reuse the match-flow ideas from `src/games/shared/mnk/match.ts`, but the state type differs;
-  consider generalizing `MnkGame`'s menu/scoreboard pieces into `src/components/` or
-  `src/games/shared/turn-based/` only if it clearly reduces duplication.
-- Tests: send/free-choice rules, local and global wins, drawn local boards, draw detection,
-  contract suite, UI, e2e.
+- Reuse the m,n,k family: `{ rows: 3, cols: 3, k: 3, misere: true }`. Engine, solver, environment,
+  match flow, board and `MnkGame` already support misère (completing a line loses; the board shows
+  the line in the loser's color — `MnkBoard` adapter handles `reason: 'misere-line'`).
+- Solver facts (already tested in `src/games/shared/mnk/tests/solver.test.ts`): misère 3×3 is a
+  draw, and the center is the only first move that keeps the draw for X.
+- Perfect agent: `MnkSolverAgent` with misère rules (no opening book needed — the tree is tiny).
+  Easy/Medium: alpha-beta with `lineHeuristic` (sign already flipped for misère) + ε.
+- UI text must explain the inverted goal clearly (title, subtitle, status "X completed a line —
+  O wins"). Consider a status string for misère losses; the shell's generic texts say "{name} wins".
+- Achievements idea: survive Perfect (draw), win vs Medium, force the opponent to complete a line
+  on the last empty cell, win as O, hot-seat.
+
+## Plan for #005 Connect Four (Four in a Row)
+
+- Needs gravity: add `gravity?: boolean` to `MnkRules` (actions = columns, piece lands on the lowest
+  empty cell) or a dedicated engine; a disc-drop board component (new `Board` for the shell).
+- AI: alpha-beta with bitboards and a threat heuristic; Connect Four is solved (first player wins)
+  but exact solving in-browser needs a strong solver — document the chosen difficulty agents.
 
 ## Known follow-ups (platform)
+
+- Computer opponents run on the main thread (UTTT Hard ≤ 600 ms per move). Moving agent decisions
+  to a Web Worker (async agent API in the shell) would keep the UI fully responsive on slow phones.
 
 - Visual regression baselines (`toHaveScreenshot`) are not set up; screenshots are captured to
   `test-results/screenshots/` and reviewed manually because font rendering differs between macOS

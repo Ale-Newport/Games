@@ -99,14 +99,14 @@
   opacity: 0.22;
 }
 
-.animated .draw path,
-.animated .draw circle {
+.draw path,
+.draw circle {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   animation: draw 260ms var(--ease-out) forwards;
 }
 
-.animated .draw .second {
+.draw .second {
   animation-delay: 130ms;
 }
 
