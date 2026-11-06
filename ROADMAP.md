@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 47 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 153
+**Complete:** 48 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 152
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -63,7 +63,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 045 | Chomp | `chomp` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 046 | Kayles | `kayles` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 047 | Domineering | `domineering` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 048 | Cram | `cram` | TODO | — | — | — | — | — |  |  |
+| 048 | Cram | `cram` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 049 | Sim | `sim` | TODO | — | — | — | — | — |  |  |
 | 050 | SOS | `sos` | TODO | — | — | — | — | — |  |  |
 | 051 | Sprouts | `sprouts` | TODO | — | — | — | — | — |  |  |

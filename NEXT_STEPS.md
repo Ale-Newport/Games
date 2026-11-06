@@ -50,7 +50,8 @@
 - **#045 Chomp — COMPLETE** (2026-11-06).
 - **#046 Kayles — COMPLETE** (2026-11-06).
 - **#047 Domineering — COMPLETE** (2026-11-06).
-- **Current game: #048 Cram** (`cram`) — TODO.
+- **#048 Cram — COMPLETE** (2026-11-06).
+- **Current game: #049 Sim** (`sim`) — TODO.
 
 ## Resume instructions
 
