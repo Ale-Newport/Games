@@ -27,8 +27,8 @@
 - **#022 Animal Shogi 3×4 — COMPLETE** (2026-11-06).
 - **#023 Xiangqi — COMPLETE** (2026-11-06).
 - **#024 Janggi — COMPLETE** (2026-11-06).
-- **Current game: #025 Go 9×9** (`go-9x9`) — TODO (engine and MCTS drafted in
-  `src/games/shared/go/`).
+- **#025 Go 9×9 — COMPLETE** (2026-11-06).
+- **Current game: #026 Go 13×13** (`go-13x13`) — TODO (module drafted; needs its bench).
 
 ## Resume instructions
 
