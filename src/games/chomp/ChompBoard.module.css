@@ -1,0 +1,106 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 560px);
+  margin-inline: auto;
+}
+
+.bar {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  max-height: calc(100dvh - 330px);
+  min-height: 180px;
+  padding: 8px;
+  border-radius: var(--radius-md);
+  background: #2b1a10;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.square {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 0;
+  border: none;
+  border-radius: 4px;
+  padding: 0;
+  cursor: default;
+}
+
+.piece {
+  background: linear-gradient(145deg, #8b5a35 0%, #6b3f22 55%, #55301a 100%);
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 220, 180, 0.25),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.crumb {
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: inset 0 0 0 1px rgba(255, 220, 180, 0.08);
+}
+
+.poison {
+  background: linear-gradient(145deg, #3d6b3f, #24452a);
+}
+
+.poisonMark {
+  width: 60%;
+  height: 60%;
+  max-height: 100%;
+}
+
+.can {
+  cursor: pointer;
+}
+
+.can:hover {
+  filter: brightness(1.12);
+}
+
+.bitten {
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(255, 122, 89, 0.55) 0 6px,
+    rgba(255, 122, 89, 0.25) 6px 12px
+  );
+  box-shadow: inset 0 0 0 2px #ff7a59;
+  transform: scale(0.9);
+}
+
+.hint {
+  box-shadow: inset 0 0 0 3px #5aa7ff;
+}
+
+.cursor {
+  outline: 2px solid rgba(255, 255, 255, 0.75);
+  outline-offset: -2px;
+}
+
+.square:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: -3px;
+}
+
+.actions {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.animated .crumb {
+  animation: crumble 260ms ease-out;
+}
+
+@keyframes crumble {
+  from {
+    background: #8b5a35;
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.9);
+  }
+}
