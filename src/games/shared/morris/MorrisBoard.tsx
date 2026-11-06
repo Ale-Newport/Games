@@ -114,6 +114,19 @@ export function createMorrisBoard(v: MorrisVariant) {
         {tray(1)}
         <svg viewBox="0 0 100 100" className={styles.svg} role="grid" aria-label={t('board.label')}>
           <rect x="1" y="1" width="98" height="98" rx="4" className={styles.wood} />
+          {/* Target glows sit under the lines so the board stays readable. */}
+          {coords.map(({ x, y }, p) =>
+            targets.has(p) ? (
+              <circle
+                key={`t${p}`}
+                cx={x}
+                cy={y}
+                r={cell * 0.42}
+                className={styles.target}
+                pointerEvents="none"
+              />
+            ) : null,
+          )}
           {v.edges.map(([a, b]) => {
             const p = xy(a);
             const q = xy(b);
@@ -131,7 +144,7 @@ export function createMorrisBoard(v: MorrisVariant) {
                   cx={x}
                   cy={y}
                   r={cell * 0.42}
-                  className={`${styles.hit} ${targets.has(p) ? styles.target : ''} ${hintParts.includes(p) ? styles.hint : ''}`}
+                  className={`${styles.hit} ${hintParts.includes(p) ? styles.hint : ''}`}
                   data-point={v.points[p]}
                   role="gridcell"
                   tabIndex={0}
