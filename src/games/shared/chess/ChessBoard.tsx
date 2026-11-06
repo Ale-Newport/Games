@@ -58,6 +58,8 @@ function actionSquares(pos: Position, action: string | undefined, mover: Color):
 export function createChessBoard(v: ChessVariant) {
   const W = v.rules.width;
   const H = v.rules.height;
+  // King of the Hill: mark the four central goal squares.
+  const hill = v.goal === 'king-of-the-hill';
   return function ChessBoard({
     state,
     interactive,
@@ -308,6 +310,9 @@ export function createChessBoard(v: ChessVariant) {
                         last.includes(sq) ? styles.last : '',
                         hinted.includes(sq) ? styles.hint : '',
                         checked === sq ? styles.check : '',
+                        hill && (file === 3 || file === 4) && (rank === 3 || rank === 4)
+                          ? styles.hill
+                          : '',
                       ].join(' ')}
                       data-square={name}
                       tabIndex={u === cursor ? 0 : -1}

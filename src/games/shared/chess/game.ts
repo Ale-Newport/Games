@@ -89,6 +89,19 @@ export function chess960Fen(n: number): string {
   return `${back.toLowerCase()}/pppppppp/8/8/8/8/PPPPPPPP/${back} w KQkq - 0 1`;
 }
 
+const numbers960 = new Map<string, number>();
+
+/** Chess960 start number (0–959) of a FEN, or null when it is not a Chess960 start. */
+export function chess960Number(fen: string): number | null {
+  if (numbers960.size === 0) for (let n = 0; n < 960; n++) numbers960.set(chess960Fen(n), n);
+  return numbers960.get(fen) ?? null;
+}
+
+/** Whether a game of this variant may start from `fen`. */
+export function isAllowedStart(v: ChessVariant, fen: string): boolean {
+  return 'fen' in v.start ? fen === v.start.fen : chess960Number(fen) !== null;
+}
+
 export function startFenFor(v: ChessVariant, seed: number): string {
   if ('fen' in v.start) return v.start.fen;
   return chess960Fen(((seed % 960) + 960) % 960);
@@ -150,6 +163,39 @@ export function insufficientMaterial(pos: Position): boolean {
   return (
     minors.every((m) => m.type === BISHOP) && minors.every((m) => m.color === minors[0]!.color)
   );
+}
+
+/**
+ * Positions where neither side can ever win under the variant's goal. A bare king can still win
+ * King of the Hill, and any piece can still give checks in Three-Check.
+ */
+function deadPosition(v: ChessVariant, pos: Position): boolean {
+  switch (v.goal) {
+    case 'checkmate':
+      return insufficientMaterial(pos);
+    case 'antichess':
+      return bishopsNeverMeet(pos);
+    case 'three-check':
+      return pos.squares().every((sq) => pos.board[sq]! <= 0 || pieceType(pos.board[sq]!) === KING);
+    case 'king-of-the-hill':
+      return false;
+  }
+}
+
+/**
+ * Antichess dead draw: only bishops remain, each side's all on one square color and the two sides
+ * on different colors, so no capture can ever happen again.
+ */
+export function bishopsNeverMeet(pos: Position): boolean {
+  const colors: [Set<number>, Set<number>] = [new Set(), new Set()];
+  for (const sq of pos.squares()) {
+    const p = pos.board[sq]!;
+    if (p <= 0) continue;
+    if (pieceType(p) !== BISHOP) return false;
+    colors[pieceColor(p)].add((pos.fileOf(sq) + pos.rankOf(sq)) % 2);
+  }
+  const [w, b] = colors;
+  return w.size === 1 && b.size === 1 && [...w][0] !== [...b][0];
 }
 
 /**
@@ -255,8 +301,7 @@ function advance(v: ChessVariant, pos: Position, s: ChessState, action: string):
   if (!result) {
     if (keys.filter((k) => k === key).length >= 3) result = { kind: 'draw', reason: 'repetition' };
     else if (pos.halfmove >= 100) result = { kind: 'draw', reason: 'fifty-move' };
-    else if (v.goal !== 'antichess' && insufficientMaterial(pos))
-      result = { kind: 'draw', reason: 'insufficient-material' };
+    else if (deadPosition(v, pos)) result = { kind: 'draw', reason: 'insufficient-material' };
   }
   return {
     startFen: s.startFen,
@@ -303,6 +348,7 @@ export function replayChess(
 export function isValidChessState(v: ChessVariant, data: unknown): data is ChessState {
   if (!isRecord(data) || typeof data.startFen !== 'string' || !Array.isArray(data.history))
     return false;
+  if (!isAllowedStart(v, data.startFen)) return false;
   try {
     return (
       JSON.stringify(replayChess(v, data.startFen, data.history as string[])) ===
