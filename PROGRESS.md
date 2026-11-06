@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #034 Pentago COMPLETE
+
+- 6×6 board of four rotating 3×3 quadrants: place a marble, then twist one quadrant 90°; five in
+  a row wins (both at once, or a full board, is a draw); a placement that already makes five wins
+  without the twist.
+- `PentagoSearchAgent`: negamax over (place, twist) on raw boards, static ordering with a beam,
+  iterative deepening. The bench caught children sorted worst-first (the beam kept the worst
+  moves); fixed, and Medium got a narrower beam so the levels separate.
+- Seeded (10/10/8 games): Easy vs Random 10–0, Medium vs Easy 9–1, Hard vs Medium 3–0–5.
+- Verified (actually run): `npm run verify` → 685 unit tests, build, 110 Playwright tests.
+
 ## 2026-11-06 — Session 1: #033 Quarto COMPLETE
 
 - 16 pieces with four binary traits (original SVG art: tall/short, dark/light, square/round,
