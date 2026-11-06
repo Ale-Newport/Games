@@ -598,6 +598,15 @@ const PROGRESS: Record<
     ai: 'done',
     completed: '2026-11-06',
   },
+  breakthrough: {
+    status: 'COMPLETE',
+    engine: 'done',
+    graphics: 'done',
+    content: 'done',
+    tests: 'done',
+    ai: 'done',
+    completed: '2026-11-06',
+  },
 };
 
 export const ROADMAP: readonly RoadmapEntry[] = DEFINITIONS.map(([number, id, name, category]) => ({
