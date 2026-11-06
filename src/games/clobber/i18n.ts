@@ -1,0 +1,58 @@
+import type { Dictionary, Locale } from '../../core/i18n';
+
+const en: Dictionary = {
+  'menu.title': 'Clobber',
+  'menu.subtitle': 'Move onto a neighboring enemy stone to clobber it — the last to move wins.',
+  'difficulty.easy': 'Easy',
+  'difficulty.medium': 'Medium',
+  'difficulty.hard': 'Hard',
+  'difficulty.easy.hint': 'A short Monte Carlo search, sometimes a random move.',
+  'difficulty.medium.hint': 'Monte Carlo tree search with 600 simulated games.',
+  'difficulty.hard.hint': 'Longer search, exact near the end.',
+  'seat.0': 'White',
+  'seat.1': 'Black',
+  'menu.name0': 'White player',
+  'menu.name1': 'Black player',
+  'menu.agent0': 'White agent',
+  'menu.agent1': 'Black agent',
+  'board.label': 'Clobber board',
+  'cell.empty': 'empty',
+  'cell.white': 'white stone',
+  'cell.black': 'black stone',
+  'cell.capture': 'clobber',
+  'info.counts': 'White {a} · Black {b}',
+  'info.goal': 'Make the last move: your opponent must have no capture left',
+  'announce.move': '{seat}: {from}×{to}.',
+  'result.stuck': '{seat} has no stone next to an enemy stone.',
+  keys: 'Keys: arrows move · Enter select / clobber · Esc cancel · U undo · H hint · R restart · N next',
+};
+
+const es: Dictionary = {
+  'menu.title': 'Clobber',
+  'menu.subtitle':
+    'Mueve sobre una piedra rival vecina para eliminarla: quien mueve el último gana.',
+  'difficulty.easy': 'Fácil',
+  'difficulty.medium': 'Medio',
+  'difficulty.hard': 'Difícil',
+  'difficulty.easy.hint': 'Búsqueda Monte Carlo corta, a veces una jugada al azar.',
+  'difficulty.medium.hint': 'Búsqueda en árbol Monte Carlo con 600 partidas simuladas.',
+  'difficulty.hard.hint': 'Búsqueda más larga, exacta cerca del final.',
+  'seat.0': 'Blancas',
+  'seat.1': 'Negras',
+  'menu.name0': 'Jugador blanco',
+  'menu.name1': 'Jugador negro',
+  'menu.agent0': 'Agente blanco',
+  'menu.agent1': 'Agente negro',
+  'board.label': 'Tablero de Clobber',
+  'cell.empty': 'vacía',
+  'cell.white': 'piedra blanca',
+  'cell.black': 'piedra negra',
+  'cell.capture': 'eliminar',
+  'info.counts': 'Blancas {a} · Negras {b}',
+  'info.goal': 'Haz el último movimiento: el rival debe quedarse sin capturas',
+  'announce.move': '{seat}: {from}×{to}.',
+  'result.stuck': '{seat} no tiene ninguna piedra junto a una rival.',
+  keys: 'Teclas: flechas mover · Intro elegir / eliminar · Esc cancelar · U deshacer · H pista · R reiniciar · N siguiente',
+};
+
+export const STRINGS: Record<Locale, Dictionary> = { en, es };

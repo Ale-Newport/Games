@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #052 Clobber COMPLETE
+
+- 6×6 full checkerboard; move onto an adjacent enemy stone to remove it; no move loses.
+- The bench showed mobility is always equal in Clobber (each touching pair gives one move to each
+  side) and heuristic alpha-beta barely beat Random (14–6 at depth 4); the levels are MCTS-based
+  (Hard: 1.5 s MCTS, exact alpha-beta at ≤ 10 moves). Seeded (10 games per pair): Easy vs Random
+  9–1, Medium vs Easy 9–1, Hard vs Medium 10–0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 945 unit tests, build, 146
+  Playwright tests (the Clobber e2e first moved a White stone as Black; fixed and rerun).
+
 ## 2026-11-06 — Session 1: #051 Sprouts COMPLETE
 
 - Real-geometry Sprouts on a fine grid: curves are cell paths, living spots keep reserved room,
