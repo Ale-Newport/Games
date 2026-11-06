@@ -58,7 +58,8 @@
 - **#053 Konane — COMPLETE** (2026-11-06).
 - **#054 Fanorona — COMPLETE** (2026-11-06).
 - **#055 Hnefatafl — COMPLETE** (2026-11-06).
-- **Current game: #056 Tablut** (`tablut`) — TODO (module drafted and benched).
+- **#056 Tablut — COMPLETE** (2026-11-06).
+- **Current game: #057 Fox and Geese** (`fox-and-geese`) — TODO.
 
 ## Resume instructions
 

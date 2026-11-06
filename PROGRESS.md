@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #056 Tablut COMPLETE
+
+- Thin module on the shared tafl family: 9×9, 16 attackers against 8 defenders and the king,
+  escape to any edge square; the king falls to four attackers on the throne, three plus the throne
+  beside it, and a plain sandwich elsewhere. Hard uses the fast mutable-board search (1 s).
+- Seeded (10 games per pair): Easy vs Random 10–0, Medium vs Easy 10–0, Hard vs Medium 10–0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 999 unit tests, build, 154
+  Playwright tests.
+
 ## 2026-11-06 — Session 1: #055 Hnefatafl COMPLETE
 
 - New shared tafl family `src/games/shared/tafl/` for #055–#056: rook moves, restricted throne and
