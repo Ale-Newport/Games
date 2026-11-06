@@ -186,6 +186,7 @@ function LoadedGamePage({
             className="btn"
             onClick={() => setRulesOpen(true)}
             disabled={!Rules}
+            aria-label={t('game.help')}
           >
             <BookOpen size={16} />
             <span className={styles.hideSm}>{t('game.help')}</span>
