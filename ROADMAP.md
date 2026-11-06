@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 34 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 166
+**Complete:** 35 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 165
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -45,7 +45,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 032 | Six Men's Morris | `six-mens-morris` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 033 | Quarto | `quarto` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 034 | Pentago | `pentago` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 035 | Gobblet Gobblers | `stacking-gobblers` | TODO | — | — | — | — | — |  |  |
+| 035 | Gobblet Gobblers | `stacking-gobblers` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 036 | Teeko | `teeko` | TODO | — | — | — | — | — |  |  |
 | 037 | Ataxx | `ataxx` | TODO | — | — | — | — | — |  |  |
 | 038 | Breakthrough | `breakthrough` | TODO | — | — | — | — | — |  |  |

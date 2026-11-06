@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #035 Nesting Tic-Tac-Toe COMPLETE
+
+- Catalog "Gobblet Gobblers" under a generic name with original cup art: 3×3, six cups in three
+  sizes per side, place or move a visible cup over a strictly smaller one; lifting a cup can reveal
+  the opponent's line, which then wins for them; repetition and 120-ply draws.
+- Alpha-beta presets with a visible-line evaluation (Easy 2 plies + 25% random, Medium 4, Hard
+  iterative deepening 1 s). Seeded: Easy vs Random 10–0, Medium vs Easy 10–0, Hard vs Medium 6–4
+  (the first player is strongly favored, so seats decide many games between good players).
+- Verified (actually run): `npm run verify` → 697 unit tests, build, 112 Playwright tests.
+
 ## 2026-11-06 — Session 1: #034 Pentago COMPLETE
 
 - 6×6 board of four rotating 3×3 quadrants: place a marble, then twist one quadrant 90°; five in

@@ -37,7 +37,8 @@
 - **#032 Six Men's Morris — COMPLETE** (2026-11-06).
 - **#033 Quarto — COMPLETE** (2026-11-06).
 - **#034 Pentago — COMPLETE** (2026-11-06).
-- **Current game: #035 Nesting Tic-Tac-Toe** (`stacking-gobblers`) — TODO (module drafted and benched).
+- **#035 Nesting Tic-Tac-Toe — COMPLETE** (2026-11-06).
+- **Current game: #036 Teeko** (`teeko`) — TODO (module drafted and benched).
 
 ## Resume instructions
 
