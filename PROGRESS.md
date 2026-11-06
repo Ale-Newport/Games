@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #047 Domineering COMPLETE
+
+- New shared domino family `src/games/shared/dominoes/` for #047–#048: one engine (per-seat
+  orientations, stuck player loses), a mutable-array alpha-beta with a transposition table,
+  blocking-first ordering and a mobility + safe-move evaluation, a grid board where you tap a cell
+  and then a highlighted neighbor; tests solve small boards exactly against known results.
+- Domineering 8×8. Seeded (10 games per pair): Easy vs Random 10–0, Medium vs Easy 9–1, Hard vs
+  Medium 10–0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 874 unit tests, build, 136
+  Playwright tests (pip size on vertical dominoes adjusted afterwards; Domineering e2e rerun).
+
 ## 2026-11-06 — Session 1: #046 Kayles COMPLETE
 
 - Row of 10–20 pins (drawn per round); knock one pin or two neighbors; last pin wins. Grundy
