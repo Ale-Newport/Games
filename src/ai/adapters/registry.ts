@@ -69,6 +69,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   sprouts: () => import('../../games/sprouts/ai-adapter').then((m) => m.bundle),
   clobber: () => import('../../games/clobber/ai-adapter').then((m) => m.bundle),
   konane: () => import('../../games/konane/ai-adapter').then((m) => m.bundle),
+  fanorona: () => import('../../games/fanorona/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #054 Fanorona COMPLETE
+
+- 5 × 9 line board, approach / withdrawal captures of whole lines, compulsory capture, capture
+  chains (no repeated direction, no revisits, optional stop), draw by repetition or 30 quiet turns.
+  The adapter's state key now includes an open chain so the transposition table cannot confuse a
+  mid-chain position with the same board between turns.
+- Alpha-beta presets. Seeded (10 games per pair): Easy vs Random 8–2, Medium vs Easy 10–0, Hard vs
+  Medium 10–0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 973 unit tests, build, 150
+  Playwright tests.
+
 ## 2026-11-06 — Session 1: #053 Konane COMPLETE
 
 - 6×6 full checkerboard; two opening removals (Black middle/corner, White next to the hole), then

@@ -1,0 +1,107 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, 720px);
+  margin-inline: auto;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  touch-action: manipulation;
+}
+
+.wood {
+  fill: #d9b47a;
+  stroke: #7a5226;
+  stroke-width: 0.6;
+}
+
+.line {
+  stroke: #5c3b16;
+  stroke-width: 0.35;
+}
+
+.piece {
+  stroke-width: 0.35;
+  pointer-events: none;
+}
+
+.white {
+  fill: #fbf6ea;
+  stroke: #8d7b5c;
+}
+
+.black {
+  fill: #2a2420;
+  stroke: #000;
+}
+
+.selected {
+  stroke: #ffaa1e;
+  stroke-width: 0.9;
+}
+
+.doomed {
+  opacity: 0.45;
+  stroke: #d63031;
+  stroke-width: 0.8;
+}
+
+.target {
+  fill: rgba(40, 140, 80, 0.75);
+  pointer-events: none;
+}
+
+.last {
+  fill: none;
+  stroke: rgba(240, 180, 40, 0.95);
+  stroke-width: 0.5;
+  pointer-events: none;
+}
+
+.hint {
+  fill: none;
+  stroke: #1f6fd1;
+  stroke-width: 0.6;
+  stroke-dasharray: 1.2 0.8;
+  pointer-events: none;
+}
+
+.cursor {
+  fill: none;
+  stroke: #7c5cff;
+  stroke-width: 0.45;
+  pointer-events: none;
+}
+
+.hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+}
+
+.count {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.animated .moved {
+  animation: slide 220ms var(--ease-out);
+}
+
+@keyframes slide {
+  from {
+    opacity: 0.4;
+  }
+}
