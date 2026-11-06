@@ -21,6 +21,7 @@ import { manifest as spanishCheckers } from './spanish-checkers/manifest';
 import { manifest as chess } from './chess/manifest';
 import { manifest as chess960 } from './chess960/manifest';
 import { manifest as antichess } from './antichess/manifest';
+import { manifest as kingOfTheHill } from './king-of-the-hill/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -40,6 +41,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: chess, load: () => import('./chess/index') },
   { manifest: chess960, load: () => import('./chess960/index') },
   { manifest: antichess, load: () => import('./antichess/index') },
+  { manifest: kingOfTheHill, load: () => import('./king-of-the-hill/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
