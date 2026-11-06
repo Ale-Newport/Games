@@ -117,6 +117,8 @@ export function createGoDefinition(o: GoGameOptions): TwoPlayerGameDefinition<Go
     wideLayout: true,
     hintAgent: o.hintAgent,
     resignable: true,
+    // Komi has a half point, so a scored game always has a winner.
+    drawless: true,
     describeAction: (before, p, _after, t) =>
       p === PASS
         ? t('announce.pass', { seat: t(`seat.${before.toMove}`) })

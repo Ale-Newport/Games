@@ -96,6 +96,8 @@ export interface TwoPlayerGameDefinition<S, A> {
   sounds?: Partial<ShellSounds>;
   /** Offer "Resign" (and "Agree draw" in two-player mode) during play. */
   resignable?: boolean;
+  /** The rules can never end in a draw, so "Agree draw" is not offered. */
+  drawless?: boolean;
   onRoundEnd?: (event: RoundEndEvent<S>) => void;
 }
 
@@ -598,7 +600,7 @@ export function TwoPlayerGame<S, A>({
             >
               <RotateCcw size={16} /> {t('action.restart')}
             </button>
-            {def.resignable && s.mode === 'local' && (
+            {def.resignable && !def.drawless && s.mode === 'local' && (
               <button
                 type="button"
                 className={`btn ${confirming === 'draw' ? styles.confirm : ''}`}

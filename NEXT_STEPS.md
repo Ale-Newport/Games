@@ -30,7 +30,8 @@
 - **#025 Go 9×9 — COMPLETE** (2026-11-06).
 - **#026 Go 13×13 — COMPLETE** (2026-11-06).
 - **#027 Go 19×19 — COMPLETE** (2026-11-06).
-- **Current game: #028 Hex 7×7** (`hex-7x7`) — TODO (module drafted and benched).
+- **#028 Hex 7×7 — COMPLETE** (2026-11-06).
+- **Current game: #029 Hex 11×11** (`hex-11x11`) — TODO (module drafted and benched).
 
 ## Resume instructions
 

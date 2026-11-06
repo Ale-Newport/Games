@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #028 Hex 7×7 COMPLETE
+
+- Shared Hex family `src/games/shared/hex/`: rhombus board, the swap rule (second player may take
+  the first stone's mirrored point once), win detection with the connecting path highlighted;
+  `HexMctsAgent` (UCT with random-fill playouts; a full board always has exactly one winner) with a
+  swap decision; hexagon SVG board with colored edges.
+- Seeded bench: Easy vs Random 6–0, Medium vs Easy 6–0, Hard vs Medium 4–2. A 2 s Expert went 1–3
+  against Hard on 7×7, so this board ships with three levels.
+- Shell: new `drawless` definition flag hides "Agree draw" for games that cannot be drawn (Hex,
+  Go — noticed on the Hex screenshot).
+- Verified (actually run): `npm run verify` → 607 unit tests, build, 98 Playwright tests.
+
 ## 2026-11-06 — Session 1: #027 Go 19×19 COMPLETE
 
 - Thin module on the shared Go family (levels: 200/800 playouts, 2 s); `goPresets` now takes an
