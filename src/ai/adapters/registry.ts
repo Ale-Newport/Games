@@ -14,6 +14,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
     import('../../games/ultimate-tic-tac-toe/ai-adapter').then((m) => m.bundle),
   'misere-tic-tac-toe': () =>
     import('../../games/misere-tic-tac-toe/ai-adapter').then((m) => m.bundle),
+  'four-in-a-row': () => import('../../games/four-in-a-row/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

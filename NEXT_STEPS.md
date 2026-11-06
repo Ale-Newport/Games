@@ -7,8 +7,8 @@
 - **#002 Tic-Tac-Toe 4×4 — COMPLETE** (2026-11-06).
 - **#003 Ultimate Tic-Tac-Toe — COMPLETE** (2026-11-06).
 - **#004 Misère Tic-Tac-Toe — COMPLETE** (2026-11-06).
-- **Current game: #005 Connect Four (public title "Four in a Row", id `four-in-a-row`)** — TODO
-  (start at Stage A).
+- **#005 Four in a Row — COMPLETE** (2026-11-06).
+- **Current game: #006 Connect Five Gravity** (`connect-five-gravity`) — TODO.
 
 ## Resume instructions
 
@@ -38,12 +38,12 @@ with its own engine, and `src/games/tic-tac-toe-4x4/` for an m,n,k game):
 Gotcha: Prettier reflows long lines — when scripting edits to existing files, re-read them first or
 use exact-match edits, and check that the edit applied.
 
-## Plan for #005 Connect Four (Four in a Row)
+## Plan for #006 Connect Five Gravity
 
-- Needs gravity: add `gravity?: boolean` to `MnkRules` (actions = columns, piece lands on the lowest
-  empty cell) or a dedicated engine; a disc-drop board component (new `Board` for the shell).
-- AI: alpha-beta with bitboards and a threat heuristic; Connect Four is solved (first player wins)
-  but exact solving in-browser needs a strong solver — document the chosen difficulty agents.
+- Same gravity family with `{ rows: 7, cols: 9, k: 5 }` (ruleset `connect-five-9x7`).
+  Reuse `createGravityDefinition`, `GravitySearchAgent`, `createGravityEnvironment`.
+- Measure search depth/latency on 9×7 (63 cells, branching 9) and tune Easy/Medium/Hard.
+- Digits 1–9 map to the 9 columns.
 
 ## Known follow-ups (platform)
 
