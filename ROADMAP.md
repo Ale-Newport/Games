@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 56 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 144
+**Complete:** 57 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 143
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -72,7 +72,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 054 | Fanorona | `fanorona` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 055 | Hnefatafl | `hnefatafl` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 056 | Tablut | `tablut` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 057 | Fox and Geese | `fox-and-geese` | TODO | — | — | — | — | — |  |  |
+| 057 | Fox and Geese | `fox-and-geese` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 058 | Bagh-Chal | `bagh-chal` | TODO | — | — | — | — | — |  |  |
 | 059 | Alquerque | `alquerque` | TODO | — | — | — | — | — |  |  |
 | 060 | Yoté | `yote` | TODO | — | — | — | — | — |  |  |

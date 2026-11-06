@@ -1,0 +1,132 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: min(100%, calc(100dvh - 320px), 520px);
+  min-width: 260px;
+  margin-inline: auto;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  touch-action: manipulation;
+}
+
+.ground {
+  fill: #a7c48a;
+  stroke: #4f6b37;
+  stroke-width: 0.6;
+}
+
+.line {
+  stroke: #3f5a2a;
+  stroke-width: 0.4;
+}
+
+.dot {
+  fill: #3f5a2a;
+}
+
+.target {
+  fill: rgba(255, 209, 102, 0.9);
+}
+
+.last {
+  fill: none;
+  stroke: rgba(240, 180, 40, 0.95);
+  stroke-width: 0.5;
+}
+
+.hint {
+  fill: none;
+  stroke: #1f6fd1;
+  stroke-width: 0.6;
+  stroke-dasharray: 1.2 0.8;
+}
+
+.cursor {
+  fill: none;
+  stroke: #7c5cff;
+  stroke-width: 0.45;
+}
+
+.piece {
+  pointer-events: none;
+}
+
+.selected circle:first-of-type,
+.selected path:first-child + circle {
+  stroke: #ffaa1e;
+  stroke-width: 0.8;
+}
+
+.prey {
+  fill: #fbfaf5;
+  stroke: #8d8670;
+  stroke-width: 0.35;
+}
+
+.hunter {
+  fill: #e0782b;
+  stroke: #7a3a0e;
+  stroke-width: 0.35;
+}
+
+.ears {
+  fill: #c25f1b;
+}
+
+.stripes {
+  stroke: #3b1e0a;
+  stroke-width: 0.45;
+  stroke-linecap: round;
+}
+
+.eyes {
+  fill: #2a2420;
+}
+
+.beak {
+  fill: #f0a830;
+}
+
+.mouth {
+  fill: none;
+  stroke: #2a2420;
+  stroke-width: 0.3;
+}
+
+.nose {
+  fill: #2a2420;
+}
+
+.hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 40px;
+}
+
+.count {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.animated .moved {
+  animation: pop 220ms var(--ease-out);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0.3;
+  }
+}

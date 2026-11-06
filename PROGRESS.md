@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #057 Fox and Geese COMPLETE
+
+- New shared hunt family `src/games/shared/hunt/` for #057–#058: point-graph boards (holes and
+  diagonal points), prey that may not retreat or that are placed from hand, hunter jumps (chained
+  for the fox), capture goals, trapped-hunter wins, original goose/goat/fox/tiger art.
+- Fox and Geese: 33-point cross, 13 geese, 8 captures for the fox. The bench showed geese drawing by
+  shuffling sideways, so stalling (repetition / ply limit) now counts as the fox's escape and the
+  evaluation rewards advancing geese. Seeded: Easy vs Random 14–6, Medium vs Easy 17–3 (20 games),
+  Hard vs Medium 7–3 (10 games).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1015 unit tests, build, 156
+  Playwright tests (then "Agree draw" was hidden for Fox and Geese, which cannot be drawn; e2e rerun).
+
 ## 2026-11-06 — Session 1: #056 Tablut COMPLETE
 
 - Thin module on the shared tafl family: 9×9, 16 attackers against 8 defenders and the king,
