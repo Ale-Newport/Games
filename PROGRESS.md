@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #055 Hnefatafl COMPLETE
+
+- New shared tafl family `src/games/shared/tafl/` for #055–#056: rook moves, restricted throne and
+  corners, custodial captures against pieces or hostile squares, armed king, corner or edge escape,
+  four-sided or Tablut-style king capture, original crowned king art.
+- Hnefatafl 11×11 (corner escape). The first Hard (generic alpha-beta) split 4–5–1 with Medium on
+  this branching factor; a dedicated mutable-board search with Zobrist hashing now goes deeper.
+  Seeded (10 games per pair): Easy vs Random 10–0, Medium vs Easy 7–3, Hard vs Medium 9–0–1.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 989 unit tests, build, 152
+  Playwright tests (the king rendered smaller than the other pieces on the screenshot; fixed, e2e
+  rerun on a fresh build).
+
 ## 2026-11-06 — Session 1: #054 Fanorona COMPLETE
 
 - 5 × 9 line board, approach / withdrawal captures of whole lines, compulsory capture, capture

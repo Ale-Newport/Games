@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 54 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 146
+**Complete:** 55 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 145
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -70,7 +70,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 052 | Clobber | `clobber` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 053 | Konane | `konane` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 054 | Fanorona | `fanorona` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 055 | Hnefatafl | `hnefatafl` | TODO | — | — | — | — | — |  |  |
+| 055 | Hnefatafl | `hnefatafl` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 056 | Tablut | `tablut` | TODO | — | — | — | — | — |  |  |
 | 057 | Fox and Geese | `fox-and-geese` | TODO | — | — | — | — | — |  |  |
 | 058 | Bagh-Chal | `bagh-chal` | TODO | — | — | — | — | — |  |  |
