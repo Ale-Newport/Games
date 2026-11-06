@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 11 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 189
+**Complete:** 12 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 188
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -22,7 +22,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 009 | Pente | `pente` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 010 | Othello / Reversi 8×8 | `reversi-8x8` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 011 | Othello / Reversi 6×6 | `reversi-6x6` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 012 | English Checkers | `english-checkers` | TODO | — | — | — | — | — |  |  |
+| 012 | English Checkers | `english-checkers` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 013 | International Draughts | `international-draughts` | TODO | — | — | — | — | — |  |  |
 | 014 | Spanish Checkers | `spanish-checkers` | TODO | — | — | — | — | — |  |  |
 | 015 | Chess | `chess` | TODO | — | — | — | — | — |  |  |
