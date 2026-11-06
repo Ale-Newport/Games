@@ -2,6 +2,14 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #029 Hex 11×11 COMPLETE
+
+- Thin module on the shared Hex family (levels: 300 fills with 20% random moves, 6 000 fills,
+  1.5 s, 2.5 s), the standard competition size.
+- Seeded bench: Easy vs Random 6–0, Medium vs Easy 6–0, Hard vs Medium 4–2, Expert vs Hard 3–1 (on
+  this board the extra time helps, so Expert stays).
+- Verified (actually run): `npm run verify` → 619 unit tests, build, 100 Playwright tests.
+
 ## 2026-11-06 — Session 1: #028 Hex 7×7 COMPLETE
 
 - Shared Hex family `src/games/shared/hex/`: rhombus board, the swap rule (second player may take
