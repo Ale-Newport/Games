@@ -41,9 +41,9 @@ test('roadmap dashboard reflects the real 200-game roadmap', async ({ page }) =>
 
 test('direct navigation and refresh of a game URL work (hash routing)', async ({ page }) => {
   await freshStart(page, '/game/tic-tac-toe');
-  await expect(page.getByTestId('ttt-menu')).toBeVisible();
+  await expect(page.getByTestId('mnk-menu')).toBeVisible();
   await page.reload();
-  await expect(page.getByTestId('ttt-menu')).toBeVisible();
+  await expect(page.getByTestId('mnk-menu')).toBeVisible();
   await page.goto('./#/no-such-page');
   await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
 });

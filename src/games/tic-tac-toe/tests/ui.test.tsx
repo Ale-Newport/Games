@@ -6,7 +6,7 @@ import { Game } from '../Game';
 
 const cell = (i: number) => document.querySelector(`[data-cell="${i}"]`) as HTMLButtonElement;
 const label = (i: number) => cell(i).getAttribute('aria-label');
-const status = () => screen.getByTestId('ttt-status').textContent ?? '';
+const status = () => screen.getByTestId('mnk-status').textContent ?? '';
 
 async function flush() {
   await act(async () => {});

@@ -13,20 +13,20 @@ test.describe('Tic-Tac-Toe', () => {
       if (await page.getByTestId('next-round').isVisible()) break;
     }
     // 4,0,2,6,3,5 then X at 1? X: 4,2,3,1 → 1-4-7 needs 7; O: 0,6,5,8 → no; X plays 7 → win 1-4-7.
-    await expect(page.getByTestId('ttt-status')).toContainText('wins!');
+    await expect(page.getByTestId('mnk-status')).toContainText('wins!');
     await expect(page.getByTestId('score-x')).toHaveText('1');
     await expectNoHorizontalOverflow(page);
     await screenshot(page, 'ttt-local-win');
     await page.getByTestId('next-round').click();
     await expect(cell(page, 4)).toHaveAttribute('aria-label', /empty/);
-    await expect(page.getByTestId('ttt-status')).toContainText('Player 2');
+    await expect(page.getByTestId('mnk-status')).toContainText('Player 2');
   });
 
   test('vs Perfect computer: the human can never win and the round ends', async ({ page }) => {
     await freshStart(page, '/game/tic-tac-toe');
     await page.getByTestId('difficulty-perfect').click();
     await page.getByTestId('start-match').click();
-    const status = page.getByTestId('ttt-status');
+    const status = page.getByTestId('mnk-status');
     for (let move = 0; move < 5; move++) {
       if (await page.getByTestId('next-round').isVisible()) break;
       await expect(status).toContainText('Your turn');
@@ -97,7 +97,7 @@ test.describe('Tic-Tac-Toe', () => {
     await page.getByTestId('mode-local').click();
     await page.getByTestId('start-match').click();
     for (const i of [0, 4, 8, 2, 6, 3, 7]) await cell(page, i).click();
-    await expect(page.getByTestId('ttt-status')).toContainText('Gana');
+    await expect(page.getByTestId('mnk-status')).toContainText('Gana');
     await expectNoHorizontalOverflow(page);
     await screenshot(page, 'ttt-light-colorblind-es');
   });
