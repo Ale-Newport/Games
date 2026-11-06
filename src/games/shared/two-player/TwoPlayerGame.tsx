@@ -72,6 +72,8 @@ export interface TwoPlayerGameDefinition<S, A> {
   Board: ComponentType<BoardProps<S, A>>;
   /** Short badge on the menu logo, e.g. "4×4". */
   badge?: string;
+  /** Large boards (Go-style 15×15+): on wide screens, put scores and controls beside the board. */
+  wideLayout?: boolean;
   SeatIcon?: ComponentType<{ seat: Seat; size: number }>;
   /** Agent preset used for hints (no hint button when absent). */
   hintAgent?: string;
@@ -362,7 +364,7 @@ export function TwoPlayerGame<S, A>({
         : 'win';
 
   return (
-    <div className={styles.play} data-testid="mnk-play">
+    <div className={`${styles.play} ${def.wideLayout ? styles.wide : ''}`} data-testid="mnk-play">
       <div className={styles.scoreboard}>
         {([0, 1] as Seat[]).map((seat) => (
           <div

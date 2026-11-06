@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 6 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 194
+**Complete:** 7 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 193
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -17,7 +17,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 004 | Misère Tic-Tac-Toe | `misere-tic-tac-toe` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 005 | Connect Four | `four-in-a-row` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 006 | Connect Five Gravity | `connect-five-gravity` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
-| 007 | Gomoku | `gomoku` | TODO | — | — | — | — | — |  |  |
+| 007 | Gomoku | `gomoku` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 008 | Renju | `renju` | TODO | — | — | — | — | — |  |  |
 | 009 | Pente | `pente` | TODO | — | — | — | — | — |  |  |
 | 010 | Othello / Reversi 8×8 | `reversi-8x8` | TODO | — | — | — | — | — |  |  |
