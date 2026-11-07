@@ -143,6 +143,7 @@ import { manifest as cube4 } from './twisty-cube-4x4/manifest';
 import { manifest as merge2048 } from './game-2048/manifest';
 import { manifest as trios } from './threes/manifest';
 import { manifest as fibMerge } from './fibonacci-2048/manifest';
+import { manifest as slidingBlocks } from './klotski/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -284,6 +285,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: merge2048, load: () => import('./game-2048/index') },
   { manifest: trios, load: () => import('./threes/index') },
   { manifest: fibMerge, load: () => import('./fibonacci-2048/index') },
+  { manifest: slidingBlocks, load: () => import('./klotski/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

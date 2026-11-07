@@ -1,0 +1,140 @@
+.bar {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: min(100%, 360px);
+}
+
+.counter {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.tray {
+  --u: min(calc((100vw - 64px) / 4), calc((100dvh - 360px) / 5), 76px);
+  position: relative;
+  width: calc(var(--u) * 4);
+  height: calc(var(--u) * 5);
+  box-sizing: content-box;
+  border: 8px solid #6b4a2f;
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px) 0 0 / var(--u) var(--u),
+    linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px) 0 0 / var(--u) var(--u),
+    #2a2420;
+  touch-action: none;
+  margin-bottom: 8px;
+}
+
+/* The gap in the bottom rail, two cells wide, where the big block leaves. */
+.exit {
+  position: absolute;
+  left: var(--u);
+  bottom: -8px;
+  width: calc(var(--u) * 2);
+  height: 8px;
+  background: #f1c40f;
+  opacity: 0.85;
+}
+
+.block {
+  position: absolute;
+  left: calc(var(--col) * var(--u) + 3px);
+  top: calc(var(--row) * var(--u) + 3px);
+  width: calc(var(--w) * var(--u) - 6px);
+  height: calc(var(--h) * var(--u) - 6px);
+  border: 0;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 -5px 0 rgb(0 0 0 / 0.25),
+    inset 0 3px 0 rgb(255 255 255 / 0.3),
+    0 2px 6px rgb(0 0 0 / 0.4);
+  cursor: grab;
+  transition:
+    left 120ms var(--ease-out),
+    top 120ms var(--ease-out);
+}
+
+.block::after {
+  content: '';
+  position: absolute;
+  inset: 18%;
+  border-radius: 6px;
+  border: 2px solid rgb(255 255 255 / 0.25);
+}
+
+.A {
+  background: #e5484d;
+}
+
+.V {
+  background: #d9a066;
+}
+
+.H {
+  background: #c58a4e;
+}
+
+.S {
+  background: #8fbf6a;
+}
+
+.target {
+  position: absolute;
+  left: calc(var(--col) * var(--u) + 6px);
+  top: calc(var(--row) * var(--u) + 6px);
+  width: calc(var(--w) * var(--u) - 12px);
+  height: calc(var(--h) * var(--u) - 12px);
+  border: 2px dashed rgb(255 255 255 / 0.45);
+  border-radius: 10px;
+  background: rgb(255 255 255 / 0.06);
+  cursor: pointer;
+}
+
+.arrive {
+  animation: arrive 140ms var(--ease-out);
+}
+
+@keyframes arrive {
+  from {
+    left: calc(var(--fcol) * var(--u) + 3px);
+    top: calc(var(--frow) * var(--u) + 3px);
+  }
+}
+
+.dragging {
+  transition: none;
+  cursor: grabbing;
+  z-index: 2;
+}
+
+.selected {
+  outline: 3px solid #fff;
+  outline-offset: 1px;
+  z-index: 1;
+}
+
+.pointed {
+  outline: 3px dashed #f1c40f;
+  outline-offset: 2px;
+}
+
+.done .A {
+  top: calc(5 * var(--u) + 20px);
+  opacity: 0;
+  transition:
+    top 600ms ease-in,
+    opacity 600ms ease-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrive {
+    animation: none;
+  }
+
+  .block,
+  .done .A {
+    transition: none;
+  }
+}

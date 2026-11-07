@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 139 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 61
+**Complete:** 140 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 60
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -165,7 +165,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 137 | 2048 | `game-2048` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 138 | Threes-Style Number-Merging Game | `threes` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 139 | Fibonacci 2048 | `fibonacci-2048` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 140 | Klotski Sliding Block Puzzle | `klotski` | TODO | — | — | — | — | — |  |  |
+| 140 | Klotski Sliding Block Puzzle | `klotski` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 
 ## Dice, Dominoes, Chance & Social
 

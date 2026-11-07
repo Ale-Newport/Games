@@ -142,7 +142,8 @@
 - **#137 Merge to 2048 — COMPLETE** (2026-11-07).
 - **#138 Number Trios — COMPLETE** (2026-11-07).
 - **#139 Fibonacci Merge — COMPLETE** (2026-11-07).
-- **Current game: #140 Sliding Blocks** (`klotski`) — TODO (4×5 tray, generated bank with proven minima, breadth-first solver; drafted in scratch).
+- **#140 Sliding Blocks — COMPLETE** (2026-11-07).
+- **Current game: #141 Backgammon** (`backgammon`) — TODO (engine, evaluation, match with the cube, shared race-board view and table drafted in scratch). Category E (dice, tiles and casual) starts here.
 
 ## Resume instructions
 

@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #140 Sliding Blocks COMPLETE
+
+- The klotski-style 4×5 tray under a generic name: free-path moves (one block, any distance, round
+  corners), a bank of 100 generated puzzles (11–138 moves) plus the traditional layout, every
+  minimum confirmed by the breadth-first solver (81 for the traditional layout).
+- Played in the in-app browser (mobile, Spanish): the traditional layout, a tap-to-move, a hint.
+- Verified (actually run): lint, typecheck, 2506 unit tests (323 files), build, 466 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #139 Fibonacci Merge COMPLETE
 
 - The Fibonacci variant on the shared merge core: tiles merge only with their Fibonacci neighbour
