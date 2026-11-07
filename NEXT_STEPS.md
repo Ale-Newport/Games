@@ -74,7 +74,8 @@
 - **#069 Paper Soccer — COMPLETE** (2026-11-07).
 - **#070 Gale (catalog "Bridg-It") — COMPLETE** (2026-11-07).
 - **#071 Klondike Solitaire — Draw One — COMPLETE** (2026-11-07).
-- **Current game: #072 Klondike Solitaire — Draw Three** (`klondike-draw-3`) — TODO.
+- **#072 Klondike Solitaire — Draw Three — COMPLETE** (2026-11-07).
+- **Current game: #073 FreeCell** (`freecell`) — TODO.
 
 ## Resume instructions
 
