@@ -172,7 +172,8 @@
 - **#167 Breakout — COMPLETE** (2026-11-07).
 - **#168 Enhanced Brick Breaker — COMPLETE** (2026-11-07).
 - **#169 Invaders from Above — COMPLETE** (2026-11-07).
-- **Current game: #170 Diving Swarm** (`diving-swarm`) — TODO (diving attackers; drafted in scratch).
+- **#170 Diving Swarm — COMPLETE** (2026-11-07).
+- **Current game: #171 Space Rocks** (`asteroids`) — TODO (vector shooter; drafted in scratch).
 
 ## Resume instructions
 
