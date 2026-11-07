@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #117 No-Guess Minesweeper COMPLETE
+
+- No-Guess Minesweeper on the shared engine: layouts redrawn from the seed and first cell until the
+  deduction solver (single numbers, number pairs, mine count) clears them. Only 4.5% of random Expert
+  layouts qualify, yet generation averages 23 ms; the deduction agent clears 100% of boards at every
+  size (200 each).
+- Played in the in-app browser (mobile): an Intermediate board cleared through hints alone. Fixed in
+  the shared table: the "no flags" achievement ignored flags placed by hints (it now also requires
+  no hints).
+- Verified (actually run): lint, typecheck, 2049 unit tests (277 files), build, 374 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #116 Classic Minesweeper COMPLETE
 
 - A shared minesweeper (`src/games/shared/minesweeper/`) for #116–#117: placement after the first

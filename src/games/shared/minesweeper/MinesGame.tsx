@@ -160,7 +160,7 @@ export function MinesGame({ services, specs, noGuess, strings, speedMs }: MinesG
       svc.unlockAchievement('first');
       svc.unlockAchievement(`win-${s.difficulty}`);
       if (s.difficulty === levels[0] && time <= speedMs) svc.unlockAchievement('speed');
-      if (!usedFlags.current) svc.unlockAchievement('no-flags');
+      if (!usedFlags.current && !s.hints) svc.unlockAchievement('no-flags');
     } else {
       svc.playSound(MINES_SOUNDS.boom);
       setMessage(t('lost'));
@@ -273,6 +273,7 @@ export function MinesGame({ services, specs, noGuess, strings, speedMs }: MinesG
     const s = stateRef.current;
     if (!s || !hint) return;
     let next = { ...s, hints: s.hints + 1 };
+    if (hint.mines.length) usedFlags.current = true;
     for (const m of hint.mines) if (!next.flags[m]) next = toggleFlag(next, m);
     for (const x of hint.safe) next = reveal(next, x);
     commit(next);
