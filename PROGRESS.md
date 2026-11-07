@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #116 Classic Minesweeper COMPLETE
+
+- A shared minesweeper (`src/games/shared/minesweeper/`) for #116–#117: placement after the first
+  opening (seeded, replayable), flood fill, flags, chords, deductions (single numbers, number pairs,
+  the mine count) for hints and the AI, a no-guess generator, a hidden-information environment and a
+  table with long-press flagging, keyboard play and Expert turned on narrow screens.
+- Measured over 300 boards per size: the deduction agent clears 93.3% / 81.7% / 26.7% of Beginner /
+  Intermediate / Expert boards; random 0%.
+- Played in the in-app browser (mobile): Intermediate with an explained hint; Expert turned to 30×16
+  fitting a phone, played through hints until a forced guess lost.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 2033 unit tests, build, 370
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #115 Nurikabe COMPLETE
 
 - Nurikabe (5×5 to 8×8) with its own engine: techniques for hints (complete island, between two
