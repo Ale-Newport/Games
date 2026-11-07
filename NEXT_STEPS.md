@@ -175,7 +175,8 @@
 - **#170 Diving Swarm — COMPLETE** (2026-11-07).
 - **#171 Space Rocks — COMPLETE** (2026-11-07).
 - **#172 Classic Snake — COMPLETE** (2026-11-07).
-- **Current game: #173 Wraparound Snake** (`wraparound-snake`) — TODO (on `src/games/shared/snake`).
+- **#173 Wraparound Snake — COMPLETE** (2026-11-07).
+- **Current game: #174 Falling Blocks** (`falling-blocks`) — TODO (shared blocks core with #175; drafted in scratch).
 
 ## Resume instructions
 

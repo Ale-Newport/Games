@@ -176,6 +176,7 @@ import { manifest as invaders } from './invaders/manifest';
 import { manifest as divingSwarm } from './diving-swarm/manifest';
 import { manifest as spaceRocks } from './asteroids/manifest';
 import { manifest as classicSnake } from './snake/manifest';
+import { manifest as wraparoundSnake } from './wraparound-snake/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -350,6 +351,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: divingSwarm, load: () => import('./diving-swarm/index') },
   { manifest: spaceRocks, load: () => import('./asteroids/index') },
   { manifest: classicSnake, load: () => import('./snake/index') },
+  { manifest: wraparoundSnake, load: () => import('./wraparound-snake/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
