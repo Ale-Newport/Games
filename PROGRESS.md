@@ -2,6 +2,22 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #166 Pong COMPLETE
+
+- New shared real-time arcade shell `shared/arcade` for #166–#200: a pure simulation contract
+  (`ArcadeDef`), a canvas driven by the existing fixed-step loop, held keys, touch buttons and
+  pointer steering, pause (also on leaving the tab), restart, HUD, endings with results and
+  achievements, a save of an interrupted run, watch mode, and a `real-time` AI environment.
+- Pong at 60 Hz against a computer with three skill levels (speed, aiming error, reaction line).
+  A follower that tracks the ball's height won 100/87/20 of 100 games against easy/medium/hard; a
+  tracker that angles its returns won them all. Hard was first tuned unbeatable (endless rallies)
+  and loosened.
+- Played in the in-app browser (mobile, Spanish): a game started, the paddle dragged on the field,
+  the computer's first point.
+- Verified (actually run): lint, typecheck, 3052 unit tests, build, 568 of 570 Playwright tests; the two
+  failures were Pong's watch spec waiting 20 s for a point (they take ~26 s), rewritten to check that
+  the canvas animates and re-run: 4 of 4 Pong specs green.
+
 ## 2026-11-07 — Session 1: #165 Memory Pairs COMPLETE
 
 - Memory Pairs (concentration) on 4 × 4, 4 × 6 and 6 × 6 grids with original faces, solo or against
