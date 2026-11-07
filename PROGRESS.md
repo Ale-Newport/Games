@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #061 Kalah Mancala COMPLETE
+
+- New shared mancala family `src/games/shared/mancala/` for #061, #062, #064: one sowing engine with
+  variant rules (stores and extra turns, relay sowing, empty-pit or 2–3 captures with the grand-slam
+  exception, skipping the origin pit, the feeding rule), a carved board with pebble seeds that turns
+  to the player's side.
+- Kalah (6 pits × 4 seeds). Seeded (10 games per pair): Easy vs Random 8–2, Medium vs Easy 10–0, Hard
+  vs Medium 10–0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1068 unit tests, build, 164
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #060 Yoté COMPLETE
 
 - 5 × 6 board, 12 pieces in hand each: drop, step or jump; every capture earns a bonus removal

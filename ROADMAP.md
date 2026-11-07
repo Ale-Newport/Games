@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 60 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 140
+**Complete:** 61 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 139
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -76,7 +76,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 058 | Bagh-Chal | `bagh-chal` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 059 | Alquerque | `alquerque` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-06 |  |
 | 060 | Yoté | `yote` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 061 | Kalah Mancala | `kalah` | TODO | — | — | — | — | — |  |  |
+| 061 | Kalah Mancala | `kalah` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 062 | Oware | `oware` | TODO | — | — | — | — | — |  |  |
 | 063 | Bao | `bao` | TODO | — | — | — | — | — |  |  |
 | 064 | Congkak | `congkak` | TODO | — | — | — | — | — |  |  |
