@@ -125,7 +125,8 @@
 - **#120 Word Guess — COMPLETE** (2026-11-07).
 - **#121 Hangman — COMPLETE** (2026-11-07).
 - **#122 Royal Regions (Queens) — COMPLETE** (2026-11-07).
-- **Current game: #123 Zip — Numbered Hamiltonian Path Puzzle** (`zip`) — TODO (generic name, original puzzles).
+- **#123 Number Trail (Zip) — COMPLETE** (2026-11-07).
+- **Current game: #124 8-Puzzle** (`eight-puzzle`) — TODO (sliding tiles; exact A*/IDA* oracle).
 
 ## Resume instructions
 
