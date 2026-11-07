@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 144 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 56
+**Complete:** 145 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 55
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -175,7 +175,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 142 | Narde | `narde` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 143 | Royal Game of Ur | `royal-game-of-ur` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 144 | Senet | `senet` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 145 | Ludo | `ludo` | TODO | — | — | — | — | — |  |  |
+| 145 | Ludo | `ludo` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 146 | Pachisi | `pachisi` | TODO | — | — | — | — | — |  |  |
 | 147 | Parchís | `parchis` | TODO | — | — | — | — | — |  |  |
 | 148 | Snakes and Ladders | `snakes-and-ladders` | TODO | — | — | — | — | — |  |  |

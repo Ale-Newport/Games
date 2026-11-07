@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #145 Ludo COMPLETE
+
+- A shared cross-board race core (`src/games/shared/cross`): the board for any arm length, a rules
+  engine with options (exit throws, sixes, captures and homecomings earning a roll or a bonus move,
+  safe pairs or barriers, safe squares, six-as-seven), the heuristic players and the table.
+- Ludo for 2–4 players with sixes to get out, captures, stars, safe pairs and extra rolls; the
+  heuristic beat the simple rule 151 of 200 two-player games.
+- Played in the in-app browser (mobile, Spanish): four players, rolls and moves by taps.
+- Verified (actually run): lint, typecheck, 2591 unit tests (333 files), build, 486 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #144 Senet COMPLETE
 
 - Kendall's reconstruction: the S-shaped route, four throw sticks with extra throws on 1, 4 and 5,

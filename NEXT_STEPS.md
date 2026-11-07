@@ -147,7 +147,8 @@
 - **#142 Narde — COMPLETE** (2026-11-07).
 - **#143 Royal Game of Ur — COMPLETE** (2026-11-07).
 - **#144 Senet — COMPLETE** (2026-11-07).
-- **Current game: #145 Ludo** (`ludo`) — TODO (plan: a cross-board race core with arm length 6 for Ludo and 8 for Pachisi and Parchís).
+- **#145 Ludo — COMPLETE** (2026-11-07).
+- **Current game: #146 Pachisi** (`pachisi`) — TODO (on `src/games/shared/cross` with arm length 8).
 
 ## Resume instructions
 
