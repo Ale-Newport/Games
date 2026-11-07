@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #167 Breakout COMPLETE
+
+- New shared brick core `shared/bricks` (simulation, rule sets, players, drawing) for #167–#168.
+  Breakout: the classic eight-row wall played twice with three balls, row points 1/3/5/7, speed-ups
+  in the upper rows and the paddle shrinking once a ball reaches the top. Both computer players
+  clear the 896 points (the paddle outpaces the ball); a ball that breaks nothing for ten seconds
+  is nudged off its loop so that no wall can stall.
+- Played in the in-app browser (mobile, Spanish): a launched ball breaking the first bricks.
+- Verified (actually run): lint, typecheck, 3070 unit tests (381 files), build, 574 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #166 Pong COMPLETE
 
 - New shared real-time arcade shell `shared/arcade` for #166–#200: a pure simulation contract
