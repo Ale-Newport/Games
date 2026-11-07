@@ -79,7 +79,8 @@
 - **#074 Spider Solitaire — One Suit — COMPLETE** (2026-11-07).
 - **#075 Spider Solitaire — Two Suits — COMPLETE** (2026-11-07).
 - **#076 Spider Solitaire — Four Suits — COMPLETE** (2026-11-07).
-- **Current game: #077 Pyramid Solitaire** (`pyramid-solitaire`) — TODO.
+- **#077 Pyramid Solitaire — COMPLETE** (2026-11-07).
+- **Current game: #078 TriPeaks Solitaire** (`tripeaks`) — TODO.
 
 ## Resume instructions
 

@@ -45,12 +45,16 @@ export interface PileView {
   /** Column in the layout grid (fractions allowed) and row: 0 the top row, 1 the tableau. */
   col: number;
   row: 0 | 1;
+  /** Exact top edge in card heights, overriding `row` (for layouts such as a pyramid). */
+  y?: number;
   fan: 'none' | 'down' | 'right';
   /** Spread only the last n cards (the waste in draw-three). */
   fanLast?: number;
   cards: PileCard[];
   /** Placeholder glyph for an empty pile (e.g. "A", "K", "↺"). */
   empty?: string;
+  /** Draw no slot once the pile is empty (cards removed from play, as in a pyramid). */
+  vanish?: boolean;
 }
 
 export interface CardRef {
@@ -141,7 +145,11 @@ interface Geometry {
 
 function layout(piles: PileView[], columns: number, width: number, maxHeight: number): Geometry {
   const gap = Math.max(4, Math.round(width * 0.012));
-  const cardW = Math.min(110, (width - gap * (columns + 1)) / columns);
+  // Layouts placed by height (a pyramid) must also fit the height available.
+  const tallest = Math.max(0, ...piles.map((p) => (p.y === undefined ? 0 : p.y + 1)));
+  // (Leave room for the buttons under the board.)
+  const byHeight = tallest ? (maxHeight - 110) / tallest / 1.4 : Infinity;
+  const cardW = Math.min(110, (width - gap * (columns + 1)) / columns, byHeight);
   const cardH = cardW * 1.4;
   // Center the columns when cards reach their maximum size.
   const left = Math.max(0, (width - (columns * cardW + (columns + 1) * gap)) / 2);
@@ -151,7 +159,7 @@ function layout(piles: PileView[], columns: number, width: number, maxHeight: nu
   let height = cardH;
   for (const p of piles) {
     const x = left + gap + p.col * (cardW + gap);
-    const y = rowY[p.row]!;
+    const y = p.y !== undefined ? p.y * cardH : rowY[p.row]!;
     const spots: { x: number; y: number }[] = [];
     if (p.fan === 'down') {
       const downStep = cardH * 0.13;
@@ -681,6 +689,7 @@ export function SolitaireGame<S>({ def, services }: { def: SolitaireDefinition<S
         onPointerCancel={onPointerCancel}
       >
         {piles.map((p) => {
+          if (p.vanish && p.cards.length === 0) return null;
           const a = geo.areas.get(p.id)!;
           const hinted = hint?.to === p.id;
           return (
