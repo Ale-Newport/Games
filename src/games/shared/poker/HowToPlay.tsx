@@ -4,6 +4,7 @@ import type { PokerVariant } from './engine';
 /** Rules for the poker games; the Omaha differences are spelled out where they apply. */
 export function PokerRules({ locale, variant }: { locale: Locale; variant: PokerVariant }) {
   if (variant.id === 'draw') return <DrawRules locale={locale} />;
+  if (variant.id === 'stud') return <StudRules locale={locale} />;
   const omaha = variant.id === 'omaha';
   if (locale === 'es') {
     return (
@@ -233,6 +234,110 @@ function DrawRules({ locale }: { locale: Locale }) {
         <li>
           <kbd>F</kbd> fold · <kbd>C</kbd> check/call · <kbd>R</kbd> raise · <kbd>1</kbd>–
           <kbd>5</kbd> pick cards · <kbd>D</kbd> draw · <kbd>H</kbd> hint · <kbd>N</kbd> next hand.
+        </li>
+      </ul>
+    </>
+  );
+}
+
+function StudRules({ locale }: { locale: Locale }) {
+  if (locale === 'es') {
+    return (
+      <>
+        <h3>Objetivo</h3>
+        <p>
+          Quedarte con todas las fichas de la mesa en un torneo: todos empiezan con 1500 y las
+          apuestas suben cada diez manos. Solo fichas de juego, nunca dinero real.
+        </p>
+        <h3>Una mano</h3>
+        <ul>
+          <li>
+            Todos ponen un <strong>ante</strong> y reciben dos cartas tapadas y una destapada
+            (tercera calle). Quien muestra la carta destapada más baja pone la{' '}
+            <strong>entrada</strong> obligatoria (con empate de rango, decide el palo: tréboles,
+            diamantes, corazones, picas).
+          </li>
+          <li>
+            Empezando a su izquierda, cada jugador iguala la entrada, la <strong>completa</strong> a
+            una apuesta pequeña o se retira.
+          </li>
+          <li>
+            Cuarta, quinta y sexta calle: una carta destapada más; séptima: una tapada. Desde la
+            cuarta calle abre la apuesta quien muestra la mejor jugada visible.
+          </li>
+          <li>
+            <strong>Límite fijo</strong>: apuestas pequeñas en tercera y cuarta calle y dobles desde
+            la quinta; como mucho cuatro apuestas por calle.
+          </li>
+          <li>
+            En el enfrentamiento gana la mejor jugada de cinco cartas entre las siete de cada
+            jugador. Hay botes laterales para quien va con todo con menos fichas.
+          </li>
+        </ul>
+        <h3>Manos, de mejor a peor</h3>
+        <p>
+          Escalera de color · póker · full · color · escalera (A-2-3-4-5 vale) · trío · doble pareja
+          · pareja · carta alta.
+        </p>
+        <h3>Controles</h3>
+        <ul>
+          <li>
+            Botones para retirarte, pasar o igualar y apostar, completar o subir. Tus cartas tapadas
+            se ven un poco más abajo y oscuras: los rivales no las ven. «Pista» estima tus opciones.
+          </li>
+          <li>
+            <kbd>F</kbd> retirarse · <kbd>C</kbd> pasar/igualar · <kbd>R</kbd> apostar/subir ·{' '}
+            <kbd>H</kbd> pista · <kbd>N</kbd> siguiente mano.
+          </li>
+        </ul>
+      </>
+    );
+  }
+  return (
+    <>
+      <h3>Goal</h3>
+      <p>
+        Win every chip at the table in a sit-and-go: everyone starts with 1500 and the stakes rise
+        every ten hands. Play chips only, never real money.
+      </p>
+      <h3>A hand</h3>
+      <ul>
+        <li>
+          Everyone posts an <strong>ante</strong> and gets two cards face down and one face up
+          (third street). The lowest up card posts the forced <strong>bring-in</strong> (ties of
+          rank go by suit: clubs, diamonds, hearts, spades).
+        </li>
+        <li>
+          Starting on its left, each player calls the bring-in, <strong>completes</strong> it to a
+          small bet, or folds.
+        </li>
+        <li>
+          Fourth, fifth and sixth street: one more card face up; seventh street: one face down. From
+          fourth street on, the best showing hand bets first.
+        </li>
+        <li>
+          <strong>Fixed limit</strong>: small bets on third and fourth street, double from fifth; at
+          most four bets a street.
+        </li>
+        <li>
+          At the showdown the best five cards out of each player&apos;s seven win. Side pots cover
+          players all-in for less.
+        </li>
+      </ul>
+      <h3>Hands, best first</h3>
+      <p>
+        Straight flush · four of a kind · full house · flush · straight (A-2-3-4-5 counts) · three
+        of a kind · two pair · pair · high card.
+      </p>
+      <h3>Controls</h3>
+      <ul>
+        <li>
+          Buttons to fold, check or call, and bet, complete or raise. Your face-down cards sit a
+          little lower and darker: the others cannot see them. "Hint" estimates your chances.
+        </li>
+        <li>
+          <kbd>F</kbd> fold · <kbd>C</kbd> check/call · <kbd>R</kbd> bet/raise · <kbd>H</kbd> hint ·{' '}
+          <kbd>N</kbd> next hand.
         </li>
       </ul>
     </>

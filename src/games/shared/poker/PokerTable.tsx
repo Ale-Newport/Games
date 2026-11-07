@@ -17,6 +17,10 @@ import {
   BLIND_LEVELS,
   HANDS_PER_LEVEL,
   MAX_DRAW,
+  fixedBet,
+  isUpCard,
+  studAnte,
+  studBringIn,
   applyPokerAction,
   createPoker,
   isValidPokerState,
@@ -101,6 +105,19 @@ export function PokerTable({
     mode === 'watch' ? WATCH_STYLES[i % WATCH_STYLES.length]! : STYLES[difficulty];
   const cardsText = (cards: readonly number[]) => cards.map((c) => cardName(c, locale)).join(', ');
 
+  /** Stud: three of a kind in the first three cards. */
+  const checkRolledUp = (s: PokerState, m: Mode) => {
+    const [a, b, c] = s.seats[0]!.hole;
+    if (
+      m === 'play' &&
+      variant.id === 'stud' &&
+      c !== undefined &&
+      a! % 13 === b! % 13 &&
+      b! % 13 === c % 13
+    )
+      servicesRef.current.unlockAchievement('rolled-up');
+  };
+
   const start = (s: PokerState, m: Mode, d: Difficulty) => {
     setState(s);
     setMode(m);
@@ -110,6 +127,7 @@ export function PokerTable({
     setPaused(false);
     lastMine.current = '';
     if (m === 'play') setAnnouncement(t('announce.hole', { cards: cardsText(s.seats[0]!.hole) }));
+    checkRolledUp(s, m);
   };
 
   const newTournament = () => {
@@ -180,6 +198,7 @@ export function PokerTable({
     setCoach(null);
     if (a === 'next') {
       setSaid([]);
+      checkRolledUp(next, mode);
       lastMine.current = '';
       servicesRef.current.playSound(POKER_SOUNDS.deal);
       if (mode === 'play')
@@ -191,9 +210,13 @@ export function PokerTable({
         ? ''
         : allIn
           ? 'all-in'
-          : a.startsWith('raise:')
-            ? 'raise'
-            : a;
+          : !a.startsWith('raise:')
+            ? a
+            : before.currentBet === 0
+              ? 'bet'
+              : variant.limit === 'fixed-limit' && before.currentBet < fixedBet(before)
+                ? 'complete'
+                : 'raise';
       if (seat === 0) lastMine.current = a;
       servicesRef.current.playSound(
         a === 'fold'
@@ -343,7 +366,10 @@ export function PokerTable({
         <div className={styles.menuCard}>
           <h2 className={styles.menuTitle}>{t(`title.${variant.id}`)}</h2>
           <p className="muted">
-            {t('menu.subtitle', { stack: START_STACK, hands: HANDS_PER_LEVEL })}
+            {t(variant.id === 'stud' ? 'menu.subtitle.stud' : 'menu.subtitle', {
+              stack: START_STACK,
+              hands: HANDS_PER_LEVEL,
+            })}
           </p>
           {saved && (
             <button
@@ -445,7 +471,12 @@ export function PokerTable({
     level < BLIND_LEVELS.length - 1 ? HANDS_PER_LEVEL - ((s.handNo - 1) % HANDS_PER_LEVEL) : 0;
   const omaha = variant.hole === 4;
   const draw = variant.id === 'draw';
-  const faceUp = (i: number) => mode === 'watch' || i === 0 || !!r?.shown.includes(i);
+  const stud = variant.id === 'stud';
+  const faceUp = (i: number, k: number) =>
+    mode === 'watch' || i === 0 || !!r?.shown.includes(i) || (stud && isUpCard(k));
+  /** The player's own stud cards that the others cannot see. */
+  const hiddenMine = (i: number, k: number) =>
+    stud && i === 0 && mode === 'play' && !isUpCard(k) && !r?.shown.includes(0);
   const over = s.champion !== null;
   const status = over
     ? mode === 'watch'
@@ -460,7 +491,12 @@ export function PokerTable({
         : myTurn
           ? t('your-turn', { owe: owe > 0 ? t('to-call', { n: owe }) : t('to-check') })
           : t('thinking', { name: nameOf(s.toAct) });
-  const verb = s.currentBet > 0 ? 'raise.to' : 'bet.to';
+  const verb =
+    s.currentBet === 0
+      ? 'bet.to'
+      : variant.limit === 'fixed-limit' && s.currentBet < fixedBet(s)
+        ? 'complete.to'
+        : 'raise.to';
 
   return (
     <div className={styles.play} data-testid="poker">
@@ -468,16 +504,27 @@ export function PokerTable({
         <span>
           {t('hand')} <strong data-testid="poker-hand">{s.handNo}</strong>
         </span>
-        <span>
-          {t('blinds')}{' '}
-          <strong>
-            {s.blinds[0]}/{s.blinds[1]}
-          </strong>
-        </span>
+        {stud ? (
+          <span>
+            {t('stud.limits', {
+              ante: studAnte(s),
+              bringIn: studBringIn(s),
+              small: s.blinds[1],
+              big: 2 * s.blinds[1],
+            })}
+          </span>
+        ) : (
+          <span>
+            {t('blinds')}{' '}
+            <strong>
+              {s.blinds[0]}/{s.blinds[1]}
+            </strong>
+          </span>
+        )}
         <span>
           {t('players')} <strong>{live}</strong>
         </span>
-        {untilUp > 0 && <span>{t('level.up', { n: untilUp })}</span>}
+        {untilUp > 0 && <span>{t(stud ? 'level.up.stud' : 'level.up', { n: untilUp })}</span>}
       </div>
       <div
         className={`${styles.table} ${services.reducedMotion ? styles.still : ''}`}
@@ -485,12 +532,12 @@ export function PokerTable({
       >
         <div className={styles.felt} />
         <div className={styles.center}>
-          {draw && s.street !== 'done' && (
+          {(draw || stud) && s.street !== 'done' && (
             <span className={styles.phase} data-testid="poker-phase">
               {t(`street.${s.street}`)}
             </span>
           )}
-          {!draw && (
+          {!draw && !stud && (
             <div className={styles.board} data-testid="poker-board">
               {Array.from({ length: 5 }, (_, k) => {
                 const c = s.board[k];
@@ -535,6 +582,7 @@ export function PokerTable({
                 i === 0 && mode === 'play' ? styles.mine : '',
                 omaha ? styles.omaha : '',
                 draw ? styles.five : '',
+                stud ? styles.seven : '',
                 x.folded ? styles.folded : '',
                 x.out ? styles.out : '',
                 s.toAct === i && s.street !== 'done' ? styles.acting : '',
@@ -561,11 +609,16 @@ export function PokerTable({
                     ) : (
                       <div
                         key={`${s.handNo}-${k}-${c}`}
-                        className={styles.holeCard}
+                        className={`${styles.holeCard} ${hiddenMine(i, k) ? styles.down : ''}`}
                         role="img"
-                        aria-label={faceUp(i) ? cardName(c, locale) : t('card.hidden')}
+                        aria-label={
+                          faceUp(i, k)
+                            ? cardName(c, locale) +
+                              (hiddenMine(i, k) ? ` (${t('card.yours')})` : '')
+                            : t('card.hidden')
+                        }
                       >
-                        <CardView card={c} faceUp={faceUp(i)} fourColor={services.colorblind} />
+                        <CardView card={c} faceUp={faceUp(i, k)} fourColor={services.colorblind} />
                       </div>
                     ),
                   )}
@@ -756,7 +809,9 @@ export function PokerTable({
         </p>
       )}
       {mode === 'play' && (
-        <p className={styles.keys}>{t(draw ? 'keys.draw' : omaha ? 'keys.omaha' : 'keys')}</p>
+        <p className={styles.keys}>
+          {t(draw ? 'keys.draw' : omaha ? 'keys.omaha' : stud ? 'keys.stud' : 'keys')}
+        </p>
       )}
       <div className="visually-hidden" role="status" aria-live="polite">
         {announcement}

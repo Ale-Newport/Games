@@ -314,6 +314,8 @@
 }
 
 .said[data-w='raise'],
+.said[data-w='bet'],
+.said[data-w='complete'],
 .said[data-w='all-in'] {
   color: #ffd166;
 }
@@ -498,4 +500,28 @@
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.04em;
+}
+
+/* Seven Card Stud: seven overlapping cards; the player's own down cards sit lower and dimmer. */
+.seven .holeCard {
+  margin-left: calc(var(--hole-w) * -0.58);
+}
+
+.mine.seven .holeCard {
+  margin-left: calc(var(--hole-w) * -0.42);
+}
+
+.seven .holeCard:first-child {
+  margin-left: 0;
+}
+
+.down {
+  transform: translateY(6px);
+  filter: brightness(0.82) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
+}
+
+@media (max-width: 640px) {
+  .mine.seven {
+    --hole-w: clamp(34px, 10vw, 46px);
+  }
 }
