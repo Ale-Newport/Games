@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 102 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 98
+**Complete:** 103 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 97
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -128,7 +128,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 |---:|---|---|---|:-:|:-:|:-:|:-:|:-:|---|---|
 | 101 | Classic Sudoku 9×9 | `sudoku-9x9` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 102 | Mini Sudoku 4×4 | `sudoku-4x4` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 103 | Sudoku 6×6 | `sudoku-6x6` | TODO | — | — | — | — | — |  |  |
+| 103 | Sudoku 6×6 | `sudoku-6x6` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 104 | Sudoku 16×16 | `sudoku-16x16` | TODO | — | — | — | — | — |  |  |
 | 105 | X-Sudoku | `x-sudoku` | TODO | — | — | — | — | — |  |  |
 | 106 | Killer Sudoku | `killer-sudoku` | TODO | — | — | — | — | — |  |  |

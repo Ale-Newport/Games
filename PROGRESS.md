@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #103 Sudoku 6×6 COMPLETE
+
+- Sudoku 6×6 with 2×3 boxes on the shared core: Easy (singles, 14 clues), Medium (singles, 9–12),
+  Hard (levels 2–3). Only about one grid in fifty ends above singles, so Hard retries up to 500
+  grids: measured over 200 seeds, all at level 2–3 (157 needing Y-Wing/X-Wing-level steps), 26 ms
+  average and 126 ms worst to generate. Both solvers 100%; random play ≤ 1%.
+- Played in the in-app browser (mobile): a Hard puzzle whose hint chained box–line reduction,
+  hidden pair, X-Wing and Y-Wing; notes in a 3×2 mini-grid; solved to the end.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1803 unit tests, build, 318
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #102 Mini Sudoku 4×4 COMPLETE
 
 - Mini Sudoku on the shared sudoku core: 4×4 with 2×2 boxes, digits 1–4. Every 4×4 puzzle falls to
