@@ -22,7 +22,8 @@ export type Difficulty = 'easy' | 'medium' | 'hard';
 const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard'];
 
 export interface HeadsUpResult {
-  winner: 0 | 1;
+  /** Null when the pot is split. */
+  winner: 0 | 1 | null;
   won: number;
   showdown: boolean;
 }
@@ -174,10 +175,12 @@ export function HeadsUpTable<S>({
       const r = v.result;
       const you = mode === 'play' && r.winner === 0 ? '.you' : '';
       setAnnouncement(
-        t(`${r.showdown ? 'result.showdown' : 'result.fold'}${you}`, {
-          name: nameOf(r.winner),
-          n: r.won,
-        }),
+        r.winner === null
+          ? t('result.split')
+          : t(`${r.showdown ? 'result.showdown' : 'result.fold'}${you}`, {
+              name: nameOf(r.winner),
+              n: r.won,
+            }),
       );
       if (mode === 'play') {
         svc.playSound(r.winner === 0 ? POKER_SOUNDS.win : POKER_SOUNDS.pot);

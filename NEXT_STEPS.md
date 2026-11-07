@@ -94,7 +94,8 @@
 - **#089 Omaha Hold'em — COMPLETE** (2026-11-07).
 - **#090 Seven Card Stud — COMPLETE** (2026-11-07).
 - **#091 Kuhn Poker — COMPLETE** (2026-11-07).
-- **Current game: #092 Leduc Poker** (`leduc-poker`) — TODO.
+- **#092 Leduc Poker — COMPLETE** (2026-11-07).
+- **Current game: #093 Hearts** (`hearts`) — TODO.
 
 ## Resume instructions
 
