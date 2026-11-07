@@ -144,7 +144,8 @@
 - **#139 Fibonacci Merge — COMPLETE** (2026-11-07).
 - **#140 Sliding Blocks — COMPLETE** (2026-11-07).
 - **#141 Backgammon — COMPLETE** (2026-11-07).
-- **Current game: #142 Narde** (`narde`) — TODO (long narde rules, tuned evaluation and agents drafted in scratch; reuse `src/games/shared/raceboard/BoardView.tsx`).
+- **#142 Narde — COMPLETE** (2026-11-07).
+- **Current game: #143 Royal Game of Ur** (`royal-game-of-ur`) — TODO (Finkel's rules; engine and expectiminimax drafted in scratch).
 
 ## Resume instructions
 

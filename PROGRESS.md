@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #142 Narde COMPLETE
+
+- Long narde on the shared race board: both sides the same way round from opposite heads, single
+  checkers hold points, the head rule (two off the head with 6-6, 4-4 or 3-3 on the first turn),
+  the six-point rule, oin and mars in matches to 1, 3 or 5.
+- Evaluation weights tuned by greedy-against-greedy matches; expectimax beat greedy 69 of 120.
+- Played in the in-app browser (mobile, Spanish): opening dice, turns by taps and by hints against
+  the computer.
+- Verified (actually run): lint, typecheck, 2542 unit tests (327 files), build, 474 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #141 Backgammon COMPLETE
 
 - Full backgammon: bar, hits, bearing off, the use-most-dice and larger-die rules, gammons and
