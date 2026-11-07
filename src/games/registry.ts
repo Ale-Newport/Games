@@ -63,6 +63,7 @@ import { manifest as tablut } from './tablut/manifest';
 import { manifest as foxAndGeese } from './fox-and-geese/manifest';
 import { manifest as baghChal } from './bagh-chal/manifest';
 import { manifest as alquerque } from './alquerque/manifest';
+import { manifest as yote } from './yote/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -124,6 +125,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: foxAndGeese, load: () => import('./fox-and-geese/index') },
   { manifest: baghChal, load: () => import('./bagh-chal/index') },
   { manifest: alquerque, load: () => import('./alquerque/index') },
+  { manifest: yote, load: () => import('./yote/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

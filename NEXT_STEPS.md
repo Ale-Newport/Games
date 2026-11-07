@@ -62,7 +62,8 @@
 - **#057 Fox and Geese — COMPLETE** (2026-11-06).
 - **#058 Bagh-Chal — COMPLETE** (2026-11-06).
 - **#059 Alquerque — COMPLETE** (2026-11-06).
-- **Current game: #060 Yoté** (`yote`) — TODO.
+- **#060 Yoté — COMPLETE** (2026-11-07).
+- **Current game: #061 Kalah Mancala** (`kalah`) — TODO.
 
 ## Resume instructions
 

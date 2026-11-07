@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #060 Yoté COMPLETE
+
+- 5 × 6 board, 12 pieces in hand each: drop, step or jump; every capture earns a bonus removal
+  (board first, then hand) as a second action; draw with three pieces or fewer each, repetition or
+  200 plies.
+- Alpha-beta presets. Seeded (10 games per pair): Easy vs Random 10–0, Medium vs Easy 10–0, Hard vs
+  Medium 9–0–1.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1053 unit tests, build, 162
+  Playwright tests.
+
 ## 2026-11-06 — Session 1: #059 Alquerque COMPLETE
 
 - 5×5 line board, 12 pieces each, no-retreat steps, compulsory captures with compulsory chains,
