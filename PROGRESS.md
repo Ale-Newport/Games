@@ -2,6 +2,14 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #079 Golf COMPLETE
+
+- Thin module on the shared up-or-down family: no wrap, golf strokes (lower is better, under par
+  for stock left).
+- Deals 1–100: planner 3 cleared, greedy 2, random 0 (avg share 0.79 / 0.75 / 0.32).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1370 unit tests, build, 222
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #078 TriPeaks COMPLETE
 
 - New shared up-or-down family (`shared/updown`, TriPeaks and Golf layouts) and single-tap play in
