@@ -153,6 +153,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'towers-of-hanoi': () => import('../../games/towers-of-hanoi/ai-adapter').then((m) => m.bundle),
   'twisty-cube-2x2': () => import('../../games/twisty-cube-2x2/ai-adapter').then((m) => m.bundle),
   'twisty-cube-3x3': () => import('../../games/twisty-cube-3x3/ai-adapter').then((m) => m.bundle),
+  'twisty-cube-4x4': () => import('../../games/twisty-cube-4x4/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #136 Twisty Cube 4×4 COMPLETE
+
+- The 4×4 on the shared cube core with wide (two-layer) turns by a switch or the W key; 3- and
+  8-turn scrambles and a 40-turn full scramble. There is no 4×4 search: hints and watch mode undo
+  the scramble and the turns so far (simplified), which always solves it but not by the shortest
+  way; the rules and the spec say so.
+- Played in the in-app browser (mobile, Spanish): a wide turn by key, then hints back to solved
+  from an 8-turn scramble.
+- Verified (actually run): lint, typecheck, 2424 unit tests (315 files), build, 450 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #135 Twisty Cube 3×3 COMPLETE
 
 - The 3×3 on the shared cube core, with 3- and 7-turn scrambles and full random states. Hints and

@@ -138,7 +138,8 @@
 - **#133 Towers of Hanoi — COMPLETE** (2026-11-07).
 - **#134 Twisty Cube 2×2 — COMPLETE** (2026-11-07).
 - **#135 Twisty Cube 3×3 — COMPLETE** (2026-11-07).
-- **Current game: #136 Twisty Cube 4×4** (`twisty-cube-4x4`) — TODO (shared cube core with wide turns; 4×4 module drafted in scratch).
+- **#136 Twisty Cube 4×4 — COMPLETE** (2026-11-07).
+- **Current game: #137 Merge to 2048** (`game-2048`) — TODO (shared sliding-merge core with expectimax drafted in scratch; Fibonacci variant #139 on the same core).
 
 ## Resume instructions
 
