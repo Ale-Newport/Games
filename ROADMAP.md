@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 167 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 33
+**Complete:** 168 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 32
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -203,7 +203,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 |---:|---|---|---|:-:|:-:|:-:|:-:|:-:|---|---|
 | 166 | Pong | `pong` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 167 | Breakout | `breakout` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 168 | Enhanced Brick Breaker | `brick-breaker` | TODO | — | — | — | — | — |  |  |
+| 168 | Enhanced Brick Breaker | `brick-breaker` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 169 | Space Invaders-Style Shooter | `invaders` | TODO | — | — | — | — | — |  |  |
 | 170 | Galaxian-Style Shooter | `diving-swarm` | TODO | — | — | — | — | — |  |  |
 | 171 | Asteroids | `asteroids` | TODO | — | — | — | — | — |  |  |

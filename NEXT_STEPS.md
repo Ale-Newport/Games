@@ -170,7 +170,8 @@
 - **#165 Memory Pairs — COMPLETE** (2026-11-07).
 - **#166 Pong — COMPLETE** (2026-11-07).
 - **#167 Breakout — COMPLETE** (2026-11-07).
-- **Current game: #168 Enhanced Brick Breaker** (`brick-breaker`) — TODO (on the shared brick core; drafted in scratch).
+- **#168 Enhanced Brick Breaker — COMPLETE** (2026-11-07).
+- **Current game: #169 Invaders from Above** (`invaders`) — TODO (fixed shooter; drafted in scratch).
 
 ## Resume instructions
 
