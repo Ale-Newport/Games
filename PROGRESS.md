@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-06 — Session 1: #059 Alquerque COMPLETE
+
+- 5×5 line board, 12 pieces each, no-retreat steps, compulsory captures with compulsory chains,
+  draws by repetition or 200 quiet plies.
+- The bench rejected two evaluations that lost to Random (advancement made pieces strand
+  themselves; legal-move mobility read forced captures as weakness); material + plain-step room
+  works. Seeded (10 games per pair): Easy vs Random 8–1–1, Medium vs Easy 10–0, Hard vs Medium 10–0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1039 unit tests, build, 160
+  Playwright tests.
+
 ## 2026-11-06 — Session 1: #058 Bagh-Chal COMPLETE
 
 - Thin module on the shared hunt family: 5×5 board with alternate diagonals, four tigers in the
