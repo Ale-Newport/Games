@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #135 Twisty Cube 3×3 COMPLETE
+
+- The 3×3 on the shared cube core, with 3- and 7-turn scrambles and full random states. Hints and
+  watch mode use the two-phase solver, which now keeps searching for shorter solutions within a
+  time budget (60 ms here): every 3-turn scramble gets a 3-turn solution, full scrambles 20.6 turns
+  on average.
+- Played in the in-app browser (mobile, Spanish): a 7-turn scramble solved by hints in 7 turns,
+  and the AI solving a full scramble in 18 turns.
+- Verified (actually run): lint, typecheck, 2404 unit tests (313 files), build, 446 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #134 Twisty Cube 2×2 COMPLETE
 
 - A shared twisty-cube core (`src/games/shared/cube`): a sticker model for any size, a CSS 3D view

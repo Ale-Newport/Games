@@ -209,7 +209,8 @@ export function CubeGame({ services, specs, solve, strings, speedMs }: CubeGameP
       busy.current = false;
       setSpin(null);
       setState(next);
-      setMessage('');
+      // In watch mode the step message stays up until the next turn.
+      if (mode === 'play') setMessage('');
       if (next.solved && !cur.solved) {
         if (mode === 'play') solvedNow(next);
       } else if (mode === 'play')
@@ -252,7 +253,12 @@ export function CubeGame({ services, specs, solve, strings, speedMs }: CubeGameP
     const plan = solve(s);
     if (!plan?.length) return;
     setHint(plan[0]!);
-    setMessage(t('hint.move', { move: moveName(plan[0]!), left: plan.length }));
+    setMessage(
+      t(plan.length === 1 ? 'hint.last' : 'hint.move', {
+        move: moveName(plan[0]!),
+        left: plan.length,
+      }),
+    );
   };
 
   // Watch mode: the solver turns every 0.5 s.

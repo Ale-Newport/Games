@@ -138,6 +138,7 @@ import { manifest as waterSort } from './water-sort/manifest';
 import { manifest as ballSort } from './ball-sort/manifest';
 import { manifest as hanoi } from './towers-of-hanoi/manifest';
 import { manifest as cube2 } from './twisty-cube-2x2/manifest';
+import { manifest as cube3 } from './twisty-cube-3x3/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -274,6 +275,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: ballSort, load: () => import('./ball-sort/index') },
   { manifest: hanoi, load: () => import('./towers-of-hanoi/index') },
   { manifest: cube2, load: () => import('./twisty-cube-2x2/index') },
+  { manifest: cube3, load: () => import('./twisty-cube-3x3/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

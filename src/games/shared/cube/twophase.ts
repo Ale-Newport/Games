@@ -334,7 +334,8 @@ export function readCubies(cube: Cube): Cubies | null {
 
 /**
  * Solves a 3×3 sticker cube: the first solution of at most `target` moves, or the shortest found
- * within `timeMs`. Null when the stickers do not form a reachable cube.
+ * within `timeMs` (a target of 0 asks for the shortest found in the time; short scrambles finish
+ * early). Null when the stickers do not form a reachable cube.
  */
 export function solveTwoPhase(cube: Cube, target = 22, timeMs = 300): Turn[] | null {
   const start = readCubies(cube);
@@ -356,7 +357,8 @@ export function solveTwoPhase(cube: Cube, target = 22, timeMs = 300): Turn[] | n
   const p1: number[] = [];
   const p2: number[] = [];
   let best: number[] | null = null;
-  let bestLen = target + 1;
+  // Solutions of up to 22 turns (always found within milliseconds) count; shorter ones replace them.
+  let bestLen = Math.max(target, 22) + 1;
 
   const allowed = (m: number, prev: number) => {
     if (prev < 0) return true;
