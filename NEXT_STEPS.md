@@ -97,7 +97,8 @@
 - **#092 Leduc Poker — COMPLETE** (2026-11-07).
 - **#093 Hearts — COMPLETE** (2026-11-07).
 - **#094 Spades — COMPLETE** (2026-11-07).
-- **Current game: #095 Contract Bridge** (`contract-bridge`) — TODO.
+- **#095 Contract Bridge — COMPLETE** (2026-11-07).
+- **Current game: #096 Gin Rummy** (`gin-rummy`) — TODO.
 
 ## Resume instructions
 
