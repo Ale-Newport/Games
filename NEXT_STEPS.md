@@ -99,7 +99,8 @@
 - **#094 Spades — COMPLETE** (2026-11-07).
 - **#095 Contract Bridge — COMPLETE** (2026-11-07).
 - **#096 Gin Rummy — COMPLETE** (2026-11-07).
-- **Current game: #097 Cribbage** (`cribbage`) — TODO.
+- **#097 Cribbage — COMPLETE** (2026-11-07).
+- **Current game: #098 Euchre** (`euchre`) — TODO.
 
 ## Resume instructions
 
