@@ -128,7 +128,8 @@
 - **#123 Number Trail (Zip) — COMPLETE** (2026-11-07).
 - **#124 8-Puzzle — COMPLETE** (2026-11-07).
 - **#125 15-Puzzle — COMPLETE** (2026-11-07).
-- **Current game: #126 Traffic Jam (Rush Hour-style)** (`traffic-jam`) — TODO (generic name; generator explores the state space).
+- **#126 Traffic Jam — COMPLETE** (2026-11-07).
+- **Current game: #127 Sokoban** (`sokoban`) — TODO (levels generated offline by reverse pulls; draft in scratch).
 
 ## Resume instructions
 

@@ -1,0 +1,120 @@
+.bar {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: min(100%, 440px);
+}
+
+.counter {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.wrap {
+  width: min(100%, 440px);
+  container-type: inline-size;
+  display: flex;
+  justify-content: center;
+  padding-right: 14px;
+}
+
+.board {
+  --u: min(calc((100cqi - 30px) / 6), calc((100dvh - 330px) / 6), 66px);
+  position: relative;
+  width: calc(var(--u) * 6);
+  height: calc(var(--u) * 6);
+  box-sizing: content-box;
+  border: 6px solid #4b5266;
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 0.06) 1px, transparent 1px) 0 0 / var(--u) var(--u),
+    linear-gradient(rgb(255 255 255 / 0.06) 1px, transparent 1px) 0 0 / var(--u) var(--u),
+    #2d3241;
+  touch-action: none;
+}
+
+.exit {
+  position: absolute;
+  right: -14px;
+  top: calc(var(--row) * var(--u));
+  width: 14px;
+  height: var(--u);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2d3241;
+  color: #f1c40f;
+  font-weight: 900;
+  font-size: 1.2rem;
+}
+
+.vehicle {
+  position: absolute;
+  left: calc(var(--col) * var(--u) + 4px);
+  top: calc(var(--row) * var(--u) + 4px);
+  width: calc(var(--w) * var(--u) - 8px);
+  height: calc(var(--h) * var(--u) - 8px);
+  border: 0;
+  border-radius: 10px;
+  background: hsl(var(--hue) 70% 60%);
+  box-shadow:
+    inset 0 -5px 0 rgb(0 0 0 / 0.22),
+    inset 0 3px 0 rgb(255 255 255 / 0.35),
+    0 2px 6px rgb(0 0 0 / 0.35);
+  cursor: grab;
+  transition:
+    left 120ms var(--ease-out),
+    top 120ms var(--ease-out);
+}
+
+.vehicle::after {
+  content: '';
+  position: absolute;
+  inset: 22% 18%;
+  border-radius: 6px;
+  background: rgb(255 255 255 / 0.28);
+}
+
+.truck {
+  background: hsl(var(--hue) 45% 45%);
+}
+
+.red {
+  background: #e5484d;
+}
+
+.dragging {
+  transition: none;
+  cursor: grabbing;
+  z-index: 2;
+}
+
+.selected {
+  outline: 3px solid #fff;
+  outline-offset: 1px;
+}
+
+.pointed {
+  outline: 3px dashed #f1c40f;
+  outline-offset: 2px;
+}
+
+.done .red {
+  left: calc(6 * var(--u) + 20px);
+  opacity: 0;
+  transition:
+    left 600ms ease-in,
+    opacity 600ms ease-in;
+}
+
+.hidden .vehicle {
+  filter: blur(6px) grayscale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vehicle,
+  .done .red {
+    transition: none;
+  }
+}
