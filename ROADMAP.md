@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 104 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 96
+**Complete:** 105 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 95
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -130,7 +130,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 102 | Mini Sudoku 4×4 | `sudoku-4x4` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 103 | Sudoku 6×6 | `sudoku-6x6` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 104 | Sudoku 16×16 | `sudoku-16x16` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 105 | X-Sudoku | `x-sudoku` | TODO | — | — | — | — | — |  |  |
+| 105 | X-Sudoku | `x-sudoku` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 106 | Killer Sudoku | `killer-sudoku` | TODO | — | — | — | — | — |  |  |
 | 107 | Jigsaw Sudoku | `jigsaw-sudoku` | TODO | — | — | — | — | — |  |  |
 | 108 | Kakuro | `kakuro` | TODO | — | — | — | — | — |  |  |

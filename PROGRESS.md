@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #105 X-Sudoku COMPLETE
+
+- X-Sudoku on the shared core (the diagonals are units for the solver, every technique and the
+  hints): Easy 32 clues, Medium 22–28, Hard level 2, Expert level 3; measured over 100 seeds each,
+  all at their level, generation ≤ 349 ms; both solvers 100%. Diagonal cells are tinted (as a
+  background image, so the shared highlights still show) with dashed corner-to-corner lines.
+- Played in the in-app browser (mobile): a Hard puzzle solved through hints, including "In this
+  diagonal, 4 fits only in R2C8" and box–line steps on a diagonal.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1834 unit tests, build, 326
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #104 Sudoku 16×16 COMPLETE
 
 - Sudoku 16×16 (symbols 1–9, A–G; keys A–G) on the shared core: Easy 130 clues, Medium 100–116,
