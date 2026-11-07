@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #153 Summit Rush COMPLETE
+
+- Summit Rush (catalog id `cant-stop`, original name and art): eleven columns 2–12, four dice paired
+  into two sums, three climbers, busts, stops and claimed summits, 2–4 players. The strategist
+  weighs climbs by column and stops by the rule of 28 or the exact bust chance over 1296 rolls; it
+  beat the cautious player in 1000 of 1000 games and three of them in 998 of 1000.
+- Played in the in-app browser (mobile, Spanish): a hinted climb of 2 + 10, a 9 + 10, a stop and the
+  computer's turn. Made markers larger and kept your last message on screen during computer turns.
+- Verified (actually run): lint, typecheck, 2751 unit tests (349 files), build, 518 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #152 Pig COMPLETE
 
 - Pig to 100 with one die, solved by value iteration over both scores and the turn total (10⁶
