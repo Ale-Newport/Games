@@ -1,0 +1,162 @@
+.wrap {
+  width: min(100%, 560px);
+  container-type: inline-size;
+}
+
+.board {
+  --u: min(
+    calc(100cqi / (var(--cols) + var(--lw))),
+    calc((100dvh - 290px) / (var(--rows) + var(--th)))
+  );
+  position: relative;
+  display: grid;
+  grid-template-columns: calc(var(--lw) * var(--u)) repeat(var(--cols), var(--u));
+  grid-template-rows: calc(var(--th) * var(--u)) repeat(var(--rows), var(--u));
+  justify-content: center;
+  touch-action: none;
+  user-select: none;
+}
+
+.rowGroup {
+  display: contents;
+}
+
+.corner {
+  border-bottom: 2px solid color-mix(in srgb, var(--text) 70%, transparent);
+  border-right: 2px solid color-mix(in srgb, var(--text) 70%, transparent);
+}
+
+.colClue,
+.rowClue {
+  display: flex;
+  gap: calc(var(--u) * 0.12);
+  color: var(--text);
+  font-size: calc(var(--u) * 0.48);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.colClue {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: calc(var(--u) * 0.12);
+  border-bottom: 2px solid color-mix(in srgb, var(--text) 70%, transparent);
+}
+
+.rowClue {
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: calc(var(--u) * 0.18);
+  border-right: 2px solid color-mix(in srgb, var(--text) 70%, transparent);
+}
+
+.colClue:nth-child(5n + 1):not(:last-child) {
+  border-right: 1px solid color-mix(in srgb, var(--text) 25%, transparent);
+}
+
+.clueDone {
+  color: var(--text-faint);
+  text-decoration: line-through;
+}
+
+.clueHint {
+  background: color-mix(in srgb, var(--warning) 25%, transparent);
+}
+
+.clueSel {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border-right: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+  color: var(--text-faint);
+  cursor: pointer;
+}
+
+.thickR {
+  border-right: 2px solid color-mix(in srgb, var(--text) 55%, transparent);
+}
+
+.thickB {
+  border-bottom: 2px solid color-mix(in srgb, var(--text) 55%, transparent);
+}
+
+.filled {
+  background: var(--accent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 70%, #000);
+}
+
+.done .filled {
+  background: var(--text);
+  box-shadow: none;
+}
+
+.pointed {
+  outline: 2px solid var(--warning);
+  outline-offset: -3px;
+}
+
+.selected {
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+.filled.selected {
+  box-shadow: inset 0 0 0 2px var(--surface);
+}
+
+.wrong {
+  background: color-mix(in srgb, var(--danger) 55%, var(--surface));
+}
+
+.hidden .cell {
+  background: var(--surface);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--space-2);
+}
+
+.thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.thumb small {
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.mini {
+  display: grid;
+  grid-template-columns: repeat(var(--c), 1fr);
+  width: 70px;
+  aspect-ratio: 1;
+  gap: 1px;
+  background: color-mix(in srgb, var(--text) 12%, transparent);
+}
+
+.mini i {
+  background: var(--surface);
+}
+
+.mini i.on {
+  background: var(--text);
+}
