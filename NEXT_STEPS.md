@@ -139,7 +139,8 @@
 - **#134 Twisty Cube 2×2 — COMPLETE** (2026-11-07).
 - **#135 Twisty Cube 3×3 — COMPLETE** (2026-11-07).
 - **#136 Twisty Cube 4×4 — COMPLETE** (2026-11-07).
-- **Current game: #137 Merge to 2048** (`game-2048`) — TODO (shared sliding-merge core with expectimax drafted in scratch; Fibonacci variant #139 on the same core).
+- **#137 Merge to 2048 — COMPLETE** (2026-11-07).
+- **Current game: #138 Number Trios** (`threes`) — TODO (threes-style engine, expectimax, UI and tests drafted in scratch).
 
 ## Resume instructions
 
