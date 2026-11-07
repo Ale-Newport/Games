@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 128 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 72
+**Complete:** 129 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 71
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -154,7 +154,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 126 | Rush Hour | `traffic-jam` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 127 | Sokoban | `sokoban` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 128 | Peg Solitaire | `peg-solitaire` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 129 | Lights Out | `lights-out` | TODO | — | — | — | — | — |  |  |
+| 129 | Lights Out | `lights-out` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 130 | Flow Path Connection Puzzle | `flow` | TODO | — | — | — | — | — |  |  |
 | 131 | Water Sort Puzzle | `water-sort` | TODO | — | — | — | — | — |  |  |
 | 132 | Ball Sort Puzzle | `ball-sort` | TODO | — | — | — | — | — |  |  |
