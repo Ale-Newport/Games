@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 66 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 134
+**Complete:** 67 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 133
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -82,7 +82,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 064 | Congkak | `congkak` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 065 | Halma | `halma` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 066 | Chinese Checkers | `chinese-checkers` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 067 | Game of the Amazons | `amazons` | TODO | — | — | — | — | — |  |  |
+| 067 | Game of the Amazons | `amazons` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 068 | Lines of Action | `lines-of-action` | TODO | — | — | — | — | — |  |  |
 | 069 | Paper Soccer | `paper-soccer` | TODO | — | — | — | — | — |  |  |
 | 070 | Bridg-It | `bridg-it` | TODO | — | — | — | — | — |  |  |

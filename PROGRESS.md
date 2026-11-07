@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #067 Game of the Amazons COMPLETE
+
+- 10 × 10, four amazons a side, queen move plus arrow shot, the last player able to move wins;
+  alternating openers; a three-tap board (amazon, square, arrow) with step-back and cancel.
+- Custom agents on the queen-distance territory count: Medium full width one ply, Hard two plies
+  over its best 12 turns. Seeded (10 games per pair): Easy vs Random 10–0, Medium vs Easy 9–1, Hard
+  vs Medium 10–0 (a 30-candidate Hard only managed 5–5, so 12 it is).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1151 unit tests, build, 176
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #066 Chinese Checkers COMPLETE
 
 - Thin module on the shared jump-race family: the 121-hole star, two players in opposite points

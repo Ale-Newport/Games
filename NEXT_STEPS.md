@@ -69,7 +69,8 @@
 - **#064 Congkak — COMPLETE** (2026-11-07).
 - **#065 Halma — COMPLETE** (2026-11-07).
 - **#066 Chinese Checkers — COMPLETE** (2026-11-07).
-- **Current game: #067 Game of the Amazons** (`amazons`) — TODO.
+- **#067 Game of the Amazons — COMPLETE** (2026-11-07).
+- **Current game: #068 Lines of Action** (`lines-of-action`) — TODO.
 
 ## Resume instructions
 
