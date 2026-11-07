@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 113 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 87
+**Complete:** 114 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 86
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -139,7 +139,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 111 | Hitori | `hitori` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 112 | Nonogram / Picross | `nonogram` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 113 | Slitherlink | `slitherlink` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 114 | Hashiwokakero | `hashiwokakero` | TODO | — | — | — | — | — |  |  |
+| 114 | Hashiwokakero | `hashiwokakero` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 115 | Nurikabe | `nurikabe` | TODO | — | — | — | — | — |  |  |
 | 116 | Classic Minesweeper | `minesweeper` | TODO | — | — | — | — | — |  |  |
 | 117 | No-Guess Minesweeper | `minesweeper-no-guess` | TODO | — | — | — | — | — |  |  |
