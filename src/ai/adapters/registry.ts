@@ -91,6 +91,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   freecell: () => import('../../games/freecell/ai-adapter').then((m) => m.bundle),
   'spider-1-suit': () => import('../../games/spider-1-suit/ai-adapter').then((m) => m.bundle),
   'spider-2-suits': () => import('../../games/spider-2-suits/ai-adapter').then((m) => m.bundle),
+  'spider-4-suits': () => import('../../games/spider-4-suits/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
