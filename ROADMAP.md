@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 86 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 114
+**Complete:** 87 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 113
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -107,7 +107,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 084 | Clock Solitaire | `clock-solitaire` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 085 | Canfield Solitaire | `canfield` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 086 | Blackjack | `blackjack` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 087 | Texas Hold'em Poker | `texas-holdem` | TODO | — | — | — | — | — |  |  |
+| 087 | Texas Hold'em Poker | `texas-holdem` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 088 | Five Card Draw Poker | `five-card-draw` | TODO | — | — | — | — | — |  |  |
 | 089 | Omaha Hold'em | `omaha` | TODO | — | — | — | — | — |  |  |
 | 090 | Seven Card Stud | `seven-card-stud` | TODO | — | — | — | — | — |  |  |
