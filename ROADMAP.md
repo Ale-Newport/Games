@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 158 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 42
+**Complete:** 159 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 41
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -189,7 +189,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 156 | Block Dominoes | `block-dominoes` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 157 | Draw Dominoes | `draw-dominoes` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 158 | All Fives Dominoes | `all-fives-dominoes` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 159 | Mahjong Solitaire | `mahjong-solitaire` | TODO | — | — | — | — | — |  |  |
+| 159 | Mahjong Solitaire | `mahjong-solitaire` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 160 | Riichi Mahjong | `riichi-mahjong` | TODO | — | — | — | — | — |  |  |
 | 161 | Tile Rummy | `tile-rummy` | TODO | — | — | — | — | — |  |  |
 | 162 | Rock Paper Scissors | `rock-paper-scissors` | TODO | — | — | — | — | — |  |  |

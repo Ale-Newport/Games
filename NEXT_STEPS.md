@@ -161,7 +161,8 @@
 - **#156 Block Dominoes — COMPLETE** (2026-11-07).
 - **#157 Draw Dominoes — COMPLETE** (2026-11-07).
 - **#158 All Fives Dominoes — COMPLETE** (2026-11-07).
-- **Current game: #159 Mahjong Solitaire** (`mahjong-solitaire`) — TODO (solvable deals on original layouts; drafted in scratch).
+- **#159 Mahjong Solitaire — COMPLETE** (2026-11-07).
+- **Current game: #160 Riichi Mahjong** (`riichi-mahjong`) — TODO (East-only four-player game; engine, scoring and table drafted in scratch).
 
 ## Resume instructions
 
