@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #069 Paper Soccer COMPLETE
+
+- 8 × 10 field with two-square goals; lines never redrawn nor along the border or goal sides;
+  bounces off used dots and the border; goals, own goals and the stuck loss.
+- Alpha-beta over single lines. Seeded (10 games per pair): Easy vs Random 9–1, Medium vs Easy
+  10–0, Hard vs Medium 8–2.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1181 unit tests, build, 180
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #068 Lines of Action COMPLETE
 
 - 8 × 8, twelve pieces a side; moves of exactly the line's piece count, jumping own pieces only,

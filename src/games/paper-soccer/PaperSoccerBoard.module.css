@@ -1,0 +1,106 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  width: min(100%, calc((100dvh - 300px) * 0.74), 440px);
+  min-width: 240px;
+  margin-inline: auto;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.field {
+  fill: #2f8f4e;
+}
+
+.goal0 {
+  fill: rgba(224, 120, 43, 0.35);
+}
+
+.goal1 {
+  fill: rgba(42, 157, 143, 0.4);
+}
+
+.mark {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 0.05;
+}
+
+.dot {
+  fill: rgba(255, 255, 255, 0.55);
+}
+
+.border {
+  fill: none;
+  stroke: #f4f1e6;
+  stroke-width: 0.1;
+  stroke-linejoin: round;
+}
+
+.line0,
+.line1 {
+  stroke-width: 0.09;
+  stroke-linecap: round;
+}
+
+.line0 {
+  stroke: #ffb26b;
+}
+
+.line1 {
+  stroke: #7fe0d3;
+}
+
+.newest {
+  stroke-width: 0.14;
+}
+
+.hint {
+  stroke: #9cc3ff;
+  stroke-width: 0.1;
+  stroke-dasharray: 0.16 0.1;
+  stroke-linecap: round;
+}
+
+.target {
+  fill: #ffd166;
+}
+
+.ball {
+  pointer-events: none;
+}
+
+.ballBody {
+  fill: #ffffff;
+  stroke: #222;
+  stroke-width: 0.04;
+}
+
+.ballPatch {
+  fill: #222;
+}
+
+.hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.hit:focus-visible {
+  stroke: var(--accent-2);
+  stroke-width: 0.06;
+}
+
+.animated .rolled {
+  animation: pop 200ms var(--ease-out);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0.4;
+  }
+}

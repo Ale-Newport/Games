@@ -72,6 +72,7 @@ import { manifest as halma } from './halma/manifest';
 import { manifest as chineseCheckers } from './chinese-checkers/manifest';
 import { manifest as amazons } from './amazons/manifest';
 import { manifest as linesOfAction } from './lines-of-action/manifest';
+import { manifest as paperSoccer } from './paper-soccer/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -142,6 +143,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: chineseCheckers, load: () => import('./chinese-checkers/index') },
   { manifest: amazons, load: () => import('./amazons/index') },
   { manifest: linesOfAction, load: () => import('./lines-of-action/index') },
+  { manifest: paperSoccer, load: () => import('./paper-soccer/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
