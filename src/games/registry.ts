@@ -94,6 +94,7 @@ import { manifest as texasHoldem } from './texas-holdem/manifest';
 import { manifest as fiveCardDraw } from './five-card-draw/manifest';
 import { manifest as omaha } from './omaha/manifest';
 import { manifest as sevenCardStud } from './seven-card-stud/manifest';
+import { manifest as kuhnPoker } from './kuhn-poker/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -186,6 +187,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: fiveCardDraw, load: () => import('./five-card-draw/index') },
   { manifest: omaha, load: () => import('./omaha/index') },
   { manifest: sevenCardStud, load: () => import('./seven-card-stud/index') },
+  { manifest: kuhnPoker, load: () => import('./kuhn-poker/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

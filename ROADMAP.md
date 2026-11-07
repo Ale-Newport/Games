@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 90 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 110
+**Complete:** 91 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 109
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -111,7 +111,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 088 | Five Card Draw Poker | `five-card-draw` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 089 | Omaha Hold'em | `omaha` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 090 | Seven Card Stud | `seven-card-stud` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 091 | Kuhn Poker | `kuhn-poker` | TODO | — | — | — | — | — |  |  |
+| 091 | Kuhn Poker | `kuhn-poker` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 092 | Leduc Poker | `leduc-poker` | TODO | — | — | — | — | — |  |  |
 | 093 | Hearts | `hearts` | TODO | — | — | — | — | — |  |  |
 | 094 | Spades | `spades` | TODO | — | — | — | — | — |  |  |
