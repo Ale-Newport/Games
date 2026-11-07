@@ -159,7 +159,8 @@
 - **#154 Shut the Box — COMPLETE** (2026-11-07).
 - **#155 Colour Rows — COMPLETE** (2026-11-07).
 - **#156 Block Dominoes — COMPLETE** (2026-11-07).
-- **Current game: #157 Draw Dominoes** (`draw-dominoes`) — TODO (on the shared domino core; drafted in scratch).
+- **#157 Draw Dominoes — COMPLETE** (2026-11-07).
+- **Current game: #158 All Fives Dominoes** (`all-fives-dominoes`) — TODO (on the shared domino core; drafted in scratch).
 
 ## Resume instructions
 

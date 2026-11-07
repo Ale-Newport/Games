@@ -444,7 +444,7 @@ export function BonesTable({ services, rules, prefix, strings, onGameEnd }: Bone
           </>
         ) : (
           <span className={styles.empty}>
-            {g.phase === 'play' ? t('thinking', { side: name(g.turn) }) : ''}
+            {g.phase === 'play' && !myTurn ? t('thinking', { side: name(g.turn) }) : ''}
           </span>
         )}
       </div>

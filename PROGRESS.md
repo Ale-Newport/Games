@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #157 Draw Dominoes COMPLETE
+
+- Draw Dominoes to 100 on the shared domino core: seven tiles each for two players, five for three
+  or four, drawing until something fits. The planner beat the heavy player in 98 of 100 two-player
+  games and won 50 of 100 four-player games against three heavy players.
+- Played in the in-app browser (mobile, Spanish): opened with the 6–6, the computer's 6–4, a hinted
+  4–4. Fixed the empty-table placeholder that said "Tú está jugando…" on your own opening turn.
+- Verified (actually run): lint, typecheck, 2851 unit tests (358 files), build, 534 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #156 Block Dominoes COMPLETE
 
 - New shared domino core `shared/bones` (engine, players, environment, table, SVG tiles) for
