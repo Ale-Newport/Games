@@ -93,6 +93,8 @@ export interface SolitaireDefinition<S> {
   stockMove(s: S): string | null;
   /** The next move of the automatic finish, when the deal can be finished without choices. */
   finishMove(s: S): string | null;
+  /** An extra line of information for the stats row (e.g. "Deals left 3"). */
+  info?: (s: S, t: Translator) => string;
   /** A move the shell plays by itself after each of the player's moves (e.g. safe cards home). */
   autoPlay?: (s: S) => string | null;
   /** Source and target of a move, for hints. */
@@ -663,6 +665,7 @@ export function SolitaireGame<S>({ def, services }: { def: SolitaireDefinition<S
         <span>
           {t('stat.deal')} <strong data-testid="sol-deal">#{def.seedOf(state)}</strong>
         </span>
+        {def.info && <span data-testid="sol-info">{def.info(state, t)}</span>}
       </div>
       <div className={styles.status} data-testid="sol-status" data-status={status}>
         {statusText}

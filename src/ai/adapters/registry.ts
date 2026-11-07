@@ -89,6 +89,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'klondike-draw-1': () => import('../../games/klondike-draw-1/ai-adapter').then((m) => m.bundle),
   'klondike-draw-3': () => import('../../games/klondike-draw-3/ai-adapter').then((m) => m.bundle),
   freecell: () => import('../../games/freecell/ai-adapter').then((m) => m.bundle),
+  'spider-1-suit': () => import('../../games/spider-1-suit/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
