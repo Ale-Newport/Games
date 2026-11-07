@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 131 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 69
+**Complete:** 132 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 68
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -157,7 +157,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 129 | Lights Out | `lights-out` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 130 | Flow Path Connection Puzzle | `flow` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 131 | Water Sort Puzzle | `water-sort` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 132 | Ball Sort Puzzle | `ball-sort` | TODO | — | — | — | — | — |  |  |
+| 132 | Ball Sort Puzzle | `ball-sort` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 133 | Towers of Hanoi | `towers-of-hanoi` | TODO | — | — | — | — | — |  |  |
 | 134 | Rubik's Cube 2×2 | `twisty-cube-2x2` | TODO | — | — | — | — | — |  |  |
 | 135 | Rubik's Cube 3×3 | `twisty-cube-3x3` | TODO | — | — | — | — | — |  |  |

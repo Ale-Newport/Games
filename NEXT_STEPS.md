@@ -134,7 +134,8 @@
 - **#129 Lights Out — COMPLETE** (2026-11-07).
 - **#130 Color Links (Flow) — COMPLETE** (2026-11-07).
 - **#131 Water Sort — COMPLETE** (2026-11-07).
-- **Current game: #132 Ball Sort** (`ball-sort`) — TODO (reuse `src/games/shared/sorting/`).
+- **#132 Ball Sort — COMPLETE** (2026-11-07).
+- **Current game: #133 Towers of Hanoi** (`towers-of-hanoi`) — TODO (draft in scratch).
 
 ## Resume instructions
 
