@@ -2,6 +2,22 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #160 Riichi Mahjong COMPLETE
+
+- Four-player riichi mahjong, an East-only game: walls and dead wall from the seed, chi/pon/kan
+  calls decided seat by seat, riichi, furiten, kuikae, dora and ura-dora, 40+ yaku and yakuman, fu
+  and han with limits, honba and sticks, exhaustive draws with ready payments. Simplifications are
+  listed in the spec (no red fives, no abortive draws, no kans after riichi, head bump).
+- Shanten is computed per suit with memoized splits (about 50× faster than the first whole-hand
+  search, which made the players too slow for the tests). The careful player folds against riichi
+  once it is not ready; that cut its deal-ins from 178 to 136 over 200 games (avg 25 170 points,
+  rank 2.50 against three efficient players).
+- Played in the in-app browser (mobile, Spanish) through a whole hand on hints: a rival's riichi, an
+  exhaustive draw with two ready players paid 1500 each. Fixed: the drawn tile now sits apart at
+  the end of the hand, the hand fits one row, and messages name tiles with an article.
+- Verified (actually run): lint, typecheck, 2921 unit tests (365 files), build, 546 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #159 Mahjong Solitaire COMPLETE
 
 - Mahjong solitaire on two original layouts (Crossroads, 84 tiles; Pyramid, 144) with original SVG

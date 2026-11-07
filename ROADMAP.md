@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 159 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 41
+**Complete:** 160 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 40
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -190,7 +190,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 157 | Draw Dominoes | `draw-dominoes` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 158 | All Fives Dominoes | `all-fives-dominoes` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 159 | Mahjong Solitaire | `mahjong-solitaire` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 160 | Riichi Mahjong | `riichi-mahjong` | TODO | — | — | — | — | — |  |  |
+| 160 | Riichi Mahjong | `riichi-mahjong` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 161 | Tile Rummy | `tile-rummy` | TODO | — | — | — | — | — |  |  |
 | 162 | Rock Paper Scissors | `rock-paper-scissors` | TODO | — | — | — | — | — |  |  |
 | 163 | Rock Paper Scissors Lizard Spock | `rpsls` | TODO | — | — | — | — | — |  |  |
