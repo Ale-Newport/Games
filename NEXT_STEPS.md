@@ -149,7 +149,8 @@
 - **#144 Senet — COMPLETE** (2026-11-07).
 - **#145 Ludo — COMPLETE** (2026-11-07).
 - **#146 Pachisi — COMPLETE** (2026-11-07).
-- **Current game: #147 Parchís** (`parchis`) — TODO (rule options drafted in scratch: exit on 5, barriers, 20/10 bonuses, six as seven).
+- **#147 Parchís — COMPLETE** (2026-11-07).
+- **Current game: #148 Snakes and Ladders** (`snakes-and-ladders`) — TODO (classic and Choice variants with a value-iteration planner; drafted in scratch).
 
 ## Resume instructions
 
