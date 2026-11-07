@@ -2,6 +2,13 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #084 Clock COMPLETE
+
+- Clock patience on the card shell (glowing pile to turn, smarter auto-move key): turn and place
+  under the hour, the fourth-king ending. Engine win rate 152/2000 = 7.6% (theory 1/13).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1445 unit tests, build, 242
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #083 Accordion COMPLETE
 
 - Accordion on the card shell: deal-as-you-go row, moves one or three to the left on suit or rank,

@@ -86,7 +86,8 @@
 - **#081 Scorpion Solitaire — COMPLETE** (2026-11-07).
 - **#082 Forty Thieves Solitaire — COMPLETE** (2026-11-07).
 - **#083 Accordion Solitaire — COMPLETE** (2026-11-07).
-- **Current game: #084 Clock Solitaire** (`clock-solitaire`) — TODO.
+- **#084 Clock Solitaire — COMPLETE** (2026-11-07).
+- **Current game: #085 Canfield Solitaire** (`canfield`) — TODO.
 
 ## Resume instructions
 
