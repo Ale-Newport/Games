@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 95 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 105
+**Complete:** 96 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 104
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -116,7 +116,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 093 | Hearts | `hearts` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 094 | Spades | `spades` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 095 | Contract Bridge | `contract-bridge` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 096 | Gin Rummy | `gin-rummy` | TODO | — | — | — | — | — |  |  |
+| 096 | Gin Rummy | `gin-rummy` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 097 | Cribbage | `cribbage` | TODO | — | — | — | — | — |  |  |
 | 098 | Euchre | `euchre` | TODO | — | — | — | — | — |  |  |
 | 099 | Crazy Eights | `crazy-eights` | TODO | — | — | — | — | — |  |  |

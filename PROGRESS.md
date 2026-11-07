@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #096 Gin Rummy COMPLETE
+
+- Gin rummy: least-deadwood meld search, knock / gin / undercut with lay-offs, void hands, match to 100. Hard throws by expected deadwood after its next draw and samples the opponent's hands to
+  estimate the undercut risk before knocking.
+- Measured: Medium vs Easy +1.5 points a hand (2000 hands), Hard vs Medium +1.7 and vs Easy +4.3
+  (1000 hands), 3.3 ms a decision.
+- Played in the in-app browser (mobile); fixed Spanish card articles in hints across the card games
+  ("el reina" → "Difícil jugaría: reina de …").
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1669 unit tests, build, 290
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #095 Contract Bridge COMPLETE
 
 - Bridge: auction with doubles and redoubles, declarer and dummy (the player declares both N–S
