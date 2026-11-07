@@ -1,0 +1,121 @@
+.players {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.chip {
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 0.15);
+  font-size: 0.8rem;
+}
+
+.chip em {
+  font-style: normal;
+  font-weight: 800;
+}
+
+.current {
+  border-color: #f1c40f;
+  background: rgb(241 196 15 / 0.12);
+}
+
+.table {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 6px;
+  width: min(100%, 720px);
+  min-height: 110px;
+  padding: 8px;
+  border-radius: 14px;
+  background: #1f5c3a;
+}
+
+.set {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 8px;
+  background: rgb(0 0 0 / 0.18);
+  border: 2px solid transparent;
+}
+
+.invalid {
+  border-color: #e5484d;
+}
+
+.target {
+  border-color: rgb(241 196 15 / 0.7);
+  cursor: pointer;
+}
+
+.newSet {
+  min-width: 70px;
+  min-height: 42px;
+  border: 2px dashed rgb(255 255 255 / 0.4);
+  border-radius: 8px;
+  background: none;
+  color: #e6f2ea;
+  font: inherit;
+  font-size: 0.8rem;
+}
+
+.rack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3px;
+  width: min(100%, 720px);
+  min-height: 48px;
+  padding: 6px;
+  border-radius: 12px;
+  background: #5a3a22;
+  border: 2px solid transparent;
+}
+
+.tileBtn {
+  padding: 0;
+  border: 0;
+  background: none;
+  line-height: 0;
+  transition: transform 0.12s;
+}
+
+.tileBtn:disabled {
+  cursor: default;
+}
+
+.tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 36px;
+  border-radius: 5px;
+  background: linear-gradient(160deg, #fffdf6, #efe6cf);
+  box-shadow: 0 2px 0 #b9a77f;
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.joker {
+  color: #7c5cff;
+}
+
+.selected {
+  transform: translateY(-5px);
+}
+
+.selected .tile {
+  box-shadow:
+    0 0 0 2px #f1c40f,
+    0 2px 0 #b9a77f;
+}
+
+.fresh .tile {
+  background: linear-gradient(160deg, #fff6c2, #f6e3a0);
+}

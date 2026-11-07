@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #161 Tile Rummy COMPLETE
+
+- Tile Rummy (generic name, original art): 106 tiles with jokers, plays validated as whole tables,
+  the 30-point first play from the own rack, drawing and passing, going out or the blocked end. The
+  table is an editable workspace (tap a tile, then a set, "New set" or the rack), with invalid sets
+  outlined and hints that lay a play out for you.
+- The move generator finds rack sets, table additions and run splits; borrowing table tiles (a run's
+  end, any tile of a group of four) raised planner self-play games ending with a player going out
+  from 21 to 41 of 50. The planner beat the rack-only basic player in 200 of 200 games.
+- Played in the in-app browser (mobile, Spanish): a hinted 52-point first play (7–10 orange and three
+  6s), then the computer's draw.
+- Verified (actually run): lint, typecheck, 2942 unit tests (367 files), build, 550 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #160 Riichi Mahjong COMPLETE
 
 - Four-player riichi mahjong, an East-only game: walls and dead wall from the seed, chi/pon/kan
