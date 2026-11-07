@@ -187,7 +187,8 @@
 - **#182 Spike Hop — COMPLETE** (2026-11-07).
 - **#183 Puffin Flap — COMPLETE** (2026-11-07).
 - **#184 Moon Touchdown — COMPLETE** (2026-11-07).
-- **Current game: #185 Missile Command-style game** (`missile-command`) — TODO.
+- **#185 City Shield — COMPLETE** (2026-11-07).
+- **Current game: #186 Centipede-style game** (`centipede`) — TODO.
 
 ## Resume instructions
 
