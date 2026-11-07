@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #063 Bao COMPLETE
+
+- Bao la Kujifunza on a 4 × 8 board: each player sows around their own 16-pit ring in either
+  direction; captures across the middle are sown back from the kichwa on the capture's side, relays
+  from occupied pits, compulsory capture, loss with an empty front row or no two-seed pit.
+- Board: choose a pit, then the neighboring pit (or a button) for the direction.
+- Seeded (10 games per pair): Easy vs Random 9–1, Medium vs Easy 10–0, Hard vs Medium 10–0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1095 unit tests, build, 168
+  Playwright tests (the Bao spec re-run after fixing its status assertion).
+
 ## 2026-11-07 — Session 1: #062 Oware COMPLETE
 
 - Thin module on the shared mancala family (Abapa rules): 2–3 captures backward, the grand-slam

@@ -65,7 +65,8 @@
 - **#060 Yoté — COMPLETE** (2026-11-07).
 - **#061 Kalah Mancala — COMPLETE** (2026-11-07).
 - **#062 Oware — COMPLETE** (2026-11-07).
-- **Current game: #063 Bao** (`bao`) — TODO.
+- **#063 Bao — COMPLETE** (2026-11-07).
+- **Current game: #064 Congkak** (`congkak`) — TODO.
 
 ## Resume instructions
 
