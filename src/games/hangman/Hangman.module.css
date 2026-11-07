@@ -1,0 +1,153 @@
+.bar {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: min(100%, 420px);
+}
+
+.counter {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: transparent;
+  color: var(--accent-contrast);
+}
+
+.secret {
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+}
+
+.drawing {
+  width: min(180px, 40dvh);
+  height: auto;
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ghost {
+  stroke: var(--border);
+  opacity: 0.6;
+}
+
+.ink {
+  stroke: var(--text);
+}
+
+.ink > * {
+  animation: draw 360ms var(--ease-out);
+}
+
+.lost .ink {
+  stroke: var(--danger);
+}
+
+@keyframes draw {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ink > * {
+    animation: none;
+  }
+}
+
+.word {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  max-width: 560px;
+}
+
+.slot {
+  width: clamp(22px, 6.5vw, 34px);
+  height: clamp(32px, 9vw, 44px);
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  border-bottom: 3px solid var(--text-muted);
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 5vw, 1.6rem);
+  font-weight: 800;
+}
+
+.open {
+  border-color: var(--accent);
+}
+
+.reveal {
+  color: var(--danger);
+}
+
+.misses {
+  margin: 0;
+  min-height: 1.4em;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+  gap: 5px;
+  width: min(100%, 520px);
+}
+
+.key {
+  height: 42px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.key:hover:not(:disabled) {
+  background: var(--surface-3);
+}
+
+.key:disabled {
+  cursor: default;
+}
+
+.hit {
+  background: var(--success);
+  color: #fff;
+}
+
+.miss {
+  opacity: 0.3;
+  text-decoration: line-through;
+}
