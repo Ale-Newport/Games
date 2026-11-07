@@ -96,7 +96,8 @@
 - **#091 Kuhn Poker — COMPLETE** (2026-11-07).
 - **#092 Leduc Poker — COMPLETE** (2026-11-07).
 - **#093 Hearts — COMPLETE** (2026-11-07).
-- **Current game: #094 Spades** (`spades`) — TODO.
+- **#094 Spades — COMPLETE** (2026-11-07).
+- **Current game: #095 Contract Bridge** (`contract-bridge`) — TODO.
 
 ## Resume instructions
 

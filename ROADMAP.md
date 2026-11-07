@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 93 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 107
+**Complete:** 94 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 106
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -114,7 +114,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 091 | Kuhn Poker | `kuhn-poker` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 092 | Leduc Poker | `leduc-poker` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 093 | Hearts | `hearts` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 094 | Spades | `spades` | TODO | — | — | — | — | — |  |  |
+| 094 | Spades | `spades` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 095 | Contract Bridge | `contract-bridge` | TODO | — | — | — | — | — |  |  |
 | 096 | Gin Rummy | `gin-rummy` | TODO | — | — | — | — | — |  |  |
 | 097 | Cribbage | `cribbage` | TODO | — | — | — | — | — |  |  |
