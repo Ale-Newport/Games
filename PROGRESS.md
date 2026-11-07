@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #100 Go Fish COMPLETE
+
+- Go Fish for 2–4 players: asks, go fish with the lucky draw, books, empty hands drawing, a log of
+  the asks. The opponents reason only from the public record of asks (holders, deniers, draws since).
+- Hard asks by the chance of success weighted toward books and keeps asking for its threes; first
+  versions lost to Medium and even Easy (a stale "lacks it" reset made both sides repeat asks), fixed
+  by counting the unseen cards a denier drew since. Measured over 10 000 games: Hard +1.4 books a
+  game vs Easy (61%), +0.1 vs Medium (51%); Medium +0.7 vs Easy (56%).
+- Played in the in-app browser (mobile, three opponents) to the end, with a shared win; watch mode
+  on desktop. Names joined with the locale's list format; log names shortened in watch mode.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1741 unit tests, build, 306
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #099 Crazy Eights COMPLETE
 
 - Crazy Eights for 2–4 players: wild eights, draw-one, reshuffles, blocked hands, scoring to 100,
