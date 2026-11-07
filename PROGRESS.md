@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #190 Neon Trails COMPLETE
+
+- A trail-racing game with an original name and look: the player against one or three computer
+  racers on a 48 × 36 grid, simultaneous moves, head-on draws, first to three rounds. The
+  strategist (room and Voronoi territory per turn) won 5 of 12 matches against strategists with
+  either number of rivals; the cruiser and an idle player won none.
+- Fixed while balancing: four strategists starting from mirror-image corners drew every round
+  (identical paths, simultaneous crashes); each start is now shifted at random.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script turned with the real arrow keys towards the roomiest side and lost the match
+  0–3 to the computer strategist (293 points), round results shown between rounds.
+- Verified (actually run): lint, typecheck, 3438 unit tests (442 files), build, 666 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #189 Blast Arena COMPLETE
 
 - A bomb-laying arena game with an original name and look: the player and three computer blasters,
