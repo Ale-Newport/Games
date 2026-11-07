@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #104 Sudoku 16×16 COMPLETE
+
+- Sudoku 16×16 (symbols 1–9, A–G; keys A–G) on the shared core: Easy 130 clues, Medium 100–116,
+  Hard levels 2–3. A rare uniqueness check exploded (58 s for one removal), so the shared solver now
+  takes a node budget: a check that runs out keeps the clue (puzzles stay provably unique), and the
+  random fill restarts if it wanders. Measured over 30 seeds: generation ≤ 456 ms in Node (1.3 s in
+  the dev build in the browser), every puzzle at its level; both solvers 100%.
+- Played in the in-app browser (mobile): Hard puzzle, notes in a 4×4 mini-grid, explained hints,
+  solved to the end (148 placements).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1816 unit tests, build, 322
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #103 Sudoku 6×6 COMPLETE
 
 - Sudoku 6×6 with 2×3 boxes on the shared core: Easy (singles, 14 clues), Medium (singles, 9–12),

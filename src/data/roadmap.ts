@@ -1192,6 +1192,15 @@ const PROGRESS: Record<
     ai: 'done',
     completed: '2026-11-07',
   },
+  'sudoku-16x16': {
+    status: 'COMPLETE',
+    engine: 'done',
+    graphics: 'done',
+    content: 'done',
+    tests: 'done',
+    ai: 'done',
+    completed: '2026-11-07',
+  },
 };
 
 export const ROADMAP: readonly RoadmapEntry[] = DEFINITIONS.map(([number, id, name, category]) => ({

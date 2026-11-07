@@ -120,6 +120,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'sudoku-9x9': () => import('../../games/sudoku-9x9/ai-adapter').then((m) => m.bundle),
   'sudoku-4x4': () => import('../../games/sudoku-4x4/ai-adapter').then((m) => m.bundle),
   'sudoku-6x6': () => import('../../games/sudoku-6x6/ai-adapter').then((m) => m.bundle),
+  'sudoku-16x16': () => import('../../games/sudoku-16x16/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
