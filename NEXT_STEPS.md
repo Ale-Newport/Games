@@ -148,7 +148,8 @@
 - **#143 Royal Game of Ur — COMPLETE** (2026-11-07).
 - **#144 Senet — COMPLETE** (2026-11-07).
 - **#145 Ludo — COMPLETE** (2026-11-07).
-- **Current game: #146 Pachisi** (`pachisi`) — TODO (on `src/games/shared/cross` with arm length 8).
+- **#146 Pachisi — COMPLETE** (2026-11-07).
+- **Current game: #147 Parchís** (`parchis`) — TODO (rule options drafted in scratch: exit on 5, barriers, 20/10 bonuses, six as seven).
 
 ## Resume instructions
 

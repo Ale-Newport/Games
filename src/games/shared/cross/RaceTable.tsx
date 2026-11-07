@@ -21,6 +21,7 @@ import {
   currentMoves,
   isValidRace,
   newRace,
+  partnerOf,
   type RaceGame,
   type RaceMove,
   type RaceState,
@@ -178,10 +179,21 @@ export function RaceTable({
         );
     } else if (action === 'pass') setMessage(say('noMove', before.turn, before));
     if (next.phase === 'over' && next.winner !== null) {
-      setMessage(say('won', next.winner, next));
+      const partner = partnerOf(game, next, next.winner);
+      if (partner === null) setMessage(say('won', next.winner, next));
+      else if (isYou(next.winner) || isYou(partner))
+        setMessage(
+          t('wonTeam.you', {
+            partner: colourName(next.winner === 0 ? partner : next.winner, next),
+          }),
+        );
+      else
+        setMessage(
+          t('wonTeam', { side: colourName(next.winner, next), partner: colourName(partner, next) }),
+        );
       if (mode === 'play') {
         if (level !== 'humans') {
-          const won = next.winner === 0;
+          const won = next.winner === 0 || partner === 0;
           svc.playSound(won ? CROSS_SOUNDS.win : CROSS_SOUNDS.lose);
           const home = next.tokens[0]!.filter((x) => x === game.last).length;
           svc.recordResult({
