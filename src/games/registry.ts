@@ -127,6 +127,7 @@ import { manifest as wordGuess } from './word-guess/manifest';
 import { manifest as hangman } from './hangman/manifest';
 import { manifest as queens } from './queens/manifest';
 import { manifest as zip } from './zip/manifest';
+import { manifest as eightPuzzle } from './eight-puzzle/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -252,6 +253,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: hangman, load: () => import('./hangman/index') },
   { manifest: queens, load: () => import('./queens/index') },
   { manifest: zip, load: () => import('./zip/index') },
+  { manifest: eightPuzzle, load: () => import('./eight-puzzle/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

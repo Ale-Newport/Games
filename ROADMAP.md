@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 123 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 77
+**Complete:** 124 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 76
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -149,7 +149,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 121 | Hangman | `hangman` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 122 | Queens — Colored Regions Puzzle | `queens` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 123 | Zip — Numbered Hamiltonian Path Puzzle | `zip` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 124 | 8-Puzzle | `eight-puzzle` | TODO | — | — | — | — | — |  |  |
+| 124 | 8-Puzzle | `eight-puzzle` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 125 | 15-Puzzle | `fifteen-puzzle` | TODO | — | — | — | — | — |  |  |
 | 126 | Rush Hour | `traffic-jam` | TODO | — | — | — | — | — |  |  |
 | 127 | Sokoban | `sokoban` | TODO | — | — | — | — | — |  |  |
