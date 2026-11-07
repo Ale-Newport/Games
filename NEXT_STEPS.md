@@ -88,7 +88,8 @@
 - **#083 Accordion Solitaire — COMPLETE** (2026-11-07).
 - **#084 Clock Solitaire — COMPLETE** (2026-11-07).
 - **#085 Canfield Solitaire — COMPLETE** (2026-11-07).
-- **Current game: #086 Blackjack** (`blackjack`) — TODO.
+- **#086 Blackjack — COMPLETE** (2026-11-07).
+- **Current game: #087 Texas Hold'em Poker** (`texas-holdem`) — TODO.
 
 ## Resume instructions
 

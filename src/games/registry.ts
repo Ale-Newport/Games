@@ -89,6 +89,7 @@ import { manifest as fortyThieves } from './forty-thieves/manifest';
 import { manifest as accordion } from './accordion/manifest';
 import { manifest as clockSolitaire } from './clock-solitaire/manifest';
 import { manifest as canfield } from './canfield/manifest';
+import { manifest as blackjack } from './blackjack/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -176,6 +177,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: accordion, load: () => import('./accordion/index') },
   { manifest: clockSolitaire, load: () => import('./clock-solitaire/index') },
   { manifest: canfield, load: () => import('./canfield/index') },
+  { manifest: blackjack, load: () => import('./blackjack/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
