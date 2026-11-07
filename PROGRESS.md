@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #119 Bulls and Cows COMPLETE
+
+- Bulls and Cows on the shared code-guess core: 3/4/5 digits, solo and daily numbers, and a duel
+  against an easy (forgetful), medium (consistent) or hard (expected-size) computer with a fair
+  last-guess rule. Notes per digit, contradiction warnings, hints in solo only.
+- The shared chooser gained an expected-size rule: 5.21 guesses on average for 4 digits (Knuth's
+  worst-case rule gave 5.34). Duel strength separates cleanly (hard beats easy 142–37–21).
+- Played in the in-app browser (mobile): a duel against the hard computer won; hints were then
+  limited to solo games so duel achievements need the player's own deduction.
+- Verified (actually run): lint, typecheck, 2096 unit tests (281 files), build, 382 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #118 Code Breaker COMPLETE
 
 - Code Breaker (generic name for the Mastermind-style game): Easy / Classic / Hard codes, daily code,
