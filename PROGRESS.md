@@ -2,6 +2,22 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #188 Gem Digger COMPLETE
+
+- A cave-digging game with an original name and look: caves generated from the run's seed (earth,
+  boulders, gems, walls, spark and moth pockets), cave physics in ticks (falling, rolling, crushing,
+  3 × 3 blasts, moths into gems), pushing boulders, a gem quota opening the exit, 150-second caves
+  replayed on a lost life. The miner (plays the cave forward through every three-move sequence)
+  cleared 7.5 caves in 6-minute runs; the grabber 0.3, caught within 39 s.
+- The first miners stood frozen or paced back and forth; fixed by searching move sequences, judging
+  safety by whether any way out survives (not by standing still), and preferring sooner gems and
+  exits to break ties.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script dug with the real arrow keys to 24 of the 25 gems of cave 1 before boulders
+  caught it three times.
+- Verified (actually run): lint, typecheck, 3403 unit tests (436 files), build, 658 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #187 Cube Hopper COMPLETE
 
 - An isometric pyramid hopper with an original name and look: 28 cubes recoloured by landings
