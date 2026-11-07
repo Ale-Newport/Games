@@ -1,0 +1,129 @@
+.board {
+  --line: color-mix(in srgb, var(--text) 25%, transparent);
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
+  width: min(100%, 540px, calc((100dvh - 330px) * var(--cols) / var(--rows)));
+  min-width: min(100%, 300px);
+  aspect-ratio: var(--cols) / var(--rows);
+  border: 2px solid color-mix(in srgb, var(--text) 75%, transparent);
+  border-radius: 6px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--surface) 90%, var(--text) 10%);
+  container-type: inline-size;
+  user-select: none;
+}
+
+.clue {
+  position: relative;
+  background: #10131a;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.clue svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.clue line {
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 0.02;
+}
+
+.clue text {
+  fill: #f4f1e8;
+  font-size: 0.34px;
+  font-weight: 800;
+  font-family: var(--font-body);
+}
+
+.clue text.badSum {
+  fill: #ff6b6b;
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.digit {
+  font-size: calc(60cqi / var(--cols));
+  font-weight: 600;
+  line-height: 1;
+}
+
+.given .digit {
+  font-weight: 800;
+}
+
+.entered .digit {
+  color: var(--accent);
+}
+
+.peer {
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.pointed {
+  background: color-mix(in srgb, var(--warning) 22%, transparent);
+}
+
+.selected {
+  background: color-mix(in srgb, var(--accent) 34%, transparent);
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+.wrong {
+  background: color-mix(in srgb, var(--danger) 16%, transparent);
+}
+
+.wrong .digit {
+  color: var(--danger);
+}
+
+.notes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+  padding: 1px;
+  color: var(--text-muted);
+  font-size: calc(24cqi / var(--cols));
+  font-weight: 600;
+  line-height: 1;
+}
+
+.notes span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden .cell {
+  cursor: default;
+}
+
+.combos {
+  min-height: 1.3em;
+  max-width: 540px;
+  margin: 0;
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}

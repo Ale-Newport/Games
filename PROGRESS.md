@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #108 Kakuro COMPLETE
+
+- Kakuro with its own engine: run combinations, an exact solver with combination propagation,
+  techniques for hints (singles, hidden singles, run combinations), and a generator (symmetric
+  layout, extreme-biased fill, local repair where a second solution differs, givens as a last
+  resort, technique-solvability check). Random fills were never unique on their own (0 of 35 on
+  7×7); repair brings Easy to 0 givens in 27 of 30 puzzles; Medium averages 1.7 and Hard 3.4.
+- Measured over 30 seeds per difficulty: generation ≤ 1.6 s (Hard), techniques solve 100%.
+- Played in the in-app browser (mobile): hints, combinations helper, fill notes, a Medium puzzle
+  solved to the end. Fixed: clue cells were light in the dark theme (now near-black in both).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1887 unit tests, build, 338
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #107 Jigsaw Sudoku COMPLETE
 
 - Jigsaw Sudoku on the shared core, which now carries per-puzzle regions (`geoFor`): the boxes are

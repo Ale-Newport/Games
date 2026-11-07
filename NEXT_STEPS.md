@@ -110,7 +110,8 @@
 - **#105 X-Sudoku — COMPLETE** (2026-11-07).
 - **#106 Killer Sudoku — COMPLETE** (2026-11-07).
 - **#107 Jigsaw Sudoku — COMPLETE** (2026-11-07).
-- **Current game: #108 Kakuro** (`kakuro`) — TODO.
+- **#108 Kakuro — COMPLETE** (2026-11-07).
+- **Current game: #109 Calcudoku (KenKen-style)** (`calcudoku`) — TODO.
 
 ## Resume instructions
 
