@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #118 Code Breaker COMPLETE
+
+- Code Breaker (generic name for the Mastermind-style game): Easy / Classic / Hard codes, daily code,
+  contradiction warnings, counted hints, and a mode where the player sets a code for the AI.
+- New shared core `src/games/shared/codeguess/` (code spaces with fast scoring keys, consistency
+  filter, minimax chooser with symmetry reduction and a work budget) for #118 and #119.
+- Minimax breaker: all 1296 Classic codes in 4.458 guesses on average, never more than 5; Hard
+  5.58 avg / 7 worst at 44 ms per guess (200 codes).
+- Played in the in-app browser: a Classic code cracked on mobile (manual guess then hints), and the
+  AI cracked a Hard code set by the player on desktop.
+- Verified (actually run): lint, typecheck, 2074 unit tests (279 files), build, 378 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #117 No-Guess Minesweeper COMPLETE
 
 - No-Guess Minesweeper on the shared engine: layouts redrawn from the seed and first cell until the

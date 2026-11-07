@@ -135,6 +135,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   minesweeper: () => import('../../games/minesweeper/ai-adapter').then((m) => m.bundle),
   'minesweeper-no-guess': () =>
     import('../../games/minesweeper-no-guess/ai-adapter').then((m) => m.bundle),
+  'code-breaker': () => import('../../games/code-breaker/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

@@ -120,7 +120,8 @@
 - **#115 Nurikabe — COMPLETE** (2026-11-07).
 - **#116 Classic Minesweeper — COMPLETE** (2026-11-07).
 - **#117 No-Guess Minesweeper — COMPLETE** (2026-11-07).
-- **Current game: #118 Code Breaker (Mastermind-style)** (`code-breaker`) — TODO.
+- **#118 Code Breaker — COMPLETE** (2026-11-07).
+- **Current game: #119 Bulls and Cows** (`bulls-and-cows`) — TODO (reuse `src/games/shared/codeguess/`).
 
 ## Resume instructions
 
