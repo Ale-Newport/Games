@@ -161,6 +161,7 @@ import { manifest as shutTheBox } from './shut-the-box/manifest';
 import { manifest as colourRows } from './qwixx/manifest';
 import { manifest as blockDominoes } from './block-dominoes/manifest';
 import { manifest as drawDominoes } from './draw-dominoes/manifest';
+import { manifest as allFivesDominoes } from './all-fives-dominoes/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -320,6 +321,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: colourRows, load: () => import('./qwixx/index') },
   { manifest: blockDominoes, load: () => import('./block-dominoes/index') },
   { manifest: drawDominoes, load: () => import('./draw-dominoes/index') },
+  { manifest: allFivesDominoes, load: () => import('./all-fives-dominoes/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

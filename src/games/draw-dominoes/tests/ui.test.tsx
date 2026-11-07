@@ -55,7 +55,9 @@ describe('Draw Dominoes UI', () => {
     }
     expect(played).toBeGreaterThan(0);
     expect(screen.getByTestId('dd-reveal')).toBeTruthy();
-    expect(screen.getByTestId('dd-message').textContent).toMatch(/plays out|Blocked|wins the game/);
+    expect(screen.getByTestId('dd-message').textContent).toMatch(
+      /play(s)? out|Blocked|win(s)? the game/,
+    );
   });
 
   it('watch mode plays a computer game', async () => {
