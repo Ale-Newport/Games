@@ -4,7 +4,7 @@
  */
 import { Rng } from '../../../core/game-engine/random';
 import { gradePuzzle } from './logic';
-import { hasUniqueSolution, randomSolution, type ExtraCheck } from './solver';
+import { hasUniqueSolution, randomSolution, type Extra } from './solver';
 import type { Geometry } from './grid';
 
 export interface PuzzleSpec {
@@ -23,6 +23,8 @@ export interface PuzzleSpec {
    * stay provably unique). Needed for 16×16 grids, where rare checks explode.
    */
   maxNodes?: number;
+  /** Killer sudoku: no givens, cages of these sizes instead (see `killer.ts`). */
+  cages?: { min: number; max: number };
 }
 
 export interface Puzzle {
@@ -36,7 +38,7 @@ export function generatePuzzle(
   geo: Geometry,
   seed: number,
   spec: PuzzleSpec,
-  extra?: ExtraCheck,
+  extra?: Extra,
 ): Puzzle {
   const rng = new Rng(seed);
   let best: Puzzle | null = null;

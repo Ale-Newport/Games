@@ -44,6 +44,10 @@ export const SUDOKU_STRINGS: Record<Locale, Dictionary> = {
       '{cell} can only be {digit}: every other digit already appears in its row, column or box.',
     'hint.naked-single.after': 'That leaves {cell} with only {digit}.',
     'hint.hidden-single': 'In this {unit}, {digit} fits only in {cell}.',
+    'hint.innie':
+      '45 rule: the cages wholly inside this {unit} add up to {sum}, so the cell left over, {cell}, is {digit}.',
+    'hint.outie':
+      '45 rule: the cages touching this {unit} add up to {sum}, so the cell sticking out, {cell}, is {digit}.',
     'hint.guess': 'No simple step from here: {cell} is {digit}.',
     'hint.before': 'First: {techniques}.',
     'hint.fill': 'Fill it in',
@@ -58,6 +62,9 @@ export const SUDOKU_STRINGS: Record<Locale, Dictionary> = {
     'tech.x-wing': 'X-Wing',
     'tech.y-wing': 'Y-Wing',
     'tech.swordfish': 'Swordfish',
+    'tech.cage-combination': 'cage combinations',
+    'tech.innie': '45 rule (innie)',
+    'tech.outie': '45 rule (outie)',
     'cell.label': '{cell}: {content}',
     'cell.empty': 'empty',
     'cell.notes': 'notes {notes}',
@@ -105,6 +112,10 @@ export const SUDOKU_STRINGS: Record<Locale, Dictionary> = {
       '{cell} solo puede ser {digit}: los demás números ya están en su fila, columna o región.',
     'hint.naked-single.after': 'Así {cell} se queda solo con el {digit}.',
     'hint.hidden-single': 'En esta {unit}, el {digit} solo cabe en {cell}.',
+    'hint.innie':
+      'Regla del 45: las jaulas que caben enteras en esta {unit} suman {sum}, así que la casilla que queda, {cell}, es el {digit}.',
+    'hint.outie':
+      'Regla del 45: las jaulas que tocan esta {unit} suman {sum}, así que la casilla que sobresale, {cell}, es el {digit}.',
     'hint.guess': 'No hay un paso sencillo desde aquí: {cell} es {digit}.',
     'hint.before': 'Antes: {techniques}.',
     'hint.fill': 'Colocarlo',
@@ -119,6 +130,9 @@ export const SUDOKU_STRINGS: Record<Locale, Dictionary> = {
     'tech.x-wing': 'X-Wing',
     'tech.y-wing': 'Y-Wing',
     'tech.swordfish': 'pez espada',
+    'tech.cage-combination': 'combinaciones de jaula',
+    'tech.innie': 'regla del 45 (dentro)',
+    'tech.outie': 'regla del 45 (fuera)',
     'cell.label': '{cell}: {content}',
     'cell.empty': 'vacía',
     'cell.notes': 'notas {notes}',

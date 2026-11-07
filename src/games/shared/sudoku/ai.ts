@@ -19,6 +19,7 @@ import {
   isValidSudokuState,
   newSudoku,
   placeDigit,
+  rulesOf,
   type SudokuState,
   type SudokuVariant,
 } from './play';
@@ -42,7 +43,7 @@ export function sudokuActions(v: SudokuVariant, s: SudokuState): string[] {
 
 /** The technique solver's move: the next logical placement, or a guess when the logic is stuck. */
 export function logicMove(v: SudokuVariant, s: SudokuState): string {
-  const steps = stepsToPlacement(geoOf(v), s.values);
+  const steps = stepsToPlacement(geoOf(v), s.values, rulesOf(geoOf(v), s).steps);
   const place = steps?.at(-1)?.place;
   if (place) return `${place.cell}:${place.digit}`;
   const cands = candidates(geoOf(v), s.values);
@@ -56,8 +57,8 @@ export function logicMove(v: SudokuVariant, s: SudokuState): string {
 export function solverMove(v: SudokuVariant, s: SudokuState): string {
   const geo = geoOf(v);
   const solved =
-    solveSudoku(geo, s.values, { limit: 1, extra: v.extra }).solution ??
-    solveSudoku(geo, s.puzzle, { limit: 1, extra: v.extra }).solution!;
+    solveSudoku(geo, s.values, { limit: 1, extra: rulesOf(geo, s).extra }).solution ??
+    solveSudoku(geo, s.puzzle, { limit: 1, extra: rulesOf(geo, s).extra }).solution!;
   const cell = s.values.findIndex((x) => !x);
   return `${cell}:${solved[cell]}`;
 }

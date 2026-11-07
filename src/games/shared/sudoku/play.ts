@@ -6,15 +6,15 @@
 import { isRecord } from '../../../core/persistence/versioned';
 import { generatePuzzle, type PuzzleSpec } from './generator';
 import { bit, geometry, type Geometry, type Shape } from './grid';
-import { solveSudoku, type ExtraCheck } from './solver';
+import { cageExtra, generateKiller, killerSteps, type Cage } from './killer';
+import { gradePuzzle, type StepExtra } from './logic';
+import { solveSudoku, type Extra } from './solver';
 
 export interface SudokuVariant {
   id: string;
   shape: Shape;
   /** Difficulty ids in order, with the puzzles they generate. */
   difficulties: Record<string, PuzzleSpec>;
-  /** Extra constraint (killer cages), given the puzzle's seed. */
-  extra?: ExtraCheck;
 }
 
 /** Cells changed by one move, with what they held before. */
@@ -38,6 +38,16 @@ export interface SudokuState {
   hints: number;
   elapsedMs: number;
   solved: boolean;
+  /** Killer sudoku cages (no givens then). */
+  cages?: Cage[];
+}
+
+/** The constraints and techniques beyond the units that a puzzle brings (its killer cages). */
+export function rulesOf(
+  geo: Geometry,
+  s: { cages?: readonly Cage[] },
+): { extra?: Extra; steps: StepExtra[] } {
+  return s.cages ? { extra: cageExtra(geo, s.cages), steps: killerSteps(s.cages) } : { steps: [] };
 }
 
 export const geoOf = (v: SudokuVariant): Geometry => geometry(v.shape);
@@ -45,20 +55,44 @@ export const geoOf = (v: SudokuVariant): Geometry => geometry(v.shape);
 export function newSudoku(v: SudokuVariant, difficulty: string, seed: number): SudokuState {
   const spec = v.difficulties[difficulty];
   if (!spec) throw new Error(`Unknown difficulty ${difficulty}`);
-  const p = generatePuzzle(geoOf(v), seed, spec, v.extra);
+  const geo = geoOf(v);
+  let puzzle: number[];
+  let solution: number[];
+  let cages: Cage[] | undefined;
+  if (spec.cages) {
+    // Killer: cages drawn until unique, kept when the techniques' level is in range.
+    const k = generateKiller(
+      geo,
+      seed,
+      { ...spec.cages, maxNodes: spec.maxNodes ?? 4000 },
+      (c) => {
+        const level = gradePuzzle(geo, Array<number>(geo.cells).fill(0), killerSteps(c)).level;
+        return level >= spec.minLevel && level <= spec.maxLevel;
+      },
+      spec.attempts,
+    );
+    puzzle = Array<number>(geo.cells).fill(0);
+    solution = k.solution;
+    cages = k.cages;
+  } else {
+    const p = generatePuzzle(geo, seed, spec);
+    puzzle = p.puzzle;
+    solution = p.solution;
+  }
   return {
     difficulty,
     seed,
-    puzzle: p.puzzle,
-    solution: p.solution,
-    values: [...p.puzzle],
-    notes: p.puzzle.map(() => 0),
+    puzzle,
+    solution,
+    values: [...puzzle],
+    notes: puzzle.map(() => 0),
     undo: [],
     redo: [],
     mistakes: 0,
     hints: 0,
     elapsedMs: 0,
     solved: false,
+    ...(cages ? { cages } : {}),
   };
 }
 
@@ -216,7 +250,33 @@ export function isValidSudokuState(v: SudokuVariant, data: unknown): data is Sud
         isIntArray(ch.notes, ch.cells.length, geo.all),
     );
   if (!changesOk(d.undo) || !changesOk(d.redo)) return false;
-  const solved = solveSudoku(geo, d.puzzle, { limit: 2, extra: v.extra });
+  if (d.cages !== undefined) {
+    // Cages: a partition of the grid whose sums match the solution, digits distinct in each.
+    if (!Array.isArray(d.cages)) return false;
+    const seen = new Set<number>();
+    for (const cage of d.cages as unknown[]) {
+      if (!isRecord(cage) || !Array.isArray(cage.cells) || !Number.isInteger(cage.sum))
+        return false;
+      const cells = cage.cells as unknown[];
+      if (
+        !cells.length ||
+        !cells.every(
+          (c) =>
+            Number.isInteger(c) &&
+            (c as number) >= 0 &&
+            (c as number) < n &&
+            !seen.has(c as number),
+        )
+      )
+        return false;
+      cells.forEach((c) => seen.add(c as number));
+      const digits = cells.map((c) => d.solution[c as number]!);
+      if (new Set(digits).size !== digits.length) return false;
+      if (digits.reduce((a, b) => a + b, 0) !== cage.sum) return false;
+    }
+    if (seen.size !== n) return false;
+  }
+  const solved = solveSudoku(geo, d.puzzle, { limit: 2, extra: rulesOf(geo, d).extra });
   return (
     solved.count === 1 &&
     solved.solution!.every((x, c) => x === d.solution[c]) &&

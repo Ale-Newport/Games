@@ -109,6 +109,7 @@ import { manifest as sudoku4x4 } from './sudoku-4x4/manifest';
 import { manifest as sudoku6x6 } from './sudoku-6x6/manifest';
 import { manifest as sudoku16x16 } from './sudoku-16x16/manifest';
 import { manifest as xSudoku } from './x-sudoku/manifest';
+import { manifest as killerSudoku } from './killer-sudoku/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -216,6 +217,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: sudoku6x6, load: () => import('./sudoku-6x6/index') },
   { manifest: sudoku16x16, load: () => import('./sudoku-16x16/index') },
   { manifest: xSudoku, load: () => import('./x-sudoku/index') },
+  { manifest: killerSudoku, load: () => import('./killer-sudoku/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
