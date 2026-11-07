@@ -148,6 +148,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'peg-solitaire': () => import('../../games/peg-solitaire/ai-adapter').then((m) => m.bundle),
   'lights-out': () => import('../../games/lights-out/ai-adapter').then((m) => m.bundle),
   flow: () => import('../../games/flow/ai-adapter').then((m) => m.bundle),
+  'water-sort': () => import('../../games/water-sort/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
