@@ -100,7 +100,8 @@
 - **#095 Contract Bridge — COMPLETE** (2026-11-07).
 - **#096 Gin Rummy — COMPLETE** (2026-11-07).
 - **#097 Cribbage — COMPLETE** (2026-11-07).
-- **Current game: #098 Euchre** (`euchre`) — TODO.
+- **#098 Euchre — COMPLETE** (2026-11-07).
+- **Current game: #099 Crazy Eights** (`crazy-eights`) — TODO.
 
 ## Resume instructions
 

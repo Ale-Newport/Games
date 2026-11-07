@@ -1,0 +1,46 @@
+.trump {
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.upcard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.72rem;
+}
+
+.card {
+  width: clamp(40px, 11vw, 60px);
+  height: calc(clamp(40px, 11vw, 60px) * 1.4);
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
+}
+
+.bids {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.bids button[data-suit='1'],
+.bids button[data-suit='2'] {
+  color: #e0482b;
+}
+
+.alone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-sm);
+}
+
+.alone input {
+  width: 18px;
+  height: 18px;
+}
