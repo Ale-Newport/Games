@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #148 Snakes and Ladders COMPLETE
+
+- A board of its own (nine ladders, ten snakes, exact finish), the classic one-die game and a Choice
+  variant with two dice; the planner uses an exact value iteration of expected turns to 100 and won
+  91% of Choice games against always taking the larger die.
+- Played in the in-app browser (mobile, Spanish): Choice turns with hints.
+- Verified (actually run): lint, typecheck, 2651 unit tests (339 files), build, 498 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #147 Parchís COMPLETE
 
 - Spanish parchís on the cross-board core: a 5 to come out (obligatory), sixes that roll again and

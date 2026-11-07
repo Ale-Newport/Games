@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 147 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 53
+**Complete:** 148 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 52
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -178,7 +178,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 145 | Ludo | `ludo` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 146 | Pachisi | `pachisi` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 147 | Parchís | `parchis` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 148 | Snakes and Ladders | `snakes-and-ladders` | TODO | — | — | — | — | — |  |  |
+| 148 | Snakes and Ladders | `snakes-and-ladders` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 149 | Yahtzee | `five-dice` | TODO | — | — | — | — | — |  |  |
 | 150 | Generala | `generala` | TODO | — | — | — | — | — |  |  |
 | 151 | Farkle | `farkle` | TODO | — | — | — | — | — |  |  |

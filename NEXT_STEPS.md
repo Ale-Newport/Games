@@ -150,7 +150,8 @@
 - **#145 Ludo — COMPLETE** (2026-11-07).
 - **#146 Pachisi — COMPLETE** (2026-11-07).
 - **#147 Parchís — COMPLETE** (2026-11-07).
-- **Current game: #148 Snakes and Ladders** (`snakes-and-ladders`) — TODO (classic and Choice variants with a value-iteration planner; drafted in scratch).
+- **#148 Snakes and Ladders — COMPLETE** (2026-11-07).
+- **Current game: #149 Five Dice** (`five-dice`) — TODO (shared scorecard core with an exact turn planner, drafted in scratch; Generala #150 on the same core).
 
 ## Resume instructions
 
