@@ -174,7 +174,8 @@
 - **#169 Invaders from Above — COMPLETE** (2026-11-07).
 - **#170 Diving Swarm — COMPLETE** (2026-11-07).
 - **#171 Space Rocks — COMPLETE** (2026-11-07).
-- **Current game: #172 Classic Snake** (`snake`) — TODO (shared snake core with #173; drafted in scratch).
+- **#172 Classic Snake — COMPLETE** (2026-11-07).
+- **Current game: #173 Wraparound Snake** (`wraparound-snake`) — TODO (on `src/games/shared/snake`).
 
 ## Resume instructions
 
