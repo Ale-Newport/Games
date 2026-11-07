@@ -154,7 +154,8 @@
 - **#149 Five Dice — COMPLETE** (2026-11-07).
 - **#150 Generala — COMPLETE** (2026-11-07).
 - **#151 Farkle — COMPLETE** (2026-11-07).
-- **Current game: #152 Pig** (`pig`) — TODO (solved by value iteration; drafted in scratch).
+- **#152 Pig — COMPLETE** (2026-11-07).
+- **Current game: #153 Summit Rush** (`cant-stop`) — TODO (rule of 28 and exact bust chances; drafted in scratch).
 
 ## Resume instructions
 
