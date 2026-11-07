@@ -145,6 +145,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'fifteen-puzzle': () => import('../../games/fifteen-puzzle/ai-adapter').then((m) => m.bundle),
   'traffic-jam': () => import('../../games/traffic-jam/ai-adapter').then((m) => m.bundle),
   sokoban: () => import('../../games/sokoban/ai-adapter').then((m) => m.bundle),
+  'peg-solitaire': () => import('../../games/peg-solitaire/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

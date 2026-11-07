@@ -130,7 +130,8 @@
 - **#125 15-Puzzle — COMPLETE** (2026-11-07).
 - **#126 Traffic Jam — COMPLETE** (2026-11-07).
 - **#127 Sokoban — COMPLETE** (2026-11-07).
-- **Current game: #128 Peg Solitaire** (`peg-solitaire`) — TODO.
+- **#128 Peg Solitaire — COMPLETE** (2026-11-07).
+- **Current game: #129 Lights Out** (`lights-out`) — TODO (draft in scratch).
 
 ## Resume instructions
 

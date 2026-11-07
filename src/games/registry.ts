@@ -131,6 +131,7 @@ import { manifest as eightPuzzle } from './eight-puzzle/manifest';
 import { manifest as fifteenPuzzle } from './fifteen-puzzle/manifest';
 import { manifest as trafficJam } from './traffic-jam/manifest';
 import { manifest as sokoban } from './sokoban/manifest';
+import { manifest as pegSolitaire } from './peg-solitaire/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -260,6 +261,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: fifteenPuzzle, load: () => import('./fifteen-puzzle/index') },
   { manifest: trafficJam, load: () => import('./traffic-jam/index') },
   { manifest: sokoban, load: () => import('./sokoban/index') },
+  { manifest: pegSolitaire, load: () => import('./peg-solitaire/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
