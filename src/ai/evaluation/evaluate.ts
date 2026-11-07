@@ -50,7 +50,8 @@ export interface EvaluationReport {
 }
 
 /**
- * Evaluates agent A against agent B in a two-seat environment. In a single-player environment
+ * Evaluates agent A against agent B in a two-seat environment (or, with more seats, the two
+ * agents in alternate seats, each scored by the mean return of its seats). In a single-player environment
  * (solitaire, puzzles) both agents play every deal on their own, on the same seeds, and their
  * results are compared: a win is a solved deal, a loss an unsolved (or truncated) one.
  */
@@ -71,7 +72,11 @@ export function evaluateAgents<S, A, C>(
     const seed = (config.seed + i) >>> 0;
     seeds.push(seed);
     const aSeat = swap && i % 2 === 1 ? 1 : 0;
-    const seats = aSeat === 0 ? [agentA, agentB] : [agentB, agentA];
+    // Environments for more players seat the two agents alternately (A B A B, then B A B A).
+    const seatCount = Math.max(2, env.info.minPlayers);
+    const seats = Array.from({ length: seatCount }, (_, s) =>
+      (s + aSeat) % 2 === 0 ? agentA : agentB,
+    );
     const result = playMatch(env, seats, {
       seed,
       config: config.config,
@@ -81,19 +86,36 @@ export function evaluateAgents<S, A, C>(
     });
     totalMoves += result.actions.length;
     if (result.truncated) truncated++;
-    for (const [agentIndex, seat] of [
-      [0, aSeat],
-      [1, 1 - aSeat],
-    ] as const) {
-      const tally = tallies[agentIndex]!;
-      const ret = result.outcome?.returns[seat] ?? 0;
-      tally.returns += ret;
-      if (!result.outcome || result.outcome.draw || ret === 0) tally.draws++;
-      else if (ret > 0) tally.wins++;
-      else tally.losses++;
-      tally.latencies.push(...(result.latencies[seat] ?? []));
-      tally.nodes.push(...(result.nodes[seat] ?? []));
-    }
+    if (seatCount > 2) {
+      // Each agent's result is the mean return of its seats; the higher mean wins.
+      const own = (agentIndex: number) =>
+        seats.flatMap((_, s) => ((s + aSeat) % 2 === agentIndex ? [s] : []));
+      const means = [0, 1].map((k) => mean(own(k).map((s) => result.outcome?.returns[s] ?? 0)));
+      [0, 1].forEach((k) => {
+        const tally = tallies[k]!;
+        tally.returns += means[k]!;
+        if (!result.outcome || means[0] === means[1]) tally.draws++;
+        else if (means[k]! > means[1 - k]!) tally.wins++;
+        else tally.losses++;
+        for (const s of own(k)) {
+          tally.latencies.push(...(result.latencies[s] ?? []));
+          tally.nodes.push(...(result.nodes[s] ?? []));
+        }
+      });
+    } else
+      for (const [agentIndex, seat] of [
+        [0, aSeat],
+        [1, 1 - aSeat],
+      ] as const) {
+        const tally = tallies[agentIndex]!;
+        const ret = result.outcome?.returns[seat] ?? 0;
+        tally.returns += ret;
+        if (!result.outcome || result.outcome.draw || ret === 0) tally.draws++;
+        else if (ret > 0) tally.wins++;
+        else tally.losses++;
+        tally.latencies.push(...(result.latencies[seat] ?? []));
+        tally.nodes.push(...(result.nodes[seat] ?? []));
+      }
     config.onProgress?.(i + 1, config.games);
   }
 

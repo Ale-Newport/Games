@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #093 Hearts COMPLETE
+
+- New shared `tricks` family (rank order, follow suit, trick winner with trump, a four-seat
+  `TrickTable` with fanned hands, card backs, plates and the trick in the middle). `evaluateAgents`
+  now seats two agents alternately in environments for more than two players.
+- Hearts: passing cycle, two of clubs, no points on the first trick, broken hearts, the moon, game
+  to 100. Hard samples deals consistent with shown-out suits and its own pass, plays out with Medium.
+- Measured: Medium vs Easy +0.040 (1000 hands), Hard vs Medium +0.078 and vs Easy +0.114 (200 hands;
+  ≈2 and 3 points a hand), 48 ms a decision.
+- Played in the in-app browser (mobile, desktop watch): the east seat overflowed and trick cards
+  overlapped — fixed (shorter plates, larger trick area).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1622 unit tests, build, 278
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #092 Leduc Poker COMPLETE
 
 - Leduc on the heads-up table (public card slot, split pots, hand names at showdown).

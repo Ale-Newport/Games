@@ -96,6 +96,7 @@ import { manifest as omaha } from './omaha/manifest';
 import { manifest as sevenCardStud } from './seven-card-stud/manifest';
 import { manifest as kuhnPoker } from './kuhn-poker/manifest';
 import { manifest as leducPoker } from './leduc-poker/manifest';
+import { manifest as hearts } from './hearts/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -190,6 +191,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: sevenCardStud, load: () => import('./seven-card-stud/index') },
   { manifest: kuhnPoker, load: () => import('./kuhn-poker/index') },
   { manifest: leducPoker, load: () => import('./leduc-poker/index') },
+  { manifest: hearts, load: () => import('./hearts/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
