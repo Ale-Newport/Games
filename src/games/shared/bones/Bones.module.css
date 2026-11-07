@@ -1,0 +1,176 @@
+.players {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(255 255 255 / 0.15);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.25;
+}
+
+.chip small {
+  color: var(--text-muted, #9aa0b4);
+}
+
+.current {
+  border-color: #f1c40f;
+  background: rgb(241 196 15 / 0.12);
+}
+
+.meta {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted, #9aa0b4);
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: min(100%, 640px);
+  min-height: 84px;
+  padding: 10px 6px;
+  border-radius: 14px;
+  background: #1f5c3a;
+  box-shadow: inset 0 0 0 3px rgb(0 0 0 / 0.18);
+}
+
+.line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2px 1px;
+}
+
+.laid {
+  display: inline-flex;
+}
+
+.laid svg {
+  width: auto;
+  height: 22px;
+}
+
+.laid svg[viewBox='0 0 28 56'] {
+  height: 38px;
+}
+
+.centre svg {
+  filter: drop-shadow(0 0 3px #f1c40f);
+}
+
+.armLabel {
+  color: #cfe8d6;
+  font-weight: 800;
+  margin-right: 4px;
+}
+
+.end {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 30px;
+  margin: 0 3px;
+  border: 2px dashed #f1c40f;
+  border-radius: 8px;
+  background: rgb(241 196 15 / 0.18);
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.empty {
+  margin: auto;
+  color: #cfe8d6;
+  font-size: 0.9rem;
+}
+
+.hand {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  width: min(100%, 520px);
+}
+
+.handTile {
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  line-height: 0;
+  opacity: 0.55;
+  transition: transform 0.15s;
+}
+
+.handTile svg {
+  width: 30px;
+  height: 60px;
+}
+
+.playable {
+  opacity: 1;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px #f1c40f;
+}
+
+.selected {
+  transform: translateY(-8px);
+  box-shadow: 0 0 0 3px #7c5cff;
+}
+
+.hinted {
+  box-shadow: 0 0 0 3px #7c5cff;
+}
+
+.reveal {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: min(100%, 520px);
+  font-size: 0.82rem;
+}
+
+.revealRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.small {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.small svg {
+  width: 36px;
+  height: 18px;
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.07);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .end {
+    animation: none;
+  }
+}
