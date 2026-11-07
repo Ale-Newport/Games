@@ -2,6 +2,14 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #062 Oware COMPLETE
+
+- Thin module on the shared mancala family (Abapa rules): 2–3 captures backward, the grand-slam
+  exception, skipping the origin pit on big sowings, the feeding rule, win above 24.
+- Seeded (10 games per pair): Easy vs Random 10–0, Medium vs Easy 10–0, Hard vs Medium 9–1.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1078 unit tests, build, 166
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #061 Kalah Mancala COMPLETE
 
 - New shared mancala family `src/games/shared/mancala/` for #061, #062, #064: one sowing engine with

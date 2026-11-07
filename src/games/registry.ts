@@ -65,6 +65,7 @@ import { manifest as baghChal } from './bagh-chal/manifest';
 import { manifest as alquerque } from './alquerque/manifest';
 import { manifest as yote } from './yote/manifest';
 import { manifest as kalah } from './kalah/manifest';
+import { manifest as oware } from './oware/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -128,6 +129,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: alquerque, load: () => import('./alquerque/index') },
   { manifest: yote, load: () => import('./yote/index') },
   { manifest: kalah, load: () => import('./kalah/index') },
+  { manifest: oware, load: () => import('./oware/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
