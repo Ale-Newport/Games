@@ -181,7 +181,8 @@
 - **#176 Maze Chase — COMPLETE** (2026-11-07).
 - **#177 Shifting Mazes — COMPLETE** (2026-11-07).
 - **#178 Hedgehog Crossing — COMPLETE** (2026-11-07).
-- **Current game: #179 Endless Crossing** (`endless-crossing`) — TODO (on `src/games/shared/crossing`).
+- **#179 Endless Crossing — COMPLETE** (2026-11-07).
+- **Current game: #180 Girder Climb** (`girder-climb`) — TODO (drafted in scratch).
 
 ## Resume instructions
 

@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #179 Endless Crossing COMPLETE
+
+- The endless crossing on the core shared with #178: generated meadows with trees, roads, rivers of
+  logs and railways whose trains are announced by a flashing signal; one life; the view creeps
+  forward and a hawk takes a hedgehog that falls behind. The planner averaged 1237 rows in
+  10-minute runs; the hopper 18.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script hopped with the real arrow keys over meadows, roads and a river until a
+  train ran it over at row 10 (Spanish ending text).
+- Verified (actually run): lint, typecheck, 3237 unit tests (409 files), build, 622 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #178 Hedgehog Crossing COMPLETE
 
 - A crossing game with an original hedgehog: five road lanes, a river of logs and turtles (some
