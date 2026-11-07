@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #174 Falling Blocks COMPLETE
+
+- A modern falling-blocks game with an original name: seven-piece bags, five pieces of preview,
+  hold, ghost piece, hard drop, wall kicks, a lock delay, T-spins, combos and back-to-back bonuses;
+  a 150-line marathon and a 40-line sprint. Shares its core with #175. The planner (every rotation
+  and column of the current piece, scored on height, holes, wells and bumpiness) finishes the
+  marathon; a hard-dropping dropper tops out quickly.
+- The arcade shell gained rotate-back (Z) and hold (C) controls and touch buttons.
+- Played in the in-app browser (mobile, Spanish): hold, rotate, move and hard drop with the touch
+  buttons, then watched the planner reach 31 lines and level 4 in 20 seconds.
+- Verified (actually run): lint, typecheck, 3164 unit tests (397 files), build, 602 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #173 Wraparound Snake COMPLETE
 
 - The snake without walls (the edges lead round), on the core shared with #172: a grey block lands

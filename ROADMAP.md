@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 173 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 27
+**Complete:** 174 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 26
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -209,7 +209,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 171 | Asteroids | `asteroids` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 172 | Classic Snake | `snake` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 173 | Wraparound Snake | `wraparound-snake` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 174 | Guideline-Style Tetris | `falling-blocks` | TODO | — | — | — | — | — |  |  |
+| 174 | Guideline-Style Tetris | `falling-blocks` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 175 | NES-Style Tetris | `falling-blocks-classic` | TODO | — | — | — | — | — |  |  |
 | 176 | Classic Maze-Chase Game | `maze-chase` | TODO | — | — | — | — | — |  |  |
 | 177 | Advanced Maze-Chase Variant | `maze-chase-advanced` | TODO | — | — | — | — | — |  |  |
