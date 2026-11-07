@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #068 Lines of Action COMPLETE
+
+- 8 × 8, twelve pieces a side; moves of exactly the line's piece count, jumping own pieces only,
+  captures by landing, the single-group win (mover wins a double connection), draw at 300 plies.
+- Alpha-beta on concentration, groups, centralization and mobility. Seeded (10 games per pair):
+  Easy vs Random 10–0, Medium vs Easy 9–1, Hard vs Medium 10–0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1165 unit tests, build, 178
+  Playwright tests (the e2e spec re-run after layering the board's move trail).
+
 ## 2026-11-07 — Session 1: #067 Game of the Amazons COMPLETE
 
 - 10 × 10, four amazons a side, queen move plus arrow shot, the last player able to move wins;
