@@ -54,8 +54,10 @@ date), `npm run roadmap`, `PROGRESS.md`, `NEXT_STEPS.md`, then a dedicated commi
   persistence, profiles, settings, replay, achievements, levels, rendering loop, i18n).
 - `src/games/<id>/` one self-contained module per game. `src/games/shared/<family>/` code
   genuinely shared by a family: `two-player/` (match shell for every two-player game: menu,
-  scoreboard, CPU/watch scheduling, undo, saves, stats) and `mnk/` (m,n,k line games: engine,
-  exact solver, agents, board).
+  scoreboard, CPU/watch scheduling, undo, saves, stats), `mnk/` (m,n,k line games: engine,
+  exact solver, agents, board), `cards/` (card numbering, seeded shuffles, SVG card art) and
+  `solitaire/` (the one-player patience shell: layout, tap/drag/keyboard, undo, hints, finish,
+  Watch AI, clock, score, saves; `?deal=N` opens a given deal).
 - `src/ai/` protocols (environment contract, contract test suite), agents, evaluation, registry.
 - `tools/` node scripts (roadmap generator, env server, evaluation CLI). `training/` Python side.
 - `tests/platform/` platform tests (roadmap validation), `tests/e2e/` Playwright.

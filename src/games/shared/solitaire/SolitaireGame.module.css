@@ -1,0 +1,135 @@
+.play {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: var(--space-1) 0 var(--space-4);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-4);
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.stats strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.status {
+  min-height: 1.4em;
+  text-align: center;
+  font-weight: 700;
+}
+
+.status[data-status='won'] {
+  color: var(--success, #2fae66);
+}
+
+.status[data-status='lost'] {
+  color: var(--danger, #e0482b);
+}
+
+.board {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md);
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.08), transparent 60%),
+    linear-gradient(160deg, #1f6b47, #14533a);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.slot {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 2px dashed rgba(255, 255, 255, 0.28);
+  border-radius: 8%/6%;
+  background: rgba(0, 0, 0, 0.12);
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+.slot:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+.slotGlyph {
+  font-weight: 800;
+  font-size: clamp(0.9rem, 3.4vw, 1.6rem);
+}
+
+.hintTarget {
+  border-color: #6fb0ff;
+  box-shadow: 0 0 0 3px rgba(111, 176, 255, 0.5);
+}
+
+.cursorSlot {
+  border-color: #b9a5ff;
+}
+
+.card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 8%/6%;
+  cursor: grab;
+  touch-action: none;
+  transition: transform 180ms var(--ease-out);
+  filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.35));
+}
+
+.still .card {
+  transition: none;
+}
+
+.selected {
+  filter: drop-shadow(0 0 0 #ffd166) drop-shadow(0 0 4px #ffd166);
+}
+
+.hinted {
+  filter: drop-shadow(0 0 5px #6fb0ff) drop-shadow(0 0 2px #6fb0ff);
+}
+
+.cursor {
+  outline: 2px solid #b9a5ff;
+  outline-offset: 1px;
+}
+
+.dragging {
+  cursor: grabbing;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.45));
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.keys {
+  margin: 0;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+@media (hover: none) {
+  .keys {
+    display: none;
+  }
+}
