@@ -167,7 +167,8 @@
 - **#162 Rock Paper Scissors — COMPLETE** (2026-11-07).
 - **#163 Rock Paper Scissors Lizard Wizard — COMPLETE** (2026-11-07).
 - **#164 Naval Battle — COMPLETE** (2026-11-07).
-- **Current game: #165 Memory Pairs** (`memory-pairs`) — TODO (concentration with forgetful, attentive and perfect memories; drafted in scratch).
+- **#165 Memory Pairs — COMPLETE** (2026-11-07).
+- **Current game: #166 Pong** (`pong`) — TODO (first arcade game on the new shared real-time shell `shared/arcade`; drafted in scratch).
 
 ## Resume instructions
 

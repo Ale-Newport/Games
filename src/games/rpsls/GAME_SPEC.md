@@ -37,7 +37,7 @@ both have thrown.
 
 ## Saves and AI interface
 
-Saves: schema 1 `{ state, level }`, validated by replaying the history. Kind `turn-based`, two
+Saves: schema 1 `{ state, level }`, validated by replaying the history. Kind `simultaneous` (as sequential commitment), two
 seats, hidden information (seat 1's observation hides seat 0's pending throw), config `{ target }`
 (3, 5 or 10; 5 by default), zero-sum returns ±1.
 
