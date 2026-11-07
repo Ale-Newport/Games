@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #180 Girder Climb COMPLETE
+
+- A girder-climbing arcade game with an original name, cast and layout: six sloping girders, whole
+  and broken ladders, a runaway robot rolling drums that drop between girders and sometimes take
+  ladders down, two hammers, a bonus clock and a kitten to rescue. The climber averaged 7900 points
+  and 1.5 rescues; the walker (same route, no jumping or waiting) 2283.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden) with a
+  pixel-reading script on the real keys. Found and fixed: letting go of "up" a few pixels short of a
+  ladder's top left the climber stuck on it; a sideways press near either end now steps off. After
+  the fix the script climbed, jumped drums for points and lost its lives on the lower girders.
+- Verified (actually run): lint, typecheck, 3257 unit tests (412 files), build, 626 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #179 Endless Crossing COMPLETE
 
 - The endless crossing on the core shared with #178: generated meadows with trees, roads, rivers of
