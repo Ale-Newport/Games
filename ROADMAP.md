@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 137 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 63
+**Complete:** 138 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 62
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -163,7 +163,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 135 | Rubik's Cube 3×3 | `twisty-cube-3x3` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 136 | Rubik's Cube 4×4 | `twisty-cube-4x4` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 137 | 2048 | `game-2048` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 138 | Threes-Style Number-Merging Game | `threes` | TODO | — | — | — | — | — |  |  |
+| 138 | Threes-Style Number-Merging Game | `threes` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 139 | Fibonacci 2048 | `fibonacci-2048` | TODO | — | — | — | — | — |  |  |
 | 140 | Klotski Sliding Block Puzzle | `klotski` | TODO | — | — | — | — | — |  |  |
 

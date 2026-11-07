@@ -140,7 +140,8 @@
 - **#135 Twisty Cube 3×3 — COMPLETE** (2026-11-07).
 - **#136 Twisty Cube 4×4 — COMPLETE** (2026-11-07).
 - **#137 Merge to 2048 — COMPLETE** (2026-11-07).
-- **Current game: #138 Number Trios** (`threes`) — TODO (threes-style engine, expectimax, UI and tests drafted in scratch).
+- **#138 Number Trios — COMPLETE** (2026-11-07).
+- **Current game: #139 Fibonacci Merge** (`fibonacci-2048`) — TODO (on the shared merge core; module drafted in scratch).
 
 ## Resume instructions
 

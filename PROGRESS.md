@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #138 Number Trios COMPLETE
+
+- A threes-style puzzle under a generic name: one-cell shifts, 1+2 and equal-pair merges, a
+  shuffled 1/2/3 deck with bonus tiles, the next tile shown, end-of-game scoring by powers of three;
+  4×4, 3×3 and 5×5. Expectimax over where the shown tile enters reaches 384 in 5 of 6 games.
+- Played in the in-app browser (mobile, Spanish): keys and 25 hinted moves to a 48, score checked
+  against the tiles.
+- Verified (actually run): lint, typecheck, 2466 unit tests (319 files), build, 458 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #137 Merge to 2048 COMPLETE
 
 - A shared sliding-merge core (`src/games/shared/merge`): rules as data, seeded spawns, one-step
