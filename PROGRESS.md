@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #099 Crazy Eights COMPLETE
+
+- Crazy Eights for 2–4 players: wild eights, draw-one, reshuffles, blocked hands, scoring to 100,
+  with a suit picker. Public "could not follow" information drives Medium's and Hard's suit choices.
+- A sampled-deal Hard lost to Medium (−4.3 points a hand; −0.7 with a margin), so Hard is a rule
+  set that keeps the next player on their gap: +0.4 vs Medium, +2.3 vs Easy over 10 000 hands.
+- Played in the in-app browser (mobile): playing an eight and naming a suit.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1720 unit tests, build, 302
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #098 Euchre COMPLETE
 
 - Euchre on the shared trick table: 24 cards, bowers, two bidding rounds with stick the dealer,

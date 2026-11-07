@@ -102,6 +102,7 @@ import { manifest as contractBridge } from './contract-bridge/manifest';
 import { manifest as ginRummy } from './gin-rummy/manifest';
 import { manifest as cribbage } from './cribbage/manifest';
 import { manifest as euchre } from './euchre/manifest';
+import { manifest as crazyEights } from './crazy-eights/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -202,6 +203,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: ginRummy, load: () => import('./gin-rummy/index') },
   { manifest: cribbage, load: () => import('./cribbage/index') },
   { manifest: euchre, load: () => import('./euchre/index') },
+  { manifest: crazyEights, load: () => import('./crazy-eights/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
