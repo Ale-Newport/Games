@@ -6,9 +6,11 @@
 import { isRecord } from '../../../core/persistence/versioned';
 import { generatePuzzle, type PuzzleSpec } from './generator';
 import { bit, geometry, type Geometry, type Shape } from './grid';
+import { jigsawRegions, regionsConnected } from './jigsaw';
 import { cageExtra, generateKiller, killerSteps, type Cage } from './killer';
 import { gradePuzzle, type StepExtra } from './logic';
-import { solveSudoku, type Extra } from './solver';
+import { randomSolution, solveSudoku, type Extra } from './solver';
+import { Rng } from '../../../core/game-engine/random';
 
 export interface SudokuVariant {
   id: string;
@@ -40,6 +42,8 @@ export interface SudokuState {
   solved: boolean;
   /** Killer sudoku cages (no givens then). */
   cages?: Cage[];
+  /** Jigsaw sudoku: this puzzle's region of every cell. */
+  regions?: number[];
 }
 
 /** The constraints and techniques beyond the units that a puzzle brings (its killer cages). */
@@ -52,13 +56,32 @@ export function rulesOf(
 
 export const geoOf = (v: SudokuVariant): Geometry => geometry(v.shape);
 
+/** The geometry of one puzzle: the variant's, with the puzzle's own regions for jigsaw sudoku. */
+export const geoFor = (v: SudokuVariant, s: { regions?: readonly number[] }): Geometry =>
+  s.regions ? geometry({ ...v.shape, regions: s.regions }) : geoOf(v);
+
 export function newSudoku(v: SudokuVariant, difficulty: string, seed: number): SudokuState {
   const spec = v.difficulties[difficulty];
   if (!spec) throw new Error(`Unknown difficulty ${difficulty}`);
-  const geo = geoOf(v);
+  let geo = geoOf(v);
   let puzzle: number[];
   let solution: number[];
   let cages: Cage[] | undefined;
+  let regions: number[] | undefined;
+  if (spec.jigsaw) {
+    // Fresh regions for every puzzle (retried in the rare case no grid fits them).
+    const rng = new Rng(seed ^ 0x5bd1e995);
+    for (;;) {
+      regions = jigsawRegions(v.shape, rng);
+      geo = geometry({ ...v.shape, regions });
+      try {
+        randomSolution(geo, new Rng(seed));
+        break;
+      } catch {
+        // Try other regions.
+      }
+    }
+  }
   if (spec.cages) {
     // Killer: cages drawn until unique, kept when the techniques' level is in range.
     const k = generateKiller(
@@ -93,6 +116,7 @@ export function newSudoku(v: SudokuVariant, difficulty: string, seed: number): S
     elapsedMs: 0,
     solved: false,
     ...(cages ? { cages } : {}),
+    ...(regions ? { regions } : {}),
   };
 }
 
@@ -131,7 +155,7 @@ export function placeDigit(
   options: { autoNotes?: boolean; hint?: boolean } = {},
 ): SudokuState {
   if (s.solved || s.puzzle[cell] || digit < 1 || digit > v.shape.size) return s;
-  const geo = geoOf(v);
+  const geo = geoFor(v, s);
   const clearing = s.values[cell] === digit;
   const cells = [cell, ...(options.autoNotes === false || clearing ? [] : geo.peers[cell]!)];
   const next = change(s, cells, (values, notes) => {
@@ -167,7 +191,7 @@ export function eraseCell(s: SudokuState, cell: number): SudokuState {
 /** Fills every empty cell's notes with its candidates. */
 export function fillNotes(v: SudokuVariant, s: SudokuState): SudokuState {
   if (s.solved) return s;
-  const geo = geoOf(v);
+  const geo = geoFor(v, s);
   const empty = s.values.flatMap((x, c) => (x ? [] : [c]));
   return change(s, empty, (values, notes) => {
     for (const c of empty) {
@@ -224,9 +248,17 @@ const isIntArray = (a: unknown, n: number, max: number) =>
 /** Checks a saved game: shapes and ranges, givens kept, and a solution the puzzle forces. */
 export function isValidSudokuState(v: SudokuVariant, data: unknown): data is SudokuState {
   if (!isRecord(data)) return false;
-  const geo = geoOf(v);
-  const n = geo.cells;
   const d = data as unknown as SudokuState;
+  const size = v.shape.size;
+  if (d.regions !== undefined) {
+    // Jigsaw: n connected regions of n cells each.
+    if (!isIntArray(d.regions, size * size, size - 1)) return false;
+    const counts = Array<number>(size).fill(0);
+    for (const k of d.regions) counts[k]!++;
+    if (counts.some((x) => x !== size) || !regionsConnected(size, d.regions)) return false;
+  }
+  const geo = geoFor(v, d);
+  const n = geo.cells;
   if (typeof d.difficulty !== 'string' || !(d.difficulty in v.difficulties)) return false;
   if (!Number.isInteger(d.seed) || !Number.isFinite(d.elapsedMs) || d.elapsedMs < 0) return false;
   if (!Number.isInteger(d.mistakes) || !Number.isInteger(d.hints)) return false;

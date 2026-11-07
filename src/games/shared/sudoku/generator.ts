@@ -23,6 +23,8 @@ export interface PuzzleSpec {
    * stay provably unique). Needed for 16×16 grids, where rare checks explode.
    */
   maxNodes?: number;
+  /** Jigsaw sudoku: every puzzle gets its own irregular regions (see `jigsaw.ts`). */
+  jigsaw?: boolean;
   /** Killer sudoku: no givens, cages of these sizes instead (see `killer.ts`). */
   cages?: { min: number; max: number };
 }
