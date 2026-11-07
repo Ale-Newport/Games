@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #183 Puffin Flap COMPLETE
+
+- A one-button flying game with an original name, puffin and sea stacks, in a portrait view: hover
+  until the first flap, one flap per press, gaps that stay within reach, narrower gaps after 25 and
+  faster stacks after 50. The planner (all flap patterns over the next 40 steps, against the stacks
+  in view only) averaged 108.7 stacks; the tracker 64.
+- The arcade shell now keeps a quick tap on the canvas until the next step reads it (the pointer
+  counterpart of the earlier touch-button fix).
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script pressed Space to fly through 7 stacks before splashing down; tapping the
+  canvas is covered by the end-to-end test.
+- Verified (actually run): lint, typecheck, 3310 unit tests (421 files), build, 638 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #182 Spike Hop COMPLETE
 
 - A precision platformer with an original name, hero and eight single-screen rooms on the shared

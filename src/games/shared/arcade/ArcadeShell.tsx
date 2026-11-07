@@ -124,6 +124,8 @@ export function ArcadeShell<S, A extends string>({
   // Presses since the last step, so a tap shorter than one step still counts.
   const tappedRef = useRef(new Set<Control>());
   const pointerRef = useRef<{ x: number; y: number } | null>(null);
+  // Where the last touch landed, kept until a step reads it (a quick tap still counts).
+  const pointerTapRef = useRef<{ x: number; y: number } | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const pausedRef = useLatest(paused);
   const modeRef = useLatest(mode);
@@ -194,8 +196,9 @@ export function ArcadeShell<S, A extends string>({
             : def.control(
                 s,
                 new Set([...heldRef.current, ...tappedRef.current]),
-                pointerRef.current,
+                pointerRef.current ?? pointerTapRef.current,
               );
+        pointerTapRef.current = null;
         tappedRef.current.clear();
         const next = def.step(s, action);
         stateRef.current = next;
@@ -395,6 +398,7 @@ export function ArcadeShell<S, A extends string>({
             if (!def.pointer || mode !== 'play') return;
             e.currentTarget.setPointerCapture?.(e.pointerId);
             pointerRef.current = toLogical(e);
+            pointerTapRef.current = pointerRef.current;
           }}
           onPointerMove={(e) => {
             if (pointerRef.current) pointerRef.current = toLogical(e);
