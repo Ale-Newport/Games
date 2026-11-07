@@ -191,7 +191,8 @@
 - **#186 Garden Guard — COMPLETE** (2026-11-07).
 - **#187 Cube Hopper — COMPLETE** (2026-11-07).
 - **#188 Gem Digger — COMPLETE** (2026-11-07).
-- **Current game: #189 Bomber arena** (`bomber-arena`) — TODO.
+- **#189 Blast Arena — COMPLETE** (2026-11-07).
+- **Current game: #190 Light cycles** (`light-cycles`) — TODO.
 
 ## Resume instructions
 
