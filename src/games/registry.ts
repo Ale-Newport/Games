@@ -146,6 +146,7 @@ import { manifest as fibMerge } from './fibonacci-2048/manifest';
 import { manifest as slidingBlocks } from './klotski/manifest';
 import { manifest as backgammon } from './backgammon/manifest';
 import { manifest as narde } from './narde/manifest';
+import { manifest as ur } from './royal-game-of-ur/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -290,6 +291,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: slidingBlocks, load: () => import('./klotski/index') },
   { manifest: backgammon, load: () => import('./backgammon/index') },
   { manifest: narde, load: () => import('./narde/index') },
+  { manifest: ur, load: () => import('./royal-game-of-ur/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

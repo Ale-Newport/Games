@@ -1,0 +1,148 @@
+.board {
+  width: min(100%, 560px);
+  height: auto;
+  display: block;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.square {
+  fill: #e6d3a3;
+  stroke: #7a5a2e;
+  stroke-width: 2;
+}
+
+.rosette ellipse {
+  fill: #2f5fa8;
+  opacity: 0.85;
+}
+
+.eye {
+  fill: #7a5a2e;
+  opacity: 0.5;
+}
+
+.piece {
+  cursor: default;
+  outline: none;
+}
+
+.movable {
+  cursor: pointer;
+}
+
+.movable circle:first-child {
+  stroke: #f1c40f;
+  stroke-width: 4;
+}
+
+.movable:focus-visible circle:first-child {
+  stroke: #fff;
+}
+
+.pointed circle:first-child {
+  stroke: #f1c40f;
+  stroke-dasharray: 6 4;
+  stroke-width: 5;
+}
+
+.light {
+  fill: #f6f1e3;
+  background: #f6f1e3;
+}
+
+.dark {
+  fill: #2b2b33;
+  background: #2b2b33;
+}
+
+circle.light,
+circle.dark {
+  stroke: #000;
+  stroke-opacity: 0.35;
+  stroke-width: 1.5;
+}
+
+.pip {
+  fill: rgb(0 0 0 / 0.18);
+}
+
+.side {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: min(100%, 560px);
+}
+
+.tray {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / 0.05);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.enter {
+  cursor: pointer;
+  outline: 3px solid #f1c40f;
+}
+
+.trayLabel {
+  font-weight: 700;
+}
+
+.trayDots {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgb(0 0 0 / 0.4);
+}
+
+.empty {
+  background: transparent;
+  border-color: rgb(255 255 255 / 0.2);
+}
+
+.diceRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.die {
+  width: 36px;
+  height: 32px;
+}
+
+.idle {
+  opacity: 0.35;
+}
+
+.dieLight {
+  fill: #f6f1e3;
+  stroke: #7a5a2e;
+  stroke-width: 2;
+}
+
+.dieDark {
+  fill: #4a4a55;
+  stroke: #111;
+  stroke-width: 2;
+}
+
+.tip {
+  fill: #2f5fa8;
+}
+
+.rollValue {
+  min-width: 1.5em;
+  font: 800 1.4rem var(--font-display);
+}
