@@ -137,6 +137,8 @@ export function ArcadeShell<S, A extends string>({
   }, [slot, def]);
 
   const begin = (m: Mode, state: S, opts: Record<string, string>) => {
+    // Keys drive the game from here on, not the button that started it.
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     stateRef.current = state;
     heldRef.current.clear();
     setOptions(opts);
@@ -242,7 +244,11 @@ export function ArcadeShell<S, A extends string>({
     };
     const up = (e: KeyboardEvent) => {
       const c = KEYS[e.key];
-      if (c) heldRef.current.delete(c);
+      if (c) {
+        heldRef.current.delete(c);
+        // Space and Enter would otherwise also press whichever button has the focus.
+        if (modeRef.current === 'play') e.preventDefault();
+      }
     };
     window.addEventListener('keydown', down);
     window.addEventListener('keyup', up);

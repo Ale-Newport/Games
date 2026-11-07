@@ -171,7 +171,8 @@
 - **#166 Pong — COMPLETE** (2026-11-07).
 - **#167 Breakout — COMPLETE** (2026-11-07).
 - **#168 Enhanced Brick Breaker — COMPLETE** (2026-11-07).
-- **Current game: #169 Invaders from Above** (`invaders`) — TODO (fixed shooter; drafted in scratch).
+- **#169 Invaders from Above — COMPLETE** (2026-11-07).
+- **Current game: #170 Diving Swarm** (`diving-swarm`) — TODO (diving attackers; drafted in scratch).
 
 ## Resume instructions
 

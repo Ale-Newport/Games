@@ -190,6 +190,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   pong: () => import('../../games/pong/ai-adapter').then((m) => m.bundle),
   breakout: () => import('../../games/breakout/ai-adapter').then((m) => m.bundle),
   'brick-breaker': () => import('../../games/brick-breaker/ai-adapter').then((m) => m.bundle),
+  invaders: () => import('../../games/invaders/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

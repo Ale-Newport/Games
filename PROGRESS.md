@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #169 Invaders from Above COMPLETE
+
+- A fixed shooter in the classic mould with an original name and pixel sprites: a 55-invader
+  formation that quickens as it thins, bombs, eroding shields, a mystery ship, waves starting lower.
+  The gunner (dodges bombs, lines up, fires) averaged 4263 points and 3.3 waves; standing still lasts
+  22 seconds.
+- Played in the in-app browser (mobile, Spanish). Two fixes: bombing was halved after a cannon fell
+  four seconds into the game, and the arcade shell no longer lets Space also press the focused
+  button (it paused the game); the start button gives up the focus too.
+- Verified (actually run): lint, typecheck, 3094 unit tests (385 files), build, 582 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #168 Enhanced Brick Breaker COMPLETE
 
 - Five designed walls on the shared brick core: one-, two- and three-hit bricks (coloured and
