@@ -154,6 +154,7 @@ import { manifest as parchis } from './parchis/manifest';
 import { manifest as snakes } from './snakes-and-ladders/manifest';
 import { manifest as fiveDice } from './five-dice/manifest';
 import { manifest as generala } from './generala/manifest';
+import { manifest as farkle } from './farkle/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -306,6 +307,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: snakes, load: () => import('./snakes-and-ladders/index') },
   { manifest: fiveDice, load: () => import('./five-dice/index') },
   { manifest: generala, load: () => import('./generala/index') },
+  { manifest: farkle, load: () => import('./farkle/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
