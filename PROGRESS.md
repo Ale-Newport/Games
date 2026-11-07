@@ -2,6 +2,21 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #111 Hitori COMPLETE
+
+- Hitori (5×5 to 10×10) with its own engine: exact solver (propagation + connectivity + search),
+  techniques for hints (next to shaded, twin of kept, sandwich, adjacent pair, connection), and a
+  generator (Latin square, scattered shading, several renumberings per layout — one numbering found
+  a unique 10×10 only ~2% of the time). Measured over 40 seeds per size: unique, technique-solvable,
+  ≤ 152 ms.
+- Played in the in-app browser (mobile): hints, tap modes, a 7×7 solved. Fixed: shaded cells looked
+  light in the dark theme (now hatched near-black); hints no longer walk through cells whose number
+  never repeats (they count as white).
+- Fixed in the shared sudoku strings: Spanish menu texts said "sudoku" in Kakuro, Calcudoku and
+  Futoshiki (now "puzle").
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1944 unit tests, build, 350
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #110 Futoshiki COMPLETE
 
 - Futoshiki (4×4 to 7×7) on the shared core: inequality signs with a propagator for the exact
