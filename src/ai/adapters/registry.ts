@@ -199,6 +199,8 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'falling-blocks-classic': () =>
     import('../../games/falling-blocks-classic/ai-adapter').then((m) => m.bundle),
   'maze-chase': () => import('../../games/maze-chase/ai-adapter').then((m) => m.bundle),
+  'maze-chase-advanced': () =>
+    import('../../games/maze-chase-advanced/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

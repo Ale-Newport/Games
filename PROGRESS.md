@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #177 Shifting Mazes COMPLETE
+
+- The advanced maze chase on the core shared with #176: four generated mazes changing every two
+  levels, sentinels that take a random way at 12 % of junctions, and a bonus gem that comes in
+  through the tunnel and wanders the corridors. The runner averaged 8581 points; the grazer 3285.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): the
+  pixel-reading script steered with the real arrow keys through the first maze into level 2, met
+  blue sentinels, and lost its last life at 3690 points.
+- Verified (actually run): lint, typecheck, 3207 unit tests (404 files), build, 614 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #176 Maze Chase COMPLETE
 
 - A maze chase with an original name, generated maze and art (a rover and four diamond-shaped

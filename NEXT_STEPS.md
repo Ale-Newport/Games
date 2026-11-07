@@ -179,7 +179,8 @@
 - **#174 Falling Blocks — COMPLETE** (2026-11-07).
 - **#175 Falling Blocks Classic — COMPLETE** (2026-11-07).
 - **#176 Maze Chase — COMPLETE** (2026-11-07).
-- **Current game: #177 Shifting Mazes** (`maze-chase-advanced`) — TODO (on `src/games/shared/maze`).
+- **#177 Shifting Mazes — COMPLETE** (2026-11-07).
+- **Current game: #178 Hedgehog Crossing** (`crossing`) — TODO (shared crossing core with #179; drafted in scratch).
 
 ## Resume instructions
 
