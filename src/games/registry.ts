@@ -76,6 +76,7 @@ import { manifest as paperSoccer } from './paper-soccer/manifest';
 import { manifest as bridgIt } from './bridg-it/manifest';
 import { manifest as klondikeDraw1 } from './klondike-draw-1/manifest';
 import { manifest as klondikeDraw3 } from './klondike-draw-3/manifest';
+import { manifest as freecell } from './freecell/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -150,6 +151,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: bridgIt, load: () => import('./bridg-it/index') },
   { manifest: klondikeDraw1, load: () => import('./klondike-draw-1/index') },
   { manifest: klondikeDraw3, load: () => import('./klondike-draw-3/index') },
+  { manifest: freecell, load: () => import('./freecell/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
