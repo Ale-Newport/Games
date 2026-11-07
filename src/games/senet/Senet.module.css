@@ -1,0 +1,143 @@
+.board {
+  width: min(100%, 600px);
+  height: auto;
+  display: block;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.square {
+  fill: #e6d3a3;
+  stroke: #7a5a2e;
+  stroke-width: 2;
+}
+
+.house {
+  fill: #d8c08a;
+}
+
+.rebirth {
+  fill: #cdb98e;
+}
+
+.glyph {
+  fill: #2f5fa8;
+  font: 700 18px var(--font-display, serif);
+}
+
+.num {
+  fill: rgb(90 60 30 / 0.55);
+  font: 600 9px var(--font-body, sans-serif);
+}
+
+.piece {
+  cursor: default;
+  outline: none;
+}
+
+.movable {
+  cursor: pointer;
+}
+
+.movable > :first-child {
+  stroke: #f1c40f;
+  stroke-width: 4;
+}
+
+.movable:focus-visible > :first-child {
+  stroke: #fff;
+}
+
+.pointed > :first-child {
+  stroke: #f1c40f;
+  stroke-dasharray: 6 4;
+  stroke-width: 5;
+}
+
+.light {
+  fill: #f6f1e3;
+  background: #f6f1e3;
+}
+
+.dark {
+  fill: #2b2b33;
+  background: #2b2b33;
+}
+
+polygon.light,
+path.dark {
+  stroke: #000;
+  stroke-opacity: 0.35;
+  stroke-width: 1.5;
+}
+
+.side {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: min(100%, 600px);
+}
+
+.tray {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / 0.05);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.trayLabel {
+  font-weight: 700;
+}
+
+.trayDots {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgb(0 0 0 / 0.4);
+}
+
+.empty {
+  background: transparent;
+  border-color: rgb(255 255 255 / 0.2);
+}
+
+.diceRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stick {
+  width: 16px;
+  height: 52px;
+}
+
+.idle {
+  opacity: 0.35;
+}
+
+.stickLight {
+  fill: #f3e2b5;
+  stroke: #7a5a2e;
+  stroke-width: 1.5;
+}
+
+.stickDark {
+  fill: #6b4a2f;
+  stroke: #2e1d10;
+  stroke-width: 1.5;
+}
+
+.rollValue {
+  min-width: 1.5em;
+  font: 800 1.4rem var(--font-display);
+}
