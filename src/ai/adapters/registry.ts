@@ -167,6 +167,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   parchis: () => import('../../games/parchis/ai-adapter').then((m) => m.bundle),
   'snakes-and-ladders': () =>
     import('../../games/snakes-and-ladders/ai-adapter').then((m) => m.bundle),
+  'five-dice': () => import('../../games/five-dice/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

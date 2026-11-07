@@ -1,0 +1,98 @@
+.diceRow {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.die {
+  width: 54px;
+  height: 54px;
+  padding: 4px;
+  border: 0;
+  border-radius: 12px;
+  background: #f8f4ea;
+  box-shadow: inset 0 -4px 0 rgb(0 0 0 / 0.2);
+  cursor: pointer;
+  transition: transform 120ms var(--ease-out);
+}
+
+.die:disabled {
+  cursor: default;
+}
+
+.held {
+  outline: 3px solid #f1c40f;
+  transform: translateY(-6px);
+}
+
+.blank {
+  opacity: 0.4;
+}
+
+.face {
+  width: 100%;
+  height: 100%;
+  fill: #1b1b22;
+}
+
+.card {
+  width: min(100%, 460px);
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+}
+
+.card th,
+.card td {
+  padding: 3px 6px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  text-align: center;
+}
+
+.card tbody th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.current {
+  color: #f1c40f;
+}
+
+.split td,
+.split th {
+  border-bottom: 2px solid rgb(255 255 255 / 0.25);
+}
+
+.sum td,
+.sum th {
+  font-style: italic;
+}
+
+.total td,
+.total th {
+  font-weight: 800;
+  color: var(--text);
+}
+
+.preview {
+  min-width: 2.4em;
+  padding: 1px 6px;
+  border: 1px dashed rgb(241 196 15 / 0.7);
+  border-radius: 6px;
+  background: rgb(241 196 15 / 0.12);
+  color: #f1c40f;
+  font: inherit;
+  cursor: pointer;
+}
+
+.pointed {
+  background: rgb(241 196 15 / 0.4);
+  color: #1b1b22;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .die {
+    transition: none;
+  }
+}
