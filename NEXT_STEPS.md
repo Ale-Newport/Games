@@ -85,7 +85,8 @@
 - **#080 Yukon Solitaire — COMPLETE** (2026-11-07).
 - **#081 Scorpion Solitaire — COMPLETE** (2026-11-07).
 - **#082 Forty Thieves Solitaire — COMPLETE** (2026-11-07).
-- **Current game: #083 Accordion Solitaire** (`accordion`) — TODO.
+- **#083 Accordion Solitaire — COMPLETE** (2026-11-07).
+- **Current game: #084 Clock Solitaire** (`clock-solitaire`) — TODO.
 
 ## Resume instructions
 

@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 82 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 118
+**Complete:** 83 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 117
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -103,7 +103,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 080 | Yukon Solitaire | `yukon` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 081 | Scorpion Solitaire | `scorpion` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 082 | Forty Thieves Solitaire | `forty-thieves` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 083 | Accordion Solitaire | `accordion` | TODO | — | — | — | — | — |  |  |
+| 083 | Accordion Solitaire | `accordion` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 084 | Clock Solitaire | `clock-solitaire` | TODO | — | — | — | — | — |  |  |
 | 085 | Canfield Solitaire | `canfield` | TODO | — | — | — | — | — |  |  |
 | 086 | Blackjack | `blackjack` | TODO | — | — | — | — | — |  |  |
