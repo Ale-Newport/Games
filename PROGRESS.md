@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #139 Fibonacci Merge COMPLETE
+
+- The Fibonacci variant on the shared merge core: tiles merge only with their Fibonacci neighbour
+  (and 1 with 1); 4×4 to 2584, 3×3 to 144, 5×5 to 4181 (the search reaches it before the
+  5 000-move environment cap). Expectimax made 2584 in 6 of 6 games on 4×4.
+- Played in the in-app browser (mobile, Spanish): 60 hinted moves to a 55.
+- Verified (actually run): lint, typecheck, 2486 unit tests (321 files), build, 462 Playwright tests
+  (desktop + mobile): 461 green and the Royal Regions watch test, which drew a random puzzle and
+  timed out under load, now uses a fixed seed (re-run green, separate commit).
+
 ## 2026-11-07 — Session 1: #138 Number Trios COMPLETE
 
 - A threes-style puzzle under a generic name: one-cell shifts, 1+2 and equal-pair merges, a
