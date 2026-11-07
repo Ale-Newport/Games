@@ -2,6 +2,15 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #066 Chinese Checkers COMPLETE
+
+- Thin module on the shared jump-race family: the 121-hole star, two players in opposite points
+  with ten marbles, hops over either color, the anti-blocking win, alternating openers.
+- Seeded (6 games per pair): Easy vs Random 6–0, Medium vs Easy 5–1, Hard vs Medium 6–0; every game
+  ended by filling the point.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1135 unit tests, build, 174
+  Playwright tests (the board e2e specs re-run after fitting the star outline).
+
 ## 2026-11-07 — Session 1: #065 Halma COMPLETE
 
 - New shared jump-race family `src/games/shared/jump-race/` for #065 and #066: graph geometries
