@@ -117,7 +117,8 @@
 - **#112 Nonogram — COMPLETE** (2026-11-07).
 - **#113 Slitherlink — COMPLETE** (2026-11-07).
 - **#114 Hashiwokakero (Bridges) — COMPLETE** (2026-11-07).
-- **Current game: #115 Nurikabe** (`nurikabe`) — TODO.
+- **#115 Nurikabe — COMPLETE** (2026-11-07).
+- **Current game: #116 Classic Minesweeper** (`minesweeper`) — TODO.
 
 ## Resume instructions
 

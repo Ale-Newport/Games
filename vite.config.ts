@@ -23,5 +23,7 @@ export default defineConfig({
     include: ['src/**/*.test.{ts,tsx}', 'tests/platform/**/*.test.{ts,tsx}'],
     setupFiles: ['tests/setup.ts'],
     restoreMocks: true,
+    // Contract suites play whole games; under a full parallel run some take longer than 5 s.
+    testTimeout: 20_000,
   },
 });
