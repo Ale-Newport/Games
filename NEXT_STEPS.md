@@ -166,7 +166,8 @@
 - **#161 Tile Rummy — COMPLETE** (2026-11-07).
 - **#162 Rock Paper Scissors — COMPLETE** (2026-11-07).
 - **#163 Rock Paper Scissors Lizard Wizard — COMPLETE** (2026-11-07).
-- **Current game: #164 Naval Battle** (`naval-battle`) — TODO (hidden fleets; hunter and probability-density players; drafted in scratch).
+- **#164 Naval Battle — COMPLETE** (2026-11-07).
+- **Current game: #165 Memory Pairs** (`memory-pairs`) — TODO (concentration with forgetful, attentive and perfect memories; drafted in scratch).
 
 ## Resume instructions
 
