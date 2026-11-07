@@ -82,7 +82,8 @@
 - **#077 Pyramid Solitaire — COMPLETE** (2026-11-07).
 - **#078 TriPeaks Solitaire — COMPLETE** (2026-11-07).
 - **#079 Golf Solitaire — COMPLETE** (2026-11-07).
-- **Current game: #080 Yukon Solitaire** (`yukon`) — TODO.
+- **#080 Yukon Solitaire — COMPLETE** (2026-11-07).
+- **Current game: #081 Scorpion Solitaire** (`scorpion`) — TODO.
 
 ## Resume instructions
 
