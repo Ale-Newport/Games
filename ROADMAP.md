@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 84 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 116
+**Complete:** 85 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 115
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -105,7 +105,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 082 | Forty Thieves Solitaire | `forty-thieves` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 083 | Accordion Solitaire | `accordion` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 084 | Clock Solitaire | `clock-solitaire` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 085 | Canfield Solitaire | `canfield` | TODO | — | — | — | — | — |  |  |
+| 085 | Canfield Solitaire | `canfield` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 086 | Blackjack | `blackjack` | TODO | — | — | — | — | — |  |  |
 | 087 | Texas Hold'em Poker | `texas-holdem` | TODO | — | — | — | — | — |  |  |
 | 088 | Five Card Draw Poker | `five-card-draw` | TODO | — | — | — | — | — |  |  |
