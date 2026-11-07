@@ -152,7 +152,8 @@
 - **#147 Parchís — COMPLETE** (2026-11-07).
 - **#148 Snakes and Ladders — COMPLETE** (2026-11-07).
 - **#149 Five Dice — COMPLETE** (2026-11-07).
-- **Current game: #150 Generala** (`generala`) — TODO (on `src/games/shared/scorecard`; drafted in scratch).
+- **#150 Generala — COMPLETE** (2026-11-07).
+- **Current game: #151 Farkle** (`farkle`) — TODO (dynamic-programming turn tables; drafted in scratch).
 
 ## Resume instructions
 

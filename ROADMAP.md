@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 149 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 51
+**Complete:** 150 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 50
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -180,7 +180,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 147 | Parchís | `parchis` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 148 | Snakes and Ladders | `snakes-and-ladders` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 149 | Yahtzee | `five-dice` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 150 | Generala | `generala` | TODO | — | — | — | — | — |  |  |
+| 150 | Generala | `generala` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 151 | Farkle | `farkle` | TODO | — | — | — | — | — |  |  |
 | 152 | Pig Dice | `pig` | TODO | — | — | — | — | — |  |  |
 | 153 | Can't Stop | `cant-stop` | TODO | — | — | — | — | — |  |  |
