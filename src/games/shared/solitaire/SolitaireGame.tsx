@@ -97,6 +97,8 @@ export interface SolitaireDefinition<S> {
   stockMove(s: S): string | null;
   /** The next move of the automatic finish, when the deal can be finished without choices. */
   finishMove(s: S): string | null;
+  /** A single tap plays a card straight to its spot (games where each card has one move). */
+  tapPlays?: boolean;
   /** An extra line of information for the stats row (e.g. "Deals left 3"). */
   info?: (s: S, t: Translator) => string;
   /** A move the shell plays by itself after each of the player's moves (e.g. safe cards home). */
@@ -516,6 +518,10 @@ export function SolitaireGame<S>({ def, services }: { def: SolitaireDefinition<S
       }
     }
     if (target.index >= 0 && def.canPick(state, target)) {
+      if (def.tapPlays) {
+        const m = def.autoMove(state, target);
+        return m ? play(m) : invalid();
+      }
       setSelected(target);
       setNote('');
       const card = pile.cards[target.index]!.card;

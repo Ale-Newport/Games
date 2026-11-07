@@ -2,6 +2,14 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #078 TriPeaks COMPLETE
+
+- New shared up-or-down family (`shared/updown`, TriPeaks and Golf layouts) and single-tap play in
+  the card shell. Planner values the hidden cards a chain would turn up.
+- Deals 1–100: planner 55 cleared, greedy 45, random 0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1359 unit tests, build, 218
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #077 Pyramid COMPLETE
 
 - Pyramid on the card shell (free vertical placement and vanishing piles added to the shell):

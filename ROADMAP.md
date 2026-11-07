@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 77 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 123
+**Complete:** 78 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 122
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -98,7 +98,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 075 | Spider Solitaire — Two Suits | `spider-2-suits` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 076 | Spider Solitaire — Four Suits | `spider-4-suits` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 077 | Pyramid Solitaire | `pyramid-solitaire` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 078 | TriPeaks Solitaire | `tripeaks` | TODO | — | — | — | — | — |  |  |
+| 078 | TriPeaks Solitaire | `tripeaks` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 079 | Golf Solitaire | `golf-solitaire` | TODO | — | — | — | — | — |  |  |
 | 080 | Yukon Solitaire | `yukon` | TODO | — | — | — | — | — |  |  |
 | 081 | Scorpion Solitaire | `scorpion` | TODO | — | — | — | — | — |  |  |
