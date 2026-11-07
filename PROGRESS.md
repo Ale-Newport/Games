@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #154 Shut the Box COMPLETE
+
+- Shut the Box (tiles 1–9, one die once the open tiles add up to 6 or less), solo or 2–4 players,
+  solved by dynamic programming over the 512 boxes: 11.02 expected from a fresh box. Over 20 000
+  turns the solver averaged 10.89 and shut the box 10.2% of the time, against 11.20 and 7.2% for the
+  big-tiles-first player; head to head it won 48.8% to 47.5% (3.7% ties) — the dice decide most games.
+- Played in the in-app browser (mobile, Spanish) against the computer: hinted shuts of 8 and 3.
+- Verified (actually run): lint, typecheck, 2770 unit tests (351 files), build, 522 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #153 Summit Rush COMPLETE
 
 - Summit Rush (catalog id `cant-stop`, original name and art): eleven columns 2–12, four dice paired
