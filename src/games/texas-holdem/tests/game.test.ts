@@ -10,7 +10,7 @@ import { VARIANT } from '../rules';
 
 describe("Texas Hold'em module", () => {
   it('wires the no-limit variant into the environment and the presets', () => {
-    expect(VARIANT).toEqual({ id: 'holdem', hole: 2, limit: 'no-limit' });
+    expect(VARIANT).toMatchObject({ id: 'holdem', hole: 2, limit: 'no-limit' });
     expect(holdemEnv.id).toBe(manifest.id);
     expect(holdemEnv.version).toBe(manifest.version);
     expect(bundle.agents.map((a) => a.id)).toEqual(['random', 'easy', 'medium', 'hard']);

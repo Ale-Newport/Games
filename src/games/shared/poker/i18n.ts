@@ -4,6 +4,21 @@ export const POKER_STRINGS: Record<Locale, Dictionary> = {
   en: {
     'title.holdem': "Texas Hold'em",
     'title.omaha': 'Omaha',
+    'title.draw': 'Five Card Draw',
+    'street.preflop': 'Before the draw',
+    'street.draw': 'The draw',
+    'street.final': 'After the draw',
+    'your-draw': 'Your draw — pick up to {max} cards to throw away',
+    'draw.n': 'Draw {n}',
+    'stand-pat': 'Stand pat',
+    'said.draw': 'Draws {n}',
+    'said.pat': 'Stands pat',
+    drew: 'drew {n}',
+    pat: 'stood pat',
+    'coach.draw': 'A Medium player would throw away: {cards}.',
+    'coach.pat': 'A Medium player would stand pat.',
+    'keys.draw':
+      'Keys: F fold · C check/call · R raise · 1–5 pick cards · D draw · H hint · N next hand',
     'menu.subtitle':
       'A sit-and-go tournament: everyone starts with {stack} chips and the blinds rise every {hands} hands.',
     'menu.opponents': 'Opponents',
@@ -84,6 +99,21 @@ export const POKER_STRINGS: Record<Locale, Dictionary> = {
   es: {
     'title.holdem': "Texas Hold'em",
     'title.omaha': 'Omaha',
+    'title.draw': 'Póker de descarte',
+    'street.preflop': 'Antes del descarte',
+    'street.draw': 'Descarte',
+    'street.final': 'Tras el descarte',
+    'your-draw': 'Te toca descartar: elige hasta {max} cartas para cambiar',
+    'draw.n': 'Cambiar {n}',
+    'stand-pat': 'Servido',
+    'said.draw': 'Cambia {n}',
+    'said.pat': 'Servido',
+    drew: 'cambió {n}',
+    pat: 'servido',
+    'coach.draw': 'Un jugador Medio cambiaría: {cards}.',
+    'coach.pat': 'Un jugador Medio se quedaría servido.',
+    'keys.draw':
+      'Teclas: F retirarse · C pasar/igualar · R subir · 1–5 elegir cartas · D cambiar · H pista · N siguiente mano',
     'menu.subtitle':
       'Un torneo «sit and go»: todos empiezan con {stack} fichas y las ciegas suben cada {hands} manos.',
     'menu.opponents': 'Rivales',

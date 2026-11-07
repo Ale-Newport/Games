@@ -16,6 +16,7 @@ import { STYLES, estimateEquity, styleAction, type PokerStyle } from './ai';
 import {
   BLIND_LEVELS,
   HANDS_PER_LEVEL,
+  MAX_DRAW,
   applyPokerAction,
   createPoker,
   isValidPokerState,
@@ -79,6 +80,7 @@ export function PokerTable({
   const [paused, setPaused] = useState(false);
   const [announcement, setAnnouncement] = useState('');
   const [raisePick, setRaisePick] = useState<{ at: number; to: number } | null>(null);
+  const [discardPick, setDiscardPick] = useState<{ at: number; picked: number[] } | null>(null);
   const stateRef = useLatest(state);
   const rng = useRef(new Rng(fixedDeal ?? randomSeed()));
   /** The player's last action in the current hand (for the "steal" achievement). */
@@ -148,6 +150,7 @@ export function PokerTable({
         svc.unlockAchievement('monster');
       if (!r.shown.length && lastMine.current.startsWith('raise:')) svc.unlockAchievement('steal');
       if (r.shown.includes(0) && s.seats[0]!.allIn) svc.unlockAchievement('double-up');
+      if (r.shown.includes(0) && s.seats[0]!.drew === 0) svc.unlockAchievement('pat-hand');
     }
     if (s.champion !== null) {
       const won = s.champion === 0;
@@ -183,10 +186,23 @@ export function PokerTable({
         setAnnouncement(t('announce.hole', { cards: cardsText(next.seats[0]!.hole) }));
     } else {
       const allIn = next.seats[seat]!.allIn && !before.seats[seat]!.allIn;
-      const word = allIn ? 'all-in' : a.startsWith('raise:') ? 'raise' : a;
+      // A draw shows on the seat's plate instead of as an action label.
+      const word = a.startsWith('draw:')
+        ? ''
+        : allIn
+          ? 'all-in'
+          : a.startsWith('raise:')
+            ? 'raise'
+            : a;
       if (seat === 0) lastMine.current = a;
       servicesRef.current.playSound(
-        a === 'fold' ? POKER_SOUNDS.fold : a === 'check' ? POKER_SOUNDS.check : POKER_SOUNDS.chips,
+        a === 'fold'
+          ? POKER_SOUNDS.fold
+          : a === 'check'
+            ? POKER_SOUNDS.check
+            : a.startsWith('draw:')
+              ? POKER_SOUNDS.deal
+              : POKER_SOUNDS.chips,
       );
       // Labels stay for the street; a new street clears all but folds and all-ins.
       const newStreet = next.street !== before.street;
@@ -195,10 +211,16 @@ export function PokerTable({
         out[seat] = word;
         return newStreet ? out.map((w) => (w === 'fold' || w === 'all-in' ? w : '')) : out;
       });
-      const action = t(`said.${word}`) + (a.startsWith('raise:') ? ` ${a.slice(6)}` : '');
+      const action = a.startsWith('draw:')
+        ? a.length === 5
+          ? t('said.pat')
+          : t('said.draw', { n: a.length - 5 })
+        : t(`said.${word}`) + (a.startsWith('raise:') ? ` ${a.slice(6)}` : '');
       if (next.street === 'done') handOver(next);
       else if (next.board.length > before.board.length)
         setAnnouncement(t('announce.board', { cards: cardsText(next.board) }));
+      else if (seat === 0 && mode === 'play' && a.startsWith('draw:'))
+        setAnnouncement(t('announce.hole', { cards: cardsText(next.seats[0]!.hole) }));
       else setAnnouncement(t('announce.act', { name: nameOf(seat), action }));
     }
     setState(next);
@@ -223,6 +245,20 @@ export function PokerTable({
   }, [state, mode, paused]);
 
   const myTurn = mode === 'play' && !!state && state.street !== 'done' && state.toAct === 0;
+  const myDraw = myTurn && state.street === 'draw';
+  const picked =
+    myDraw && discardPick && discardPick.at === state.history.length ? discardPick.picked : [];
+  const toggleDiscard = (k: number) => {
+    if (!myDraw) return;
+    const next = picked.includes(k) ? picked.filter((x) => x !== k) : [...picked, k];
+    if (next.length > MAX_DRAW) {
+      servicesRef.current.playSound(POKER_SOUNDS.invalid);
+      return;
+    }
+    servicesRef.current.playSound(POKER_SOUNDS.check);
+    setDiscardPick({ at: state.history.length, picked: next });
+  };
+  const drawPicked = () => act(`draw:${[...picked].sort((a, b) => a - b).join('')}`);
   const range = myTurn ? raiseRange(state) : null;
   const owe = myTurn ? toCall(state) : 0;
   const pot = state ? potSize(state) : 0;
@@ -248,10 +284,18 @@ export function PokerTable({
   const showCoach = () => {
     if (!myTurn || !state) return;
     const players = state.seats.filter((x) => !x.out && !x.folded).length - 1;
-    const equity = estimateEquity(state, 0, 800, rng.current, true);
     const move = styleAction(state, STYLES.medium, rng.current);
-    const odds = owe > 0 ? owe / (pot + owe) : 0;
     servicesRef.current.playSound(POKER_SOUNDS.hint);
+    if (move.startsWith('draw:')) {
+      const thrown = move
+        .slice(5)
+        .split('')
+        .map((k) => state.seats[0]!.hole[Number(k)]!);
+      setCoach(thrown.length ? t('coach.draw', { cards: cardsText(thrown) }) : t('coach.pat'));
+      return;
+    }
+    const equity = estimateEquity(state, 0, 800, rng.current, true);
+    const odds = owe > 0 ? owe / (pot + owe) : 0;
     setCoach(
       t('coach', {
         equity: Math.round(equity * 100),
@@ -273,6 +317,13 @@ export function PokerTable({
       return false;
     }
     if (!myTurn) return false;
+    if (myDraw) {
+      if (/^[1-5]$/.test(k)) toggleDiscard(Number(k) - 1);
+      else if (k === 'd' || k === 'enter') drawPicked();
+      else if (k === 'h') showCoach();
+      else return false;
+      return true;
+    }
     if (k === 'f' && owe > 0) act('fold');
     else if (k === 'c') act(owe > 0 ? 'call' : 'check');
     else if (k === 'r' && range) act(`raise:${raiseTo}`);
@@ -393,6 +444,7 @@ export function PokerTable({
   const untilUp =
     level < BLIND_LEVELS.length - 1 ? HANDS_PER_LEVEL - ((s.handNo - 1) % HANDS_PER_LEVEL) : 0;
   const omaha = variant.hole === 4;
+  const draw = variant.id === 'draw';
   const faceUp = (i: number) => mode === 'watch' || i === 0 || !!r?.shown.includes(i);
   const over = s.champion !== null;
   const status = over
@@ -403,9 +455,11 @@ export function PokerTable({
         : t('over.lost', { place: live + 1, players: n })
     : s.street === 'done'
       ? announcement
-      : myTurn
-        ? t('your-turn', { owe: owe > 0 ? t('to-call', { n: owe }) : t('to-check') })
-        : t('thinking', { name: nameOf(s.toAct) });
+      : myDraw
+        ? t('your-draw', { max: MAX_DRAW })
+        : myTurn
+          ? t('your-turn', { owe: owe > 0 ? t('to-call', { n: owe }) : t('to-check') })
+          : t('thinking', { name: nameOf(s.toAct) });
   const verb = s.currentBet > 0 ? 'raise.to' : 'bet.to';
 
   return (
@@ -431,28 +485,35 @@ export function PokerTable({
       >
         <div className={styles.felt} />
         <div className={styles.center}>
-          <div className={styles.board} data-testid="poker-board">
-            {Array.from({ length: 5 }, (_, k) => {
-              const c = s.board[k];
-              return (
-                <div
-                  key={k}
-                  className={`${styles.boardCard} ${c === undefined ? styles.slot : ''}`}
-                  role={c === undefined ? undefined : 'img'}
-                  aria-label={c === undefined ? undefined : cardName(c, locale)}
-                >
-                  {c !== undefined && (
-                    <CardView
-                      key={`${s.handNo}-${k}`}
-                      card={c}
-                      faceUp
-                      fourColor={services.colorblind}
-                    />
-                  )}
-                </div>
-              );
-            })}
-          </div>
+          {draw && s.street !== 'done' && (
+            <span className={styles.phase} data-testid="poker-phase">
+              {t(`street.${s.street}`)}
+            </span>
+          )}
+          {!draw && (
+            <div className={styles.board} data-testid="poker-board">
+              {Array.from({ length: 5 }, (_, k) => {
+                const c = s.board[k];
+                return (
+                  <div
+                    key={k}
+                    className={`${styles.boardCard} ${c === undefined ? styles.slot : ''}`}
+                    role={c === undefined ? undefined : 'img'}
+                    aria-label={c === undefined ? undefined : cardName(c, locale)}
+                  >
+                    {c !== undefined && (
+                      <CardView
+                        key={`${s.handNo}-${k}`}
+                        card={c}
+                        faceUp
+                        fourColor={services.colorblind}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
           <span className={styles.pot} data-testid="poker-pot">
             {t('pot', { n: pot })}
           </span>
@@ -473,6 +534,7 @@ export function PokerTable({
                 styles.seat,
                 i === 0 && mode === 'play' ? styles.mine : '',
                 omaha ? styles.omaha : '',
+                draw ? styles.five : '',
                 x.folded ? styles.folded : '',
                 x.out ? styles.out : '',
                 s.toAct === i && s.street !== 'done' ? styles.acting : '',
@@ -483,16 +545,30 @@ export function PokerTable({
             >
               <div className={styles.hole}>
                 {(!x.out || r?.shown.includes(i)) &&
-                  x.hole.map((c, k) => (
-                    <div
-                      key={`${s.handNo}-${k}`}
-                      className={styles.holeCard}
-                      role="img"
-                      aria-label={faceUp(i) ? cardName(c, locale) : t('card.hidden')}
-                    >
-                      <CardView card={c} faceUp={faceUp(i)} fourColor={services.colorblind} />
-                    </div>
-                  ))}
+                  x.hole.map((c, k) =>
+                    i === 0 && myDraw ? (
+                      <button
+                        key={`${s.handNo}-${k}-${c}`}
+                        type="button"
+                        className={`${styles.holeCard} ${styles.pick} ${picked.includes(k) ? styles.picked : ''}`}
+                        aria-pressed={picked.includes(k)}
+                        aria-label={cardName(c, locale)}
+                        onClick={() => toggleDiscard(k)}
+                        data-testid={`poker-card-${k}`}
+                      >
+                        <CardView card={c} faceUp fourColor={services.colorblind} />
+                      </button>
+                    ) : (
+                      <div
+                        key={`${s.handNo}-${k}-${c}`}
+                        className={styles.holeCard}
+                        role="img"
+                        aria-label={faceUp(i) ? cardName(c, locale) : t('card.hidden')}
+                      >
+                        <CardView card={c} faceUp={faceUp(i)} fourColor={services.colorblind} />
+                      </div>
+                    ),
+                  )}
               </div>
               <div className={styles.plate}>
                 <span className={styles.name}>
@@ -506,6 +582,11 @@ export function PokerTable({
                 <span className={styles.stack} data-testid={`poker-stack-${i}`}>
                   {x.out ? t('out') : x.stack}
                 </span>
+                {draw && x.drew >= 0 && !x.out && !x.folded && (
+                  <span className={styles.drew} data-testid={`poker-drew-${i}`}>
+                    {x.drew === 0 ? t('pat') : t('drew', { n: x.drew })}
+                  </span>
+                )}
               </div>
               {(x.bet > 0 || word || shownCat) && (
                 <div className={styles.tags}>
@@ -531,7 +612,27 @@ export function PokerTable({
       </div>
       {mode === 'watch' && !over && <p className={styles.keys}>{t('watching')}</p>}
       <div className={styles.controls}>
-        {myTurn && (
+        {myDraw && (
+          <>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={drawPicked}
+              data-testid="poker-draw"
+            >
+              {picked.length ? t('draw.n', { n: picked.length }) : t('stand-pat')}
+            </button>
+            <button
+              type="button"
+              className="btn btn-ghost"
+              onClick={showCoach}
+              data-testid="poker-hint"
+            >
+              <Lightbulb size={16} /> {t('hint')}
+            </button>
+          </>
+        )}
+        {myTurn && !myDraw && (
           <>
             {owe > 0 && (
               <button
@@ -558,7 +659,9 @@ export function PokerTable({
                 onClick={() => act(`raise:${raiseTo}`)}
                 data-testid="poker-raise"
               >
-                {raiseTo === range[1] ? t('all-in') : t(verb, { n: raiseTo })}
+                {raiseTo === s.seats[0]!.bet + s.seats[0]!.stack
+                  ? t('all-in')
+                  : t(verb, { n: raiseTo })}
               </button>
             )}
             <button
@@ -609,7 +712,7 @@ export function PokerTable({
           {t('menu')}
         </button>
       </div>
-      {range && (
+      {range && range[0] < range[1] && (
         <div className={styles.raise}>
           <div className={styles.presets}>
             {(
@@ -649,7 +752,7 @@ export function PokerTable({
           <Lightbulb size={14} /> {coach}
         </p>
       )}
-      {mode === 'play' && <p className={styles.keys}>{t('keys')}</p>}
+      {mode === 'play' && <p className={styles.keys}>{t(draw ? 'keys.draw' : 'keys')}</p>}
       <div className="visually-hidden" role="status" aria-live="polite">
         {announcement}
       </div>

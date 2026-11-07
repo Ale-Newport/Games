@@ -93,3 +93,14 @@ export function omahaScore(hole: readonly number[], board: readonly number[]): n
 }
 
 export const categoryOf = (score: number): Category => CATEGORIES[Math.floor(score / BASE ** 5)]!;
+
+/** Share of random five-card hands in a lower category, by category. */
+const CATEGORY_FLOOR = [0, 0.501, 0.924, 0.971, 0.992, 0.996, 0.998, 0.9996, 0.99998, 1];
+
+/** Approximate share of random five-card hands that a score beats (interpolated in its category). */
+export function fiveCardPercentile(score: number): number {
+  const top = BASE ** 5;
+  const cat = Math.floor(score / top);
+  const lo = CATEGORY_FLOOR[cat]!;
+  return lo + (CATEGORY_FLOOR[cat + 1]! - lo) * ((score % top) / top);
+}

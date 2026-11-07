@@ -17,6 +17,7 @@ import type { GameEnvironment, PlayerId } from '../../../ai/protocols/types';
 import type { Rng } from '../../../core/game-engine/random';
 import { suitOf } from '../cards/cards';
 import { CATEGORIES, bestScore, categoryOf, omahaScore, pokerRank } from './hands';
+import { bestDiscard, drawEquity, simpleDiscard } from './draw-ai';
 import { legalPokerActions, potSize, raiseRange, toCall, type PokerState } from './engine';
 
 /** A Chen-style pre-flop score of two cards (−1 … 20). */
@@ -90,6 +91,10 @@ export function estimateEquity(
   const holeSize = me.hole.length;
   const opponents = s.seats.flatMap((x, i) => (i !== seat && !x.out && !x.folded ? [i] : []));
   const floors = opponents.map((i) => (ranges ? rangeFloor(s, i) : 0));
+  if (s.variant === 'draw') {
+    const plan = s.street === 'preflop' ? `draw:${simpleDiscard(me.hole).join('')}` : 'draw:';
+    return drawEquity(s, seat, samples, rng, floors, plan);
+  }
   const known = new Set([...me.hole, ...s.board]);
   const unknown: number[] = [];
   for (let c = 0; c < 52; c++) if (!known.has(c)) unknown.push(c);
@@ -196,6 +201,12 @@ export function styleAction(s: PokerState, style: PokerStyle, rng: Rng): string 
   if (legal[0] === 'next') return 'next';
   const seat = s.toAct;
   const contenders = s.seats.filter((x) => !x.out && !x.folded).length;
+  if (s.street === 'draw') {
+    const hole = s.seats[seat]!.hole;
+    return style.id === 'easy'
+      ? `draw:${simpleDiscard(hole).join('')}`
+      : bestDiscard(s, seat, style.samples, rng);
+  }
   let equity = estimateEquity(s, seat, style.samples, rng, style.ranges);
   // Strength relative to a fair share against this many opponents.
   const fair = 1 / contenders;
@@ -215,14 +226,20 @@ export function styleAction(s: PokerState, style: PokerStyle, rng: Rng): string 
     const fromButton = (seat - s.button + n) % n;
     if (fromButton === 0) equity += 0.03;
   }
-  if (edge() >= style.valueAt && range) {
+  // Fixed-limit bets are small next to the pot: thinner value bets pay, slow-plays and bluffs
+  // (which rarely make anyone fold for one more small bet) do not.
+  const fixed = s.variant === 'draw';
+  const valueAt = fixed ? style.valueAt / 2 : style.valueAt;
+  if (edge() >= valueAt && range) {
     // Very strong hands go bigger; Hard sometimes slow-plays by just calling or checking.
-    if (style.id === 'hard' && edge() > 0.7 && rng.chance(0.25)) return owe > 0 ? 'call' : 'check';
+    if (style.id === 'hard' && !fixed && edge() > 0.7 && rng.chance(0.25))
+      return owe > 0 ? 'call' : 'check';
     const raise = raiseTo(edge() > 0.7 ? style.sizing * 1.5 : style.sizing);
     if (raise) return raise;
   }
   if (owe === 0) {
-    if (range && rng.chance(style.bluff) && equity < fair) return raiseTo(style.sizing) ?? 'check';
+    const bluff = fixed ? style.bluff / 4 : style.bluff;
+    if (range && rng.chance(bluff) && equity < fair) return raiseTo(style.sizing) ?? 'check';
     return 'check';
   }
   if (equity >= odds + style.callMargin) return 'call';

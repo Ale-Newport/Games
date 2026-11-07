@@ -91,6 +91,7 @@ import { manifest as clockSolitaire } from './clock-solitaire/manifest';
 import { manifest as canfield } from './canfield/manifest';
 import { manifest as blackjack } from './blackjack/manifest';
 import { manifest as texasHoldem } from './texas-holdem/manifest';
+import { manifest as fiveCardDraw } from './five-card-draw/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -180,6 +181,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: canfield, load: () => import('./canfield/index') },
   { manifest: blackjack, load: () => import('./blackjack/index') },
   { manifest: texasHoldem, load: () => import('./texas-holdem/index') },
+  { manifest: fiveCardDraw, load: () => import('./five-card-draw/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
