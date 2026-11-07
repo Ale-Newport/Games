@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 74 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 126
+**Complete:** 75 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 125
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -95,7 +95,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 072 | Klondike Solitaire — Draw Three | `klondike-draw-3` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 073 | FreeCell | `freecell` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 074 | Spider Solitaire — One Suit | `spider-1-suit` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 075 | Spider Solitaire — Two Suits | `spider-2-suits` | TODO | — | — | — | — | — |  |  |
+| 075 | Spider Solitaire — Two Suits | `spider-2-suits` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 076 | Spider Solitaire — Four Suits | `spider-4-suits` | TODO | — | — | — | — | — |  |  |
 | 077 | Pyramid Solitaire | `pyramid-solitaire` | TODO | — | — | — | — | — |  |  |
 | 078 | TriPeaks Solitaire | `tripeaks` | TODO | — | — | — | — | — |  |  |
