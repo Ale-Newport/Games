@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #122 Royal Regions (Queens) COMPLETE
+
+- Colored-regions queens puzzle under a generic name: 6×6 to 10×10 generated from a seed, with a
+  region-repair step that breaks alternative solutions (unique puzzles in 2–83 ms on average), a
+  four-technique solver that grades every level, drag-to-cross, auto-crosses and explained hints
+  naming region colors.
+- Played in the in-app browser (mobile, Spanish): an 8×8 crossed by dragging and solved with hints;
+  the explanations were checked against the board.
+- Verified (actually run): lint, typecheck, 2161 unit tests (287 files), build, 394 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #121 Hangman COMPLETE
 
 - Hangman with original lists (six categories, 280 English / 262 Spanish words), three levels, daily

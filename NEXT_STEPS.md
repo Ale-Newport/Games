@@ -124,7 +124,8 @@
 - **#119 Bulls and Cows — COMPLETE** (2026-11-07).
 - **#120 Word Guess — COMPLETE** (2026-11-07).
 - **#121 Hangman — COMPLETE** (2026-11-07).
-- **Current game: #122 Queens — Colored Regions Puzzle** (`queens`) — TODO (generic name, original puzzles).
+- **#122 Royal Regions (Queens) — COMPLETE** (2026-11-07).
+- **Current game: #123 Zip — Numbered Hamiltonian Path Puzzle** (`zip`) — TODO (generic name, original puzzles).
 
 ## Resume instructions
 
