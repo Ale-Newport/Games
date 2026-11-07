@@ -186,7 +186,8 @@
 - **#181 Sunny Trail — COMPLETE** (2026-11-07).
 - **#182 Spike Hop — COMPLETE** (2026-11-07).
 - **#183 Puffin Flap — COMPLETE** (2026-11-07).
-- **Current game: #184 Lunar Lander** (`lunar-lander`) — TODO.
+- **#184 Moon Touchdown — COMPLETE** (2026-11-07).
+- **Current game: #185 Missile Command-style game** (`missile-command`) — TODO.
 
 ## Resume instructions
 
