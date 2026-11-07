@@ -127,7 +127,8 @@
 - **#122 Royal Regions (Queens) — COMPLETE** (2026-11-07).
 - **#123 Number Trail (Zip) — COMPLETE** (2026-11-07).
 - **#124 8-Puzzle — COMPLETE** (2026-11-07).
-- **Current game: #125 15-Puzzle** (`fifteen-puzzle`) — TODO (reuse `src/games/shared/sliding/`).
+- **#125 15-Puzzle — COMPLETE** (2026-11-07).
+- **Current game: #126 Traffic Jam (Rush Hour-style)** (`traffic-jam`) — TODO (generic name; generator explores the state space).
 
 ## Resume instructions
 
