@@ -1462,6 +1462,15 @@ const PROGRESS: Record<
     ai: 'done',
     completed: '2026-11-07',
   },
+  'twisty-cube-2x2': {
+    status: 'COMPLETE',
+    engine: 'done',
+    graphics: 'done',
+    content: 'done',
+    tests: 'done',
+    ai: 'done',
+    completed: '2026-11-07',
+  },
 };
 
 export const ROADMAP: readonly RoadmapEntry[] = DEFINITIONS.map(([number, id, name, category]) => ({

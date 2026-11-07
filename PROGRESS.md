@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #134 Twisty Cube 2×2 COMPLETE
+
+- A shared twisty-cube core (`src/games/shared/cube`): a sticker model for any size, a CSS 3D view
+  with animated layer turns, drag to orbit, buttons and keys, an optimal 2×2 solver (IDA* over
+  permutation and twist tables) and a Kociemba two-phase solver for the 3×3 that comes next.
+- The 2×2 with 3- and 6-turn scrambles and full random states; hints are optimal from anywhere.
+- Played in the in-app browser (mobile, Spanish): turns animate the right way round at a constant
+  radius, hints to solved, and the AI solving a full scramble in 8 turns.
+- Verified (actually run): lint, typecheck, 2383 unit tests (311 files), build, 442 Playwright tests
+  (desktop + mobile) — all green; the cube hint e2e (a hint asked mid-turn) was fixed and re-run.
+
 ## 2026-11-07 — Session 1: #133 Towers of Hanoi COMPLETE
 
 - Towers of Hanoi with 3, 5 and 7 disks on three pegs and 6 disks on four; an exact breadth-first
