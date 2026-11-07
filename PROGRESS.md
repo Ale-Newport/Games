@@ -2,6 +2,17 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #064 Congkak COMPLETE
+
+- Thin module on the shared mancala family: 7 houses × 7 seeds, stores passed only on your own side,
+  relay sowing, extra turn in your store, capture from an empty own house, rounds alternate the
+  opener.
+- With alternating turns the opener wins almost every game whatever the levels (a pie rule was
+  tried and dropped); documented in GAME_SPEC. Seeded: Easy vs Random 20–0, Medium vs Easy 19–1;
+  Hard vs Medium 10–10, with Hard's margins larger (+90 opening vs Medium's +59).
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1105 unit tests, build, 170
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #063 Bao COMPLETE
 
 - Bao la Kujifunza on a 4 × 8 board: each player sows around their own 16-pit ring in either
