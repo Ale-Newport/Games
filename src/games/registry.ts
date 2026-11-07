@@ -190,6 +190,7 @@ import { manifest as flappy } from './flappy/manifest';
 import { manifest as lunarLander } from './lunar-lander/manifest';
 import { manifest as missileCommand } from './missile-command/manifest';
 import { manifest as centipede } from './centipede/manifest';
+import { manifest as tileHopper } from './tile-hopper/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -378,6 +379,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: lunarLander, load: () => import('./lunar-lander/index') },
   { manifest: missileCommand, load: () => import('./missile-command/index') },
   { manifest: centipede, load: () => import('./centipede/index') },
+  { manifest: tileHopper, load: () => import('./tile-hopper/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

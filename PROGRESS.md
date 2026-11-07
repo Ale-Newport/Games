@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #187 Cube Hopper COMPLETE
+
+- An isometric pyramid hopper with an original name and look: 28 cubes recoloured by landings
+  (once, twice, or toggling on levels 1–3), red balls, a purple ball that hatches into a chasing
+  spring, discs that carry the hopper to the top and lure a close spring into the void, a freezing
+  green ball. Tap beside the hopper to hop that way. The planner (safe breadth-first paths, disc
+  lures) averaged 14 291 points and 5.3 rounds; the eager hopper 9213 and 4.0.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden) with real
+  touchscreen taps beside the hopper towards the nearest blue cube: 20 cubes coloured (500 points)
+  before the balls and the spring took the three lives.
+- Verified (actually run): lint, typecheck, 3383 unit tests (433 files), build, 654 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #186 Garden Guard COMPLETE
 
 - A crawler shooter with an original name and look: a twelve-segment caterpillar winding down a
