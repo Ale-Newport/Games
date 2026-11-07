@@ -181,6 +181,7 @@ import { manifest as fallingBlocks } from './falling-blocks/manifest';
 import { manifest as fallingBlocksClassic } from './falling-blocks-classic/manifest';
 import { manifest as mazeChase } from './maze-chase/manifest';
 import { manifest as mazeChaseAdvanced } from './maze-chase-advanced/manifest';
+import { manifest as crossing } from './crossing/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -360,6 +361,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: fallingBlocksClassic, load: () => import('./falling-blocks-classic/index') },
   { manifest: mazeChase, load: () => import('./maze-chase/index') },
   { manifest: mazeChaseAdvanced, load: () => import('./maze-chase-advanced/index') },
+  { manifest: crossing, load: () => import('./crossing/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
