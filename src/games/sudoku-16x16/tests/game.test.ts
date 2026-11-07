@@ -26,7 +26,7 @@ describe('Sudoku 16×16 puzzles', () => {
     // Easy keeps more clues than Medium.
     const clues = (d: string) => newSudoku(SUDOKU_16, d, 4).puzzle.filter((x) => x).length;
     expect(clues('easy')).toBeGreaterThan(clues('medium'));
-  });
+  }, 30_000);
 
   it('lets the technique solver and the exact solver finish a Hard puzzle', () => {
     for (const move of [logicMove, solverMove]) {

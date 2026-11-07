@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #113 Slitherlink COMPLETE
+
+- Slitherlink (5×5 to 12×12) with its own engine: edge/dot geometry, an exact solver (number and dot
+  propagation, single-loop check, search), techniques for hints (numbers, dots, no early loop), and a
+  generator (a region grown without holes or pinches, its boundary as the loop, numbers removed while
+  unique and technique-drawable). Measured over 20 seeds per size: ≤ 156 ms, both solvers 100%.
+- Played in the in-app browser (mobile): tap and dot-to-dot drag input, hints, a 7×7 solved.
+  Fixed: a 5×5 region whose full numbers the techniques could not draw is now skipped.
+- A first full run timed out four older heavy tests under load (contract suites, 16×16 generation);
+  the 16×16 generation test now has a 30 s budget, and the rerun passed.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1979 unit tests, build, 358
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #112 Nonogram COMPLETE
 
 - Nonogram with a dynamic-programming line solver, an exact solver (line propagation + search), a
