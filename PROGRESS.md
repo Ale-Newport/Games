@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #070 Gale (catalog "Bridg-It") COMPLETE
+
+- Shown under the generic name Gale. Two interleaved dot grids on an 11 × 11 lattice, one bridge per
+  slot, Orange top–bottom and Teal left–right, alternating openers, no draws.
+- AI after Shannon's resistance machine (each network solved as a circuit) with alpha-beta. Seeded
+  (10 games per pair): Easy vs Random 10–0, Medium vs Easy 9–1, Hard vs Medium 10–0.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1196 unit tests, build, 182
+  Playwright tests (the Gale spec re-run after centering the frame and moving the cursor outline to
+  its own overlay).
+
 ## 2026-11-07 — Session 1: #069 Paper Soccer COMPLETE
 
 - 8 × 10 field with two-square goals; lines never redrawn nor along the border or goal sides;

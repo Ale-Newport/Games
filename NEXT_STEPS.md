@@ -72,7 +72,8 @@
 - **#067 Game of the Amazons — COMPLETE** (2026-11-07).
 - **#068 Lines of Action — COMPLETE** (2026-11-07).
 - **#069 Paper Soccer — COMPLETE** (2026-11-07).
-- **Current game: #070 Bridg-It** (`bridg-it`) — TODO.
+- **#070 Gale (catalog "Bridg-It") — COMPLETE** (2026-11-07).
+- **Current game: #071 Klondike Solitaire — Draw One** (`klondike-draw-1`) — TODO.
 
 ## Resume instructions
 
