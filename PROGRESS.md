@@ -2,6 +2,16 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #110 Futoshiki COMPLETE
+
+- Futoshiki (4×4 to 7×7) on the shared core: inequality signs with a propagator for the exact
+  solver and an inequality technique; the generator now draws variant rules per candidate solution.
+  Measured over 40 seeds per size: unique, at the wanted levels (one 6×6 kept at level 1 after its
+  tries), ≤ 164 ms; both solvers 100%.
+- Played in the in-app browser (mobile): 6×6 with chevrons, an explained hint, solved to the end.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1925 unit tests, build, 346
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #109 Calcudoku COMPLETE
 
 - Calcudoku (original arithmetic-cage puzzle, generic name for the KenKen style) on the shared sudoku

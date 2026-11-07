@@ -1,0 +1,17 @@
+.signs {
+  width: 100%;
+  height: 100%;
+}
+
+.signs path {
+  fill: none;
+  stroke: var(--warning);
+  stroke-width: 0.06;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 0.02px var(--surface));
+}
+
+.signs path.broken {
+  stroke: var(--danger);
+}
