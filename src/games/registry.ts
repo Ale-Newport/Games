@@ -92,6 +92,7 @@ import { manifest as canfield } from './canfield/manifest';
 import { manifest as blackjack } from './blackjack/manifest';
 import { manifest as texasHoldem } from './texas-holdem/manifest';
 import { manifest as fiveCardDraw } from './five-card-draw/manifest';
+import { manifest as omaha } from './omaha/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -182,6 +183,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: blackjack, load: () => import('./blackjack/index') },
   { manifest: texasHoldem, load: () => import('./texas-holdem/index') },
   { manifest: fiveCardDraw, load: () => import('./five-card-draw/index') },
+  { manifest: omaha, load: () => import('./omaha/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

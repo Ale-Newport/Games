@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #089 Omaha Hold'em COMPLETE
+
+- Omaha on the shared poker family (four hole cards, two-plus-three scoring, pot-limit); the table's
+  presets drop All-in when the pot caps the raise, and A raises the pot.
+- The first benchmark showed Medium and Hard losing to Easy in Omaha (−0.34 / −0.11 bb/hand).
+  Experiments (1500 hands each) showed thin value bets beat the calling station in every variant
+  (Hold'em: +0.84 → +6.68 bb/hand from a 25% to a 6% edge). Retuned: Medium bets from a 12% edge
+  (80% pot, 2% bluffs), Hard from 6% (pot, 4% bluffs); fixed limit keeps a 10% floor.
+- Re-measured: Hold'em (1500 hands) Medium/Hard vs Easy +4.22 / +5.91, Hard vs Medium +0.33; Omaha
+  (1000) +1.17 / +3.61, +0.15; Draw (2000) +0.27 / +0.18, +0.02 — specs updated.
+- Verified (actually run): lint, typecheck, `vitest run --maxWorkers=6` → 1553 unit tests, build, 262
+  Playwright tests.
+
 ## 2026-11-07 — Session 1: #088 Five Card Draw COMPLETE
 
 - The shared poker engine gained a `DRAW` variant: a discard round (0–3 cards, public counts, all-in

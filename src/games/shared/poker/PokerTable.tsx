@@ -720,7 +720,10 @@ export function PokerTable({
                 ['min', range[0]],
                 ['half', preset(0.5)],
                 ['full-pot', preset(1)],
-                ['all-in', range[1]],
+                // Pot-limit caps the raise at the pot: all-in only when that is the whole stack.
+                ...(range[1] === s.seats[0]!.bet + s.seats[0]!.stack
+                  ? ([['all-in', range[1]]] as const)
+                  : []),
               ] as const
             ).map(([label, to]) => (
               <button
@@ -752,7 +755,9 @@ export function PokerTable({
           <Lightbulb size={14} /> {coach}
         </p>
       )}
-      {mode === 'play' && <p className={styles.keys}>{t(draw ? 'keys.draw' : 'keys')}</p>}
+      {mode === 'play' && (
+        <p className={styles.keys}>{t(draw ? 'keys.draw' : omaha ? 'keys.omaha' : 'keys')}</p>
+      )}
       <div className="visually-hidden" role="status" aria-live="polite">
         {announcement}
       </div>
