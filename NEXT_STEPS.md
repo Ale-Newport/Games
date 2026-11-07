@@ -122,7 +122,8 @@
 - **#117 No-Guess Minesweeper — COMPLETE** (2026-11-07).
 - **#118 Code Breaker — COMPLETE** (2026-11-07).
 - **#119 Bulls and Cows — COMPLETE** (2026-11-07).
-- **Current game: #120 Five-Letter Word Guessing Game** (`word-guess`) — TODO (generic name; original word lists).
+- **#120 Word Guess — COMPLETE** (2026-11-07).
+- **Current game: #121 Hangman** (`hangman`) — TODO (reuse `src/games/word-guess/words.ts` ideas; original art).
 
 ## Resume instructions
 

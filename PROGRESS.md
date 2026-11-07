@@ -2,6 +2,18 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #120 Word Guess COMPLETE
+
+- Word Guess (generic five-letter word game) in English and Spanish: hand-picked answer lists (981 /
+  640), accepted guesses from Webster's Second International (public domain) plus generated Spanish
+  forms, today's word, hard mode, a colored on-screen keyboard with Ñ, explained hints.
+- Solver (expected-size over the answers): 3.227 guesses on average in English and 3.094 in Spanish
+  over every answer, never more than 5 in normal mode.
+- Played in the in-app browser (mobile, Spanish): rejected a non-word, guessed with the physical and
+  on-screen keyboards (Ñ), resumed after a reload and solved with hints. Fixed on the way: absent
+  tiles looked like unsent ones and absent keys were not dimmed; accented vowels now type plain.
+- Verified (actually run): lint, typecheck, 2118 unit tests (283 files), build, 386 Playwright tests (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #119 Bulls and Cows COMPLETE
 
 - Bulls and Cows on the shared code-guess core: 3/4/5 digits, solo and daily numbers, and a duel

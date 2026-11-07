@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 119 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 81
+**Complete:** 120 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 80
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -145,7 +145,7 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 117 | No-Guess Minesweeper | `minesweeper-no-guess` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 118 | Mastermind | `code-breaker` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 119 | Bulls and Cows | `bulls-and-cows` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 120 | Five-Letter Word Guessing Game | `word-guess` | TODO | — | — | — | — | — |  |  |
+| 120 | Five-Letter Word Guessing Game | `word-guess` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 121 | Hangman | `hangman` | TODO | — | — | — | — | — |  |  |
 | 122 | Queens — Colored Regions Puzzle | `queens` | TODO | — | — | — | — | — |  |  |
 | 123 | Zip — Numbered Hamiltonian Path Puzzle | `zip` | TODO | — | — | — | — | — |  |  |

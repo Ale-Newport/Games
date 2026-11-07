@@ -123,6 +123,7 @@ import { manifest as minesweeper } from './minesweeper/manifest';
 import { manifest as minesweeperNoGuess } from './minesweeper-no-guess/manifest';
 import { manifest as codeBreaker } from './code-breaker/manifest';
 import { manifest as bulls } from './bulls-and-cows/manifest';
+import { manifest as wordGuess } from './word-guess/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -244,6 +245,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: minesweeperNoGuess, load: () => import('./minesweeper-no-guess/index') },
   { manifest: codeBreaker, load: () => import('./code-breaker/index') },
   { manifest: bulls, load: () => import('./bulls-and-cows/index') },
+  { manifest: wordGuess, load: () => import('./word-guess/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
