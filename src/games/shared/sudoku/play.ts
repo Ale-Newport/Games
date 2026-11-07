@@ -6,6 +6,7 @@
 import { isRecord } from '../../../core/persistence/versioned';
 import { generatePuzzle, type PuzzleSpec } from './generator';
 import { bit, geometry, type Geometry, type Shape } from './grid';
+import { calcExtra, calcSteps, cageValue, generateCalc, type CalcCage } from './calc';
 import { jigsawRegions, regionsConnected } from './jigsaw';
 import { cageExtra, generateKiller, killerSteps, type Cage } from './killer';
 import { gradePuzzle, type StepExtra } from './logic';
@@ -44,36 +45,54 @@ export interface SudokuState {
   cages?: Cage[];
   /** Jigsaw sudoku: this puzzle's region of every cell. */
   regions?: number[];
+  /** Calcudoku: arithmetic cages (no givens then). */
+  calc?: CalcCage[];
 }
 
 /** The constraints and techniques beyond the units that a puzzle brings (its killer cages). */
 export function rulesOf(
   geo: Geometry,
-  s: { cages?: readonly Cage[] },
+  s: { cages?: readonly Cage[]; calc?: readonly CalcCage[] },
 ): { extra?: Extra; steps: StepExtra[] } {
-  return s.cages ? { extra: cageExtra(geo, s.cages), steps: killerSteps(s.cages) } : { steps: [] };
+  if (s.cages) return { extra: cageExtra(geo, s.cages), steps: killerSteps(s.cages) };
+  if (s.calc) return { extra: calcExtra(geo, s.calc), steps: calcSteps(s.calc) };
+  return { steps: [] };
 }
 
 export const geoOf = (v: SudokuVariant): Geometry => geometry(v.shape);
 
-/** The geometry of one puzzle: the variant's, with the puzzle's own regions for jigsaw sudoku. */
-export const geoFor = (v: SudokuVariant, s: { regions?: readonly number[] }): Geometry =>
-  s.regions ? geometry({ ...v.shape, regions: s.regions }) : geoOf(v);
+/** The grid shape of a difficulty (a variant may size its difficulties differently). */
+export const shapeFor = (v: SudokuVariant, difficulty: string): Shape =>
+  v.difficulties[difficulty]?.shape ?? v.shape;
+
+/**
+ * The geometry of one puzzle: its difficulty's shape, with the puzzle's own regions for jigsaw
+ * sudoku.
+ */
+export const geoFor = (
+  v: SudokuVariant,
+  s: { difficulty: string; regions?: readonly number[] },
+): Geometry => {
+  const shape = shapeFor(v, s.difficulty);
+  return geometry(s.regions ? { ...shape, regions: s.regions } : shape);
+};
 
 export function newSudoku(v: SudokuVariant, difficulty: string, seed: number): SudokuState {
   const spec = v.difficulties[difficulty];
   if (!spec) throw new Error(`Unknown difficulty ${difficulty}`);
-  let geo = geoOf(v);
+  const shape = shapeFor(v, difficulty);
+  let geo = geometry(shape);
   let puzzle: number[];
   let solution: number[];
   let cages: Cage[] | undefined;
   let regions: number[] | undefined;
+  let calc: CalcCage[] | undefined;
   if (spec.jigsaw) {
     // Fresh regions for every puzzle (retried in the rare case no grid fits them).
     const rng = new Rng(seed ^ 0x5bd1e995);
     for (;;) {
-      regions = jigsawRegions(v.shape, rng);
-      geo = geometry({ ...v.shape, regions });
+      regions = jigsawRegions(shape, rng);
+      geo = geometry({ ...shape, regions });
       try {
         randomSolution(geo, new Rng(seed));
         break;
@@ -82,7 +101,22 @@ export function newSudoku(v: SudokuVariant, difficulty: string, seed: number): S
       }
     }
   }
-  if (spec.cages) {
+  if (spec.calc) {
+    // Calcudoku: arithmetic cages until unique, kept when the techniques' level is in range.
+    const k = generateCalc(
+      geo,
+      seed,
+      { ...spec.calc, maxNodes: spec.maxNodes ?? 4000 },
+      (c) => {
+        const level = gradePuzzle(geo, Array<number>(geo.cells).fill(0), calcSteps(c)).level;
+        return level >= spec.minLevel && level <= spec.maxLevel;
+      },
+      spec.attempts,
+    );
+    puzzle = Array<number>(geo.cells).fill(0);
+    solution = k.solution;
+    calc = k.cages;
+  } else if (spec.cages) {
     // Killer: cages drawn until unique, kept when the techniques' level is in range.
     const k = generateKiller(
       geo,
@@ -117,6 +151,7 @@ export function newSudoku(v: SudokuVariant, difficulty: string, seed: number): S
     solved: false,
     ...(cages ? { cages } : {}),
     ...(regions ? { regions } : {}),
+    ...(calc ? { calc } : {}),
   };
 }
 
@@ -154,7 +189,7 @@ export function placeDigit(
   digit: number,
   options: { autoNotes?: boolean; hint?: boolean } = {},
 ): SudokuState {
-  if (s.solved || s.puzzle[cell] || digit < 1 || digit > v.shape.size) return s;
+  if (s.solved || s.puzzle[cell] || digit < 1 || digit > shapeFor(v, s.difficulty).size) return s;
   const geo = geoFor(v, s);
   const clearing = s.values[cell] === digit;
   const cells = [cell, ...(options.autoNotes === false || clearing ? [] : geo.peers[cell]!)];
@@ -249,7 +284,8 @@ const isIntArray = (a: unknown, n: number, max: number) =>
 export function isValidSudokuState(v: SudokuVariant, data: unknown): data is SudokuState {
   if (!isRecord(data)) return false;
   const d = data as unknown as SudokuState;
-  const size = v.shape.size;
+  if (typeof d.difficulty !== 'string' || !(d.difficulty in v.difficulties)) return false;
+  const size = shapeFor(v, d.difficulty).size;
   if (d.regions !== undefined) {
     // Jigsaw: n connected regions of n cells each.
     if (!isIntArray(d.regions, size * size, size - 1)) return false;
@@ -305,6 +341,34 @@ export function isValidSudokuState(v: SudokuVariant, data: unknown): data is Sud
       const digits = cells.map((c) => d.solution[c as number]!);
       if (new Set(digits).size !== digits.length) return false;
       if (digits.reduce((a, b) => a + b, 0) !== cage.sum) return false;
+    }
+    if (seen.size !== n) return false;
+  }
+  if (d.calc !== undefined) {
+    // Arithmetic cages: a partition of the grid whose targets match the solution.
+    if (!Array.isArray(d.calc)) return false;
+    const seen = new Set<number>();
+    for (const cage of d.calc as unknown[]) {
+      if (!isRecord(cage) || !Array.isArray(cage.cells) || !Number.isInteger(cage.target))
+        return false;
+      if (!['+', '-', '*', '/', '='].includes(cage.op as string)) return false;
+      const cells = cage.cells as unknown[];
+      if (
+        !cells.length ||
+        !cells.every(
+          (c) =>
+            Number.isInteger(c) &&
+            (c as number) >= 0 &&
+            (c as number) < n &&
+            !seen.has(c as number),
+        )
+      )
+        return false;
+      if (['-', '/', '='].includes(cage.op as string) && cells.length !== (cage.op === '=' ? 1 : 2))
+        return false;
+      cells.forEach((c) => seen.add(c as number));
+      const digits = cells.map((c) => d.solution[c as number]!);
+      if (cageValue(cage.op as CalcCage['op'], digits) !== cage.target) return false;
     }
     if (seen.size !== n) return false;
   }

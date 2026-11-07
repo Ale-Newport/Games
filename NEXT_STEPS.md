@@ -111,7 +111,8 @@
 - **#106 Killer Sudoku — COMPLETE** (2026-11-07).
 - **#107 Jigsaw Sudoku — COMPLETE** (2026-11-07).
 - **#108 Kakuro — COMPLETE** (2026-11-07).
-- **Current game: #109 Calcudoku (KenKen-style)** (`calcudoku`) — TODO.
+- **#109 Calcudoku (KenKen-style) — COMPLETE** (2026-11-07).
+- **Current game: #110 Futoshiki** (`futoshiki`) — TODO.
 
 ## Resume instructions
 

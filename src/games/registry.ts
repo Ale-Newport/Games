@@ -112,6 +112,7 @@ import { manifest as xSudoku } from './x-sudoku/manifest';
 import { manifest as killerSudoku } from './killer-sudoku/manifest';
 import { manifest as jigsawSudoku } from './jigsaw-sudoku/manifest';
 import { manifest as kakuro } from './kakuro/manifest';
+import { manifest as calcudoku } from './calcudoku/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -222,6 +223,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: killerSudoku, load: () => import('./killer-sudoku/index') },
   { manifest: jigsawSudoku, load: () => import('./jigsaw-sudoku/index') },
   { manifest: kakuro, load: () => import('./kakuro/index') },
+  { manifest: calcudoku, load: () => import('./calcudoku/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

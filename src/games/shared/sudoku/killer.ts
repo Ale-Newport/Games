@@ -208,13 +208,17 @@ export const killerSteps = (cages: readonly Cage[]): StepExtra[] => [
   { level: 2, find: (geo, st) => rule45(geo, st, cages) },
 ];
 
-/** Draws cages of the given sizes over a solution: random orthogonal growth, no repeated digit. */
-function drawCages(
+/**
+ * Draws cages of the given sizes over a solution: random orthogonal growth (with no repeated digit
+ * inside a cage when `distinct`).
+ */
+export function drawCages(
   geo: Geometry,
   solution: readonly number[],
   rng: Rng,
   min: number,
   max: number,
+  distinct = true,
 ): number[][] {
   const n = geo.size;
   const owner = Array<number>(geo.cells).fill(-1);
@@ -237,7 +241,7 @@ function drawCages(
             col < n - 1 ? c + 1 : -1,
           ];
         })
-        .filter((c) => c >= 0 && owner[c]! < 0 && !(digits & bit(solution[c]!)));
+        .filter((c) => c >= 0 && owner[c]! < 0 && !(distinct && digits & bit(solution[c]!)));
       if (!options.length) break;
       const next = options[rng.int(options.length)]!;
       owner[next] = groups.length;
@@ -250,7 +254,7 @@ function drawCages(
 }
 
 /** Splits cells into orthogonally connected pieces. */
-function pieces(geo: Geometry, cells: readonly number[]): number[][] {
+export function pieces(geo: Geometry, cells: readonly number[]): number[][] {
   const n = geo.size;
   const left = new Set(cells);
   const out: number[][] = [];

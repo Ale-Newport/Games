@@ -93,7 +93,6 @@ export function SudokuGame({
   );
   const t = useMemo(() => createTranslator(dict, locale), [dict, locale]);
   const servicesRef = useLatest(services);
-  const n = variant.shape.size;
   const levels = Object.keys(variant.difficulties);
   const slot = useMemo(
     () =>
@@ -127,6 +126,7 @@ export function SudokuGame({
   const watchSteps = useRef(0);
   const stateRef = useLatest(state);
   const geo = state ? geoFor(variant, state) : geoOf(variant);
+  const n = geo.size;
   const colours = useMemo(
     () => (state?.regions ? regionColours(n, state.regions) : null),
     [state?.regions, n],
@@ -512,7 +512,7 @@ export function SudokuGame({
   const pointed = new Set(hint?.cells ?? []);
   const counts = Array<number>(n + 1).fill(0);
   for (const x of s.values) counts[x]!++;
-  const noteCols = variant.shape.boxCols;
+  const noteCols = geo.shape.boxCols;
   const hidden = paused && mode === 'play';
 
   return (
