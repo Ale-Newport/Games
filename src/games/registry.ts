@@ -189,6 +189,7 @@ import { manifest as precisionPlatformer } from './precision-platformer/manifest
 import { manifest as flappy } from './flappy/manifest';
 import { manifest as lunarLander } from './lunar-lander/manifest';
 import { manifest as missileCommand } from './missile-command/manifest';
+import { manifest as centipede } from './centipede/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -376,6 +377,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: flappy, load: () => import('./flappy/index') },
   { manifest: lunarLander, load: () => import('./lunar-lander/index') },
   { manifest: missileCommand, load: () => import('./missile-command/index') },
+  { manifest: centipede, load: () => import('./centipede/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
