@@ -119,7 +119,8 @@
   --thick: color-mix(in srgb, var(--text) 75%, transparent);
   position: relative;
   display: grid;
-  grid-template-columns: repeat(var(--n), 1fr);
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--n), minmax(0, 1fr));
   width: min(100%, 540px, calc(100dvh - 300px), max(300px, calc(var(--n) * 64px)));
   min-width: min(100%, 300px);
   aspect-ratio: 1;

@@ -104,7 +104,8 @@
 - **#099 Crazy Eights — COMPLETE** (2026-11-07).
 - **#100 Go Fish — COMPLETE** (2026-11-07).
 - **#101 Classic Sudoku 9×9 — COMPLETE** (2026-11-07).
-- **Current game: #102 Mini Sudoku 4×4** (`sudoku-4x4`) — TODO.
+- **#102 Mini Sudoku 4×4 — COMPLETE** (2026-11-07).
+- **Current game: #103 Sudoku 6×6** (`sudoku-6x6`) — TODO.
 
 ## Resume instructions
 

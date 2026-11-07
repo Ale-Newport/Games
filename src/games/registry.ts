@@ -105,6 +105,7 @@ import { manifest as euchre } from './euchre/manifest';
 import { manifest as crazyEights } from './crazy-eights/manifest';
 import { manifest as goFish } from './go-fish/manifest';
 import { manifest as sudoku9x9 } from './sudoku-9x9/manifest';
+import { manifest as sudoku4x4 } from './sudoku-4x4/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -208,6 +209,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: crazyEights, load: () => import('./crazy-eights/index') },
   { manifest: goFish, load: () => import('./go-fish/index') },
   { manifest: sudoku9x9, load: () => import('./sudoku-9x9/index') },
+  { manifest: sudoku4x4, load: () => import('./sudoku-4x4/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
