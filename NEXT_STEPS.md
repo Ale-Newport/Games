@@ -198,7 +198,8 @@
 - **#193 Nebula Strike — COMPLETE** (2026-11-07).
 - **#194 Canyon Run — COMPLETE** (2026-11-08).
 - **#195 Circuit Sprint — COMPLETE** (2026-11-08).
-- **Current game: #196 Endless runner** (`endless-runner`) — TODO.
+- **#196 Rooftop Dash — COMPLETE** (2026-11-08).
+- **Current game: #197 Vertical jumping platform game** (`vertical-jumper`) — TODO.
 
 ## Resume instructions
 

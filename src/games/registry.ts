@@ -199,6 +199,7 @@ import { manifest as spacewar } from './spacewar/manifest';
 import { manifest as verticalShmup } from './vertical-shmup/manifest';
 import { manifest as riverRaid } from './river-raid/manifest';
 import { manifest as topDownRacing } from './top-down-racing/manifest';
+import { manifest as endlessRunner } from './endless-runner/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -396,6 +397,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: verticalShmup, load: () => import('./vertical-shmup/index') },
   { manifest: riverRaid, load: () => import('./river-raid/index') },
   { manifest: topDownRacing, load: () => import('./top-down-racing/index') },
+  { manifest: endlessRunner, load: () => import('./endless-runner/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
