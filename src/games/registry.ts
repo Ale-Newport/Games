@@ -201,6 +201,7 @@ import { manifest as riverRaid } from './river-raid/manifest';
 import { manifest as topDownRacing } from './top-down-racing/manifest';
 import { manifest as endlessRunner } from './endless-runner/manifest';
 import { manifest as verticalJumper } from './vertical-jumper/manifest';
+import { manifest as cartpole } from './cartpole/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -400,6 +401,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: topDownRacing, load: () => import('./top-down-racing/index') },
   { manifest: endlessRunner, load: () => import('./endless-runner/index') },
   { manifest: verticalJumper, load: () => import('./vertical-jumper/index') },
+  { manifest: cartpole, load: () => import('./cartpole/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

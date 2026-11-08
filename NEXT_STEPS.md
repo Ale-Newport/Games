@@ -200,7 +200,8 @@
 - **#195 Circuit Sprint — COMPLETE** (2026-11-08).
 - **#196 Rooftop Dash — COMPLETE** (2026-11-08).
 - **#197 Cloud Climber — COMPLETE** (2026-11-08).
-- **Current game: #198 CartPole balancing game** (`cartpole`) — TODO.
+- **#198 Balancing Cart — COMPLETE** (2026-11-08).
+- **Current game: #199 Bubble shooter** (`bubble-shooter`) — TODO.
 
 ## Resume instructions
 
