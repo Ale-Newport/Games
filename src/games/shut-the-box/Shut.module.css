@@ -7,7 +7,7 @@
 
 .chip {
   padding: 3px 10px;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   border: 1px solid rgb(255 255 255 / 0.15);
   font-size: 0.82rem;
   font-weight: 700;
@@ -36,7 +36,7 @@
   border-radius: 6px;
   background: linear-gradient(#f1d9a8, #d9b57a);
   color: #3a2410;
-  font: 800 clamp(1rem, 4.5vw, 1.6rem) var(--font-display);
+  font: 700 clamp(1rem, 4.5vw, 1.6rem) var(--font-body);
   cursor: pointer;
   transition:
     transform 150ms var(--ease-out),
@@ -80,7 +80,7 @@
 }
 
 .total {
-  font: 800 1.4rem var(--font-display);
+  font: 400 1.01rem var(--font-display);
 }
 
 @media (prefers-reduced-motion: reduce) {

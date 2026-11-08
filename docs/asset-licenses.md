@@ -11,16 +11,16 @@ sprites, music, logos or level data are used.
 | Board/piece graphics       | Inline SVG/CSS/Canvas in each game module                | Original, generated in code                                        |
 | Chess piece set            | `src/games/shared/chess/ChessPieces.tsx`                 | Original silhouettes drawn for this project (no third-party set)   |
 | Sound effects              | `src/core/audio/audio-engine.ts`, `src/games/*/audio.ts` | Synthesized at runtime with the Web Audio API from parameter specs |
-| Favicon / logo             | `public/favicon.svg`                                     | Original                                                           |
+| Favicon / logo             | `public/favicon.svg`, `src/components/PixelLogo.tsx`     | Original (pixel joystick sprite)                                   |
 
 ## Third-party (bundled, not hotlinked)
 
-| Package                                                      | Use                         | License                   |
-| ------------------------------------------------------------ | --------------------------- | ------------------------- |
-| `@fontsource-variable/inter` (Inter, Rasmus Andersson)       | Body font                   | SIL Open Font License 1.1 |
-| `@fontsource-variable/outfit` (Outfit, On Brand Investments) | Display font                | SIL Open Font License 1.1 |
-| `lucide-react`                                               | UI icons (not game sprites) | ISC                       |
-| `react`, `react-dom`                                         | UI runtime                  | MIT                       |
+| Package                                                  | Use                         | License                   |
+| -------------------------------------------------------- | --------------------------- | ------------------------- |
+| `@fontsource/chakra-petch` (Chakra Petch, Cadson Demak)  | Body font                   | SIL Open Font License 1.1 |
+| `@fontsource/press-start-2p` (Press Start 2P, CodeMan38) | Display / pixel font        | SIL Open Font License 1.1 |
+| `lucide-react`                                           | UI icons (not game sprites) | ISC                       |
+| `react`, `react-dom`                                     | UI runtime                  | MIT                       |
 
 ## Word lists and data
 

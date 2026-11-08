@@ -49,7 +49,7 @@
 }
 
 .score {
-  font: 800 1.2rem var(--font-display);
+  font: 400 0.86rem var(--font-display);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
@@ -71,5 +71,5 @@
 
 .turnTotal {
   margin: 0;
-  font: 800 1.3rem var(--font-display);
+  font: 400 0.94rem var(--font-display);
 }

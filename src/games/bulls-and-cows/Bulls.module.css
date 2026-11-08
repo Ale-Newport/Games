@@ -95,7 +95,7 @@
 .chip {
   min-width: 2.2em;
   padding: 1px 5px;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
   font-size: var(--text-xs);
   font-weight: 800;
   text-align: center;

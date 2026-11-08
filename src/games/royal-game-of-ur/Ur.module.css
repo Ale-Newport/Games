@@ -144,5 +144,5 @@ circle.dark {
 
 .rollValue {
   min-width: 1.5em;
-  font: 800 1.4rem var(--font-display);
+  font: 400 1.01rem var(--font-display);
 }

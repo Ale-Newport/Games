@@ -2,6 +2,24 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-08 — Session 2: arcade-cabinet restyle (no game logic touched)
+
+- New look for the whole site, driven by tokens: night-time arcade hall (dark) and daylight flyer
+  (light); Press Start 2P for titles/labels/score readouts, Chakra Petch for text; squared corners,
+  chunky buttons with a hard bottom edge, hard offset shadows, a lit marquee header with a chase of
+  bulbs, a control-deck tab bar on mobile, game cards styled as little cabinets (CRT preview with
+  scanlines, pixel number tag, pip difficulty), a CRT bezel around every game stage, LED score tiles,
+  segmented power bars, a pixel-joystick logo and favicon. Inter/Outfit were removed.
+- Applied to every page (home, library, profile, settings, roadmap, AI lab, 404, game page, modal,
+  toasts) and to the shared game shells (two-player, sudoku, tricks, poker, arcade canvas shell, pads).
+  Pill radii, the duplicated menu/segmented/legend rules and in-board numerals were normalised across
+  the game stylesheets; boards keep their own materials (wood, felt, stones).
+- Looked at all 200 games in headless Chromium (menu and in-play, 1280×800, dark), plus samples in
+  light and in 390 px Spanish; found and fixed: light-theme HUD contrast (new `--lit` token), long
+  titles truncating on phones (now wrap to two lines), white-on-pink counters.
+- Verified (actually run): lint, typecheck, 3649 unit tests (472 files), build, 706 Playwright
+  tests (desktop + mobile) — all green. Not committed.
+
 ## 2026-11-08 — Session 1: #200 Wanderer Rescue COMPLETE
 
 - A puzzle platformer in the style of the classic lead-the-walkers-home games, with an original

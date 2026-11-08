@@ -33,38 +33,47 @@ export function HomePage() {
   return (
     <div className="page">
       <section className={styles.hero}>
-        <h1 className={styles.heroTitle}>{t('brand.name')}</h1>
-        <p className={styles.heroText}>{t('brand.tagline')}</p>
-        <form
-          className={styles.searchForm}
-          role="search"
-          onSubmit={(e) => {
-            e.preventDefault();
-            navigate('/library', { q: query.trim() || undefined });
-          }}
-        >
-          <label htmlFor="home-search" className="visually-hidden">
-            {t('search.label')}
-          </label>
-          <input
-            id="home-search"
-            className={styles.searchInput}
-            type="search"
-            placeholder={t('search.placeholder')}
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button type="submit" className="btn btn-primary btn-icon" aria-label={t('search.label')}>
-            <Search size={18} />
-          </button>
-        </form>
-        <div className={styles.heroActions}>
-          <a className="btn btn-primary" href={href('/library')}>
-            {t('home.browseAll')} <ArrowRight size={16} />
-          </a>
-          <a className="btn" href={href('/ai-lab')}>
-            <Bot size={16} /> {t('nav.aiLab')}
-          </a>
+        <div className={styles.heroInner}>
+          <p className={styles.insertCoin} aria-hidden="true">
+            ▶ {t('home.insertCoin')}
+          </p>
+          <h1 className={styles.heroTitle}>{t('brand.name')}</h1>
+          <p className={styles.heroText}>{t('brand.tagline')}</p>
+          <form
+            className={styles.searchForm}
+            role="search"
+            onSubmit={(e) => {
+              e.preventDefault();
+              navigate('/library', { q: query.trim() || undefined });
+            }}
+          >
+            <label htmlFor="home-search" className="visually-hidden">
+              {t('search.label')}
+            </label>
+            <input
+              id="home-search"
+              className={styles.searchInput}
+              type="search"
+              placeholder={t('search.placeholder')}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="btn btn-primary btn-icon"
+              aria-label={t('search.label')}
+            >
+              <Search size={18} />
+            </button>
+          </form>
+          <div className={styles.heroActions}>
+            <a className="btn btn-primary" href={href('/library')}>
+              {t('home.browseAll')} <ArrowRight size={16} />
+            </a>
+            <a className="btn" href={href('/ai-lab')}>
+              <Bot size={16} /> {t('nav.aiLab')}
+            </a>
+          </div>
         </div>
       </section>
 

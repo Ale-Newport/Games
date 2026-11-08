@@ -1,84 +1,101 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
-  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: var(--space-5) var(--space-4);
 }
 
+/* Each game is a little cabinet: screen on top, control panel (title + button) below. */
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  border: 3px solid var(--ink);
   background: var(--surface);
+  box-shadow:
+    inset 0 0 0 2px var(--border-strong),
+    var(--shadow-md);
   transition:
-    transform var(--dur-med) var(--ease-out),
-    box-shadow var(--dur-med) var(--ease-out),
-    border-color var(--dur-med);
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow-md);
+.card:hover,
+.card:focus-within {
+  transform: translate(-2px, -2px);
+  box-shadow:
+    inset 0 0 0 2px var(--accent-2),
+    6px 6px 0 var(--accent);
 }
 
 .previewLink {
   position: relative;
   display: block;
   aspect-ratio: 16 / 10;
-  background: var(--surface-2);
+  margin: var(--space-2) var(--space-2) 0;
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  background: var(--screen);
   overflow: hidden;
+  box-shadow: 0 0 0 2px var(--border-strong);
+}
+
+/* Scanlines and a vignette over the preview so the art reads as a monitor. */
+.previewLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.4)),
+    repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0, 0, 0, 0.2) 2px 3px);
 }
 
 .preview {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--dur-slow) var(--ease-out);
-}
-
-.card:hover .preview {
-  transform: scale(1.04);
 }
 
 .number {
   position: absolute;
-  left: 10px;
-  top: 10px;
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 700;
-  color: #fff;
-  background: rgba(8, 10, 22, 0.6);
-  backdrop-filter: blur(6px);
+  left: 6px;
+  top: 6px;
+  z-index: 1;
+  padding: 3px 6px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  line-height: 1.2;
+  color: var(--accent-3);
+  background: var(--screen);
 }
 
 .favorite {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 14px;
+  top: 14px;
+  z-index: 2;
   display: grid;
   place-items: center;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
-  border: none;
-  color: #fff;
-  background: rgba(8, 10, 22, 0.55);
-  backdrop-filter: blur(6px);
-  transition: transform var(--dur-fast) var(--ease-spring);
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--ink);
+  color: #f6f1ff;
+  background: var(--screen);
+  transition: transform var(--dur-fast) var(--ease-out);
 }
 
 .favorite:hover {
-  transform: scale(1.1);
+  transform: translateY(-2px);
+  color: var(--accent-strong);
 }
 
 .favoriteOn {
-  color: #ff5d8f;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 20%, var(--screen));
 }
 
 .body {
@@ -86,28 +103,44 @@
   flex-direction: column;
   gap: 6px;
   flex: 1;
-  padding: var(--space-4);
+  padding: var(--space-3) var(--space-4) var(--space-4);
 }
 
 .category {
   font-size: var(--text-xs);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
+  color: var(--accent-2);
+}
+
+:root[data-theme='light'] .category {
   color: var(--accent-2);
 }
 
 .title {
-  font-size: var(--text-lg);
+  font-size: var(--pixel-sm);
+  line-height: 1.6;
 }
 
 .title a {
   text-decoration: none;
 }
 
+/* The whole card is the hit target for the title link. */
+.title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
 .title a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  color: var(--accent-3);
+}
+
+:root[data-theme='light'] .title a:hover {
+  color: var(--accent-strong);
 }
 
 .tagline {
@@ -124,6 +157,7 @@
   padding: 0;
   list-style: none;
   font-size: var(--text-xs);
+  font-weight: 600;
   color: var(--text-muted);
 }
 
@@ -137,19 +171,23 @@
   gap: 3px !important;
 }
 
+/* Difficulty is shown as lit pips, like the power meter on a cabinet. */
 .dot,
 .dotOn {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
   background: var(--surface-3);
+  border: 1px solid var(--ink);
 }
 
 .dotOn {
-  background: var(--accent);
+  background: var(--accent-3);
 }
 
 .footer {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -160,7 +198,7 @@
 
 .record {
   font-size: var(--text-xs);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }

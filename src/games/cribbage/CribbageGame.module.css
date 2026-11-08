@@ -109,7 +109,7 @@
 
 .count {
   padding: 2px 10px;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: rgba(0, 0, 0, 0.4);
   color: #ffe9a8;
   font-weight: 800;
