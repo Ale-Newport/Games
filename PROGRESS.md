@@ -2,6 +2,21 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-08 — Session 1: #197 Cloud Climber COMPLETE
+
+- A vertical jumping game with an original name and look: the climber bounces by herself on clouds
+  and the player steers (the sides wrap round); drifting clouds, thin clouds that burst, springs,
+  and storm sprites that pop when landed on and are fatal otherwise; the view never sinks. The
+  planner AI (tries steering patterns up to the next bounce and rejects bounces with no safe way
+  past a sprite) was still climbing after 10 minutes on all 6 seeds (8560–8819 m); the drifter
+  reached 345–1049 m before a sprite caught it.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script followed the hood, picked a cloud above on each bounce and steered with the
+  real keys, best climb 394 m. It found a real problem: drifting clouds were the same light blue as
+  the bottom of the sky, nearly invisible; they are now lavender.
+- Verified (actually run): lint, typecheck, 3571 unit tests (463 files), build, 694 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-08 — Session 1: #196 Rooftop Dash COMPLETE
 
 - An endless runner with an original name and look: a courier runs across generated rooftops on
