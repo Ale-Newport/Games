@@ -2,6 +2,19 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #193 Nebula Strike COMPLETE
+
+- A vertical scrolling shooter with an original name and look: auto-fire with a power fan up to five
+  shots, a small hittable core, darters, swoopers, tanks and power-dropping carriers, a boss with
+  alternating patterns each minute, screen-clearing bombs, harder stages. Drag on the screen to fly.
+  The ace (tries every move a third of a second ahead) averaged 4.6 stages in 10-minute runs; the
+  sweeper lasted 35 s.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden) by dragging
+  the real pointer: dodging the nearest bullets and lining up under enemies, 2500 points before the
+  third hit. Fixed: the fighter was still drawn under the game-over message.
+- Verified (actually run): lint, typecheck, 3492 unit tests (451 files), build, 678 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #192 Star Duel COMPLETE
 
 - A two-ship duel around a star with an original name and look: gravity, momentum, wrapping, four
