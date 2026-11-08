@@ -201,7 +201,8 @@
 - **#196 Rooftop Dash — COMPLETE** (2026-11-08).
 - **#197 Cloud Climber — COMPLETE** (2026-11-08).
 - **#198 Balancing Cart — COMPLETE** (2026-11-08).
-- **Current game: #199 Bubble shooter** (`bubble-shooter`) — TODO.
+- **#199 Bubble Cannon — COMPLETE** (2026-11-08).
+- **Current game: #200 Lemmings-style puzzle platformer** (`rescue-walkers`) — TODO.
 
 ## Resume instructions
 

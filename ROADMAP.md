@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 198 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 2
+**Complete:** 199 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 1
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
@@ -234,5 +234,5 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 196 | Endless Runner | `endless-runner` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 197 | Vertical Jumping Platform Game | `vertical-jumper` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 198 | CartPole Balancing Game | `cartpole` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
-| 199 | Bubble Shooter | `bubble-shooter` | TODO | — | — | — | — | — |  |  |
+| 199 | Bubble Shooter | `bubble-shooter` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 200 | Lemmings-Style Puzzle Platformer | `rescue-walkers` | TODO | — | — | — | — | — |  |  |

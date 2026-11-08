@@ -2,6 +2,22 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-08 — Session 1: #199 Bubble Cannon COMPLETE
+
+- A bubble shooter with an original name and look: a honeycomb of up to six colours (each with its
+  own mark for colour-blind play), wall bank shots, pops of three or more, drops for double, a new
+  row every few shots that pop nothing, levels with more rows and colours, swap with the next
+  bubble, a dotted aiming guide, aim by dragging and fire on release. The aimer AI (all 65 angles
+  with the real flight, for both bubbles) was still playing after 10 minutes on all 6 seeds,
+  levels 7–11; the sprayer (straight at the nearest same colour) was buried on level 1.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden) with the
+  real pointer: a script read the cannon's colour, dragged towards the lowest bubble of that colour
+  and lifted to fire — 31 shots, 550 points before the honeycomb reached the line on level 1 (it
+  never banks or plans, as expected of the naive approach). Fixed on integration: a closure
+  narrowed a variable to `never` under the project's stricter type check.
+- Verified (actually run): lint, typecheck, 3619 unit tests (469 files), build, 702 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-08 — Session 1: #198 Balancing Cart COMPLETE
 
 - The classic cart-and-pole problem as a hand-played game (generic name): textbook equations at 60
