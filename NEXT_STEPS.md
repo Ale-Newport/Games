@@ -197,7 +197,8 @@
 - **#192 Star Duel — COMPLETE** (2026-11-07).
 - **#193 Nebula Strike — COMPLETE** (2026-11-07).
 - **#194 Canyon Run — COMPLETE** (2026-11-08).
-- **Current game: #195 Top-down racing** (`top-down-racing`) — TODO.
+- **#195 Circuit Sprint — COMPLETE** (2026-11-08).
+- **Current game: #196 Endless runner** (`endless-runner`) — TODO.
 
 ## Resume instructions
 
