@@ -2,6 +2,20 @@
 
 Newest entries first. Record only verified facts (tests actually run, games actually played).
 
+## 2026-11-07 — Session 1: #192 Star Duel COMPLETE
+
+- A two-ship duel around a star with an original name and look: gravity, momentum, wrapping, four
+  torpedoes in flight, risky hyperspace (one jump in four is fatal, three a round), first to five
+  kills against a computer duellist. The duellist won 5 of 12 matches against its twin; the gunner
+  and an idle ship none.
+- Fixed while balancing: from mirror-image starts two duellists shot each other at the same moment
+  every round, so the match never ended; starts are now nudged at random.
+- Played in headless Chromium (Pixel 7 emulation, Spanish; the in-app pane was hidden): a
+  pixel-reading script turned, burned and fired 121 torpedoes with the real keys; guessing its own
+  heading, it lost 0–5 to the computer duellist in 15 s.
+- Verified (actually run): lint, typecheck, 3474 unit tests (448 files), build, 674 Playwright tests
+  (desktop + mobile) — all green.
+
 ## 2026-11-07 — Session 1: #191 Sky Lances COMPLETE
 
 - An aerial jousting game with an original name and look: flap-and-drift flight over a lava pit with

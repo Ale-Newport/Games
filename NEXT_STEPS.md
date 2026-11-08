@@ -194,7 +194,8 @@
 - **#189 Blast Arena — COMPLETE** (2026-11-07).
 - **#190 Neon Trails — COMPLETE** (2026-11-07).
 - **#191 Sky Lances — COMPLETE** (2026-11-07).
-- **Current game: #192 Spacewar-style duel** (`spacewar`) — TODO.
+- **#192 Star Duel — COMPLETE** (2026-11-07).
+- **Current game: #193 Vertical shoot-'em-up** (`vertical-shmup`) — TODO.
 
 ## Resume instructions
 
