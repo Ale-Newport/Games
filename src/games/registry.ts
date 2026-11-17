@@ -228,6 +228,7 @@ import { manifest as cellArena } from './cell-arena/manifest';
 import { manifest as blockyArenaFps } from './blocky-arena-fps/manifest';
 import { manifest as endlessCraft } from './endless-craft/manifest';
 import { manifest as passwordRules } from './password-rules/manifest';
+import { manifest as higherLower } from './higher-lower/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -454,6 +455,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: blockyArenaFps, load: () => import('./blocky-arena-fps/index') },
   { manifest: endlessCraft, load: () => import('./endless-craft/index') },
   { manifest: passwordRules, load: () => import('./password-rules/index') },
+  { manifest: higherLower, load: () => import('./higher-lower/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
