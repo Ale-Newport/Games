@@ -1,0 +1,96 @@
+.map {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 4px solid var(--ink);
+  border-radius: var(--radius-md);
+  box-shadow: 4px 4px 0 var(--ink);
+  touch-action: manipulation;
+}
+
+.loading {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 960 / 520;
+  border: 4px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+}
+
+.sea {
+  fill: #12305a;
+}
+
+:root[data-theme='light'] .sea {
+  fill: #b9dcf5;
+}
+
+.country {
+  stroke: #0b1530;
+  stroke-width: 0.6;
+  fill: #6d7a99;
+  transition: fill 160ms;
+}
+
+.country[data-tone='outside'] {
+  fill: #2f3a55;
+}
+
+.country[data-tone='idle'] {
+  fill: #c9d2e6;
+  cursor: pointer;
+}
+
+.country[data-tone='idle']:hover {
+  fill: #ffffff;
+}
+
+.country[data-tone='found'],
+.dot[data-tone='found'] {
+  fill: #3ddc84;
+}
+
+.country[data-tone='missed'],
+.dot[data-tone='missed'] {
+  fill: #ff5a73;
+}
+
+.country[data-tone='target'],
+.dot[data-tone='target'] {
+  fill: #ffd23f;
+}
+
+.country[data-tone='wrong'],
+.dot[data-tone='wrong'] {
+  fill: #ff8a3d;
+}
+
+.country[data-tone='active'],
+.dot[data-tone='active'] {
+  fill: #22e5ff;
+}
+
+.country[data-tone='muted'] {
+  fill: #8893ad;
+}
+
+.dot {
+  fill: #c9d2e6;
+  stroke: #0b1530;
+  stroke-width: 1.2;
+  cursor: pointer;
+}
+
+:root[data-colorblind='on'] .country[data-tone='found'],
+:root[data-colorblind='on'] .dot[data-tone='found'] {
+  fill: #35c8ff;
+}
+
+:root[data-colorblind='on'] .country[data-tone='missed'],
+:root[data-colorblind='on'] .dot[data-tone='missed'] {
+  fill: #ff9f1c;
+}
+
+:root[data-motion='reduce'] .country {
+  transition: none;
+}
