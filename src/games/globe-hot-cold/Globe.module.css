@@ -1,0 +1,27 @@
+.box {
+  position: relative;
+  width: min(100%, 440px);
+  margin: 0 auto;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  touch-action: none;
+  cursor: grab;
+}
+
+.canvas:active {
+  cursor: grabbing;
+}
+
+.zoom {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

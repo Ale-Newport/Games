@@ -1,0 +1,15 @@
+import type { SoundSpec } from '../../core/audio/audio-engine';
+
+/** Synthesized globe sounds: cold, warm and hot guesses, the find and giving up. */
+export const GLOBE_SOUNDS = {
+  cold: [{ wave: 'sine', freq: 300, duration: 0.12, gain: 0.07 }],
+  warm: [{ wave: 'sine', freq: 520, duration: 0.12, gain: 0.08 }],
+  hot: [{ wave: 'triangle', freq: 820, freqEnd: 980, duration: 0.16, gain: 0.1 }],
+  win: [
+    { wave: 'triangle', freq: 523, duration: 0.12, gain: 0.16 },
+    { wave: 'triangle', freq: 659, duration: 0.12, delay: 0.1, gain: 0.16 },
+    { wave: 'triangle', freq: 784, duration: 0.12, delay: 0.2, gain: 0.16 },
+    { wave: 'triangle', freq: 1047, duration: 0.4, delay: 0.3, gain: 0.18 },
+  ],
+  lose: [{ wave: 'triangle', freq: 330, freqEnd: 220, duration: 0.45, gain: 0.12 }],
+} satisfies Record<string, SoundSpec>;

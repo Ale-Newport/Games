@@ -214,6 +214,8 @@ import { manifest as wordWarmth } from './word-warmth/manifest';
 import { manifest as wordGroups } from './word-groups/manifest';
 import { manifest as countryShape } from './country-shape/manifest';
 import { manifest as themeStrands } from './theme-strands/manifest';
+import { manifest as flagReveal } from './flag-reveal/manifest';
+import { manifest as globeHotCold } from './globe-hot-cold/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -426,6 +428,8 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: wordGroups, load: () => import('./word-groups/index') },
   { manifest: countryShape, load: () => import('./country-shape/index') },
   { manifest: themeStrands, load: () => import('./theme-strands/index') },
+  { manifest: flagReveal, load: () => import('./flag-reveal/index') },
+  { manifest: globeHotCold, load: () => import('./globe-hot-cold/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

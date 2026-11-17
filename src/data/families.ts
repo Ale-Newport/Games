@@ -259,6 +259,11 @@ export const FAMILIES: readonly GameFamily[] = [
     name: { en: 'Meaning Games', es: 'Juegos de significado' },
     members: ['word-rank', 'word-warmth'],
   },
+  {
+    id: 'geo-guess',
+    name: { en: 'Country Guessers', es: 'Adivina el país' },
+    members: ['country-shape', 'flag-reveal', 'globe-hot-cold'],
+  },
 ];
 
 const BY_GAME = new Map<string, GameFamily>();

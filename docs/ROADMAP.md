@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 210 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 20
+**Complete:** 212 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 18
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -251,8 +251,8 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 208 | Word Groups (Connections-style) | `word-groups` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 209 | Country Shape (Worldle-style) | `country-shape` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 210 | Theme Strands (Strands-style) | `theme-strands` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
-| 211 | Flag Reveal (Flagle-style) | `flag-reveal` | TODO | — | — | — | — | — |  |  |
-| 212 | Hot & Cold Globe (Globle-style) | `globe-hot-cold` | TODO | — | — | — | — | — |  |  |
+| 211 | Flag Reveal (Flagle-style) | `flag-reveal` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
+| 212 | Hot & Cold Globe (Globle-style) | `globe-hot-cold` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 213 | Sketch & Guess (Skribbl-style) | `sketch-guess` | TODO | — | — | — | — | — |  |  |
 | 214 | Draw Telephone (Gartic Phone-style) | `draw-telephone` | TODO | — | — | — | — | — |  |  |
 | 215 | Code Words (Codenames-style) | `code-words` | TODO | — | — | — | — | — |  |  |

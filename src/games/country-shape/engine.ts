@@ -5,10 +5,10 @@
  * two bonus questions: the capital and the flag, each from four options.
  */
 import { Rng } from '../../core/game-engine/random';
-import { COUNTRIES, arrowFor, bearing, centroidKm, centroidOf } from '../shared/world/world';
+import { clue } from '../shared/world/clues';
+import { COUNTRIES, centroidKm } from '../shared/world/world';
 
 export const MAX_GUESSES = 6;
-export const MAX_DISTANCE = 20000;
 export const EPOCH = Date.UTC(2026, 0, 1);
 
 /** Targets: countries large enough to recognise (1,000 km² or more), excluding non-sovereign shapes. */
@@ -30,26 +30,7 @@ export interface ShapeState {
   flag: BonusResult;
 }
 
-export interface Clue {
-  iso2: string;
-  km: number;
-  /** Degrees clockwise from north, from the guess towards the target. */
-  bearing: number;
-  arrow: string;
-  proximity: number;
-}
-
-export function clue(guess: string, target: string): Clue {
-  const km = centroidKm(guess, target);
-  const deg = guess === target ? 0 : bearing(centroidOf(guess), centroidOf(target));
-  return {
-    iso2: guess,
-    km,
-    bearing: deg,
-    arrow: guess === target ? '🎉' : arrowFor(deg),
-    proximity: guess === target ? 100 : Math.max(0, Math.floor((1 - km / MAX_DISTANCE) * 100)),
-  };
-}
+export { clue, type Clue } from '../shared/world/clues';
 
 export function gameNumber(date = new Date()): number {
   return Math.floor(
