@@ -103,6 +103,25 @@ interface NodeFs {
 
 const host = globalThis as unknown as NodeHost;
 
+let wordsLoading: Promise<string[]> | null = null;
+
+/** Loads only the 30,000-word list (about 240 kB), without the vectors. */
+export function loadWordList(): Promise<string[]> {
+  wordsLoading ??= (async () => {
+    const proc = host.process;
+    if (proc?.versions?.node) {
+      const fsName = 'node:fs/promises';
+      const fs = (await import(/* @vite-ignore */ fsName)) as NodeFs;
+      const u = new URL('./words.txt', import.meta.url);
+      const at = u.protocol === 'file:' ? u : `${proc.cwd()}${decodeURIComponent(u.pathname)}`;
+      return (await fs.readFile(at, 'utf8')).split('\n').filter(Boolean);
+    }
+    const url = (await import('./words.txt?url')).default;
+    return (await fetch(url).then((r) => r.text())).split('\n').filter(Boolean);
+  })();
+  return wordsLoading;
+}
+
 /** Loads the vectors once (about 5 MB, fetched on first use; read from disk under Node). */
 export function loadVectors(): Promise<Vectors> {
   loading ??= (async () => {

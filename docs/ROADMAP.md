@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 209 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 21
+**Complete:** 210 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 20
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -250,7 +250,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 207 | Word Warmth (Semantle-style) | `word-warmth` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 208 | Word Groups (Connections-style) | `word-groups` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 209 | Country Shape (Worldle-style) | `country-shape` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
-| 210 | Theme Strands (Strands-style) | `theme-strands` | TODO | — | — | — | — | — |  |  |
+| 210 | Theme Strands (Strands-style) | `theme-strands` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 211 | Flag Reveal (Flagle-style) | `flag-reveal` | TODO | — | — | — | — | — |  |  |
 | 212 | Hot & Cold Globe (Globle-style) | `globe-hot-cold` | TODO | — | — | — | — | — |  |  |
 | 213 | Sketch & Guess (Skribbl-style) | `sketch-guess` | TODO | — | — | — | — | — |  |  |
