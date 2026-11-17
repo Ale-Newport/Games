@@ -151,6 +151,7 @@ export function BombGame({
   }, [state?.status]);
 
   // Bots: think, then type their word letter by letter.
+  const livesKey = state?.players.map((p) => p.lives).join();
   useEffect(() => {
     const s = state;
     if (!s || s.status !== 'playing' || !common || !all) return;
@@ -186,7 +187,7 @@ export function BombGame({
     state?.holder,
     state?.turns,
     state?.status,
-    state?.players.map((p) => p.lives).join(),
+    livesKey,
     common,
     all,
   ]);
