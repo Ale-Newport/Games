@@ -233,6 +233,7 @@ import { manifest as mindReader } from './mind-reader/manifest';
 import { manifest as doodleRecognizer } from './doodle-recognizer/manifest';
 import { manifest as idleBakery } from './idle-bakery/manifest';
 import { manifest as whenAndWhere } from './when-and-where/manifest';
+import { manifest as paintedNightRide } from './painted-night-ride/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -464,6 +465,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: doodleRecognizer, load: () => import('./doodle-recognizer/index') },
   { manifest: idleBakery, load: () => import('./idle-bakery/index') },
   { manifest: whenAndWhere, load: () => import('./when-and-where/index') },
+  { manifest: paintedNightRide, load: () => import('./painted-night-ride/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

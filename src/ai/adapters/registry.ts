@@ -255,6 +255,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'doodle-recognizer': () => import('../../games/doodle-recognizer/ai-adapter').then((m) => m.bundle),
   'idle-bakery': () => import('../../games/idle-bakery/ai-adapter').then((m) => m.bundle),
   'when-and-where': () => import('../../games/when-and-where/ai-adapter').then((m) => m.bundle),
+  'painted-night-ride': () => import('../../games/painted-night-ride/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

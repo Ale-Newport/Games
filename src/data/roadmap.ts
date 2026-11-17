@@ -2359,6 +2359,15 @@ const PROGRESS: Record<
     ai: 'done',
     completed: '2026-11-17',
   },
+  'painted-night-ride': {
+    status: 'COMPLETE',
+    engine: 'done',
+    graphics: 'done',
+    content: 'done',
+    tests: 'done',
+    ai: 'done',
+    completed: '2026-11-17',
+  },
 };
 
 export const ROADMAP: readonly RoadmapEntry[] = DEFINITIONS.map(([number, id, name, category]) => ({

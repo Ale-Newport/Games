@@ -1,0 +1,162 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: min(1100px, calc((100vh - 230px) * 16 / 9));
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .wrap {
+    max-width: 100%;
+  }
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0b1f4d;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (max-width: 700px) {
+  .stage {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: #fff8dc;
+  font-family: Georgia, 'Times New Roman', serif;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.stats {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.stats strong {
+  color: #ffe27a;
+}
+
+.time {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  font-size: 1.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.toast {
+  position: absolute;
+  left: 50%;
+  top: 22%;
+  transform: translateX(-50%);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-style: italic;
+  color: #ffe27a;
+}
+
+.keys {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  opacity: 0.85;
+  font-family: system-ui, sans-serif;
+  white-space: nowrap;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(8, 16, 40, 0.7);
+  color: #fff8dc;
+  padding: 16px;
+  pointer-events: auto;
+}
+
+.overlay h2 {
+  margin: 0;
+  font-family: Georgia, serif;
+  color: #ffe27a;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nogl {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #c9d1e0;
+  padding: 20px;
+  text-align: center;
+}
+
+.pad {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  pointer-events: none;
+}
+
+.pad > div {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 6px;
+  pointer-events: auto;
+}
+
+.pad button {
+  min-width: 52px;
+  min-height: 46px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(10, 20, 50, 0.55);
+  color: #fff8dc;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
