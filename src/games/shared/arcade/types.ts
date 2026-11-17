@@ -6,7 +6,7 @@
  */
 import type { SoundSpec } from '../../../core/audio/audio-engine';
 import type { GameResult } from '../../../core/profiles/profile-store';
-import type { Dictionary, Locale } from '../../../core/i18n';
+import type { Dictionary, Locale, Translator } from '../../../core/i18n';
 
 /** Held controls, from keys, touch buttons or a pointer. */
 export type Control = 'left' | 'right' | 'up' | 'down' | 'fire' | 'alt' | 'ccw' | 'hold';
@@ -40,7 +40,12 @@ export interface ArcadeDef<S, A extends string> {
   score(state: S): number;
   /** Values shown above the canvas: [string key, value]. */
   hud(state: S): [string, string | number][];
-  draw(ctx: CanvasRenderingContext2D, state: S, options: { reducedMotion: boolean }): void;
+  /** `t` translates the game's strings, for any words drawn on the canvas. */
+  draw(
+    ctx: CanvasRenderingContext2D,
+    state: S,
+    options: { reducedMotion: boolean; t: Translator },
+  ): void;
   /** The action for the controls held now (and, for pointer games, the pointer position). */
   control(state: S, held: ReadonlySet<Control>, pointer: { x: number; y: number } | null): A;
   /** On-screen buttons for touch play. */

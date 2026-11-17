@@ -60,7 +60,7 @@ export const SOCCER: ArcadeDef<Soccer, SoccerAction> = {
     ['hud.blue', s.score[1]],
     ['hud.time', clock(s)],
   ],
-  draw(ctx, s, { reducedMotion }) {
+  draw(ctx, s, { reducedMotion, t }) {
     // Grass with mowing stripes.
     ctx.fillStyle = '#3f7f3f';
     ctx.fillRect(0, 0, W, H);
@@ -132,7 +132,7 @@ export const SOCCER: ArcadeDef<Soccer, SoccerAction> = {
       ctx.fillStyle = '#ffd23f';
       ctx.font = 'bold 40px system-ui, sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('GOAL!', W / 2, CY + 14);
+      ctx.fillText(t('goal'), W / 2, CY + 14);
     }
   },
   control(_s, held) {
@@ -221,6 +221,7 @@ export const SOCCER: ArcadeDef<Soccer, SoccerAction> = {
       'hud.red': 'Red',
       'hud.blue': 'Blue',
       'hud.time': 'Time',
+      goal: 'GOAL!',
       'end.win': 'Red wins {a}–{b}!',
       'end.lose': 'Blue wins {b}–{a}.',
     },
@@ -248,6 +249,7 @@ export const SOCCER: ArcadeDef<Soccer, SoccerAction> = {
       'hud.red': 'Rojo',
       'hud.blue': 'Azul',
       'hud.time': 'Tiempo',
+      goal: '¡GOL!',
       'end.win': '¡Gana el rojo {a}–{b}!',
       'end.lose': 'Gana el azul {b}–{a}.',
     },

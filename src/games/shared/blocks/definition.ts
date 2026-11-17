@@ -14,6 +14,7 @@ import {
   stepBlocks,
   type BlockRules,
   type Blocks,
+  type Cell,
 } from './sim';
 
 const CELL = 18;
@@ -23,7 +24,7 @@ const WIDTH = 300;
 const HEIGHT = BOARD_Y * 2 + (ROWS - HIDDEN) * CELL;
 
 /** Piece colours, with a pattern letter for colour-blind play. */
-const COLOURS: Record<Kind, string> = {
+export const COLOURS: Record<Cell, string> = {
   I: '#4dd0e1',
   O: '#f1c40f',
   T: '#b15cff',
@@ -31,14 +32,15 @@ const COLOURS: Record<Kind, string> = {
   Z: '#e5484d',
   J: '#3e63dd',
   L: '#f08c3a',
+  G: '#7b8194',
 };
 
-function block(
+export function block(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
   size: number,
-  kind: Kind,
+  kind: Cell,
   ghost = false,
 ) {
   if (ghost) {
@@ -56,7 +58,7 @@ function block(
   ctx.fillRect(x + 1, y + size - 4, size - 2, 3);
 }
 
-function mini(ctx: CanvasRenderingContext2D, kind: Kind, x: number, y: number) {
+export function mini(ctx: CanvasRenderingContext2D, kind: Kind, x: number, y: number) {
   const s = 11;
   for (const [cx, cy] of cells(kind, 0)) block(ctx, x + cx * s, y + cy * s, s, kind);
 }

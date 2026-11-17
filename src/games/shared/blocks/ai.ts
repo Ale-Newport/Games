@@ -4,8 +4,17 @@
  * "El-Tetris" weights (landing height, rows cleared, row and column transitions, holes, wells), and
  * then press the keys that get the piece there: rotate, tap sideways, drop.
  */
-import { boxSize, cells, type Kind } from './pieces';
-import { COLS, dropY, fits, ROWS, type BlockRules, type Blocks, type Piece } from './sim';
+import { boxSize, cells } from './pieces';
+import {
+  COLS,
+  dropY,
+  fits,
+  ROWS,
+  type BlockRules,
+  type Blocks,
+  type Cell,
+  type Piece,
+} from './sim';
 
 const W = {
   height: -4.500158825082766,
@@ -16,7 +25,7 @@ const W = {
   wells: -3.3855972247263626,
 };
 
-export function evaluate(board: (Kind | null)[], p: Piece): number {
+export function evaluate(board: (Cell | null)[], p: Piece): number {
   const b = [...board];
   let maxY = 0;
   let minY = ROWS;
@@ -32,7 +41,7 @@ export function evaluate(board: (Kind | null)[], p: Piece): number {
   let pieceCellsCleared = 0;
   for (const [, cy] of cells(p.kind, p.r)) if (full.includes(p.y + cy)) pieceCellsCleared++;
   const after = [
-    ...new Array<Kind | null>(full.length * COLS).fill(null),
+    ...new Array<Cell | null>(full.length * COLS).fill(null),
     ...b.filter((_, i) => !full.includes(Math.floor(i / COLS))),
   ];
   const filled = (x: number, y: number) =>

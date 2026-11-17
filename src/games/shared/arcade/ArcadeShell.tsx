@@ -98,6 +98,7 @@ export function ArcadeShell<S, A extends string>({
     [locale, def],
   );
   const servicesRef = useLatest(services);
+  const tRef = useLatest(t);
   const slot = useMemo(
     () =>
       services.saveSlot<Saved<S>>({
@@ -212,7 +213,7 @@ export function ArcadeShell<S, A extends string>({
         const s = stateRef.current;
         if (!s) return;
         const ctx = canvasRef.current?.getContext('2d');
-        if (ctx) def.draw(ctx, s, { reducedMotion });
+        if (ctx) def.draw(ctx, s, { reducedMotion, t: tRef.current });
         const h = def.hud(s);
         const key = JSON.stringify(h);
         if (key !== lastHud) {

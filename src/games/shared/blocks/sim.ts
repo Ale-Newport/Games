@@ -15,6 +15,9 @@
 import { nextUint32, seedRng, type RngState } from '../../../core/game-engine/random';
 import { boxSize, cells, kicks, KINDS, type Kind } from './pieces';
 
+/** A board cell: a piece's colour, or `G` for a garbage row sent by an opponent. */
+export type Cell = Kind | 'G';
+
 export const COLS = 10;
 export const ROWS = 22;
 export const HIDDEN = 2;
@@ -26,7 +29,7 @@ export interface BlockRules {
 export const MODERN: BlockRules = { id: 'falling-blocks', modern: true };
 export const CLASSIC: BlockRules = { id: 'falling-blocks-classic', modern: false };
 
-/** The held controls this step, packed: L/R move, C/A rotate (clockwise / anticlockwise), S soft drop, H hard drop, K hold. */
+/** The held controls this step, packed: L/R move, C/A rotate (clockwise / anticlockwise), F half turn (only where a game offers it), S soft drop, H hard drop, K hold. */
 export type BlockAction = string;
 export function actionsFor(modern: boolean): string[] {
   const out: string[] = ['idle'];
@@ -51,7 +54,7 @@ export interface Blocks {
   rules: string;
   rng: RngState;
   /** Row-major, top first; null for empty. */
-  board: (Kind | null)[];
+  board: (Cell | null)[];
   piece: Piece | null;
   queue: Kind[];
   bag: Kind[];
@@ -129,7 +132,7 @@ function draw(
   return [KINDS[k]!, r, bag];
 }
 
-export function fits(board: (Kind | null)[], p: Piece): boolean {
+export function fits(board: (Cell | null)[], p: Piece): boolean {
   return cells(p.kind, p.r).every(([cx, cy]) => {
     const x = p.x + cx;
     const y = p.y + cy;
@@ -164,7 +167,7 @@ export function newBlocks(
   return {
     rules: rules.id,
     rng,
-    board: new Array<Kind | null>(COLS * ROWS).fill(null),
+    board: new Array<Cell | null>(COLS * ROWS).fill(null),
     piece: spawnPiece(queue[0]!),
     queue: queue.slice(1),
     bag,
@@ -196,7 +199,7 @@ export function newBlocks(
 }
 
 /** The lowest the piece can drop to. */
-export function dropY(board: (Kind | null)[], p: Piece): number {
+export function dropY(board: (Cell | null)[], p: Piece): number {
   let y = p.y;
   while (fits(board, { ...p, y: y + 1 })) y++;
   return y;
@@ -249,7 +252,7 @@ export function stepBlocks(rules: BlockRules, s: Blocks, action: BlockAction): B
     if (entry > 0) return { ...step, entry, events };
     if (clearing.length) {
       const keep = board.filter((_, i) => !clearing.includes(Math.floor(i / COLS)));
-      board = [...new Array<Kind | null>(clearing.length * COLS).fill(null), ...keep];
+      board = [...new Array<Cell | null>(clearing.length * COLS).fill(null), ...keep];
       clearing = [];
     }
     const kind = queue[0]!;
@@ -313,6 +316,7 @@ export function stepBlocks(rules: BlockRules, s: Blocks, action: BlockAction): B
   for (const [c, dirR] of [
     ['C', 1],
     ['A', -1],
+    ['F', 2],
   ] as const) {
     if (!pressed(c)) continue;
     const to = (p.r + dirR + 4) % 4;

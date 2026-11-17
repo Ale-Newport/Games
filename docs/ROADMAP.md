@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 218 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 12
+**Complete:** 219 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 11
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -259,7 +259,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 216 | Caption Battle (Make It Meme-style) | `caption-battle` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 217 | Syllable Bomb (BombParty-style) | `syllable-bomb` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 218 | Disc Soccer (HaxBall-style) | `disc-soccer` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
-| 219 | Stack Duel (TETR.IO-style) | `stack-duel` | TODO | — | — | — | — | — |  |  |
+| 219 | Stack Duel (TETR.IO-style) | `stack-duel` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 220 | Snake Arena (Slither.io-style) | `snake-arena` | TODO | — | — | — | — | — |  |  |
 | 221 | Cell Arena (Agar.io-style) | `cell-arena` | TODO | — | — | — | — | — |  |  |
 | 222 | Blocky Arena FPS (Krunker-style) | `blocky-arena-fps` | TODO | — | — | — | — | — |  |  |

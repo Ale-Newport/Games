@@ -201,8 +201,45 @@ const I_KICKS: Record<string, [number, number][]> = {
 };
 
 /** Kick offsets to try for a rotation, converted to y-down; just [0, 0] without kicks. */
+/** Half-turn kicks (the common "SRS+" table, y up), the same for every piece. */
+const HALF_KICKS: Record<string, [number, number][]> = {
+  '0>2': [
+    [0, 0],
+    [0, 1],
+    [1, 1],
+    [-1, 1],
+    [1, 0],
+    [-1, 0],
+  ],
+  '2>0': [
+    [0, 0],
+    [0, -1],
+    [-1, -1],
+    [1, -1],
+    [-1, 0],
+    [1, 0],
+  ],
+  '1>3': [
+    [0, 0],
+    [1, 0],
+    [1, 2],
+    [1, 1],
+    [0, 2],
+    [0, 1],
+  ],
+  '3>1': [
+    [0, 0],
+    [-1, 0],
+    [-1, 2],
+    [-1, 1],
+    [0, 2],
+    [0, 1],
+  ],
+};
+
 export function kicks(kind: Kind, from: number, to: number, modern: boolean): [number, number][] {
   if (!modern || kind === 'O') return [[0, 0]];
+  if ((from + 2) % 4 === to) return HALF_KICKS[`${from}>${to}`]!.map(([x, y]) => [x, -y]);
   const table = kind === 'I' ? I_KICKS : JLSTZ;
   return (table[`${from}>${to}`] ?? [[0, 0]]).map(([x, y]) => [x, -y]);
 }
