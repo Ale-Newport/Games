@@ -251,6 +251,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'endless-craft': () => import('../../games/endless-craft/ai-adapter').then((m) => m.bundle),
   'password-rules': () => import('../../games/password-rules/ai-adapter').then((m) => m.bundle),
   'higher-lower': () => import('../../games/higher-lower/ai-adapter').then((m) => m.bundle),
+  'mind-reader': () => import('../../games/mind-reader/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

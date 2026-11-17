@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 225 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 5
+**Complete:** 226 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 4
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -266,7 +266,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 223 | Endless Craft (Infinite Craft-style) | `endless-craft` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 224 | Password Rules (Password Game-style) | `password-rules` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 225 | Higher or Lower | `higher-lower` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
-| 226 | Mind Reader (Akinator-style) | `mind-reader` | TODO | — | — | — | — | — |  |  |
+| 226 | Mind Reader (Akinator-style) | `mind-reader` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 227 | Doodle Recognizer (Quick, Draw!-style) | `doodle-recognizer` | TODO | — | — | — | — | — |  |  |
 | 228 | Idle Bakery (Cookie Clicker-style) | `idle-bakery` | TODO | — | — | — | — | — |  |  |
 | 229 | When & Where (WenWare-style) | `when-and-where` | TODO | — | — | — | — | — |  |  |
