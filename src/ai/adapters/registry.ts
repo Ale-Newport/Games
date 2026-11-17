@@ -230,6 +230,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
     import('../../games/crowd-answer-climb/ai-adapter').then((m) => m.bundle),
   'category-letters': () => import('../../games/category-letters/ai-adapter').then((m) => m.bundle),
   'quiz-arcade': () => import('../../games/quiz-arcade/ai-adapter').then((m) => m.bundle),
+  'world-quiz': () => import('../../games/world-quiz/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

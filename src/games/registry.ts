@@ -208,6 +208,7 @@ import { manifest as rareAnswerDive } from './rare-answer-dive/manifest';
 import { manifest as crowdAnswerClimb } from './crowd-answer-climb/manifest';
 import { manifest as categoryLetters } from './category-letters/manifest';
 import { manifest as quizArcade } from './quiz-arcade/manifest';
+import { manifest as worldQuiz } from './world-quiz/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -414,6 +415,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: crowdAnswerClimb, load: () => import('./crowd-answer-climb/index') },
   { manifest: categoryLetters, load: () => import('./category-letters/index') },
   { manifest: quizArcade, load: () => import('./quiz-arcade/index') },
+  { manifest: worldQuiz, load: () => import('./world-quiz/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

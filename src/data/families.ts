@@ -249,6 +249,11 @@ export const FAMILIES: readonly GameFamily[] = [
     name: { en: 'Survey Trivia', es: 'Trivia de encuestas' },
     members: ['rare-answer-dive', 'crowd-answer-climb'],
   },
+  {
+    id: 'quiz',
+    name: { en: 'Timed Quizzes', es: 'Tests contrarreloj' },
+    members: ['quiz-arcade', 'world-quiz'],
+  },
 ];
 
 const BY_GAME = new Map<string, GameFamily>();
