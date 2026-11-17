@@ -243,6 +243,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'code-words': () => import('../../games/code-words/ai-adapter').then((m) => m.bundle),
   'caption-battle': () => import('../../games/caption-battle/ai-adapter').then((m) => m.bundle),
   'syllable-bomb': () => import('../../games/syllable-bomb/ai-adapter').then((m) => m.bundle),
+  'disc-soccer': () => import('../../games/disc-soccer/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
