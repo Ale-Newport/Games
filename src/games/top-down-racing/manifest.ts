@@ -7,12 +7,12 @@ export const manifest: GameManifest = {
   number: 195,
   title: { en: 'Circuit Sprint', es: 'Sprint en circuito' },
   tagline: {
-    en: 'Three laps, three rivals, three circuits seen from above.',
-    es: 'Tres vueltas, tres rivales y tres circuitos vistos desde arriba.',
+    en: 'Three laps, three rivals, seven circuits seen from above.',
+    es: 'Tres vueltas, tres rivales y siete circuitos vistos desde arriba.',
   },
   description: {
-    en: 'A top-down racing game with an original name and circuits: race three laps against three computer drivers on an oval, a kidney or a twisting loop. Accelerate, brake before the bends — the car steers more sharply the faster it goes — and stay off the grass, which slows you right down. Bump past rivals and take the flag first. Arrows, the touch pad, or point a finger where to go; watch an AI driver.',
-    es: 'Un juego de carreras visto desde arriba con nombre y circuitos originales: corre tres vueltas contra tres pilotos del ordenador en un óvalo, un riñón o un lazo lleno de curvas. Acelera, frena antes de las curvas (el coche gira más cuanto más rápido va) y no pises la hierba, que te frena mucho. Adelanta a los rivales y cruza la meta el primero. Flechas, el panel táctil o señala con el dedo hacia dónde ir; mira a un piloto de la IA.',
+    en: 'A top-down racing game with an original name and circuits: race three laps against three computer drivers on one of seven circuits: an oval, a kidney, a twisting loop, a triangle, a boomerang, a chicane or a long hairpin. Accelerate, brake before the bends — the car steers more sharply the faster it goes — and stay off the grass, which slows you right down. Bump past rivals and take the flag first. Arrows, the touch pad, or point a finger where to go; watch an AI driver.',
+    es: 'Un juego de carreras visto desde arriba con nombre y circuitos originales: corre tres vueltas contra tres pilotos del ordenador en uno de siete circuitos: un óvalo, un riñón, un lazo lleno de curvas, un triángulo, un bumerán, una chicane o una larga horquilla. Acelera, frena antes de las curvas (el coche gira más cuanto más rápido va) y no pises la hierba, que te frena mucho. Adelanta a los rivales y cruza la meta el primero. Flechas, el panel táctil o señala con el dedo hacia dónde ir; mira a un piloto de la IA.',
   },
   category: 'arcade',
   genre: { en: 'Racing', es: 'Carreras' },

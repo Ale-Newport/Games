@@ -5,8 +5,8 @@ import type { BrickAction, Bricks } from '../shared/bricks/sim';
 import { DEF } from './definition';
 import { RULES_VERSION, RULESET_ID } from './rules-meta';
 
-/** A 30-minute limit ends runs that stall. */
-export const env = arcadeEnv(DEF, RULES_VERSION, RULESET_ID, 60 * 60 * 30);
+/** A 90-minute limit ends runs that stall (the planner needs about 48 minutes for all fifteen walls). */
+export const env = arcadeEnv(DEF, RULES_VERSION, RULESET_ID, 60 * 60 * 90);
 
 export const bundle: AiBundle<ArcadeRun<Bricks>, BrickAction> = {
   env: env as unknown as AiBundle<ArcadeRun<Bricks>, BrickAction>['env'],

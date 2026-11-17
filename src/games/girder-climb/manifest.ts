@@ -11,8 +11,8 @@ export const manifest: GameManifest = {
     es: 'Salta los bidones que ruedan y sube por las vigas para rescatar al gatito.',
   },
   description: {
-    en: 'A single-screen climbing arcade game with an original cast: a runaway robot rolls drums down six sloping girders while you climb ladders (not the broken ones) to reach the kitten at the top. Jump drums for points, grab a hammer to smash them, and beat the bonus clock. Arrow keys and Space to jump, or the touch pad; watch an AI climber.',
-    es: 'Un arcade de escalada en una sola pantalla con personajes originales: un robot descontrolado hace rodar bidones por seis vigas inclinadas mientras subes por las escaleras (no por las rotas) hasta el gatito de arriba. Salta bidones para sumar puntos, coge un martillo para aplastarlos y gana al reloj del bonus. Flechas y Espacio para saltar, o el panel táctil; mira a un escalador de la IA.',
+    en: 'A single-screen climbing arcade game with an original cast: a runaway robot rolls drums down the sloping girders while you climb ladders (not the broken ones) to reach the kitten at the top, on four different stages — a zigzag, a funnel, a cascade and a stairway — that come round again faster. Jump drums for points, grab a hammer to smash them, and beat the bonus clock. Arrow keys and Space to jump, or the touch pad; watch an AI climber.',
+    es: 'Un arcade de escalada en una sola pantalla con personajes originales: un robot descontrolado hace rodar bidones por las vigas inclinadas mientras subes por las escaleras (no por las rotas) hasta el gatito de arriba, en cuatro fases distintas (un zigzag, un embudo, una cascada y una escalinata) que vuelven a empezar más rápidas. Salta bidones para sumar puntos, coge un martillo para aplastarlos y gana al reloj del bonus. Flechas y Espacio para saltar, o el panel táctil; mira a un escalador de la IA.',
   },
   category: 'arcade',
   genre: { en: 'Arcade', es: 'Arcade' },

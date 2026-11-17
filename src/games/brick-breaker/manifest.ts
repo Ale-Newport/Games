@@ -7,12 +7,12 @@ export const manifest: GameManifest = {
   number: 168,
   title: { en: 'Enhanced Brick Breaker', es: 'Rompeladrillos mejorado' },
   tagline: {
-    en: 'Tough bricks, gold blocks and power capsules across five walls.',
-    es: 'Ladrillos duros, bloques de oro y cápsulas de poder en cinco muros.',
+    en: 'Tough bricks, gold blocks and power capsules across fifteen walls.',
+    es: 'Ladrillos duros, bloques de oro y cápsulas de poder en quince muros.',
   },
   description: {
-    en: 'A brick breaker with five designed walls: bricks that take one, two or three hits (marked by colour and number), unbreakable gold blocks, and capsules from broken bricks — Wide paddle, Multi-ball, Slow, Laser and an extra life. Three lives, keys, touch or a finger on the field.',
-    es: 'Un rompeladrillos con cinco muros diseñados: ladrillos de uno, dos o tres golpes (marcados por color y número), bloques de oro irrompibles y cápsulas de los ladrillos rotos: pala Ancha, Multibola, Lenta, Láser y una vida extra. Tres vidas, teclas, táctil o el dedo sobre el campo.',
+    en: 'A brick breaker with fifteen designed walls of rising difficulty: bricks that take one, two or three hits (marked by colour and number), unbreakable gold blocks, and capsules from broken bricks — Wide paddle, Multi-ball, Slow, Laser and an extra life. Three lives, keys, touch or a finger on the field.',
+    es: 'Un rompeladrillos con quince muros diseñados de dificultad creciente: ladrillos de uno, dos o tres golpes (marcados por color y número), bloques de oro irrompibles y cápsulas de los ladrillos rotos: pala Ancha, Multibola, Lenta, Láser y una vida extra. Tres vidas, teclas, táctil o el dedo sobre el campo.',
   },
   category: 'arcade',
   genre: { en: 'Arcade', es: 'Arcade' },
@@ -39,8 +39,8 @@ export const manifest: GameManifest = {
     },
     {
       id: 'all',
-      title: { en: 'All Five', es: 'Los cinco' },
-      description: { en: 'Clear all five walls.', es: 'Limpia los cinco muros.' },
+      title: { en: 'All Fifteen', es: 'Los quince' },
+      description: { en: 'Clear all fifteen walls.', es: 'Limpia los quince muros.' },
     },
     {
       id: 'score',

@@ -5,7 +5,7 @@ export function Rules({ locale }: { locale: Locale }) {
     return (
       <>
         <h3>Objetivo</h3>
-        <p>Limpiar los cinco muros con tres vidas.</p>
+        <p>Limpiar los quince muros con tres vidas; se vuelven más duros a medida que avanzas.</p>
         <h3>Ladrillos</h3>
         <ul>
           <li>
@@ -31,7 +31,7 @@ export function Rules({ locale }: { locale: Locale }) {
   return (
     <>
       <h3>Goal</h3>
-      <p>Clear all five walls with three lives.</p>
+      <p>Clear all fifteen walls with three lives; they get tougher as you go.</p>
       <h3>Bricks</h3>
       <ul>
         <li>Blue: one hit. Violet: two. Plum: three (the number shows the hits left).</li>

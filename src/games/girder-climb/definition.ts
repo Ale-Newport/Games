@@ -2,25 +2,26 @@
 import type { ArcadeDef } from '../shared/arcade/types';
 import {
   ACTIONS,
-  GIRDERS,
   H,
-  HAMMERS,
-  LADDERS,
+  STAGES,
   W,
   climberPolicy,
   girderY,
   isGirders,
   newGirders,
+  stageOf,
   stepGirders,
+  topOf,
   walkerPolicy,
   type GirderAction,
   type Girders,
+  type Stage,
 } from './sim';
 
 const BEAM = 7;
 
-function drawGirders(ctx: CanvasRenderingContext2D) {
-  for (const g of GIRDERS) {
+function drawGirders(ctx: CanvasRenderingContext2D, st: Stage) {
+  for (const g of st.girders) {
     ctx.fillStyle = '#c2410c';
     ctx.beginPath();
     ctx.moveTo(g.x0, g.yl);
@@ -32,7 +33,7 @@ function drawGirders(ctx: CanvasRenderingContext2D) {
     // Cross-bracing and rivets.
     ctx.strokeStyle = '#7c2d12';
     ctx.lineWidth = 1;
-    for (let x = g.x0; x < g.x1; x += 8) {
+    for (let x = g.x0; x + 8 <= g.x1; x += 8) {
       const y0 = g.yl + ((g.yr - g.yl) * (x - g.x0)) / (g.x1 - g.x0);
       ctx.beginPath();
       ctx.moveTo(x, y0 + 1);
@@ -43,10 +44,10 @@ function drawGirders(ctx: CanvasRenderingContext2D) {
   }
 }
 
-function drawLadders(ctx: CanvasRenderingContext2D) {
-  for (const l of LADDERS) {
-    const top = girderY(l.to, l.x) + BEAM;
-    const bottom = girderY(l.from, l.x);
+function drawLadders(ctx: CanvasRenderingContext2D, st: Stage) {
+  for (const l of st.ladders) {
+    const top = girderY(st, l.to, l.x) + BEAM;
+    const bottom = girderY(st, l.from, l.x);
     ctx.strokeStyle = '#22d3ee';
     ctx.lineWidth = 1.5;
     const gapFrom = top + (bottom - top) * 0.35;
@@ -74,9 +75,9 @@ function drawLadders(ctx: CanvasRenderingContext2D) {
   }
 }
 
-function drawRobot(ctx: CanvasRenderingContext2D, s: Girders) {
-  const x = 36;
-  const y = girderY(5, x);
+function drawRobot(ctx: CanvasRenderingContext2D, s: Girders, st: Stage) {
+  const { x } = st.robot;
+  const y = girderY(st, st.robot.g, x);
   const throwing = s.throwIn < 20;
   ctx.fillStyle = '#64748b';
   ctx.fillRect(x - 12, y - 30, 24, 22);
@@ -103,12 +104,10 @@ function drawRobot(ctx: CanvasRenderingContext2D, s: Girders) {
   }
   ctx.fillRect(x - 10, y - 8, 7, 8);
   ctx.fillRect(x + 3, y - 8, 7, 8);
-  // A stack of drums beside it.
-  for (const [dx, dy] of [
-    [-24, -6],
-    [-24, -16],
-  ] as const)
-    drum(ctx, x + dx + 4, y + dy, 0);
+  // A stack of drums beside it, on the side away from its first throw.
+  let side = -st.throws[0]!.dir;
+  if (x + side * 20 < 6 || x + side * 20 > W - 6) side = -side;
+  for (const dy of [-6, -16]) drum(ctx, x + side * 20, y + dy, 0);
 }
 
 function drum(ctx: CanvasRenderingContext2D, x: number, y: number, spin: number) {
@@ -185,44 +184,48 @@ export const DEF: ArcadeDef<Girders, GirderAction> = {
     ['hud.score', s.score],
     ['hud.lives', s.lives],
     ['hud.level', s.level],
+    ['hud.stage', `${((s.level - 1) % STAGES.length) + 1}/${STAGES.length}`],
     ['hud.bonus', s.bonus],
   ],
   draw(ctx, s, { reducedMotion }) {
+    const st = stageOf(s.level);
     ctx.fillStyle = '#050816';
     ctx.fillRect(0, 0, W, H);
-    drawLadders(ctx);
-    drawGirders(ctx);
-    // The recycler at the bottom left, where drums end up.
-    const by = girderY(0, 10);
+    drawLadders(ctx, st);
+    drawGirders(ctx, st);
+    // The recycler on the floor, where drums end up.
+    const bx = Math.max(10, Math.min(W - 10, st.binX));
+    const by = girderY(st, 0, bx);
     ctx.fillStyle = '#334155';
-    ctx.fillRect(2, by - 16, 16, 16);
+    ctx.fillRect(bx - 8, by - 16, 16, 16);
     ctx.fillStyle = '#22c55e';
-    ctx.fillRect(4, by - 13, 12, 2);
-    ctx.fillRect(4, by - 7, 12, 2);
+    ctx.fillRect(bx - 6, by - 13, 12, 2);
+    ctx.fillRect(bx - 6, by - 7, 12, 2);
     // The kitten on the top platform.
-    const ky = girderY(6, 120);
+    const kx = st.kittenX;
+    const ky = girderY(st, topOf(st), kx);
     ctx.fillStyle = '#fb923c';
-    ctx.fillRect(114, ky - 8, 12, 7);
-    ctx.fillRect(122, ky - 13, 7, 6);
+    ctx.fillRect(kx - 6, ky - 8, 12, 7);
+    ctx.fillRect(kx + 2, ky - 13, 7, 6);
     ctx.beginPath();
-    ctx.moveTo(122, ky - 13);
-    ctx.lineTo(124, ky - 17);
-    ctx.lineTo(126, ky - 13);
-    ctx.moveTo(125, ky - 13);
-    ctx.lineTo(127.5, ky - 17);
-    ctx.lineTo(129, ky - 13);
+    ctx.moveTo(kx + 2, ky - 13);
+    ctx.lineTo(kx + 4, ky - 17);
+    ctx.lineTo(kx + 6, ky - 13);
+    ctx.moveTo(kx + 5, ky - 13);
+    ctx.lineTo(kx + 7.5, ky - 17);
+    ctx.lineTo(kx + 9, ky - 13);
     ctx.fill();
-    ctx.fillRect(110, ky - 12, 4, 2);
+    ctx.fillRect(kx - 10, ky - 12, 4, 2);
     if (s.rescued > 0) {
       ctx.fillStyle = '#f472b6';
       ctx.font = '10px sans-serif';
-      ctx.fillText('♥', 128, ky - 20);
+      ctx.fillText('♥', kx + 8, ky - 20);
     }
-    drawRobot(ctx, s);
+    drawRobot(ctx, s, st);
     // Hammers still hanging.
-    HAMMERS.forEach((h, i) => {
+    st.hammers.forEach((h, i) => {
       if (!s.hammers[i]) return;
-      const hy = girderY(h.g, h.x) - 22;
+      const hy = girderY(st, h.g, h.x) - 22;
       ctx.fillStyle = '#a16207';
       ctx.fillRect(h.x - 1, hy, 2, 9);
       ctx.fillStyle = '#9ca3af';
@@ -272,10 +275,11 @@ export const DEF: ArcadeDef<Girders, GirderAction> = {
     en: {
       title: 'Girder Climb',
       'menu.subtitle':
-        'A runaway robot is rolling drums down the girders. Jump them, grab a hammer, and climb up to rescue the kitten.',
+        'A runaway robot is rolling drums down the girders. Jump them, grab a hammer, and climb up to rescue the kitten — on four different stages, then round again, faster.',
       'hud.score': 'Score',
       'hud.lives': 'Lives',
       'hud.level': 'Level',
+      'hud.stage': 'Stage',
       'hud.bonus': 'Bonus',
       'control.fire': 'Jump',
       'end.over': 'Game over on level {l}: {n} points.',
@@ -283,10 +287,11 @@ export const DEF: ArcadeDef<Girders, GirderAction> = {
     es: {
       title: 'Escalada de vigas',
       'menu.subtitle':
-        'Un robot descontrolado hace rodar bidones por las vigas. Sáltalos, coge un martillo y sube a rescatar al gatito.',
+        'Un robot descontrolado hace rodar bidones por las vigas. Sáltalos, coge un martillo y sube a rescatar al gatito: en cuatro fases distintas, y luego otra vuelta, más rápida.',
       'hud.score': 'Puntos',
       'hud.lives': 'Vidas',
       'hud.level': 'Nivel',
+      'hud.stage': 'Fase',
       'hud.bonus': 'Bonus',
       'control.fire': 'Saltar',
       'end.over': 'Fin de la partida en el nivel {l}: {n} puntos.',

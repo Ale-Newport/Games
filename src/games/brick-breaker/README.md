@@ -10,14 +10,36 @@ binds them: `definition.ts` (strings and achievements), `Game.tsx`, `ai-adapter.
 A brick breaker with designed walls, tough and gold bricks and power capsules, on the shared brick
 core and arcade shell.
 
-### Ruleset (`brick-breaker-five-walls`)
+### Ruleset (`brick-breaker-fifteen-walls`, v2)
 
-Five original walls. Bricks take one, two or three hits (blue, violet, plum, with the hits left
+Fifteen original walls, played in order with rising difficulty. Bricks take one, two or three hits (blue, violet, plum, with the hits left
 written on them); gold blocks never break and are not needed to clear a wall. Bricks score 10, 10,
 8, 8, 6, 6 and 4 points by row. Three lives. Each broken brick has a 14% chance of dropping a capsule;
 caught with the paddle: **W** a wider paddle (96 px, 15 s), **M** two more balls, **S** slower balls
-(65%, 10 s), **L** a laser (two shots per press, 10 s), **+** an extra life. Clearing the fifth wall
-ends the game.
+(65%, 10 s), **L** a laser (two shots per press, 10 s), **+** an extra life. Clearing a wall brings the
+next (the ball back to its starting speed); clearing the fifteenth ends the game, with at most 5008
+points.
+
+| #   | Wall      | Shape                                                             |
+| --- | --------- | ----------------------------------------------------------------- |
+| 1   | Lintel    | A two-hit row over five plain rows.                               |
+| 2   | Badge     | A tapered crest of three- and two-hit bricks, two gold studs.     |
+| 3   | Lattice   | Staggered three- and two-hit bricks over a gold-studded band.     |
+| 4   | Keep      | A plain frame around a three-hit block with a gold core.          |
+| 5   | Layers    | Bands of three, two and one hits, gold ends and gold pairs.       |
+| 6   | Stairs    | A staircase climbing from the right, toughest at its top step.    |
+| 7   | Hourglass | Three-hit lids top and bottom, a gold waist.                      |
+| 8   | Bridges   | A three-hit roof and a gold-and-two-hit bridge over open gaps.    |
+| 9   | Fortress  | Gold side walls around rings of two and three hits, a gold heart. |
+| 10  | Comb      | A three-hit spine with teeth of two and one, gold tips.           |
+| 11  | Diamond   | Rings of three, two and one hits around a gold centre.            |
+| 12  | Zigzag    | A diagonal band from top left to bottom right, broken by gold.    |
+| 13  | Gates     | Two-hit rows behind three gold bars with openings to aim through. |
+| 14  | Vault     | A gold shell, open above and below, around rings of three to one. |
+| 15  | Crown     | Eight rows, mostly two and three hits, gold studs throughout.     |
+
+Every breakable brick of every wall can be reached by the ball (no brick is sealed in by gold); the
+data is `ENHANCED_WALLS` in `../shared/bricks/rules.ts`.
 
 ### Physics (shared brick core)
 
@@ -35,9 +57,10 @@ waits on the paddle until launched or for two seconds.
   capsules and fires the laser under bricks.
 - `follower`: follows the lowest ball.
 
-Measured (`bricks-bench`, 40 runs, 15-minute cap): the planner averaged 1998 points and cleared all
-five walls in 33 runs; the follower averaged 1658 and never finished within the cap (it plays slow,
-steep rallies).
+Measured (a scratch bench over seeds 1–10, 90-minute cap): both players cleared all fifteen walls
+in all 10 runs (5008 points) — the planner in 47.9 minutes on average, the follower in 74.4 (it
+plays slow, steep rallies). Each wall alone, started fresh, takes the planner from about 1 to 6
+minutes.
 
 ### States and actions
 
@@ -46,17 +69,17 @@ As #167 (`Bricks`), with capsules, shots and timers in use. Actions: `left`, `ri
 
 ### Saves and AI interface
 
-Leaving a run for the menu saves it to resume. Env `brick-breaker` v`1.0.0`: kind `real-time` (60
-Hz), one seat, the score as return; a 30-minute step limit.
+Leaving a run for the menu saves it to resume. Env `brick-breaker` v`2.0.0`: kind `real-time` (60
+Hz), one seat, the score as return; a 90-minute step limit (a full game takes the planner about 48).
 
 ### Achievements
 
-| id         | Condition             |
-| ---------- | --------------------- |
-| `first`    | Clear the first wall. |
-| `capsules` | Catch a capsule.      |
-| `all`      | Clear all five walls. |
-| `score`    | Score 1500 points.    |
+| id         | Condition                |
+| ---------- | ------------------------ |
+| `first`    | Clear the first wall.    |
+| `capsules` | Catch a capsule.         |
+| `all`      | Clear all fifteen walls. |
+| `score`    | Score 1500 points.       |
 
 ### Graphics and audio
 
@@ -66,6 +89,8 @@ sounds for hits, dents, gold, capsules, lasers, lost balls, cleared walls and th
 
 ### Testing criteria
 
-The shared core's tests (walls, launching, scoring, angles, lives, capsules, landing prediction)
-plus this game's rule binding, the contract suite; UI: a run lost by an idle paddle, watch mode
+The shared core's tests (walls, launching, scoring, angles, lives, capsules, landing prediction;
+the walls themselves: fifteen, distinct, ten columns a row, something to break, every brick
+reachable past the gold, rising toughness, each cleared by the planner, each leading to the next
+and the last ending the game) plus this game's rule binding, the contract suite; UI: a run lost by an idle paddle, watch mode
 scoring. E2E desktop + mobile.

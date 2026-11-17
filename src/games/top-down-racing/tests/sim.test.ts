@@ -27,6 +27,39 @@ function play(seed: number, track: string, policy: (s: Race) => RaceAction, cap:
 }
 
 describe('Circuit Sprint circuits', () => {
+  it('has seven circuits, the Oval first', () => {
+    expect(TRACKS).toEqual([
+      'oval',
+      'kidney',
+      'loop',
+      'triangle',
+      'boomerang',
+      'chicane',
+      'hairpin',
+    ]);
+    // Each its own shape.
+    const starts = TRACKS.map((t) => centreLine(t)[0]!.join());
+    expect(new Set(starts).size).toBe(TRACKS.length);
+  });
+
+  it.each(TRACKS)('%s: the computer drivers all lap it and take the flag', (track) => {
+    // The player's car idles on the grid; the three rivals race all three laps.
+    let s = newRace(1, track);
+    let laps = 0;
+    while (!s.over) {
+      s = stepRace(s, ['idle', driverFor(s, 1), driverFor(s, 2), driverFor(s, 3)]);
+      laps += s.events.includes('rival-finish') ? 1 : 0;
+    }
+    expect(s.finishers).toHaveLength(3);
+    expect(laps).toBe(3);
+    for (const c of s.cars.slice(1)) {
+      expect(c.laps).toBeGreaterThanOrEqual(LAPS);
+      // Inside a minute: no driver stalls or gets lost on the circuit.
+      expect(c.done!).toBeLessThan(60 * 60);
+    }
+    expect(placeOf(s)).toBe(4);
+  });
+
   it.each(TRACKS)('%s is a smooth closed loop on screen, never close to itself', (track) => {
     const l = centreLine(track);
     const n = l.length;

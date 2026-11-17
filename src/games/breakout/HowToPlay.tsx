@@ -5,7 +5,10 @@ export function Rules({ locale }: { locale: Locale }) {
     return (
       <>
         <h3>Objetivo</h3>
-        <p>Romper todos los ladrillos del muro, dos veces, con tres pelotas.</p>
+        <p>
+          Romper todos los ladrillos de seis muros con tres pelotas: el muro clásico completo y
+          después cinco con formas distintas.
+        </p>
         <h3>Cómo se juega</h3>
         <ul>
           <li>
@@ -33,7 +36,10 @@ export function Rules({ locale }: { locale: Locale }) {
   return (
     <>
       <h3>Goal</h3>
-      <p>Break every brick of the wall — twice — with three balls.</p>
+      <p>
+        Break every brick of six walls with three balls: the classic full wall, then five in new
+        shapes.
+      </p>
       <h3>How to play</h3>
       <ul>
         <li>

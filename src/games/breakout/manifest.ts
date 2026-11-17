@@ -7,12 +7,12 @@ export const manifest: GameManifest = {
   number: 167,
   title: { en: 'Breakout', es: 'Breakout' },
   tagline: {
-    en: 'Clear the wall twice with three balls — the paddle shrinks once you break through.',
-    es: 'Limpia el muro dos veces con tres pelotas: la pala encoge cuando abres paso.',
+    en: 'Clear six walls with three balls — the paddle shrinks once you break through.',
+    es: 'Limpia seis muros con tres pelotas: la pala encoge cuando abres paso.',
   },
   description: {
-    en: 'The classic wall of eight coloured rows, played twice with three balls. Rows score 1, 3, 5 and 7 points from the bottom up, the ball quickens as it reaches the upper rows, and your paddle shrinks to half once a ball reaches the top wall. Keys, touch buttons or a finger on the field.',
-    es: 'El muro clásico de ocho filas de colores, jugado dos veces con tres pelotas. Las filas valen 1, 3, 5 y 7 puntos de abajo arriba, la pelota se acelera al llegar a las filas altas y tu pala se reduce a la mitad cuando una pelota toca el techo. Teclas, botones táctiles o el dedo sobre el campo.',
+    en: 'The classic wall of eight coloured rows, then five more walls of original patterns — checkerboard, pyramid, window, pillars and chevrons — with three balls. Rows score 1, 3, 5 and 7 points from the bottom up, the ball quickens as it reaches the upper rows, and your paddle shrinks to half once a ball reaches the top wall. Keys, touch buttons or a finger on the field.',
+    es: 'El muro clásico de ocho filas de colores y después cinco muros más con formas originales (tablero, pirámide, ventana, pilares y galones), con tres pelotas. Las filas valen 1, 3, 5 y 7 puntos de abajo arriba, la pelota se acelera al llegar a las filas altas y tu pala se reduce a la mitad cuando una pelota toca el techo. Teclas, botones táctiles o el dedo sobre el campo.',
   },
   category: 'arcade',
   genre: { en: 'Arcade', es: 'Arcade' },
@@ -39,13 +39,13 @@ export const manifest: GameManifest = {
     },
     {
       id: 'both',
-      title: { en: 'Double Clear', es: 'Doble limpieza' },
-      description: { en: 'Clear both walls.', es: 'Limpia los dos muros.' },
+      title: { en: 'Six Walls Down', es: 'Seis muros abajo' },
+      description: { en: 'Clear all six walls.', es: 'Limpia los seis muros.' },
     },
     {
       id: 'perfect',
       title: { en: 'Perfect Score', es: 'Puntuación perfecta' },
-      description: { en: 'Score all 896 points.', es: 'Consigue los 896 puntos.' },
+      description: { en: 'Score all 1340 points.', es: 'Consigue los 1340 puntos.' },
     },
   ],
 };

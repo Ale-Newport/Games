@@ -1,6 +1,8 @@
 /** Breakout on the shared brick core and arcade shell. */
 import { bricksDef } from '../shared/bricks/definition';
-import { BREAKOUT } from '../shared/bricks/rules';
+import { BREAKOUT, maxScore } from '../shared/bricks/rules';
+
+const PERFECT = maxScore(BREAKOUT);
 
 export const DEF = bricksDef(BREAKOUT, {
   id: 'breakout',
@@ -9,13 +11,13 @@ export const DEF = bricksDef(BREAKOUT, {
     if (s.small || s.wall > 0) unlock('first');
     if (s.wall > 0 || (s.over && s.lives > 0)) unlock('wall');
     if (s.over && s.lives > 0) unlock('both');
-    if (s.score >= 896) unlock('perfect');
+    if (s.score >= PERFECT) unlock('perfect');
   },
   strings: {
     en: {
       title: 'Breakout',
       'menu.subtitle':
-        'Knock down the wall brick by brick: keep the ball in play with your paddle, and clear the wall twice. Higher rows are worth more — and the ball speeds up when you reach them.',
+        'Knock down the wall brick by brick: keep the ball in play with your paddle, and clear six walls — the classic full wall first, then five new patterns. Higher rows are worth more — and the ball speeds up when you reach them.',
       'hud.score': 'Score',
       'hud.lives': 'Balls',
       'hud.wall': 'Wall',
@@ -25,7 +27,7 @@ export const DEF = bricksDef(BREAKOUT, {
     es: {
       title: 'Breakout',
       'menu.subtitle':
-        'Derriba el muro ladrillo a ladrillo: mantén la pelota en juego con tu pala y limpia el muro dos veces. Las filas altas valen más, y la pelota acelera al alcanzarlas.',
+        'Derriba el muro ladrillo a ladrillo: mantén la pelota en juego con tu pala y limpia seis muros: primero el muro clásico completo y luego cinco formas nuevas. Las filas altas valen más, y la pelota acelera al alcanzarlas.',
       'hud.score': 'Puntos',
       'hud.lives': 'Pelotas',
       'hud.wall': 'Muro',

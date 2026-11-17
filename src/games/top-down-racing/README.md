@@ -2,7 +2,7 @@
 
 `sim.ts` holds the circuits (control points smoothed into a centre line), the car physics, lap
 counting, standings and the drivers; `definition.ts` the drawing, controls, sounds and strings for
-the shared arcade shell `../shared/arcade/`. Also `Game.tsx`, `ai-adapter.ts`, `HowToPlay.tsx`,
+the shared arcade shell `../shared/arcade/`. Also `Game.tsx` (with `Game.module.css`, which lets the seven circuit buttons wrap onto two rows), `ai-adapter.ts`, `HowToPlay.tsx`,
 `manifest.ts`, `assets/preview.svg`, `tests/`.
 
 ## Specification
@@ -11,9 +11,21 @@ A top-down racing game with an original name and circuits.
 
 ### Ruleset (`circuit-sprint`)
 
-A 320 × 240 view of the whole circuit at 60 steps a second. Three circuits (Oval, Kidney, Loop), each
-a closed Catmull–Rom curve through a handful of control points, about 240 points round, 26 px of
-tarmac wide; no two stretches come within 30 px of each other. Four cars start on a two-by-two grid
+A 320 × 240 view of the whole circuit at 60 steps a second. Seven original circuits, each a closed
+Catmull–Rom curve through a handful of control points, about 240 points round, 26 px of tarmac
+wide; no two stretches come within 30 px of each other:
+
+| Circuit (`track`)       | Length | Character                                                  |
+| ----------------------- | ------ | ---------------------------------------------------------- |
+| Oval (`oval`)           | 704 px | Two long straights and two easy bends.                     |
+| Kidney (`kidney`)       | 718 px | A long sweep with a dip on one side.                       |
+| Loop (`loop`)           | 795 px | Twists and an S-bend; the hardest to win.                  |
+| Triangle (`triangle`)   | 646 px | Three straights joined by three tight corners.             |
+| Boomerang (`boomerang`) | 734 px | Two long arms, a sharp turn round each tip, a bend inside. |
+| Chicane (`chicane`)     | 764 px | Wide sweeps, with a quick left-right on both straights.    |
+| Hairpin (`hairpin`)     | 945 px | The longest lap: a deep hairpin dropping into the middle.  |
+
+The circuit is picked on the menu (the `track` option); the start line is the first control point. Four cars start on a two-by-two grid
 behind the line after a two-second countdown. A car accelerates by 0.05 px/step² up to 2.6 (times a
 computer driver's pace of 0.90–0.97), brakes by 0.1 (and, held at a standstill, reverses to −0.8),
 coasts with 1 % drag, and turns up to 0.05 rad a step, scaled by its speed up to 0.8. More than 13
@@ -35,8 +47,10 @@ The computer cars are drivers with caution 1. For the player's car:
 
 Measured (6 races per circuit against the field): driver won every race on the Oval and the Kidney
 and came third on every Loop race (its S-bend favours the slower rival cars); cautious came third on
-every Oval race and fourth on every Kidney and Loop race; doing nothing comes last. On their own, a bolder driver laps faster (caution 0.85: 19.6 s
-for three laps of the Oval; 1.3: 27.6 s). Earlier drivers braked into reverse and stalled before
+every Oval race and fourth on every Kidney and Loop race; doing nothing comes last. On the four newer circuits (6 races each) driver won every race; cautious came
+fourth (once third on the Chicane). On their own, a bolder driver laps faster (caution 0.85: 19.6 s
+for three laps of the Oval; 1.3: 27.6 s). The rival drivers alone (the player idling on the grid)
+finish all three laps on every circuit, from about 21 s (Oval, Kidney) to 40 s (Hairpin). Earlier drivers braked into reverse and stalled before
 sharp bends (a negative wanted speed), and two first designs had hairpins tighter than a car can
 turn; the circuits were redrawn.
 
@@ -48,7 +62,7 @@ steps. Actions: `idle`, `gas`, `brake`, `left`, `right` and gas or brake with ei
 
 ### Saves and AI interface
 
-Leaving a run for the menu saves it to resume. Env `top-down-racing` v`1.0.0`: kind `real-time`
+Leaving a run for the menu saves it to resume. Env `top-down-racing` v`1.1.0`: kind `real-time`
 (60 Hz), one seat (the rivals are part of the world), the score as return; a 30-minute step limit.
 
 ### Achievements
@@ -70,5 +84,7 @@ start lights. Synthesized sounds for the engine, the countdown, laps, bumps and 
 
 Circuits on screen and clear of themselves; the countdown, acceleration, top speed, braking and
 steering needing speed; grass; bumps; laps and finishing first alone; no lap for backing over the
-line; the driver finishing every circuit and an idle car coming last; exact replays. The contract
+line; the driver finishing every circuit and an idle car coming last; the seven circuits, each
+lapped to the flag by all three rival drivers; every circuit named and hinted in both languages and
+startable from the menu option; exact replays. The contract
 suite; UI: the clock and falling to last; watch mode. E2E desktop + mobile on the Loop.

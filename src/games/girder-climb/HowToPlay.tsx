@@ -25,8 +25,9 @@ export function Rules({ locale }: { locale: Locale }) {
             puedes saltar ni subir escaleras.
           </li>
           <li>
-            El bonus baja con el tiempo: llegar al gatito te lo da y empieza un nivel más rápido. Si
-            llega a cero, pierdes una vida. Tres vidas; una más a los 10 000 puntos.
+            El bonus baja con el tiempo: llegar al gatito te lo da y pasa a la fase siguiente. Hay
+            cuatro fases distintas; tras la cuarta vuelve la primera, más rápida. Si el bonus llega
+            a cero, pierdes una vida. Tres vidas; una más a los 10 000 puntos.
           </li>
         </ul>
         <h3>Controles</h3>
@@ -56,7 +57,8 @@ export function Rules({ locale }: { locale: Locale }) {
           nor climb.
         </li>
         <li>
-          The bonus counts down: reaching the kitten wins it and starts a faster level. If it
+          The bonus counts down: reaching the kitten wins it and moves on to the next stage. There
+          are four different stages; after the fourth the first returns, faster. If the bonus
           reaches zero you lose a life. Three lives; one more at 10 000 points.
         </li>
       </ul>

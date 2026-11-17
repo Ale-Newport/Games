@@ -15,7 +15,7 @@ export const DEF = bricksDef(ENHANCED, {
     en: {
       title: 'Enhanced Brick Breaker',
       'menu.subtitle':
-        'Five walls of tough bricks, gold blocks that never break, and falling capsules: a wider paddle, three balls, slow motion, a laser and extra lives.',
+        'Fifteen walls of tough bricks, gold blocks that never break, and falling capsules: a wider paddle, three balls, slow motion, a laser and extra lives.',
       'hud.score': 'Score',
       'hud.lives': 'Balls',
       'hud.wall': 'Wall',
@@ -25,7 +25,7 @@ export const DEF = bricksDef(ENHANCED, {
     es: {
       title: 'Rompeladrillos mejorado',
       'menu.subtitle':
-        'Cinco muros de ladrillos duros, bloques de oro que nunca se rompen y cápsulas que caen: pala ancha, tres pelotas, cámara lenta, láser y vidas extra.',
+        'Quince muros de ladrillos duros, bloques de oro que nunca se rompen y cápsulas que caen: pala ancha, tres pelotas, cámara lenta, láser y vidas extra.',
       'hud.score': 'Puntos',
       'hud.lives': 'Pelotas',
       'hud.wall': 'Muro',
