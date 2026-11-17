@@ -6,7 +6,7 @@ export function Rules({ locale }: { locale: Locale }) {
       <>
         <h3>Objetivo</h3>
         <p>
-          Llevar a la puerta de salida al menos a los caminantes que pide cada nivel (seis niveles).
+          Llevar a la puerta de salida al menos a los caminantes que pide cada nivel (doce niveles).
         </p>
         <h3>Cómo se juega</h3>
         <ul>
@@ -43,7 +43,7 @@ export function Rules({ locale }: { locale: Locale }) {
   return (
     <>
       <h3>Goal</h3>
-      <p>Bring at least as many wanderers to the exit door as each level asks (six levels).</p>
+      <p>Bring at least as many wanderers to the exit door as each level asks (twelve levels).</p>
       <h3>How to play</h3>
       <ul>
         <li>

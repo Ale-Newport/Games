@@ -30,7 +30,7 @@ describe('Spike Hop UI', () => {
     render(<Game services={services} />);
     await settle(0);
     fireEvent.click(screen.getByTestId('pp-start'));
-    expect(screen.getByTestId('pp-hud-hud.room').textContent).toBe('1/8');
+    expect(screen.getByTestId('pp-hud-hud.room').textContent).toBe('1/16');
     fireEvent.pointerDown(screen.getByTestId('pp-pad-right'));
     await settle(3000);
     fireEvent.pointerUp(screen.getByTestId('pp-pad-right'));
@@ -41,9 +41,9 @@ describe('Spike Hop UI', () => {
     vi.useFakeTimers({ toFake: [...FAKE] });
     const { services } = createTestServices({ launchParams: { mode: 'watch' } });
     render(<Game services={services} />);
-    for (let i = 0; i < 20 && screen.getByTestId('pp-hud-hud.room').textContent === '1/8'; i++)
+    for (let i = 0; i < 20 && screen.getByTestId('pp-hud-hud.room').textContent === '1/16'; i++)
       await settle(1000);
     for (let i = 0; i < 10; i++) await settle(1000);
-    expect(screen.getByTestId('pp-hud-hud.room').textContent).not.toBe('1/8');
+    expect(screen.getByTestId('pp-hud-hud.room').textContent).not.toBe('1/16');
   }, 60_000);
 });

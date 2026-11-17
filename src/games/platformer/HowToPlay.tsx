@@ -5,7 +5,7 @@ export function Rules({ locale }: { locale: Locale }) {
     return (
       <>
         <h3>Objetivo</h3>
-        <p>Llegar a la bandera al final de cada uno de los tres niveles.</p>
+        <p>Llegar a la bandera al final de cada uno de los ocho niveles.</p>
         <h3>Cómo se juega</h3>
         <ul>
           <li>Corre con inercia y salta; cuanto más mantengas el salto, más alto llegas.</li>
@@ -34,7 +34,7 @@ export function Rules({ locale }: { locale: Locale }) {
   return (
     <>
       <h3>Goal</h3>
-      <p>Reach the flag at the end of each of the three levels.</p>
+      <p>Reach the flag at the end of each of the eight levels.</p>
       <h3>How to play</h3>
       <ul>
         <li>Run with momentum and jump; the longer you hold jump, the higher you go.</li>

@@ -4,6 +4,7 @@ import {
   COLS,
   EARTH,
   LEVELS,
+  MAX_WALKERS,
   ROWS,
   SPLAT,
   STEEL,
@@ -216,10 +217,22 @@ describe('Wanderer Rescue rules', () => {
     expect(s.cleared).toBe(0);
   });
 
-  it('the planner brings enough wanderers home on all six levels', () => {
+  it('twelve original levels, each winnable with the skills it hands out', () => {
+    expect(LEVELS).toHaveLength(12);
+    expect(new Set(LEVELS.map((l) => l.name.en)).size).toBe(12);
+    expect(new Set(LEVELS.map((l) => l.name.es)).size).toBe(12);
+    for (const l of LEVELS) {
+      expect(l.walkers).toBeLessThanOrEqual(MAX_WALKERS);
+      expect(l.need).toBeLessThanOrEqual(l.walkers);
+      expect(Object.values(l.skills).some((n) => n > 0)).toBe(true);
+    }
+  });
+
+  it('the planner brings enough wanderers home on all twelve levels', () => {
     const s = play(newRescue(1), plannerPolicy, 60 * 60 * 30);
     expect(s.over).toBe(true);
     expect(s.victory).toBe(true);
+    expect(s.cleared).toBe(LEVELS.length);
     expect(s.lives).toBe(3);
     expect(s.totalSaved).toBeGreaterThanOrEqual(LEVELS.reduce((n, l) => n + l.need, 0));
   }, 60_000);

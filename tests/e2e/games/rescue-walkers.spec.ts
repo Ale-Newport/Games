@@ -5,7 +5,7 @@ test('Wanderer Rescue: pick a level, switch skills and end it early', async ({ p
   await freshStart(page, '/game/rescue-walkers?deal=1');
   await page.getByTestId('wr-start-2').click();
   await page.getByTestId('wr-start').click();
-  await expect(page.getByTestId('wr-hud-hud.level')).toHaveText('2/6');
+  await expect(page.getByTestId('wr-hud-hud.level')).toHaveText('2/12');
   await page.waitForTimeout(2500);
   await expectNoHorizontalOverflow(page);
   await screenshot(page, 'rescue-walkers');
@@ -15,5 +15,5 @@ test('Wanderer Rescue: pick a level, switch skills and end it early', async ({ p
 
 test('Wanderer Rescue: watch the AI clear the first level', async ({ page }) => {
   await freshStart(page, '/game/rescue-walkers?mode=watch&deal=2');
-  await expect(page.getByTestId('wr-hud-hud.level')).toHaveText('2/6', { timeout: 40_000 });
+  await expect(page.getByTestId('wr-hud-hud.level')).toHaveText('2/12', { timeout: 40_000 });
 });

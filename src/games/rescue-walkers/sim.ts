@@ -4,7 +4,7 @@
  * own, turning at walls, climbing small steps and falling off edges (a long fall is fatal, as is
  * water). The player hands out a limited number of skills to individual wanderers — climber,
  * floater, blocker, digger, basher, builder — to get enough of them to the exit. The terrain is a
- * grid of 4 px cells: earth can be dug, bashed and built; steel cannot. Six levels.
+ * grid of 4 px cells: earth can be dug, bashed and built; steel cannot. Twelve levels.
  *
  * Time runs at 60 steps a second; the wanderers move on every fourth step (a "tick").
  */
@@ -65,7 +65,7 @@ const BORDER: Rect[] = [
   [COLS - 2, 0, 2, ROWS, STEEL],
 ];
 
-/** The six levels (original layouts). */
+/** The twelve levels (original layouts). */
 export const LEVELS: readonly LevelDef[] = [
   {
     name: { en: 'Mind the Gap', es: 'Cuidado con el hueco' },
@@ -133,6 +133,103 @@ export const LEVELS: readonly LevelDef[] = [
       [51, 36, 27, 9, EARTH],
       [41, 43, 10, 2, WATER],
       [62, 24, 3, 12, EARTH],
+    ],
+  },
+  {
+    name: { en: 'Over the Top', es: 'Por encima' },
+    hatch: [20, 20],
+    exit: [70, 39],
+    walkers: 8,
+    need: 5,
+    rate: 40,
+    skills: { climb: 6, float: 6 },
+    terrain: [
+      ...BORDER,
+      [12, 30, 26, 15, EARTH],
+      [2, 43, 10, 2, WATER],
+      [38, 12, 3, 33, STEEL],
+      [41, 40, 37, 5, EARTH],
+    ],
+  },
+  {
+    name: { en: 'Shelf by Shelf', es: 'Repisa a repisa' },
+    hatch: [36, 4],
+    exit: [6, 39],
+    walkers: 10,
+    need: 7,
+    rate: 25,
+    skills: { dig: 2, block: 1 },
+    terrain: [
+      ...BORDER,
+      [2, 14, 46, 4, EARTH],
+      [2, 14, 16, 2, STEEL],
+      [32, 14, 16, 2, STEEL],
+      [2, 28, 30, 4, EARTH],
+      [2, 40, 76, 5, EARTH],
+    ],
+  },
+  {
+    name: { en: 'Moat Bridge', es: 'Puente sobre el foso' },
+    hatch: [6, 26],
+    exit: [72, 23],
+    walkers: 10,
+    need: 8,
+    rate: 40,
+    skills: { build: 3, block: 1 },
+    terrain: [...BORDER, [2, 36, 24, 9, EARTH], [26, 43, 20, 2, WATER], [46, 24, 32, 21, EARTH]],
+  },
+  {
+    name: { en: 'Dig to the Door', es: 'Cava hasta la puerta' },
+    hatch: [8, 18],
+    exit: [70, 41],
+    walkers: 10,
+    need: 9,
+    rate: 25,
+    skills: { bash: 1, dig: 1, block: 1 },
+    terrain: [
+      ...BORDER,
+      [2, 28, 76, 17, EARTH],
+      [44, 34, 32, 8, AIR],
+      [44, 28, 16, 3, STEEL],
+      [2, 43, 42, 2, STEEL],
+      [30, 14, 4, 14, EARTH],
+    ],
+  },
+  {
+    name: { en: 'Bridge and Burrow', es: 'Puente y madriguera' },
+    hatch: [8, 20],
+    exit: [70, 41],
+    walkers: 12,
+    need: 9,
+    rate: 25,
+    skills: { build: 2, dig: 1, bash: 1 },
+    terrain: [
+      ...BORDER,
+      [2, 30, 22, 15, EARTH],
+      [24, 43, 12, 2, WATER],
+      [36, 30, 42, 15, EARTH],
+      [36, 27, 2, 3, EARTH],
+      [40, 36, 36, 6, AIR],
+      [64, 36, 4, 6, EARTH],
+      [62, 30, 16, 2, STEEL],
+    ],
+  },
+  {
+    name: { en: 'Grand Tour', es: 'Gran recorrido' },
+    hatch: [6, 24],
+    exit: [72, 37],
+    walkers: 15,
+    need: 11,
+    rate: 20,
+    skills: { build: 3, bash: 1, dig: 1, block: 1 },
+    terrain: [
+      ...BORDER,
+      [2, 34, 16, 11, EARTH],
+      [18, 43, 12, 2, WATER],
+      [30, 34, 30, 11, EARTH],
+      [38, 16, 4, 18, EARTH],
+      [60, 26, 18, 19, EARTH],
+      [64, 32, 12, 6, AIR],
     ],
   },
 ];

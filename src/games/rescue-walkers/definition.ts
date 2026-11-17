@@ -273,7 +273,7 @@ export const DEF: ArcadeDef<Rescue, RescueAction> = {
       'control.left': 'Previous skill',
       'control.right': 'Next skill',
       'control.alt': 'End level',
-      'end.victory': 'All six levels done! {n} wanderers brought home.',
+      'end.victory': 'All twelve levels done! {n} wanderers brought home.',
       'end.over': 'Out of tries on level {l} — {n} wanderers brought home.',
     },
     es: {
@@ -288,7 +288,7 @@ export const DEF: ArcadeDef<Rescue, RescueAction> = {
       'control.left': 'Habilidad anterior',
       'control.right': 'Habilidad siguiente',
       'control.alt': 'Terminar nivel',
-      'end.victory': '¡Los seis niveles superados! {n} caminantes en casa.',
+      'end.victory': '¡Los doce niveles superados! {n} caminantes en casa.',
       'end.over': 'Sin intentos en el nivel {l}: {n} caminantes en casa.',
     },
   },

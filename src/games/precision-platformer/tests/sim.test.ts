@@ -34,8 +34,9 @@ function play(policy: (s: Hop) => HopAction, cap: number) {
 }
 
 describe('Spike Hop rooms', () => {
-  it('eight closed rooms of 20 × 14, each with one start and one door', () => {
-    expect(ROOMS).toHaveLength(8);
+  it('sixteen closed rooms of 20 × 14, each with one start and one door', () => {
+    expect(ROOMS).toHaveLength(16);
+    expect(new Set(ROOMS.map((r) => r.name)).size).toBe(16);
     for (const { rows } of ROOMS) {
       expect(rows).toHaveLength(ROWS);
       for (const r of rows) expect(r).toHaveLength(COLS);
@@ -132,9 +133,10 @@ describe('Spike Hop moves', () => {
 });
 
 describe('Spike Hop players', () => {
-  it('the planner clears all eight rooms; the hopper gets stuck', () => {
+  it('the planner clears all sixteen rooms; the hopper gets stuck', () => {
     const planner = play(plannerPolicy, 60 * 60 * 3);
     expect(planner.won).toBe(true);
+    expect(planner.room).toBe(ROOMS.length - 1);
     const hopper = play(hopperPolicy, 60 * 60);
     expect(hopper.won).toBe(false);
     expect(hopper.room).toBeLessThan(planner.room + 1);

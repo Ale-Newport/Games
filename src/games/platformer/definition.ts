@@ -1,6 +1,7 @@
 /** Sunny Trail for the shared arcade shell: drawing, controls, sounds, results and strings. */
 import type { ArcadeDef } from '../shared/arcade/types';
 import { TILE } from '../shared/platform/physics';
+import { THEMES } from './levels';
 import {
   ACTIONS,
   VIEW_H,
@@ -137,12 +138,13 @@ export const DEF: ArcadeDef<Trail, PlatAction> = {
   draw(ctx, s, { reducedMotion }) {
     const cam = Math.round(camera(s));
     const sky = ctx.createLinearGradient(0, 0, 0, VIEW_H);
-    sky.addColorStop(0, '#38bdf8');
-    sky.addColorStop(1, '#bae6fd');
+    const theme = THEMES[s.level] ?? THEMES[0]!;
+    sky.addColorStop(0, theme.sky[0]);
+    sky.addColorStop(1, theme.sky[1]);
     ctx.fillStyle = sky;
     ctx.fillRect(0, 0, VIEW_W, VIEW_H);
     // Far hills and clouds, scrolling slower than the level.
-    ctx.fillStyle = '#86efac';
+    ctx.fillStyle = theme.hills;
     for (let k = -1; k < 6; k++) {
       const hx = k * 120 - ((cam * 0.3) % 120);
       ctx.beginPath();
@@ -285,27 +287,27 @@ export const DEF: ArcadeDef<Trail, PlatAction> = {
     en: {
       title: 'Sunny Trail',
       'menu.subtitle':
-        'Run and jump through three sunny levels: stomp beetles, open prize boxes, find the berry shield and reach the flag.',
+        'Run and jump through eight levels, from sunny meadows to the summit: stomp beetles, open prize boxes, find the berry shield and reach the flag.',
       'hud.score': 'Score',
       'hud.coins': 'Coins',
       'hud.lives': 'Lives',
       'hud.level': 'Level',
       'hud.time': 'Time',
       'control.fire': 'Jump',
-      'end.won': 'All three levels done — {n} points!',
+      'end.won': 'All eight levels done — {n} points!',
       'end.over': 'Game over on level {l}: {n} points.',
     },
     es: {
       title: 'Sendero soleado',
       'menu.subtitle':
-        'Corre y salta por tres niveles soleados: aplasta escarabajos, abre cajas sorpresa, consigue el escudo de baya y llega a la bandera.',
+        'Corre y salta por ocho niveles, de los prados soleados a la cumbre: aplasta escarabajos, abre cajas sorpresa, consigue el escudo de baya y llega a la bandera.',
       'hud.score': 'Puntos',
       'hud.coins': 'Monedas',
       'hud.lives': 'Vidas',
       'hud.level': 'Nivel',
       'hud.time': 'Tiempo',
       'control.fire': 'Saltar',
-      'end.won': '¡Los tres niveles superados: {n} puntos!',
+      'end.won': '¡Los ocho niveles superados: {n} puntos!',
       'end.over': 'Fin de la partida en el nivel {l}: {n} puntos.',
     },
   },

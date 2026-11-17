@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { TILE, move, type TileMap } from '../../shared/platform/physics';
-import { LEVELS, ROWS } from '../levels';
+import { LEVELS, ROWS, THEMES } from '../levels';
 import {
   mapOf,
   newTrail,
@@ -30,14 +30,17 @@ function play(policy: (s: Trail) => PlatAction, cap: number) {
 }
 
 describe('Sunny Trail levels', () => {
-  it('three levels of 14 even rows, each with a checkpoint and a flag', () => {
-    expect(LEVELS).toHaveLength(3);
+  it('eight levels of 14 even rows, each with a checkpoint on solid ground and a flag', () => {
+    expect(LEVELS).toHaveLength(8);
     for (const rows of LEVELS) {
       expect(rows).toHaveLength(ROWS);
       expect(new Set(rows.map((r) => r.length)).size).toBe(1);
       expect(rows[ROWS - 3]).toContain('C');
       expect(rows[2]).toContain('F');
+      const c = rows[ROWS - 3]!.indexOf('C');
+      expect(rows[ROWS - 2]![c]).toBe('#');
     }
+    expect(THEMES).toHaveLength(LEVELS.length);
   });
 
   it('platform physics: ledges hold from above and let you through from below', () => {
@@ -136,7 +139,7 @@ describe('Sunny Trail simulation', () => {
     expect(Math.round(s.hero.x / TILE)).toBe(LEVELS[0]![ROWS - 3]!.indexOf('C'));
   });
 
-  it('the flag ends the level; the third flag wins', () => {
+  it('the flag ends the level; the last flag wins', () => {
     const flag = LEVELS[0]![2]!.indexOf('F');
     let s = placed(newTrail(), flag - 2);
     s = run(s, 'right', 60);
@@ -144,7 +147,8 @@ describe('Sunny Trail simulation', () => {
     expect(s.score).toBeGreaterThanOrEqual(1000);
     for (let i = 0; i < 150; i++) s = stepTrail(s, 'idle');
     expect(s.level).toBe(1);
-    let last = placed({ ...newTrail(), level: 2, beetles: [] }, LEVELS[2]![2]!.indexOf('F') - 2);
+    const L = LEVELS.length - 1;
+    let last = placed({ ...newTrail(), level: L, beetles: [] }, LEVELS[L]![2]!.indexOf('F') - 2);
     last = run(last, 'right', 60);
     for (let i = 0; i < 151; i++) last = stepTrail(last, 'idle');
     expect(last.won).toBe(true);
@@ -152,9 +156,10 @@ describe('Sunny Trail simulation', () => {
   });
 
   it('the planner clears every level; the runner does not', () => {
-    const planner = play(plannerPolicy, 60 * 60 * 4);
+    const planner = play(plannerPolicy, 60 * 60 * 10);
     expect(planner.won).toBe(true);
-    const runner = play(runnerPolicy, 60 * 60 * 4);
+    expect(planner.level).toBe(LEVELS.length - 1);
+    const runner = play(runnerPolicy, 60 * 60 * 10);
     expect(runner.won).toBe(false);
     expect(planner.score).toBeGreaterThan(runner.score);
   }, 120_000);

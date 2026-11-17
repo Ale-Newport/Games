@@ -31,7 +31,7 @@ describe('Wanderer Rescue UI', () => {
     await settle(0);
     fireEvent.click(screen.getByTestId('wr-start-3'));
     fireEvent.click(screen.getByTestId('wr-start'));
-    expect(screen.getByTestId('wr-hud-hud.level').textContent).toBe('3/6');
+    expect(screen.getByTestId('wr-hud-hud.level').textContent).toBe('3/12');
     expect(screen.getByTestId('wr-hud-hud.lives').textContent).toBe('3');
     await settle(3000);
     fireEvent.pointerDown(screen.getByTestId('wr-pad-alt'));
@@ -45,8 +45,8 @@ describe('Wanderer Rescue UI', () => {
     vi.useFakeTimers({ toFake: [...FAKE] });
     const { services } = createTestServices({ launchParams: { mode: 'watch', deal: '2' } });
     render(<Game services={services} />);
-    for (let i = 0; i < 30 && screen.getByTestId('wr-hud-hud.level').textContent === '1/6'; i++)
+    for (let i = 0; i < 30 && screen.getByTestId('wr-hud-hud.level').textContent === '1/12'; i++)
       await settle(1000);
-    expect(screen.getByTestId('wr-hud-hud.level').textContent).toBe('2/6');
+    expect(screen.getByTestId('wr-hud-hud.level').textContent).toBe('2/12');
   }, 60_000);
 });

@@ -1,4 +1,4 @@
-/** The AI environment: one game (six levels) per episode, one action per 1/60 s step (see `../shared/arcade/environment.ts`). */
+/** The AI environment: one game (twelve levels) per episode, one action per 1/60 s step (see `../shared/arcade/environment.ts`). */
 import type { AiBundle } from '../../ai/protocols/bundle';
 import { arcadeAgents, arcadeEnv, type ArcadeRun } from '../shared/arcade/environment';
 import { DEF } from './definition';

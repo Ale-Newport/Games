@@ -7,12 +7,12 @@ export const manifest: GameManifest = {
   number: 182,
   title: { en: 'Spike Hop', es: 'Salto preciso' },
   tagline: {
-    en: 'Eight rooms of spikes: jump, wall-jump and dash your way to every door.',
-    es: 'Ocho salas de pinchos: salta, rebota en las paredes y haz dash hasta cada puerta.',
+    en: 'Sixteen rooms of spikes: jump, wall-jump and dash your way to every door.',
+    es: 'Dieciséis salas de pinchos: salta, rebota en las paredes y haz dash hasta cada puerta.',
   },
   description: {
-    en: 'A precision platformer with an original hero and eight single-screen rooms: run, jump higher by holding, slide down and kick off walls, dash once in mid-air in any of eight directions (it comes back on landing), and ride springs — while spikes on floors and ceilings mean instant death and a quick restart of the room. Clear all eight within ten minutes, with as few deaths as you can. Arrows, Space to jump and X or Shift to dash, or the touch pad; watch a planning AI.',
-    es: 'Un juego de plataformas de precisión con un héroe original y ocho salas de una pantalla: corre, salta más alto manteniendo el botón, deslízate por las paredes y rebota en ellas, haz un dash en el aire en cualquiera de ocho direcciones (vuelve al aterrizar) y aprovecha los muelles, mientras los pinchos del suelo y del techo suponen muerte instantánea y volver a empezar la sala. Supera las ocho en diez minutos con las menos muertes posibles. Flechas, Espacio para saltar y X o Mayúsculas para el dash, o el panel táctil; mira a una IA que planifica.',
+    en: 'A precision platformer with an original hero and sixteen single-screen rooms: run, jump higher by holding, slide down and kick off walls, dash once in mid-air in any of eight directions (it comes back on landing), and ride springs — while spikes on floors and ceilings mean instant death and a quick restart of the room. Clear all sixteen within fifteen minutes, with as few deaths as you can. Arrows, Space to jump and X or Shift to dash, or the touch pad; watch a planning AI.',
+    es: 'Un juego de plataformas de precisión con un héroe original y dieciséis salas de una pantalla: corre, salta más alto manteniendo el botón, deslízate por las paredes y rebota en ellas, haz un dash en el aire en cualquiera de ocho direcciones (vuelve al aterrizar) y aprovecha los muelles, mientras los pinchos del suelo y del techo suponen muerte instantánea y volver a empezar la sala. Supera las dieciséis en quince minutos con las menos muertes posibles. Flechas, Espacio para saltar y X o Mayúsculas para el dash, o el panel táctil; mira a una IA que planifica.',
   },
   category: 'arcade',
   genre: { en: 'Platformer', es: 'Plataformas' },
@@ -40,14 +40,14 @@ export const manifest: GameManifest = {
     {
       id: 'win',
       title: { en: 'All Doors Open', es: 'Todas las puertas' },
-      description: { en: 'Clear all eight rooms.', es: 'Supera las ocho salas.' },
+      description: { en: 'Clear all sixteen rooms.', es: 'Supera las dieciséis salas.' },
     },
     {
       id: 'flawless',
       title: { en: 'Flawless', es: 'Impecable' },
       description: {
-        en: 'Clear all eight rooms without dying.',
-        es: 'Supera las ocho salas sin morir.',
+        en: 'Clear all sixteen rooms without dying.',
+        es: 'Supera las dieciséis salas sin morir.',
       },
     },
   ],

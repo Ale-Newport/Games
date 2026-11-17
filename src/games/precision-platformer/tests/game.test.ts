@@ -14,6 +14,6 @@ describe('precision-platformer setup', () => {
 describeAdapterContract(env, {
   configs: [undefined],
   playouts: 2,
-  maxSteps: 40000,
+  maxSteps: 60000,
   illegalActions: () => ['fly', 'dive'] as unknown as HopAction[],
 });

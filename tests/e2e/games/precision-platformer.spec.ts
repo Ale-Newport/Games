@@ -13,5 +13,5 @@ test('Spike Hop: run into the spikes and come back', async ({ page }) => {
 
 test('Spike Hop: watch the AI clear rooms', async ({ page }) => {
   await freshStart(page, '/game/precision-platformer?mode=watch');
-  await expect(page.getByTestId('pp-hud-hud.room')).toHaveText('4/8', { timeout: 30_000 });
+  await expect(page.getByTestId('pp-hud-hud.room')).toHaveText('4/16', { timeout: 30_000 });
 });

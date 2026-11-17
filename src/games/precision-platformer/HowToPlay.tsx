@@ -5,7 +5,9 @@ export function Rules({ locale }: { locale: Locale }) {
     return (
       <>
         <h3>Objetivo</h3>
-        <p>Llegar a la puerta de cada una de las ocho salas, con las menos muertes posibles.</p>
+        <p>
+          Llegar a la puerta de cada una de las dieciséis salas, con las menos muertes posibles.
+        </p>
         <h3>Cómo se juega</h3>
         <ul>
           <li>Corre y salta; cuanto más mantengas el salto, más alto llegas.</li>
@@ -20,8 +22,8 @@ export function Rules({ locale }: { locale: Locale }) {
           <li>Los muelles te lanzan muy alto y te devuelven el dash.</li>
           <li>
             Tocar un pincho es morir, pero solo vuelves al inicio de la sala. Cada sala vale 1000
-            puntos, cada muerte resta 25, y terminar las ocho en diez minutos suma 10 por segundo
-            sobrante.
+            puntos, cada muerte resta 25, y terminar las dieciséis en quince minutos suma 10 por
+            segundo sobrante.
           </li>
         </ul>
         <h3>Controles</h3>
@@ -36,7 +38,7 @@ export function Rules({ locale }: { locale: Locale }) {
   return (
     <>
       <h3>Goal</h3>
-      <p>Reach the door of each of the eight rooms, with as few deaths as you can.</p>
+      <p>Reach the door of each of the sixteen rooms, with as few deaths as you can.</p>
       <h3>How to play</h3>
       <ul>
         <li>Run and jump; the longer you hold jump, the higher you go.</li>
@@ -50,8 +52,8 @@ export function Rules({ locale }: { locale: Locale }) {
         <li>Springs throw you high and give your dash back.</li>
         <li>
           Touching a spike is death, but it only sends you back to the room’s start. Each room is
-          worth 1000 points, each death −25, and clearing all eight within ten minutes adds 10 a
-          second left.
+          worth 1000 points, each death −25, and clearing all sixteen within fifteen minutes adds 10
+          a second left.
         </li>
       </ul>
       <h3>Controls</h3>
