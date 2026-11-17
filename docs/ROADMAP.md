@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 216 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 14
+**Complete:** 217 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 13
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -257,7 +257,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 214 | Draw Telephone (Gartic Phone-style) | `draw-telephone` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 215 | Code Words (Codenames-style) | `code-words` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 216 | Caption Battle (Make It Meme-style) | `caption-battle` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
-| 217 | Syllable Bomb (BombParty-style) | `syllable-bomb` | TODO | — | — | — | — | — |  |  |
+| 217 | Syllable Bomb (BombParty-style) | `syllable-bomb` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 218 | Disc Soccer (HaxBall-style) | `disc-soccer` | TODO | — | — | — | — | — |  |  |
 | 219 | Stack Duel (TETR.IO-style) | `stack-duel` | TODO | — | — | — | — | — |  |  |
 | 220 | Snake Arena (Slither.io-style) | `snake-arena` | TODO | — | — | — | — | — |  |  |

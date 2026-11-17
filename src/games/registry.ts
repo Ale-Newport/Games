@@ -220,6 +220,7 @@ import { manifest as sketchGuess } from './sketch-guess/manifest';
 import { manifest as drawTelephone } from './draw-telephone/manifest';
 import { manifest as codeWords } from './code-words/manifest';
 import { manifest as captionBattle } from './caption-battle/manifest';
+import { manifest as syllableBomb } from './syllable-bomb/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -438,6 +439,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: drawTelephone, load: () => import('./draw-telephone/index') },
   { manifest: codeWords, load: () => import('./code-words/index') },
   { manifest: captionBattle, load: () => import('./caption-battle/index') },
+  { manifest: syllableBomb, load: () => import('./syllable-bomb/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
