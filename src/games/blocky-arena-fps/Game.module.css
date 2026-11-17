@@ -1,0 +1,390 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  width: 100%;
+  max-width: min(1100px, calc((100vh - 230px) * 16 / 9));
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .wrap {
+    max-width: 100%;
+  }
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0b0e17;
+  border-radius: 10px;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (max-width: 700px) {
+  .stage {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.nogl {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  color: #c9d1e0;
+  font-size: 0.95rem;
+}
+
+.hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.top {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-weight: 700;
+}
+
+.top strong {
+  font-size: 1.3rem;
+  display: block;
+}
+
+.top small {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.board {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 0.8rem;
+  text-align: right;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.board .me {
+  color: #ffd23f;
+}
+
+.feed {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 0.78rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.feed span {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.feed em {
+  color: #ff6b6b;
+  font-style: normal;
+}
+
+.health {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  width: min(32%, 220px);
+}
+
+.bar {
+  height: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.bar > div {
+  height: 100%;
+  background: linear-gradient(90deg, #3ddc84, #7ef0a8);
+  transition: width 0.1s linear;
+}
+
+.bar.low > div {
+  background: linear-gradient(90deg, #e5484d, #ff8a8a);
+}
+
+.ammo {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  text-align: right;
+  font-weight: 700;
+}
+
+.ammo strong {
+  font-size: 1.8rem;
+}
+
+.ammo small {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.cross {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+}
+
+.cross i {
+  position: absolute;
+  background: #fff;
+  box-shadow: 0 0 2px #000;
+}
+
+.hit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  opacity: 0;
+}
+
+.hit::before,
+.hit::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-50%);
+  -webkit-mask: linear-gradient(#000 0 35%, transparent 35% 65%, #000 65%);
+  mask: linear-gradient(#000 0 35%, transparent 35% 65%, #000 65%);
+}
+
+.hit::after {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(229, 72, 77, 0.55));
+  opacity: 0;
+  transition: opacity 0.25s ease-out;
+}
+
+.scope {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0 30%, #000 30.5%);
+}
+
+.scope::before,
+.scope::after {
+  content: '';
+  position: absolute;
+  background: #000;
+}
+
+.scope::before {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+}
+
+.scope::after {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(5, 8, 15, 0.62);
+  color: #fff;
+  text-align: center;
+  padding: 16px;
+  pointer-events: auto;
+}
+
+.overlay p {
+  margin: 0;
+  max-width: 560px;
+}
+
+.overlay .actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.death {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.scores {
+  border-collapse: collapse;
+  min-width: 260px;
+  font-size: 0.9rem;
+}
+
+.scores th,
+.scores td {
+  padding: 3px 10px;
+  text-align: left;
+}
+
+.scores td:nth-child(n + 2),
+.scores th:nth-child(n + 2) {
+  text-align: right;
+}
+
+.scores tr.me {
+  color: #ffd23f;
+}
+
+.touch {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.stick {
+  position: absolute;
+  left: 3%;
+  bottom: 6%;
+  width: 34%;
+  max-width: 180px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  pointer-events: auto;
+}
+
+.stick > span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transform: translate(-50%, -50%);
+}
+
+.look {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 55%;
+  height: 100%;
+  pointer-events: auto;
+}
+
+.buttons {
+  position: absolute;
+  right: 3%;
+  bottom: 5%;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 6px;
+  pointer-events: auto;
+}
+
+.buttons button {
+  min-width: 54px;
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(20, 24, 36, 0.55);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.buttons button[aria-pressed='true'] {
+  background: rgba(255, 210, 63, 0.6);
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Touch play: the stick and buttons own the bottom corners, so readouts move up. */
+.touchMode .health {
+  top: 64px;
+  bottom: auto;
+}
+
+.touchMode .ammo {
+  top: 92px;
+  bottom: auto;
+  left: 12px;
+  right: auto;
+  text-align: left;
+}
+
+.touchMode .ammo strong {
+  font-size: 1.3rem;
+}
+
+.touchMode .feed {
+  top: auto;
+  left: auto;
+  right: 10px;
+  bottom: 42%;
+  align-items: flex-end;
+}

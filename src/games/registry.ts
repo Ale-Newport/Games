@@ -225,6 +225,7 @@ import { manifest as discSoccer } from './disc-soccer/manifest';
 import { manifest as stackDuel } from './stack-duel/manifest';
 import { manifest as snakeArena } from './snake-arena/manifest';
 import { manifest as cellArena } from './cell-arena/manifest';
+import { manifest as blockyArenaFps } from './blocky-arena-fps/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -448,6 +449,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: stackDuel, load: () => import('./stack-duel/index') },
   { manifest: snakeArena, load: () => import('./snake-arena/index') },
   { manifest: cellArena, load: () => import('./cell-arena/index') },
+  { manifest: blockyArenaFps, load: () => import('./blocky-arena-fps/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

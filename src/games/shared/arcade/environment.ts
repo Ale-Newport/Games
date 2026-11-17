@@ -15,6 +15,22 @@ import {
 import type { LocalizedText } from '../../../core/i18n';
 import type { ArcadeDef } from './types';
 
+/** The parts of a definition the environment needs (games with their own renderer provide just these). */
+export type ArcadeSim<S, A extends string> = Pick<
+  ArcadeDef<S, A>,
+  | 'id'
+  | 'hz'
+  | 'actions'
+  | 'options'
+  | 'init'
+  | 'step'
+  | 'over'
+  | 'score'
+  | 'result'
+  | 'validate'
+  | 'policies'
+>;
+
 export interface ArcadeConfig {
   options?: Record<string, string>;
 }
@@ -28,7 +44,7 @@ export interface ArcadeRun<S> {
 }
 
 export function arcadeEnv<S, A extends string>(
-  def: ArcadeDef<S, A>,
+  def: ArcadeSim<S, A>,
   version: string,
   rulesetId: string,
   /** A step limit that ends runs which never end on their own (e.g. a perfect player). */
@@ -111,7 +127,7 @@ class PolicyAgent<S, A extends string> implements Agent<ArcadeRun<S>, A> {
 
 /** Agent presets: random, then each of the game's policies with its label and description. */
 export function arcadeAgents<S, A extends string>(
-  def: ArcadeDef<S, A>,
+  def: Pick<ArcadeDef<S, A>, 'policies'>,
   info: Record<string, { label: LocalizedText; description: LocalizedText }>,
 ): AgentPreset<ArcadeRun<S>, A>[] {
   return [
