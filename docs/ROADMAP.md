@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 220 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 10
+**Complete:** 221 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 9
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -261,7 +261,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 218 | Disc Soccer (HaxBall-style) | `disc-soccer` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 219 | Stack Duel (TETR.IO-style) | `stack-duel` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 220 | Snake Arena (Slither.io-style) | `snake-arena` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
-| 221 | Cell Arena (Agar.io-style) | `cell-arena` | TODO | — | — | — | — | — |  |  |
+| 221 | Cell Arena (Agar.io-style) | `cell-arena` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 222 | Blocky Arena FPS (Krunker-style) | `blocky-arena-fps` | TODO | — | — | — | — | — |  |  |
 | 223 | Endless Craft (Infinite Craft-style) | `endless-craft` | TODO | — | — | — | — | — |  |  |
 | 224 | Password Rules (Password Game-style) | `password-rules` | TODO | — | — | — | — | — |  |  |
