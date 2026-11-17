@@ -1,0 +1,99 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 460px;
+  font-weight: 700;
+}
+
+.prompt {
+  font-size: 1.4rem;
+}
+
+.prompt strong {
+  color: var(--accent, #ffd23f);
+  text-transform: uppercase;
+}
+
+.timer {
+  font-variant-numeric: tabular-nums;
+  font-size: 1.4rem;
+}
+
+.timer.low {
+  color: #e5484d;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 28px 20px;
+  border-radius: 16px;
+  border: 3px solid var(--ink, #222);
+  background: var(--surface-raised, #fff8d6);
+  max-width: 460px;
+  width: 100%;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+}
+
+.speech {
+  min-height: 3.2em;
+  font-size: 1.15rem;
+  font-weight: 600;
+  max-width: 460px;
+}
+
+.speech.got {
+  color: #2f9e44;
+  font-size: 1.4rem;
+}
+
+.speech.miss {
+  color: #e5484d;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  font-weight: 700;
+}
+
+.tile small {
+  font-weight: 400;
+  color: var(--text-muted, #666);
+}

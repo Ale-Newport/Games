@@ -230,6 +230,7 @@ import { manifest as endlessCraft } from './endless-craft/manifest';
 import { manifest as passwordRules } from './password-rules/manifest';
 import { manifest as higherLower } from './higher-lower/manifest';
 import { manifest as mindReader } from './mind-reader/manifest';
+import { manifest as doodleRecognizer } from './doodle-recognizer/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -458,6 +459,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: passwordRules, load: () => import('./password-rules/index') },
   { manifest: higherLower, load: () => import('./higher-lower/index') },
   { manifest: mindReader, load: () => import('./mind-reader/index') },
+  { manifest: doodleRecognizer, load: () => import('./doodle-recognizer/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
