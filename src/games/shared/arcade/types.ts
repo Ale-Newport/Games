@@ -11,6 +11,14 @@ import type { Dictionary, Locale, Translator } from '../../../core/i18n';
 /** Held controls, from keys, touch buttons or a pointer. */
 export type Control = 'left' | 'right' | 'up' | 'down' | 'fire' | 'alt' | 'ccw' | 'hold';
 
+/** A pointer on the canvas, in simulation coordinates: pressed (`down`), or a mouse hovering. */
+export interface PointerAt {
+  x: number;
+  y: number;
+  down?: boolean;
+  mouse?: boolean;
+}
+
 export interface ArcadeOption {
   id: string;
   /** Label key in the game's strings. */
@@ -47,11 +55,13 @@ export interface ArcadeDef<S, A extends string> {
     options: { reducedMotion: boolean; t: Translator },
   ): void;
   /** The action for the controls held now (and, for pointer games, the pointer position). */
-  control(state: S, held: ReadonlySet<Control>, pointer: { x: number; y: number } | null): A;
+  control(state: S, held: ReadonlySet<Control>, pointer: PointerAt | null): A;
   /** On-screen buttons for touch play. */
   touch: Control[];
   /** Whether a pointer held on the canvas steers (e.g. a paddle following the finger). */
   pointer: boolean;
+  /** Whether a mouse steers just by moving over the canvas (pressing then adds `down`). */
+  hover?: boolean;
   /** Computer players, by level id (the first is the strongest, used by watch mode). */
   policies: Record<string, (state: S) => A>;
   /** Sound keys for what changed between two states. */

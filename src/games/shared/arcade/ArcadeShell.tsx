@@ -34,7 +34,7 @@ import { createFixedStepLoop } from '../../../core/rendering/fixed-step-loop';
 import shared from '../sudoku/SudokuGame.module.css';
 import styles from './Arcade.module.css';
 import { ARCADE_STRINGS } from './i18n';
-import type { ArcadeDef, Control } from './types';
+import type { ArcadeDef, Control, PointerAt } from './types';
 
 type Mode = 'menu' | 'play' | 'watch';
 
@@ -124,9 +124,11 @@ export function ArcadeShell<S, A extends string>({
   const heldRef = useRef(new Set<Control>());
   // Presses since the last step, so a tap shorter than one step still counts.
   const tappedRef = useRef(new Set<Control>());
-  const pointerRef = useRef<{ x: number; y: number } | null>(null);
+  const pointerRef = useRef<PointerAt | null>(null);
   // Where the last touch landed, kept until a step reads it (a quick tap still counts).
-  const pointerTapRef = useRef<{ x: number; y: number } | null>(null);
+  const pointerTapRef = useRef<PointerAt | null>(null);
+  // Where a mouse hovers (games that steer by hovering).
+  const hoverRef = useRef<PointerAt | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const pausedRef = useLatest(paused);
   const modeRef = useLatest(mode);
@@ -197,7 +199,7 @@ export function ArcadeShell<S, A extends string>({
             : def.control(
                 s,
                 new Set([...heldRef.current, ...tappedRef.current]),
-                pointerRef.current ?? pointerTapRef.current,
+                pointerRef.current ?? pointerTapRef.current ?? hoverRef.current,
               );
         pointerTapRef.current = null;
         tappedRef.current.clear();
@@ -398,11 +400,16 @@ export function ArcadeShell<S, A extends string>({
           onPointerDown={(e) => {
             if (!def.pointer || mode !== 'play') return;
             e.currentTarget.setPointerCapture?.(e.pointerId);
-            pointerRef.current = toLogical(e);
+            pointerRef.current = { ...toLogical(e), down: true, mouse: e.pointerType === 'mouse' };
             pointerTapRef.current = pointerRef.current;
           }}
           onPointerMove={(e) => {
-            if (pointerRef.current) pointerRef.current = toLogical(e);
+            if (pointerRef.current) pointerRef.current = { ...pointerRef.current, ...toLogical(e) };
+            if (def.hover && e.pointerType === 'mouse' && mode === 'play')
+              hoverRef.current = { ...toLogical(e), mouse: true };
+          }}
+          onPointerLeave={() => {
+            hoverRef.current = null;
           }}
           onPointerUp={() => {
             pointerRef.current = null;

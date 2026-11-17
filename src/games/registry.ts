@@ -223,6 +223,7 @@ import { manifest as captionBattle } from './caption-battle/manifest';
 import { manifest as syllableBomb } from './syllable-bomb/manifest';
 import { manifest as discSoccer } from './disc-soccer/manifest';
 import { manifest as stackDuel } from './stack-duel/manifest';
+import { manifest as snakeArena } from './snake-arena/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -444,6 +445,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: syllableBomb, load: () => import('./syllable-bomb/index') },
   { manifest: discSoccer, load: () => import('./disc-soccer/index') },
   { manifest: stackDuel, load: () => import('./stack-duel/index') },
+  { manifest: snakeArena, load: () => import('./snake-arena/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
