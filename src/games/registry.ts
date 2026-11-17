@@ -226,6 +226,7 @@ import { manifest as stackDuel } from './stack-duel/manifest';
 import { manifest as snakeArena } from './snake-arena/manifest';
 import { manifest as cellArena } from './cell-arena/manifest';
 import { manifest as blockyArenaFps } from './blocky-arena-fps/manifest';
+import { manifest as endlessCraft } from './endless-craft/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -450,6 +451,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: snakeArena, load: () => import('./snake-arena/index') },
   { manifest: cellArena, load: () => import('./cell-arena/index') },
   { manifest: blockyArenaFps, load: () => import('./blocky-arena-fps/index') },
+  { manifest: endlessCraft, load: () => import('./endless-craft/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
