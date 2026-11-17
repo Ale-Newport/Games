@@ -1,5 +1,5 @@
 /**
- * The definitive 200-game development roadmap.
+ * The game development roadmap (catalog 001–200 classics, 201+ viral web games).
  *
  * This file is the single source of truth for development status. ROADMAP.md is generated from it
  * (`npm run roadmap`) and tests/platform/roadmap.test.ts validates it against the game registry.
@@ -9,7 +9,7 @@
  * Keep this module dependency-free so Node tooling can import it directly.
  */
 
-export type CategoryId = 'board' | 'strategy' | 'cards' | 'puzzle' | 'dice' | 'arcade';
+export type CategoryId = 'board' | 'strategy' | 'cards' | 'puzzle' | 'dice' | 'arcade' | 'viral';
 
 export type DevStatus = 'TODO' | 'IN_PROGRESS' | 'TESTING' | 'COMPLETE' | 'BLOCKED';
 
@@ -39,6 +39,7 @@ export const CATEGORY_NAMES: Record<CategoryId, string> = {
   puzzle: 'Puzzles, Logic & Solving',
   dice: 'Dice, Dominoes, Chance & Social',
   arcade: 'Arcade, Platformers & Physics',
+  viral: 'Viral Web, Word & Party Games',
 };
 
 type Def = [number, string, string, CategoryId];
@@ -255,6 +256,38 @@ const DEFINITIONS: Def[] = [
   [198, 'cartpole', 'CartPole Balancing Game', 'arcade'],
   [199, 'bubble-shooter', 'Bubble Shooter', 'arcade'],
   [200, 'rescue-walkers', 'Lemmings-Style Puzzle Platformer', 'arcade'],
+
+  // Category G — Viral web, word and party games (201–230)
+  [201, 'rare-answer-dive', 'Rare Answer Dive (Krillion-style)', 'viral'],
+  [202, 'crowd-answer-climb', 'Crowd Answer Climb (Noillirk-style)', 'viral'],
+  [203, 'category-letters', 'Category Letters (Scattergories-style)', 'viral'],
+  [204, 'quiz-arcade', 'Quiz Arcade (Sporcle-style)', 'viral'],
+  [205, 'world-quiz', 'World Quiz (JetPunk-style)', 'viral'],
+  [206, 'word-rank', 'Word Rank (Contexto-style)', 'viral'],
+  [207, 'word-warmth', 'Word Warmth (Semantle-style)', 'viral'],
+  [208, 'word-groups', 'Word Groups (Connections-style)', 'viral'],
+  [209, 'country-shape', 'Country Shape (Worldle-style)', 'viral'],
+  [210, 'theme-strands', 'Theme Strands (Strands-style)', 'viral'],
+  [211, 'flag-reveal', 'Flag Reveal (Flagle-style)', 'viral'],
+  [212, 'globe-hot-cold', 'Hot & Cold Globe (Globle-style)', 'viral'],
+  [213, 'sketch-guess', 'Sketch & Guess (Skribbl-style)', 'viral'],
+  [214, 'draw-telephone', 'Draw Telephone (Gartic Phone-style)', 'viral'],
+  [215, 'code-words', 'Code Words (Codenames-style)', 'viral'],
+  [216, 'caption-battle', 'Caption Battle (Make It Meme-style)', 'viral'],
+  [217, 'syllable-bomb', 'Syllable Bomb (BombParty-style)', 'viral'],
+  [218, 'disc-soccer', 'Disc Soccer (HaxBall-style)', 'viral'],
+  [219, 'stack-duel', 'Stack Duel (TETR.IO-style)', 'viral'],
+  [220, 'snake-arena', 'Snake Arena (Slither.io-style)', 'viral'],
+  [221, 'cell-arena', 'Cell Arena (Agar.io-style)', 'viral'],
+  [222, 'blocky-arena-fps', 'Blocky Arena FPS (Krunker-style)', 'viral'],
+  [223, 'endless-craft', 'Endless Craft (Infinite Craft-style)', 'viral'],
+  [224, 'password-rules', 'Password Rules (Password Game-style)', 'viral'],
+  [225, 'higher-lower', 'Higher or Lower', 'viral'],
+  [226, 'mind-reader', 'Mind Reader (Akinator-style)', 'viral'],
+  [227, 'doodle-recognizer', 'Doodle Recognizer (Quick, Draw!-style)', 'viral'],
+  [228, 'idle-bakery', 'Idle Bakery (Cookie Clicker-style)', 'viral'],
+  [229, 'when-and-where', 'When & Where (WenWare-style)', 'viral'],
+  [230, 'painted-night-ride', 'Painted Night Ride (Starry Nightrider-style)', 'viral'],
 ];
 
 /**
@@ -2064,6 +2097,24 @@ const PROGRESS: Record<
     tests: 'done',
     ai: 'done',
     completed: '2026-11-07',
+  },
+  'rare-answer-dive': {
+    status: 'COMPLETE',
+    engine: 'done',
+    graphics: 'done',
+    content: 'done',
+    tests: 'done',
+    ai: 'done',
+    completed: '2026-11-17',
+  },
+  'crowd-answer-climb': {
+    status: 'COMPLETE',
+    engine: 'done',
+    graphics: 'done',
+    content: 'done',
+    tests: 'done',
+    ai: 'done',
+    completed: '2026-11-17',
   },
 };
 

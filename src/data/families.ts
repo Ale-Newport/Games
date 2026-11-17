@@ -244,6 +244,11 @@ export const FAMILIES: readonly GameFamily[] = [
     name: { en: 'Platformers', es: 'Plataformas' },
     members: ['platformer', 'precision-platformer'],
   },
+  {
+    id: 'survey',
+    name: { en: 'Survey Trivia', es: 'Trivia de encuestas' },
+    members: ['rare-answer-dive', 'crowd-answer-climb'],
+  },
 ];
 
 const BY_GAME = new Map<string, GameFamily>();

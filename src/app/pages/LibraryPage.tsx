@@ -10,7 +10,15 @@ import { useLocale, useProfile, useT } from '../platform';
 import { navigate, type Route } from '../router';
 import styles from './pages.module.css';
 
-const CATEGORIES: CategoryId[] = ['board', 'strategy', 'cards', 'puzzle', 'dice', 'arcade'];
+const CATEGORIES: CategoryId[] = [
+  'board',
+  'strategy',
+  'cards',
+  'puzzle',
+  'dice',
+  'arcade',
+  'viral',
+];
 type Sort = 'number' | 'name' | 'recent';
 type PlayerFilter = 'solo' | 'multi' | 'ai';
 

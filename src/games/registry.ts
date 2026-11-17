@@ -204,6 +204,8 @@ import { manifest as verticalJumper } from './vertical-jumper/manifest';
 import { manifest as cartpole } from './cartpole/manifest';
 import { manifest as bubbleShooter } from './bubble-shooter/manifest';
 import { manifest as rescueWalkers } from './rescue-walkers/manifest';
+import { manifest as rareAnswerDive } from './rare-answer-dive/manifest';
+import { manifest as crowdAnswerClimb } from './crowd-answer-climb/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -406,6 +408,8 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: cartpole, load: () => import('./cartpole/index') },
   { manifest: bubbleShooter, load: () => import('./bubble-shooter/index') },
   { manifest: rescueWalkers, load: () => import('./rescue-walkers/index') },
+  { manifest: rareAnswerDive, load: () => import('./rare-answer-dive/index') },
+  { manifest: crowdAnswerClimb, load: () => import('./crowd-answer-climb/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

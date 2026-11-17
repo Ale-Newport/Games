@@ -24,3 +24,4 @@ __pycache__/
 CLAUDE.md
 .vscode/
 .idea/
+.cache/

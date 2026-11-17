@@ -12,7 +12,7 @@ export type InputMethod = 'keyboard' | 'mouse' | 'touch';
 /** Static, eagerly-loaded metadata. Must stay tiny: no rules, no React components. */
 export interface GameManifest {
   id: string;
-  /** Catalog number 1..200 (matches src/data/roadmap.ts). */
+  /** Catalog number (matches src/data/roadmap.ts). */
   number: number;
   title: LocalizedText;
   /** One-line pitch shown on cards. */

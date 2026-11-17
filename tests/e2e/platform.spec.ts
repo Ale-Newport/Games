@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { ROADMAP } from '../../src/data/roadmap';
 import {
   expectNoHorizontalOverflow,
   freshStart,
@@ -10,7 +11,7 @@ test('home shows available games and progress', async ({ page }) => {
   await freshStart(page);
   await expect(page.getByRole('heading', { name: 'Arcade AI Lab' })).toBeVisible();
   await expect(page.getByTestId('game-card-tic-tac-toe').first()).toBeVisible();
-  await expect(page.getByText(/of 200 games available/)).toBeVisible();
+  await expect(page.getByText(new RegExp(`of ${ROADMAP.length} games available`))).toBeVisible();
   await expectNoHorizontalOverflow(page);
   await screenshot(page, 'home');
 });
@@ -36,15 +37,15 @@ test('library search and category filters', async ({ page }) => {
   await expectNoHorizontalOverflow(page);
 });
 
-test('roadmap dashboard reflects the real 200-game roadmap', async ({ page }) => {
+test('roadmap dashboard reflects the real roadmap', async ({ page }) => {
   await freshStart(page, '/roadmap');
   const counts = await Promise.all(
     ['COMPLETE', 'IN_PROGRESS', 'TESTING', 'TODO', 'BLOCKED'].map(async (s) =>
       Number(await page.getByTestId(`roadmap-count-${s}`).textContent()),
     ),
   );
-  expect(counts.reduce((a, b) => a + b, 0)).toBe(200);
-  await expect(page.getByRole('row')).toHaveCount(201);
+  expect(counts.reduce((a, b) => a + b, 0)).toBe(ROADMAP.length);
+  await expect(page.getByRole('row')).toHaveCount(ROADMAP.length + 1);
 });
 
 test('direct navigation and refresh of a game URL work (hash routing)', async ({ page }) => {

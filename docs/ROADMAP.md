@@ -1,11 +1,11 @@
-# Arcade AI Lab — 200-Game Roadmap
+# Arcade AI Lab — Game Roadmap
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 200 / 200 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 0
+**Complete:** 202 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 28
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
-A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).
+A game is COMPLETE only when it meets [the definition of done](game-standards.md).
 
 ## Classic Board & Abstract Strategy
 
@@ -236,3 +236,38 @@ A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standar
 | 198 | CartPole Balancing Game | `cartpole` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 199 | Bubble Shooter | `bubble-shooter` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
 | 200 | Lemmings-Style Puzzle Platformer | `rescue-walkers` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-07 |  |
+
+## Viral Web, Word & Party Games
+
+| # | Game | ID | Status | Engine | Graphics | Content | Tests | AI | Completed | Known issues |
+|---:|---|---|---|:-:|:-:|:-:|:-:|:-:|---|---|
+| 201 | Rare Answer Dive (Krillion-style) | `rare-answer-dive` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
+| 202 | Crowd Answer Climb (Noillirk-style) | `crowd-answer-climb` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
+| 203 | Category Letters (Scattergories-style) | `category-letters` | TODO | — | — | — | — | — |  |  |
+| 204 | Quiz Arcade (Sporcle-style) | `quiz-arcade` | TODO | — | — | — | — | — |  |  |
+| 205 | World Quiz (JetPunk-style) | `world-quiz` | TODO | — | — | — | — | — |  |  |
+| 206 | Word Rank (Contexto-style) | `word-rank` | TODO | — | — | — | — | — |  |  |
+| 207 | Word Warmth (Semantle-style) | `word-warmth` | TODO | — | — | — | — | — |  |  |
+| 208 | Word Groups (Connections-style) | `word-groups` | TODO | — | — | — | — | — |  |  |
+| 209 | Country Shape (Worldle-style) | `country-shape` | TODO | — | — | — | — | — |  |  |
+| 210 | Theme Strands (Strands-style) | `theme-strands` | TODO | — | — | — | — | — |  |  |
+| 211 | Flag Reveal (Flagle-style) | `flag-reveal` | TODO | — | — | — | — | — |  |  |
+| 212 | Hot & Cold Globe (Globle-style) | `globe-hot-cold` | TODO | — | — | — | — | — |  |  |
+| 213 | Sketch & Guess (Skribbl-style) | `sketch-guess` | TODO | — | — | — | — | — |  |  |
+| 214 | Draw Telephone (Gartic Phone-style) | `draw-telephone` | TODO | — | — | — | — | — |  |  |
+| 215 | Code Words (Codenames-style) | `code-words` | TODO | — | — | — | — | — |  |  |
+| 216 | Caption Battle (Make It Meme-style) | `caption-battle` | TODO | — | — | — | — | — |  |  |
+| 217 | Syllable Bomb (BombParty-style) | `syllable-bomb` | TODO | — | — | — | — | — |  |  |
+| 218 | Disc Soccer (HaxBall-style) | `disc-soccer` | TODO | — | — | — | — | — |  |  |
+| 219 | Stack Duel (TETR.IO-style) | `stack-duel` | TODO | — | — | — | — | — |  |  |
+| 220 | Snake Arena (Slither.io-style) | `snake-arena` | TODO | — | — | — | — | — |  |  |
+| 221 | Cell Arena (Agar.io-style) | `cell-arena` | TODO | — | — | — | — | — |  |  |
+| 222 | Blocky Arena FPS (Krunker-style) | `blocky-arena-fps` | TODO | — | — | — | — | — |  |  |
+| 223 | Endless Craft (Infinite Craft-style) | `endless-craft` | TODO | — | — | — | — | — |  |  |
+| 224 | Password Rules (Password Game-style) | `password-rules` | TODO | — | — | — | — | — |  |  |
+| 225 | Higher or Lower | `higher-lower` | TODO | — | — | — | — | — |  |  |
+| 226 | Mind Reader (Akinator-style) | `mind-reader` | TODO | — | — | — | — | — |  |  |
+| 227 | Doodle Recognizer (Quick, Draw!-style) | `doodle-recognizer` | TODO | — | — | — | — | — |  |  |
+| 228 | Idle Bakery (Cookie Clicker-style) | `idle-bakery` | TODO | — | — | — | — | — |  |  |
+| 229 | When & Where (WenWare-style) | `when-and-where` | TODO | — | — | — | — | — |  |  |
+| 230 | Painted Night Ride (Starry Nightrider-style) | `painted-night-ride` | TODO | — | — | — | — | — |  |  |

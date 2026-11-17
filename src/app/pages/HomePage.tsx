@@ -7,7 +7,15 @@ import { useProfile, useT } from '../platform';
 import { href, navigate } from '../router';
 import styles from './pages.module.css';
 
-const CATEGORIES: CategoryId[] = ['board', 'strategy', 'cards', 'puzzle', 'dice', 'arcade'];
+const CATEGORIES: CategoryId[] = [
+  'board',
+  'strategy',
+  'cards',
+  'puzzle',
+  'dice',
+  'arcade',
+  'viral',
+];
 
 export function HomePage() {
   const t = useT();

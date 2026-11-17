@@ -13,14 +13,14 @@ export function renderRoadmapMarkdown(entries: readonly RoadmapEntry[] = ROADMAP
   const count = (status: RoadmapEntry['status']) =>
     entries.filter((e) => e.status === status).length;
   const lines: string[] = [
-    '# Arcade AI Lab — 200-Game Roadmap',
+    '# Arcade AI Lab — Game Roadmap',
     '',
     '<!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->',
     '',
     `**Complete:** ${count('COMPLETE')} / ${entries.length} · **In progress:** ${count('IN_PROGRESS')} · **Testing:** ${count('TESTING')} · **Blocked:** ${count('BLOCKED')} · **To do:** ${count('TODO')}`,
     '',
     'Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.',
-    'A game is COMPLETE only when it meets [docs/game-standards.md](docs/game-standards.md).',
+    'A game is COMPLETE only when it meets [the definition of done](game-standards.md).',
     '',
   ];
   const categories = [...new Set(entries.map((e) => e.category))] as CategoryId[];

@@ -225,6 +225,9 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   cartpole: () => import('../../games/cartpole/ai-adapter').then((m) => m.bundle),
   'bubble-shooter': () => import('../../games/bubble-shooter/ai-adapter').then((m) => m.bundle),
   'rescue-walkers': () => import('../../games/rescue-walkers/ai-adapter').then((m) => m.bundle),
+  'rare-answer-dive': () => import('../../games/rare-answer-dive/ai-adapter').then((m) => m.bundle),
+  'crowd-answer-climb': () =>
+    import('../../games/crowd-answer-climb/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

@@ -15,14 +15,16 @@ const CATEGORY_RANGES: [CategoryId, number, number][] = [
   ['puzzle', 101, 140],
   ['dice', 141, 165],
   ['arcade', 166, 200],
+  ['viral', 201, 230],
 ];
 
 describe('roadmap', () => {
-  it('defines exactly 200 unique games numbered 1..200', () => {
-    expect(ROADMAP).toHaveLength(200);
-    expect(ROADMAP.map((e) => e.number)).toEqual(Array.from({ length: 200 }, (_, i) => i + 1));
-    expect(new Set(ROADMAP.map((e) => e.id)).size).toBe(200);
-    expect(new Set(ROADMAP.map((e) => e.name)).size).toBe(200);
+  it('defines unique games numbered 1..N with every category range filled', () => {
+    const n = CATEGORY_RANGES.at(-1)![2];
+    expect(ROADMAP).toHaveLength(n);
+    expect(ROADMAP.map((e) => e.number)).toEqual(Array.from({ length: n }, (_, i) => i + 1));
+    expect(new Set(ROADMAP.map((e) => e.id)).size).toBe(n);
+    expect(new Set(ROADMAP.map((e) => e.name)).size).toBe(n);
     for (const e of ROADMAP) expect(e.id).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
   });
 
