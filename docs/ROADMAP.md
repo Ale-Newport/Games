@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 202 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 28
+**Complete:** 203 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 27
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -243,7 +243,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 |---:|---|---|---|:-:|:-:|:-:|:-:|:-:|---|---|
 | 201 | Rare Answer Dive (Krillion-style) | `rare-answer-dive` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 202 | Crowd Answer Climb (Noillirk-style) | `crowd-answer-climb` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
-| 203 | Category Letters (Scattergories-style) | `category-letters` | TODO | — | — | — | — | — |  |  |
+| 203 | Category Letters (Scattergories-style) | `category-letters` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 204 | Quiz Arcade (Sporcle-style) | `quiz-arcade` | TODO | — | — | — | — | — |  |  |
 | 205 | World Quiz (JetPunk-style) | `world-quiz` | TODO | — | — | — | — | — |  |  |
 | 206 | Word Rank (Contexto-style) | `word-rank` | TODO | — | — | — | — | — |  |  |

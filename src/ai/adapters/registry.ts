@@ -228,6 +228,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'rare-answer-dive': () => import('../../games/rare-answer-dive/ai-adapter').then((m) => m.bundle),
   'crowd-answer-climb': () =>
     import('../../games/crowd-answer-climb/ai-adapter').then((m) => m.bundle),
+  'category-letters': () => import('../../games/category-letters/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
