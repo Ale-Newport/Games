@@ -2152,6 +2152,15 @@ const PROGRESS: Record<
     ai: 'done',
     completed: '2026-11-17',
   },
+  'word-warmth': {
+    status: 'COMPLETE',
+    engine: 'done',
+    graphics: 'done',
+    content: 'done',
+    tests: 'done',
+    ai: 'done',
+    completed: '2026-11-17',
+  },
 };
 
 export const ROADMAP: readonly RoadmapEntry[] = DEFINITIONS.map(([number, id, name, category]) => ({

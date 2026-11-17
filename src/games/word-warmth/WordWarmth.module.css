@@ -1,0 +1,126 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding-bottom: var(--space-4);
+}
+
+.header {
+  margin: 0;
+  padding: var(--space-3);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  font-size: var(--text-sm);
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.input {
+  flex: 1;
+  min-width: 160px;
+  font-size: 1.15rem;
+}
+
+.message {
+  min-height: 1.3em;
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.table th,
+.table td {
+  padding: 6px 8px;
+  border-bottom: 2px solid var(--surface-2);
+  text-align: left;
+}
+
+.table th {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
+.table tr[data-pinned='true'] {
+  background: var(--surface-2);
+  outline: 2px solid var(--accent-2);
+}
+
+.table tr[data-temp='found'] .word {
+  color: var(--success);
+}
+
+.word {
+  font-weight: 800;
+}
+
+.meter {
+  position: relative;
+  display: block;
+  min-width: 110px;
+  height: 22px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(90deg, #ffb03d, #ff4d2e);
+}
+
+.meterText {
+  position: relative;
+  display: block;
+  text-align: center;
+  font-size: var(--text-xs);
+  font-weight: 800;
+  line-height: 18px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.cold {
+  color: #7fb4ff;
+  font-size: var(--text-sm);
+}
+
+:root[data-colorblind='on'] .fill {
+  background: linear-gradient(90deg, #35c8ff, #1f6fd1);
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 4px solid var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.result[data-status='won'] {
+  border-color: var(--success);
+}
+
+.nearest {
+  columns: 3 140px;
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-sm);
+}

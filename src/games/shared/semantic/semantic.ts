@@ -29,6 +29,27 @@ export function similaritiesTo(v: Vectors, target: number): Float32Array {
   return out;
 }
 
+const neighbourCache = new WeakMap<Vectors, Map<number, number[]>>();
+
+/** The 60 nearest words to a word (excluding itself), by vector similarity; cached. */
+export function neighbours(v: Vectors, word: number): number[] {
+  let byWord = neighbourCache.get(v);
+  if (!byWord) {
+    byWord = new Map();
+    neighbourCache.set(v, byWord);
+  }
+  let n = byWord.get(word);
+  if (!n) {
+    const sims = similaritiesTo(v, word);
+    n = Array.from({ length: v.words.length }, (_, i) => i)
+      .filter((i) => i !== word)
+      .sort((a, b) => sims[b]! - sims[a]!)
+      .slice(0, 60);
+    byWord.set(word, n);
+  }
+  return n;
+}
+
 /** Ranks every word by closeness to the target: rank[target] = 1, the next closest 2, … */
 export function rankAll(v: Vectors, target: number): Int32Array {
   const sims = similaritiesTo(v, target);

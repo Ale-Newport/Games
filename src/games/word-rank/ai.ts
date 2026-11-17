@@ -4,26 +4,10 @@
  * (falling back to its next-best guesses), taking a hint when it stalls.
  */
 import type { Rng } from '../../core/game-engine/random';
-import { similaritiesTo, type Vectors } from '../shared/semantic/semantic';
+import { neighbours, type Vectors } from '../shared/semantic/semantic';
 import { bestRank, type RankState } from './engine';
 
 export type RankAction = `g:${number}` | 'hint' | 'give-up';
-
-const neighbourCache = new Map<number, number[]>();
-
-/** The 60 nearest words to a word (excluding itself), by vector similarity. */
-export function neighbours(v: Vectors, word: number): number[] {
-  let n = neighbourCache.get(word);
-  if (!n) {
-    const sims = similaritiesTo(v, word);
-    n = Array.from({ length: v.words.length }, (_, i) => i)
-      .filter((i) => i !== word)
-      .sort((a, b) => sims[b]! - sims[a]!)
-      .slice(0, 60);
-    neighbourCache.set(word, n);
-  }
-  return n;
-}
 
 export function climberMove(v: Vectors, s: RankState, rng: Rng, useHints: boolean): RankAction {
   const guessed = new Set(s.guesses.map((g) => g.word));

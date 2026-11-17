@@ -254,6 +254,11 @@ export const FAMILIES: readonly GameFamily[] = [
     name: { en: 'Timed Quizzes', es: 'Tests contrarreloj' },
     members: ['quiz-arcade', 'world-quiz'],
   },
+  {
+    id: 'semantic',
+    name: { en: 'Meaning Games', es: 'Juegos de significado' },
+    members: ['word-rank', 'word-warmth'],
+  },
 ];
 
 const BY_GAME = new Map<string, GameFamily>();
