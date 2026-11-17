@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { newRun, sheetById } from '../../../src/games/shared/survey/engine';
 import { expectNoHorizontalOverflow, freshStart, screenshot } from '../helpers';
 
 test('Rare Answer Dive: answer, miss, reveal and keep diving', async ({ page }) => {
@@ -12,7 +13,12 @@ test('Rare Answer Dive: answer, miss, reveal and keep diving', async ({ page }) 
   await expect(page.getByTestId('sv-feedback')).toContainText('No echo');
   await expectNoHorizontalOverflow(page);
   await screenshot(page, 'rare-answer-dive');
-  await expect(page.getByTestId('sv-reveal')).toBeVisible({ timeout: 30_000 });
+  const sheet = sheetById(
+    newRun({ polarity: 'rare', lang: 'en', kind: 'unlimited', seed: 42 }).prompts[0]!,
+  );
+  await page.getByTestId('sv-input').fill(sheet.entries.find((e) => e.band === 'f')!.name.en);
+  await page.keyboard.press('Enter');
+  await expect(page.getByTestId('sv-points')).toHaveText('+100');
   await page.getByTestId('sv-next').click();
   await expect(page.getByTestId('sv-question')).toBeVisible();
 });
