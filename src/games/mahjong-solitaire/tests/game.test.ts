@@ -3,7 +3,12 @@ import { describeAdapterContract } from '../../../ai/protocols/contract-suite';
 import { strategistAction, visibleFaces } from '../ai';
 import { mahjongEnv } from '../ai-adapter';
 import {
+  BRIDGE,
+  BUTTERFLY,
   CROSSROADS,
+  FORTRESS,
+  LAYOUTS,
+  PAGODAS,
   PYRAMID,
   act,
   dealSolution,
@@ -19,14 +24,36 @@ import {
 
 describe('Mahjong solitaire rules', () => {
   it('layouts have whole groups of four and no floating tiles', () => {
-    for (const def of [CROSSROADS, PYRAMID]) {
+    expect(LAYOUTS.map((l) => l.id)).toEqual([
+      'crossroads',
+      'fortress',
+      'bridge',
+      'butterfly',
+      'pyramid',
+      'pagodas',
+    ]);
+    for (const def of LAYOUTS) {
       expect(def.slots.length % 4).toBe(0);
+      expect(def.slots.length).toBeLessThanOrEqual(144);
+      // At most 12 columns, so tiles stay tappable at 360 px.
+      expect(Math.max(...def.slots.map((s) => s.x))).toBeLessThan(12);
       const at = new Set(def.slots.map((s) => `${s.x},${s.y},${s.z}`));
       expect(at.size).toBe(def.slots.length);
       expect(def.slots.every((s) => s.z === 0 || at.has(`${s.x},${s.y},${s.z - 1}`))).toBe(true);
     }
     expect(PYRAMID.slots).toHaveLength(144);
     expect(CROSSROADS.slots).toHaveLength(84);
+    expect(FORTRESS.slots).toHaveLength(80);
+    expect(BRIDGE.slots).toHaveLength(88);
+    expect(BUTTERFLY.slots).toHaveLength(112);
+    expect(PAGODAS.slots).toHaveLength(144);
+    // Layer by layer.
+    const layers = (def: typeof PYRAMID) =>
+      [0, 1, 2, 3, 4].map((z) => def.slots.filter((s) => s.z === z).length);
+    expect(layers(FORTRESS)).toEqual([52, 20, 8, 0, 0]);
+    expect(layers(BRIDGE)).toEqual([48, 32, 8, 0, 0]);
+    expect(layers(BUTTERFLY)).toEqual([70, 32, 10, 0, 0]);
+    expect(layers(PAGODAS)).toEqual([76, 40, 20, 8, 0]);
   });
 
   it('a tile is free with nothing on top and an open side', () => {
@@ -52,7 +79,7 @@ describe('Mahjong solitaire rules', () => {
   });
 
   it('every deal can be cleared by the order it was built from', () => {
-    for (const layout of ['crossroads', 'pyramid'])
+    for (const { id: layout } of LAYOUTS)
       for (let seed = 1; seed <= 5; seed++) {
         let g = newMahjong(layout, seed);
         for (const [a, b] of dealSolution(layout, seed)) {
@@ -103,7 +130,7 @@ describe('Mahjong solitaire players', () => {
 });
 
 describeAdapterContract(mahjongEnv, {
-  configs: [undefined, { layout: 'pyramid' }],
+  configs: [undefined, { layout: 'pyramid' }, { layout: 'butterfly' }],
   playouts: 2,
   maxSteps: 2000,
   illegalActions: (g) => ['jump', 'pair:0,0'].filter((a) => !legalActions(g).includes(a)),

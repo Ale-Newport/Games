@@ -5,8 +5,8 @@ test('Peg Solitaire: jump, undo and finish the English board with hints', async 
   await freshStart(page, '/game/peg-solitaire');
   await page.getByTestId('pg-start').click();
   const hole = (h: number) => page.getByTestId('pg-board').locator(`[data-hole="${h}"]`);
-  await hole(10).click();
-  await hole(24).click();
+  await hole(4).click();
+  await hole(16).click();
   await expect(page.getByTestId('pg-left')).toHaveText('Pegs 31');
   await page.getByTestId('pg-undo').click();
   await expectNoHorizontalOverflow(page);
@@ -17,6 +17,22 @@ test('Peg Solitaire: jump, undo and finish the English board with hints', async 
     await page.getByTestId('pg-apply').click();
   }
   await expect(page.getByTestId('pg-message')).toContainText('One peg left');
+});
+
+test('Peg Solitaire: the German board and the hexagon', async ({ page }) => {
+  await freshStart(page, '/game/peg-solitaire');
+  await page.getByTestId('pg-board-german').click();
+  await page.getByTestId('pg-start').click();
+  await expect(page.getByTestId('pg-board').locator('[data-hole]')).toHaveCount(45);
+  await expect(page.getByTestId('pg-left')).toHaveText('Pegs 44');
+  await expectNoHorizontalOverflow(page);
+  await screenshot(page, 'peg-solitaire-german');
+  await page.getByTestId('pg-menu-btn').click();
+  await page.getByTestId('pg-board-hexagon').click();
+  await page.getByTestId('pg-start').click();
+  await expect(page.getByTestId('pg-board').locator('[data-hole]')).toHaveCount(37);
+  await expectNoHorizontalOverflow(page);
+  await screenshot(page, 'peg-solitaire-hexagon');
 });
 
 test('Peg Solitaire: the triangle and watching the AI', async ({ page }) => {

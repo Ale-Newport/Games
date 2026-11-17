@@ -7,12 +7,12 @@ export const manifest: GameManifest = {
   number: 128,
   title: { en: 'Peg Solitaire', es: 'Solitario de clavijas' },
   tagline: {
-    en: 'Jump pegs off the board until one is left — on the English cross, the European board or the triangle.',
-    es: 'Salta clavijas hasta que quede una: en la cruz inglesa, el tablero europeo o el triángulo.',
+    en: 'Jump pegs off the board until one is left — on eight boards, from the English cross to the hexagon.',
+    es: 'Salta clavijas hasta que quede una: en ocho tableros, de la cruz inglesa al hexágono.',
   },
   description: {
-    en: 'The classic jumping puzzle on three boards. Tap a peg and a highlighted hole, undo freely, and ask for hints from a solver that searches for a way to a single peg — or tells you when none is left.',
-    es: 'El clásico puzle de saltos en tres tableros. Toca una clavija y un hueco resaltado, deshaz cuando quieras y pide pistas a un solucionador que busca el camino hasta una sola clavija, o te avisa cuando ya no hay ninguno.',
+    en: 'The classic jumping puzzle on eight boards: English, European, German, asymmetric 3-3-2-2, diamond, two triangles and a hexagon. Tap a peg and a highlighted hole, undo freely, and ask for hints from a solver that searches for a way to a single peg — or tells you when none is left.',
+    es: 'El clásico puzle de saltos en ocho tableros: inglés, europeo, alemán, asimétrico 3-3-2-2, diamante, dos triángulos y un hexágono. Toca una clavija y un hueco resaltado, deshaz cuando quieras y pide pistas a un solucionador que busca el camino hasta una sola clavija, o te avisa cuando ya no hay ninguno.',
   },
   category: 'puzzle',
   genre: { en: 'Jumping', es: 'Saltos' },

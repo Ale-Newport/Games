@@ -55,7 +55,75 @@ export const CROSSROADS = build('crossroads', [
   [4, 2, 2, 2, 3],
 ]);
 
-export const LAYOUTS: LayoutDef[] = [CROSSROADS, PYRAMID];
+/**
+ * A walled fortress of 80 tiles: a one-tile curtain wall with towers three high at the corners,
+ * and a raised keep inside.
+ */
+export const FORTRESS = build('fortress', [
+  [0, 0, 12, 1, 0],
+  [0, 7, 12, 1, 0],
+  [0, 1, 1, 6, 0],
+  [11, 1, 1, 6, 0],
+  [4, 2, 4, 4, 0],
+  [0, 0, 1, 1, 1],
+  [11, 0, 1, 1, 1],
+  [0, 7, 1, 1, 1],
+  [11, 7, 1, 1, 1],
+  [0, 0, 1, 1, 2],
+  [11, 0, 1, 1, 2],
+  [0, 7, 1, 1, 2],
+  [11, 7, 1, 1, 2],
+  [4, 2, 4, 4, 1],
+  [5, 3, 2, 2, 2],
+]);
+
+/** A butterfly of 112 tiles: broad upper wings, narrower lower wings and a raised body. */
+export const BUTTERFLY = build('butterfly', [
+  [0, 0, 5, 3, 0],
+  [7, 0, 5, 3, 0],
+  [1, 4, 4, 3, 0],
+  [7, 4, 4, 3, 0],
+  [5, 0, 2, 8, 0],
+  [1, 1, 3, 2, 1],
+  [8, 1, 3, 2, 1],
+  [2, 4, 2, 2, 1],
+  [8, 4, 2, 2, 1],
+  [5, 1, 2, 6, 1],
+  [2, 1, 1, 1, 2],
+  [9, 1, 1, 1, 2],
+  [5, 2, 2, 4, 2],
+]);
+
+/** A suspension bridge of 88 tiles: a two-row deck on two piers, with towers rising above it. */
+export const BRIDGE = build('bridge', [
+  [0, 3, 12, 2, 0],
+  [2, 5, 2, 3, 0],
+  [8, 5, 2, 3, 0],
+  [2, 0, 2, 3, 0],
+  [8, 0, 2, 3, 0],
+  [2, 0, 2, 5, 1],
+  [8, 0, 2, 5, 1],
+  [4, 3, 4, 2, 1],
+  [0, 3, 1, 2, 1],
+  [11, 3, 1, 2, 1],
+  [2, 0, 2, 2, 2],
+  [8, 0, 2, 2, 2],
+]);
+
+/** Twin pagodas of 144 tiles (the full set): two four-storey towers on a shared terrace. */
+export const PAGODAS = build('pagodas', [
+  [0, 5, 12, 3, 0],
+  [1, 0, 4, 5, 0],
+  [7, 0, 4, 5, 0],
+  [1, 1, 4, 5, 1],
+  [7, 1, 4, 5, 1],
+  [2, 1, 2, 5, 2],
+  [8, 1, 2, 5, 2],
+  [2, 2, 2, 2, 3],
+  [8, 2, 2, 2, 3],
+]);
+
+export const LAYOUTS: LayoutDef[] = [CROSSROADS, FORTRESS, BRIDGE, BUTTERFLY, PYRAMID, PAGODAS];
 export const layoutById = (id: string) => LAYOUTS.find((l) => l.id === id) ?? CROSSROADS;
 
 /**

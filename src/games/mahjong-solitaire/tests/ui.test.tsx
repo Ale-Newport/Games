@@ -50,6 +50,32 @@ describe('Mahjong solitaire UI', () => {
     expect(left()).toBe(80);
   });
 
+  it('every layout can be chosen and dealt in full', async () => {
+    vi.useFakeTimers();
+    const { services } = createTestServices({ launchParams: { deal: '7' } });
+    render(<Game services={services} />);
+    await settle(0);
+    const sizes: Record<string, number> = {
+      crossroads: 84,
+      fortress: 80,
+      bridge: 88,
+      butterfly: 112,
+      pyramid: 144,
+      pagodas: 144,
+    };
+    for (const [id, n] of Object.entries(sizes)) {
+      fireEvent.click(screen.getByTestId(`mj-layout-${id}`));
+      fireEvent.click(screen.getByTestId('mj-start'));
+      expect(screen.getByTestId('mj-left').textContent).toMatch(new RegExp(`\\b${n}\\b`));
+      expect(document.querySelectorAll('[data-testid^="mj-tile-"]')).toHaveLength(n);
+      expect(
+        document.querySelectorAll('[data-testid^="mj-tile-"][data-free]').length,
+      ).toBeGreaterThan(1);
+      fireEvent.click(screen.getByTestId('mj-menu-btn'));
+      await settle(0);
+    }
+  });
+
   it('watch mode clears tiles by itself', async () => {
     vi.useFakeTimers();
     const { services } = createTestServices({ launchParams: { mode: 'watch', deal: '2' } });

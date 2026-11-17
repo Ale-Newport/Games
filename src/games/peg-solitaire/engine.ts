@@ -1,19 +1,31 @@
 /**
  * Peg Solitaire rules and solver. Jump a peg over a neighbouring peg into an empty hole straight
- * beyond it, removing the jumped peg; finish with one peg (on the centre hole for the classic
- * goal). Boards: the English cross (33 holes), the European board (37) and the triangle (15, with
- * diagonal jumps along its three directions).
+ * beyond it, removing the jumped peg; finish with one peg (on a given hole, for boards with a goal).
+ * Square boards jump across and down: the English cross (33 holes), the European board (37), the
+ * German board (45), the asymmetric 3-3-2-2 cross (39) and the diamond (41). Triangular boards also
+ * jump along a diagonal of the grid, which stands for the third direction of a triangular lattice:
+ * the triangles of 15 and 21 holes and the hexagon (37).
  */
+
+export type Jump = [number, number, number];
 
 export interface BoardShape {
   id: string;
   /** Rows of '.' (hole) and ' ' (off the board). */
   rows: string[];
+  /** 'square': jumps across and down; 'triangular': six directions, drawn on a triangular lattice. */
+  lattice: 'square' | 'triangular';
   /** Jump directions as [dx, dy]. */
   dirs: [number, number][];
-  /** The hole left empty at the start (and where the last peg should end, when `centreGoal`). */
+  /** The hole left empty at the start. */
   start: number;
-  centreGoal: boolean;
+  /** The hole the last peg must end on, or null for anywhere. */
+  goal: number | null;
+  /**
+   * A known finishing line from the start, for boards where a quick search from the opening is
+   * not enough (found offline by a beam search; the tests replay it).
+   */
+  line?: Jump[];
 }
 
 const ORTHO: [number, number][] = [
@@ -23,37 +35,105 @@ const ORTHO: [number, number][] = [
   [0, -1],
 ];
 
+/** On a triangular lattice stored row by row, the third direction is the (1, 1) diagonal. */
+const SIX: [number, number][] = [...ORTHO, [1, 1], [-1, -1]];
+
+const square = (
+  id: string,
+  rows: string[],
+  start: number,
+  goal: number | null,
+  line?: Jump[],
+): BoardShape => ({ id, rows, lattice: 'square', dirs: ORTHO, start, goal, line });
+
+const triangular = (
+  id: string,
+  rows: string[],
+  start: number,
+  goal: number | null,
+): BoardShape => ({ id, rows, lattice: 'triangular', dirs: SIX, start, goal });
+
 export const SHAPES: Record<string, BoardShape> = {
-  english: {
-    id: 'english',
-    rows: ['  ...  ', '  ...  ', '.......', '.......', '.......', '  ...  ', '  ...  '],
-    dirs: ORTHO,
-    start: 24,
-    centreGoal: true,
-  },
-  european: {
-    id: 'european',
-    rows: ['  ...  ', ' ..... ', '.......', '.......', '.......', ' ..... ', '  ...  '],
-    dirs: ORTHO,
-    start: 8,
-    centreGoal: false,
-  },
-  triangle: {
-    id: 'triangle',
-    // A triangle on a square grid: row r has r+1 holes at x = 0..r; jumps across, down and along
-    // the diagonal stand for the triangle's three directions.
-    rows: ['.    ', '..   ', '...  ', '.... ', '.....'],
-    dirs: [
-      [1, 0],
-      [-1, 0],
-      [0, 1],
-      [0, -1],
-      [1, 1],
-      [-1, -1],
+  english: square(
+    'english',
+    ['  ...  ', '  ...  ', '.......', '.......', '.......', '  ...  ', '  ...  '],
+    16,
+    16,
+  ),
+  european: square(
+    'european',
+    ['  ...  ', ' ..... ', '.......', '.......', '.......', ' ..... ', '  ...  '],
+    8,
+    null,
+  ),
+  german: square(
+    'german',
+    [
+      '   ...   ',
+      '   ...   ',
+      '   ...   ',
+      '.........',
+      '.........',
+      '.........',
+      '   ...   ',
+      '   ...   ',
+      '   ...   ',
     ],
-    start: 0,
-    centreGoal: false,
-  },
+    22,
+    22,
+    // prettier-ignore
+    [[7,13,22],[11,12,13],[3,6,12],[5,4,3],[14,8,5],[16,15,14],[34,25,16],[17,16,15],[35,26,17],[14,15,16],[17,16,15],[0,3,6],[2,1,0],[12,6,3],[0,3,6],[22,13,7],[6,7,8],[5,8,14],[14,15,16],[23,24,25],[16,25,34],[38,32,23],[34,33,32],[44,41,38],[37,31,22],[43,40,37],[29,30,31],[39,36,30],[27,28,29],[38,37,36],[30,36,39],[32,31,30],[9,10,11],[30,29,28],[11,20,29],[22,21,20],[42,39,36],[28,29,30],[36,30,21],[20,21,22],[18,19,20],[23,22,21],[20,21,22]],
+  ),
+  asymmetric: square(
+    'asymmetric',
+    [
+      '  ...   ',
+      '  ...   ',
+      '  ...   ',
+      '........',
+      '........',
+      '........',
+      '  ...   ',
+      '  ...   ',
+    ],
+    20,
+    20,
+    // prettier-ignore
+    [[18,19,20],[6,11,19],[27,19,11],[29,28,27],[26,27,28],[31,30,29],[28,29,30],[38,35,29],[37,34,28],[36,33,27],[0,3,6],[6,11,19],[9,10,11],[25,17,9],[12,11,10],[9,10,11],[8,7,6],[1,4,7],[2,5,8],[11,6,3],[8,7,6],[3,6,11],[29,30,31],[32,31,30],[27,28,29],[14,13,12],[29,30,31],[16,15,14],[31,23,15],[15,14,13],[19,11,6],[13,12,11],[6,11,19],[21,22,23],[19,20,21],[24,23,22],[22,21,20]],
+  ),
+  diamond: square(
+    'diamond',
+    [
+      '    .    ',
+      '   ...   ',
+      '  .....  ',
+      ' ....... ',
+      '.........',
+      ' ....... ',
+      '  .....  ',
+      '   ...   ',
+      '    .    ',
+    ],
+    6,
+    34,
+    // prettier-ignore
+    [[0,2,6],[12,6,2],[4,5,6],[19,11,5],[1,5,11],[14,13,12],[3,7,13],[30,22,14],[8,14,22],[12,13,14],[2,6,12],[15,14,13],[12,13,14],[14,22,30],[24,23,22],[21,22,23],[36,30,22],[23,22,21],[10,11,12],[26,18,10],[9,10,11],[16,17,18],[12,11,10],[21,20,19],[28,27,26],[37,33,27],[19,27,33],[25,26,27],[10,18,26],[26,27,28],[28,29,30],[31,30,29],[35,29,21],[33,34,35],[40,38,34],[39,35,29],[21,29,35],[35,34,33],[32,33,34]],
+  ),
+  // A triangle on a square grid: row r has r+1 holes at x = 0..r.
+  triangle: triangular('triangle', ['.    ', '..   ', '...  ', '.... ', '.....'], 0, null),
+  triangle21: triangular(
+    'triangle21',
+    ['.     ', '..    ', '...   ', '....  ', '..... ', '......'],
+    0,
+    0,
+  ),
+  // A hexagon of side four: row y holes run from x = max(0, y − 3) to min(6, y + 3).
+  hexagon: triangular(
+    'hexagon',
+    ['....   ', '.....  ', '...... ', '.......', ' ......', '  .....', '   ....'],
+    17,
+    19,
+  ),
 };
 
 export interface Geometry {
@@ -122,7 +202,7 @@ export const jump = (p: Pegs, [a, b, c]: [number, number, number]): Pegs =>
   (p & ~bit(a) & ~bit(b)) | bit(c);
 
 export const isWin = (shape: BoardShape, p: Pegs) =>
-  count(p) === 1 && (!shape.centreGoal || has(p, shape.start));
+  count(p) === 1 && (shape.goal === null || has(p, shape.goal));
 
 /**
  * Depth-first search for a finishing sequence, remembering positions known to fail. Returns the
@@ -153,8 +233,6 @@ export function solve(
   const ok = walk(p);
   return { jumps: ok ? [...path] : null, exhausted: !ok && nodes > budget };
 }
-
-export type Jump = [number, number, number];
 
 export interface PegState {
   board: string;
@@ -222,12 +300,25 @@ export function undo(s: PegState): PegState {
 }
 
 const known = new Map<string, Jump[]>();
+const remembered = new Set<string>();
+
+/** Every position along a board's known line, with the rest of the line from there. */
+function rememberLine(shape: BoardShape) {
+  if (!shape.line || remembered.has(shape.id)) return;
+  remembered.add(shape.id);
+  let p = initialPegs(shape);
+  shape.line.forEach((j, i) => {
+    known.set(`${shape.id}:${hex(p)}`, shape.line!.slice(i));
+    p = jump(p, j);
+  });
+}
 
 /**
  * The next jump of a finishing line from here: from a remembered line when the position is on one,
  * else a fresh search within `budget`. Null with `exhausted` false means no finish exists.
  */
 export function nextJump(s: PegState, budget = 400_000): { jump: Jump | null; exhausted: boolean } {
+  rememberLine(shapeOf(s));
   const key = `${s.board}:${s.pegs}`;
   const line = known.get(key);
   if (line?.length) return { jump: line[0]!, exhausted: false };

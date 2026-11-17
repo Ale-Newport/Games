@@ -11,8 +11,8 @@ export const manifest: GameManifest = {
     es: 'Empareja fichas libres de dos en dos hasta despejar la mesa.',
   },
   description: {
-    en: 'The tile-matching solitaire with mahjong tiles: remove pairs of free tiles — nothing on top, an open side — from original stepped layouts of 84 and 144 tiles. Every deal is built so it can be cleared, shuffles redeal solvably, and you can undo or ask the strategist for a pair.',
-    es: 'El solitario de emparejar fichas de mahjong: retira parejas de fichas libres —sin nada encima y con un lado abierto— de disposiciones escalonadas originales de 84 y 144 fichas. Cada reparto se construye para que tenga solución, al barajar se reparte también con solución y puedes deshacer o pedir una pareja al estratega.',
+    en: 'The tile-matching solitaire with mahjong tiles: remove pairs of free tiles — nothing on top, an open side — from six original layouts of 80 to 144 tiles (Crossroads, Fortress, Bridge, Butterfly, Pyramid, Twin Pagodas). Every deal is built so it can be cleared, shuffles redeal solvably, and you can undo or ask the strategist for a pair.',
+    es: 'El solitario de emparejar fichas de mahjong: retira parejas de fichas libres —sin nada encima y con un lado abierto— de seis disposiciones originales de 80 a 144 fichas (Encrucijada, Fortaleza, Puente, Mariposa, Pirámide, Pagodas gemelas). Cada reparto se construye para que tenga solución, al barajar se reparte también con solución y puedes deshacer o pedir una pareja al estratega.',
   },
   category: 'dice',
   genre: { en: 'Tile matching', es: 'Emparejar fichas' },

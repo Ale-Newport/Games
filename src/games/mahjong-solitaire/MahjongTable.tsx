@@ -267,7 +267,7 @@ export function MahjongTable({ services }: { services: GameServices }) {
           )}
           <fieldset className={shared.group}>
             <legend>{t('menu.layout')}</legend>
-            <div className={shared.segmented}>
+            <div className={`${shared.segmented} ${styles.layouts}`}>
               {LAYOUTS.map((l) => (
                 <button
                   key={l.id}

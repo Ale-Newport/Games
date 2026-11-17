@@ -19,10 +19,23 @@ player removes two free matching tiles at a time: identical suit tiles (dots, ba
 is won when every tile is gone. Three shuffles per deal redeal the remaining faces over the
 remaining positions; undo is unlimited.
 
-Layouts (original): **Crossroads**, 84 tiles (two crossing bars with a raised centre, 21 face
-groups), and **Pyramid**, 144 tiles (layers of 72, 40, 16, 12 and 4: the full set). Simplification,
-stated honestly: positions use a whole-tile grid, so there are no half-tile offsets as in many
-classic layouts.
+Six original layouts, all built from layer rectangles `[x0, y0, cols, rows, z]`, at most 12
+columns wide (so tiles stay tappable on a 360 px screen). Each holds whole groups of four faces
+(the deal keeps `n / 4` of the 36 shuffled face groups), and every raised tile rests on one
+directly below:
+
+| Layout       | Tiles | Face groups | Tiles per layer (z = 0, 1, 2, …) | Shape                                                                  |
+| ------------ | ----- | ----------- | -------------------------------- | ---------------------------------------------------------------------- |
+| Crossroads   | 84    | 21          | 36, 24, 20, 4                    | two crossing bars with a raised centre                                 |
+| Fortress     | 80    | 20          | 52, 20, 8                        | a one-tile curtain wall, corner towers three high, a raised inner keep |
+| Bridge       | 88    | 22          | 48, 32, 8                        | a two-row deck on two piers, with two towers rising above it           |
+| Butterfly    | 112   | 28          | 70, 32, 10                       | broad upper wings, narrower lower wings, a raised body three layers up |
+| Pyramid      | 144   | 36          | 72, 40, 16, 12, 4                | a stepped pyramid (the full set)                                       |
+| Twin Pagodas | 144   | 36          | 76, 40, 20, 8                    | two four-storey towers on a shared three-row terrace (the full set)    |
+
+Simplification, stated honestly: positions use a whole-tile grid, so there are no half-tile
+offsets as in many classic layouts. None of the layouts copies a commercial or traditional
+published layout.
 
 ### Solvable deals
 
@@ -30,7 +43,8 @@ Deals are built backwards from play: matching pairs of faces are assigned, one p
 two positions that are both free in what is left (preferring higher layers so stacks do not strand
 a lone tile), and removed; playing that order clears the board (`dealSolution`, checked by the
 tests). A shuffle deals the remaining faces the same way, so it can always be finished too. Deals
-take about 1 ms (Crossroads) and 4 ms (Pyramid).
+take about 1 ms (Crossroads, Fortress, Bridge), 2.5 ms (Butterfly) and 4–5 ms (Pyramid, Twin
+Pagodas); 200 seeds per layout were dealt and replayed to a clear with no failure.
 
 ### Computer player
 
@@ -41,7 +55,8 @@ shuffles only when no pair is left. Measured over 200 deals each: on Crossroads 
 without a shuffle and 189 in all (a random player: 51 and 194); on Pyramid 68 without a shuffle and
 192 in all (random: 31 and 191). Shuffles rescue most stuck positions, so the clearing rate with
 shuffles barely separates the two; without them the strategist is three times better on
-Crossroads.
+Crossroads. On the newer layouts (200 deals each, without a shuffle / in all): Fortress 144 / 190,
+Bridge 155 / 182, Butterfly 115 / 182, Twin Pagodas 142 / 181.
 
 ### States and actions
 
@@ -51,7 +66,7 @@ shuffles left, phase (`play`/`won`/`stuck`), history. Actions: `pair:<i>,<j>`, `
 ### Saves and AI interface
 
 Saves: schema 1 `{ state, undos, hints, elapsed }`, validated by replaying the history from the
-seed. Env `mahjong-solitaire` v`1.0.0`: kind `turn-based`, one seat (config `{ layout }`),
+seed. Env `mahjong-solitaire` v`1.1.0`: kind `turn-based`, one seat (config `{ layout }`),
 observations hide covered faces (−2), deterministic transitions; the return is the share of tiles
 removed.
 
@@ -72,8 +87,11 @@ synthesized sounds for a click, a pair, a blocked tile, a shuffle, undo, a hint,
 
 ### Testing criteria
 
-Layout integrity, the free rule (corner, row interior, covered, top), flower and season matching,
-every deal cleared by its construction order on both layouts, shuffles limited and keeping the
+Layout integrity (exact tile counts overall and per layer for all six layouts, whole groups of
+four, no duplicates, no floating tiles, at most 12 columns), the free rule (corner, row interior,
+covered, top), flower and season matching, every deal cleared by its construction order on all six
+layouts, shuffles limited and keeping the
 faces, replay validation, hidden covered faces, the strategist clearing most deals, the contract
-suite; UI: a blocked tile refused, three hinted pairs, undo and shuffle, watch mode. E2E desktop +
-mobile.
+suite (Crossroads, Pyramid, Butterfly); UI: a blocked tile refused, three hinted pairs, undo and
+shuffle, every layout chosen and dealt in full, watch mode. E2E desktop + mobile (Pyramid by hint
+and by hand; Fortress, Bridge, Butterfly and Twin Pagodas dealt with no horizontal overflow).

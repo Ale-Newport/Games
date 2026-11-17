@@ -1,7 +1,7 @@
 /**
- * The Peg Solitaire table: a menu (English, European or triangle board, resume, watch the AI),
- * the board (tap a peg, then a highlighted hole; the triangle drawn as a triangle), pegs left,
- * undo and restart, hints from the solver (or word that no finish is left), and the solver in
+ * The Peg Solitaire table: a menu (eight boards, resume, watch the AI), the board (tap a peg, then
+ * a highlighted hole; triangular boards drawn on a triangular lattice, the goal hole ringed), pegs
+ * left, undo and restart, hints from the solver (or word that no finish is left), and the solver in
  * watch mode.
  */
 import { Bot, Lightbulb, Play, RotateCcw, Undo2 } from 'lucide-react';
@@ -113,7 +113,7 @@ export function PegGame({ services }: { services: GameServices }) {
       if (!s.undos && !s.hints) svc.unlockAchievement('clean');
     } else {
       svc.playSound(PEG_SOUNDS.stuck);
-      setMessage(t(left === 1 ? 'stuck.notCentre' : 'stuck', { n: left }));
+      setMessage(t(left === 1 ? 'stuck.notGoal' : 'stuck', { n: left }));
       svc.recordResult({ outcome: 'fail', score: left, mode: s.board });
     }
     void slot.clear();
@@ -240,7 +240,7 @@ export function PegGame({ services }: { services: GameServices }) {
           )}
           <fieldset className={shared.group}>
             <legend>{t('menu.board')}</legend>
-            <div className={shared.segmented}>
+            <div className={`${shared.segmented} ${styles.boards}`}>
               {BOARDS.map((b) => (
                 <button
                   key={b}
@@ -287,7 +287,7 @@ export function PegGame({ services }: { services: GameServices }) {
   const shape = shapeOf(s);
   const g = geometry(shape);
   const p = pegsOf(s);
-  const triangle = shape.id === 'triangle';
+  const triangle = shape.lattice === 'triangular';
   const targets = new Set(
     selected === null
       ? []
@@ -295,12 +295,15 @@ export function PegGame({ services }: { services: GameServices }) {
           .filter((j) => j[0] === selected)
           .map((j) => j[2]),
   );
-  const pos = (h: number) => {
-    const cell = g.cellOf[h]!;
+  // Triangular lattices shift each row half a hole left and pack rows √3/2 apart.
+  const raw = g.cellOf.map((cell) => {
     const x = cell % g.width;
     const y = Math.floor(cell / g.width);
-    return triangle ? { x: x - y / 2 + (g.height - 1) / 2, y: y * 0.88 } : { x, y };
-  };
+    return triangle ? { x: x - y / 2, y: y * 0.88 } : { x, y };
+  });
+  const minX = Math.min(...raw.map((r) => r.x));
+  const width = Math.max(...raw.map((r) => r.x)) - minX + 1;
+  const pos = (h: number) => ({ x: raw[h]!.x - minX, y: raw[h]!.y });
 
   return (
     <div className={shared.play} data-testid="peg-solitaire">
@@ -315,7 +318,7 @@ export function PegGame({ services }: { services: GameServices }) {
         <div
           className={`${styles.board} ${triangle ? styles.triangle : ''}`}
           style={{
-            ['--w' as string]: g.width,
+            ['--w' as string]: width,
             ['--h' as string]: triangle ? g.height * 0.88 + 0.12 : g.height,
           }}
           role="grid"
@@ -336,10 +339,13 @@ export function PegGame({ services }: { services: GameServices }) {
                   targets.has(h) ? styles.target : '',
                   hint && (hint[0] === h || hint[2] === h) ? styles.pointed : '',
                   hint && hint[1] === h ? styles.over : '',
+                  shape.goal === h ? styles.goal : '',
                 ].join(' ')}
                 style={{ ['--x' as string]: x, ['--y' as string]: y }}
                 onClick={() => tapHole(h)}
-                aria-label={t(peg ? 'hole.peg' : 'hole.empty', { n: h + 1 })}
+                aria-label={`${t(peg ? 'hole.peg' : 'hole.empty', { n: h + 1 })}${
+                  shape.goal === h ? t('hole.goal') : ''
+                }`}
                 data-hole={h}
                 data-peg={peg || undefined}
               />

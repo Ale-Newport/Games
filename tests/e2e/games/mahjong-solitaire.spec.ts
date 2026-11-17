@@ -18,6 +18,25 @@ test('Mahjong solitaire: pair tiles by hint and by hand', async ({ page }) => {
   await expect(page.getByTestId('mj-left')).toContainText('140');
 });
 
+test('Mahjong solitaire: the new layouts fit the screen', async ({ page }) => {
+  await freshStart(page, '/game/mahjong-solitaire?deal=5');
+  const sizes: [string, number][] = [
+    ['fortress', 80],
+    ['bridge', 88],
+    ['butterfly', 112],
+    ['pagodas', 144],
+  ];
+  for (const [id, n] of sizes) {
+    await page.getByTestId(`mj-layout-${id}`).click();
+    await page.getByTestId('mj-start').click();
+    await expect(page.getByTestId('mj-left')).toContainText(String(n));
+    await expect(page.locator('[data-testid^="mj-tile-"]')).toHaveCount(n);
+    await expectNoHorizontalOverflow(page);
+    await screenshot(page, `mahjong-solitaire-${id}`);
+    await page.getByTestId('mj-menu-btn').click();
+  }
+});
+
 test('Mahjong solitaire: watch the AI', async ({ page }) => {
   await freshStart(page, '/game/mahjong-solitaire?mode=watch&deal=3');
   await expect(page.getByTestId('mj-left')).not.toContainText('84', { timeout: 8000 });

@@ -70,3 +70,9 @@
     0 0 0 3px #7c5cff,
     calc(var(--d) * 0.9) calc(var(--d) * 0.9) 0 #7d6a47;
 }
+
+/* Six layouts: the menu choice wraps into a grid instead of one long row. */
+div.layouts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
