@@ -231,6 +231,7 @@ import { manifest as passwordRules } from './password-rules/manifest';
 import { manifest as higherLower } from './higher-lower/manifest';
 import { manifest as mindReader } from './mind-reader/manifest';
 import { manifest as doodleRecognizer } from './doodle-recognizer/manifest';
+import { manifest as idleBakery } from './idle-bakery/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -460,6 +461,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: higherLower, load: () => import('./higher-lower/index') },
   { manifest: mindReader, load: () => import('./mind-reader/index') },
   { manifest: doodleRecognizer, load: () => import('./doodle-recognizer/index') },
+  { manifest: idleBakery, load: () => import('./idle-bakery/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
