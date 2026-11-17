@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 207 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 23
+**Complete:** 208 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 22
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -248,7 +248,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 205 | World Quiz (JetPunk-style) | `world-quiz` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 206 | Word Rank (Contexto-style) | `word-rank` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 207 | Word Warmth (Semantle-style) | `word-warmth` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
-| 208 | Word Groups (Connections-style) | `word-groups` | TODO | — | — | — | — | — |  |  |
+| 208 | Word Groups (Connections-style) | `word-groups` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 209 | Country Shape (Worldle-style) | `country-shape` | TODO | — | — | — | — | — |  |  |
 | 210 | Theme Strands (Strands-style) | `theme-strands` | TODO | — | — | — | — | — |  |  |
 | 211 | Flag Reveal (Flagle-style) | `flag-reveal` | TODO | — | — | — | — | — |  |  |

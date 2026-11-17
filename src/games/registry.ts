@@ -211,6 +211,7 @@ import { manifest as quizArcade } from './quiz-arcade/manifest';
 import { manifest as worldQuiz } from './world-quiz/manifest';
 import { manifest as wordRank } from './word-rank/manifest';
 import { manifest as wordWarmth } from './word-warmth/manifest';
+import { manifest as wordGroups } from './word-groups/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -420,6 +421,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: worldQuiz, load: () => import('./world-quiz/index') },
   { manifest: wordRank, load: () => import('./word-rank/index') },
   { manifest: wordWarmth, load: () => import('./word-warmth/index') },
+  { manifest: wordGroups, load: () => import('./word-groups/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
