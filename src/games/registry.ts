@@ -218,6 +218,7 @@ import { manifest as flagReveal } from './flag-reveal/manifest';
 import { manifest as globeHotCold } from './globe-hot-cold/manifest';
 import { manifest as sketchGuess } from './sketch-guess/manifest';
 import { manifest as drawTelephone } from './draw-telephone/manifest';
+import { manifest as codeWords } from './code-words/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -434,6 +435,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: globeHotCold, load: () => import('./globe-hot-cold/index') },
   { manifest: sketchGuess, load: () => import('./sketch-guess/index') },
   { manifest: drawTelephone, load: () => import('./draw-telephone/index') },
+  { manifest: codeWords, load: () => import('./code-words/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
