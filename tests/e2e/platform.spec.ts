@@ -23,6 +23,14 @@ test('library search and category filters', async ({ page }) => {
   await page.getByLabel('Search games').fill('zzzz');
   await expect(page.getByText('No games match these filters.')).toBeVisible();
   await page.getByLabel('Search games').fill('');
+  const chessFamily = page.locator('[data-family="chess"]');
+  await expect(chessFamily.getByRole('heading', { level: 2, name: /^Chess/ })).toBeVisible();
+  await expect(chessFamily.getByTestId('game-card-chess960')).toBeVisible();
+  await page.getByRole('button', { name: 'Group by game' }).click();
+  await expect(page.locator('section[data-family]')).toHaveCount(0);
+  await expect(page.getByTestId('game-card-chess960')).toBeVisible();
+  await page.getByRole('button', { name: 'Group by game' }).click();
+  await expect(page.locator('section[data-family]').first()).toBeVisible();
   await page.getByRole('button', { name: 'Cards & Solitaire' }).click();
   await expect(page.getByTestId('game-card-tic-tac-toe')).toHaveCount(0);
   await expectNoHorizontalOverflow(page);

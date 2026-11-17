@@ -1,6 +1,9 @@
 import { useMemo } from 'react';
-import { GameGrid } from '../../components/GameCard';
+import { GameCard } from '../../components/GameCard';
+import gridStyles from '../../components/GameCard.module.css';
 import { pickText } from '../../core/i18n';
+import type { GameManifest } from '../../core/game-engine/types';
+import { familyOf, type GameFamily } from '../../data/families';
 import type { CategoryId } from '../../data/roadmap';
 import { MANIFESTS } from '../../games/registry';
 import { useLocale, useProfile, useT } from '../platform';
@@ -18,6 +21,40 @@ export function normalizeSearch(text: string): string {
     .toLowerCase();
 }
 
+type LibraryItem =
+  | { kind: 'game'; manifest: GameManifest }
+  | { kind: 'family'; family: GameFamily; games: GameManifest[] };
+
+/**
+ * Collapses the (already sorted and filtered) list so that every family appears once, at the
+ * position of its first visible member, with all its visible members together. A family with a
+ * single visible member is shown as a plain card.
+ */
+export function groupByFamily(list: readonly GameManifest[]): LibraryItem[] {
+  const byFamily = new Map<string, GameManifest[]>();
+  for (const m of list) {
+    const f = familyOf(m.id);
+    if (!f) continue;
+    const arr = byFamily.get(f.id) ?? [];
+    arr.push(m);
+    byFamily.set(f.id, arr);
+  }
+  const emitted = new Set<string>();
+  const items: LibraryItem[] = [];
+  for (const m of list) {
+    const f = familyOf(m.id);
+    const games = f ? byFamily.get(f.id) : undefined;
+    if (!f || !games || games.length < 2) {
+      items.push({ kind: 'game', manifest: m });
+      continue;
+    }
+    if (emitted.has(f.id)) continue;
+    emitted.add(f.id);
+    items.push({ kind: 'family', family: f, games });
+  }
+  return items;
+}
+
 export function LibraryPage({ route }: { route: Route }) {
   const t = useT();
   const locale = useLocale();
@@ -26,6 +63,7 @@ export function LibraryPage({ route }: { route: Route }) {
   const category = (route.query.get('category') as CategoryId | null) ?? null;
   const sort = (route.query.get('sort') as Sort | null) ?? 'number';
   const filter = (route.query.get('players') as PlayerFilter | null) ?? null;
+  const grouped = route.query.get('group') !== 'off';
 
   const update = (patch: Record<string, string | undefined>) => {
     const next = {
@@ -33,6 +71,7 @@ export function LibraryPage({ route }: { route: Route }) {
       category: category ?? undefined,
       sort: sort === 'number' ? undefined : sort,
       players: filter ?? undefined,
+      group: grouped ? undefined : 'off',
       ...patch,
     };
     navigate('/library', next, true);
@@ -69,6 +108,14 @@ export function LibraryPage({ route }: { route: Route }) {
     });
   }, [q, category, filter, sort, locale, profile.recent]);
 
+  const items = useMemo<LibraryItem[]>(
+    () =>
+      grouped
+        ? groupByFamily(results)
+        : results.map((manifest) => ({ kind: 'game' as const, manifest })),
+    [grouped, results],
+  );
+
   return (
     <div className="page">
       <h1 className="page-title">{t('library.title')}</h1>
@@ -100,6 +147,14 @@ export function LibraryPage({ route }: { route: Route }) {
           <option value="name">{t('library.sort.name')}</option>
           <option value="recent">{t('library.sort.recent')}</option>
         </select>
+        <button
+          type="button"
+          className="chip"
+          aria-pressed={grouped}
+          onClick={() => update({ group: grouped ? 'off' : undefined })}
+        >
+          {t('library.group')}
+        </button>
       </div>
       <div className={styles.chips} role="group" aria-label={t('home.categories')}>
         <button
@@ -139,7 +194,32 @@ export function LibraryPage({ route }: { route: Route }) {
         {t('library.results', { count: results.length })}
       </p>
       {results.length > 0 ? (
-        <GameGrid manifests={results} />
+        <div className={gridStyles.grid}>
+          {items.map((item) =>
+            item.kind === 'game' ? (
+              <GameCard key={item.manifest.id} manifest={item.manifest} />
+            ) : (
+              <section
+                key={`family-${item.family.id}`}
+                className={styles.family}
+                aria-labelledby={`family-${item.family.id}`}
+                data-family={item.family.id}
+              >
+                <h2 id={`family-${item.family.id}`} className={styles.familyTitle}>
+                  {pickText(item.family.name, locale)}
+                  <span className={styles.familyCount}>
+                    {t('library.variants', { count: item.games.length })}
+                  </span>
+                </h2>
+                <div className={gridStyles.grid}>
+                  {item.games.map((m) => (
+                    <GameCard key={m.id} manifest={m} />
+                  ))}
+                </div>
+              </section>
+            ),
+          )}
+        </div>
       ) : (
         <div className={styles.empty}>{t('library.empty')}</div>
       )}
