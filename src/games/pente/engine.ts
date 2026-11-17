@@ -1,5 +1,5 @@
 /**
- * Pure rules engine for Pente (ruleset `pente-tournament-19x19`, see GAME_SPEC.md):
+ * Pure rules engine for Pente (ruleset `pente-tournament-19x19`, see README.md):
  * 19×19, five or more in a row wins, custodial pair captures, five captured pairs win,
  * first stone on the center, tournament rule for the first player's second stone.
  */

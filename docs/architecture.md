@@ -62,8 +62,7 @@ touch storage or the DOM outside their own subtree directly.
 
 ```
 src/games/<id>/
-  GAME_SPEC.md   ruleset & design (written first)
-  README.md      implementation notes
+  README.md      overview, file map and full specification (ruleset, modes, tests)
   manifest.ts    GameManifest (eager)
   index.ts       exports { Game, Rules } (lazy)
   rules.ts       pure rules engine (or engine.ts / state.ts / actions.ts for bigger games)

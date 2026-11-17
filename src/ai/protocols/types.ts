@@ -65,7 +65,7 @@ export interface GameEnvironment<S, A, O = unknown, C = unknown> {
   readonly id: string;
   /** Semantic version of the rules implementation. Bump when rules or state format change. */
   readonly version: string;
-  /** Identifier of the documented ruleset variant (see the game's GAME_SPEC.md). */
+  /** Identifier of the documented ruleset variant (see the game's README.md). */
   readonly rulesetId: string;
   readonly info: EnvironmentInfo;
 

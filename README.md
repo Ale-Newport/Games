@@ -1,16 +1,34 @@
 # Arcade AI Lab
 
-A static browser platform of fully playable games — real rules, complete modes, original art and
-sound — with infrastructure for future AI research (standard environment interface, baseline
-agents, reproducible evaluation, and an offline training bridge).
+[![Verify and deploy](https://github.com/Ale-Newport/Games/actions/workflows/deploy.yml/badge.svg)](https://github.com/Ale-Newport/Games/actions/workflows/deploy.yml)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-static-646cff?logo=vite&logoColor=white)
 
-- **200-game roadmap:** [ROADMAP.md](ROADMAP.md) (generated from `src/data/roadmap.ts`)
-- **Development journal:** [PROGRESS.md](PROGRESS.md) · **Resume here:** [NEXT_STEPS.md](NEXT_STEPS.md)
-- **Docs:** [architecture](docs/architecture.md) · [definition of done](docs/game-standards.md) ·
-  [AI integration](docs/ai-integration.md) · [asset licenses](docs/asset-licenses.md)
+**▶ Play now: [ale-newport.github.io/Games](https://ale-newport.github.io/Games/)**
 
-Only games that are fully implemented and tested appear in the public library; the rest are
-tracked on the in-app Roadmap page.
+A static browser arcade of fully playable games — real rules, complete modes, original art and
+synthesized sound — built on a research-ready core: every game exposes a standard environment
+interface with baseline agents, reproducible evaluation and an offline training bridge.
+
+- Board and abstract strategy (chess family, go, draughts, m,n,k games, mancala…), card games and
+  solitaires, dice and tile games, logic puzzles, arcade, platformers and physics.
+- Everything runs client-side: no accounts, no backend, no tracking. English and Spanish UI,
+  dark/light themes, colorblind palette, reduced motion, keyboard + mouse + touch.
+- Catalog and status: [docs/ROADMAP.md](docs/ROADMAP.md) (generated from `src/data/roadmap.ts`).
+
+## Documentation
+
+| Document                                     | Contents                                          |
+| -------------------------------------------- | ------------------------------------------------- |
+| [Architecture](docs/architecture.md)         | Platform layers, game module layout, conventions  |
+| [Definition of done](docs/game-standards.md) | Checklist every game satisfies before release     |
+| [AI integration](docs/ai-integration.md)     | Environment contract, agents, evaluation, servers |
+| [Asset licenses](docs/asset-licenses.md)     | Provenance of every asset and dependency          |
+| [Training bridge](training/README.md)        | Python side for offline reinforcement learning    |
+
+Each game folder (`src/games/<id>/README.md`) documents its exact ruleset, modes, controls, save
+format, tests and AI interface.
 
 ## Requirements
 
@@ -38,7 +56,7 @@ npm run dev          # http://localhost:5173
 | `npm run test:game -- <id>`                                   | Tests for one game, e.g. `tic-tac-toe`           |
 | `npm run test:e2e`                                            | Playwright browser tests (desktop + mobile)      |
 | `npm run validate:roadmap`                                    | Roadmap ↔ registry ↔ docs consistency            |
-| `npm run roadmap`                                             | Regenerate ROADMAP.md                            |
+| `npm run roadmap`                                             | Regenerate docs/ROADMAP.md                       |
 | `npm run verify`                                              | Everything above, in order                       |
 | `npm run evaluate -- <game> <agentA> <agentB> [games] [seed]` | Reproducible agent evaluation (JSON)             |
 

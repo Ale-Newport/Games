@@ -18,3 +18,9 @@ training/checkpoints/
 training/.venv/
 __pycache__/
 *.pyc
+
+# local assistant / editor tooling (never committed)
+.claude/
+CLAUDE.md
+.vscode/
+.idea/

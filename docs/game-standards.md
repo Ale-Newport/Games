@@ -5,7 +5,7 @@ every applicable item below is true. "Launches" is not completion.
 
 ## Rules and engine
 
-- [ ] `GAME_SPEC.md` documents the exact ruleset variant chosen, and any deliberate deviation.
+- [ ] `README.md` documents the exact ruleset variant chosen, and any deliberate deviation.
 - [ ] The full ruleset is implemented in a pure engine independent of React/rendering.
 - [ ] All legal actions are generated; illegal actions are rejected (throw `IllegalActionError`).
 - [ ] All terminal conditions: win, loss, draw (and stalemate/repetition/timeouts where defined).
@@ -63,5 +63,5 @@ every applicable item below is true. "Launches" is not completion.
 ## Documentation and commit
 
 - [ ] Game `README.md`; roadmap entry updated (all parts `done`, completion date, known issues);
-      `npm run roadmap`; `PROGRESS.md` and `NEXT_STEPS.md` updated.
+      `npm run roadmap`.
 - [ ] Dedicated commit `feat(games): complete #NNN <Name>`.

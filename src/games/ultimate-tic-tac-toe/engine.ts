@@ -1,4 +1,4 @@
-/** Pure rules engine for Ultimate Tic-Tac-Toe (ruleset `ultimate-standard`, see GAME_SPEC.md). */
+/** Pure rules engine for Ultimate Tic-Tac-Toe (ruleset `ultimate-standard`, see README.md). */
 import { IllegalActionError } from '../../ai/protocols/types';
 import { isRecord } from '../../core/persistence/versioned';
 

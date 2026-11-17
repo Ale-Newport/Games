@@ -46,8 +46,8 @@ describe('roadmap', () => {
     }
   });
 
-  it('keeps ROADMAP.md in sync (run `npm run roadmap`)', () => {
-    expect(readFileSync(join(root, 'ROADMAP.md'), 'utf8')).toBe(renderRoadmapMarkdown());
+  it('keeps docs/ROADMAP.md in sync (run `npm run roadmap`)', () => {
+    expect(readFileSync(join(root, 'docs', 'ROADMAP.md'), 'utf8')).toBe(renderRoadmapMarkdown());
   });
 });
 
@@ -73,13 +73,7 @@ describe('game registry', () => {
   it('gives every registered game its module files, docs, tests and AI bundle', () => {
     for (const { manifest } of GAMES) {
       const dir = join(root, 'src', 'games', manifest.id);
-      for (const file of [
-        'GAME_SPEC.md',
-        'README.md',
-        'manifest.ts',
-        'ai-adapter.ts',
-        'index.ts',
-      ]) {
+      for (const file of ['README.md', 'manifest.ts', 'ai-adapter.ts', 'index.ts']) {
         expect(existsSync(join(dir, file)), `${manifest.id}/${file}`).toBe(true);
       }
       const testDir = join(dir, 'tests');
