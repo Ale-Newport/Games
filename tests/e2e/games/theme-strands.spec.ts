@@ -7,8 +7,13 @@ test('Theme Strands: drag a theme word through the grid', async ({ page }) => {
   await page.getByTestId('ts-pick-en-desserts').click();
   await expect(page.getByTestId('ts-clue')).toHaveText('Sweet tooth');
   const path = [4, 3, 2, 7]; // TART in the generated grid
-  for (const c of path) await page.getByTestId(`ts-cell-${c}`).dispatchEvent('pointerdown');
-  await page.getByTestId(`ts-cell-${path.at(-1)}`).dispatchEvent('pointerdown');
+  // Tap each letter, waiting for it to join the trace, then tap the last one again to submit.
+  for (const c of path) {
+    const cell = page.getByTestId(`ts-cell-${c}`);
+    await cell.click();
+    await expect(cell).toHaveAttribute('data-state', 'trace');
+  }
+  await page.getByTestId(`ts-cell-${path.at(-1)}`).click();
   await expect(page.getByTestId('ts-count')).toContainText('1 of');
   await expectNoHorizontalOverflow(page);
   await screenshot(page, 'theme-strands');
