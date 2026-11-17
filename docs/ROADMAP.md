@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 228 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 2
+**Complete:** 229 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 1
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -269,5 +269,5 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 226 | Mind Reader (Akinator-style) | `mind-reader` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 227 | Doodle Recognizer (Quick, Draw!-style) | `doodle-recognizer` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 228 | Idle Bakery (Cookie Clicker-style) | `idle-bakery` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
-| 229 | When & Where (WenWare-style) | `when-and-where` | TODO | — | — | — | — | — |  |  |
+| 229 | When & Where (WenWare-style) | `when-and-where` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 230 | Painted Night Ride (Starry Nightrider-style) | `painted-night-ride` | TODO | — | — | — | — | — |  |  |
