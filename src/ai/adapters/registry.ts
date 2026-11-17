@@ -234,6 +234,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'word-rank': () => import('../../games/word-rank/ai-adapter').then((m) => m.bundle),
   'word-warmth': () => import('../../games/word-warmth/ai-adapter').then((m) => m.bundle),
   'word-groups': () => import('../../games/word-groups/ai-adapter').then((m) => m.bundle),
+  'country-shape': () => import('../../games/country-shape/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

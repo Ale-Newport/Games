@@ -5,6 +5,7 @@
  */
 import type { Feature, FeatureCollection, Geometry } from 'geojson';
 import { editDistance, normalize } from '../survey/engine';
+import { BORDER_KM_B64, CENTROID, ORDER } from './geo-facts';
 import { COUNTRY_META, type Continent, type CountryMeta } from './meta';
 import { NAMES } from './names';
 
@@ -205,4 +206,40 @@ export async function flagUrl(iso2: string): Promise<string> {
 
 export function continentOf(iso2: string): Continent {
   return country(iso2).continent;
+}
+
+// ---------------------------------------------------------------- precomputed distances
+
+const ORDER_INDEX = new Map(ORDER.map((id, i) => [id, i]));
+let borderTable: Uint16Array | null = null;
+
+function table(): Uint16Array {
+  if (!borderTable) {
+    const bin = atob(BORDER_KM_B64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    borderTable = new Uint16Array(bytes.buffer);
+  }
+  return borderTable;
+}
+
+/** Centroid [lon, lat] of a country's largest polygon (precomputed). */
+export function centroidOf(iso2: string): [number, number] {
+  const c = CENTROID[iso2];
+  if (!c) throw new Error(`No centroid for ${iso2}`);
+  return c;
+}
+
+/** Great-circle distance between two countries' centroids, in km. */
+export function centroidKm(a: string, b: string): number {
+  return a === b ? 0 : Math.round(haversine(centroidOf(a), centroidOf(b)));
+}
+
+/** Shortest border-to-border distance in km (0 when the countries touch; precomputed). */
+export function borderKm(a: string, b: string): number {
+  if (a === b) return 0;
+  const i = ORDER_INDEX.get(a);
+  const j = ORDER_INDEX.get(b);
+  if (i === undefined || j === undefined) throw new Error(`Unknown country ${a} or ${b}`);
+  return table()[i * ORDER.length + j]!;
 }

@@ -77,3 +77,18 @@ describe('world data', () => {
     for (const c of COUNTRIES) await expect(flagUrl(c.iso2)).resolves.toMatch(/svg/);
   });
 });
+
+describe('precomputed geography', () => {
+  it('knows neighbours, distances and centroids', async () => {
+    const { borderKm, centroidKm, centroidOf } = await import('../world');
+    expect(borderKm('ES', 'FR')).toBe(0);
+    expect(borderKm('ES', 'PT')).toBe(0);
+    expect(borderKm('US', 'CA')).toBe(0);
+    expect(borderKm('ES', 'IT')).toBeGreaterThan(200);
+    expect(borderKm('ES', 'IT')).toBe(borderKm('IT', 'ES'));
+    expect(borderKm('AU', 'NZ')).toBeGreaterThan(500); // Macquarie Island to the Auckland Islands
+    expect(centroidKm('ES', 'FR')).toBeGreaterThan(500);
+    expect(centroidKm('ES', 'FR')).toBeLessThan(1000);
+    expect(centroidOf('BR')[1]).toBeLessThan(0);
+  });
+});
