@@ -41,7 +41,7 @@ export function parseLevel(text: string, pushes: number): Warehouse {
   return { width, height, walls, goals, boxes, player, pushes };
 }
 
-export const TIERS = ['easy', 'medium', 'hard'] as const;
+export const TIERS = ['easy', 'medium', 'hard', 'expert'] as const;
 export type Tier = (typeof TIERS)[number];
 
 export function levelAt(tier: Tier, index: number): Warehouse {
@@ -140,37 +140,76 @@ export function solvePushes(
 ): Push[] | null {
   const live = liveCells(w);
   if (boxes.some((b) => !live.has(b))) return null;
-  const norm = (bx: number[], p: number) => {
-    const r = reachable(w, bx, p);
+  // Flat arrays and a stamped flood fill keep each expansion cheap (no Sets per position).
+  const size = w.width * w.height;
+  const isLive = new Uint8Array(size);
+  for (const c of live) isLive[c] = 1;
+  const occupied = new Uint8Array(size);
+  const mark = new Int32Array(size);
+  const stack = new Int32Array(size);
+  let stamp = 0;
+  const dirs = Object.keys(DIRS) as Dir[];
+  const offsets = dirs.map((d) => DIRS[d][0] + DIRS[d][1] * w.width);
+  /** Marks the keeper's region from `p` with a new stamp; returns its smallest cell. */
+  const flood = (p: number) => {
+    stamp++;
+    let top = 0;
     let min = p;
-    for (const c of r) if (c < min) min = c;
-    return { key: `${bx.join(',')}|${min}`, area: r };
+    stack[top++] = p;
+    mark[p] = stamp;
+    while (top) {
+      const c = stack[--top]!;
+      if (c < min) min = c;
+      for (const o of offsets) {
+        const x = c + o;
+        if (!w.walls[x] && !occupied[x] && mark[x] !== stamp) {
+          mark[x] = stamp;
+          stack[top++] = x;
+        }
+      }
+    }
+    return min;
   };
+  const keyOf = (bx: readonly number[], min: number) => `${bx.join(',')}|${min}`;
   const start = [...boxes].sort((a, b) => a - b);
   if (solvedBoxes(w, start)) return [];
-  const first = norm(start, player);
-  const prev = new Map<string, { from: string; push: Push } | null>([[first.key, null]]);
-  let frontier = [{ bx: start, p: player, key: first.key, area: first.area }];
+  for (const b of start) occupied[b] = 1;
+  const firstKey = keyOf(start, flood(player));
+  for (const b of start) occupied[b] = 0;
+  const prev = new Map<string, { from: string; push: Push } | null>([[firstKey, null]]);
+  let frontier = [{ bx: start, p: player, key: firstKey }];
+  const pushes: [number, number][] = [];
   while (frontier.length && prev.size < limit) {
     const next: typeof frontier = [];
     for (const s of frontier) {
-      const set = new Set(s.bx);
+      for (const b of s.bx) occupied[b] = 1;
+      flood(s.p);
+      const area = stamp;
+      pushes.length = 0;
       for (const b of s.bx)
-        for (const d of Object.keys(DIRS) as Dir[]) {
-          const behind = b - DIRS[d][0] - DIRS[d][1] * w.width;
-          const ahead = step(w, b, d);
-          if (!s.area.has(behind) || w.walls[ahead] || set.has(ahead) || !live.has(ahead)) continue;
-          const bx = s.bx.map((x) => (x === b ? ahead : x)).sort((a, c) => a - c);
-          const n = norm(bx, b);
-          if (prev.has(n.key)) continue;
-          prev.set(n.key, { from: s.key, push: { box: b, dir: d } });
-          if (solvedBoxes(w, bx)) {
-            const out: Push[] = [];
-            for (let k = n.key; prev.get(k); k = prev.get(k)!.from) out.push(prev.get(k)!.push);
-            return out.reverse();
-          }
-          next.push({ bx, p: b, key: n.key, area: n.area });
+        offsets.forEach((o, k) => {
+          const ahead = b + o;
+          if (mark[b - o] === area && !w.walls[ahead] && !occupied[ahead] && isLive[ahead])
+            pushes.push([b, k]);
+        });
+      for (const [b, k] of pushes) {
+        const ahead = b + offsets[k]!;
+        occupied[b] = 0;
+        occupied[ahead] = 1;
+        const bx = s.bx.map((x) => (x === b ? ahead : x)).sort((a, c) => a - c);
+        const key = keyOf(bx, flood(b));
+        occupied[ahead] = 0;
+        occupied[b] = 1;
+        if (prev.has(key)) continue;
+        prev.set(key, { from: s.key, push: { box: b, dir: dirs[k]! } });
+        if (solvedBoxes(w, bx)) {
+          const out: Push[] = [];
+          for (let at = key; prev.get(at); at = prev.get(at)!.from) out.push(prev.get(at)!.push);
+          return out.reverse();
         }
+        next.push({ bx, p: b, key });
+      }
+      for (const b of s.bx) occupied[b] = 0;
     }
     frontier = next;
   }

@@ -5,10 +5,34 @@
 // level: positions whose distance is in the level's range (for hard, within 12 of the farthest),
 // spread over the distances and preferring the big block in the top row. A move is one piece moved
 // any distance along any path through free cells. Prints JSON with position keys and fewest-move
-// counts per level.
+// counts per level. Positions already in the bank (src/games/klotski/puzzles.ts), and mirror images
+// of bank entries or of earlier picks, are skipped, so a run only proposes new puzzles to append.
 // Usage: npx tsx tools/generate-klotski.ts <spaces> <per> <seed> <verticals> <horizontals> <singles>
 import { Rng } from '../src/core/game-engine/random';
-import { W, H, isSolvedKey, movesFrom, parse, keyOf } from '../src/games/klotski/board';
+import {
+  W,
+  H,
+  blocksOf,
+  cellsOf,
+  isSolvedKey,
+  movesFrom,
+  parse,
+  keyOf,
+} from '../src/games/klotski/board';
+import { PUZZLES } from '../src/games/klotski/puzzles';
+
+/** The position seen in a mirror (left and right swapped). */
+export function mirror(key: string): string {
+  const out = new Array<string>(W * H).fill('.');
+  for (const b of blocksOf(parse(key))) {
+    const x = W - (b.at % W) - b.w;
+    const at = Math.floor(b.at / W) * W + x;
+    cellsOf(b, at).forEach(
+      (c, i) => (out[c] = b.kind === 'S' ? 'S' : i === 0 ? b.kind : b.kind.toLowerCase()),
+    );
+  }
+  return out.join('');
+}
 
 function layout(rng: Rng, v: number, h: number, s: number): string | null {
   const grid = new Array<string>(W * H).fill('.');
@@ -81,6 +105,12 @@ const [spaces, per, seed, v, h, s] = process.argv.slice(2).map(Number) as number
 const rng = new Rng(seed!);
 const out: Record<string, string[]> = { easy: [], medium: [], hard: [] };
 const seen = new Set<string>();
+const taken = new Set<string>();
+for (const list of Object.values(PUZZLES))
+  for (const entry of list) {
+    const k = entry.split(':')[0]!;
+    taken.add(k).add(mirror(k));
+  }
 const t0 = Date.now();
 for (let made = 0, tries = 0; made < spaces! && tries < 3000; tries++) {
   const start = layout(rng, v!, h!, s!);
@@ -94,7 +124,7 @@ for (let made = 0, tries = 0; made < spaces! && tries < 3000; tries++) {
     const min = level === 'hard' ? Math.max(lo, far - 12) : lo;
     const byDist = new Map<number, number[]>();
     ex.dist.forEach((d, i) => {
-      if (d < min || d > hi) return;
+      if (d < min || d > hi || taken.has(ex.keys[i]!)) return;
       if (!byDist.has(d)) byDist.set(d, []);
       byDist.get(d)!.push(i);
     });
@@ -105,6 +135,7 @@ for (let made = 0, tries = 0; made < spaces! && tries < 3000; tries++) {
       const top = pool.filter((i) => ex.keys[i]!.slice(0, 4).includes('A'));
       const from = top.length ? top : pool;
       const pick = from[rng.int(from.length)]!;
+      taken.add(ex.keys[pick]!).add(mirror(ex.keys[pick]!));
       out[level]!.push(`${ex.keys[pick]}:${d}`);
     }
   }

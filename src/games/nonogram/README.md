@@ -2,7 +2,7 @@
 
 Self-contained module: `engine.ts` (runs and clues, the line solver, line propagation with search
 as the exact solver, the generator with repair, play state, save validation by regeneration),
-`pictures.ts` (ten original hand-drawn pictures), `ai.ts` (random, line and exact agents),
+`pictures.ts` (thirty original hand-drawn pictures), `ai.ts` (random, line and exact agents),
 `ai-adapter.ts`, `NonogramGame.tsx` and `Nonogram.module.css` (menu with random sizes and the
 picture gallery, clue headers, drag painting, hints, watch mode, saves, statistics, achievements;
 reuses the sudoku table's styles, sounds and strings), `Game.tsx`, `HowToPlay.tsx`, `i18n.ts`,
@@ -26,8 +26,10 @@ Also known as paint-by-numbers or griddlers; the generic name is used (Picross i
   size): noise at 48–50% density smoothed twice by a majority rule (blobby shapes), pictures under
   30% filled redrawn, then repaired: while the line solver leaves cells undecided, one of them is
   flipped in the picture and the clues recomputed.
-- **Pictures**: ten original hand-drawn pictures (heart, house, cat, fish, pine, mug, key at 10×10;
-  umbrella, snail, rocket at 15×15), each checked by the tests to be line-solvable and unique; the
+- **Pictures**: thirty original hand-drawn pictures — at 10×10 heart, house, cat, fish, pine, mug,
+  key, star, mushroom, anchor, bell, apple, duck, crown, sailboat, music note, butterfly; at 15×15
+  umbrella, snail, rocket, owl, teapot, castle, cactus, lighthouse, guitar, elephant, whale, snowman,
+  tulip — each checked by the tests to be line-solvable and unique; the
   gallery shows a picture's thumbnail and name once solved.
 
 | Size  | Measured over 40 seeds: filled | Line passes to solve (avg) | Generation (avg / max) |

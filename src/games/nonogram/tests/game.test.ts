@@ -42,7 +42,10 @@ describe('Nonogram line logic', () => {
   });
 
   it('has original pictures that the line solver finishes', () => {
-    expect(PICTURES.length).toBeGreaterThanOrEqual(10);
+    expect(PICTURES.length).toBeGreaterThanOrEqual(30);
+    expect(new Set(PICTURES.map((p) => p.id)).size).toBe(PICTURES.length);
+    const sizes = new Set(PICTURES.map((p) => `${p.art.length}x${p.art[0]!.length}`));
+    expect([...sizes].sort()).toEqual(['10x10', '15x15']);
     for (const pic of PICTURES) {
       expect(pic.art.every((r) => r.length === pic.art[0]!.length)).toBe(true);
       const p = puzzleFor(`picture:${pic.id}`, 1);

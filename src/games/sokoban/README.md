@@ -22,11 +22,20 @@ from solved — in pushes — becomes the level, kept only when no crate starts 
 
 | Tier   | Levels | Crates | Room | Fewest pushes (range, average) |
 | ------ | ------ | ------ | ---- | ------------------------------ |
-| Easy   | 60     | 2      | 7×7  | 10–14, 10.7                    |
-| Medium | 60     | 3      | 8×7  | 20–27, 20.9                    |
-| Hard   | 32     | 4      | 9×8  | 30–41, 31.6                    |
+| Easy   | 90     | 2      | 7×7  | 10–16, 11.4                    |
+| Medium | 90     | 3      | 8×7  | 20–30, 21.7                    |
+| Hard   | 60     | 4      | 9×8  | 30–41, 31.9                    |
+| Expert | 40     | 5      | 10×9 | 36–52, 39.5                    |
 
-Levels are listed easiest first; the menu shows each tier's levels with solved marks.
+The bank only grows at the end of a tier, so a level's number (and the solved marks saved under
+`tier:index`) never changes. The first 60 easy, 60 medium and 32 hard levels are one batch with
+minimum pushes 10, 20 and 30; the appended 30 easy, 30 medium and 28 hard levels came from later runs
+with minimum pushes 12, 22 and 31 (seeds 2101, 2201 and 2301–2304), duplicates dropped. Each batch
+is listed easiest first; the menu shows each tier's levels with solved marks.
+
+Expert rooms get 9–12 wall blocks instead of 2–5 (the generator's optional `walls` argument), which
+makes corridors and longer solutions: `generate-sokoban.ts 8 <seed> 5 36 10 9 400000 9` with seeds
+2601–2606 gave 48 levels of at least 36 pushes; the 40 the solver finishes fastest were kept.
 
 ### Modes, play features, controls
 
@@ -38,13 +47,16 @@ push ("push the crate at R3C4 right") and walk-and-push it; the next warehouse a
 
 ### Computer players
 
-| Agent    | Play                                                                                                                                   | Solved within 600 steps     |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| `random` | Any open step.                                                                                                                         | 0 / 0 / 0                   |
-| `greedy` | Walks to and makes the push that brings the crates closest to goals, never onto a dead cell.                                           | 9 of 60 / 0 / 0             |
-| `solver` | Breadth-first search over pushes (crates + keeper region) with dead-cell pruning, then shortest walks: the fewest pushes (the oracle). | every level, always optimal |
+| Agent    | Play                                                                                                                                   | Solved within 600 steps          |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| `random` | Any open step.                                                                                                                         | 0 / 0 / 0                        |
+| `greedy` | Walks to and makes the push that brings the crates closest to goals, never onto a dead cell.                                           | 9 of 60 / 0 / 0 (first 60/60/32) |
+| `solver` | Breadth-first search over pushes (crates + keeper region) with dead-cell pruning, then shortest walks: the fewest pushes (the oracle). | every level, always optimal      |
 
-The solver takes 0.7 / 7 / 273 ms per level on average (845 ms at most on a hard one).
+The solver keeps flat arrays and a stamped flood fill for the keeper's region. Over the whole bank
+it takes 0.2 / 1.5 / 72 / 563 ms per level on average (easy / medium / hard / expert; about 2 s at
+most on an expert one), always within its 300,000-position limit; plans are cached along their path,
+so only the first hint of a level waits for the search.
 
 ### States and actions
 
@@ -54,13 +66,13 @@ validation looks the level up again and checks every position.
 
 ### Achievements
 
-| id          | Condition                                  |
-| ----------- | ------------------------------------------ |
-| `first`     | Solve a warehouse.                         |
-| `optimal`   | Solve in the fewest pushes, without hints. |
-| `ten`       | Solve ten easy warehouses.                 |
-| `hard`      | Solve a hard warehouse without hints.      |
-| `all-tiers` | Solve a warehouse in every tier.           |
+| id          | Condition                                          |
+| ----------- | -------------------------------------------------- |
+| `first`     | Solve a warehouse.                                 |
+| `optimal`   | Solve in the fewest pushes, without hints.         |
+| `ten`       | Solve ten easy warehouses.                         |
+| `hard`      | Solve a hard warehouse without hints.              |
+| `all-tiers` | Solve a warehouse in every tier (expert included). |
 
 ### Graphics and audio
 
@@ -75,7 +87,9 @@ score = −pushes.
 
 ### Testing criteria
 
-Level notation, crates equal goals, sampled levels solved by the solver in their stored pushes,
+Level notation, crates equal goals, tier sizes, crates per tier, unique rectangular levels, expert
+levels of at least 36 pushes, sampled levels (old and appended, every tier) solved by the solver
+within the in-game limit in their stored pushes,
 walking, pushing, undo, dead crates, shortest walks, the solver plan's optimality, greedy legality,
 save validation, the contract suite; UI: keys, restart, hints to the end with the result recorded,
-the solved mark in the level picker. E2E desktop + mobile.
+the solved mark in the level picker, an expert warehouse solved with hints. E2E desktop + mobile.

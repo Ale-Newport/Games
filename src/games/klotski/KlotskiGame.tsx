@@ -1,10 +1,11 @@
 /**
- * The Sliding Blocks table: a menu (level, new or daily puzzle, resume, watch the AI), the 4×5 tray
+ * The Sliding Blocks table: a menu (level, a numbered puzzle picker with solved marks and best moves,
+ * new or daily puzzle, resume, watch the AI), the 4×5 tray
  * with its exit, blocks dragged anywhere they can slide (or selected, then moved with the arrow keys
  * or a tap on a marked spot), moves against the fewest possible, undo, hints that name the block and
  * where it goes, and the solver in watch mode.
  */
-import { Bot, Lightbulb, Play, RotateCcw, Undo2 } from 'lucide-react';
+import { Bot, Check, ChevronRight, Lightbulb, Play, RotateCcw, Undo2 } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState, type PointerEvent } from 'react';
 import { useLatest } from '../../core/game-engine/hooks';
 import { randomSeed } from '../../core/game-engine/random';
@@ -20,7 +21,6 @@ import {
   W,
   blocksOf,
   fits,
-  isValidKlotskiState,
   newKlotski,
   puzzleOf,
   reach,
@@ -32,12 +32,10 @@ import {
 } from './engine';
 import { STRINGS } from './i18n';
 import styles from './Klotski.module.css';
+import { PUZZLES } from './puzzles';
+import { KLOTSKI_SAVE, puzzleKey, withBest, type KlotskiSave } from './save';
 import { KLOTSKI_SOUNDS } from './sounds';
 
-interface Saved {
-  state: KlotskiState;
-  daily: boolean;
-}
 type Mode = 'menu' | 'play' | 'watch';
 
 const today = () => {
@@ -49,23 +47,12 @@ export function KlotskiGame({ services }: { services: GameServices }) {
   const { locale } = services;
   const t = useMemo(() => createTranslator(STRINGS, locale), [locale]);
   const servicesRef = useLatest(services);
-  const slot = useMemo(
-    () =>
-      services.saveSlot<Saved>({
-        schema: 1,
-        validate: (d: unknown): d is Saved =>
-          typeof d === 'object' &&
-          d !== null &&
-          typeof (d as Saved).daily === 'boolean' &&
-          isValidKlotskiState((d as Saved).state),
-      }),
-    [services],
-  );
+  const slot = useMemo(() => services.saveSlot<KlotskiSave>(KLOTSKI_SAVE), [services]);
   const asked = Number(services.launchParams.deal);
   const fixedSeed = Number.isInteger(asked) && asked > 0 ? asked : null;
   const [mode, setMode] = useState<Mode>(services.launchParams.mode === 'watch' ? 'watch' : 'menu');
   const [level, setLevel] = useState<Level>('easy');
-  const [saved, setSaved] = useState<Saved | null>(null);
+  const [saved, setSaved] = useState<KlotskiSave>({ state: null, daily: false, best: {} });
   const [state, setState] = useState<KlotskiState | null>(null);
   const [daily, setDaily] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -79,16 +66,24 @@ export function KlotskiGame({ services }: { services: GameServices }) {
   const [arrive, setArrive] = useState<[number, number] | null>(null);
   const stateRef = useLatest(state);
   const elapsedRef = useLatest(elapsed);
+  const savedRef = useLatest(saved);
 
   useEffect(() => {
     let cancelled = false;
     void slot.load().then((d) => {
-      if (!cancelled && d && !d.state.solved) setSaved(d);
+      if (cancelled || !d) return;
+      setSaved(d);
+      if (d.state && !d.state.solved) setLevel(d.state.level);
     });
     return () => {
       cancelled = true;
     };
   }, [slot]);
+
+  const persist = (next: KlotskiSave) => {
+    setSaved(next);
+    void slot.save(next);
+  };
 
   const start = (s: KlotskiState, m: Mode, isDaily: boolean, ms = 0) => {
     setState(s);
@@ -101,7 +96,7 @@ export function KlotskiGame({ services }: { services: GameServices }) {
     setDrag(null);
     setArrive(null);
     setMessage(m === 'play' ? t('select') : '');
-    if (m === 'play') void slot.save({ state: s, daily: isDaily });
+    if (m === 'play') persist({ ...savedRef.current, state: s, daily: isDaily });
   };
   const fresh = (m: Mode, lv: Level, seed: number, isDaily: boolean) =>
     start(newKlotski(lv, seed), m, isDaily);
@@ -141,8 +136,11 @@ export function KlotskiGame({ services }: { services: GameServices }) {
     if (optimal) svc.unlockAchievement('optimal');
     if (s.level === 'classic' && !s.hints) svc.unlockAchievement('classic');
     if (daily) svc.unlockAchievement('daily');
-    void slot.clear();
-    setSaved(null);
+    persist({
+      state: null,
+      daily: false,
+      best: withBest(savedRef.current.best, s.level, s.index, s.moves),
+    });
   };
 
   const commit = (next: KlotskiState, animate = true) => {
@@ -160,7 +158,7 @@ export function KlotskiGame({ services }: { services: GameServices }) {
     const moved = next.steps[next.steps.length - 1];
     setSelected(next.steps.length > before.steps.length && moved ? moved[1] : null);
     if (next.solved && !before.solved) solvedNow(next);
-    else if (mode === 'play') void slot.save({ state: next, daily });
+    else if (mode === 'play') persist({ ...savedRef.current, state: next, daily });
   };
 
   const active = mode === 'play' && !!state && !state.solved;
@@ -263,27 +261,28 @@ export function KlotskiGame({ services }: { services: GameServices }) {
 
   const toMenu = () => {
     const s = stateRef.current;
-    if (mode === 'play' && s && !s.solved) {
-      const kept = { state: s, daily };
-      setSaved(kept);
-      void slot.save(kept);
-    }
+    if (mode === 'play' && s && !s.solved) persist({ ...savedRef.current, state: s, daily });
     setMode('menu');
     setState(null);
   };
 
   if (mode === 'menu' || !state) {
     const stats = services.getStats()?.modes[level];
+    const resume = saved.state && !saved.state.solved ? saved.state : null;
+    const total = PUZZLES[level].length;
+    const solvedHere = Array.from({ length: total }, (_, i) => puzzleKey(level, i)).filter(
+      (k) => k in saved.best,
+    ).length;
     return (
       <div className={shared.menu} data-testid="kl-menu">
         <div className={shared.menuCard}>
           <h2 className={shared.menuTitle}>{t('title')}</h2>
           <p className="muted">{t('menu.subtitle')}</p>
-          {saved && (
+          {resume && (
             <button
               type="button"
               className={`btn ${shared.resume}`}
-              onClick={() => start(saved.state, 'play', saved.daily)}
+              onClick={() => start(resume, 'play', saved.daily)}
               data-testid="kl-resume"
             >
               <RotateCcw size={16} />
@@ -291,8 +290,9 @@ export function KlotskiGame({ services }: { services: GameServices }) {
                 {t('menu.resume')}
                 <small>
                   {t('menu.resumeHint', {
-                    level: t(`level.${saved.state.level}`),
-                    moves: saved.state.moves,
+                    level: t(`level.${resume.level}`),
+                    n: resume.index + 1,
+                    moves: resume.moves,
                   })}
                 </small>
               </span>
@@ -323,6 +323,34 @@ export function KlotskiGame({ services }: { services: GameServices }) {
                 : t('menu.unsolved')}
             </p>
           </fieldset>
+          {total > 1 && (
+            <>
+              <p className={shared.hintText}>{t('menu.progress', { n: solvedHere, total })}</p>
+              <div className={styles.puzzles} data-testid="kl-puzzles">
+                {Array.from({ length: total }, (_, i) => {
+                  const b = saved.best[puzzleKey(level, i)];
+                  return (
+                    <button
+                      key={i}
+                      type="button"
+                      className={`${styles.pick} ${b !== undefined ? styles.cleared : ''}`}
+                      onClick={() => start(newKlotski(level, i), 'play', false)}
+                      aria-label={
+                        b !== undefined
+                          ? t('puzzle.solved', { n: i + 1, moves: b })
+                          : t('puzzle.label', { n: i + 1 })
+                      }
+                      title={b !== undefined ? t('puzzle.best', { moves: b }) : undefined}
+                      data-testid={`kl-puzzle-${i}`}
+                    >
+                      {b !== undefined ? <Check size={12} /> : null}
+                      {i + 1}
+                    </button>
+                  );
+                })}
+              </div>
+            </>
+          )}
           <div className={shared.menuActions}>
             <button
               type="button"
@@ -366,6 +394,9 @@ export function KlotskiGame({ services }: { services: GameServices }) {
       <div className={styles.bar}>
         <span className={styles.counter} data-testid="kl-moves">
           {t('moves', { n: s.moves })}
+        </span>
+        <span className={styles.counter} data-testid="kl-number">
+          {t('puzzle.label', { n: s.index + 1 })}
         </span>
         <span className={styles.counter}>{t('best', { n: best })}</span>
         <span className={styles.counter}>{formatTime(elapsed)}</span>
@@ -459,10 +490,20 @@ export function KlotskiGame({ services }: { services: GameServices }) {
             </button>
           </>
         )}
-        {(s.solved || mode === 'watch') && (
+        {s.solved && mode === 'play' && s.index + 1 < PUZZLES[s.level].length && (
           <button
             type="button"
             className="btn btn-primary"
+            onClick={() => start(newKlotski(s.level, s.index + 1), 'play', false)}
+            data-testid="kl-next"
+          >
+            <ChevronRight size={16} /> {t('next')}
+          </button>
+        )}
+        {(s.solved || mode === 'watch') && (
+          <button
+            type="button"
+            className="btn"
             onClick={() => fresh(mode, s.level, randomSeed() >>> 0, false)}
             data-testid="kl-again"
           >

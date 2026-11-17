@@ -42,6 +42,36 @@ describe('Sliding Blocks UI', () => {
     expect(calls.results).toEqual([expect.objectContaining({ outcome: 'complete', mode: 'easy' })]);
   });
 
+  it('picks a numbered puzzle, records its best and marks it solved in the picker', async () => {
+    vi.useFakeTimers();
+    const { services, getSaved } = createTestServices();
+    render(<Game services={services} />);
+    await settle(0);
+    expect(screen.getByTestId('kl-puzzles').children).toHaveLength(60);
+    fireEvent.click(screen.getByTestId('kl-puzzle-40'));
+    await settle(10);
+    expect(screen.getByTestId('kl-number').textContent).toBe('Puzzle 41');
+    for (let i = 0; i < 40 && !screen.queryByTestId('kl-next'); i++) {
+      fireEvent.click(screen.getByTestId('kl-hint'));
+      fireEvent.click(screen.getByTestId('kl-apply'));
+    }
+    expect(screen.getByTestId('kl-message').textContent).toMatch(/^Out in/);
+    const moves = (getSaved() as { best: Record<string, number> }).best['easy:40'];
+    expect(moves).toBeGreaterThan(0);
+    fireEvent.click(screen.getByTestId('kl-next'));
+    await settle(10);
+    expect(screen.getByTestId('kl-number').textContent).toBe('Puzzle 42');
+    fireEvent.click(screen.getByTestId('kl-menu-btn'));
+    await settle(10);
+    expect(screen.getByTestId('kl-puzzle-40').getAttribute('aria-label')).toBe(
+      `Puzzle 41, solved in ${moves} moves at best`,
+    );
+    expect(screen.getByTestId('kl-puzzle-40').className).toMatch(/cleared/);
+    expect(screen.getByTestId('kl-resume')).toBeTruthy();
+    fireEvent.click(screen.getByTestId('kl-level-hard'));
+    expect(screen.getByTestId('kl-puzzle-40').className).not.toMatch(/cleared/);
+  });
+
   it('watch mode solves on its own', async () => {
     vi.useFakeTimers();
     const { services } = createTestServices({ launchParams: { mode: 'watch' } });

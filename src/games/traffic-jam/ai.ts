@@ -44,14 +44,14 @@ export function greedyMove(s: JamState, rng: Rng): string {
 
 const plans = new Map<string, [number, number][]>();
 export function solverMove(s: JamState): string {
-  const key = `${s.level}:${s.seed}:${s.pos.join(',')}`;
+  const key = `${s.level}:${s.index}:${s.pos.join(',')}`;
   let plan = plans.get(key);
   if (!plan) {
     plan = solve(s.puzzle.vehicles, s.pos) ?? [];
     if (plans.size > 500) plans.clear();
     let pos = [...s.pos];
     plan.forEach((m, k) => {
-      plans.set(`${s.level}:${s.seed}:${pos.join(',')}`, plan!.slice(k));
+      plans.set(`${s.level}:${s.index}:${pos.join(',')}`, plan!.slice(k));
       pos = [...pos];
       pos[m[0]] = m[1];
     });

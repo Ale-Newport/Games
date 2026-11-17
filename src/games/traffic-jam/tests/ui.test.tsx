@@ -42,4 +42,33 @@ describe('Traffic Jam UI', () => {
     expect(screen.getByTestId('tj-message').textContent).toMatch(/^Out in/);
     expect(calls.results).toEqual([expect.objectContaining({ outcome: 'complete', mode: 'easy' })]);
   });
+
+  it('picks a numbered expert puzzle, records its best and marks it solved', async () => {
+    vi.useFakeTimers();
+    const { services, getSaved } = createTestServices();
+    render(<Game services={services} />);
+    await settle(0);
+    fireEvent.click(screen.getByTestId('tj-level-expert'));
+    expect(screen.getByTestId('tj-puzzles').children.length).toBeGreaterThanOrEqual(50);
+    fireEvent.click(screen.getByTestId('tj-puzzle-0'));
+    await settle(10);
+    expect(screen.getByTestId('tj-number').textContent).toBe('Puzzle 1');
+    for (let i = 0; i < 120 && !screen.queryByTestId('tj-again'); i++) {
+      fireEvent.click(screen.getByTestId('tj-hint'));
+      fireEvent.click(screen.getByTestId('tj-apply'));
+    }
+    expect(screen.getByTestId('tj-message').textContent).toMatch(/^Out in/);
+    const moves = (getSaved() as { best: Record<string, number> }).best['expert:0'];
+    expect(moves).toBeGreaterThanOrEqual(30);
+    fireEvent.click(screen.getByTestId('tj-next'));
+    await settle(10);
+    expect(screen.getByTestId('tj-number').textContent).toBe('Puzzle 2');
+    fireEvent.click(screen.getByTestId('tj-menu-btn'));
+    await settle(10);
+    expect(screen.getByTestId('tj-puzzle-0').getAttribute('aria-label')).toBe(
+      `Puzzle 1, solved in ${moves} moves at best`,
+    );
+    expect(screen.getByTestId('tj-puzzle-0').className).toMatch(/cleared/);
+    expect(screen.getByTestId('tj-resume')).toBeTruthy();
+  });
 });

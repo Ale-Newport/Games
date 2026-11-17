@@ -2,16 +2,20 @@
 // placed on goals, then the whole space of positions reachable by pulling boxes (the reverse of
 // pushing) explored; the position farthest from solved (in pushes) becomes the level. Prints JSON
 // with levels in the usual text notation.
-// Usage: npx tsx tools/generate-sokoban.ts <count> <seed> <boxes> <minPushes> <width> <height> [maxStates]
+// Usage: npx tsx tools/generate-sokoban.ts <count> <seed> <boxes> <minPushes> <width> <height> [maxStates] [walls]
+// [walls] (default 2) is the least number of wall blocks carved into the room (up to 3 more); more
+// blocks make corridors and longer solutions.
 import { Rng } from '../src/core/game-engine/random';
 
-const [countArg, seedArg, boxesArg, minArg, wArg, hArg, maxStatesArg] = process.argv.slice(2);
+const [countArg, seedArg, boxesArg, minArg, wArg, hArg, maxStatesArg, wallsArg] =
+  process.argv.slice(2);
 const want = Number(countArg),
   boxes = Number(boxesArg),
   minPushes = Number(minArg);
 const W = Number(wArg),
   H = Number(hArg),
-  MAX_STATES = Number(maxStatesArg ?? 400000);
+  MAX_STATES = Number(maxStatesArg ?? 400000),
+  WALLS = Number(wallsArg ?? 2);
 const rng = new Rng(Number(seedArg));
 
 function room(): boolean[] | null {
@@ -21,7 +25,7 @@ function room(): boolean[] | null {
       y = Math.floor(c / W);
     return x > 0 && y > 0 && x < W - 1 && y < H - 1;
   });
-  const blocks = 2 + rng.int(4);
+  const blocks = WALLS + rng.int(4);
   for (let b = 0; b < blocks; b++) {
     const x = 1 + rng.int(W - 2),
       y = 1 + rng.int(H - 2);

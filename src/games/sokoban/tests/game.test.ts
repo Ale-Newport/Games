@@ -3,6 +3,7 @@ import { describeAdapterContract } from '../../../ai/protocols/contract-suite';
 import { Rng } from '../../../core/game-engine/random';
 import { greedyMove, sokobanActions, solverMove, solverPlan } from '../ai';
 import { sokobanEnv } from '../ai-adapter';
+import { LEVELS } from '../levels';
 import {
   TIERS,
   deadBoxes,
@@ -29,14 +30,37 @@ describe('Sokoban levels', () => {
     }
   });
 
+  it('keeps tier sizes, unique rectangular levels and harder tiers', () => {
+    const min = { easy: 90, medium: 90, hard: 60, expert: 30 };
+    const crates = { easy: 2, medium: 3, hard: 4, expert: 5 };
+    const all = new Set<string>();
+    for (const tier of TIERS) {
+      expect(levelCount(tier)).toBeGreaterThanOrEqual(min[tier]);
+      for (const entry of LEVELS[tier]) {
+        const at = entry.lastIndexOf(':');
+        const rows = entry.slice(0, at).split('|');
+        expect(rows.every((r) => r.length === rows[0]!.length)).toBe(true);
+        expect(all.has(entry.slice(0, at))).toBe(false);
+        all.add(entry.slice(0, at));
+      }
+      for (let i = 0; i < levelCount(tier); i++)
+        expect(levelAt(tier, i).boxes).toHaveLength(crates[tier]);
+    }
+    for (let i = 0; i < levelCount('expert'); i++)
+      expect(levelAt('expert', i).pushes).toBeGreaterThanOrEqual(36);
+  });
+
   it(
     'every sampled level is solved by the solver in its stored number of pushes',
-    { timeout: 60_000 },
+    { timeout: 120_000 },
     () => {
       for (const tier of TIERS)
-        for (const i of [0, Math.floor(levelCount(tier) / 2), levelCount(tier) - 1]) {
+        // First, middle and last, plus the first level appended to the original 60/60/32.
+        for (const i of [0, Math.floor(levelCount(tier) / 2), levelCount(tier) - 1, 60, 32]) {
+          if (i >= levelCount(tier)) continue;
           const w = levelAt(tier, i);
-          expect(solvePushes(w, w.boxes, w.player, 2_000_000)).toHaveLength(w.pushes);
+          // The in-game limit (hints, watch mode) is enough for every tier.
+          expect(solvePushes(w, w.boxes, w.player)).toHaveLength(w.pushes);
         }
     },
   );
@@ -91,7 +115,7 @@ describe('Sokoban play', () => {
 });
 
 describeAdapterContract(sokobanEnv, {
-  configs: [undefined, { tier: 'medium', index: 2 }],
+  configs: [undefined, { tier: 'medium', index: 2 }, { tier: 'expert', index: 0 }],
   playouts: 3,
   maxSteps: 650,
   illegalActions: (s) => ['X', 'up', ''].filter((a) => !sokobanActions(s).includes(a as 'U')),

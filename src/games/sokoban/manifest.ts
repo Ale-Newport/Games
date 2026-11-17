@@ -11,8 +11,8 @@ export const manifest: GameManifest = {
     es: 'Empuja cada caja hasta una meta en almacenes generados, con el mínimo de empujes a la vista.',
   },
   description: {
-    en: 'The warehouse-keeper puzzle with original levels from the game’s own generator, in three tiers. Tap to walk, swipe or use the keys to push, undo and restart freely, see crates that can no longer reach a goal, take hints from a solver that knows the fewest pushes, and track the levels you have cleared.',
-    es: 'El puzle del mozo de almacén con niveles originales del propio generador del juego, en tres grupos. Toca para andar, desliza o usa las teclas para empujar, deshaz y reinicia cuando quieras, ve las cajas que ya no pueden llegar a una meta, pide pistas a un solucionador que conoce el mínimo de empujes y sigue tu progreso por niveles.',
+    en: 'The warehouse-keeper puzzle with original levels from the game’s own generator, in four tiers. Tap to walk, swipe or use the keys to push, undo and restart freely, see crates that can no longer reach a goal, take hints from a solver that knows the fewest pushes, and track the levels you have cleared.',
+    es: 'El puzle del mozo de almacén con niveles originales del propio generador del juego, en cuatro grupos. Toca para andar, desliza o usa las teclas para empujar, deshaz y reinicia cuando quieras, ve las cajas que ya no pueden llegar a una meta, pide pistas a un solucionador que conoce el mínimo de empujes y sigue tu progreso por niveles.',
   },
   category: 'puzzle',
   genre: { en: 'Pushing blocks', es: 'Empujar bloques' },

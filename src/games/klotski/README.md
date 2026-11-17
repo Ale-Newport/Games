@@ -3,7 +3,7 @@
 The klotski-style sliding-block tray under a generic name. `board.ts` (position keys, blocks,
 free-path moves), `engine.ts` (state, move counting, undo, breadth-first solver, replay
 validation), `puzzles.ts` (the bank from `tools/generate-klotski.ts`), `ai.ts`, `ai-adapter.ts`,
-`KlotskiGame.tsx` + `Klotski.module.css`, `HowToPlay.tsx`, `i18n.ts`, `sounds.ts`, `manifest.ts`,
+`save.ts` (the save slot: schema, migration, solved puzzles), `KlotskiGame.tsx` + `Klotski.module.css`, `HowToPlay.tsx`, `i18n.ts`, `sounds.ts`, `manifest.ts`,
 `assets/preview.svg`, `tests/`.
 
 ## Specification
@@ -24,13 +24,17 @@ position is one 20-character key (A/a big block, V/v upright, H/h flat, S square
 The generator lays out random block sets (ten mixes of upright, flat and square blocks), explores
 the whole position space reachable from each layout, and measures every position's distance to a
 solved one by breadth-first search. From each space it keeps positions at a spread of distances
-per level, preferring the big block in the top row.
+per level, preferring the big block in the top row. The bank only ever grows at the end of each
+level, so a puzzle's number never changes: the first 36 easy and 32 medium and hard puzzles came
+from ten block mixes; 24 easy and 28 medium and hard ones were appended from eight mixes (seeds
+8001–8008, up to six per level), the generator skipping positions already in the bank and mirror
+images of them.
 
 | Level       | Fewest moves | Puzzles |
 | ----------- | ------------ | ------- |
-| Easy        | 11–25        | 36      |
-| Medium      | 26–49        | 32      |
-| Hard        | 59–138       | 32      |
+| Easy        | 10–25        | 60      |
+| Medium      | 26–50        | 60      |
+| Hard        | 59–138       | 60      |
 | Traditional | 81           | 1       |
 
 The traditional layout (big block top middle, four upright blocks, one flat block, four squares)
@@ -40,13 +44,15 @@ the game's own solver.
 ### Solver (`engine.ts`)
 
 Breadth-first search over positions from the current one (each move expanded as every reachable
-cell of every block), returning the relocations of a shortest solution. Over the whole bank it
-takes 12 ms on average for easy puzzles and at most about 0.4 s for the hardest; plans are cached
+cell of every block), returning the relocations of a shortest solution. Over the whole bank of 181
+puzzles it takes 10 / 82 / 168 ms on average (easy / medium / hard) and at most about 0.45 s; plans are cached
 along their path, so successive hints are instant.
 
 ### Modes, play features, controls
 
-New or daily puzzle per level (the traditional layout has one), resume, watch the AI. Drag a block
+A numbered puzzle picker per level (solved puzzles marked, with your best moves in the label), a
+random or daily puzzle per level (the traditional layout has one), resume, watch the AI, and the
+next puzzle after a solve. Drag a block
 anywhere it can reach, or tap it to mark every reachable spot and tap one; Tab and the arrow keys
 move a selected block one cell; undo per relocation; hints name the block and its destination;
 moves against the minimum and a timer.
@@ -59,8 +65,9 @@ moves against the minimum and a timer.
 | `greedy` | The relocation bringing the big block nearest the exit, never straight back. |
 | `solver` | Breadth-first search: always a shortest solution (the oracle).               |
 
-Measured over the bank (300 relocations at most): the greedy mover solved 11 of 36 easy puzzles
-and none of the medium, hard or traditional ones; the solver solves all of them in their minimum.
+Measured over the first bank (300 relocations at most): the greedy mover solved 11 of 36 easy
+puzzles and none of the medium, hard or traditional ones; the solver solves every bank puzzle,
+appended ones included, in its minimum.
 
 ### States and actions
 
@@ -85,12 +92,15 @@ solved (no animation with reduced motion); synthesized slide, hint and win sound
 
 ### Save format and AI interface
 
-Save slot schema 1: `{ state, daily }`, validated by replaying the relocations from the bank
-position. Env `klotski` v`1.0.0`: kind `puzzle`, one seat, deterministic, config `{ level }`.
+Save slot schema 2: `{ state, daily, best }` — the puzzle in progress (or null), validated by
+replaying the relocations from the bank position, and the fewest moves per solved puzzle keyed
+`level:index`. Schema-1 saves (`{ state, daily }`) migrate with no solved puzzles. Env `klotski` v`1.0.0`: kind `puzzle`, one seat, deterministic, config `{ level }`.
 
 ### Testing criteria
 
 Blocks read from keys, free-path reach round corners, the traditional layout solved in 81, the
-bank's minima, move counting (one block moved twice is one move), undo, replay validation, the
+bank's sizes, uniqueness, ranges and sampled minima (old and appended entries), the save migration
+and best-move records, move counting (one block moved twice is one move), undo, replay validation, the
 solver following its plan in the minimum, greedy legality, the contract suite; UI: tap-to-move,
-undo, hints to the exit, watch mode to the exit. E2E desktop + mobile.
+undo, hints to the exit, picking a numbered puzzle, its solved mark and best, the next puzzle, watch
+mode to the exit. E2E desktop + mobile.

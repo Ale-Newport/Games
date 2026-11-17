@@ -11,8 +11,8 @@ export const manifest: GameManifest = {
     es: 'Desliza coches y camiones por sus carriles para liberar el coche rojo, con el mínimo de movimientos a la vista.',
   },
   description: {
-    en: 'A sliding-block parking puzzle with original puzzles from the game’s own generator, each with its fewest-move solution. Drag vehicles along their lanes, play with the keyboard, undo, take hints that name the vehicle and the slide, try the daily puzzle, or watch the breadth-first solver.',
-    es: 'Un puzle de bloques deslizantes en un aparcamiento, con puzles originales del propio generador del juego, cada uno con su solución de menos movimientos. Arrastra los vehículos por sus carriles, juega con el teclado, deshaz, pide pistas que nombran el vehículo y el deslizamiento, prueba el puzle del día o mira el solucionador en anchura.',
+    en: 'A sliding-block parking puzzle with original puzzles from the game’s own generator, each with its fewest-move solution, in four levels up to expert puzzles of 30 moves or more; pick any numbered puzzle and keep your solved ones and best moves. Drag vehicles along their lanes, play with the keyboard, undo, take hints that name the vehicle and the slide, try the daily puzzle, or watch the breadth-first solver.',
+    es: 'Un puzle de bloques deslizantes en un aparcamiento, con puzles originales del propio generador del juego, cada uno con su solución de menos movimientos, en cuatro niveles hasta los expertos de 30 movimientos o más; elige cualquier puzle numerado y guarda los resueltos y tus mejores marcas. Arrastra los vehículos por sus carriles, juega con el teclado, deshaz, pide pistas que nombran el vehículo y el deslizamiento, prueba el puzle del día o mira el solucionador en anchura.',
   },
   category: 'puzzle',
   genre: { en: 'Sliding blocks', es: 'Bloques deslizantes' },

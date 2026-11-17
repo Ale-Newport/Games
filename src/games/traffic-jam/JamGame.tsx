@@ -1,10 +1,11 @@
 /**
- * The Traffic Jam table: a menu (level, new or daily puzzle, resume, watch the AI), the 6×6 lot
+ * The Traffic Jam table: a menu (level, a numbered puzzle picker with solved marks and best moves,
+ * new or daily puzzle, resume, watch the AI), the 6×6 lot
  * with its exit, vehicles dragged along their length (or selected and moved with the arrow keys),
  * moves against the fewest possible, undo, hints that name the vehicle and the slide, pause, and
  * the solver in watch mode.
  */
-import { Bot, Lightbulb, Pause, Play, RotateCcw, Undo2 } from 'lucide-react';
+import { Bot, Check, ChevronRight, Lightbulb, Pause, Play, RotateCcw, Undo2 } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState, type PointerEvent } from 'react';
 import { useLatest } from '../../core/game-engine/hooks';
 import { randomSeed } from '../../core/game-engine/random';
@@ -18,21 +19,19 @@ import {
   EXIT_ROW,
   LEVELS,
   SIZE,
-  isValidJamState,
   move,
   newJam,
+  newJamAt,
+  puzzleCount,
   range,
   undo,
   type JamState,
 } from './engine';
 import { STRINGS } from './i18n';
 import styles from './Jam.module.css';
+import { JAM_SAVE, puzzleKey, withBest, type JamSave } from './save';
 import { JAM_SOUNDS } from './sounds';
 
-interface Saved {
-  state: JamState;
-  daily: boolean;
-}
 type Mode = 'menu' | 'play' | 'watch';
 
 const SPEED_MS = 60_000;
@@ -46,23 +45,12 @@ export function JamGame({ services }: { services: GameServices }) {
   const { locale } = services;
   const t = useMemo(() => createTranslator(STRINGS, locale), [locale]);
   const servicesRef = useLatest(services);
-  const slot = useMemo(
-    () =>
-      services.saveSlot<Saved>({
-        schema: 1,
-        validate: (d: unknown): d is Saved =>
-          typeof d === 'object' &&
-          d !== null &&
-          typeof (d as Saved).daily === 'boolean' &&
-          isValidJamState((d as Saved).state),
-      }),
-    [services],
-  );
+  const slot = useMemo(() => services.saveSlot<JamSave>(JAM_SAVE), [services]);
   const asked = Number(services.launchParams.deal);
   const fixedSeed = Number.isInteger(asked) && asked > 0 ? asked : null;
   const [mode, setMode] = useState<Mode>(services.launchParams.mode === 'watch' ? 'watch' : 'menu');
   const [level, setLevel] = useState<string>('easy');
-  const [saved, setSaved] = useState<Saved | null>(null);
+  const [saved, setSaved] = useState<JamSave>({ state: null, daily: false, best: {} });
   const [state, setState] = useState<JamState | null>(null);
   const [daily, setDaily] = useState(false);
   const [paused, setPaused] = useState(false);
@@ -82,16 +70,24 @@ export function JamGame({ services }: { services: GameServices }) {
   const boardRef = useRef<HTMLDivElement>(null);
   const stateRef = useLatest(state);
   const elapsedRef = useLatest(elapsed);
+  const savedRef = useLatest(saved);
 
   useEffect(() => {
     let cancelled = false;
     void slot.load().then((d) => {
-      if (!cancelled && d && !d.state.solved) setSaved(d);
+      if (cancelled || !d) return;
+      setSaved(d);
+      if (d.state && !d.state.solved) setLevel(d.state.level);
     });
     return () => {
       cancelled = true;
     };
   }, [slot]);
+
+  const persist = (next: JamSave) => {
+    setSaved(next);
+    void slot.save(next);
+  };
 
   const start = (s: JamState, m: Mode, isDaily: boolean) => {
     setState(s);
@@ -103,7 +99,7 @@ export function JamGame({ services }: { services: GameServices }) {
     setSelected(0);
     setPaused(false);
     setMessage(m === 'play' ? t('select') : '');
-    if (m === 'play') void slot.save({ state: s, daily: isDaily });
+    if (m === 'play') persist({ ...savedRef.current, state: s, daily: isDaily });
   };
 
   const fresh = (m: Mode, lv: string, seed: number, isDaily: boolean) =>
@@ -153,8 +149,11 @@ export function JamGame({ services }: { services: GameServices }) {
     if (s.level === 'hard' && !s.hints) svc.unlockAchievement('hard');
     if (s.level === 'medium' && time <= SPEED_MS && !s.hints) svc.unlockAchievement('speed');
     if (daily) svc.unlockAchievement('daily');
-    void slot.clear();
-    setSaved(null);
+    persist({
+      state: null,
+      daily: false,
+      best: withBest(savedRef.current.best, s.level, s.index, s.moves),
+    });
   };
 
   const commit = (next: JamState) => {
@@ -166,7 +165,7 @@ export function JamGame({ services }: { services: GameServices }) {
     setMessage('');
     if (next.solved && !before.solved) solvedNow(next);
     else if (mode === 'play' && !next.solved)
-      void slot.save({ state: { ...next, elapsedMs: elapsedRef.current }, daily });
+      persist({ ...savedRef.current, state: { ...next, elapsedMs: elapsedRef.current }, daily });
   };
 
   const active = mode === 'play' && !!state && !state.solved && !paused;
@@ -260,27 +259,29 @@ export function JamGame({ services }: { services: GameServices }) {
 
   const toMenu = () => {
     const s = stateRef.current;
-    if (mode === 'play' && s && !s.solved) {
-      const kept = { state: { ...s, elapsedMs: elapsedRef.current }, daily };
-      setSaved(kept);
-      void slot.save(kept);
-    }
+    if (mode === 'play' && s && !s.solved)
+      persist({ ...savedRef.current, state: { ...s, elapsedMs: elapsedRef.current }, daily });
     setMode('menu');
     setState(null);
   };
 
   if (mode === 'menu' || !state) {
     const stats = services.getStats()?.modes[level];
+    const resume = saved.state && !saved.state.solved ? saved.state : null;
+    const total = puzzleCount(level);
+    const solvedHere = Array.from({ length: total }, (_, i) => puzzleKey(level, i)).filter(
+      (k) => k in saved.best,
+    ).length;
     return (
       <div className={shared.menu} data-testid="tj-menu">
         <div className={shared.menuCard}>
           <h2 className={shared.menuTitle}>{t('title')}</h2>
           <p className="muted">{t('menu.subtitle')}</p>
-          {saved && (
+          {resume && (
             <button
               type="button"
               className={`btn ${shared.resume}`}
-              onClick={() => start(saved.state, 'play', saved.daily)}
+              onClick={() => start(resume, 'play', saved.daily)}
               data-testid="tj-resume"
             >
               <RotateCcw size={16} />
@@ -288,9 +289,10 @@ export function JamGame({ services }: { services: GameServices }) {
                 {t('menu.resume')}
                 <small>
                   {t('menu.resumeHint', {
-                    level: t(`level.${saved.state.level}`),
-                    moves: saved.state.moves,
-                    time: formatTime(saved.state.elapsedMs),
+                    level: t(`level.${resume.level}`),
+                    n: resume.index + 1,
+                    moves: resume.moves,
+                    time: formatTime(resume.elapsedMs),
                   })}
                 </small>
               </span>
@@ -321,6 +323,30 @@ export function JamGame({ services }: { services: GameServices }) {
                 : t('menu.unsolved')}
             </p>
           </fieldset>
+          <p className={shared.hintText}>{t('menu.progress', { n: solvedHere, total })}</p>
+          <div className={styles.puzzles} data-testid="tj-puzzles">
+            {Array.from({ length: total }, (_, i) => {
+              const b = saved.best[puzzleKey(level, i)];
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  className={`${styles.pick} ${b !== undefined ? styles.cleared : ''}`}
+                  onClick={() => start(newJamAt(level, i), 'play', false)}
+                  aria-label={
+                    b !== undefined
+                      ? t('puzzle.solved', { n: i + 1, moves: b })
+                      : t('puzzle.label', { n: i + 1 })
+                  }
+                  title={b !== undefined ? t('puzzle.best', { moves: b }) : undefined}
+                  data-testid={`tj-puzzle-${i}`}
+                >
+                  {b !== undefined ? <Check size={12} /> : null}
+                  {i + 1}
+                </button>
+              );
+            })}
+          </div>
           <div className={shared.menuActions}>
             <button
               type="button"
@@ -362,6 +388,9 @@ export function JamGame({ services }: { services: GameServices }) {
       <div className={styles.bar}>
         <span className={styles.counter} data-testid="tj-moves">
           {t('moves', { n: s.moves })}
+        </span>
+        <span className={styles.counter} data-testid="tj-number">
+          {t('puzzle.label', { n: s.index + 1 })}
         </span>
         <span className={styles.counter}>{t('best', { n: s.puzzle.optimal })}</span>
         <span className={styles.counter}>{formatTime(elapsed)}</span>
@@ -464,10 +493,20 @@ export function JamGame({ services }: { services: GameServices }) {
             </button>
           </>
         )}
-        {(s.solved || mode === 'watch') && (
+        {s.solved && mode === 'play' && s.index + 1 < puzzleCount(s.level) && (
           <button
             type="button"
             className="btn btn-primary"
+            onClick={() => start(newJamAt(s.level, s.index + 1), 'play', false)}
+            data-testid="tj-next"
+          >
+            <ChevronRight size={16} /> {t('next')}
+          </button>
+        )}
+        {(s.solved || mode === 'watch') && (
+          <button
+            type="button"
+            className="btn"
             onClick={() => fresh(mode, s.level, randomSeed() >>> 0, false)}
             data-testid="tj-again"
           >

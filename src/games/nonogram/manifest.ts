@@ -11,8 +11,8 @@ export const manifest: GameManifest = {
     es: 'Pinta con números: tableros aleatorios hasta 15×15 y una galería de dibujos originales, todos resolubles línea a línea.',
   },
   description: {
-    en: 'The clues around the grid list the runs of filled cells in each row and column; fill and cross cells until the picture appears. Random boards are generated and repaired until the line solver finishes them, and ten original pictures wait in the gallery. Drag to paint, explained hints, undo, a daily puzzle and an AI that paints while you watch.',
-    es: 'Las pistas alrededor de la cuadrícula indican los tramos de casillas pintadas de cada fila y columna; pinta y tacha hasta que aparezca el dibujo. Los tableros aleatorios se generan y corrigen hasta que el solucionador por líneas los termina, y en la galería esperan diez dibujos originales. Pintar arrastrando, pistas explicadas, deshacer, puzle del día y una IA que pinta mientras miras.',
+    en: 'The clues around the grid list the runs of filled cells in each row and column; fill and cross cells until the picture appears. Random boards are generated and repaired until the line solver finishes them, and thirty original pictures (10×10 and 15×15) wait in the gallery. Drag to paint, explained hints, undo, a daily puzzle and an AI that paints while you watch.',
+    es: 'Las pistas alrededor de la cuadrícula indican los tramos de casillas pintadas de cada fila y columna; pinta y tacha hasta que aparezca el dibujo. Los tableros aleatorios se generan y corrigen hasta que el solucionador por líneas los termina, y en la galería esperan treinta dibujos originales (de 10×10 y 15×15). Pintar arrastrando, pistas explicadas, deshacer, puzle del día y una IA que pinta mientras miras.',
   },
   category: 'puzzle',
   genre: { en: 'Picture logic', es: 'Lógica de dibujos' },

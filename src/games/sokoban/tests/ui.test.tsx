@@ -38,4 +38,25 @@ describe('Sokoban UI', () => {
     fireEvent.click(screen.getByTestId('sk-menu-btn'));
     expect(screen.getByTestId('sk-level-0').className).toMatch(/cleared/);
   });
+
+  it('lists the expert tier and solves an expert warehouse with hints', async () => {
+    vi.useFakeTimers();
+    const { services, calls } = createTestServices();
+    render(<Game services={services} />);
+    await settle(10);
+    fireEvent.click(screen.getByTestId('sk-tier-expert'));
+    expect(screen.getByTestId('sk-tier-expert').textContent).toBe('Expert');
+    expect(screen.getByTestId('sk-levels').children.length).toBeGreaterThanOrEqual(30);
+    fireEvent.click(screen.getByTestId('sk-level-0'));
+    await settle(10);
+    for (let i = 0; i < 60 && !screen.queryByTestId('sk-next'); i++) {
+      fireEvent.click(screen.getByTestId('sk-hint'));
+      expect(screen.getByTestId('sk-message').textContent).toMatch(/^Push the crate/);
+      fireEvent.click(screen.getByTestId('sk-apply'));
+    }
+    expect(screen.getByTestId('sk-message').textContent).toMatch(/^Done in/);
+    expect(calls.results).toEqual([
+      expect.objectContaining({ outcome: 'complete', mode: 'expert', score: 36 }),
+    ]);
+  });
 });

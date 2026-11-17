@@ -19,6 +19,8 @@ import {
   undo,
 } from '../engine';
 import { PUZZLES } from '../puzzles';
+import { KLOTSKI_SAVE, isKlotskiSave, withBest } from '../save';
+import { unwrap } from '../../../core/persistence/versioned';
 
 const TRADITIONAL = 'VAaVvaavVHhVvSSvS..S';
 
@@ -50,14 +52,30 @@ describe('Sliding Blocks tray', () => {
 
   it('banks puzzles whose stated minimum is the true one, unsolved at the start', () => {
     for (const level of LEVELS) {
-      expect(PUZZLES[level].length).toBeGreaterThan(0);
-      for (const i of [0, PUZZLES[level].length - 1]) {
+      expect(PUZZLES[level].length).toBeGreaterThanOrEqual(level === 'classic' ? 1 : 60);
+      expect(new Set(PUZZLES[level].map((e) => e.split(':')[0])).size).toBe(PUZZLES[level].length);
+      // The first and last puzzle, plus the first appended one (index 36 easy, 32 otherwise).
+      const appended = level === 'easy' ? 36 : 32;
+      const sample = [0, appended, PUZZLES[level].length - 1].filter(
+        (i) => i < PUZZLES[level].length,
+      );
+      for (const i of sample) {
         const { key, best } = puzzleOf(level, i);
         expect(isSolvedKey(key)).toBe(false);
         expect(solve(parse(key))).toHaveLength(best);
       }
     }
     expect(puzzleOf('classic', 0)).toEqual({ key: TRADITIONAL, best: 81 });
+  });
+
+  it('keeps every level within its range of fewest moves', () => {
+    const range = { easy: [10, 25], medium: [26, 50], hard: [51, 999], classic: [81, 81] };
+    for (const level of LEVELS)
+      for (let i = 0; i < PUZZLES[level].length; i++) {
+        const { best } = puzzleOf(level, i);
+        expect(best).toBeGreaterThanOrEqual(range[level][0]!);
+        expect(best).toBeLessThanOrEqual(range[level][1]!);
+      }
   });
 });
 
@@ -100,6 +118,27 @@ describe('Sliding Blocks play', () => {
       g = relocate(g, from, to);
     }
     expect(distanceToExit(parse(TRADITIONAL))).toBe(3);
+  });
+});
+
+describe('Sliding Blocks saves', () => {
+  it('migrates a schema-1 save (puzzle in progress only) to schema 2 with no solved puzzles', () => {
+    const state = relocate(newKlotski('medium', 7), 13, 17);
+    const old = { schema: 1, savedAt: 1, data: { state, daily: false } };
+    const r = unwrap(KLOTSKI_SAVE, old);
+    expect(r.ok && r.data).toEqual({ state, daily: false, best: {} });
+  });
+
+  it('keeps the fewest moves per puzzle and rejects unknown puzzles or bad counts', () => {
+    let best = withBest({}, 'easy', 59, 30);
+    best = withBest(best, 'easy', 59, 28);
+    best = withBest(best, 'easy', 59, 40);
+    expect(best).toEqual({ 'easy:59': 28 });
+    expect(isKlotskiSave({ state: null, daily: false, best })).toBe(true);
+    expect(isKlotskiSave({ state: null, daily: false, best: { 'easy:999': 3 } })).toBe(false);
+    expect(isKlotskiSave({ state: null, daily: false, best: { 'easy:1': 0 } })).toBe(false);
+    expect(isKlotskiSave({ state: null, daily: false, best: { 'nope:1': 3 } })).toBe(false);
+    expect(isKlotskiSave({ state: null, best })).toBe(false);
   });
 });
 

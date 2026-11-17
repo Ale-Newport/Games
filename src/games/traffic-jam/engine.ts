@@ -47,13 +47,31 @@ export function parseBoard(board: string, optimal: number): JamPuzzle {
   return { vehicles, start, optimal };
 }
 
-export const LEVELS = ['easy', 'medium', 'hard'] as const;
+export const LEVELS = [
+  'easy',
+  'medium',
+  'hard',
+  'expert',
+] as const satisfies readonly (keyof typeof PUZZLES)[];
 
-export function puzzleFor(level: string, seed: number): JamPuzzle {
-  const list = PUZZLES[level as keyof typeof PUZZLES] ?? PUZZLES.easy;
-  const [board, moves] = list[new Rng(seed >>> 0).int(list.length)]!.split(':') as [string, string];
+const bank = (level: string): readonly string[] =>
+  PUZZLES[level as (typeof LEVELS)[number]] ?? PUZZLES.easy;
+
+/** Puzzles in a level's bank (numbered from 0, in bank order). */
+export const puzzleCount = (level: string) => bank(level).length;
+
+/** The bank index a seed picks within a level (random and daily puzzles). */
+export const indexForSeed = (level: string, seed: number) =>
+  new Rng(seed >>> 0).int(puzzleCount(level));
+
+export function puzzleAt(level: string, index: number): JamPuzzle {
+  const list = bank(level);
+  const [board, moves] = (list[index] ?? list[0]!).split(':') as [string, string];
   return parseBoard(board, Number(moves));
 }
+
+export const puzzleFor = (level: string, seed: number): JamPuzzle =>
+  puzzleAt(level, indexForSeed(level, seed));
 
 /** Vehicle index per cell, -1 when empty. */
 export function grid(vehicles: readonly Vehicle[], pos: readonly number[]): number[] {
@@ -121,7 +139,8 @@ export function solve(
 
 export interface JamState {
   level: string;
-  seed: number;
+  /** The puzzle's number within the level's bank. */
+  index: number;
   puzzle: JamPuzzle;
   pos: number[];
   /** Earlier positions, for undo. */
@@ -132,12 +151,20 @@ export interface JamState {
   solved: boolean;
 }
 
+/** The puzzle a seed picks within the level (random and daily puzzles). */
 export function newJam(level: string, seed: number): JamState {
   const lv = (LEVELS as readonly string[]).includes(level) ? level : 'easy';
-  const puzzle = puzzleFor(lv, seed);
+  return newJamAt(lv, indexForSeed(lv, seed));
+}
+
+/** Puzzle number `index` of the level (clamped into the bank). */
+export function newJamAt(level: string, index: number): JamState {
+  const lv = (LEVELS as readonly string[]).includes(level) ? level : 'easy';
+  const i = Math.min(Math.max(0, Math.floor(index) || 0), puzzleCount(lv) - 1);
+  const puzzle = puzzleAt(lv, i);
   return {
     level: lv,
-    seed: seed >>> 0,
+    index: i,
     puzzle,
     pos: [...puzzle.start],
     history: [],
@@ -179,12 +206,12 @@ export function isValidJamState(d: unknown): d is JamState {
   if (typeof d !== 'object' || d === null) return false;
   const s = d as JamState;
   if (!(LEVELS as readonly string[]).includes(s.level)) return false;
-  if (!Number.isInteger(s.seed) || s.seed < 0 || s.seed > 0xffffffff) return false;
+  if (!Number.isInteger(s.index) || s.index < 0 || s.index >= puzzleCount(s.level)) return false;
   if (!Number.isFinite(s.elapsedMs) || s.elapsedMs < 0) return false;
   if (!Number.isInteger(s.hints) || s.hints < 0 || !Number.isInteger(s.moves) || s.moves < 0)
     return false;
   if (typeof s.solved !== 'boolean') return false;
-  const fresh = puzzleFor(s.level, s.seed);
+  const fresh = puzzleAt(s.level, s.index);
   if (JSON.stringify(fresh) !== JSON.stringify(s.puzzle)) return false;
   const ok = (p: unknown): p is number[] => {
     if (!Array.isArray(p) || p.length !== fresh.vehicles.length) return false;
