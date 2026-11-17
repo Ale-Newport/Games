@@ -216,6 +216,8 @@ import { manifest as countryShape } from './country-shape/manifest';
 import { manifest as themeStrands } from './theme-strands/manifest';
 import { manifest as flagReveal } from './flag-reveal/manifest';
 import { manifest as globeHotCold } from './globe-hot-cold/manifest';
+import { manifest as sketchGuess } from './sketch-guess/manifest';
+import { manifest as drawTelephone } from './draw-telephone/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -430,6 +432,8 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: themeStrands, load: () => import('./theme-strands/index') },
   { manifest: flagReveal, load: () => import('./flag-reveal/index') },
   { manifest: globeHotCold, load: () => import('./globe-hot-cold/index') },
+  { manifest: sketchGuess, load: () => import('./sketch-guess/index') },
+  { manifest: drawTelephone, load: () => import('./draw-telephone/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

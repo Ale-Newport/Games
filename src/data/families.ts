@@ -264,6 +264,11 @@ export const FAMILIES: readonly GameFamily[] = [
     name: { en: 'Country Guessers', es: 'Adivina el país' },
     members: ['country-shape', 'flag-reveal', 'globe-hot-cold'],
   },
+  {
+    id: 'drawing',
+    name: { en: 'Drawing Games', es: 'Juegos de dibujo' },
+    members: ['sketch-guess', 'draw-telephone'],
+  },
 ];
 
 const BY_GAME = new Map<string, GameFamily>();

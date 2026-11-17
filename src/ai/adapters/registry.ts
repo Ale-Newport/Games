@@ -238,6 +238,8 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'theme-strands': () => import('../../games/theme-strands/ai-adapter').then((m) => m.bundle),
   'flag-reveal': () => import('../../games/flag-reveal/ai-adapter').then((m) => m.bundle),
   'globe-hot-cold': () => import('../../games/globe-hot-cold/ai-adapter').then((m) => m.bundle),
+  'sketch-guess': () => import('../../games/sketch-guess/ai-adapter').then((m) => m.bundle),
+  'draw-telephone': () => import('../../games/draw-telephone/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
