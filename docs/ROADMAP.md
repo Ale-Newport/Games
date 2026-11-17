@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 205 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 25
+**Complete:** 206 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 24
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -246,7 +246,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 203 | Category Letters (Scattergories-style) | `category-letters` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 204 | Quiz Arcade (Sporcle-style) | `quiz-arcade` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 205 | World Quiz (JetPunk-style) | `world-quiz` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
-| 206 | Word Rank (Contexto-style) | `word-rank` | TODO | — | — | — | — | — |  |  |
+| 206 | Word Rank (Contexto-style) | `word-rank` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 207 | Word Warmth (Semantle-style) | `word-warmth` | TODO | — | — | — | — | — |  |  |
 | 208 | Word Groups (Connections-style) | `word-groups` | TODO | — | — | — | — | — |  |  |
 | 209 | Country Shape (Worldle-style) | `country-shape` | TODO | — | — | — | — | — |  |  |
