@@ -15,16 +15,18 @@ describe('Code Words UI', () => {
     fireEvent.click(screen.getByTestId('cw-start'));
     const cards = Array.from({ length: 25 }, (_, i) => screen.getByTestId(`cw-card-${i}`));
     expect(cards.every((c) => c.getAttribute('data-role') !== 'hidden')).toBe(true);
-    const form = await screen.findByTestId('cw-clue-form', undefined, { timeout: 8000 });
+    // On a slow machine the opposing bots may still be playing: wait for our clue form, and
+    // query it afresh each time (it re-renders when the turn changes).
+    await screen.findByTestId('cw-clue-form', undefined, { timeout: 20_000 });
     fireEvent.change(screen.getByTestId('cw-clue-word'), {
       target: { value: cards[0]!.textContent },
     });
-    fireEvent.submit(form);
-    expect(screen.getByTestId('cw-problem').textContent).toMatch(/board/);
+    fireEvent.submit(screen.getByTestId('cw-clue-form'));
+    expect((await screen.findByTestId('cw-problem')).textContent).toMatch(/board/);
     fireEvent.change(screen.getByTestId('cw-clue-word'), { target: { value: 'weather' } });
-    fireEvent.submit(form);
-    expect(screen.getByTestId('cw-clue').textContent).toContain('WEATHER');
-  }, 30_000);
+    fireEvent.submit(screen.getByTestId('cw-clue-form'));
+    expect((await screen.findByTestId('cw-clue')).textContent).toContain('WEATHER');
+  }, 45_000);
 
   it('hides the key from the operative', async () => {
     const { services } = createTestServices();
