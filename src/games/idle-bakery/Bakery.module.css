@@ -150,7 +150,7 @@
   height: 46px;
   border-radius: 8px;
   border: 2px solid var(--border-strong, rgba(255, 255, 255, 0.35));
-  background: var(--surface-raised, #1d2130);
+  background: var(--surface-2, #1d2130);
   font-size: 1.3rem;
   cursor: pointer;
   position: relative;
@@ -185,7 +185,7 @@
   padding: 6px 8px;
   border-radius: 10px;
   border: 1px solid var(--border, rgba(255, 255, 255, 0.15));
-  background: var(--surface-raised, #1d2130);
+  background: var(--surface-2, #1d2130);
   color: var(--text, #fff);
   text-align: left;
   cursor: pointer;
