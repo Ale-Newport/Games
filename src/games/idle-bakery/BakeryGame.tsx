@@ -297,7 +297,9 @@ export function BakeryGame({ services }: GameProps) {
         </div>
         <div>{t('bakery')}</div>
         <div className={styles.count} data-testid="ib-cookies">
-          {Math.floor(b.cookies + 1e-9) === 1 ? t('cookies.one') : t('cookies', { n: n(b.cookies) })}
+          {Math.floor(b.cookies + 1e-9) === 1
+            ? t('cookies.one')
+            : t('cookies', { n: n(b.cookies) })}
         </div>
         <div className={styles.cps} data-testid="ib-cps">
           {t('perSecond', { n: short(perSecond, lang, true) })}

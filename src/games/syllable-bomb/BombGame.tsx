@@ -183,14 +183,7 @@ export function BombGame({
     }
     return () => timers.forEach((x) => window.clearTimeout(x));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    state?.holder,
-    state?.turns,
-    state?.status,
-    livesKey,
-    common,
-    all,
-  ]);
+  }, [state?.holder, state?.turns, state?.status, livesKey, common, all]);
 
   const submit = (e: FormEvent) => {
     e.preventDefault();

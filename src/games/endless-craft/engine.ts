@@ -58,7 +58,12 @@ export interface Craft {
 export function newCraft(): Craft {
   return {
     found: [...BASICS],
-    chips: BASICS.map((id, i) => ({ uid: i + 1, id, x: i % 2 ? 0.7 : 0.3, y: i < 2 ? 0.35 : 0.65 })),
+    chips: BASICS.map((id, i) => ({
+      uid: i + 1,
+      id,
+      x: i % 2 ? 0.7 : 0.3,
+      y: i < 2 ? 0.35 : 0.65,
+    })),
     nextUid: BASICS.length + 1,
     tried: [],
     last: null,
