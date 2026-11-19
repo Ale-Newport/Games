@@ -43,6 +43,9 @@ const PALETTES: Record<Scene['style'], string[]> = {
   whitewash: ['#f7f7f2', '#eeeeea', '#f3efe6'],
   tropical: ['#ffb4a2', '#9ad1d4', '#ffd166', '#06d6a0', '#f7f7f2'],
   shophouse: ['#c9ada7', '#9a8c98', '#d8c3a5', '#a3b18a', '#e0afa0'],
+  frontier: ['#8b6b4a', '#a08060', '#6f5a45', '#b59b78', '#7b4f3a'],
+  ironlace: ['#f2d0a4', '#c6dabf', '#f4b9b2', '#a8c5da', '#f6e7b4'],
+  towerhouse: ['#7a4e33', '#8d5b3b', '#6e4630', '#94643f'],
 };
 
 function sky(ctx: Ctx, s: Scene, rand: () => number) {
@@ -94,7 +97,30 @@ function sky(ctx: Ctx, s: Scene, rand: () => number) {
   }
 }
 
+/** The land between the horizon and the street: fields, scrub, sand or snow, hazy with distance. */
+function midground(ctx: Ctx, s: Scene) {
+  ctx.fillStyle =
+    s.sky === 'night'
+      ? '#1a2238'
+      : s.ground === 'snow' || s.climate === 'cold'
+        ? '#dde4e9'
+        : s.climate === 'desert'
+          ? '#d6b98c'
+          : s.climate === 'hot'
+            ? '#b5ab7a'
+            : s.climate === 'tropical'
+              ? '#5e8f4f'
+              : '#7c9a66';
+  ctx.fillRect(0, HORIZON, PW, STREET - HORIZON);
+  const g = ctx.createLinearGradient(0, HORIZON, 0, STREET);
+  g.addColorStop(0, s.sky === 'dusk' ? 'rgba(244,162,97,0.35)' : 'rgba(255,255,255,0.3)');
+  g.addColorStop(1, s.sky === 'dusk' ? 'rgba(40,30,70,0.25)' : 'rgba(255,255,255,0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, HORIZON, PW, STREET - HORIZON);
+}
+
 function terrain(ctx: Ctx, s: Scene, rand: () => number) {
+  midground(ctx, s);
   const far = s.sky === 'night' ? '#1c2440' : s.climate === 'desert' ? '#c9a77d' : '#7d8f9e';
   if (s.hills === 'mountains' || s.hills === 'hills') {
     const peak = s.hills === 'mountains' ? 230 : 110;
@@ -127,6 +153,698 @@ function terrain(ctx: Ctx, s: Scene, rand: () => number) {
     ctx.fillStyle = g;
     ctx.fillRect(0, HORIZON - 20, 1200, STREET - HORIZON + 20);
   }
+}
+
+const quad = (a: number, c: number, b: number, t: number) =>
+  (1 - t) * (1 - t) * a + 2 * t * (1 - t) * c + t * t * b;
+
+/** Water under a bridge, from `y` down to the street. */
+function water(ctx: Ctx, s: Scene, x0: number, x1: number, y: number) {
+  const g = ctx.createLinearGradient(0, y, 0, STREET);
+  g.addColorStop(0, s.sky === 'night' ? '#0d1b3a' : s.sky === 'dusk' ? '#5b4f7d' : '#3f86b8');
+  g.addColorStop(1, s.sky === 'night' ? '#162a50' : '#5fa8d3');
+  ctx.fillStyle = g;
+  ctx.fillRect(x0, y, x1 - x0, STREET - y);
+}
+
+/** A lone snow-capped massif (Kilimanjaro, Illimani, Cotopaxi, Ararat) with a lesser summit. */
+function snowPeak(ctx: Ctx, s: Scene, x: number, base: number, ink: string) {
+  const night = s.sky === 'night';
+  const snow = night ? '#8d97b5' : s.sky === 'dusk' ? '#f6d9c9' : '#f7fbff';
+  ctx.fillStyle = night ? '#232b48' : s.sky === 'dusk' ? '#5a4868' : '#8a95a3';
+  ctx.beginPath();
+  ctx.moveTo(x - 470, base);
+  ctx.lineTo(x - 330, base - 150);
+  ctx.lineTo(x - 300, base - 172);
+  ctx.lineTo(x - 270, base - 160);
+  ctx.lineTo(x - 150, base - 60);
+  ctx.lineTo(x - 120, base);
+  ctx.fill();
+  ctx.fillStyle = snow;
+  ctx.beginPath();
+  ctx.moveTo(x - 330, base - 150);
+  ctx.lineTo(x - 300, base - 172);
+  ctx.lineTo(x - 270, base - 160);
+  ctx.lineTo(x - 282, base - 146);
+  ctx.lineTo(x - 296, base - 156);
+  ctx.lineTo(x - 312, base - 140);
+  ctx.fill();
+  const ridge: [number, number][] = [
+    [-380, 0],
+    [-200, -170],
+    [-110, -250],
+    [-40, -272],
+    [60, -266],
+    [150, -220],
+    [240, -140],
+    [380, 0],
+  ];
+  ctx.fillStyle = ink;
+  ctx.beginPath();
+  ridge.forEach(([dx, dy], i) =>
+    i ? ctx.lineTo(x + dx, base + dy) : ctx.moveTo(x + dx, base + dy),
+  );
+  ctx.fill();
+  // The shaded flank.
+  ctx.fillStyle = 'rgba(0,0,0,0.14)';
+  ctx.beginPath();
+  ctx.moveTo(x - 40, base - 272);
+  for (const [dx, dy] of ridge.slice(4)) ctx.lineTo(x + dx, base + dy);
+  ctx.lineTo(x + 60, base);
+  ctx.fill();
+  // The ice cap: the ridge above the snow line, with a ragged lower edge of glaciers.
+  const line = -195;
+  const cap: [number, number][] = [];
+  for (let i = 1; i < ridge.length; i++) {
+    const [ax, ay] = ridge[i - 1]!;
+    const [bx, by] = ridge[i]!;
+    if ((ay - line) * (by - line) < 0) cap.push([ax + ((line - ay) / (by - ay)) * (bx - ax), line]);
+    if (by < line) cap.push([bx, by]);
+  }
+  ctx.fillStyle = snow;
+  ctx.beginPath();
+  cap.forEach(([dx, dy], i) => (i ? ctx.lineTo(x + dx, base + dy) : ctx.moveTo(x + dx, base + dy)));
+  const [rx] = cap[cap.length - 1]!;
+  const [lx] = cap[0]!;
+  for (let k = 1, px = rx - 22; px > lx + 10; px -= 22, k++)
+    ctx.lineTo(x + px, base + line + (k % 2 ? 26 + (k % 3) * 8 : 4));
+  ctx.fill();
+}
+
+/** A Sahelian mud-brick mosque: buttressed walls, three towers, palm-wood torons and egg finials. */
+function mudMosque(ctx: Ctx, s: Scene, x: number, base: number, ink: string) {
+  const night = s.sky === 'night';
+  const mud = night ? ink : s.sky === 'dusk' ? '#9a6a4a' : '#b8865a';
+  const dark = night ? '#1c2440' : '#7d5435';
+  const egg = night ? '#9aa3bd' : '#f4ead2';
+  ctx.fillStyle = dark;
+  ctx.fillRect(x - 250, base - 12, 500, 12);
+  ctx.fillStyle = mud;
+  ctx.fillRect(x - 230, base - 100, 460, 90);
+  for (let px = x - 226; px <= x + 226; px += 26) {
+    ctx.beginPath();
+    ctx.moveTo(px - 6, base - 100);
+    ctx.lineTo(px - 5, base - 116);
+    ctx.quadraticCurveTo(px, base - 128, px + 5, base - 116);
+    ctx.lineTo(px + 6, base - 100);
+    ctx.fill();
+  }
+  ctx.fillStyle = dark;
+  for (const y of [base - 76, base - 46])
+    for (let px = x - 213; px < x + 220; px += 26) ctx.fillRect(px - 4, y, 8, 3);
+  for (const dx of [-65, 65]) {
+    ctx.beginPath();
+    ctx.moveTo(x + dx - 12, base - 12);
+    ctx.lineTo(x + dx - 12, base - 40);
+    ctx.arc(x + dx, base - 40, 12, Math.PI, 0);
+    ctx.lineTo(x + dx + 12, base - 12);
+    ctx.fill();
+  }
+  for (const [dx, h] of [
+    [-130, 210],
+    [0, 250],
+    [130, 210],
+  ] as const) {
+    const top = base - h;
+    ctx.fillStyle = mud;
+    ctx.beginPath();
+    ctx.moveTo(x + dx - 30, base - 12);
+    ctx.lineTo(x + dx - 16, top + 18);
+    ctx.quadraticCurveTo(x + dx, top - 6, x + dx + 16, top + 18);
+    ctx.lineTo(x + dx + 30, base - 12);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(0,0,0,0.12)';
+    ctx.fillRect(x + dx + 2, top + 22, 3, h - 34);
+    ctx.fillStyle = dark;
+    for (let y = base - 40; y > top + 30; y -= 30) {
+      const half = 30 - ((base - y) / h) * 14;
+      ctx.fillRect(x + dx - half * 0.55 - 5, y, 9, 3);
+      ctx.fillRect(x + dx + half * 0.55 - 4, y, 9, 3);
+    }
+    ctx.fillStyle = egg;
+    ctx.beginPath();
+    ctx.ellipse(x + dx, top - 10, 5, 7, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+/** A stupa: gilded and bell-shaped in the tropics (Burma), whitewashed with eyes in the Himalaya. */
+function stupa(ctx: Ctx, s: Scene, x: number, base: number, ink: string) {
+  const night = s.sky === 'night';
+  const gilded = s.climate === 'tropical';
+  const gold = night ? ink : '#d4a22c';
+  const goldDark = night ? '#1c2440' : '#a87a1c';
+  const white = night ? ink : '#f2ede2';
+  ctx.fillStyle = gilded ? gold : white;
+  ctx.fillRect(x - 180, base - 18, 360, 18);
+  ctx.fillRect(x - 150, base - 34, 300, 16);
+  ctx.fillRect(x - 120, base - 48, 240, 14);
+  if (gilded) {
+    const bell = (cx: number, by: number, k: number) => {
+      ctx.fillStyle = gold;
+      ctx.beginPath();
+      ctx.moveTo(cx - 120 * k, by);
+      ctx.quadraticCurveTo(cx - 66 * k, by - 6 * k, cx - 64 * k, by - 62 * k);
+      ctx.quadraticCurveTo(cx - 60 * k, by - 116 * k, cx - 26 * k, by - 128 * k);
+      ctx.lineTo(cx - 22 * k, by - 160 * k);
+      ctx.quadraticCurveTo(cx - 20 * k, by - 196 * k, cx - 4 * k, by - 228 * k);
+      ctx.lineTo(cx, by - 250 * k);
+      ctx.lineTo(cx + 4 * k, by - 228 * k);
+      ctx.quadraticCurveTo(cx + 20 * k, by - 196 * k, cx + 22 * k, by - 160 * k);
+      ctx.lineTo(cx + 26 * k, by - 128 * k);
+      ctx.quadraticCurveTo(cx + 60 * k, by - 116 * k, cx + 64 * k, by - 62 * k);
+      ctx.quadraticCurveTo(cx + 66 * k, by - 6 * k, cx + 120 * k, by);
+      ctx.fill();
+      ctx.strokeStyle = goldDark;
+      ctx.lineWidth = 2;
+      for (const ry of [128, 140, 150, 160]) {
+        ctx.beginPath();
+        ctx.moveTo(cx - 25 * k, by - ry * k);
+        ctx.lineTo(cx + 25 * k, by - ry * k);
+        ctx.stroke();
+      }
+      ctx.fillStyle = goldDark;
+      ctx.beginPath();
+      ctx.ellipse(cx, by - 234 * k, 11 * k, 3 * k, 0, 0, Math.PI * 2);
+      ctx.fill();
+      if (!night) {
+        ctx.fillStyle = 'rgba(255, 240, 180, 0.35)';
+        ctx.beginPath();
+        ctx.ellipse(cx - 32 * k, by - 72 * k, 10 * k, 38 * k, 0.1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    };
+    bell(x - 150, base - 18, 0.32);
+    bell(x + 150, base - 18, 0.32);
+    bell(x, base - 48, 1);
+    return;
+  }
+  // Prayer flags strung from the spire.
+  if (!night) {
+    const flags = ['#1e5bb8', '#f4f4f4', '#c62828', '#2e7d32', '#f9c80e'];
+    for (const sgn of [-1, 1]) {
+      ctx.strokeStyle = 'rgba(60,60,60,0.6)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x, base - 262);
+      ctx.quadraticCurveTo(x + sgn * 170, base - 120, x + sgn * 330, base - 6);
+      ctx.stroke();
+      for (let i = 1; i < 22; i++) {
+        const t = i / 22;
+        const fx = quad(x, x + sgn * 170, x + sgn * 330, t);
+        const fy = quad(base - 262, base - 120, base - 6, t);
+        ctx.fillStyle = flags[i % flags.length]!;
+        ctx.fillRect(fx - 4, fy, 8, 9);
+      }
+    }
+  }
+  ctx.fillStyle = white;
+  ctx.beginPath();
+  ctx.ellipse(x, base - 48, 100, 80, 0, Math.PI, 0);
+  ctx.fill();
+  ctx.fillStyle = gold;
+  ctx.fillRect(x - 32, base - 134, 64, 6);
+  ctx.fillStyle = white;
+  ctx.fillRect(x - 26, base - 164, 52, 32);
+  if (!night) {
+    // The painted eyes, and the curl between them.
+    ctx.fillStyle = '#1d2a5a';
+    for (const ex of [-12, 12]) {
+      ctx.beginPath();
+      ctx.ellipse(x + ex, base - 150, 8, 3.5, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillRect(x + ex - 8, base - 158, 16, 2);
+    }
+    ctx.fillStyle = '#f2ede2';
+    for (const ex of [-12, 12]) ctx.fillRect(x + ex - 1.5, base - 152, 3, 3);
+    ctx.strokeStyle = '#c62828';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(x, base - 143, 3, Math.PI, Math.PI * 2.4);
+    ctx.lineTo(x - 2, base - 136);
+    ctx.stroke();
+  }
+  for (let k = 0; k < 13; k++) {
+    const w = 46 - k * 2.6;
+    ctx.fillStyle = k % 2 ? gold : goldDark;
+    ctx.fillRect(x - w / 2, base - 171 - k * 7, w, 7);
+  }
+  ctx.fillStyle = gold;
+  ctx.beginPath();
+  ctx.moveTo(x - 22, base - 256);
+  ctx.lineTo(x, base - 272);
+  ctx.lineTo(x + 22, base - 256);
+  ctx.fill();
+  ctx.fillRect(x - 2, base - 292, 4, 22);
+  ctx.beginPath();
+  ctx.arc(x, base - 294, 4, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+/** Angkor-style temple: galleried terraces and five lotus-bud towers. */
+function khmerTowers(ctx: Ctx, s: Scene, x: number, base: number, ink: string) {
+  const night = s.sky === 'night';
+  const stone = night ? ink : s.sky === 'dusk' ? '#6e5f63' : '#8f8572';
+  const line = night ? '#1c2440' : 'rgba(40,30,20,0.35)';
+  ctx.fillStyle = stone;
+  ctx.fillRect(x - 340, base - 34, 680, 34);
+  ctx.fillRect(x - 270, base - 70, 540, 36);
+  ctx.fillRect(x - 200, base - 104, 400, 34);
+  ctx.fillStyle = line;
+  for (let px = x - 330; px < x + 330; px += 16) ctx.fillRect(px, base - 28, 5, 20);
+  for (let px = x - 260; px < x + 260; px += 16) ctx.fillRect(px, base - 62, 5, 22);
+  for (let px = x - 190; px < x + 190; px += 16) ctx.fillRect(px, base - 96, 5, 20);
+  const tower = (cx: number, by: number, h: number, w: number) => {
+    ctx.fillStyle = stone;
+    ctx.fillRect(cx - w * 0.6, by - 14, w * 1.2, 14);
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(cx - w / 2, by - 14);
+    ctx.bezierCurveTo(cx - w * 0.74, by - h * 0.45, cx - w * 0.34, by - h * 0.85, cx, by - h);
+    ctx.bezierCurveTo(
+      cx + w * 0.34,
+      by - h * 0.85,
+      cx + w * 0.74,
+      by - h * 0.45,
+      cx + w / 2,
+      by - 14,
+    );
+    ctx.closePath();
+    ctx.fill();
+    ctx.clip();
+    ctx.strokeStyle = line;
+    ctx.lineWidth = 2;
+    for (let k = 1; k < 9; k++) {
+      const y = by - 14 - ((h - 14) * k) / 9;
+      ctx.beginPath();
+      ctx.moveTo(cx - w, y);
+      ctx.lineTo(cx + w, y);
+      ctx.stroke();
+    }
+    ctx.restore();
+  };
+  tower(x - 230, base - 70, 120, 54);
+  tower(x + 230, base - 70, 120, 54);
+  tower(x - 120, base - 104, 150, 60);
+  tower(x + 120, base - 104, 150, 60);
+  tower(x, base - 104, 250, 84);
+}
+
+/** A South Indian temple gateway tower: tiers crowded with painted figures, a barrel-vault crown. */
+function gopuram(ctx: Ctx, s: Scene, cx: number, base: number, w0: number, h: number, ink: string) {
+  const night = s.sky === 'night';
+  const cols = ['#d9b36a', '#c97b5a', '#7aa89a', '#c46a6a', '#e3cf8a', '#8c9ec8'];
+  ctx.fillStyle = night ? ink : '#b7a48a';
+  ctx.fillRect(cx - w0 / 2 - 8, base - 50, w0 + 16, 50);
+  ctx.fillStyle = night ? '#1c2440' : '#3a2e26';
+  ctx.fillRect(cx - 14, base - 44, 28, 44);
+  const tiers = 9;
+  const w1 = w0 * 0.42;
+  const th = (h - 80) / tiers;
+  for (let k = 0; k < tiers; k++) {
+    const y = base - 50 - k * th;
+    const w = w0 + ((w1 - w0) * k) / tiers;
+    ctx.fillStyle = night ? ink : cols[k % cols.length]!;
+    ctx.fillRect(cx - w / 2, y - th, w, th);
+    if (!night) {
+      let i = k;
+      for (let fx = cx - w / 2 + 5; fx < cx + w / 2 - 8; fx += 9) {
+        ctx.fillStyle = cols[++i % cols.length]!;
+        ctx.fillRect(fx, y - th + 6, 5, th - 9);
+        ctx.beginPath();
+        ctx.arc(fx + 2.5, y - th + 5, 2.6, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    ctx.fillStyle = night ? '#1c2440' : 'rgba(60,40,30,0.5)';
+    ctx.fillRect(cx - w / 2 - 4, y - 3, w + 8, 3);
+  }
+  const top = base - 50 - tiers * th;
+  ctx.fillStyle = night ? ink : '#d9b36a';
+  ctx.beginPath();
+  ctx.moveTo(cx - w1 / 2 - 10, top);
+  ctx.lineTo(cx - w1 / 2 - 10, top - 12);
+  ctx.quadraticCurveTo(cx, top - 44, cx + w1 / 2 + 10, top - 12);
+  ctx.lineTo(cx + w1 / 2 + 10, top);
+  ctx.fill();
+  ctx.fillStyle = night ? ink : '#e8b923';
+  for (let k = -2; k <= 2; k++) {
+    ctx.beginPath();
+    ctx.ellipse(cx + (k * w1) / 5, top - 34 + Math.abs(k) * 6, 3, 7, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+/** Twin steel towers with stepped setbacks, pinnacles and a skybridge. */
+function twinTowers(ctx: Ctx, s: Scene, x: number, base: number) {
+  const night = s.sky === 'night';
+  const steel = night ? '#3a4466' : '#b7c1cc';
+  const fin = night ? 'rgba(255,214,120,0.6)' : 'rgba(80,95,110,0.45)';
+  const segs: [number, number][] = [
+    [64, 90],
+    [60, 50],
+    [56, 40],
+    [52, 34],
+    [46, 28],
+    [40, 24],
+    [34, 20],
+    [26, 18],
+  ];
+  for (const cx of [x - 72, x + 72]) {
+    let y = base;
+    for (const [w, h] of segs) {
+      ctx.fillStyle = steel;
+      ctx.fillRect(cx - w / 2, y - h, w, h);
+      ctx.fillStyle = fin;
+      for (let fx = cx - w / 2 + 5; fx < cx + w / 2 - 3; fx += 7)
+        ctx.fillRect(fx, y - h + 2, 2, h - 4);
+      y -= h;
+    }
+    ctx.fillStyle = steel;
+    ctx.beginPath();
+    ctx.moveTo(cx - 9, y);
+    ctx.lineTo(cx, y - 30);
+    ctx.lineTo(cx + 9, y);
+    ctx.fill();
+    ctx.fillRect(cx - 1.5, y - 74, 3, 46);
+    ctx.beginPath();
+    ctx.arc(cx, y - 44, 4, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  const by = base - 175;
+  ctx.fillStyle = steel;
+  ctx.fillRect(x - 46, by, 92, 10);
+  ctx.strokeStyle = steel;
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(x - 4, by + 10);
+  ctx.lineTo(x - 42, by + 60);
+  ctx.moveTo(x + 4, by + 10);
+  ctx.lineTo(x + 42, by + 60);
+  ctx.stroke();
+}
+
+/** A red suspension bridge over a river: two portal towers, sagging cables, a truss deck. */
+function suspensionBridge(ctx: Ctx, s: Scene, x: number, base: number, ink: string) {
+  const night = s.sky === 'night';
+  const red = night ? ink : s.sky === 'dusk' ? '#8a3a3a' : '#b5432f';
+  water(ctx, s, x - 440, x + 440, base - 30);
+  const deck = base - 56;
+  const top = base - 250;
+  ctx.strokeStyle = red;
+  // Hangers and main cables.
+  const mainC = 2 * (deck - 8) - (top + 8);
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let px = x - 236; px < x + 240; px += 16) {
+    const t = (px - (x - 250)) / 500;
+    ctx.moveTo(px, quad(top + 8, mainC, top + 8, t));
+    ctx.lineTo(px, deck);
+  }
+  for (const sgn of [-1, 1]) {
+    const mid = (deck - 6 + top + 8) / 2 + 40;
+    for (let px = 264; px < 440; px += 16) {
+      const t = (px - 250) / 190;
+      ctx.moveTo(x + sgn * px, quad(top + 8, mid, deck - 6, t));
+      ctx.lineTo(x + sgn * px, deck);
+    }
+  }
+  ctx.stroke();
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(x - 440, deck - 6);
+  ctx.quadraticCurveTo(x - 345, (deck - 6 + top + 8) / 2 + 40, x - 250, top + 8);
+  ctx.quadraticCurveTo(x, mainC, x + 250, top + 8);
+  ctx.quadraticCurveTo(x + 345, (deck - 6 + top + 8) / 2 + 40, x + 440, deck - 6);
+  ctx.stroke();
+  // Piers under the side spans.
+  ctx.fillStyle = night ? '#1c2440' : '#8a8f96';
+  for (const dx of [-400, -330, 330, 400])
+    ctx.fillRect(x + dx - 6, deck + 14, 12, base - deck - 14);
+  // The deck: a deep truss.
+  ctx.fillStyle = red;
+  ctx.fillRect(x - 440, deck, 880, 4);
+  ctx.fillRect(x - 440, deck + 12, 880, 3);
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  for (let px = x - 440; px < x + 440; px += 12) {
+    ctx.moveTo(px, deck + 3);
+    ctx.lineTo(px + 6, deck + 13);
+    ctx.lineTo(px + 12, deck + 3);
+  }
+  ctx.stroke();
+  // Portal towers rising from the river.
+  for (const tx of [x - 250, x + 250]) {
+    ctx.fillStyle = night ? '#1c2440' : '#8a8f96';
+    ctx.fillRect(tx - 20, base - 30, 40, 30);
+    ctx.fillStyle = red;
+    ctx.fillRect(tx - 16, top, 7, base - 30 - top);
+    ctx.fillRect(tx + 9, top, 7, base - 30 - top);
+    for (const by of [top, top + 70, deck - 24]) ctx.fillRect(tx - 16, by, 32, 8);
+  }
+}
+
+/** A steel through-arch bridge between granite pylons, the deck hung from the arch. */
+function archBridge(ctx: Ctx, s: Scene, x: number, base: number, ink: string) {
+  const night = s.sky === 'night';
+  const steel = night ? ink : s.sky === 'dusk' ? '#4a4458' : '#59636e';
+  const granite = night ? '#2f3858' : '#cbbd9c';
+  water(ctx, s, x - 440, x + 440, base - 30);
+  const deck = base - 92;
+  const span = 270;
+  const spring = base - 26;
+  const lowC = 2 * (base - 250) - spring;
+  const highC = 2 * (base - 284) - (spring - 34);
+  const N = 26;
+  const pts = Array.from({ length: N + 1 }, (_, i) => {
+    const t = i / N;
+    return {
+      x: x - span + 2 * span * t,
+      lo: quad(spring, lowC, spring, t),
+      hi: quad(spring - 34, highC, spring - 34, t),
+    };
+  });
+  ctx.strokeStyle = steel;
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  pts.forEach((p, i) => {
+    ctx.moveTo(p.x, p.lo);
+    ctx.lineTo(p.x, p.hi);
+    const q = pts[i + 1];
+    if (q) {
+      ctx.moveTo(p.x, i % 2 ? p.hi : p.lo);
+      ctx.lineTo(q.x, i % 2 ? q.lo : q.hi);
+    }
+    if (p.lo < deck || p.lo > deck + 10) {
+      ctx.moveTo(p.x, p.lo);
+      ctx.lineTo(p.x, deck);
+    }
+  });
+  ctx.stroke();
+  ctx.lineWidth = 4;
+  for (const key of ['lo', 'hi'] as const) {
+    ctx.beginPath();
+    pts.forEach((p, i) => (i ? ctx.lineTo(p.x, p[key]) : ctx.moveTo(p.x, p[key])));
+    ctx.stroke();
+  }
+  ctx.fillStyle = steel;
+  ctx.fillRect(x - 440, deck, 880, 9);
+  for (const dx of [-400, -340, 340, 400]) ctx.fillRect(x + dx - 5, deck + 9, 10, base - deck - 9);
+  for (const px of [x - span - 22, x + span + 22]) {
+    ctx.fillStyle = granite;
+    ctx.fillRect(px - 26, deck - 86, 52, base - deck + 86);
+    ctx.fillRect(px - 30, deck - 92, 60, 8);
+    ctx.fillRect(px - 20, deck - 104, 40, 12);
+    ctx.fillStyle = night ? '#1c2440' : 'rgba(80,70,50,0.45)';
+    for (const wy of [deck - 70, deck - 44]) ctx.fillRect(px - 8, wy, 16, 18);
+  }
+}
+
+/** Stone figures with heavy brows and long noses on a ceremonial platform (some with topknots). */
+function moai(ctx: Ctx, s: Scene, x: number, base: number, ink: string) {
+  const night = s.sky === 'night';
+  const stone = night ? ink : s.sky === 'dusk' ? '#4f4651' : '#6e6a62';
+  const shade = night ? '#161c33' : 'rgba(20,18,16,0.45)';
+  const red = night ? ink : '#8d4a36';
+  ctx.fillStyle = night ? ink : '#7d776c';
+  ctx.fillRect(x - 250, base - 22, 500, 22);
+  ctx.fillStyle = shade;
+  ctx.fillRect(x - 250, base - 12, 500, 1.5);
+  for (let px = x - 230; px < x + 250; px += 34)
+    ctx.fillRect(px + (px % 2) * 10, base - 22, 1.5, 22);
+  const heights = [118, 132, 124, 140, 128, 136, 120];
+  heights.forEach((h, i) => {
+    const cx = x - 210 + i * 70;
+    const by = base - 22;
+    const w = h * 0.4;
+    ctx.fillStyle = stone;
+    ctx.beginPath();
+    ctx.moveTo(cx - w / 2, by);
+    ctx.lineTo(cx - w * 0.44, by - h * 0.42);
+    ctx.lineTo(cx - w * 0.4, by - h * 0.46);
+    ctx.lineTo(cx - w * 0.36, by - h);
+    ctx.lineTo(cx + w * 0.36, by - h);
+    ctx.lineTo(cx + w * 0.4, by - h * 0.46);
+    ctx.lineTo(cx + w * 0.44, by - h * 0.42);
+    ctx.lineTo(cx + w / 2, by);
+    ctx.fill();
+    ctx.fillStyle = shade;
+    ctx.fillRect(cx - w * 0.34, by - h * 0.8, w * 0.68, h * 0.05);
+    ctx.beginPath();
+    ctx.moveTo(cx, by - h * 0.78);
+    ctx.lineTo(cx + w * 0.14, by - h * 0.6);
+    ctx.lineTo(cx, by - h * 0.6);
+    ctx.fill();
+    ctx.fillRect(cx - w * 0.2, by - h * 0.54, w * 0.4, 2.5);
+    ctx.fillRect(cx - w * 0.4, by - h * 0.46, w * 0.8, 2);
+    ctx.fillRect(cx - w * 0.36, by - h * 0.86, 3, h * 0.28);
+    ctx.fillRect(cx + w * 0.36 - 3, by - h * 0.86, 3, h * 0.28);
+    ctx.strokeStyle = shade;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cx - w * 0.42, by - h * 0.38);
+    ctx.quadraticCurveTo(cx - w * 0.38, by - h * 0.1, cx - w * 0.05, by - h * 0.12);
+    ctx.moveTo(cx + w * 0.42, by - h * 0.38);
+    ctx.quadraticCurveTo(cx + w * 0.38, by - h * 0.1, cx + w * 0.05, by - h * 0.12);
+    ctx.stroke();
+    if (i % 3 === 1) {
+      ctx.fillStyle = red;
+      ctx.fillRect(cx - w * 0.3, by - h - 12, w * 0.6, 12);
+      ctx.beginPath();
+      ctx.ellipse(cx, by - h - 12, w * 0.3, 5, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+}
+
+/** A Caucasian stone church: cross-in-square body, a tall drum and a conical roof. */
+function drumChurch(ctx: Ctx, s: Scene, x: number, base: number, ink: string) {
+  const night = s.sky === 'night';
+  const stone = night ? ink : s.sky === 'dusk' ? '#b39a8a' : '#d8c8a6';
+  const roof = night ? '#1c2440' : '#7c8a86';
+  const dark = night ? '#1c2440' : 'rgba(60,45,30,0.55)';
+  const gable = (cx: number, y: number, half: number, rise: number) => {
+    ctx.beginPath();
+    ctx.moveTo(cx - half, y);
+    ctx.lineTo(cx, y - rise);
+    ctx.lineTo(cx + half, y);
+    ctx.fill();
+  };
+  for (const sgn of [-1, 1]) {
+    ctx.fillStyle = stone;
+    ctx.fillRect(x + sgn * 150 - 40, base - 80, 80, 80);
+    ctx.fillStyle = roof;
+    gable(x + sgn * 150, base - 80, 46, 30);
+  }
+  ctx.fillStyle = stone;
+  ctx.fillRect(x - 110, base - 130, 220, 130);
+  ctx.fillStyle = roof;
+  gable(x, base - 130, 120, 48);
+  ctx.fillStyle = stone;
+  gable(x, base - 133, 100, 38);
+  ctx.strokeStyle = dark;
+  ctx.lineWidth = 2;
+  for (let k = -3; k <= 3; k++) {
+    if (k === 0) continue;
+    const px = x + k * 28;
+    ctx.beginPath();
+    ctx.moveTo(px - 10, base - 18);
+    ctx.lineTo(px - 10, base - 84);
+    ctx.arc(px, base - 84, 10, Math.PI, 0);
+    ctx.lineTo(px + 10, base - 18);
+    ctx.stroke();
+  }
+  ctx.fillStyle = dark;
+  ctx.beginPath();
+  ctx.moveTo(x - 14, base);
+  ctx.lineTo(x - 14, base - 40);
+  ctx.arc(x, base - 40, 14, Math.PI, 0);
+  ctx.lineTo(x + 14, base);
+  ctx.fill();
+  ctx.fillStyle = stone;
+  ctx.fillRect(x - 46, base - 182, 92, 20);
+  ctx.fillRect(x - 36, base - 252, 72, 74);
+  ctx.fillStyle = dark;
+  for (const wx of [-20, 0, 20]) {
+    ctx.beginPath();
+    ctx.moveTo(x + wx - 3, base - 196);
+    ctx.lineTo(x + wx - 3, base - 232);
+    ctx.arc(x + wx, base - 232, 3, Math.PI, 0);
+    ctx.lineTo(x + wx + 3, base - 196);
+    ctx.fill();
+  }
+  ctx.fillStyle = roof;
+  gable(x, base - 250, 44, 68);
+  ctx.strokeStyle = night ? ink : '#c9a94a';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(x, base - 318);
+  ctx.lineTo(x, base - 350);
+  ctx.moveTo(x - 10, base - 338);
+  ctx.lineTo(x + 10, base - 338);
+  ctx.stroke();
+}
+
+/** A stepped tower with corner pinnacles and a spire (Stalinist high-rise or Art Deco palace). */
+function steppedSpire(ctx: Ctx, s: Scene, x: number, base: number, ink: string) {
+  const night = s.sky === 'night';
+  const stone = night ? ink : s.sky === 'dusk' ? '#a08c86' : '#cdbfa6';
+  const win = night ? 'rgba(255,214,120,0.8)' : 'rgba(60,60,70,0.4)';
+  ctx.fillStyle = stone;
+  ctx.fillRect(x - 175, base - 90, 350, 90);
+  ctx.fillRect(x - 60, base - 170, 120, 170);
+  ctx.fillStyle = win;
+  for (let wy = base - 80; wy < base - 8; wy += 14)
+    for (let wx = x - 166; wx < x + 166; wx += 12)
+      if (Math.abs(wx - x) > 64) ctx.fillRect(wx, wy, 5, 8);
+  for (let wy = base - 160; wy < base - 8; wy += 12)
+    for (let wx = x - 52; wx < x + 52; wx += 11) ctx.fillRect(wx, wy, 5, 7);
+  let y = base - 170;
+  for (const [w, h] of [
+    [96, 32],
+    [74, 28],
+    [54, 24],
+    [36, 20],
+  ] as const) {
+    ctx.fillStyle = stone;
+    ctx.fillRect(x - w / 2, y - h, w, h);
+    for (const sgn of [-1, 1]) {
+      const px = x + sgn * (w / 2 + 6);
+      ctx.beginPath();
+      ctx.moveTo(px - 4, y);
+      ctx.lineTo(px, y - 16);
+      ctx.lineTo(px + 4, y);
+      ctx.fill();
+    }
+    ctx.fillStyle = win;
+    for (let wx = x - w / 2 + 6; wx < x + w / 2 - 4; wx += 10) ctx.fillRect(wx, y - h + 8, 4, 8);
+    y -= h;
+  }
+  ctx.fillStyle = stone;
+  ctx.beginPath();
+  ctx.moveTo(x - 12, y);
+  ctx.lineTo(x, y - 74);
+  ctx.lineTo(x + 12, y);
+  ctx.fill();
+  ctx.fillRect(x - 1.5, y - 96, 3, 24);
+  ctx.beginPath();
+  ctx.arc(x, y - 78, 4, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+/** Half the width of the gap the street leaves open around the landmark. */
+function landmarkGap(l: Scene['landmark']): number {
+  if (
+    l === 'table-mountain' ||
+    l === 'volcano' ||
+    l === 'snow-peak' ||
+    l === 'suspension-bridge' ||
+    l === 'arch-bridge' ||
+    l === 'khmer-towers'
+  )
+    return 380;
+  if (l === 'mud-mosque' || l === 'moai' || l === 'gopuram' || l === 'stupa') return 260;
+  return 200;
 }
 
 function landmark(ctx: Ctx, s: Scene) {
@@ -355,6 +1073,61 @@ function landmark(ctx: Ctx, s: Scene) {
         ctx.fillText('FREIHEIT', x + dx, STREET - 50);
       }
       break;
+    case 'snow-peak':
+      snowPeak(ctx, s, x, base, ink);
+      break;
+    case 'mud-mosque':
+      mudMosque(ctx, s, x, base, ink);
+      break;
+    case 'stupa':
+      stupa(ctx, s, x, base, ink);
+      break;
+    case 'khmer-towers':
+      khmerTowers(ctx, s, x, base, ink);
+      break;
+    case 'gopuram':
+      gopuram(ctx, s, x - 150, base, 150, 230, ink);
+      gopuram(ctx, s, x + 60, base, 210, 330, ink);
+      break;
+    case 'twin-towers':
+      twinTowers(ctx, s, x, base);
+      break;
+    case 'suspension-bridge':
+      suspensionBridge(ctx, s, x, base, ink);
+      break;
+    case 'arch-bridge':
+      archBridge(ctx, s, x, base, ink);
+      break;
+    case 'moai':
+      moai(ctx, s, x, base, ink);
+      break;
+    case 'drum-church':
+      drumChurch(ctx, s, x, base, ink);
+      break;
+    case 'obelisk': {
+      ctx.fillStyle = s.sky === 'night' ? ink : '#b9b2a2';
+      ctx.fillRect(x - 90, base - 14, 180, 14);
+      ctx.fillRect(x - 60, base - 24, 120, 10);
+      ctx.fillStyle = s.sky === 'night' ? ink : '#e6dfcf';
+      ctx.beginPath();
+      ctx.moveTo(x - 24, base - 24);
+      ctx.lineTo(x - 16, base - 330);
+      ctx.lineTo(x, base - 362);
+      ctx.lineTo(x + 16, base - 330);
+      ctx.lineTo(x + 24, base - 24);
+      ctx.fill();
+      ctx.fillStyle = s.sky === 'night' ? '#1c2440' : 'rgba(120,110,95,0.35)';
+      ctx.beginPath();
+      ctx.moveTo(x, base - 24);
+      ctx.lineTo(x, base - 362);
+      ctx.lineTo(x + 16, base - 330);
+      ctx.lineTo(x + 24, base - 24);
+      ctx.fill();
+      break;
+    }
+    case 'stepped-spire':
+      steppedSpire(ctx, s, x, base, ink);
+      break;
     default:
       break;
   }
@@ -368,7 +1141,44 @@ function signFont(script: Scene['script']): string {
     return '"Noto Sans Devanagari", "Kohinoor Devanagari", Mangal, sans-serif';
   if (script === 'arabic') return '"Noto Naskh Arabic", "Geeza Pro", Tahoma, sans-serif';
   if (script === 'hebrew') return '"Noto Sans Hebrew", Arial, sans-serif';
+  if (script === 'georgian') return '"Noto Sans Georgian", "Helvetica Neue", sans-serif';
+  if (script === 'armenian') return '"Noto Sans Armenian", Mshtakan, "Helvetica Neue", sans-serif';
+  if (script === 'ethiopic') return '"Noto Sans Ethiopic", Kefa, Nyala, sans-serif';
+  if (script === 'bengali') return '"Noto Sans Bengali", "Kohinoor Bangla", Vrinda, sans-serif';
+  if (script === 'tamil') return '"Noto Sans Tamil", "Tamil Sangam MN", Latha, sans-serif';
+  if (script === 'khmer')
+    return '"Noto Sans Khmer", "Khmer Sangam MN", "Leelawadee UI", sans-serif';
+  if (script === 'burmese')
+    return '"Noto Sans Myanmar", "Myanmar Sangam MN", "Myanmar Text", sans-serif';
   return 'Georgia, "Times New Roman", serif';
+}
+
+/** Cast-iron lace balconies on every upper storey, on slender columns down to the street. */
+function ironBalconies(ctx: Ctx, x: number, w: number, top: number, floors: number, fh: number) {
+  ctx.strokeStyle = '#1f1f1f';
+  ctx.fillStyle = '#1f1f1f';
+  for (let f = 1; f < floors; f++) {
+    const y = STREET - 50 - f * fh;
+    if (y < top + 6) break;
+    const floorY = y + fh - 2;
+    ctx.fillRect(x - 6, floorY, w + 12, 3);
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(x - 6, floorY - 14);
+    ctx.lineTo(x + w + 6, floorY - 14);
+    ctx.stroke();
+    ctx.lineWidth = 1;
+    for (let lx = x - 2; lx < x + w + 4; lx += 7) {
+      ctx.beginPath();
+      ctx.arc(lx, floorY - 7, 3, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(lx + 3.5, floorY + 3, 3.5, 0, Math.PI);
+      ctx.stroke();
+    }
+    const down = f === 1 ? STREET : floorY + fh;
+    for (const px of [x - 4, x + w + 2]) ctx.fillRect(px, floorY + 3, 2.5, down - floorY - 3);
+  }
 }
 
 function building(
@@ -388,9 +1198,16 @@ function building(
       ? 8 + Math.floor(rand() * (s.year >= 1990 || s.landmark === 'supertall' ? 22 : 12))
       : s.style === 'concrete'
         ? 5 + Math.floor(rand() * 7)
-        : s.style === 'adobe' || s.style === 'whitewash' || s.style === 'tropical'
+        : s.style === 'adobe' ||
+            s.style === 'whitewash' ||
+            s.style === 'tropical' ||
+            s.style === 'ironlace'
           ? 2 + Math.floor(rand() * 2)
-          : 3 + Math.floor(rand() * 3);
+          : s.style === 'frontier'
+            ? 1 + Math.floor(rand() * 2)
+            : s.style === 'towerhouse'
+              ? 5 + Math.floor(rand() * 3)
+              : 3 + Math.floor(rand() * 3);
   const fh = s.style === 'towers' ? 13 : 34;
   const h = Math.min(STREET - 30, floors * fh + 40);
   const top = STREET - h;
@@ -433,8 +1250,29 @@ function building(
     ctx.moveTo(x - 12, top + 6);
     ctx.quadraticCurveTo(x + w / 2, top - 26, x + w + 12, top + 6);
     ctx.fill();
-  } else if (s.style === 'colonial' || s.style === 'brick') {
+  } else if (s.style === 'colonial' || s.style === 'brick' || s.style === 'ironlace') {
     ctx.fillRect(x - 3, top - 8, w + 6, 10);
+  } else if (s.style === 'frontier') {
+    // A square false front hides the pitched roof, clad in clapboards like the rest.
+    ctx.fillStyle = colour;
+    ctx.fillRect(x + 6, top - 28, w - 12, 28);
+    ctx.fillStyle = 'rgba(0,0,0,0.13)';
+    for (let yy = top - 24; yy < STREET - 44; yy += 7)
+      if (yy < top) ctx.fillRect(x + 6, yy, w - 12, 1);
+      else ctx.fillRect(x, yy, w, 1);
+    ctx.fillStyle = '#3b2a1e';
+    ctx.fillRect(x + 2, top - 32, w - 4, 5);
+  } else if (s.style === 'towerhouse') {
+    // Whitewashed crenellations on the roof terrace.
+    ctx.fillStyle = '#f1eadc';
+    ctx.fillRect(x, top, w, 5);
+    for (let k = x + 2; k < x + w - 8; k += 12) {
+      ctx.beginPath();
+      ctx.moveTo(k, top);
+      ctx.lineTo(k + 4, top - 10);
+      ctx.lineTo(k + 8, top);
+      ctx.fill();
+    }
   }
   // Windows.
   const lit = night
@@ -442,10 +1280,19 @@ function building(
     : s.style === 'towers'
       ? 'rgba(190, 220, 245, 0.8)'
       : 'rgba(40, 52, 66, 0.75)';
-  const cols = Math.max(2, Math.floor(w / (s.style === 'towers' ? 16 : 30)));
+  const cols = Math.max(
+    2,
+    Math.floor(w / (s.style === 'towers' ? 16 : s.style === 'towerhouse' ? 40 : 30)),
+  );
   for (let f = 1; f < floors; f++) {
     const y = STREET - 50 - f * fh;
     if (y < top + 6) break;
+    if (s.style === 'towerhouse') {
+      // A white gypsum frieze between the storeys.
+      ctx.fillStyle = '#efe7d8';
+      ctx.fillRect(x + 2, y - 2, w - 4, 3);
+      for (let k = x + 6; k < x + w - 4; k += 8) ctx.fillRect(k, y + 2, 3, 3);
+    }
     for (let c = 0; c < cols; c++) {
       const wx = x + 8 + (c * (w - 16)) / cols;
       const ww = (w - 16) / cols - (s.style === 'towers' ? 3 : 10);
@@ -461,6 +1308,39 @@ function building(
           ctx.fillStyle = '#2f6fb5';
           ctx.fillRect(wx - 2, y + fh * 0.7, ww + 4, 3);
         }
+      } else if (s.style === 'towerhouse') {
+        // Framed in white, with a half-moon fanlight of coloured glass above.
+        ctx.fillRect(wx, y + 12, ww, fh * 0.48);
+        ctx.strokeStyle = '#f1eadc';
+        ctx.lineWidth = 2.5;
+        ctx.strokeRect(wx - 2, y + 10, ww + 4, fh * 0.48 + 4);
+        ctx.fillStyle = night ? 'rgba(255, 190, 120, 0.95)' : '#ece4d2';
+        ctx.beginPath();
+        ctx.arc(wx + ww / 2, y + 10, ww / 2 + 2, Math.PI, 0);
+        ctx.fill();
+        ctx.fillStyle = ['#c0392b', '#2e86c1', '#27ae60', '#d4a017'][c % 4]!;
+        ctx.beginPath();
+        ctx.arc(wx + ww / 2, y + 10, ww / 4, Math.PI, 0);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(wx + ww / 2, y + 10, ww / 2 + 2, Math.PI, 0);
+        ctx.stroke();
+      } else if (s.style === 'frontier') {
+        // Sash windows with painted trim.
+        ctx.fillRect(wx, y + 4, ww, fh * 0.62);
+        ctx.strokeStyle = '#efe6d0';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(wx, y + 4, ww, fh * 0.62);
+        ctx.beginPath();
+        ctx.moveTo(wx, y + 4 + fh * 0.31);
+        ctx.lineTo(wx + ww, y + 4 + fh * 0.31);
+        ctx.stroke();
+      } else if (s.style === 'ironlace') {
+        // Tall French doors between louvred shutters.
+        ctx.fillRect(wx + ww * 0.16, y + 2, ww * 0.68, fh * 0.74);
+        ctx.fillStyle = '#3f6e4a';
+        ctx.fillRect(wx, y + 2, ww * 0.14, fh * 0.74);
+        ctx.fillRect(wx + ww * 0.86, y + 2, ww * 0.14, fh * 0.74);
       } else ctx.fillRect(wx, y + 4, ww, fh * (s.style === 'towers' ? 0.6 : 0.55));
       if (s.style === 'haussmann' && f === 2) {
         ctx.fillStyle = '#2b2b2b';
@@ -468,6 +1348,7 @@ function building(
       }
     }
   }
+  if (s.style === 'ironlace') ironBalconies(ctx, x, w, top, floors, fh);
   // Roof antennas and dishes.
   if (era.antennas && s.style !== 'pagoda' && rand() < 0.6) {
     ctx.strokeStyle = '#333';
@@ -509,12 +1390,14 @@ function building(
       chars.forEach((c, i) => ctx.fillText(c, sx, STREET - 58 - (chars.length - i - 1) * 24 - 4));
     } else {
       const sw = Math.min(w - 12, ctx.measureText(sign).width + 18);
+      // Frontier towns paint the name across the false front; elsewhere it hangs over the shop.
+      const sy = s.style === 'frontier' ? top - 24 : STREET - 70;
       ctx.fillStyle = neon
         ? 'rgba(20,0,30,0.9)'
         : s.style === 'colonial' || s.style === 'tropical'
           ? '#fff8e7'
           : '#2b2b2b';
-      ctx.fillRect(x + w / 2 - sw / 2, STREET - 70, sw, 24);
+      ctx.fillRect(x + w / 2 - sw / 2, sy, sw, 24);
       ctx.fillStyle = neon
         ? '#7df9ff'
         : s.style === 'colonial' || s.style === 'tropical'
@@ -522,10 +1405,28 @@ function building(
           : '#f5e9c8';
       if (neon) ctx.shadowColor = '#7df9ff';
       if (neon) ctx.shadowBlur = 12;
-      ctx.fillText(sign, x + w / 2, STREET - 52, w - 18);
+      ctx.fillText(sign, x + w / 2, sy + 18, w - 18);
     }
     ctx.restore();
   }
+  if (s.style === 'frontier') {
+    // A porch roof on posts over a plank boardwalk.
+    ctx.fillStyle = '#5a4030';
+    ctx.beginPath();
+    ctx.moveTo(x - 4, STREET - 58);
+    ctx.lineTo(x + w + 4, STREET - 58);
+    ctx.lineTo(x + w + 8, STREET - 47);
+    ctx.lineTo(x - 8, STREET - 47);
+    ctx.fill();
+    ctx.fillRect(x - 3, STREET - 47, 4, 49);
+    ctx.fillRect(x + w - 1, STREET - 47, 4, 49);
+    ctx.fillStyle = '#7a5a3c';
+    ctx.fillRect(x - 8, STREET - 2, w + 16, 10);
+    ctx.fillStyle = 'rgba(0,0,0,0.25)';
+    for (let px = x - 8; px < x + w + 8; px += 12) ctx.fillRect(px, STREET - 2, 1, 10);
+    return;
+  }
+  if (s.style === 'towerhouse') return;
   // An awning.
   if (rand() < 0.5 && s.style !== 'towers') {
     ctx.fillStyle = ['#c0392b', '#2e86c1', '#27ae60', '#d4a017'][Math.floor(rand() * 4)]!;
@@ -803,6 +1704,45 @@ function person(ctx: Ctx, era: EraCues, x: number, rand: () => number) {
   }
 }
 
+/** Felt gers (yurts) inside their plank-fenced plots, at the edge of the street. */
+function yurts(ctx: Ctx, s: Scene) {
+  const night = s.sky === 'night';
+  for (const gx of [1460, 1960]) {
+    const y = STREET + 8;
+    ctx.fillStyle = night ? '#3a3226' : '#8a6a48';
+    ctx.fillRect(gx - 120, y - 52, 240, 52);
+    ctx.fillStyle = 'rgba(0,0,0,0.25)';
+    for (let px = gx - 120; px < gx + 120; px += 10) ctx.fillRect(px, y - 52, 1.5, 52);
+    ctx.fillStyle = night ? '#9aa3bd' : '#f3f1ea';
+    ctx.fillRect(gx - 50, y - 44, 100, 44);
+    ctx.fillStyle = night ? '#8a93ad' : '#e6e3d9';
+    ctx.beginPath();
+    ctx.moveTo(gx - 56, y - 44);
+    ctx.lineTo(gx - 12, y - 70);
+    ctx.lineTo(gx + 12, y - 70);
+    ctx.lineTo(gx + 56, y - 44);
+    ctx.fill();
+    ctx.strokeStyle = '#6d4c3d';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (const ry of [30, 14]) {
+      ctx.moveTo(gx - 50, y - ry);
+      ctx.lineTo(gx + 50, y - ry);
+    }
+    ctx.stroke();
+    ctx.fillStyle = '#e07a1f';
+    ctx.fillRect(gx - 10, y - 32, 20, 32);
+    ctx.strokeStyle = '#8c2f12';
+    ctx.strokeRect(gx - 7, y - 29, 14, 26);
+    ctx.fillStyle = '#555';
+    ctx.fillRect(gx + 18, y - 94, 5, 32);
+    ctx.fillStyle = 'rgba(225,225,225,0.6)';
+    ctx.beginPath();
+    ctx.ellipse(gx + 28, y - 104, 16, 9, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
 function extras(ctx: Ctx, s: Scene, era: EraCues, rand: () => number) {
   const has = (e: string) => s.extras.includes(e as never);
   if (has('tram')) {
@@ -889,7 +1829,26 @@ function extras(ctx: Ctx, s: Scene, era: EraCues, rand: () => number) {
     ctx.fill();
     ctx.fillRect(1690, STREET + 40, 4, 70);
   }
-  if (has('boats')) {
+  if (has('boats') && s.ground === 'canal' && s.hills !== 'sea') {
+    // Without open water the boats ply the canal: low launches with a cabin.
+    for (const [x, hull] of [
+      [480, '#24496b'],
+      [2880, '#6b2b24'],
+    ] as const) {
+      const y = STREET + 96;
+      ctx.fillStyle = '#e9e2d0';
+      ctx.fillRect(x + 40, y - 22, 74, 22);
+      ctx.fillStyle = 'rgba(40,52,66,0.8)';
+      for (let k = 0; k < 4; k++) ctx.fillRect(x + 46 + k * 17, y - 17, 11, 9);
+      ctx.fillStyle = hull;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + 160, y);
+      ctx.lineTo(x + 146, y + 18);
+      ctx.lineTo(x + 10, y + 18);
+      ctx.fill();
+    }
+  } else if (has('boats')) {
     for (const x of [300, 760]) {
       ctx.fillStyle = '#f5f5f5';
       ctx.beginPath();
@@ -920,6 +1879,99 @@ function extras(ctx: Ctx, s: Scene, era: EraCues, rand: () => number) {
     ctx.ellipse(x + 50, y - 102, 14, 8, 0, 0, Math.PI * 2);
     ctx.fill();
     for (const lx of [-30, -16, 18, 30]) ctx.fillRect(x + lx, y - 44, 6, 44);
+  }
+  if (has('jeepney')) {
+    // A stretched jeep for passengers: chrome, painted stripes, open windows, hood ornaments.
+    const x = 1480;
+    const y = STREET + 70;
+    ctx.fillStyle = '#d7dde2';
+    ctx.beginPath();
+    ctx.roundRect(x, y - 74, 192, 58, 6);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.roundRect(x + 186, y - 48, 66, 32, 7);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(180, 210, 230, 0.85)';
+    ctx.fillRect(x + 188, y - 72, 14, 24);
+    ctx.fillStyle = '#c62828';
+    ctx.fillRect(x - 6, y - 84, 214, 10);
+    for (const [c, dy] of [
+      ['#f9c80e', 36],
+      ['#1565c0', 30],
+      ['#c62828', 24],
+    ] as const) {
+      ctx.fillStyle = c;
+      ctx.fillRect(x, y - dy, 186, 4);
+    }
+    ctx.fillStyle = 'rgba(30, 40, 50, 0.85)';
+    for (let k = 0; k < 6; k++) ctx.fillRect(x + 8 + k * 29, y - 68, 22, 18);
+    ctx.fillStyle = '#f2f2f2';
+    for (const hx of [x + 214, x + 236]) {
+      ctx.fillRect(hx - 5, y - 54, 10, 5);
+      ctx.fillRect(hx + 3, y - 62, 3, 9);
+    }
+    ctx.fillStyle = '#9aa3ab';
+    ctx.fillRect(x + 246, y - 44, 8, 22);
+    ctx.fillStyle = '#1b1b1b';
+    for (const wx of [x + 40, x + 216]) {
+      ctx.beginPath();
+      ctx.arc(wx, y - 14, 14, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  if (has('aerial-lift')) {
+    // A gondola lift climbing over the rooftops: pylons, a sagging haul rope, hanging cabins.
+    // The line rises and falls round the full circle, so it joins up where the panorama wraps.
+    const pylons = [300, 1250, 2200, 3150, 300 + PW];
+    const lineY = (px: number) => 180 + 70 * Math.cos((px / PW) * Math.PI * 2);
+    const ropeY = (px: number) => {
+      const u = px < pylons[0]! ? px + PW : px;
+      const i = Math.max(
+        0,
+        pylons.findIndex((p, k) => u >= p && u <= (pylons[k + 1] ?? p)),
+      );
+      const a = pylons[i]!;
+      const b = pylons[i + 1] ?? a + 1;
+      const t = (u - a) / (b - a);
+      return lineY(u) + 22 * 4 * t * (1 - t);
+    };
+    ctx.strokeStyle = '#2b2b2b';
+    ctx.lineWidth = 1.5;
+    for (const off of [0, 9]) {
+      ctx.beginPath();
+      for (let px = 0; px <= PW; px += 20) {
+        if (px) ctx.lineTo(px, ropeY(px) + off);
+        else ctx.moveTo(px, ropeY(px) + off);
+      }
+      ctx.stroke();
+    }
+    ctx.fillStyle = '#6b737c';
+    for (const p of pylons.slice(0, -1)) {
+      const top = lineY(p);
+      ctx.beginPath();
+      ctx.moveTo(p - 16, STREET + 4);
+      ctx.lineTo(p - 4, top + 12);
+      ctx.lineTo(p + 4, top + 12);
+      ctx.lineTo(p + 16, STREET + 4);
+      ctx.fill();
+      ctx.fillRect(p - 26, top - 4, 52, 16);
+    }
+    const cab = ['#d62828', '#f2c14e', '#2a9d8f'][Math.floor(rand() * 3)]!;
+    for (let px = 560; px < PW - 100; px += 470) {
+      const y = ropeY(px) + (px % 940 < 470 ? 0 : 9);
+      ctx.strokeStyle = '#2b2b2b';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(px, y);
+      ctx.lineTo(px, y + 24);
+      ctx.stroke();
+      ctx.fillStyle = cab;
+      ctx.beginPath();
+      ctx.roundRect(px - 18, y + 22, 36, 30, 7);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(180, 210, 230, 0.9)';
+      ctx.fillRect(px - 14, y + 27, 28, 11);
+    }
   }
   const bikes = has('bicycles') ? 3 : 0;
   for (let i = 0; i < bikes; i++) {
@@ -970,8 +2022,7 @@ export function paint(ctx: Ctx, s: Scene, flag: HTMLImageElement | null) {
     ((s.hills === 'sea' || s.ground === 'promenade') && x < 1200) ||
     (s.landmark !== 'none' &&
       s.landmark !== 'wall' &&
-      Math.abs(x - 1800) <
-        (s.landmark === 'table-mountain' || s.landmark === 'volcano' ? 380 : 200));
+      Math.abs(x - 1800) < landmarkGap(s.landmark));
   let x = 0;
   let k = 0;
   while (x < PW) {
@@ -1023,6 +2074,7 @@ export function paint(ctx: Ctx, s: Scene, flag: HTMLImageElement | null) {
       );
     }
   }
+  if (s.extras.includes('yurts')) yurts(ctx, s);
   for (let i = 0; i < 14; i++) person(ctx, era, 80 + i * 250 + rand() * 120, rand);
   extras(ctx, s, era, rand);
   if (s.extras.includes('snowfall')) {

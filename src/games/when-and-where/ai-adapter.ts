@@ -98,9 +98,34 @@ const SCRIPT_PLACE: Record<Scene['script'], [number, number]> = {
   devanagari: [20, 77],
   greek: [38, 23],
   hebrew: [31, 35],
+  georgian: [42, 44],
+  armenian: [40, 44],
+  ethiopic: [9, 39],
+  bengali: [23, 89],
+  tamil: [11, 79],
+  khmer: [12, 104],
+  burmese: [18, 96],
 };
 
-/** Reads the clues like a player: script and climate for the place, vehicles for the decade. */
+/** Silhouettes and street sights that point at one region whatever the script. */
+const LANDMARK_PLACE: Partial<Record<Scene['landmark'], [number, number]>> = {
+  'mud-mosque': [15, 0],
+  moai: [-27, -109],
+  'twin-towers': [3, 101],
+  'khmer-towers': [13, 104],
+  gopuram: [10, 78],
+  'arch-bridge': [-34, 151],
+  pyramids: [30, 31],
+};
+const EXTRA_PLACE: Partial<Record<Scene['extras'][number], [number, number]>> = {
+  jeepney: [15, 121],
+  yurts: [48, 107],
+};
+
+/**
+ * Reads the clues like a player: unmistakable landmarks, the script and the language on the
+ * signs, climate and skyline for the place; vehicles for the decade.
+ */
 export function clueAction(r: Round): string {
   const c = clues(r);
   if (!c) return clueActions(r)[0]!;
@@ -112,8 +137,29 @@ export function clueAction(r: Round): string {
     return `year:${decade + 5}`;
   }
   let [lat, lon] = SCRIPT_PLACE[c.script];
-  if (c.script === 'latin') {
-    if (c.climate === 'tropical') [lat, lon] = c.style === 'colonial' ? [20, -80] : [-20, -45];
+  const signs = c.signs.join(' ');
+  // Vietnamese stacks diacritics (Ở, Ệ, Ủ…); Spanish has Ñ and the -ERÍA shop names.
+  const vietnamese = /[ƠƯĐ\u1EA0-\u1EF9]/u.test(signs);
+  const spanish = /ERÍA|Ñ/u.test(signs);
+  const known = LANDMARK_PLACE[c.landmark] ?? c.extras.map((e) => EXTRA_PLACE[e]).find(Boolean);
+  if (known) [lat, lon] = known;
+  else if (c.script === 'latin') {
+    if (vietnamese) [lat, lon] = [15, 106];
+    else if (c.climate === 'tropical')
+      [lat, lon] =
+        c.landmark === 'snow-peak'
+          ? [-3, 37]
+          : spanish
+            ? [10, -75]
+            : c.style === 'colonial'
+              ? [20, -80]
+              : [-20, -45];
+    else if (c.style === 'frontier')
+      [lat, lon] =
+        c.climate === 'cold' ? [60, -135] : c.climate === 'desert' ? [32, -110] : [45, -120];
+    else if (spanish)
+      [lat, lon] =
+        c.hills === 'mountains' ? (c.climate === 'hot' ? [15, -100] : [-10, -75]) : [-30, -60];
     else if (c.climate === 'desert' || c.landmark === 'table-mountain') [lat, lon] = [-30, 20];
     else if (c.style === 'towers' && c.extras.includes('yellow-cabs')) [lat, lon] = [40, -75];
     else if (c.style === 'towers') [lat, lon] = c.hills === 'sea' ? [-30, 150] : [45, -80];
@@ -149,8 +195,8 @@ export const AGENT_PRESETS: AgentPreset<Round, string>[] = [
     kind: 'heuristic',
     label: { en: 'Clue reader', es: 'Lector de pistas' },
     description: {
-      en: 'Reads the script, climate and skyline for the place and the vehicles for the decade.',
-      es: 'Lee la escritura, el clima y el perfil urbano para el lugar, y los vehículos para la década.',
+      en: 'Reads landmarks, the script and language of the signs, climate and skyline for the place, and the vehicles for the decade.',
+      es: 'Lee los monumentos, la escritura y el idioma de los letreros, el clima y el perfil urbano para el lugar, y los vehículos para la década.',
     },
     create: () => new ClueReader(),
   },
