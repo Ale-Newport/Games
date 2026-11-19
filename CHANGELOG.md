@@ -6,11 +6,31 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-19
+
+### Added
+
+- Endless Craft recipe book grows from 225 elements and 377 recipes to 491 and 883 (#4).
+- Gymnasium-style Python training environments (`ArcadeGymEnv`, `VectorArcadeEnv`) with action
+  masks, opponent presets, seeded chance sampling and a Python bridge CI workflow (#7).
+- When & Where grows from 34 to 94 illustrated scenes, with new landmarks, building styles, scripts
+  and street sights for Africa, South America, Oceania and Asia from the 1850s to the 2020s (#5).
+- Spanish for the word-meaning games: Word Rank, Word Warmth and Code Words play in Spanish when
+  the interface is in Spanish, with 30,000 Spanish words (fastText-derived vectors, CC BY-SA 3.0),
+  Spanish secret lists and daily series, accent-free typing and plural folding that keeps ñ (#6).
+- Games that download data show an error with a working **Try again** button instead of loading
+  forever (#3).
+
 ### Fixed
 
 - `loadAiBundle` rejects ids that are not registered games (such as `constructor`) instead of
   resolving them to built-in object members.
 - Draw Telephone bots match every alternative name of a doodle class.
+- Word Groups' watching AI and its AI adapter read Spanish puzzles with Spanish vectors (0 → 25
+  groups solved over the 12 Spanish puzzles); Draw Telephone bots read Spanish sentences with
+  Spanish vectors.
+- When & Where: the 1955 New York and 1925 Lima scenes no longer show flags those countries did
+  not use yet.
 
 ### Changed
 
@@ -65,5 +85,6 @@ First stable release: the complete catalog of 230 games, playable at
   vulnerability reporting, CodeQL, `npm audit` and dependency review in CI. GitHub Actions use
   read-only tokens by default and SHA-pinned actions.
 
-[Unreleased]: https://github.com/Ale-Newport/Games/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/Ale-Newport/Games/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/Ale-Newport/Games/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/Ale-Newport/Games/releases/tag/v1.0.0
