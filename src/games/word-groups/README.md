@@ -44,8 +44,10 @@ from the picker (solved ones green, missed ones red), Watch the AI. Unfinished p
 Config `{ puzzle?, lang? }`; actions `g:A+B+C+D` (four remaining words, sorted, not tried
 before). Reward 1 − 0.2 × mistakes on a solve, 0 on a loss. Agents: random and the meaning
 clusterer, which submits the four words with the highest average pairwise vector similarity
-(English GloVe vectors). It finds about one group per English puzzle (16 groups over the 16 English
-puzzles in tests) and rarely solves wordplay — a fair picture of plain semantic baselines.
+(the puzzle's language: GloVe vectors for English, fastText vectors for Spanish). It finds about
+one group per English puzzle (16 groups over the 16 English puzzles in tests) and about two per
+Spanish puzzle (25 over 12; it found none when it read Spanish words with English vectors), and
+rarely solves wordplay — a fair picture of plain semantic baselines.
 
 ### Tests
 

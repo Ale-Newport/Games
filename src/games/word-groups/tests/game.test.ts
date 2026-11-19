@@ -96,4 +96,19 @@ describe('Word Groups AI', () => {
     }
     expect(solvedGroups).toBeGreaterThanOrEqual(12); // measured: 16 groups over 16 puzzles
   });
+
+  it('clusters Spanish puzzles with Spanish vectors', async () => {
+    const { env, applyGroups, AGENT_PRESETS } = await import('../ai-adapter');
+    const agent = AGENT_PRESETS.find((a) => a.id === 'clusterer')!.create();
+    const { Rng } = await import('../../../core/game-engine/random');
+    let solvedGroups = 0;
+    for (const p of PUZZLES.filter((x) => x.lang === 'es')) {
+      let s = env.createInitialState({ puzzle: p.id }, 1);
+      while (s.status === 'playing')
+        s = applyGroups(s, agent.selectAction(env, s, 0, { rng: new Rng(1) }));
+      solvedGroups += s.solved.length;
+    }
+    // measured: 25 groups over 12 puzzles (0 when English vectors read Spanish words)
+    expect(solvedGroups).toBeGreaterThanOrEqual(18);
+  });
 });

@@ -31,9 +31,10 @@ words (`?deal=N`), Watch the AI. Unfinished games resume.
 
 ### Simplifications
 
-The original uses a word2vec model; this version uses the shared GloVe-derived vectors (English
-only, see #206), so absolute similarity values differ from the original's while the play is the
-same.
+The original uses a word2vec model; this version uses the shared vectors (GloVe-derived in
+English, fastText-derived in Spanish, see #206), so absolute similarity values differ from the
+original's while the play is the same. The language follows the interface when a game starts;
+English and Spanish have separate daily series and secret lists (292 and 228 words).
 
 ### Save format
 

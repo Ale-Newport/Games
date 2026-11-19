@@ -26,7 +26,10 @@ export function Rules({ locale }: { locale: Locale }) {
           </li>
           <li>Tras acertar al menos una, pueden terminar el turno cuando quieran.</li>
         </ul>
-        <p>Las palabras y pistas son en inglés: los bots razonan con vectores de significado.</p>
+        <p>
+          Las palabras y pistas son en español (en inglés si el idioma es inglés): los bots razonan
+          con vectores de significado.
+        </p>
       </>
     );
   }
@@ -53,7 +56,10 @@ export function Rules({ locale }: { locale: Locale }) {
         </li>
         <li>After at least one right guess they may end the turn whenever they like.</li>
       </ul>
-      <p>Words and clues are English: the bots reason with word-meaning vectors.</p>
+      <p>
+        Words and clues are English (Spanish when the language is set to Spanish): the bots reason
+        with word-meaning vectors.
+      </p>
     </>
   );
 }

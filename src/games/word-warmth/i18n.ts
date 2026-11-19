@@ -12,7 +12,7 @@ export const STRINGS: Record<Locale, Dictionary> = {
     'menu.resumeHint': '{n} guesses so far',
     'menu.record': '{wins} solved · best {best} guesses',
     'menu.unplayed': 'No words solved yet',
-    'menu.english': 'Words are English (the meaning model is English-only).',
+    'menu.language': 'Words are English. Switch the language to Spanish for Spanish words.',
     loading: 'Loading 30,000 words…',
     'play.header':
       'The nearest word has a similarity of {top1}, the tenth-nearest {top10} and the thousandth-nearest {top1000}.',
@@ -50,11 +50,12 @@ export const STRINGS: Record<Locale, Dictionary> = {
     'menu.resumeHint': '{n} intentos hasta ahora',
     'menu.record': '{wins} resueltas · récord {best} intentos',
     'menu.unplayed': 'Aún no has resuelto ninguna',
-    'menu.english': 'Las palabras son en inglés (el modelo de significado solo existe en inglés).',
+    'menu.language':
+      'Las palabras son en español; las tildes son opcionales. Cambia el idioma a inglés para jugar en inglés.',
     loading: 'Cargando 30 000 palabras…',
     'play.header':
       'La palabra más cercana tiene una similitud de {top1}; la décima, {top10}; y la milésima, {top1000}.',
-    'play.placeholder': 'Escribe una palabra (en inglés)',
+    'play.placeholder': 'Escribe una palabra',
     'play.guess': 'Probar',
     'play.giveUp': 'Rendirse',
     'col.n': 'n.º',

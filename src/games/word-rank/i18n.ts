@@ -4,7 +4,7 @@ export const STRINGS: Record<Locale, Dictionary> = {
   en: {
     title: 'Word Rank',
     'menu.subtitle':
-      'Find the secret word. Every guess gets a rank by meaning: the secret is #1, its closest word #2, and so on through 30,000 English words.',
+      'Find the secret word. Every guess gets a rank by meaning: the secret is #1, its closest word #2, and so on through 30,000 words.',
     'menu.daily': 'Game #{n} (today)',
     'menu.random': 'Random word',
     'menu.archive': 'Past games',
@@ -14,7 +14,7 @@ export const STRINGS: Record<Locale, Dictionary> = {
     'menu.resumeHint': '{n} guesses so far',
     'menu.record': '{wins} found · best {best} guesses',
     'menu.unplayed': 'No words found yet',
-    'menu.english': 'Words are English (the meaning model is English-only).',
+    'menu.language': 'Words are English. Switch the language to Spanish for Spanish words.',
     loading: 'Loading 30,000 words…',
     'play.placeholder': 'Type a word',
     'play.guess': 'Guess',
@@ -37,7 +37,7 @@ export const STRINGS: Record<Locale, Dictionary> = {
   es: {
     title: 'Ranking de palabras',
     'menu.subtitle':
-      'Encuentra la palabra secreta. Cada intento recibe un puesto por significado: la secreta es la n.º 1, la más cercana la n.º 2, y así entre 30 000 palabras inglesas.',
+      'Encuentra la palabra secreta. Cada intento recibe un puesto por significado: la secreta es la n.º 1, la más cercana la n.º 2, y así entre 30 000 palabras.',
     'menu.daily': 'Partida n.º {n} (hoy)',
     'menu.random': 'Palabra al azar',
     'menu.archive': 'Partidas anteriores',
@@ -47,9 +47,10 @@ export const STRINGS: Record<Locale, Dictionary> = {
     'menu.resumeHint': '{n} intentos hasta ahora',
     'menu.record': '{wins} encontradas · récord {best} intentos',
     'menu.unplayed': 'Aún no has encontrado ninguna',
-    'menu.english': 'Las palabras son en inglés (el modelo de significado solo existe en inglés).',
+    'menu.language':
+      'Las palabras son en español; las tildes son opcionales. Cambia el idioma a inglés para jugar en inglés.',
     loading: 'Cargando 30 000 palabras…',
-    'play.placeholder': 'Escribe una palabra (en inglés)',
+    'play.placeholder': 'Escribe una palabra',
     'play.guess': 'Probar',
     'play.hint': 'Pista',
     'play.giveUp': 'Rendirse',

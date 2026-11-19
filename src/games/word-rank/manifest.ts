@@ -11,8 +11,8 @@ export const manifest: GameManifest = {
     es: 'Cada intento recibe un puesto por significado. Sube del n.º 9000 al n.º 1 y encuentra la palabra.',
   },
   description: {
-    en: 'A daily word-meaning game: guess any English word and see how close it is in meaning to the secret, as a rank among 30,000 words — #1 is the answer. Hints reveal a word halfway to it; give up to see the closest words. Daily game with past games by number, random words and an AI that climbs by meaning while you watch.',
-    es: 'Un juego diario de significados: prueba cualquier palabra inglesa y mira lo cerca que está de la secreta, como un puesto entre 30 000 palabras; la n.º 1 es la respuesta. Las pistas revelan una palabra a mitad de camino; ríndete para ver las más cercanas. Partida diaria con partidas anteriores por número, palabras al azar y una IA que escala por significado mientras miras.',
+    en: 'A daily word-meaning game: guess any word (English or Spanish) and see how close it is in meaning to the secret, as a rank among 30,000 words — #1 is the answer. Hints reveal a word halfway to it; give up to see the closest words. Daily game with past games by number, random words and an AI that climbs by meaning while you watch.',
+    es: 'Un juego diario de significados: prueba cualquier palabra (en español o en inglés) y mira lo cerca que está de la secreta, como un puesto entre 30 000 palabras; la n.º 1 es la respuesta. Las pistas revelan una palabra a mitad de camino; ríndete para ver las más cercanas. Partida diaria con partidas anteriores por número, palabras al azar y una IA que escala por significado mientras miras.',
   },
   category: 'viral',
   genre: { en: 'Word / semantics', es: 'Palabras / semántica' },

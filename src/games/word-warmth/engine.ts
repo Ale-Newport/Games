@@ -4,8 +4,13 @@
  * and, when it is among the secret's 1,000 nearest words, its place in that list ("742/1000").
  */
 import { Rng } from '../../core/game-engine/random';
-import { lookup, similaritiesTo, type Vectors } from '../shared/semantic/semantic';
-import { SECRETS } from './secrets';
+import {
+  lookup,
+  similaritiesTo,
+  type SemanticLang,
+  type Vectors,
+} from '../shared/semantic/semantic';
+import { secretsFor } from './secrets';
 
 export const NEAREST = 1000;
 export const MAX_GUESSES = 500;
@@ -26,7 +31,11 @@ export interface WarmState {
   guesses: WarmGuess[];
   status: 'playing' | 'won' | 'gave-up';
   limit: number;
+  /** Vocabulary language; saves from before Spanish existed have none and are English. */
+  lang?: SemanticLang;
 }
+
+export const langOf = (s: WarmState): SemanticLang => s.lang ?? 'en';
 
 export interface SecretInfo {
   sims: Float32Array;
@@ -43,7 +52,8 @@ const cache = new Map<string, SecretInfo>();
 const round2 = (x: number) => Math.round(x * 10000) / 100;
 
 export function secretInfo(v: Vectors, secret: string): SecretInfo {
-  let info = cache.get(secret);
+  const key = `${v.lang}:${secret}`;
+  let info = cache.get(key);
   if (info) return info;
   const target = v.index.get(secret)!;
   const sims = similaritiesTo(v, target);
@@ -60,12 +70,12 @@ export function secretInfo(v: Vectors, secret: string): SecretInfo {
     top1000: round2(sims[order[NEAREST - 1]!]!),
     nearestList: order,
   };
-  cache.set(secret, info);
+  cache.set(key, info);
   return info;
 }
 
-export function dailySecret(gameNo: number): string {
-  const order = new Rng(20260707).shuffle(SECRETS);
+export function dailySecret(gameNo: number, lang: SemanticLang = 'en'): string {
+  const order = new Rng(lang === 'es' ? 20260708 : 20260707).shuffle(secretsFor(lang));
   return order[((gameNo % order.length) + order.length) % order.length]!;
 }
 
@@ -79,12 +89,17 @@ export function newGame(
   secret: string,
   gameNo: number | null = null,
   limit = MAX_GUESSES,
+  lang: SemanticLang = 'en',
 ): WarmState {
-  return { secret, gameNo, guesses: [], status: 'playing', limit };
+  return { secret, gameNo, guesses: [], status: 'playing', limit, lang };
 }
 
-export function randomGame(seed: number, limit = MAX_GUESSES): WarmState {
-  return newGame(new Rng(seed >>> 0).pick(SECRETS), null, limit);
+export function randomGame(
+  seed: number,
+  limit = MAX_GUESSES,
+  lang: SemanticLang = 'en',
+): WarmState {
+  return newGame(new Rng(seed >>> 0).pick(secretsFor(lang)), null, limit, lang);
 }
 
 export function check(
@@ -127,9 +142,10 @@ export function temperature(g: WarmGuess): 'found' | 'hot' | 'warm' | 'tepid' | 
 export function isValidState(v: unknown): v is WarmState {
   if (typeof v !== 'object' || v === null) return false;
   const s = v as WarmState;
+  if (s.lang !== undefined && s.lang !== 'en' && s.lang !== 'es') return false;
   return (
     typeof s.secret === 'string' &&
-    SECRETS.includes(s.secret) &&
+    secretsFor(langOf(s)).includes(s.secret) &&
     Array.isArray(s.guesses) &&
     s.guesses.every((g) => typeof g.word === 'number' && typeof g.score === 'number') &&
     typeof s.limit === 'number' &&

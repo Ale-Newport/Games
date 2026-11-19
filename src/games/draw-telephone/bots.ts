@@ -79,9 +79,18 @@ export function subjectOf(text: string, vectors: Vectors | null, rng: Rng): stri
   if (vectors) {
     let best = '';
     let score = -1;
-    const rows = words.map((w) => lookup(vectors, w)).filter((x): x is number => x !== null);
+    // Vector lookups keep ñ and accents (the vectors fold them their own way).
+    const rows = text
+      .toLowerCase()
+      .split(/[^a-záéíóúüñ]+/)
+      .filter((w) => w.length > 1)
+      .map((w) => lookup(vectors, w))
+      .filter((x): x is number => x !== null);
     for (const cls of CLASSES) {
-      const r = lookup(vectors, cls.split(' ').at(-1)!);
+      // Each class is compared through its name in the vectors' language.
+      const name =
+        vectors.lang === 'es' ? (CLASS_NAMES[cls]!.split('|')[1]?.split('/')[0] ?? cls) : cls;
+      const r = lookup(vectors, name.split(' ').at(-1)!);
       if (r === null) continue;
       for (const w of rows) {
         const s = similarity(vectors, w, r);

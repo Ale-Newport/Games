@@ -3,11 +3,23 @@
  * 30,000 frequent English words with 160-dimensional vectors derived from GloVe 6B (public
  * domain dedication and license) by `training/scripts/build_semantic.py`. Vectors are int8 and
  * L2-normalized before quantization, so a dot product divided by 127² is the cosine similarity.
+ *
+ * Spanish (`lang: 'es'`): 30,000 frequent Spanish words derived from the fastText Common Crawl
+ * vectors (Grave et al. 2018, CC BY-SA 3.0) by `training/scripts/build_semantic_es.py`, in the
+ * same format (`words-es.txt`, `vectors-es.bin`). Words keep their accents; guesses may omit them.
  */
 import { fetchChecked, memoizeUntilFailure } from '../../../core/assets/load';
 
+/** Languages with a vector table. */
+export type SemanticLang = 'en' | 'es';
+
+/** The vector language for a UI locale. */
+export const semanticLang = (locale: string): SemanticLang => (locale === 'es' ? 'es' : 'en');
+
 export interface Vectors {
+  lang: SemanticLang;
   words: string[];
+  /** Exact spellings and accent-free spellings → row. */
   index: Map<string, number>;
   dims: number;
   data: Int8Array;
@@ -64,32 +76,63 @@ export function rankAll(v: Vectors, target: number): Int32Array {
   return rank;
 }
 
-/** Normalizes a guess and folds simple plurals onto a known singular. */
-export function lookup(v: Vectors, raw: string): number | null {
-  const w = raw
-    .trim()
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/\p{Diacritic}/gu, '');
-  if (!/^[a-z]{2,}$/.test(w)) return null;
-  const direct = v.index.get(w);
-  if (direct !== undefined) return direct;
-  const tries = [
+/**
+ * Lower case without accents. Spanish keeps ñ, a letter of its own (año ≠ ano); English folds
+ * every diacritic as before.
+ */
+export function fold(raw: string, lang: SemanticLang = 'en'): string {
+  const w = raw.trim().toLowerCase();
+  if (lang === 'es')
+    return w
+      .replace(/ñ/g, '\0')
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '')
+      .replace(/\0/g, 'ñ');
+  return w.normalize('NFD').replace(/\p{Diacritic}/gu, '');
+}
+
+/** Singular candidates for a folded plural, most specific first. */
+function singulars(w: string, lang: SemanticLang): (string | null)[] {
+  if (lang === 'es')
+    return [
+      w.endsWith('ces') ? `${w.slice(0, -3)}z` : null, // luces → luz
+      w.endsWith('es') ? w.slice(0, -2) : null, // árboles → arbol, canciones → cancion
+      w.endsWith('s') ? w.slice(0, -1) : null, // casas → casa
+    ];
+  return [
     w.endsWith('ies') ? `${w.slice(0, -3)}y` : null,
     /(ch|sh|x|s|z)es$/.test(w) ? w.slice(0, -2) : null,
     w.endsWith('s') ? w.slice(0, -1) : null,
   ];
-  for (const t of tries) if (t && v.index.has(t)) return v.index.get(t)!;
+}
+
+/** Normalizes a guess (case, accents) and folds simple plurals onto a known singular. */
+export function lookup(v: Vectors, raw: string): number | null {
+  const w = fold(raw, v.lang);
+  if (!(v.lang === 'es' ? /^[a-zñ]{2,}$/ : /^[a-z]{2,}$/).test(w)) return null;
+  const direct = v.index.get(w);
+  if (direct !== undefined) return direct;
+  for (const t of singulars(w, v.lang)) if (t && v.index.has(t)) return v.index.get(t)!;
   return null;
 }
 
 /** Builds vectors from the raw files (used by the loader and by tests in Node). */
-export function parseVectors(wordsText: string, bytes: ArrayBuffer): Vectors {
+export function parseVectors(
+  wordsText: string,
+  bytes: ArrayBuffer,
+  lang: SemanticLang = 'en',
+): Vectors {
   const words = wordsText.split('\n').filter(Boolean);
   const data = new Int8Array(bytes);
   const dims = data.length / words.length;
   if (!Number.isInteger(dims)) throw new Error('Vector file does not match the word list');
-  return { words, index: new Map(words.map((w, i) => [w, i])), dims, data };
+  const index = new Map(words.map((w, i) => [w, i]));
+  // Accent-free spellings resolve too ("arbol" → "árbol"); the build keeps them unambiguous.
+  words.forEach((w, i) => {
+    const k = fold(w, lang);
+    if (!index.has(k)) index.set(k, i);
+  });
+  return { lang, words, index, dims, data };
 }
 
 /** The few Node APIs used to read the files from disk in tests and tools. */
@@ -103,47 +146,80 @@ interface NodeFs {
 
 const host = globalThis as unknown as NodeHost;
 
-/** Loads only the 30,000-word list (about 240 kB), without the vectors. */
-export const loadWordList: () => Promise<string[]> = memoizeUntilFailure(async () => {
+/** Under Node (tests, tools) the files are read from disk instead of fetched. */
+async function readFromDisk(url: URL): Promise<{ text?: string; bytes?: ArrayBuffer } | null> {
   const proc = host.process;
-  if (proc?.versions?.node) {
-    const fsName = 'node:fs/promises';
-    const fs = (await import(/* @vite-ignore */ fsName)) as NodeFs;
-    const u = new URL('./words.txt', import.meta.url);
-    const at = u.protocol === 'file:' ? u : `${proc.cwd()}${decodeURIComponent(u.pathname)}`;
-    return (await fs.readFile(at, 'utf8')).split('\n').filter(Boolean);
-  }
-  const url = (await import('./words.txt?url')).default;
-  return (await (await fetchChecked(url)).text()).split('\n').filter(Boolean);
-});
+  if (!proc?.versions?.node) return null;
+  const fsName = 'node:fs/promises';
+  const fs = (await import(/* @vite-ignore */ fsName)) as NodeFs;
+  // Under jsdom test runs the module URL is http(s); resolve its path from the project root.
+  const at = url.protocol === 'file:' ? url : `${proc.cwd()}${decodeURIComponent(url.pathname)}`;
+  if (url.pathname.endsWith('.txt')) return { text: await fs.readFile(at, 'utf8') };
+  const b = await fs.readFile(at);
+  return { bytes: b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength) as ArrayBuffer };
+}
 
-/** Loads the vectors once (about 5 MB, fetched on first use; read from disk under Node). */
-export const loadVectors: () => Promise<Vectors> = memoizeUntilFailure(async () => {
-  const proc = host.process;
-  if (proc?.versions?.node) {
-    const fsName = 'node:fs/promises';
-    const fs = (await import(/* @vite-ignore */ fsName)) as NodeFs;
-    // Under jsdom test runs the module URL is http(s); resolve its path from the project root.
-    const at = (name: string) => {
-      const u = new URL(name, import.meta.url);
-      return u.protocol === 'file:' ? u : `${proc.cwd()}${decodeURIComponent(u.pathname)}`;
-    };
-    const [text, bin] = await Promise.all([
-      fs.readFile(at('./words.txt'), 'utf8'),
-      fs.readFile(at('./vectors.bin')),
-    ]);
-    return parseVectors(
-      text,
-      bin.buffer.slice(bin.byteOffset, bin.byteOffset + bin.byteLength) as ArrayBuffer,
-    );
+// Literal paths only: Vite bundles exactly these files (a template would glob the folder).
+const FILES: Record<
+  SemanticLang,
+  {
+    words: () => URL;
+    vectors: () => URL;
+    wordsUrl: () => Promise<string>;
+    vectorsUrl: () => Promise<string>;
   }
-  const [wordsUrl, binUrl] = await Promise.all([
-    import('./words.txt?url').then((m) => m.default),
-    import('./vectors.bin?url').then((m) => m.default),
-  ]);
-  const [text, bin] = await Promise.all([
-    fetchChecked(wordsUrl).then((r) => r.text()),
-    fetchChecked(binUrl).then((r) => r.arrayBuffer()),
-  ]);
-  return parseVectors(text, bin);
-});
+> = {
+  en: {
+    words: () => new URL('./words.txt', import.meta.url),
+    vectors: () => new URL('./vectors.bin', import.meta.url),
+    wordsUrl: () => import('./words.txt?url').then((m) => m.default),
+    vectorsUrl: () => import('./vectors.bin?url').then((m) => m.default),
+  },
+  es: {
+    words: () => new URL('./words-es.txt', import.meta.url),
+    vectors: () => new URL('./vectors-es.bin', import.meta.url),
+    wordsUrl: () => import('./words-es.txt?url').then((m) => m.default),
+    vectorsUrl: () => import('./vectors-es.bin?url').then((m) => m.default),
+  },
+};
+
+async function readWords(lang: SemanticLang): Promise<string> {
+  const disk = await readFromDisk(FILES[lang].words());
+  if (disk?.text !== undefined) return disk.text;
+  return (await fetchChecked(await FILES[lang].wordsUrl())).text();
+}
+
+async function readVectors(lang: SemanticLang): Promise<ArrayBuffer> {
+  const disk = await readFromDisk(FILES[lang].vectors());
+  if (disk?.bytes !== undefined) return disk.bytes;
+  return (await fetchChecked(await FILES[lang].vectorsUrl())).arrayBuffer();
+}
+
+const wordListLoaders = {
+  en: memoizeUntilFailure(async () => (await readWords('en')).split('\n').filter(Boolean)),
+  es: memoizeUntilFailure(async () => (await readWords('es')).split('\n').filter(Boolean)),
+};
+
+/** Loads only the 30,000-word list (about 240 kB), without the vectors. */
+export function loadWordList(lang: SemanticLang = 'en'): Promise<string[]> {
+  return wordListLoaders[lang]();
+}
+
+const vectorLoaders = {
+  en: memoizeUntilFailure(async () => {
+    const [text, bin] = await Promise.all([readWords('en'), readVectors('en')]);
+    return parseVectors(text, bin, 'en');
+  }),
+  es: memoizeUntilFailure(async () => {
+    const [text, bin] = await Promise.all([readWords('es'), readVectors('es')]);
+    return parseVectors(text, bin, 'es');
+  }),
+};
+
+/**
+ * Loads a language's vectors once (about 5 MB, fetched on first use; read from disk under Node).
+ * A failed download is not cached: the next call tries again.
+ */
+export function loadVectors(lang: SemanticLang = 'en'): Promise<Vectors> {
+  return vectorLoaders[lang]();
+}

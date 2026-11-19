@@ -27,8 +27,8 @@ real human doodles from the Quick, Draw! dataset, Google, CC BY 4.0).
 - Write: "a {subject} on holiday", "a giant {subject}"… with a drawable subject (Spanish
   templates avoid gendered words).
 - Draw: find a drawable subject named in the sentence (either language, plurals); otherwise the
-  subject closest in meaning to any of its words (shared GloVe vectors, so "a happy puppy" becomes a
-  dog); then replay a real human doodle of it.
+  subject closest in meaning to any of its words (shared vectors in the chain's language, so "a
+  happy puppy" and "un cachorro ladrando" both become a dog); then replay a real human doodle of it.
 - Describe: the doodle recognizer's best guess (sometimes its second guess when unsure).
 
 There is no score, as in the original; the fun is the album. **Simplification:** bots understand

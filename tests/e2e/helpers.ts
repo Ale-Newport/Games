@@ -8,9 +8,9 @@ export async function expectNoHorizontalOverflow(page: Page) {
   expect(overflow, 'horizontal overflow in px').toBeLessThanOrEqual(1);
 }
 
-/** Starts every test in English with sound off and a fresh profile. */
-export async function freshStart(page: Page, path = '/') {
-  await page.addInitScript(() => {
+/** Starts every test in English (or the given language) with sound off and a fresh profile. */
+export async function freshStart(page: Page, path = '/', locale: 'en' | 'es' = 'en') {
+  await page.addInitScript((locale) => {
     if (!sessionStorage.getItem('e2e-init')) {
       sessionStorage.setItem('e2e-init', '1');
       localStorage.setItem(
@@ -20,7 +20,7 @@ export async function freshStart(page: Page, path = '/') {
           savedAt: 0,
           data: {
             theme: 'dark',
-            locale: 'en',
+            locale,
             sound: false,
             volume: 0.5,
             motion: 'reduce',
@@ -29,7 +29,7 @@ export async function freshStart(page: Page, path = '/') {
         }),
       );
     }
-  });
+  }, locale);
   await page.goto(`./#${path}`);
 }
 

@@ -1,5 +1,5 @@
 /**
- * Code Words bots, reasoning with the shared word vectors (GloVe-derived).
+ * Code Words bots, reasoning with the shared word vectors of the board's language.
  * Spymaster: among frequent words that are not on the board, find the clue that is closer to the
  * most of its team's words than to any word it must avoid (enemy agents, bystanders, and above all
  * the assassin), by a safety margin. Operative: touch the unrevealed words most similar to the clue,
@@ -59,7 +59,9 @@ export function spymasterClue(
   if (!best.word) {
     // Nothing safe: point at the single closest own word with the best word that is legal.
     return {
-      word: v.words.find((w) => w.length >= 3 && !clueProblem(s, w, 1, isWord)) ?? 'thing',
+      word:
+        v.words.find((w) => w.length >= 3 && !clueProblem(s, w, 1, isWord)) ??
+        (v.lang === 'es' ? 'cosa' : 'thing'),
       number: 1,
       targets: own.slice(0, 1),
     };

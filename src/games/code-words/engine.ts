@@ -4,10 +4,13 @@
  * gives a one-word clue and a number; the operatives then touch words one at a time. Their own
  * agent: keep going (up to number + 1 guesses); a bystander or an enemy agent: the turn ends;
  * the assassin: the team loses at once. The first team to reveal all its agents wins.
+ * Boards and clues are in English or Spanish (`lang`), each with its own word pool.
  */
 import { Rng } from '../../core/game-engine/random';
 import { CLASSES } from '../shared/doodle/doodle';
-import { SECRETS } from '../word-rank/secrets';
+import { CLASS_NAMES } from '../shared/doodle/words';
+import { fold, type SemanticLang } from '../shared/semantic/semantic';
+import { SECRETS, SECRETS_ES } from '../word-rank/secrets';
 
 export type Team = 'red' | 'blue';
 export type Role = Team | 'bystander' | 'assassin';
@@ -16,6 +19,18 @@ export type Role = Team | 'bystander' | 'assassin';
 export const WORD_POOL: readonly string[] = [
   ...new Set([...SECRETS, ...CLASSES.filter((c) => !c.includes(' '))]),
 ].sort();
+
+/** Spanish code words: the Spanish concrete nouns plus the doodle classes' one-word names. */
+export const WORD_POOL_ES: readonly string[] = [
+  ...new Set([
+    ...SECRETS_ES,
+    ...Object.values(CLASS_NAMES)
+      .map((names) => names.split('|')[1]?.split('/')[0] ?? '')
+      .filter((w) => /^[a-záéíóúüñ]{3,}$/.test(w)),
+  ]),
+].sort((a, b) => a.localeCompare(b, 'es'));
+
+export const wordPoolFor = (lang: SemanticLang) => (lang === 'es' ? WORD_POOL_ES : WORD_POOL);
 
 export interface Clue {
   team: Team;
@@ -42,13 +57,17 @@ export interface CodeState {
   winner: Team | null;
   /** How the game ended. */
   reason: 'agents' | 'assassin' | null;
+  /** Board language; saves from before Spanish existed have none and are English. */
+  lang?: SemanticLang;
 }
+
+export const langOf = (s: CodeState): SemanticLang => s.lang ?? 'en';
 
 export const other = (t: Team): Team => (t === 'red' ? 'blue' : 'red');
 
-export function newGame(seed: number): CodeState {
+export function newGame(seed: number, lang: SemanticLang = 'en'): CodeState {
   const rng = new Rng(seed >>> 0);
-  const words = rng.shuffle(WORD_POOL).slice(0, 25);
+  const words = rng.shuffle(wordPoolFor(lang)).slice(0, 25);
   const starter: Team = rng.chance(0.5) ? 'red' : 'blue';
   const roles = rng.shuffle<Role>([
     ...Array<Role>(9).fill(starter),
@@ -70,6 +89,7 @@ export function newGame(seed: number): CodeState {
     status: 'playing',
     winner: null,
     reason: null,
+    lang,
   };
 }
 
@@ -85,9 +105,18 @@ export function clueProblem(
   number: number,
   isWord: (w: string) => boolean,
 ): ClueProblem {
+  const lang = langOf(s);
   const w = word.trim().toLowerCase();
-  if (!/^[a-z]{2,}$/.test(w) || !isWord(w)) return 'not-a-word';
-  if (s.words.some((b, i) => !s.revealed[i] && (b === w || b.includes(w) || w.includes(b))))
+  const letters = lang === 'es' ? /^[a-záéíóúüñ]{2,}$/ : /^[a-z]{2,}$/;
+  if (!letters.test(w) || !isWord(w)) return 'not-a-word';
+  // Compared without accents: "arbol" may not hint at "árbol".
+  const k = fold(w, lang);
+  if (
+    s.words.some((b, i) => {
+      const f = fold(b, lang);
+      return !s.revealed[i] && (f === k || f.includes(k) || k.includes(f));
+    })
+  )
     return 'on-board';
   if (!Number.isInteger(number) || number < 1 || number > 9) return 'number';
   return null;
@@ -154,6 +183,7 @@ export function pass(s: CodeState): CodeState {
 export function isValidState(v: unknown): v is CodeState {
   if (typeof v !== 'object' || v === null) return false;
   const s = v as CodeState;
+  if (s.lang !== undefined && s.lang !== 'en' && s.lang !== 'es') return false;
   return (
     Array.isArray(s.words) &&
     s.words.length === 25 &&

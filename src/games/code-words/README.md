@@ -14,9 +14,10 @@ own noun lists; original look), played with bots that understand meaning through
 
 ### Ruleset (`code-words-5x5`)
 
-- 25 words from a pool of 340+ (the project's concrete nouns and drawable subjects). The starting
+- 25 words from a pool of 340+ (the project's concrete nouns and drawable subjects), in English
+  or in Spanish (the interface language when the game starts; 320+ Spanish words). The starting
   team (random) has 9 agents, the other 8; 7 bystanders and 1 assassin.
-- A turn: the spymaster gives one word (letters only, a known English word, not a board word nor
+- A turn: the spymaster gives one word (letters only, a word in the board language's vocabulary — accents optional in Spanish —, not a board word nor
   part of one, nor containing one) and a number 1–9. Operatives touch up to number + 1 words:
   their own agent continues the turn, a bystander or rival agent ends it, the assassin loses the
   game. After one right touch they may end the turn. All agents found: that team wins.
@@ -35,8 +36,8 @@ own noun lists; original look), played with bots that understand meaning through
 
 You are red: operative (bot spymaster) or spymaster (bot operative) against a bot blue team of
 three skills, or watch two bot teams. Save `{ role, skill, state }` (schema 1) resumes a game.
-**Simplification:** words and clues are English for everyone, since the bots' meaning model is
-English-only; there is no human-vs-human pass-and-play (the spymaster's key must stay secret).
+Bots reason with the vectors of the board's language. **Simplification:** there is no
+human-vs-human pass-and-play (the spymaster's key must stay secret).
 
 ### AI interface
 

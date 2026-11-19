@@ -23,3 +23,32 @@ thin thirsty tired tradition travel trust truth ugly victory violent visible voy
 weird wild wisdom wonder worry young`
     .split(/\s+/)
     .filter(Boolean);
+
+/**
+ * Secret words for #207 Word Warmth in Spanish: everyday nouns, verbs and adjectives (all in the
+ * Spanish vocabulary).
+ */
+export const SECRETS_ES =
+  `abrazo abuelo accidente acuerdo adivinar admirar aire alegre alegría alma amable amargo amigo amor
+ancho anciano animal antiguo aprender árbol arriesgar ataque aventura ayuda bailar bajo barato
+batalla belleza beso bondad bonito borde brillante broma buscar caer calma calor cambio caminar
+cansado cantar capaz carrera castigo celebrar cerca cielo claro cocinar comer compartir comprar
+confianza conocer consejo contento correr costumbre crecer creer crisis cuento cuidado culpa curar
+débil decidir defensa deseo despertar destino dinero dolor dormir dudar dulce duro elegir enemigo
+enfadado enorme enseñar error escapar escribir esfuerzo esperanza espíritu éxito extraño fácil fama
+familia famoso feliz fiesta fiel flor frágil frío fuerte fuerza futuro ganar generoso gente gigante
+gloria gritar guerra hambre héroe historia hogar honesto honor huir humilde idea idioma imaginar
+invierno joven jugar justicia lejos lento leyenda libertad libre limpio llorar lluvia loco lucha luz
+madre magia malo mañana mar memoria mentira miedo milagro misterio moda montaña muerte música nacer
+naturaleza noche nuevo obedecer océano odio olvidar orgullo paciencia padre paisaje palabra paz
+peligro pensar perder perdón pobre poder poema premio primavera prisa promesa proteger pueblo puro
+rápido raro recordar regalo reír respeto riesgo rico ruido sabio sabor salud salvaje sangre secreto
+seguro silencio sombra sonrisa sorpresa sueño suerte tarde temer tesoro tierra tímido tormenta
+trabajo tradición traición tranquilo triste valiente valor vecino veloz venganza verano verdad viaje
+victoria vida viejo viento viajar volar voz`
+    .split(/\s+/)
+    .filter(Boolean);
+
+/** The secret list for a vector language. */
+export const secretsFor = (lang: 'en' | 'es'): readonly string[] =>
+  lang === 'es' ? SECRETS_ES : SECRETS;

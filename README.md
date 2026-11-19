@@ -227,6 +227,8 @@ in [Discussions](https://github.com/Ale-Newport/Games/discussions). Please follo
 Code is released under the [MIT License](LICENSE). Bundled data keeps its own license:
 doodles from the [Quick, Draw! dataset](https://github.com/googlecreativelab/quickdraw-dataset)
 (Google, CC BY 4.0), word vectors derived from [GloVe](https://nlp.stanford.edu/projects/glove/)
-(PDDL), country shapes from [Natural Earth](https://www.naturalearthdata.com/) (public domain),
+(PDDL), Spanish word vectors derived from
+[fastText](https://fasttext.cc/docs/en/crawl-vectors.html) (Grave et al. 2018, CC BY-SA 3.0),
+country shapes from [Natural Earth](https://www.naturalearthdata.com/) (public domain),
 and the Chakra Petch and Press Start 2P fonts (SIL OFL 1.1). Game names are generic and all art,
 levels and sounds are original; this project is not affiliated with any commercial game.

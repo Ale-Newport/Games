@@ -8,8 +8,10 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Rng, randomSeed } from '../../core/game-engine/random';
 import { useLatest } from '../../core/game-engine/hooks';
 import type { GameServices } from '../../core/game-engine/types';
+import { LoadError } from '../../components/LoadError';
+import { useAsset } from '../../core/assets/useAsset';
 import { createTranslator } from '../../core/i18n';
-import { loadVectors, type Vectors } from '../shared/semantic/semantic';
+import { loadVectors, semanticLang, type SemanticLang } from '../shared/semantic/semantic';
 import shared from '../shared/sudoku/SudokuGame.module.css';
 import { warmerMove } from './ai';
 import {
@@ -20,6 +22,8 @@ import {
   giveUp,
   guess,
   isValidState,
+  langOf,
+  MAX_GUESSES,
   newGame,
   randomGame,
   secretInfo,
@@ -30,6 +34,10 @@ import {
 import { STRINGS } from './i18n';
 import styles from './WordWarmth.module.css';
 import { WARM_SOUNDS, warmSound } from './sounds';
+
+/** Daily records: English keeps its original keys; each other language has its own series. */
+const dailyKey = (gameNo: number, lang: SemanticLang) =>
+  lang === 'en' ? String(gameNo) : `${lang}:${gameNo}`;
 
 interface Saved {
   state: WarmState | null;
@@ -58,7 +66,6 @@ export function WordWarmthGame({
       }),
     [services],
   );
-  const [vectors, setVectors] = useState<Vectors | null>(null);
   const [mode, setMode] = useState<'menu' | 'play' | 'watch'>(
     services.launchParams.mode === 'watch' ? 'watch' : 'menu',
   );
@@ -73,10 +80,14 @@ export function WordWarmthGame({
     stateRef.current = s;
     setStateRaw(s);
   };
+  // New games use the interface language; a game in progress keeps its own.
+  const menuLang = semanticLang(locale);
+  const lang: SemanticLang = mode !== 'menu' && state ? langOf(state) : menuLang;
+  const vectorsAsset = useAsset(() => loadVectors(lang), lang);
+  const vectors = vectorsAsset.value;
 
   useEffect(() => {
     let alive = true;
-    void loadVectors().then((v) => alive && setVectors(v));
     void slot.load().then((d) => alive && d && setSaved(d));
     return () => {
       alive = false;
@@ -103,7 +114,10 @@ export function WordWarmthGame({
 
   useEffect(() => {
     if (mode === 'watch' && !state && vectors) {
-      const id = window.setTimeout(() => start(randomGame(seedFor()), 'watch'), 0);
+      const id = window.setTimeout(
+        () => start(randomGame(seedFor(), MAX_GUESSES, menuLang), 'watch'),
+        0,
+      );
       return () => window.clearTimeout(id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -117,7 +131,8 @@ export function WordWarmthGame({
       s.gameNo !== null
         ? {
             ...savedRef.current.daily,
-            [s.gameNo]: s.status === 'won' ? s.guesses.length : -s.guesses.length,
+            [dailyKey(s.gameNo, langOf(s))]:
+              s.status === 'won' ? s.guesses.length : -s.guesses.length,
           }
         : savedRef.current.daily;
     persist({ state: null, daily });
@@ -174,6 +189,7 @@ export function WordWarmthGame({
   }, [mode, vectors, state?.guesses.length, state?.status]);
 
   if (!vectors) {
+    if (vectorsAsset.error) return <LoadError onRetry={vectorsAsset.retry} />;
     return (
       <div className={shared.menu}>
         <p className="muted" data-testid="ww-loading">
@@ -192,7 +208,7 @@ export function WordWarmthGame({
         <div className={shared.menuCard}>
           <h2 className={shared.menuTitle}>{t('title')}</h2>
           <p className="muted">{t('menu.subtitle')}</p>
-          <p className={shared.hintText}>{t('menu.english')}</p>
+          <p className={shared.hintText}>{t('menu.language')}</p>
           {resume && (
             <button
               type="button"
@@ -216,16 +232,18 @@ export function WordWarmthGame({
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => start(newGame(dailySecret(today), today), 'play')}
+              onClick={() =>
+                start(newGame(dailySecret(today, lang), today, MAX_GUESSES, lang), 'play')
+              }
               data-testid="ww-daily"
-              disabled={saved.daily[today] !== undefined}
+              disabled={saved.daily[dailyKey(today, lang)] !== undefined}
             >
               <CalendarDays size={16} /> {t('menu.daily', { n: today + 1 })}
             </button>
             <button
               type="button"
               className="btn"
-              onClick={() => start(randomGame(seedFor()), 'play')}
+              onClick={() => start(randomGame(seedFor(), MAX_GUESSES, lang), 'play')}
               data-testid="ww-random"
             >
               <Shuffle size={16} /> {t('menu.random')}
@@ -233,7 +251,7 @@ export function WordWarmthGame({
             <button
               type="button"
               className="btn"
-              onClick={() => start(randomGame(seedFor()), 'watch')}
+              onClick={() => start(randomGame(seedFor(), MAX_GUESSES, lang), 'watch')}
               data-testid="ww-watch"
             >
               <Bot size={16} /> {t('menu.watch')}
@@ -356,7 +374,10 @@ export function WordWarmthGame({
               type="button"
               className="btn btn-primary"
               onClick={() =>
-                start(randomGame(randomSeed() >>> 0), mode === 'watch' ? 'watch' : 'play')
+                start(
+                  randomGame(randomSeed() >>> 0, MAX_GUESSES, langOf(s)),
+                  mode === 'watch' ? 'watch' : 'play',
+                )
               }
               data-testid="ww-again"
             >

@@ -17,8 +17,8 @@ export const STRINGS: Record<Locale, Dictionary> = {
     'skill.easy': 'Cautious',
     'skill.normal': 'Clever',
     'skill.hard': 'Daring',
-    'menu.english':
-      'Code words and clues are English (the bots read meaning from English word vectors).',
+    'menu.language':
+      'Code words and clues are English. Switch the language to Spanish for a Spanish board.',
     'menu.start': 'New game',
     'menu.watch': 'Watch the AI',
     'team.red': 'Red',
@@ -28,7 +28,7 @@ export const STRINGS: Record<Locale, Dictionary> = {
     'clue.placeholder': 'One-word clue',
     'clue.number': 'Number of words',
     'clue.send': 'Give clue',
-    'clue.not-a-word': 'The clue must be one English word.',
+    'clue.not-a-word': 'The clue must be one word the bots know (letters only).',
     'clue.on-board': 'The clue cannot be a word on the board or part of one.',
     'clue.bad-number': 'Choose a number from 1 to 9.',
     'play.pass': 'End turn',
@@ -54,8 +54,8 @@ export const STRINGS: Record<Locale, Dictionary> = {
     'skill.easy': 'Prudente',
     'skill.normal': 'Astuto',
     'skill.hard': 'Atrevido',
-    'menu.english':
-      'Las palabras y pistas son en inglés (los bots entienden el significado con vectores de palabras en inglés).',
+    'menu.language':
+      'Las palabras y pistas son en español (las tildes son opcionales). Cambia el idioma a inglés para un tablero en inglés.',
     'menu.start': 'Nueva partida',
     'menu.watch': 'Ver a la IA',
     'team.red': 'Rojo',
@@ -65,7 +65,7 @@ export const STRINGS: Record<Locale, Dictionary> = {
     'clue.placeholder': 'Pista de una palabra',
     'clue.number': 'Número de palabras',
     'clue.send': 'Dar pista',
-    'clue.not-a-word': 'La pista debe ser una palabra inglesa.',
+    'clue.not-a-word': 'La pista debe ser una palabra que los bots conozcan (solo letras).',
     'clue.on-board': 'La pista no puede ser una palabra del tablero ni parte de una.',
     'clue.bad-number': 'Elige un número del 1 al 9.',
     'play.pass': 'Terminar turno',

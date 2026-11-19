@@ -23,6 +23,7 @@ SOFTWARE.
 ---
 
 Third-party data and fonts bundled with the Software keep their own licenses (for example the
-Quick, Draw! doodles under CC BY 4.0, GloVe-derived word vectors under the PDDL, Natural Earth
+Quick, Draw! doodles under CC BY 4.0, GloVe-derived word vectors under the PDDL, the
+fastText-derived Spanish word vectors under CC BY-SA 3.0, Natural Earth
 shapes in the public domain, and fonts under the SIL Open Font License 1.1). See
 docs/asset-licenses.md for the full list and attributions.

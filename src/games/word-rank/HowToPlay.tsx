@@ -5,7 +5,7 @@ export function Rules({ locale }: { locale: Locale }) {
     return (
       <>
         <h3>Objetivo</h3>
-        <p>Encontrar la palabra secreta (en inglés).</p>
+        <p>Encontrar la palabra secreta (en español; con el idioma en inglés, en inglés).</p>
         <h3>Reglas</h3>
         <ul>
           <li>
@@ -37,12 +37,12 @@ export function Rules({ locale }: { locale: Locale }) {
   return (
     <>
       <h3>Goal</h3>
-      <p>Find the secret English word.</p>
+      <p>Find the secret word (English; in Spanish when the language is set to Spanish).</p>
       <h3>Rules</h3>
       <ul>
         <li>
-          Type any English word. It gets a <strong>rank</strong>: how close it is in meaning to the
-          secret among 30,000 words. The secret is #1.
+          Type any word. It gets a <strong>rank</strong>: how close it is in meaning to the secret
+          among 30,000 words. The secret is #1.
         </li>
         <li>
           Green: rank 300 or better; yellow: up to 1,500; red: further. The list is sorted by rank

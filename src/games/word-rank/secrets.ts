@@ -22,3 +22,37 @@ truck tunnel turtle umbrella valley vampire village violin volcano wallet war wa
 whale wheel window wine winter witch wolf wood wool worm zebra`
     .split(/\s+/)
     .filter(Boolean);
+
+/**
+ * Secret words for #206 Word Rank in Spanish: common, concrete nouns (every one is in the Spanish
+ * vector vocabulary).
+ */
+export const SECRETS_ES =
+  `abeja abrigo aceite aceituna aeropuerto agua águila aguja ajo ala alfombra almohada ancla anillo
+araña árbol arena armario arroz ascensor avión azúcar azulejo balcón ballena balón banco bandera
+bañera barba barco barril bastón basura batería baúl bebé biblioteca bicicleta bigote billete
+bolígrafo bolsa bolsillo bombero bosque bota botella botón brazo bruja bufanda búho burro caballo
+cabeza cabra cacao cactus cadena café caja cajón calcetín calle cama camello camino camión camisa
+campana campo canasta cangrejo canoa caracol cárcel carne carretera carta casa casco castillo
+cebolla cebra cereza cerdo cerebro cerveza chaqueta chimenea chocolate cielo cine cinturón ciudad
+clavo coche cocina cocodrilo cohete cola colchón collar columpio cometa conejo copa corazón corbata
+cordero corona cuadro cuchara cuchillo cuerda cueva dedo delfín desierto diamante diente dinosaurio
+dragón ducha elefante enfermera escalera escoba escuela espada espejo esponja estación estatua
+estrella estufa faro fábrica flecha flor foca fresa fruta fuego fuente galleta gallina gallo garaje
+gato gigante globo gorra gorila granja grifo guante guitarra gusano hacha helado helicóptero hielo
+hierba hoja hormiga horno hospital hotel huevo hueso iglesia isla jabón jardín jarra jaula jirafa
+joya juguete ladrillo lago lámpara lápiz leche lechuga león libro limón llave lluvia lobo loro luna
+maleta manzana mapa máquina mar mariposa martillo mesa miel mochila moneda mono montaña moto muñeca
+murciélago museo naranja nave nariz nido nieve nube oficina ojo ola oreja oro oso oveja palacio
+pájaro pala palmera pan pantalón papel paraguas parque pastel patata pato payaso peine pelota pera
+perro pez piano pie piedra pimienta pingüino pintura piña pirata piscina pizza planeta plátano plato
+playa pluma policía pollo puente puerta pulpo queso radio rana ratón regalo reloj rey río robot rosa
+rueda sal sandía sartén selva serpiente silla sobre sofá sol sombrero sopa submarino tambor taza
+teatro tejado teléfono tenedor tiburón tienda tigre tetera cepillo tomate toro torre tortuga tractor
+tren trigo trompeta uva vaca vaso vela velero ventana vestido violín volcán zanahoria zapato zorro`
+    .split(/\s+/)
+    .filter(Boolean);
+
+/** The secret list for a vector language. */
+export const secretsFor = (lang: 'en' | 'es'): readonly string[] =>
+  lang === 'es' ? SECRETS_ES : SECRETS;

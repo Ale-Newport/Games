@@ -8,8 +8,10 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Rng, randomSeed } from '../../core/game-engine/random';
 import { useLatest } from '../../core/game-engine/hooks';
 import type { GameServices } from '../../core/game-engine/types';
+import { LoadError } from '../../components/LoadError';
+import { useAsset } from '../../core/assets/useAsset';
 import { createTranslator } from '../../core/i18n';
-import { loadVectors, type Vectors } from '../shared/semantic/semantic';
+import { loadVectors, semanticLang, type SemanticLang } from '../shared/semantic/semantic';
 import shared from '../shared/sudoku/SudokuGame.module.css';
 import { climberMove } from './ai';
 import {
@@ -22,6 +24,8 @@ import {
   giveUp,
   guess,
   isValidState,
+  langOf,
+  MAX_GUESSES,
   newGame,
   randomGame,
   takeHint,
@@ -33,11 +37,15 @@ import styles from './WordRank.module.css';
 
 interface Saved {
   state: RankState | null;
-  /** Finished daily games: gameNo → guesses (negative when given up). */
+  /** Finished daily games: gameNo (English) or `es:gameNo` → guesses (negative when given up). */
   daily: Record<string, number>;
 }
 
 const closeness = (rank: number) => Math.max(0.02, 1 - Math.log(rank) / Math.log(30000));
+
+/** Daily records: English keeps its original keys; each other language has its own series. */
+const dailyKey = (gameNo: number, lang: SemanticLang) =>
+  lang === 'en' ? String(gameNo) : `${lang}:${gameNo}`;
 
 export function WordRankGame({
   services,
@@ -61,7 +69,6 @@ export function WordRankGame({
       }),
     [services],
   );
-  const [vectors, setVectors] = useState<Vectors | null>(null);
   const [mode, setMode] = useState<'menu' | 'play' | 'watch'>(
     services.launchParams.mode === 'watch' ? 'watch' : 'menu',
   );
@@ -77,10 +84,14 @@ export function WordRankGame({
     stateRef.current = s;
     setStateRaw(s);
   };
+  // New games use the interface language; a game in progress keeps its own.
+  const menuLang = semanticLang(locale);
+  const lang: SemanticLang = mode !== 'menu' && state ? langOf(state) : menuLang;
+  const vectorsAsset = useAsset(() => loadVectors(lang), lang);
+  const vectors = vectorsAsset.value;
 
   useEffect(() => {
     let alive = true;
-    void loadVectors().then((v) => alive && setVectors(v));
     void slot.load().then((d) => alive && d && setSaved(d));
     return () => {
       alive = false;
@@ -107,7 +118,10 @@ export function WordRankGame({
 
   useEffect(() => {
     if (mode === 'watch' && !state && vectors) {
-      const id = window.setTimeout(() => start(randomGame(seedFor()), 'watch'), 0);
+      const id = window.setTimeout(
+        () => start(randomGame(seedFor(), MAX_GUESSES, menuLang), 'watch'),
+        0,
+      );
       return () => window.clearTimeout(id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -121,7 +135,8 @@ export function WordRankGame({
       s.gameNo !== null
         ? {
             ...savedRef.current.daily,
-            [s.gameNo]: s.status === 'won' ? s.guesses.length : -s.guesses.length,
+            [dailyKey(s.gameNo, langOf(s))]:
+              s.status === 'won' ? s.guesses.length : -s.guesses.length,
           }
         : savedRef.current.daily;
     persist({ state: null, daily });
@@ -191,6 +206,7 @@ export function WordRankGame({
   }, [mode, vectors, state?.guesses.length, state?.status]);
 
   if (!vectors) {
+    if (vectorsAsset.error) return <LoadError onRetry={vectorsAsset.retry} />;
     return (
       <div className={shared.menu}>
         <p className="muted" data-testid="wr-loading">
@@ -210,7 +226,7 @@ export function WordRankGame({
         <div className={shared.menuCard}>
           <h2 className={shared.menuTitle}>{t('title')}</h2>
           <p className="muted">{t('menu.subtitle')}</p>
-          <p className={shared.hintText}>{t('menu.english')}</p>
+          <p className={shared.hintText}>{t('menu.language')}</p>
           {resume && (
             <button
               type="button"
@@ -234,7 +250,9 @@ export function WordRankGame({
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => start(newGame(dailySecret(today), today), 'play')}
+              onClick={() =>
+                start(newGame(dailySecret(today, lang), today, MAX_GUESSES, lang), 'play')
+              }
               data-testid="wr-daily"
             >
               <CalendarDays size={16} /> {t('menu.daily', { n: today + 1 })}
@@ -242,7 +260,7 @@ export function WordRankGame({
             <button
               type="button"
               className="btn"
-              onClick={() => start(randomGame(seedFor()), 'play')}
+              onClick={() => start(randomGame(seedFor(), MAX_GUESSES, lang), 'play')}
               data-testid="wr-random"
             >
               <Shuffle size={16} /> {t('menu.random')}
@@ -250,7 +268,7 @@ export function WordRankGame({
             <button
               type="button"
               className="btn"
-              onClick={() => start(randomGame(seedFor()), 'watch')}
+              onClick={() => start(randomGame(seedFor(), MAX_GUESSES, lang), 'watch')}
               data-testid="wr-watch"
             >
               <Bot size={16} /> {t('menu.watch')}
@@ -277,7 +295,9 @@ export function WordRankGame({
                 type="button"
                 className="btn"
                 disabled={today < 1}
-                onClick={() => start(newGame(dailySecret(archiveNo), archiveNo), 'play')}
+                onClick={() =>
+                  start(newGame(dailySecret(archiveNo, lang), archiveNo, MAX_GUESSES, lang), 'play')
+                }
                 data-testid="wr-archive"
               >
                 <History size={16} /> {t('menu.archive')}
@@ -378,7 +398,10 @@ export function WordRankGame({
               type="button"
               className="btn btn-primary"
               onClick={() =>
-                start(randomGame(randomSeed() >>> 0), mode === 'watch' ? 'watch' : 'play')
+                start(
+                  randomGame(randomSeed() >>> 0, MAX_GUESSES, langOf(s)),
+                  mode === 'watch' ? 'watch' : 'play',
+                )
               }
               data-testid="wr-again"
             >

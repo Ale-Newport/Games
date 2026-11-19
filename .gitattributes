@@ -19,3 +19,4 @@ package-lock.json                     linguist-generated
 src/games/shared/world/world-50m.json linguist-generated
 src/games/shared/doodle/doodles.json  linguist-generated
 src/games/**/words.txt                linguist-generated
+src/games/shared/semantic/words-es.txt linguist-generated

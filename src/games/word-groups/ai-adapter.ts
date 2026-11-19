@@ -29,6 +29,8 @@ import { PUZZLES } from './puzzles';
 import { RULES_VERSION, RULESET_ID } from './rules-meta';
 
 export const vectors = await loadVectors();
+/** Spanish puzzles are clustered with Spanish vectors. */
+export const vectorsEs = await loadVectors('es');
 
 export interface GroupsConfig {
   puzzle?: string;
@@ -106,7 +108,7 @@ class Clusterer implements Agent<GroupsState, GroupsAction> {
     _p: number,
     _ctx: DecisionContext,
   ) {
-    return clusterMove(vectors, s);
+    return clusterMove(puzzleById(s.puzzleId).lang === 'es' ? vectorsEs : vectors, s);
   }
 }
 
@@ -123,8 +125,8 @@ export const AGENT_PRESETS: AgentPreset<GroupsState, GroupsAction>[] = [
     kind: 'heuristic',
     label: { en: 'Meaning clusterer', es: 'Agrupador por significado' },
     description: {
-      en: 'Submits the four words closest in meaning (English vectors; weak on wordplay).',
-      es: 'Envía las cuatro palabras de significado más cercano (vectores en inglés; flojo con juegos de palabras).',
+      en: 'Submits the four words closest in meaning (word vectors in the puzzle’s language; weak on wordplay).',
+      es: 'Envía las cuatro palabras de significado más cercano (vectores del idioma del reto; flojo con juegos de palabras).',
     },
     create: () => new Clusterer(),
   },

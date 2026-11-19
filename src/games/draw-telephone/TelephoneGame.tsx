@@ -9,10 +9,12 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Rng, randomSeed } from '../../core/game-engine/random';
 import { useLatest } from '../../core/game-engine/hooks';
 import type { GameServices } from '../../core/game-engine/types';
+import { LoadError } from '../../components/LoadError';
+import { useAsset } from '../../core/assets/useAsset';
 import { createTranslator } from '../../core/i18n';
-import { loadDoodles, loadModel, type Model, type Stroke } from '../shared/doodle/doodle';
+import { loadDoodles, loadModel, type Stroke } from '../shared/doodle/doodle';
 import { Sketchpad } from '../shared/doodle/Sketchpad';
-import { loadVectors, type Vectors } from '../shared/semantic/semantic';
+import { loadVectors } from '../shared/semantic/semantic';
 import shared from '../shared/sudoku/SudokuGame.module.css';
 import { botDescribe, botDraw, botSentence } from './bots';
 import {
@@ -76,10 +78,14 @@ export function TelephoneGame({
   const [now, setNow] = useState(0);
   const [albumChain, setAlbumChain] = useState(0);
   const [albumStep, setAlbumStep] = useState(0);
-  const [model, setModel] = useState<Model | null>(null);
-  const [doodles, setDoodles] = useState<Record<string, Stroke[][]> | null>(null);
-  const [vectors, setVectors] = useState<Vectors | null>(null);
+  const data = useAsset(() => Promise.all([loadModel(), loadDoodles()]));
+  const model = data.value?.[0] ?? null;
+  const doodles = data.value?.[1] ?? null;
   const stateRef = useRef<TelephoneState | null>(null);
+  // Bots read sentences with the vectors of the chain's language.
+  const vectorsLang = state?.lang ?? settings.lang;
+  const vectorsAsset = useAsset(() => loadVectors(vectorsLang), vectorsLang);
+  const vectors = vectorsAsset.value;
   const textRef = useLatest(text);
   const strokesRef = useLatest(strokes);
   const setState = (s: TelephoneState | null) => {
@@ -90,9 +96,6 @@ export function TelephoneGame({
   useEffect(() => {
     let alive = true;
     void slot.load().then((d) => alive && d && setSettings(d));
-    void loadModel().then((m) => alive && setModel(m));
-    void loadDoodles().then((d) => alive && setDoodles(d));
-    void loadVectors().then((v) => alive && setVectors(v));
     return () => {
       alive = false;
     };
@@ -292,7 +295,16 @@ export function TelephoneGame({
               </div>
             )}
           </fieldset>
-          {!loaded && <p className={shared.hintText}>{t('menu.loading')}</p>}
+          {data.error || vectorsAsset.error ? (
+            <LoadError
+              onRetry={() => {
+                if (data.error) data.retry();
+                if (vectorsAsset.error) vectorsAsset.retry();
+              }}
+            />
+          ) : (
+            !loaded && <p className={shared.hintText}>{t('menu.loading')}</p>
+          )}
           <div className={shared.menuActions}>
             <button
               type="button"

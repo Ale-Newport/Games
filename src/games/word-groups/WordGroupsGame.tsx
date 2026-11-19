@@ -9,9 +9,11 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { randomSeed } from '../../core/game-engine/random';
 import { useLatest } from '../../core/game-engine/hooks';
 import type { GameServices } from '../../core/game-engine/types';
+import { LoadError } from '../../components/LoadError';
+import { useAsset } from '../../core/assets/useAsset';
 import { createTranslator } from '../../core/i18n';
 import { useKeyboard } from '../../core/input/keyboard';
-import { loadVectors, type Vectors } from '../shared/semantic/semantic';
+import { loadVectors } from '../shared/semantic/semantic';
 import shared from '../shared/sudoku/SudokuGame.module.css';
 import { clusterMove, wordsOf } from './ai';
 import {
@@ -76,8 +78,14 @@ export function WordGroupsGame({
   const [shake, setShake] = useState(0);
   const [focus, setFocus] = useState(0);
   const [copied, setCopied] = useState(false);
-  const [vectors, setVectors] = useState<Vectors | null>(null);
   const stateRef = useRef<GroupsState | null>(null);
+  // The watching AI reads the puzzle's own language (Spanish puzzles with Spanish vectors).
+  const aiLang = state ? puzzleById(state.puzzleId).lang : lang;
+  const vectorsAsset = useAsset(
+    () => (mode === 'watch' ? loadVectors(aiLang) : Promise.resolve(null)),
+    mode === 'watch' ? aiLang : 'off',
+  );
+  const vectors = vectorsAsset.value;
   const savedRef = useLatest(saved);
   const setState = (s: GroupsState | null) => {
     stateRef.current = s;
@@ -115,15 +123,6 @@ export function WordGroupsGame({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
-
-  useEffect(() => {
-    if (mode !== 'watch' || vectors) return;
-    let alive = true;
-    void loadVectors().then((v) => alive && setVectors(v));
-    return () => {
-      alive = false;
-    };
-  }, [mode, vectors]);
 
   const flash = (f: Feedback) => {
     setToast(f);
@@ -212,6 +211,8 @@ export function WordGroupsGame({
     return () => window.clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, vectors, state?.history.length, state?.status]);
+
+  if (mode === 'watch' && vectorsAsset.error) return <LoadError onRetry={vectorsAsset.retry} />;
 
   // ---------------------------------------------------------------- menu
   if (mode === 'menu' || !state) {

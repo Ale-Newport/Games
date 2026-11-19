@@ -9,12 +9,15 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { randomSeed } from '../../core/game-engine/random';
 import { useLatest } from '../../core/game-engine/hooks';
 import type { GameServices } from '../../core/game-engine/types';
+import { LoadError } from '../../components/LoadError';
+import { useAsset } from '../../core/assets/useAsset';
 import { createTranslator } from '../../core/i18n';
-import { loadVectors, type Vectors } from '../shared/semantic/semantic';
+import { loadVectors, semanticLang, type SemanticLang } from '../shared/semantic/semantic';
 import shared from '../shared/sudoku/SudokuGame.module.css';
 import { SKILLS, operativeGuess, spymasterClue } from './bots';
 import styles from './CodeWords.module.css';
 import {
+  langOf,
   clueProblem,
   giveClue,
   guess,
@@ -57,7 +60,6 @@ export function CodeWordsGame({
       }),
     [services],
   );
-  const [vectors, setVectors] = useState<Vectors | null>(null);
   const [role, setRole] = useState<Role>(
     services.launchParams.mode === 'watch' ? 'watch' : 'operative',
   );
@@ -72,10 +74,13 @@ export function CodeWordsGame({
     stateRef.current = s;
     setStateRaw(s);
   };
+  // New boards use the interface language; a game in progress keeps its own.
+  const lang: SemanticLang = state ? langOf(state) : semanticLang(locale);
+  const vectorsAsset = useAsset(() => loadVectors(lang), lang);
+  const vectors = vectorsAsset.value;
 
   useEffect(() => {
     let alive = true;
-    void loadVectors().then((v) => alive && setVectors(v));
     void slot.load().then((d) => {
       if (!alive || !d) return;
       setRole(services.launchParams.mode === 'watch' ? 'watch' : d.role);
@@ -124,7 +129,7 @@ export function CodeWordsGame({
     setRole(r);
     setProblem('');
     setClueWord('');
-    const s = resumeState ?? newGame(randomSeed() >>> 0);
+    const s = resumeState ?? newGame(randomSeed() >>> 0, semanticLang(locale));
     setState(s);
     void slot.save({ role: r, skill, state: r === 'watch' ? null : s });
   };
@@ -181,7 +186,9 @@ export function CodeWordsGame({
   };
 
   if (!vectors)
-    return (
+    return vectorsAsset.error ? (
+      <LoadError onRetry={vectorsAsset.retry} />
+    ) : (
       <p className="muted" data-testid="cw-loading">
         {t('loading')}
       </p>
@@ -239,7 +246,7 @@ export function CodeWordsGame({
               ))}
             </div>
           </fieldset>
-          <p className={shared.hintText}>{t('menu.english')}</p>
+          <p className={shared.hintText}>{t('menu.language')}</p>
           <div className={shared.menuActions}>
             <button
               type="button"

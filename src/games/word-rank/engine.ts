@@ -2,10 +2,11 @@
  * Pure rules for #206 Word Rank (ruleset `word-rank-30k`): find the secret word. Every guess is
  * ranked against all 30,000 words of the vocabulary by meaning (vector similarity to the secret):
  * the secret is #1, its closest word #2, and so on. Hints reveal a word halfway to the secret.
+ * Games are in English or Spanish (`lang`), each with its own vocabulary and secret list.
  */
 import { Rng } from '../../core/game-engine/random';
-import { lookup, rankAll, type Vectors } from '../shared/semantic/semantic';
-import { SECRETS } from './secrets';
+import { lookup, rankAll, type SemanticLang, type Vectors } from '../shared/semantic/semantic';
+import { secretsFor } from './secrets';
 
 export const MAX_GUESSES = 500;
 /** Day 0 of the daily game numbering. */
@@ -26,24 +27,29 @@ export interface RankState {
   status: 'playing' | 'won' | 'gave-up';
   /** Guess limit (500 in play; smaller for AI episodes). */
   limit: number;
+  /** Vocabulary language; saves from before Spanish existed have none and are English. */
+  lang?: SemanticLang;
 }
+
+export const langOf = (s: RankState): SemanticLang => s.lang ?? 'en';
 
 export type Rejection = 'unknown' | 'repeat' | null;
 
 const rankCache = new Map<string, Int32Array>();
 
 export function ranksFor(v: Vectors, secret: string): Int32Array {
-  let r = rankCache.get(secret);
+  const key = `${v.lang}:${secret}`;
+  let r = rankCache.get(key);
   if (!r) {
     r = rankAll(v, v.index.get(secret)!);
-    rankCache.set(secret, r);
+    rankCache.set(key, r);
   }
   return r;
 }
 
 /** The daily secret: a fixed shuffle of the list, one word per day since the epoch. */
-export function dailySecret(gameNo: number): string {
-  const order = new Rng(20260101).shuffle(SECRETS);
+export function dailySecret(gameNo: number, lang: SemanticLang = 'en'): string {
+  const order = new Rng(lang === 'es' ? 20260102 : 20260101).shuffle(secretsFor(lang));
   return order[((gameNo % order.length) + order.length) % order.length]!;
 }
 
@@ -57,12 +63,17 @@ export function newGame(
   secret: string,
   gameNo: number | null = null,
   limit = MAX_GUESSES,
+  lang: SemanticLang = 'en',
 ): RankState {
-  return { secret, gameNo, guesses: [], hints: 0, status: 'playing', limit };
+  return { secret, gameNo, guesses: [], hints: 0, status: 'playing', limit, lang };
 }
 
-export function randomGame(seed: number, limit = MAX_GUESSES): RankState {
-  return newGame(new Rng(seed >>> 0).pick(SECRETS), null, limit);
+export function randomGame(
+  seed: number,
+  limit = MAX_GUESSES,
+  lang: SemanticLang = 'en',
+): RankState {
+  return newGame(new Rng(seed >>> 0).pick(secretsFor(lang)), null, limit, lang);
 }
 
 export function check(
@@ -138,9 +149,10 @@ export function band(rank: number): 'close' | 'warm' | 'far' {
 export function isValidState(v: unknown): v is RankState {
   if (typeof v !== 'object' || v === null) return false;
   const s = v as RankState;
+  if (s.lang !== undefined && s.lang !== 'en' && s.lang !== 'es') return false;
   return (
     typeof s.secret === 'string' &&
-    SECRETS.includes(s.secret) &&
+    secretsFor(langOf(s)).includes(s.secret) &&
     (s.gameNo === null || typeof s.gameNo === 'number') &&
     Array.isArray(s.guesses) &&
     s.guesses.every((g) => typeof g.word === 'number' && typeof g.rank === 'number') &&
