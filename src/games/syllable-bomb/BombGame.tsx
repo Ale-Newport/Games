@@ -9,6 +9,8 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Rng, randomSeed } from '../../core/game-engine/random';
 import { useLatest } from '../../core/game-engine/hooks';
 import type { GameServices } from '../../core/game-engine/types';
+import { LoadError } from '../../components/LoadError';
+import { useAsset } from '../../core/assets/useAsset';
 import { createTranslator } from '../../core/i18n';
 import { loadWordList } from '../shared/semantic/semantic';
 import shared from '../shared/sudoku/SudokuGame.module.css';
@@ -56,8 +58,12 @@ export function BombGame({
   const [watch, setWatch] = useState(services.launchParams.mode === 'watch');
   const watchRef = useLatest(watch);
   const [settings, setSettings] = useState<Settings>({ bots: 3, difficulty: 'mixed' });
-  const [all, setAll] = useState<string[] | null>(null);
-  const [common, setCommon] = useState<string[] | null>(null);
+  const words = useAsset(() => Promise.all([loadWords(), loadWordList()]));
+  const all = words.value?.[0] ?? null;
+  const common = useMemo(
+    () => words.value?.[1].filter((x) => /^[a-z]{3,15}$/.test(x)) ?? null,
+    [words.value],
+  );
   const [state, setStateRaw] = useState<BombState | null>(null);
   const [typed, setTyped] = useState('');
   const [botTyping, setBotTyping] = useState('');
@@ -73,8 +79,6 @@ export function BombGame({
   useEffect(() => {
     let alive = true;
     void slot.load().then((d) => alive && d && setSettings(d));
-    void loadWords().then((w) => alive && setAll(w));
-    void loadWordList().then((w) => alive && setCommon(w.filter((x) => /^[a-z]{3,15}$/.test(x))));
     return () => {
       alive = false;
     };
@@ -207,7 +211,9 @@ export function BombGame({
   };
 
   if (!all || !common)
-    return (
+    return words.error ? (
+      <LoadError onRetry={words.retry} />
+    ) : (
       <p className="muted" data-testid="sb-loading">
         {t('loading')}
       </p>

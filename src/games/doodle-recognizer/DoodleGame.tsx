@@ -4,8 +4,10 @@ import type { SoundSpec } from '../../core/audio/audio-engine';
 import { useLatest } from '../../core/game-engine/hooks';
 import { randomSeed } from '../../core/game-engine/random';
 import type { GameProps } from '../../core/game-engine/types';
+import { LoadError } from '../../components/LoadError';
+import { useAsset } from '../../core/assets/useAsset';
 import { createTranslator } from '../../core/i18n';
-import { classify, loadModel, type Guess, type Model, type Stroke } from '../shared/doodle/doodle';
+import { classify, loadModel, type Guess, type Stroke } from '../shared/doodle/doodle';
 import { Sketchpad } from '../shared/doodle/Sketchpad';
 import styles from './Doodle.module.css';
 import {
@@ -48,7 +50,8 @@ export function DoodleGame({ services }: GameProps) {
     () => services.saveSlot<Prefs>({ schema: 1, validate: isPrefs }),
     [services],
   );
-  const [model, setModel] = useState<Model | null>(null);
+  const modelAsset = useAsset(loadModel);
+  const model = modelAsset.value;
   const [voice, setVoice] = useState(false);
   const [game, setGame] = useState<Game | null>(null);
   const [phase, setPhase] = useState<Phase>('intro');
@@ -66,7 +69,6 @@ export function DoodleGame({ services }: GameProps) {
 
   useEffect(() => {
     let alive = true;
-    void loadModel().then((m) => alive && setModel(m));
     void slot.load().then((p) => alive && p && setVoice(p.voice));
     return () => {
       alive = false;
@@ -183,6 +185,7 @@ export function DoodleGame({ services }: GameProps) {
             </button>
             {voiceButton}
           </div>
+          {modelAsset.error ? <LoadError onRetry={modelAsset.retry} /> : null}
         </div>
       </div>
     );

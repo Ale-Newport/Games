@@ -73,6 +73,9 @@ const en: Dictionary = {
   'game.notFound': 'This game is not available yet.',
   'game.error': 'Something went wrong in this game.',
   'game.reload': 'Reload game',
+  'game.dataError':
+    'This game’s data could not be downloaded. Check your connection and try again.',
+  'game.dataRetry': 'Try again',
   'game.rules': 'How to play',
   'profile.title': 'Profile',
   'profile.name': 'Player name',
@@ -212,6 +215,9 @@ const es: Dictionary = {
   'game.notFound': 'Este juego aún no está disponible.',
   'game.error': 'Algo salió mal en este juego.',
   'game.reload': 'Recargar juego',
+  'game.dataError':
+    'No se pudieron descargar los datos de este juego. Comprueba la conexión e inténtalo de nuevo.',
+  'game.dataRetry': 'Reintentar',
   'game.rules': 'Cómo jugar',
   'profile.title': 'Perfil',
   'profile.name': 'Nombre del jugador',

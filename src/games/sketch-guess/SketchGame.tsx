@@ -10,8 +10,10 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Rng, randomSeed } from '../../core/game-engine/random';
 import { useLatest } from '../../core/game-engine/hooks';
 import type { GameServices } from '../../core/game-engine/types';
+import { LoadError } from '../../components/LoadError';
+import { useAsset } from '../../core/assets/useAsset';
 import { createTranslator } from '../../core/i18n';
-import { classify, loadDoodles, loadModel, type Model, type Stroke } from '../shared/doodle/doodle';
+import { classify, loadDoodles, loadModel, type Stroke } from '../shared/doodle/doodle';
 import { Sketchpad, partialStrokes } from '../shared/doodle/Sketchpad';
 import shared from '../shared/sudoku/SudokuGame.module.css';
 import {
@@ -84,8 +86,9 @@ export function SketchGame({
   const [doodle, setDoodle] = useState<Stroke[] | null>(null);
   const [chat, setChat] = useState<ChatLine[]>([]);
   const [typed, setTyped] = useState('');
-  const [model, setModel] = useState<Model | null>(null);
-  const [doodles, setDoodles] = useState<Record<string, Stroke[][]> | null>(null);
+  const data = useAsset(() => Promise.all([loadModel(), loadDoodles()]));
+  const model = data.value?.[0] ?? null;
+  const doodles = data.value?.[1] ?? null;
   const stateRef = useRef<SketchState | null>(null);
   const strokesRef = useLatest(strokes);
   const doodleRef = useLatest(doodle);
@@ -108,8 +111,6 @@ export function SketchGame({
   useEffect(() => {
     let alive = true;
     void slot.load().then((d) => alive && d && setSettings(d));
-    void loadModel().then((m) => alive && setModel(m));
-    void loadDoodles().then((d) => alive && setDoodles(d));
     return () => {
       alive = false;
     };
@@ -335,7 +336,11 @@ export function SketchGame({
             {seg('seconds', DRAW_TIMES, (v) => `${v} s`)}
             {seg('rounds', ROUNDS, (v) => t('menu.rounds', { n: v }))}
           </fieldset>
-          {!model || !doodles ? <p className={shared.hintText}>{t('menu.loading')}</p> : null}
+          {data.error ? (
+            <LoadError onRetry={data.retry} />
+          ) : !model || !doodles ? (
+            <p className={shared.hintText}>{t('menu.loading')}</p>
+          ) : null}
           <div className={shared.menuActions}>
             <button
               type="button"
