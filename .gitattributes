@@ -1,0 +1,21 @@
+# Normalize text files to LF in the repository and working tree, on every platform.
+* text=auto eol=lf
+
+# Binary assets: never normalize or diff as text.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.woff binary
+*.woff2 binary
+*.bin  binary
+*.zip  binary
+
+# Generated or bulk data files: keep them out of diffs' language statistics.
+docs/ROADMAP.md                       linguist-generated
+package-lock.json                     linguist-generated
+src/games/shared/world/world-50m.json linguist-generated
+src/games/shared/doodle/doodles.json  linguist-generated
+src/games/**/words.txt                linguist-generated

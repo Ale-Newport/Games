@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ale-newport.github.io/Games/sitemap.xml

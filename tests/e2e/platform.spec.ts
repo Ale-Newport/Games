@@ -75,7 +75,7 @@ test('favorites persist across reloads', async ({ page }) => {
     .getByTestId('game-card-tic-tac-toe')
     .getByRole('button', { name: 'Add to favorites' })
     .click();
-  await waitForStoredProfile(page, "p.favorites.includes('tic-tac-toe')");
+  await waitForStoredProfile(page, (p) => p.favorites.includes('tic-tac-toe'));
   await page.reload();
   await expect(
     page

@@ -25,3 +25,19 @@ CLAUDE.md
 .vscode/
 .idea/
 .cache/
+
+# secrets and credentials (the project needs none; never commit them)
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+.secrets
+gitleaks-report*.json
+
+# misc tooling caches
+.eslintcache
+*.tgz
+*.swp
+Thumbs.db
+.venv/

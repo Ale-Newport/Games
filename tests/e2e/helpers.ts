@@ -45,30 +45,46 @@ function test_project(page: Page): string {
   return width < 600 ? 'mobile' : 'desktop';
 }
 
-/** Waits until the active profile stored in IndexedDB satisfies `predicate` (persistence check). */
-export async function waitForStoredProfile(page: Page, predicate: string) {
+/** A profile record as stored in IndexedDB (only the fields tests look at). */
+export interface StoredProfile {
+  favorites: string[];
+}
+
+/**
+ * Waits until a profile stored in IndexedDB satisfies `predicate` (persistence check). The
+ * profiles are read in the page and the predicate runs in Node: the production build's
+ * Content-Security-Policy (rightly) forbids evaluating code strings in the page.
+ */
+export async function waitForStoredProfile(
+  page: Page,
+  predicate: (profile: StoredProfile) => boolean,
+) {
   await expect
     .poll(
-      () =>
-        page.evaluate(
-          (pred) =>
-            new Promise<boolean>((resolve) => {
+      async () => {
+        const profiles = await page.evaluate(
+          () =>
+            new Promise<StoredProfile[]>((resolve) => {
               const req = indexedDB.open('arcade-ai-lab');
               req.onsuccess = () => {
                 const tx = req.result.transaction('kv', 'readonly');
                 const all = tx.objectStore('kv').getAll();
                 all.onsuccess = () => {
-                  const profiles = (all.result as { data?: unknown }[])
-                    .map((r) => r?.data)
-                    .filter((d) => d && typeof d === 'object' && 'favorites' in (d as object));
-                  const test = new Function('p', `return ${pred}`) as (p: unknown) => boolean;
-                  resolve(profiles.some((p) => test(p)));
+                  resolve(
+                    (all.result as { data?: unknown }[])
+                      .map((r) => r?.data)
+                      .filter(
+                        (d): d is StoredProfile => !!d && typeof d === 'object' && 'favorites' in d,
+                      ),
+                  );
                 };
+                all.onerror = () => resolve([]);
               };
-              req.onerror = () => resolve(false);
+              req.onerror = () => resolve([]);
             }),
-          predicate,
-        ),
+        );
+        return profiles.some(predicate);
+      },
       { timeout: 5000 },
     )
     .toBe(true);
