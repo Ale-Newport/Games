@@ -261,7 +261,8 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
-  const loader = AI_BUNDLES[gameId];
+  // Own keys only: ids such as "constructor" must not resolve to Object.prototype members.
+  const loader = Object.hasOwn(AI_BUNDLES, gameId) ? AI_BUNDLES[gameId] : undefined;
   if (!loader) throw new Error(`No AI bundle registered for "${gameId}"`);
   return loader();
 }

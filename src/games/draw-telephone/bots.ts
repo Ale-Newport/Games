@@ -67,7 +67,7 @@ export function subjectOf(text: string, vectors: Vectors | null, rng: Rng): stri
     .filter((w) => w.length > 1);
   const joined = ` ${words.join(' ')} `;
   for (const cls of CLASSES) {
-    const all = CLASS_NAMES[cls]!.replace('|', '/').split('/');
+    const all = CLASS_NAMES[cls]!.split(/[|/]/);
     for (const n of all) {
       const k = n
         .toLowerCase()

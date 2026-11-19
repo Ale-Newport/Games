@@ -49,7 +49,7 @@ describe('column patience rules', () => {
     const s = blank(YUKON, {
       columns: [[c(CLUBS, 9), c(HEARTS, 8), c(SPADES, 2)], [c(DIAMONDS, 10)], [], [], [], [], []],
     });
-    expect(legalColumnsMoves(YUKON, s)).toContain('c0:0>c1'.replace('c0:0', 'c0:0')); // 9♣ 8♥ 2♠ onto 10♦
+    expect(legalColumnsMoves(YUKON, s)).toContain('c0:0>c1'); // 9♣ 8♥ 2♠ onto 10♦
     expect(applyColumnsMove(YUKON, s, 'c0:0>c1').columns[1]).toEqual([
       c(DIAMONDS, 10),
       c(CLUBS, 9),
