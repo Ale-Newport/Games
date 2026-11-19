@@ -4,6 +4,7 @@
  * (`training/scripts/build_doodles.py`) and fed to a small multilayer perceptron (784-256-128-N,
  * int8 weights) trained on human doodles from the Quick Draw dataset (Google, CC BY 4.0).
  */
+import { fetchChecked, memoizeUntilFailure } from '../../../core/assets/load';
 import meta from './model.json';
 
 export type Stroke = [number[], number[]];
@@ -151,21 +152,15 @@ async function readAsset(name: 'model.bin' | 'doodles.json'): Promise<ArrayBuffe
     name === 'model.bin'
       ? (await import('./model.bin?url')).default
       : (await import('./doodles.json?url')).default;
-  const r = await fetch(url);
+  const r = await fetchChecked(url);
   return name === 'model.bin' ? r.arrayBuffer() : r.text();
 }
 
-let modelP: Promise<Model> | null = null;
-export function loadModel(): Promise<Model> {
-  modelP ??= readAsset('model.bin').then((b) => parseModel(b as ArrayBuffer));
-  return modelP;
-}
+export const loadModel: () => Promise<Model> = memoizeUntilFailure(() =>
+  readAsset('model.bin').then((b) => parseModel(b as ArrayBuffer)),
+);
 
-let doodlesP: Promise<Record<string, Stroke[][]>> | null = null;
 /** Real human doodles (Quick Draw, CC BY 4.0) per class, for bots to draw. */
-export function loadDoodles(): Promise<Record<string, Stroke[][]>> {
-  doodlesP ??= readAsset('doodles.json').then(
-    (t) => JSON.parse(t as string) as Record<string, Stroke[][]>,
-  );
-  return doodlesP;
-}
+export const loadDoodles: () => Promise<Record<string, Stroke[][]>> = memoizeUntilFailure(() =>
+  readAsset('doodles.json').then((t) => JSON.parse(t as string) as Record<string, Stroke[][]>),
+);

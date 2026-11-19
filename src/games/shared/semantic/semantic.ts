@@ -4,6 +4,8 @@
  * domain dedication and license) by `training/scripts/build_semantic.py`. Vectors are int8 and
  * L2-normalized before quantization, so a dot product divided by 127² is the cosine similarity.
  */
+import { fetchChecked, memoizeUntilFailure } from '../../../core/assets/load';
+
 export interface Vectors {
   words: string[];
   index: Map<string, number>;
@@ -90,8 +92,6 @@ export function parseVectors(wordsText: string, bytes: ArrayBuffer): Vectors {
   return { words, index: new Map(words.map((w, i) => [w, i])), dims, data };
 }
 
-let loading: Promise<Vectors> | null = null;
-
 /** The few Node APIs used to read the files from disk in tests and tools. */
 interface NodeHost {
   process?: { versions?: { node?: string }; cwd(): string };
@@ -103,55 +103,47 @@ interface NodeFs {
 
 const host = globalThis as unknown as NodeHost;
 
-let wordsLoading: Promise<string[]> | null = null;
-
 /** Loads only the 30,000-word list (about 240 kB), without the vectors. */
-export function loadWordList(): Promise<string[]> {
-  wordsLoading ??= (async () => {
-    const proc = host.process;
-    if (proc?.versions?.node) {
-      const fsName = 'node:fs/promises';
-      const fs = (await import(/* @vite-ignore */ fsName)) as NodeFs;
-      const u = new URL('./words.txt', import.meta.url);
-      const at = u.protocol === 'file:' ? u : `${proc.cwd()}${decodeURIComponent(u.pathname)}`;
-      return (await fs.readFile(at, 'utf8')).split('\n').filter(Boolean);
-    }
-    const url = (await import('./words.txt?url')).default;
-    return (await fetch(url).then((r) => r.text())).split('\n').filter(Boolean);
-  })();
-  return wordsLoading;
-}
+export const loadWordList: () => Promise<string[]> = memoizeUntilFailure(async () => {
+  const proc = host.process;
+  if (proc?.versions?.node) {
+    const fsName = 'node:fs/promises';
+    const fs = (await import(/* @vite-ignore */ fsName)) as NodeFs;
+    const u = new URL('./words.txt', import.meta.url);
+    const at = u.protocol === 'file:' ? u : `${proc.cwd()}${decodeURIComponent(u.pathname)}`;
+    return (await fs.readFile(at, 'utf8')).split('\n').filter(Boolean);
+  }
+  const url = (await import('./words.txt?url')).default;
+  return (await (await fetchChecked(url)).text()).split('\n').filter(Boolean);
+});
 
 /** Loads the vectors once (about 5 MB, fetched on first use; read from disk under Node). */
-export function loadVectors(): Promise<Vectors> {
-  loading ??= (async () => {
-    const proc = host.process;
-    if (proc?.versions?.node) {
-      const fsName = 'node:fs/promises';
-      const fs = (await import(/* @vite-ignore */ fsName)) as NodeFs;
-      // Under jsdom test runs the module URL is http(s); resolve its path from the project root.
-      const at = (name: string) => {
-        const u = new URL(name, import.meta.url);
-        return u.protocol === 'file:' ? u : `${proc.cwd()}${decodeURIComponent(u.pathname)}`;
-      };
-      const [text, bin] = await Promise.all([
-        fs.readFile(at('./words.txt'), 'utf8'),
-        fs.readFile(at('./vectors.bin')),
-      ]);
-      return parseVectors(
-        text,
-        bin.buffer.slice(bin.byteOffset, bin.byteOffset + bin.byteLength) as ArrayBuffer,
-      );
-    }
-    const [wordsUrl, binUrl] = await Promise.all([
-      import('./words.txt?url').then((m) => m.default),
-      import('./vectors.bin?url').then((m) => m.default),
-    ]);
+export const loadVectors: () => Promise<Vectors> = memoizeUntilFailure(async () => {
+  const proc = host.process;
+  if (proc?.versions?.node) {
+    const fsName = 'node:fs/promises';
+    const fs = (await import(/* @vite-ignore */ fsName)) as NodeFs;
+    // Under jsdom test runs the module URL is http(s); resolve its path from the project root.
+    const at = (name: string) => {
+      const u = new URL(name, import.meta.url);
+      return u.protocol === 'file:' ? u : `${proc.cwd()}${decodeURIComponent(u.pathname)}`;
+    };
     const [text, bin] = await Promise.all([
-      fetch(wordsUrl).then((r) => r.text()),
-      fetch(binUrl).then((r) => r.arrayBuffer()),
+      fs.readFile(at('./words.txt'), 'utf8'),
+      fs.readFile(at('./vectors.bin')),
     ]);
-    return parseVectors(text, bin);
-  })();
-  return loading;
-}
+    return parseVectors(
+      text,
+      bin.buffer.slice(bin.byteOffset, bin.byteOffset + bin.byteLength) as ArrayBuffer,
+    );
+  }
+  const [wordsUrl, binUrl] = await Promise.all([
+    import('./words.txt?url').then((m) => m.default),
+    import('./vectors.bin?url').then((m) => m.default),
+  ]);
+  const [text, bin] = await Promise.all([
+    fetchChecked(wordsUrl).then((r) => r.text()),
+    fetchChecked(binUrl).then((r) => r.arrayBuffer()),
+  ]);
+  return parseVectors(text, bin);
+});
