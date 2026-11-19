@@ -6,6 +6,16 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- `loadAiBundle` rejects ids that are not registered games (such as `constructor`) instead of
+  resolving them to built-in object members.
+- Draw Telephone bots match every alternative name of a doodle class.
+
+### Changed
+
+- Dependabot keeps `@types/node` on the Node major used by CI.
+
 ## [1.0.0] - 2026-11-19
 
 First stable release: the complete catalog of 230 games, playable at
