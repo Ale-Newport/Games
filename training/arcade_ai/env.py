@@ -15,6 +15,27 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
+class EnvServerError(RuntimeError):
+    """An error reported by the environment server. `kind` is the JS error name."""
+
+    def __init__(self, message: str, kind: str = "Error") -> None:
+        super().__init__(message)
+        self.kind = kind
+
+
+class IllegalActionError(EnvServerError, ValueError):
+    """The action is not legal in the current state (the state is left unchanged)."""
+
+    def __init__(self, message: str, kind: str = "IllegalActionError") -> None:
+        super().__init__(message, kind)
+
+
+def _server_error(response: dict) -> EnvServerError:
+    kind = response.get("type") or "Error"
+    cls = IllegalActionError if kind == "IllegalActionError" else EnvServerError
+    return cls(response.get("error", "Unknown server error"), kind)
+
+
 class EnvServer:
     """One Node process; can host many environment handles (useful for vectorized rollouts)."""
 
@@ -33,6 +54,7 @@ class EnvServer:
         self._ids = itertools.count(1)
 
     def call(self, cmd: str, **params: Any) -> Any:
+        """Sends one command; raises EnvServerError (IllegalActionError for illegal actions)."""
         request_id = next(self._ids)
         assert self._proc.stdin and self._proc.stdout
         self._proc.stdin.write(json.dumps({"id": request_id, "cmd": cmd, **params}) + "\n")
@@ -44,8 +66,24 @@ class EnvServer:
         if response.get("id") != request_id:
             raise RuntimeError(f"Mismatched response id: {response}")
         if not response["ok"]:
-            raise RuntimeError(response["error"])
+            raise _server_error(response)
         return response["result"]
+
+    def batch(self, requests: list[tuple[str, dict]]) -> list[Any]:
+        """Runs several commands in one round trip, in order. Raises the first failure (its
+        index is in the message); requests after a failure have still been executed."""
+        payload = [{"cmd": cmd, **params} for cmd, params in requests]
+        results = self.call("batch", requests=payload)
+        for index, response in enumerate(results):
+            if not response["ok"]:
+                error = _server_error(response)
+                error.args = (f"batch request {index} ({requests[index][0]}): {error}",)
+                raise error
+        return [response["result"] for response in results]
+
+    def catalog(self, games: list[str] | None = None) -> list[dict]:
+        """Per-game capabilities (action encoding, tensors, agent presets) or a load error."""
+        return self.call("catalog", **({"games": games} if games is not None else {}))
 
     def games(self) -> list[str]:
         return self.call("list")
@@ -54,6 +92,9 @@ class EnvServer:
         if self._proc.poll() is None:
             self._proc.terminate()
             self._proc.wait(timeout=5)
+        for stream in (self._proc.stdin, self._proc.stdout):
+            if stream and not stream.closed:
+                stream.close()
 
     def __enter__(self) -> "EnvServer":
         return self

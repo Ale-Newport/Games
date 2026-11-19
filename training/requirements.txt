@@ -1,5 +1,7 @@
 # Core bridge has no third-party dependencies (standard library only).
+# Optional: arcade_ai.gym uses these when installed (Gymnasium spaces/Env, NumPy arrays):
+# gymnasium>=1.0
+# numpy>=2.0
 # Optional, for future learning agents:
 # torch>=2.4
-# numpy>=2.0
 # onnx>=1.16

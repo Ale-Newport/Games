@@ -98,11 +98,22 @@ A 100% empirical win rate is **not** a proof of optimality. Where an exact solve
 ```
 
 `training/arcade_ai/env.py` wraps it as a Python environment, so PyTorch training uses the exact
-TypeScript rules (no second simulator). Planned training pipeline (`training/README.md`):
-vectorized environments (many handles per server, several servers), self-play workers, seeded
-runs, experiment logs (JSONL), checkpoints, evaluation against baselines, and export to ONNX for
-ONNX Runtime Web. Exported models will live under `public/models/<game>/<model>/` and load on
-demand only when a user selects them.
+TypeScript rules (no second simulator).
+
+`training/arcade_ai/gym.py` adds a Gymnasium-style API (`ArcadeGymEnv`, `VectorArcadeEnv`) for
+every game with `encodeAction`/`decodeAction` and `info.actionSpaceSize`: `Discrete` actions,
+`Box` observations from `getObservationTensor` (or structured JSON observations), action masks
+from the legal actions, and `truncated` on a step limit. It is backed by the server's `gym_*`
+commands: the learner controls one seat (or every seat for self-play), the other seats are
+played by the game's own agent presets, and `CHANCE_PLAYER` nodes are sampled server-side with an
+RNG seeded from the episode seed, so each `step` returns at the learner's next turn and seeded
+episodes are reproducible. `catalog` lists each game's capabilities and `batch` runs several
+commands per round trip. Gymnasium and NumPy stay optional; see `training/README.md`.
+
+Planned training pipeline (`training/README.md`): parallel self-play across several server
+processes, seeded runs, experiment logs (JSONL), checkpoints, evaluation against baselines, and
+export to ONNX for ONNX Runtime Web. Exported models will live under
+`public/models/<game>/<model>/` and load on demand only when a user selects them.
 
 ## 6. AI Lab (in the platform)
 
