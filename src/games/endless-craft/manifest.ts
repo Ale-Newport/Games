@@ -11,8 +11,8 @@ export const manifest: GameManifest = {
     es: 'Empieza con agua, fuego, viento y tierra y combina hasta llegar a dragones y robots.',
   },
   description: {
-    en: 'A drag-and-drop crafting sandbox: drop one element on another to make something new, from steam and mud to life, cities, rockets, wizards and memes. 225 elements and 377 recipes in an original recipe book, with search, hints, keyboard play and auto-saved progress.',
-    es: 'Un sandbox de creación con arrastrar y soltar: suelta un elemento sobre otro para crear algo nuevo, del vapor y el barro a la vida, las ciudades, los cohetes, los magos y los memes. 225 elementos y 377 recetas en un libro de recetas original, con búsqueda, pistas, juego con teclado y progreso guardado automáticamente.',
+    en: 'A drag-and-drop crafting sandbox: drop one element on another to make something new, from steam and mud to life, cities, rockets, wizards and memes. 491 elements and 883 recipes in an original recipe book, with search, hints, keyboard play and auto-saved progress.',
+    es: 'Un sandbox de creación con arrastrar y soltar: suelta un elemento sobre otro para crear algo nuevo, del vapor y el barro a la vida, las ciudades, los cohetes, los magos y los memes. 491 elementos y 883 recetas en un libro de recetas original, con búsqueda, pistas, juego con teclado y progreso guardado automáticamente.',
   },
   category: 'viral',
   genre: { en: 'Sandbox', es: 'Sandbox' },
@@ -51,6 +51,16 @@ export const manifest: GameManifest = {
       id: 'found-150',
       title: { en: 'World Builder', es: 'Constructor de mundos' },
       description: { en: 'Discover 150 elements.', es: 'Descubre 150 elementos.' },
+    },
+    {
+      id: 'found-250',
+      title: { en: 'Master Crafter', es: 'Maestro artesano' },
+      description: { en: 'Discover 250 elements.', es: 'Descubre 250 elementos.' },
+    },
+    {
+      id: 'found-400',
+      title: { en: 'Grand Alchemist', es: 'Gran alquimista' },
+      description: { en: 'Discover 400 elements.', es: 'Descubre 400 elementos.' },
     },
     {
       id: 'dragon',

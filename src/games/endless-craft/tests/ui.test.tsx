@@ -2,7 +2,10 @@
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createTestServices } from '../../../core/game-engine/test-services';
+import { ELEMENT_IDS } from '../engine';
 import { Game } from '../Game';
+
+const count = (n: number) => new RegExp(`${n} / ${ELEMENT_IDS.length}`);
 
 afterEach(() => {
   cleanup();
@@ -19,12 +22,12 @@ describe('Endless Craft UI', () => {
     const { services, calls } = createTestServices();
     const view = render(<Game services={services} />);
     await act(async () => {});
-    expect(screen.getByTestId('ec-count').textContent).toMatch(/4 \/ 225/);
+    expect(screen.getByTestId('ec-count').textContent).toMatch(count(4));
     // Combine the starting water and fire chips by tapping one then the other.
     tap(screen.getByTestId('ec-chip-water'));
     tap(screen.getByTestId('ec-chip-fire'));
     expect(screen.getByTestId('ec-toast').textContent).toMatch(/New discovery: ♨️ Steam/);
-    expect(screen.getByTestId('ec-count').textContent).toMatch(/5 \/ 225/);
+    expect(screen.getByTestId('ec-count').textContent).toMatch(count(5));
     expect(screen.getByTestId('ec-item-steam')).toBeTruthy();
     expect(calls.achievements).toContain('first');
     // Tap a list item to place it, then use the keyboard to combine.
@@ -50,9 +53,9 @@ describe('Endless Craft UI', () => {
     // The save restores progress; reset starts over.
     render(<Game services={services} />);
     await act(async () => {});
-    expect(screen.getByTestId('ec-count').textContent).toMatch(/6 \/ 225/);
+    expect(screen.getByTestId('ec-count').textContent).toMatch(count(6));
     vi.spyOn(window, 'confirm').mockReturnValue(true);
     fireEvent.click(screen.getByTestId('ec-reset'));
-    expect(screen.getByTestId('ec-count').textContent).toMatch(/4 \/ 225/);
+    expect(screen.getByTestId('ec-count').textContent).toMatch(count(4));
   });
 });

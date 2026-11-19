@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { describeAdapterContract } from '../../../ai/protocols/contract-suite';
-import { AGENT_PRESETS, BUDGET, craftActions, env } from '../ai-adapter';
-import { RECIPE_ROWS } from '../data';
+import { AGENT_PRESETS, BUDGET, craftActions, env, isLegalAction } from '../ai-adapter';
+import { BASICS, ELEMENT_ROWS, RECIPE_ROWS } from '../data';
 import {
   combine,
   combineIds,
@@ -10,6 +10,7 @@ import {
   ELEMENT_IDS,
   ELEMENTS,
   isCraft,
+  MADE_FROM,
   moveChip,
   newCraft,
   place,
@@ -36,6 +37,27 @@ describe('Endless Craft recipe book', () => {
       expect(e.emoji.length).toBeGreaterThan(0);
       expect(e.en.length).toBeGreaterThan(0);
       expect(e.es.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('is a large book with distinct, complete names in both languages', () => {
+    expect(ELEMENT_IDS.length).toBeGreaterThanOrEqual(450);
+    expect(RECIPES.size).toBeGreaterThanOrEqual(850);
+    const en = new Set<string>();
+    const es = new Set<string>();
+    for (const line of ELEMENT_ROWS.trim().split('\n')) {
+      const fields = line.split('|');
+      expect(fields, line).toHaveLength(4);
+      for (const f of fields) expect(f.trim(), line).toBe(f);
+      for (const f of fields) expect(f.length, line).toBeGreaterThan(0);
+    }
+    for (const e of Object.values(ELEMENTS)) {
+      expect(e.id).toMatch(/^[a-z_]+$/);
+      expect(en.has(e.en.toLowerCase()), e.en).toBe(false);
+      expect(es.has(e.es.toLowerCase()), e.es).toBe(false);
+      en.add(e.en.toLowerCase());
+      es.add(e.es.toLowerCase());
+      if (!BASICS.includes(e.id)) expect(MADE_FROM.get(e.id), e.id).toBeDefined();
     }
   });
 
@@ -101,6 +123,24 @@ describe('Endless Craft environment', () => {
       );
     expect(c.found).toHaveLength(ELEMENT_IDS.length);
     expect(c.tried.length).toBeLessThanOrEqual(BUDGET);
+  });
+
+  it('checks legality exactly like the list of legal actions', () => {
+    let c = env.createInitialState({}, 1);
+    c = env.applyAction(c, 'fire+water');
+    const legal = new Set(craftActions(c));
+    for (const a of [
+      'fire+water',
+      'water+fire',
+      'earth+steam',
+      'steam+steam',
+      'fire+lake',
+      'a+b+c',
+      'fire',
+    ])
+      expect(isLegalAction(c, a), a).toBe(legal.has(a));
+    expect(legal.has('earth+steam')).toBe(true);
+    expect(() => env.applyAction(c, 'fire+water')).toThrow();
   });
 });
 

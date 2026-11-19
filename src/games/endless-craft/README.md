@@ -6,21 +6,23 @@ every pair; this static version uses a hand-written book, so not every pair make
 
 | File            | Role                                                                   |
 | --------------- | ---------------------------------------------------------------------- |
-| `data.ts`       | The recipe book: 225 elements (emoji, English, Spanish), 377 recipes   |
+| `data.ts`       | The recipe book: 491 elements (emoji, English, Spanish), 883 recipes   |
 | `engine.ts`     | Pure rules: workspace chips, combining, discoveries, reachability      |
 | `CraftGame.tsx` | Crafting space, drag and drop, list with search and sort, hints, saves |
-| `ai-adapter.ts` | Environment (300 combinations per episode) and three agents            |
+| `ai-adapter.ts` | Environment (600 combinations per episode) and three agents            |
 
 ## Specification
 
-### Ruleset (`endless-craft-book-1`)
+### Ruleset (`endless-craft-book-2`)
 
 - You start with Water, Fire, Wind and Earth (as chips on the space and in the list).
 - Dropping a chip onto another (centres within 46 px) combines the two elements: if the recipe
   book has the pair (in either order), both chips become the result where the target chip was; a
   result not in your list is a discovery and joins it. Otherwise nothing happens.
-- Every one of the 225 elements is reachable from the four basics (checked by a test); the book
-  has 377 recipes, with alternatives for many elements.
+- Every one of the 491 elements is reachable from the four basics (checked by a test); the book
+  has 883 recipes, with alternatives for most elements. It covers nature, weather and seasons,
+  plants and animals, food, materials and tools, buildings, transport, technology, science,
+  space, music, sport and folklore.
 - Chips can be moved, duplicated (double click or D), removed (right click, Delete, or dragging
   back onto the list) and cleared. A hint names one ingredient of an element you can already make.
 - Progress (discoveries, chips, pairs tried) is saved automatically (`schema 1`). Leaving records
@@ -31,12 +33,12 @@ every pair; this static version uses a hand-written book, so not every pair make
 `Craft`: discoveries in order, chips (id, element, position as fractions of the space), next id,
 pairs tried, the last combination (pair, result, whether new). The AI environment's actions are
 untried pairs of discovered elements (`a+b`); an episode ends when everything is found or after
-300 combinations; the return is the number of elements discovered.
+600 combinations; the return is the number of elements discovered.
 
 ### Agents
 
 Random (any untried pair), Curious (tries everything with its newest discovery first) and Recipe
-book (knows the book — an upper bound that finds all 225 within the budget).
+book (knows the book — an upper bound that finds all 491 within the budget).
 
 ### Controls
 
@@ -53,16 +55,16 @@ a new discovery and nothing happening. All names in English and Spanish (search 
 
 ### Simplifications
 
-A fixed recipe book instead of a language model: about 380 working pairs rather than an
+A fixed recipe book instead of a language model: 883 working pairs rather than an
 unbounded space, so most random pairs do nothing (the hint helps). No global "first discovery"
 across players.
 
 ### Achievements
 
-first, found-25, found-50, found-100, found-150, dragon, ai, all.
+first, found-25, found-50, found-100, found-150, found-250, found-400, dragon, ai, all.
 
 ### Tests
 
-`tests/engine.test.ts` (book consistency and reachability, order-free combining, discoveries,
+`tests/engine.test.ts` (book consistency and reachability, distinct names in both languages, order-free combining, discoveries,
 repeats, unknown pairs, chip operations, validation, the recipe-book agent finding everything,
-adapter contract), `tests/ui.test.tsx`, `tests/e2e/games/endless-craft.spec.ts`.
+legality checks, adapter contract), `tests/ui.test.tsx`, `tests/e2e/games/endless-craft.spec.ts`.

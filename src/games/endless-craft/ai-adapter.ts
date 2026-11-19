@@ -1,5 +1,5 @@
 /**
- * The AI environment: one session per episode with a budget of 300 combinations. Each action
+ * The AI environment: one session per episode with a budget of 600 combinations. Each action
  * combines two discovered elements not tried together before (`a+b`). Reward: elements discovered.
  */
 import { RandomAgent } from '../../ai/agents/random-agent';
@@ -11,10 +11,11 @@ import {
   type GameEnvironment,
   type Outcome,
 } from '../../ai/protocols/types';
-import { combine, combineIds, ELEMENT_IDS, isCraft, newCraft, pairKey, type Craft } from './engine';
+import { combineIds, ELEMENT_IDS, isCraft, newCraft, pairKey, RECIPES, type Craft } from './engine';
 import { RULES_VERSION, RULESET_ID } from './rules-meta';
 
-export const BUDGET = 300;
+/** Enough for the recipe book agent to discover every element (one discovery per combination). */
+export const BUDGET = 600;
 
 const done = (c: Craft) => c.found.length === ELEMENT_IDS.length || c.tried.length >= BUDGET;
 
@@ -28,6 +29,14 @@ export function craftActions(c: Craft): string[] {
       if (!tried.has(k)) out.push(k);
     }
   return out;
+}
+
+/** Whether `a` is a legal action, without listing every pair of discoveries. */
+export function isLegalAction(c: Craft, a: string): boolean {
+  if (done(c)) return false;
+  const [x, y, extra] = a.split('+');
+  if (x === undefined || y === undefined || extra !== undefined) return false;
+  return pairKey(x, y) === a && c.found.includes(x) && c.found.includes(y) && !c.tried.includes(a);
 }
 
 function outcome(c: Craft): Outcome | null {
@@ -58,7 +67,7 @@ export const env: GameEnvironment<Craft, string, Craft, Record<string, never>> =
   getObservation: (c) => c,
   getLegalActions: craftActions,
   applyAction: (c, a) => {
-    if (!craftActions(c).includes(a)) throw new IllegalActionError(`Illegal action ${a}`);
+    if (!isLegalAction(c, a)) throw new IllegalActionError(`Illegal action ${a}`);
     const [x, y] = a.split('+');
     return combineIds(c, x!, y!);
   },
@@ -96,14 +105,14 @@ class Oracle implements Agent<Craft, string> {
   readonly id = 'recipe-book';
   readonly label = 'Recipe book';
   selectAction(_e: GameEnvironment<Craft, string>, c: Craft, _p: number, _ctx: DecisionContext) {
-    const legal = craftActions(c);
     const found = new Set(c.found);
-    const useful = legal.find((k) => {
+    const tried = new Set(c.tried);
+    for (const [k, out] of RECIPES) {
+      if (found.has(out) || tried.has(k)) continue;
       const [a, b] = k.split('+');
-      const out = combine(a!, b!);
-      return out !== null && !found.has(out);
-    });
-    return useful ?? legal[0]!;
+      if (found.has(a!) && found.has(b!)) return k;
+    }
+    return craftActions(c)[0]!;
   }
 }
 

@@ -3,7 +3,7 @@ import { expectNoHorizontalOverflow, freshStart, screenshot } from '../helpers';
 
 test('Endless Craft: drag water onto fire to make steam', async ({ page }) => {
   await freshStart(page, '/game/endless-craft');
-  await expect(page.getByTestId('ec-count')).toContainText('4 / 225');
+  await expect(page.getByTestId('ec-count')).toContainText(/\b4 \/ \d+/);
   const water = page.getByTestId('ec-chip-water');
   const fire = page.getByTestId('ec-chip-fire');
   const from = (await water.boundingBox())!;
@@ -14,7 +14,7 @@ test('Endless Craft: drag water onto fire to make steam', async ({ page }) => {
   await page.mouse.move(to.x + to.width / 2, to.y + to.height / 2, { steps: 6 });
   await page.mouse.up();
   await expect(page.getByTestId('ec-toast')).toContainText('Steam');
-  await expect(page.getByTestId('ec-count')).toContainText('5 / 225');
+  await expect(page.getByTestId('ec-count')).toContainText(/\b5 \/ \d+/);
   // Drag a new element out of the list onto the space.
   const item = page.getByTestId('ec-item-earth');
   const space = (await page.getByTestId('ec-space').boundingBox())!;

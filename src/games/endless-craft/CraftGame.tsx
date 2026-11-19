@@ -44,6 +44,8 @@ const MILESTONES: [number, string][] = [
   [50, 'found-50'],
   [100, 'found-100'],
   [150, 'found-150'],
+  [250, 'found-250'],
+  [400, 'found-400'],
 ];
 
 interface Drag {
