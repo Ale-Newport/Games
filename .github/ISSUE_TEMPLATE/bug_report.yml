@@ -1,0 +1,55 @@
+name: Bug report
+description: Something in a game or the platform does not work as it should.
+title: '[Bug] '
+labels: [bug, needs triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. Security problems must **not** be filed here:
+        use [private vulnerability reporting](https://github.com/Ale-Newport/Games/security/advisories/new) instead.
+  - type: input
+    id: game
+    attributes:
+      label: Game or page
+      description: The game id from the URL (for example `#/game/chess` → `chess`), or the page (Library, AI Lab, Settings…).
+      placeholder: chess
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you saw, and what you expected to see instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Mode, difficulty, seed or deal number (`?deal=N`) if the game shows one, and the moves that lead to the problem.
+      placeholder: |
+        1. Open Chess, mode "vs computer", difficulty "hard"
+        2. Play 1. e4 e5 2. Nf3 …
+        3. …
+    validations:
+      required: true
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device
+      options: [Desktop, Phone, Tablet]
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Firefox 133, Safari 18 on iOS, Chrome 131…
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots, console errors, anything else
+      description: Drag images in here. Browser console errors (F12) are very helpful.

@@ -1,0 +1,59 @@
+name: Release
+
+# Tags can only be created by the maintainer (see the "Tags: owner only" ruleset). Pushing a
+# vX.Y.Z tag publishes a GitHub Release whose notes are that version's CHANGELOG.md section,
+# with the static build attached for self-hosting.
+on:
+  push:
+    tags: ['v[0-9]+.[0-9]+.[0-9]+']
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    name: Publish GitHub Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - name: Version matches package.json
+        run: |
+          expected="v$(node -p "require('./package.json').version")"
+          if [ "$GITHUB_REF_NAME" != "$expected" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match package.json ($expected)"; exit 1
+          fi
+      - name: Release notes from CHANGELOG.md
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          awk -v v="$version" '
+            $0 ~ "^## \\[" v "\\]" { found = 1; next }
+            found && /^## \[/ { exit }
+            found { print }
+          ' CHANGELOG.md > release-notes.md
+          if [ ! -s release-notes.md ]; then echo "CHANGELOG.md has no section for $version"; exit 1; fi
+      - run: npm ci
+      - run: npm run build
+      - name: Package the static site
+        run: |
+          (cd dist && zip -qr "../arcade-ai-lab-${GITHUB_REF_NAME}-static-site.zip" .)
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            echo "Release $GITHUB_REF_NAME already exists"; exit 0
+          fi
+          gh release create "$GITHUB_REF_NAME" \
+            --verify-tag \
+            --title "Arcade AI Lab $GITHUB_REF_NAME" \
+            --notes-file release-notes.md \
+            "arcade-ai-lab-${GITHUB_REF_NAME}-static-site.zip"

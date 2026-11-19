@@ -1,0 +1,33 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    labels: [dependencies]
+    commit-message:
+      prefix: 'chore(deps)'
+    groups:
+      # Patch and minor bumps land together in one weekly pull request.
+      npm-minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # three.js breaks APIs between minor versions (0.x); upgrade it by hand with the 3D games.
+      - dependency-name: three
+        update-types: [version-update:semver-minor]
+      - dependency-name: '@types/three'
+        update-types: [version-update:semver-minor]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    labels: [dependencies, github-actions]
+    commit-message:
+      prefix: 'ci(deps)'
+    groups:
+      actions:
+        patterns: ['*']

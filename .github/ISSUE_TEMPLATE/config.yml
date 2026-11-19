@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and help
+    url: https://github.com/Ale-Newport/Games/discussions/categories/q-a
+    about: Ask how something works, or get help running the project locally.
+  - name: Ideas
+    url: https://github.com/Ale-Newport/Games/discussions/categories/ideas
+    about: Float an idea before turning it into a feature request.
+  - name: Report a security vulnerability
+    url: https://github.com/Ale-Newport/Games/security/advisories/new
+    about: Report privately. Please do not open a public issue for security problems.
