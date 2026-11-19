@@ -14,6 +14,9 @@ updates:
       npm-minor-and-patch:
         update-types: [minor, patch]
     ignore:
+      # @types/node follows the Node major used in CI and engines (24); bump it with the runtime.
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
       # three.js breaks APIs between minor versions (0.x); upgrade it by hand with the 3D games.
       - dependency-name: three
         update-types: [version-update:semver-minor]
