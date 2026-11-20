@@ -41,3 +41,18 @@ gitleaks-report*.json
 *.swp
 Thumbs.db
 .venv/
+
+# promotional drafts and internal notes (kept locally, never published)
+LAUNCH*.md
+launch/
+docs/launch/
+/NEXT_STEPS.md
+/PROGRESS.md
+
+# other AI-assistant / editor configs
+CLAUDE.local.md
+.cursor/
+.windsurf/
+.aider*
+.codex/
+.gemini/
