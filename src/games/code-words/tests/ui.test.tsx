@@ -18,8 +18,12 @@ describe('Code Words UI', () => {
     // On a slow machine the opposing bots may still be playing: wait for our clue form, and
     // query it afresh each time (it re-renders when the turn changes).
     await screen.findByTestId('cw-clue-form', undefined, { timeout: 20_000 });
+    // A word the bots have not revealed yet (revealed words are legal clues).
+    const hidden = Array.from({ length: 25 }, (_, i) => screen.getByTestId(`cw-card-${i}`)).find(
+      (c) => c.getAttribute('data-open') !== 'true',
+    )!;
     fireEvent.change(screen.getByTestId('cw-clue-word'), {
-      target: { value: cards[0]!.textContent },
+      target: { value: hidden.textContent },
     });
     fireEvent.submit(screen.getByTestId('cw-clue-form'));
     expect((await screen.findByTestId('cw-problem')).textContent).toMatch(/board/);
