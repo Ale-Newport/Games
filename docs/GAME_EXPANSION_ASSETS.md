@@ -18,5 +18,7 @@ map layout or faction design of a commercial game is used; board games get origi
 | #233 | Sounds                        | `src/games/order-of-magnitude/sounds.ts`      | Synthesized (Web Audio parameters)        |
 | #234 | Preview, range scale          | `src/games/rough-guess/`                      | Hand-authored SVG / CSS                   |
 | #234 | Sounds                        | `src/games/rough-guess/sounds.ts`             | Synthesized (Web Audio parameters)        |
+| #235 | Preview, target, scoreboard   | `src/games/closest-call/`                     | Hand-authored SVG / CSS                   |
+| #235 | Sounds                        | `src/games/closest-call/sounds.ts`            | Synthesized (Web Audio parameters)        |
 
 Third-party data: see `docs/GAME_EXPANSION_DATA.md`.

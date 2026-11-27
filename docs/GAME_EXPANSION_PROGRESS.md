@@ -5,8 +5,8 @@ Counts (updated 2026-11-27):
 - Baseline games (verified: registered, COMPLETE, own e2e spec each): **230**
 - Requested: 36 — of which 2 already existed (#120 Word Guess = Wordle, #209 Country Shape =
   Worldle), so **34 new games** are planned (#231–#264)
-- New games completed: **4**
-- Total playable games: **234**
+- New games completed: **5**
+- Total playable games: **235**
 
 Only games that are COMPLETE by `docs/game-standards.md` count. Nothing below “done” is
 playable in production (unregistered games are not shown in the library).
@@ -17,7 +17,7 @@ playable in production (unregistered games are not shown in the library).
 | 232 | Size Sense (Size It Up-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 233 | Order of Magnitude (Magnitudle)      | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 234 | Rough Guess (Roughly-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 235 | Closest Call (Bullseye-style)        | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 235 | Closest Call (Bullseye-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 236 | Plot the Point (Factual-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 237 | Price Check (Asking Price-style)     | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 238 | Clue Ladder (Tenfold-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -64,3 +64,7 @@ playable in production (unregistered games are not shown in the library).
 - 2026-11-27 — **#234 Rough Guess COMPLETE**: range answers on log scales with calibration;
   World Bank Pink Sheet prices (1,948 commodity-years), 118 elements, 137,550 city pairs and the
   #233 bank; calibrated AI 325.6 / 1000.
+- 2026-11-28 — **#235 Closest Call COMPLETE**: 2–4 contestant estimation contest (people and/or
+  computer players), turn order with visible answers, ring target, closest bonus, 8 rounds of rising
+  difficulty; computer contestants with honest beliefs and expected-points play (Hard > Normal >
+  Easy > Random in duels).

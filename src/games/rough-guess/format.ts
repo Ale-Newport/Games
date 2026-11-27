@@ -23,22 +23,23 @@ export function formatValue(
   v: number,
   locale: string,
   t: Translator,
+  digits = 3,
 ): string {
   switch (q.kind) {
     case 'price':
-      return `US$${num(v, locale)}${PRICE_UNIT[q.unit ?? ''] ?? ''}`;
+      return `US$${num(v, locale, digits)}${PRICE_UNIT[q.unit ?? ''] ?? ''}`;
     case 'distance':
-      return `${num(v, locale)} km`;
+      return `${num(v, locale, digits)} km`;
     case 'melting':
     case 'boiling':
       // Rounded to hundredths: 10^log10(273.15) − 273.15 is 1e-14, not 0.
       return `${num(Math.round((v - 273.15) * 100) / 100 || 0, locale, 4)} °C`;
     case 'density':
-      return `${num(v, locale)} g/cm³`;
+      return `${num(v, locale, digits)} g/cm³`;
     case 'atomic-mass':
       return `${num(v, locale, 4)} u`;
     default:
-      return `${num(v, locale)} ${t(`u.short.${q.kind}`)}`;
+      return `${num(v, locale, digits)} ${t(`u.short.${q.kind}`)}`;
   }
 }
 

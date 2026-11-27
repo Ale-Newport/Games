@@ -112,3 +112,24 @@ printed as 1e-14 (rounding); a lint finding in the prior computation.
 
 `npm run verify`: lint ✔, typecheck ✔, Vitest 558 files / 4,491 tests ✔, build ✔, Playwright
 **816 passed** (desktop + Pixel 7).
+
+## #235 Closest Call
+
+| Suite                                      | Result                                                  |
+| ------------------------------------------ | ------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 20 passed                                               |
+| `tests/ui.test.tsx` (jsdom, fake timers)   | 2 passed                                                |
+| `tests/e2e/games/closest-call.spec.ts`     | 4 passed (2 tests × desktop/mobile)                     |
+| `npm run evaluate` (60 games, seed 7)      | Hard 48–6 Normal · Normal 48–9 Easy · Easy 42–17 Random |
+
+Manual play (dev server): a daily game and custom line-ups. Defects fixed: every arrow drew
+black (seat colour not set on the target's groups); computer contestants tied each other exactly
+— candidates were scored unrounded but answered rounded to 4 figures, so “the mean” rounded onto
+the previous answer (now scored as answered; a test checks four distinct answers); answers were
+shown with 3 figures, hiding 1 % differences (now 4); the evaluation tool needs ±1 returns
+(points moved to `scores`).
+
+## Full gate after #235 (2026-11-28)
+
+`npm run verify`: lint ✔, typecheck ✔, Vitest 560 files / 4,513 tests ✔, build ✔, Playwright
+**820 passed**.
