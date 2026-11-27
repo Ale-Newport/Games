@@ -16,6 +16,8 @@ const CATEGORY_RANGES: [CategoryId, number, number][] = [
   ['dice', 141, 165],
   ['arcade', 166, 200],
   ['viral', 201, 230],
+  ['estimation', 231, 246],
+  ['tabletop', 247, 264],
 ];
 
 describe('roadmap', () => {

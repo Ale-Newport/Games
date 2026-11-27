@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 230 / 230 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 0
+**Complete:** 231 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 33
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -271,3 +271,47 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 228 | Idle Bakery (Cookie Clicker-style) | `idle-bakery` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 229 | When & Where (WenWare-style) | `when-and-where` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
 | 230 | Painted Night Ride (Starry Nightrider-style) | `painted-night-ride` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-17 |  |
+
+## Guessing, Estimation & Daily Challenges
+
+| # | Game | ID | Status | Engine | Graphics | Content | Tests | AI | Completed | Known issues |
+|---:|---|---|---|:-:|:-:|:-:|:-:|:-:|---|---|
+| 231 | Graph Forecast (Extraplot-style) | `graph-forecast` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-27 |  |
+| 232 | Size Sense (Size It Up-style) | `size-sense` | TODO | — | — | — | — | — |  |  |
+| 233 | Order of Magnitude (Magnitudle-style) | `order-of-magnitude` | TODO | — | — | — | — | — |  |  |
+| 234 | Rough Guess (Roughly-style) | `rough-guess` | TODO | — | — | — | — | — |  |  |
+| 235 | Closest Call (Bullseye-style) | `closest-call` | TODO | — | — | — | — | — |  |  |
+| 236 | Plot the Point (Factual-style) | `plot-the-point` | TODO | — | — | — | — | — |  |  |
+| 237 | Price Check (Asking Price-style) | `price-check` | TODO | — | — | — | — | — |  |  |
+| 238 | Clue Ladder (Tenfold-style) | `clue-ladder` | TODO | — | — | — | — | — |  |  |
+| 239 | Year Guess (Time Clocker-style) | `year-guess` | TODO | — | — | — | — | — |  |  |
+| 240 | One-Star Landmarks (One Star-style) | `one-star-landmarks` | TODO | — | — | — | — | — |  |  |
+| 241 | Fact Match (Decoydle-style) | `fact-match` | TODO | — | — | — | — | — |  |  |
+| 242 | Aerial Eye (Analyst Eye-style) | `aerial-eye` | TODO | — | — | — | — | — |  |  |
+| 243 | Number Line (Spanzo-style) | `number-line` | TODO | — | — | — | — | — |  |  |
+| 244 | Trend Draw (Trendle-style) | `trend-draw` | TODO | — | — | — | — | — |  |  |
+| 245 | Gap Graph (Daily Graph-style) | `gap-graph` | TODO | — | — | — | — | — |  |  |
+| 246 | Equation Guess (Nerdle-style) | `equation-guess` | TODO | — | — | — | — | — |  |  |
+
+## Strategy & Modern Board Games
+
+| # | Game | ID | Status | Engine | Graphics | Content | Tests | AI | Completed | Known issues |
+|---:|---|---|---|:-:|:-:|:-:|:-:|:-:|---|---|
+| 247 | Hex Isles (Catan-style) | `hex-isles` | TODO | — | — | — | — | — |  |  |
+| 248 | World Conquest (Risk-style) | `world-conquest` | TODO | — | — | — | — | — |  |  |
+| 249 | Land Baron (Monopoly-style) | `land-baron` | TODO | — | — | — | — | — |  |  |
+| 250 | Tile Realm (Carcassonne-style) | `tile-realm` | TODO | — | — | — | — | — |  |  |
+| 251 | Fading Empires (Small World-style) | `fading-empires` | TODO | — | — | — | — | — |  |  |
+| 252 | Global Front (Axis & Allies-style) | `global-front` | TODO | — | — | — | — | — |  |  |
+| 253 | Star Council (Twilight Imperium-style) | `star-council` | TODO | — | — | — | — | — |  |  |
+| 254 | Planet Shapers (Terraforming Mars-style) | `planet-shapers` | TODO | — | — | — | — | — |  |  |
+| 255 | Farmstead (Agricola-style) | `farmstead` | TODO | — | — | — | — | — |  |  |
+| 256 | Iron Fields (Scythe-style) | `iron-fields` | TODO | — | — | — | — | — |  |  |
+| 257 | Trade League (Concordia-style) | `trade-league` | TODO | — | — | — | — | — |  |  |
+| 258 | Ages of Nations (Through the Ages-style) | `ages-of-nations` | TODO | — | — | — | — | — |  |  |
+| 259 | Wonder Draft (7 Wonders-style) | `wonder-draft` | TODO | — | — | — | — | — |  |  |
+| 260 | Rise of Cultures (Clash of Cultures-style) | `rise-of-cultures` | TODO | — | — | — | — | — |  |  |
+| 261 | Rail Routes (Ticket to Ride-style) | `rail-routes` | TODO | — | — | — | — | — |  |  |
+| 262 | Reef Dominion (Root-style) | `reef-dominion` | TODO | — | — | — | — | — |  |  |
+| 263 | Guild Ascendancy (Dune: Imperium-style) | `guild-ascendancy` | TODO | — | — | — | — | — |  |  |
+| 264 | Stellar Expanse (Eclipse-style) | `stellar-expanse` | TODO | — | — | — | — | — |  |  |

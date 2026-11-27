@@ -14,6 +14,8 @@ test('Wanderer Rescue: pick a level, switch skills and end it early', async ({ p
 });
 
 test('Wanderer Rescue: watch the AI clear the first level', async ({ page }) => {
+  // The level plays in real time (~27–29 s); the default 30 s test budget left no margin.
+  test.setTimeout(60_000);
   await freshStart(page, '/game/rescue-walkers?mode=watch&deal=2');
   await expect(page.getByTestId('wr-hud-hud.level')).toHaveText('2/12', { timeout: 40_000 });
 });

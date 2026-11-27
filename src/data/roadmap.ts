@@ -1,5 +1,6 @@
 /**
- * The game development roadmap (catalog 001–200 classics, 201+ viral web games).
+ * The game development roadmap (catalog 001–200 classics, 201–230 viral web games, 231–246
+ * guessing and estimation games, 247–264 modern strategy board games).
  *
  * This file is the single source of truth for development status. ROADMAP.md is generated from it
  * (`npm run roadmap`) and tests/platform/roadmap.test.ts validates it against the game registry.
@@ -9,7 +10,16 @@
  * Keep this module dependency-free so Node tooling can import it directly.
  */
 
-export type CategoryId = 'board' | 'strategy' | 'cards' | 'puzzle' | 'dice' | 'arcade' | 'viral';
+export type CategoryId =
+  | 'board'
+  | 'strategy'
+  | 'cards'
+  | 'puzzle'
+  | 'dice'
+  | 'arcade'
+  | 'viral'
+  | 'estimation'
+  | 'tabletop';
 
 export type DevStatus = 'TODO' | 'IN_PROGRESS' | 'TESTING' | 'COMPLETE' | 'BLOCKED';
 
@@ -40,6 +50,8 @@ export const CATEGORY_NAMES: Record<CategoryId, string> = {
   dice: 'Dice, Dominoes, Chance & Social',
   arcade: 'Arcade, Platformers & Physics',
   viral: 'Viral Web, Word & Party Games',
+  estimation: 'Guessing, Estimation & Daily Challenges',
+  tabletop: 'Strategy & Modern Board Games',
 };
 
 type Def = [number, string, string, CategoryId];
@@ -288,6 +300,46 @@ const DEFINITIONS: Def[] = [
   [228, 'idle-bakery', 'Idle Bakery (Cookie Clicker-style)', 'viral'],
   [229, 'when-and-where', 'When & Where (WenWare-style)', 'viral'],
   [230, 'painted-night-ride', 'Painted Night Ride (Starry Nightrider-style)', 'viral'],
+
+  // Category H — Guessing, estimation and daily challenges (231–246). Word Guess (#120) and
+  // Country Shape (#209) already cover the Wordle- and Worldle-style games of this set.
+  [231, 'graph-forecast', 'Graph Forecast (Extraplot-style)', 'estimation'],
+  [232, 'size-sense', 'Size Sense (Size It Up-style)', 'estimation'],
+  [233, 'order-of-magnitude', 'Order of Magnitude (Magnitudle-style)', 'estimation'],
+  [234, 'rough-guess', 'Rough Guess (Roughly-style)', 'estimation'],
+  [235, 'closest-call', 'Closest Call (Bullseye-style)', 'estimation'],
+  [236, 'plot-the-point', 'Plot the Point (Factual-style)', 'estimation'],
+  [237, 'price-check', 'Price Check (Asking Price-style)', 'estimation'],
+  [238, 'clue-ladder', 'Clue Ladder (Tenfold-style)', 'estimation'],
+  [239, 'year-guess', 'Year Guess (Time Clocker-style)', 'estimation'],
+  [240, 'one-star-landmarks', 'One-Star Landmarks (One Star-style)', 'estimation'],
+  [241, 'fact-match', 'Fact Match (Decoydle-style)', 'estimation'],
+  [242, 'aerial-eye', 'Aerial Eye (Analyst Eye-style)', 'estimation'],
+  [243, 'number-line', 'Number Line (Spanzo-style)', 'estimation'],
+  [244, 'trend-draw', 'Trend Draw (Trendle-style)', 'estimation'],
+  [245, 'gap-graph', 'Gap Graph (Daily Graph-style)', 'estimation'],
+  [246, 'equation-guess', 'Equation Guess (Nerdle-style)', 'estimation'],
+
+  // Category I — Modern strategy board games (247–264): original themes, maps, cards and
+  // factions built on the mechanics of the named genre-defining games.
+  [247, 'hex-isles', 'Hex Isles (Catan-style)', 'tabletop'],
+  [248, 'world-conquest', 'World Conquest (Risk-style)', 'tabletop'],
+  [249, 'land-baron', 'Land Baron (Monopoly-style)', 'tabletop'],
+  [250, 'tile-realm', 'Tile Realm (Carcassonne-style)', 'tabletop'],
+  [251, 'fading-empires', 'Fading Empires (Small World-style)', 'tabletop'],
+  [252, 'global-front', 'Global Front (Axis & Allies-style)', 'tabletop'],
+  [253, 'star-council', 'Star Council (Twilight Imperium-style)', 'tabletop'],
+  [254, 'planet-shapers', 'Planet Shapers (Terraforming Mars-style)', 'tabletop'],
+  [255, 'farmstead', 'Farmstead (Agricola-style)', 'tabletop'],
+  [256, 'iron-fields', 'Iron Fields (Scythe-style)', 'tabletop'],
+  [257, 'trade-league', 'Trade League (Concordia-style)', 'tabletop'],
+  [258, 'ages-of-nations', 'Ages of Nations (Through the Ages-style)', 'tabletop'],
+  [259, 'wonder-draft', 'Wonder Draft (7 Wonders-style)', 'tabletop'],
+  [260, 'rise-of-cultures', 'Rise of Cultures (Clash of Cultures-style)', 'tabletop'],
+  [261, 'rail-routes', 'Rail Routes (Ticket to Ride-style)', 'tabletop'],
+  [262, 'reef-dominion', 'Reef Dominion (Root-style)', 'tabletop'],
+  [263, 'guild-ascendancy', 'Guild Ascendancy (Dune: Imperium-style)', 'tabletop'],
+  [264, 'stellar-expanse', 'Stellar Expanse (Eclipse-style)', 'tabletop'],
 ];
 
 /**
@@ -2367,6 +2419,15 @@ const PROGRESS: Record<
     tests: 'done',
     ai: 'done',
     completed: '2026-11-17',
+  },
+  'graph-forecast': {
+    status: 'COMPLETE',
+    engine: 'done',
+    graphics: 'done',
+    content: 'done',
+    tests: 'done',
+    ai: 'done',
+    completed: '2026-11-27',
   },
 };
 

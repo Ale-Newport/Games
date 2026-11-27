@@ -15,6 +15,8 @@ const CATEGORIES: CategoryId[] = [
   'dice',
   'arcade',
   'viral',
+  'estimation',
+  'tabletop',
 ];
 
 export function HomePage() {

@@ -18,6 +18,8 @@ const CATEGORIES: CategoryId[] = [
   'dice',
   'arcade',
   'viral',
+  'estimation',
+  'tabletop',
 ];
 type Sort = 'number' | 'name' | 'recent';
 type PlayerFilter = 'solo' | 'multi' | 'ai';
