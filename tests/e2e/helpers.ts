@@ -130,7 +130,7 @@ export const sessionAt = (count: number) => (v: unknown) => {
       session?: {
         count?: number;
         status?: string;
-        rounds?: { guess?: unknown; pred?: unknown; locked?: boolean }[];
+        rounds?: { guess?: unknown; pred?: unknown; locked?: boolean; range?: unknown }[];
       };
     }
   )?.session;
@@ -139,6 +139,6 @@ export const sessionAt = (count: number) => (v: unknown) => {
     s?.count === count &&
     s.status === 'playing' &&
     !!last &&
-    (last.guess === null || last.pred === null || last.locked === false)
+    (last.guess === null || last.pred === null || last.locked === false || last.range === null)
   );
 };

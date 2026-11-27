@@ -46,6 +46,15 @@ its license in `docs/asset-licenses.md`.
   length) next to its preferred, part-qualified 6,650 km — hence the rule above.
 - 5,101 questions; 354 KB JSON, lazy-loaded.
 
+## Prices, elements, cities (`src/games/rough-guess/data.json`, #234)
+
+- World Bank Commodity Price Data (Pink Sheet), CMO-Historical-Data-Monthly.xlsx (CC BY 4.0,
+  updated 3 Nov 2026), downloaded to `.cache/worldbank/pinksheet/` from thedocs.worldbank.org
+  (URL in `tools/fetch-rough.ts`); annual averages of complete years for 30 commodities.
+- Wikidata (CC0): element melting/boiling points, densities, atomic masses (unit-converted,
+  agreement-checked; gas densities and helium's melting point dropped as ill-defined); city
+  coordinates for computed great-circle distances.
+
 ## Candidate sources for upcoming games (not yet downloaded)
 
 Each will be checked for license, CORS (not needed: data is prepackaged) and reliability before

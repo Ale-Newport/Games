@@ -237,6 +237,7 @@ import { manifest as paintedNightRide } from './painted-night-ride/manifest';
 import { manifest as graphForecast } from './graph-forecast/manifest';
 import { manifest as sizeSense } from './size-sense/manifest';
 import { manifest as orderOfMagnitude } from './order-of-magnitude/manifest';
+import { manifest as roughGuess } from './rough-guess/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -472,6 +473,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: graphForecast, load: () => import('./graph-forecast/index') },
   { manifest: sizeSense, load: () => import('./size-sense/index') },
   { manifest: orderOfMagnitude, load: () => import('./order-of-magnitude/index') },
+  { manifest: roughGuess, load: () => import('./rough-guess/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

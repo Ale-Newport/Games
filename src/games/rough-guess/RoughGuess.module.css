@@ -1,0 +1,521 @@
+.loading {
+  margin: var(--space-6) auto;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding-bottom: var(--space-4);
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 8px 12px;
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--screen);
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  line-height: 1.8;
+  color: var(--accent-2);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 4px solid var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow:
+    inset 0 0 0 2px var(--border-strong),
+    4px 4px 0 var(--ink);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--space-3);
+  row-gap: 2px;
+  align-items: baseline;
+}
+
+.head > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.flag {
+  flex: none;
+  width: 40px;
+  height: 30px;
+  margin-top: 2px;
+  object-fit: cover;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+}
+
+.globe {
+  flex: none;
+  margin: 4px 9px 0;
+  color: var(--accent-2);
+}
+
+.indicator {
+  margin: 0;
+  font-size: var(--text-lg);
+  line-height: 1.25;
+}
+
+.entity {
+  margin: 2px 0 0;
+  font-weight: 600;
+}
+
+.years {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.unit {
+  margin: 2px 0 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* ---------- play controls ---------- */
+
+.hint,
+.keys {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.keys {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+.warn {
+  margin: 0;
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.actions [aria-disabled='true'] {
+  opacity: 0.6;
+}
+
+/* ---------- reveal ---------- */
+
+.reveal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  animation: rise var(--dur-med) var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.scoreRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  padding: var(--space-2) var(--space-3);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+
+.score small {
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  color: var(--text-muted);
+}
+
+.score strong {
+  font-family: var(--font-pixel);
+  font-size: 2rem;
+  line-height: 1.5;
+}
+
+.score[data-grade='5'] strong,
+.score[data-grade='4'] strong {
+  color: var(--success);
+}
+
+.score[data-grade='3'] strong {
+  color: var(--accent-2);
+}
+
+.score[data-grade='2'] strong {
+  color: var(--warning);
+}
+
+.score[data-grade='1'] strong,
+.score[data-grade='0'] strong {
+  color: var(--danger);
+}
+
+.score span {
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.facts {
+  flex: 1;
+  min-width: 200px;
+}
+
+.facts p {
+  margin: 0 0 4px;
+}
+
+.beat {
+  color: var(--success);
+  font-weight: 700;
+}
+
+.source {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+/* ---------- menu ---------- */
+
+.modeCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+
+.modeCard h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.modeCard > :global(.btn) {
+  align-self: flex-start;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.stats div {
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.stats dt {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.stats dd {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+.hist {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  height: 72px;
+}
+
+.histCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2px;
+}
+
+.histBar {
+  width: 100%;
+  min-height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--accent);
+}
+
+.histCol small {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+/* ---------- results ---------- */
+
+.bigTotal {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 1.6rem;
+  color: var(--accent-2);
+}
+
+.roundList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.roundList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--surface-2);
+}
+
+.roundList span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.roundList small {
+  color: var(--text-muted);
+}
+
+.roundList b {
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+}
+
+.roundList li[data-grade='5'] b,
+.roundList li[data-grade='4'] b {
+  color: var(--success);
+}
+
+.roundList li[data-grade='1'] b,
+.roundList li[data-grade='0'] b {
+  color: var(--danger);
+}
+
+@media (max-width: 520px) {
+  .card {
+    padding: var(--space-3) 10px;
+  }
+
+  .indicator {
+    font-size: var(--text-md);
+  }
+
+  .flag {
+    width: 32px;
+    height: 24px;
+  }
+}
+
+/* ---------- rough guess ---------- */
+
+.kind {
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  color: var(--accent-2);
+  text-transform: uppercase;
+}
+
+.name {
+  margin: 4px 0 0;
+  font-size: var(--text-lg);
+  line-height: 1.25;
+}
+
+.question {
+  margin: 2px 0 0;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.unit {
+  margin: 2px 0 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.scaleBox {
+  width: 100%;
+}
+
+.scale {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: ew-resize;
+}
+
+.scale[data-disabled='true'] {
+  cursor: default;
+}
+
+.scaleBg {
+  fill: var(--screen);
+}
+
+.track {
+  stroke: rgb(238 240 255 / 45%);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.tickLine {
+  stroke: rgb(238 240 255 / 55%);
+  stroke-width: 1.5;
+}
+
+.tick {
+  fill: rgb(238 240 255 / 80%);
+  font-family: var(--font-body);
+  font-size: 11px;
+  text-anchor: middle;
+}
+
+.band {
+  fill: var(--accent);
+  opacity: 0.45;
+}
+
+.band[data-hit='true'] {
+  fill: var(--success);
+  opacity: 0.6;
+}
+
+.band[data-hit='false'] {
+  fill: var(--danger);
+  opacity: 0.55;
+}
+
+:root[data-colorblind='on'] .band[data-hit='true'] {
+  fill: var(--player-2);
+}
+
+.handle {
+  cursor: ew-resize;
+  outline: none;
+}
+
+.handle rect {
+  fill: var(--surface);
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+.handle line {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.handle:focus-visible rect {
+  stroke: #ffd23f;
+  stroke-width: 4;
+}
+
+.scale[data-disabled='true'] .handle {
+  opacity: 0.6;
+}
+
+.answerLine {
+  stroke: #ffd23f;
+  stroke-width: 2;
+}
+
+.star {
+  fill: #ffd23f;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  animation: drop 0.4s ease-out both;
+}
+
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star {
+    animation: none;
+  }
+}
+
+.readout {
+  margin: 0;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.readout small {
+  display: block;
+  color: var(--text-muted);
+}
+
+.score[data-hit='true'] strong {
+  color: var(--success);
+}
+
+.score[data-hit='false'] strong {
+  color: var(--danger);
+}

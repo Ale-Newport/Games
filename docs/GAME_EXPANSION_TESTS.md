@@ -93,3 +93,22 @@ pointer-move handlers of Size Sense's stage and Graph Forecast's chart read the
 dragging/drawing flag from React state, so moves arriving before the re-render were ignored and
 a fast drag on a slow device could do nothing. Fixed with a ref read by the handlers in both
 games. Re-run: the three new games' specs 24/24 (two repeats); full Playwright **812 passed**.
+
+## #234 Rough Guess
+
+| Suite                                      | Result                                             |
+| ------------------------------------------ | -------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 21 passed                                          |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed                                           |
+| `tests/e2e/games/rough-guess.spec.ts`      | 4 passed (2 tests × desktop/mobile)                |
+| `npm run evaluate` (100 sessions, seed 7)  | Calibrated 325.6 · Random 75.3 · Play it safe 74.1 |
+
+Manual play (dev server): desktop and 375×812 — handle drags, band drag, keyboard handles, a
+miss and the reveal. Defects fixed: question headers overflowed on phones (fixed in #232, #233
+and #234 CSS); Celsius ticks fell on round kelvin values (now round °C, spaced by pixels); 0 °C
+printed as 1e-14 (rounding); a lint finding in the prior computation.
+
+## Full gate after #234 (2026-11-27)
+
+`npm run verify`: lint ✔, typecheck ✔, Vitest 558 files / 4,491 tests ✔, build ✔, Playwright
+**816 passed** (desktop + Pixel 7).

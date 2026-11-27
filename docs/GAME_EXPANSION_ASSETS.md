@@ -16,5 +16,7 @@ map layout or faction design of a commercial game is used; board games get origi
 | #232 | Sounds                        | `src/games/size-sense/sounds.ts`              | Synthesized (Web Audio parameters)        |
 | #233 | Preview, ruler, dials         | `src/games/order-of-magnitude/`               | Hand-authored SVG / CSS                   |
 | #233 | Sounds                        | `src/games/order-of-magnitude/sounds.ts`      | Synthesized (Web Audio parameters)        |
+| #234 | Preview, range scale          | `src/games/rough-guess/`                      | Hand-authored SVG / CSS                   |
+| #234 | Sounds                        | `src/games/rough-guess/sounds.ts`             | Synthesized (Web Audio parameters)        |
 
 Third-party data: see `docs/GAME_EXPANSION_DATA.md`.

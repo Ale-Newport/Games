@@ -5,8 +5,8 @@ Counts (updated 2026-11-27):
 - Baseline games (verified: registered, COMPLETE, own e2e spec each): **230**
 - Requested: 36 — of which 2 already existed (#120 Word Guess = Wordle, #209 Country Shape =
   Worldle), so **34 new games** are planned (#231–#264)
-- New games completed: **3**
-- Total playable games: **233**
+- New games completed: **4**
+- Total playable games: **234**
 
 Only games that are COMPLETE by `docs/game-standards.md` count. Nothing below “done” is
 playable in production (unregistered games are not shown in the library).
@@ -16,7 +16,7 @@ playable in production (unregistered games are not shown in the library).
 | 231 | Graph Forecast (Extraplot-style)     | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 232 | Size Sense (Size It Up-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 233 | Order of Magnitude (Magnitudle)      | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 234 | Rough Guess (Roughly-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 234 | Rough Guess (Roughly-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 235 | Closest Call (Bullseye-style)        | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 236 | Plot the Point (Factual-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 237 | Price Check (Asking Price-style)     | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -61,3 +61,6 @@ playable in production (unregistered games are not shown in the library).
 - 2026-11-27 — **#233 Order of Magnitude COMPLETE**: 5,101 verified quantities (Wikidata +
   World Bank + #232 sizes), scientific-notation answers, banded higher/lower feedback, magnitude
   ruler with feasible range, three tries, AI env (Informed 387.9 / 500).
+- 2026-11-27 — **#234 Rough Guess COMPLETE**: range answers on log scales with calibration;
+  World Bank Pink Sheet prices (1,948 commodity-years), 118 elements, 137,550 city pairs and the
+  #233 bank; calibrated AI 325.6 / 1000.
