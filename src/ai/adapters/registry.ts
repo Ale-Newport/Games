@@ -259,6 +259,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'painted-night-ride': () =>
     import('../../games/painted-night-ride/ai-adapter').then((m) => m.bundle),
   'graph-forecast': () => import('../../games/graph-forecast/ai-adapter').then((m) => m.bundle),
+  'size-sense': () => import('../../games/size-sense/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

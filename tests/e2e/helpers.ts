@@ -89,3 +89,52 @@ export async function waitForStoredProfile(
     )
     .toBe(true);
 }
+
+/**
+ * Waits until some record stored in IndexedDB (a profile or a game save, at any depth of its
+ * `data`) satisfies `predicate` — e.g. before reloading to test resume. The predicate runs in Node
+ * (the page's CSP forbids evaluating code strings).
+ */
+export async function waitForStored(page: Page, predicate: (value: unknown) => boolean) {
+  const matches = (v: unknown, depth = 0): boolean => {
+    if (predicate(v)) return true;
+    if (depth > 3 || typeof v !== 'object' || v === null) return false;
+    return Object.values(v).some((x) => matches(x, depth + 1));
+  };
+  await expect
+    .poll(
+      async () => {
+        const values = await page.evaluate(
+          () =>
+            new Promise<unknown[]>((resolve) => {
+              const req = indexedDB.open('arcade-ai-lab');
+              req.onsuccess = () => {
+                const all = req.result.transaction('kv', 'readonly').objectStore('kv').getAll();
+                all.onsuccess = () => resolve(all.result as unknown[]);
+                all.onerror = () => resolve([]);
+              };
+              req.onerror = () => resolve([]);
+            }),
+        );
+        return values.some((v) => matches(v));
+      },
+      { timeout: 5000 },
+    )
+    .toBe(true);
+}
+
+/** True for a saved session that has scored `count` rounds and waits on its next one. */
+export const sessionAt = (count: number) => (v: unknown) => {
+  const s = (
+    v as {
+      session?: { count?: number; status?: string; rounds?: { guess?: unknown; pred?: unknown }[] };
+    }
+  )?.session;
+  const last = s?.rounds?.at(-1);
+  return (
+    s?.count === count &&
+    s.status === 'playing' &&
+    !!last &&
+    (last.guess === null || last.pred === null)
+  );
+};

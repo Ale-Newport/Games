@@ -1,5 +1,11 @@
 import { expect, test, type Page } from '@playwright/test';
-import { expectNoHorizontalOverflow, freshStart, screenshot } from '../helpers';
+import {
+  expectNoHorizontalOverflow,
+  freshStart,
+  screenshot,
+  sessionAt,
+  waitForStored,
+} from '../helpers';
 
 /** Draws a freehand stroke across the hidden zone, to the right edge, with real pointer moves. */
 async function drawForecast(page: Page, wobble: number) {
@@ -64,6 +70,8 @@ test('Graph Forecast: endless run with the keyboard, resumed after a reload', as
   await expect(page.getByTestId('gf-reveal')).toBeVisible();
   await page.getByTestId('gf-next').click();
   const indicator = await page.getByTestId('gf-indicator').textContent();
+  // The save is asynchronous (IndexedDB): wait for it before reloading.
+  await waitForStored(page, sessionAt(1));
   await page.reload();
   await page.getByTestId('gf-resume').click();
   await expect(page.getByTestId('gf-indicator')).toHaveText(indicator!);

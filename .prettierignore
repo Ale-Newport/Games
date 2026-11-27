@@ -7,3 +7,4 @@ playwright-report
 docs/ROADMAP.md
 # generated data (tools/generate-stats.ts)
 src/games/shared/stats/wdi.json
+src/games/size-sense/objects.json

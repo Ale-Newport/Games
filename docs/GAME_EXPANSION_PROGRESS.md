@@ -5,8 +5,8 @@ Counts (updated 2026-11-27):
 - Baseline games (verified: registered, COMPLETE, own e2e spec each): **230**
 - Requested: 36 — of which 2 already existed (#120 Word Guess = Wordle, #209 Country Shape =
   Worldle), so **34 new games** are planned (#231–#264)
-- New games completed: **1**
-- Total playable games: **231**
+- New games completed: **2**
+- Total playable games: **232**
 
 Only games that are COMPLETE by `docs/game-standards.md` count. Nothing below “done” is
 playable in production (unregistered games are not shown in the library).
@@ -14,7 +14,7 @@ playable in production (unregistered games are not shown in the library).
 | #   | Game                                 | Research | Engine | Content | Graphics | AI   | Tests | Integrated | Status   |
 | --- | ------------------------------------ | -------- | ------ | ------- | -------- | ---- | ----- | ---------- | -------- |
 | 231 | Graph Forecast (Extraplot-style)     | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 232 | Size Sense (Size It Up-style)        | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 232 | Size Sense (Size It Up-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 233 | Order of Magnitude (Magnitudle)      | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 234 | Rough Guess (Roughly-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 235 | Closest Call (Bullseye-style)        | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -55,3 +55,6 @@ playable in production (unregistered games are not shown in the library).
   `tabletop`; catalog entries #231–#264 (TODO, not playable). Shared real-data module
   `src/games/shared/stats/` (World Bank WDI, 7,615 series, CC BY 4.0) and forecasting library.
   **#231 Graph Forecast COMPLETE.**
+- 2026-11-27 — **#232 Size Sense COMPLETE**: 5,716 Wikidata measurements (21 families,
+  consistency + plausibility validated), 25 original silhouettes, true-scale auto-zooming stage,
+  daily + endless, metric/imperial, AI env (Typical size 287.6 / 500).

@@ -44,3 +44,28 @@ the AI clear the first level”): the level plays in real time in 27–29 s agai
 test budget, so it failed under load (3 of 4 isolated runs with the dev server running; 4 of 4
 passed with it stopped). Fixed test-only with `test.setTimeout(60_000)`; rerun of that spec, the
 Graph Forecast spec and the platform spec: 21 passed. No game code outside #231 was changed.
+
+## #232 Size Sense
+
+| Suite                                      | Result                                                      |
+| ------------------------------------------ | ----------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 22 passed                                                   |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed                                                    |
+| `tests/e2e/games/size-sense.spec.ts`       | 4 passed (2 tests × desktop/mobile)                         |
+| `npm run evaluate` (200 sessions, seed 7)  | Typical size 287.6 · Same as reference 194.0 · Random 116.0 |
+
+Manual play (dev server): daily on desktop (vertical, horizontal and disc stages), endless space
+on a 375×812 viewport with the keyboard. Defects found and fixed: the real size hidden behind a
+larger guess (now drawn on top of a translucent guess); a category chosen just before Start was
+ignored (stale state); coins had no reference on their axis (added a 120 mm CD); length rows
+were top-heavy with the size above the name (centred, name first); a ref read during render
+(lint).
+
+## Full gate after #232 (2026-11-27)
+
+`npm run verify`: lint ✔, typecheck ✔, Vitest 554 files / 4,443 tests ✔, build ✔, Playwright
+806 passed / 2 failed — both the new Size Sense resume test (desktop + mobile): under full load
+the page reloaded before the asynchronous IndexedDB save finished, so it resumed one step
+earlier. Fixed in the tests with `waitForStored(page, sessionAt(1))` (new helper in
+`tests/e2e/helpers.ts`, also applied to Graph Forecast's resume test). Re-run: those specs 24/24
+over three repeats; full Playwright suite **808 passed**; format and lint clean.

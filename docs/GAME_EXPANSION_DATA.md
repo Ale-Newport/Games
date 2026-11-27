@@ -24,6 +24,16 @@ its license in `docs/asset-licenses.md`.
 - Indicator metadata (topic, bilingual short titles, units, format, volatility class, bounds):
   `src/games/shared/stats/indicators.ts`.
 
+## Object dimensions (`src/games/size-sense/objects.json`, #232)
+
+- Wikidata Query Service (CC0), 2026-11-27; queries in `tools/size-queries.ts` (one per family;
+  the generic “ship” class and a subclass walk over “coin” timed out, so ships are fetched per
+  type and coins by direct class). `tools/fetch-sizes.ts` honours HTTP 429 `Retry-After`.
+- Validation (`tools/generate-sizes.ts`): no part-qualified statements (except “mean”, which wins),
+  preferred rank wins, values agree within 5 %, plausible range per family, known units only.
+- 5,716 objects; 525 with ≥ 30 sitelinks, 2,587 with ≥ 15. 425 KB JSON, 126 KB gzipped, lazy.
+- Spot checks in tests: Burj Khalifa, Golden Gate Bridge, Jupiter, Earth, Moon (within 1 %).
+
 ## Candidate sources for upcoming games (not yet downloaded)
 
 Each will be checked for license, CORS (not needed: data is prepackaged) and reliability before
