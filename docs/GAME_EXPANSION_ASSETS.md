@@ -14,5 +14,7 @@ map layout or faction design of a commercial game is used; board games get origi
 | #232 | Preview illustration          | `src/games/size-sense/assets/preview.svg`     | Hand-authored SVG                         |
 | #232 | 25 object silhouettes         | `src/games/size-sense/Silhouettes.tsx`        | Original SVG paths drawn for this project |
 | #232 | Sounds                        | `src/games/size-sense/sounds.ts`              | Synthesized (Web Audio parameters)        |
+| #233 | Preview, ruler, dials         | `src/games/order-of-magnitude/`               | Hand-authored SVG / CSS                   |
+| #233 | Sounds                        | `src/games/order-of-magnitude/sounds.ts`      | Synthesized (Web Audio parameters)        |
 
 Third-party data: see `docs/GAME_EXPANSION_DATA.md`.

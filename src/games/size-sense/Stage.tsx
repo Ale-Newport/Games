@@ -91,6 +91,8 @@ export function Stage({
   // The displayed scale eases towards the fitting one (frozen while dragging).
   const [scale, setScale] = useState(fit);
   const [dragging, setDragging] = useState(false);
+  // Handlers read the ref: moves can arrive before React re-renders with the new state.
+  const dragRef = useRef(false);
   const scaleRef = useLatest(scale);
   const fitRef = useLatest(fit);
   useEffect(() => {
@@ -155,17 +157,19 @@ export function Stage({
     if (revealed || (e.pointerType === 'mouse' && e.button !== 0)) return;
     e.preventDefault();
     svgRef.current?.setPointerCapture(e.pointerId);
+    dragRef.current = true;
     setDragging(true);
     const m = toMetres(e);
     if (m) onGuess(m);
   };
   const move = (e: PointerEvent<SVGSVGElement>) => {
-    if (!dragging || revealed) return;
+    if (!dragRef.current || revealed) return;
     const m = toMetres(e);
     if (m) onGuess(m);
   };
   const up = () => {
     // Ending the drag re-runs the easing effect towards the new fit.
+    dragRef.current = false;
     setDragging(false);
   };
   const guessRef = useLatest(guess);

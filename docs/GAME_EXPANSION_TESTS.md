@@ -69,3 +69,27 @@ the page reloaded before the asynchronous IndexedDB save finished, so it resumed
 earlier. Fixed in the tests with `waitForStored(page, sessionAt(1))` (new helper in
 `tests/e2e/helpers.ts`, also applied to Graph Forecast's resume test). Re-run: those specs 24/24
 over three repeats; full Playwright suite **808 passed**; format and lint clean.
+
+## #233 Order of Magnitude
+
+| Suite                                        | Result                                                      |
+| -------------------------------------------- | ----------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract)   | 23 passed (incl. a 3,000-case feasible-range property test) |
+| `tests/ui.test.tsx` (jsdom)                  | 2 passed                                                    |
+| `tests/e2e/games/order-of-magnitude.spec.ts` | 4 passed (2 tests × desktop/mobile)                         |
+| `npm run evaluate` (200 sessions, seed 7)    | Informed 387.9 · Bisector 354.8 · Random 46.8               |
+
+Manual play (dev server): daily on desktop and a 375×812 viewport (buttons, typed number,
+auto-lock on an exact third guess). Defects fixed: the feedback arrow wrapped onto its own line;
+85 × 0.7 rounded to 59 (float epsilon added); Easy had only 28 engineering questions (threshold
+lowered from 60 to 45 sitelinks); the key hint wrongly said Shift ×10; Nile/Amazon lengths wrong
+in the first build (data rule fixed, see the data doc).
+
+## Full gate after #233 (2026-11-27)
+
+`npm run verify`: lint ✔, typecheck ✔, Vitest 556 files / 4,468 tests ✔, build ✔, Playwright
+811/812 — Size Sense's pointer test failed once on mobile under load. Cause (a real bug): the
+pointer-move handlers of Size Sense's stage and Graph Forecast's chart read the
+dragging/drawing flag from React state, so moves arriving before the re-render were ignored and
+a fast drag on a slow device could do nothing. Fixed with a ref read by the handlers in both
+games. Re-run: the three new games' specs 24/24 (two repeats); full Playwright **812 passed**.

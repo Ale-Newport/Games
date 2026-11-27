@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 232 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 32
+**Complete:** 233 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 31
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -278,7 +278,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 |---:|---|---|---|:-:|:-:|:-:|:-:|:-:|---|---|
 | 231 | Graph Forecast (Extraplot-style) | `graph-forecast` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-27 |  |
 | 232 | Size Sense (Size It Up-style) | `size-sense` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-27 |  |
-| 233 | Order of Magnitude (Magnitudle-style) | `order-of-magnitude` | TODO | — | — | — | — | — |  |  |
+| 233 | Order of Magnitude (Magnitudle-style) | `order-of-magnitude` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-27 |  |
 | 234 | Rough Guess (Roughly-style) | `rough-guess` | TODO | — | — | — | — | — |  |  |
 | 235 | Closest Call (Bullseye-style) | `closest-call` | TODO | — | — | — | — | — |  |  |
 | 236 | Plot the Point (Factual-style) | `plot-the-point` | TODO | — | — | — | — | — |  |  |

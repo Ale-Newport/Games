@@ -34,6 +34,18 @@ its license in `docs/asset-licenses.md`.
 - 5,716 objects; 525 with ≥ 30 sitelinks, 2,587 with ≥ 15. 425 KB JSON, 126 KB gzipped, lazy.
 - Spot checks in tests: Burj Khalifa, Golden Gate Bridge, Jupiter, Earth, Moon (within 1 %).
 
+## Quantities (`src/games/order-of-magnitude/questions.json`, #233)
+
+- Wikidata (CC0), 2026-11-27, `tools/magnitude-queries.ts`: city populations (P1082, latest
+  statement dated ≥ 1990), river lengths (P2043, “drainage system” totals accepted), mountain
+  elevations (P2044), lake / island / country areas (P2046). Raw responses can contain control
+  characters, stripped by `tools/wikidata.ts` before parsing.
+- World Bank WDI latest values (population, GDP, air passengers, tourist arrivals) and the #232
+  measurements (buildings, bridges, ships, planets, stars).
+- Found during validation: the Nile carries an unqualified 2,850 km statement (the Danube's
+  length) next to its preferred, part-qualified 6,650 km — hence the rule above.
+- 5,101 questions; 354 KB JSON, lazy-loaded.
+
 ## Candidate sources for upcoming games (not yet downloaded)
 
 Each will be checked for license, CORS (not needed: data is prepackaged) and reliability before

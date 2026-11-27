@@ -75,6 +75,8 @@ export function ForecastChart({
   const draftRef = useLatest(draft);
   const [cursor, setCursor] = useState(0);
   const [drawing, setDrawing] = useState(false);
+  // Handlers read the ref: moves can arrive before React re-renders with the new state.
+  const drawingRef = useRef(false);
 
   const L = c.to - c.from + 1;
   const first = c.cut - c.from;
@@ -101,13 +103,14 @@ export function ForecastChart({
     svgRef.current?.setPointerCapture(e.pointerId);
     const p = toData(e);
     if (!p) return;
+    drawingRef.current = true;
     setDrawing(true);
     last.current = p;
     onDraft(drawSegment(c, draftRef.current, null, p));
     onStroke?.();
   };
   const move = (e: PointerEvent<SVGSVGElement>) => {
-    if (!drawing || revealed) return;
+    if (!drawingRef.current || revealed) return;
     const p = toData(e);
     if (!p) return;
     const d = drawSegment(c, draftRef.current, last.current, p);
@@ -115,6 +118,7 @@ export function ForecastChart({
     onDraft(d);
   };
   const up = () => {
+    drawingRef.current = false;
     setDrawing(false);
     last.current = null;
   };

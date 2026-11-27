@@ -7,8 +7,8 @@ Read `docs/GAME_EXPANSION_PLAN.md` first, then this file.
 1. **Completed**: #231 Graph Forecast (`graph-forecast`). Commit: `feat(games): complete #231
 Graph Forecast`.
 2. **Tests passing**: see `docs/GAME_EXPANSION_TESTS.md` (baseline + #231 + full verify).
-3. **Current unfinished game**: none in progress. Next is **#233 Order of Magnitude** (Magnitudle-style).
-4. **Remaining**: #233–#264 (32 games), all TODO in `src/data/roadmap.ts` and unregistered.
+3. **Current unfinished game**: none in progress. Next is **#234 Rough Guess** (Roughly-style).
+4. **Remaining**: #234–#264 (31 games), all TODO in `src/data/roadmap.ts` and unregistered.
 5. **Known defects**: none open for #231. Build prints an `INEFFECTIVE_DYNAMIC_IMPORT` notice for
    `wdi.json` (the AI adapter imports it statically, the game dynamically); the data still ships in
    its own lazy chunk and never in the main bundle (checked).
@@ -20,10 +20,9 @@ Graph Forecast`.
 
 ## Next steps
 
-1. #233 Order of Magnitude: research the Magnitudle mechanic first (quantity guessed by powers of
-   ten with feedback); content can reuse `shared/stats` (World Bank values) and the #232
-   Wikidata pipeline (`tools/size-queries.ts` pattern) for physical quantities. Shared daily
-   helpers: `src/games/shared/daily/daily.tsx`.
+1. #234 Rough Guess: research Roughly's mechanic first; it must differ from #233 (one-shot
+   magnitudes with feedback) and #235 Closest Call. Reusable: `tools/wikidata.ts`, the question
+   banks of #232/#233, `shared/stats`, `shared/daily/daily.tsx`, e2e `waitForStored`.
 2. Continue in catalog order. Graph games #236, #243, #244, #245 reuse `shared/stats` (#244 and
    #245 must have their own distinct mechanics — see the plan).
 3. Board games (#247+) each need a dedicated rules engine with exhaustive rule tests, a real AI

@@ -127,7 +127,11 @@ export async function waitForStored(page: Page, predicate: (value: unknown) => b
 export const sessionAt = (count: number) => (v: unknown) => {
   const s = (
     v as {
-      session?: { count?: number; status?: string; rounds?: { guess?: unknown; pred?: unknown }[] };
+      session?: {
+        count?: number;
+        status?: string;
+        rounds?: { guess?: unknown; pred?: unknown; locked?: boolean }[];
+      };
     }
   )?.session;
   const last = s?.rounds?.at(-1);
@@ -135,6 +139,6 @@ export const sessionAt = (count: number) => (v: unknown) => {
     s?.count === count &&
     s.status === 'playing' &&
     !!last &&
-    (last.guess === null || last.pred === null)
+    (last.guess === null || last.pred === null || last.locked === false)
   );
 };
