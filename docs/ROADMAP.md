@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 237 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 27
+**Complete:** 238 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 26
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -283,7 +283,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 235 | Closest Call (Bullseye-style) | `closest-call` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 236 | Plot the Point (Factual-style) | `plot-the-point` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 237 | Price Check (Asking Price-style) | `price-check` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
-| 238 | Clue Ladder (Tenfold-style) | `clue-ladder` | TODO | — | — | — | — | — |  |  |
+| 238 | Clue Ladder (Tenfold-style) | `clue-ladder` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 239 | Year Guess (Time Clocker-style) | `year-guess` | TODO | — | — | — | — | — |  |  |
 | 240 | One-Star Landmarks (One Star-style) | `one-star-landmarks` | TODO | — | — | — | — | — |  |  |
 | 241 | Fact Match (Decoydle-style) | `fact-match` | TODO | — | — | — | — | — |  |  |

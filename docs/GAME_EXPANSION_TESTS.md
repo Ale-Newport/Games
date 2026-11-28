@@ -172,6 +172,22 @@ article requirement outside books and games); two candidate “era” agents did
 category median and were replaced by the similar-products agent; Node-only APIs in a src test
 broke the app typecheck (switched to `import.meta.glob`).
 
+## #238 Clue Ladder
+
+| Suite                                      | Result                                                 |
+| ------------------------------------------ | ------------------------------------------------------ |
+| `tests/engine.test.ts` (incl. AI contract) | 23 passed                                              |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed                                               |
+| `tests/e2e/games/clue-ladder.spec.ts`      | 4 passed (2 tests × desktop/mobile)                    |
+| `npm run evaluate` (200 sessions, seed 7)  | Clue reasoner 263.7 · Always climb 218.2 · Random 60.9 |
+
+Manual play (dev server, Spanish, desktop then mobile): Burj Khalifa climbed to rung 2 (bracket
+fact, exact guess kept for 75), resume after a reload, next question on a 375 px viewport.
+Defects found and fixed: after a keyboard guess the guess box unmounted and focus fell to the
+page, so K / C did nothing (focus now moves to Keep, and back to the guess box after a climb);
+rung multipliers were not localized (×0.75 → ×0,75); element names in the results list started
+lowercase; locked rungs took two rows on phones.
+
 ## Full gate after #237 (2026-11-28)
 
 `npm run verify`: lint ✔, typecheck ✔, Vitest 564 files / 4,560 tests ✔, build ✔, Playwright
@@ -180,3 +196,8 @@ the test retyped the shown answer, and today's daily has a figure shown compactl
 that retypes as an off-scale “46.34”, which the game correctly rejected. The test now clears the
 field and locks in the dial's value when the game shows the alert; the spec re-run passed 4/4.
 The next full gate re-runs everything.
+
+## Full gate after #238 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,585 unit tests** (566 files), build and
+**832 Playwright tests** (desktop + mobile) — all passed, exit code 0, no retries.

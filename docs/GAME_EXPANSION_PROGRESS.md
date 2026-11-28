@@ -20,7 +20,7 @@ playable in production (unregistered games are not shown in the library).
 | 235 | Closest Call (Bullseye-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 236 | Plot the Point (Factual-style)       | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 237 | Price Check (Asking Price-style)     | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 238 | Clue Ladder (Tenfold-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 238 | Clue Ladder (Tenfold-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 239 | Year Guess (Time Clocker-style)      | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 240 | One-Star Landmarks (One Star-style)  | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 241 | Fact Match (Decoydle-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -74,3 +74,6 @@ playable in production (unregistered games are not shown in the library).
 - 2026-11-28 — **#237 Price Check COMPLETE**: 1,149 verified dated prices (Wikidata, 14
   currencies), 277 credited Commons photos + original illustrations, closest / don't-go-over
   rules, today's-money context; similar-products AI 219.3 / 600.
+- 2026-11-28 — **#238 Clue Ladder COMPLETE**: five-rung ladders over the #233/#234 bank
+  (related facts, digit count, leading digit, narrow window), higher/lower feedback bands and a
+  keep-or-climb choice; clue-reasoner AI 263.7 / 500 vs 218.2 always-climb.
