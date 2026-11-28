@@ -22,7 +22,7 @@ playable in production (unregistered games are not shown in the library).
 | 237 | Price Check (Asking Price-style)     | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 238 | Clue Ladder (Tenfold-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 239 | Year Guess (Time Clocker-style)      | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 240 | One-Star Landmarks (One Star-style)  | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 240 | One-Star Landmarks (One Star-style)  | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 241 | Fact Match (Decoydle-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 242 | Aerial Eye (Analyst Eye-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 243 | Number Line (Spanzo-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -80,3 +80,6 @@ playable in production (unregistered games are not shown in the library).
 - 2026-11-28 — **#239 Year Guess COMPLETE**: 5,367 dated Wikidata events in 13 kinds on a timeline
   compressed with age (3000 BC–2025, no year 0), tolerance growing with age, daily one-per-era with
   a recap; clue-words AI 94.5 / 500 vs 43.6 typical year. Data via QLever during a WDQS outage.
+- 2026-11-28 — **#240 One-Star Landmarks COMPLETE**: 137 famous places, each with an original
+  three-line one-star review in English and Spanish; distance / direction hints, a map, five
+  guesses; review-reader AI 364.5 / 500 vs 350.3 triangulator.

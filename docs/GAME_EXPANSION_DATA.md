@@ -74,6 +74,12 @@ its license in `docs/asset-licenses.md`.
   descriptions with digits or centuries are dropped; discoveries exclude astronomy, places and
   elements known since antiquity.
 
+## Landmarks (`src/games/one-star-landmarks/`, #240)
+
+- Wikidata (CC0) via QLever, 2026-11-28: names, coordinates, sitelinks and English descriptions of
+  exactly the 137 reviewed places (`tools/fetch-landmarks.ts`). Countries and all review text are
+  written for the game.
+
 ## Candidate sources for upcoming games (not yet downloaded)
 
 Each will be checked for license, CORS (not needed: data is prepackaged) and reliability before

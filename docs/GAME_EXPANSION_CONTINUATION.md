@@ -7,8 +7,8 @@ Read `docs/GAME_EXPANSION_PLAN.md` first, then this file.
 1. **Completed**: #231 Graph Forecast (`graph-forecast`). Commit: `feat(games): complete #231
 Graph Forecast`.
 2. **Tests passing**: see `docs/GAME_EXPANSION_TESTS.md` (baseline + #231 + full verify).
-3. **Current unfinished game**: none in progress. #231–#239 are COMPLETE; next is **#240 One-Star Landmarks**.
-4. **Remaining**: #240–#264 (25 games), all TODO in `src/data/roadmap.ts` and unregistered.
+3. **Current unfinished game**: none in progress. #231–#240 are COMPLETE; next is **#241 Fact Match**.
+4. **Remaining**: #241–#264 (24 games), all TODO in `src/data/roadmap.ts` and unregistered.
 5. **Known defects**: none open for #231. Build prints an `INEFFECTIVE_DYNAMIC_IMPORT` notice for
    `wdi.json` (the AI adapter imports it statically, the game dynamically); the data still ships in
    its own lazy chunk and never in the main bundle (checked).
@@ -20,9 +20,8 @@ Graph Forecast`.
 
 ## Next steps
 
-1. #240 One-Star Landmarks: identify places from grumpy (original) reviews. Reviews must be
-   written for the game (never copied); landmarks and facts from Wikidata (via QLever if WDQS is
-   down: `sparql(query, QLEVER)` in `tools/wikidata.ts`).
+1. #241 Fact Match (Decoydle-style): match numbers to facts and eliminate decoys. Research the
+   original first; reuse the verified banks (#233/#234 questions, #239 events, World Bank stats).
 2. Continue in catalog order. Graph games #236, #243, #244, #245 reuse `shared/stats` (#244 and
    #245 must have their own distinct mechanics — see the plan).
 3. Board games (#247+) each need a dedicated rules engine with exhaustive rule tests, a real AI

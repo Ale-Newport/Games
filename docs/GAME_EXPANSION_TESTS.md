@@ -221,7 +221,30 @@ overlapped the stars; the e2e spec expected +10 past the 2025 end of the timelin
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,585 unit tests** (566 files), build and
 **832 Playwright tests** (desktop + mobile) — all passed, exit code 0, no retries.
 
+## #240 One-Star Landmarks
+
+| Suite                                        | Result                                                 |
+| -------------------------------------------- | ------------------------------------------------------ |
+| `tests/engine.test.ts` (incl. AI contract)   | 21 passed                                              |
+| `tests/ui.test.tsx` (jsdom)                  | 2 passed                                               |
+| `tests/e2e/games/one-star-landmarks.spec.ts` | 4 passed (2 tests × desktop/mobile)                    |
+| `npm run evaluate` (200 sessions, seed 7)    | Review reader 364.5 · Triangulator 350.3 · Random 15.0 |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport): the Parthenon after a wrong
+“Coliseo” (1,051 km east, 95 % close, second line, Europe map; found on guess 2 for 75), resume
+after a reload, Christ the Redeemer typed and tapped on a phone (100). Defects found and fixed:
+review facts corrected before release (the Statue of Liberty's torch is lit — it is the access
+that closed; the Sagrada Família has more than nine towers; Disney did not draw the mouse
+himself; Uyuni is just under 4,000 m; El Calafate is named after a shrub); the Gateway Arch review
+used a word of its name; the map test needed to wait for the lazily loaded shapes; the closeness
+label was unreadable over the green bar; the reveal had no card around it.
+
 ## Full gate after #239 (2026-11-28)
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,610 unit tests** (568 files), build and
 **836 Playwright tests** (desktop + mobile) — all passed, exit code 0.
+
+## Full gate after #240 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,633 unit tests** (570 files), build and
+**840 Playwright tests** (desktop + mobile) — all passed, exit code 0.
