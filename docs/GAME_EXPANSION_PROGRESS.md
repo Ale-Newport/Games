@@ -31,7 +31,7 @@ playable in production (unregistered games are not shown in the library).
 | 246 | Equation Guess (Nerdle-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 247 | Hex Isles (Catan-style)              | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 248 | World Conquest (Risk-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 249 | Land Baron (Monopoly-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 249 | Land Baron (Monopoly-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 250 | Tile Realm (Carcassonne-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 251 | Fading Empires (Small World-style)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 252 | Global Front (Axis & Allies-style)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -116,3 +116,8 @@ playable in production (unregistered games are not shown in the library).
   hex-grid world (six landmasses, 36 territories, sea lanes), classic dice battles, card sets and
   knock-outs; the marshal AI uses exact battle odds and wins 67 of 120 from one seat against two
   generals.
+
+- 2026-11-28 — **#249 Land Baron COMPLETE**: 2–5 player property trading on an original 36-space
+  harbour town (own districts, prices, rent formula, Luck and Council decks), auctions, even
+  building with a limited bank, mortgages, trades, debts and bankruptcy, timed games; the baron AI
+  values spaces by landing frequency and wins 42 of 60 from one seat against two speculators.

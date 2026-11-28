@@ -38,5 +38,6 @@ map layout or faction design of a commercial game is used; board games get origi
 | #246 | Tiles, keypad, preview, sounds            | `src/games/equation-guess/`                    | CSS, hand-authored SVG, synthesized sounds                                         |
 | #247 | Island, glyphs, pieces, preview, sounds   | `src/games/hex-isles/`                         | Drawn in code (SVG from the engine geometry), generated SVG, synthesized sounds    |
 | #248 | World map, badges, cards, preview, sounds | `src/games/world-conquest/`                    | Generated in code (hex-grid map from `map.ts`), generated SVG, synthesized sounds  |
+| #249 | Board, tokens, cards, preview, sounds     | `src/games/land-baron/`                        | CSS grid and text drawn in code, generated SVG, synthesized sounds                 |
 
 Third-party data: see `docs/GAME_EXPANSION_DATA.md`.

@@ -252,6 +252,7 @@ import { manifest as gapGraph } from './gap-graph/manifest';
 import { manifest as equationGuess } from './equation-guess/manifest';
 import { manifest as hexIsles } from './hex-isles/manifest';
 import { manifest as worldConquest } from './world-conquest/manifest';
+import { manifest as landBaron } from './land-baron/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -502,6 +503,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: equationGuess, load: () => import('./equation-guess/index') },
   { manifest: hexIsles, load: () => import('./hex-isles/index') },
   { manifest: worldConquest, load: () => import('./world-conquest/index') },
+  { manifest: landBaron, load: () => import('./land-baron/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

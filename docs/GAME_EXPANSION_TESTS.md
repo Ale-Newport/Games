@@ -432,3 +432,25 @@ overflowing the panel (now short chips with defenders); the map too small to tap
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,836 unit tests**, build and **872 Playwright
 tests** (desktop + mobile) — all passed, exit code 0.
+
+## #249 Land Baron
+
+| Suite                                      | Result                                                                           |
+| ------------------------------------------ | -------------------------------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 27 passed                                                                        |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed (a whole timed 3-player game through the table; auction, trade, resume) |
+| `tests/e2e/games/land-baron.spec.ts`       | 4 passed (2 tests × desktop/mobile)                                              |
+| Self-play, seats rotated (untimed)         | Baron 42 / 60 vs two speculators; speculator 10 / 10 vs random                   |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport) against barons: a roll onto
+Twine Street, the auction (opening bid, raises against two computers, passing), several turns,
+space details with the mortgage button, a trade (East Ferry + ¤50 for Barrel Steps) accepted by
+Gold, offers from the computer refused. Defects found and fixed: the currency sign missing from
+the pixel font (money now in the body font); “de Tú” in auction prompts and “Tú compró” in the
+log (you-forms for every line); the trade cash limited to steps of 10 (now a number field);
+“1 properties”.
+
+## Full gate after #249 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,865 unit tests**, build and **876 Playwright
+tests** (desktop + mobile) — all passed, exit code 0.
