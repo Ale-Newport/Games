@@ -41,5 +41,6 @@ map layout or faction design of a commercial game is used; board games get origi
 | #249 | Board, tokens, cards, preview, sounds     | `src/games/land-baron/`                        | CSS grid and text drawn in code, generated SVG, synthesized sounds                     |
 | #250 | Tiles, wardens, preview, sounds           | `src/games/tile-realm/`                        | Drawn in code (SVG from the tile features), hand-authored SVG, synthesized sounds      |
 | #251 | Valley map, badges, preview, sounds       | `src/games/fading-empires/`                    | Generated in code (hex-grid valley from `world.ts`), generated SVG, synthesized sounds |
+| #252 | World map, stacks, preview, sounds        | `src/games/global-front/`                      | Generated in code (hex-grid world from `world.ts`), generated SVG, synthesized sounds  |
 
 Third-party data: see `docs/GAME_EXPANSION_DATA.md`.

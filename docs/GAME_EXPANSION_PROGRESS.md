@@ -34,7 +34,7 @@ playable in production (unregistered games are not shown in the library).
 | 249 | Land Baron (Monopoly-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 250 | Tile Realm (Carcassonne-style)       | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 251 | Fading Empires (Small World-style)   | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 252 | Global Front (Axis & Allies-style)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 252 | Global Front (Axis & Allies-style)   | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 253 | Star Council (Twilight Imperium)     | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 254 | Planet Shapers (Terraforming Mars)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 255 | Farmstead (Agricola-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -131,3 +131,8 @@ playable in production (unregistered games are not shown in the library).
   26-region valley with ten peoples and twelve traits of our own, a row of pairings, the
   reinforcement die, redeploy, decline and coins per region; the warlord AI wins 64 of 90 from one
   seat against two raiders.
+
+- 2026-11-28 — **#252 Global Front COMPLETE**: grand strategy for 1–2 players on the invented world
+  of Meridian (four powers in two alliances, 26 territories, 7 seas): buying, land / air / sea
+  moves and transports, dice battles with retreat, capture, placing, income, victory cities; the
+  general AI (battle simulation) wins 27 of 30 against the colonel.

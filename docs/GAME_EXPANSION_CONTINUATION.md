@@ -7,8 +7,8 @@ Read `docs/GAME_EXPANSION_PLAN.md` first, then this file.
 1. **Completed**: #231 Graph Forecast (`graph-forecast`). Commit: `feat(games): complete #231
 Graph Forecast`.
 2. **Tests passing**: see `docs/GAME_EXPANSION_TESTS.md` (baseline + #231 + full verify).
-3. **Current unfinished game**: none in progress. #231–#251 are COMPLETE; next is **#252 Global Front**.
-4. **Remaining**: #252–#264 (13 games), all TODO in `src/data/roadmap.ts` and unregistered.
+3. **Current unfinished game**: none in progress. #231–#252 are COMPLETE; next is **#253 Star Council**.
+4. **Remaining**: #253–#264 (12 games), all TODO in `src/data/roadmap.ts` and unregistered.
 5. **Known defects**: none open for #231. Build prints an `INEFFECTIVE_DYNAMIC_IMPORT` notice for
    `wdi.json` (the AI adapter imports it statically, the game dynamically); the data still ships in
    its own lazy chunk and never in the main bundle (checked).
@@ -20,9 +20,9 @@ Graph Forecast`.
 
 ## Next steps
 
-1. #252 Global Front (Axis & Allies-style): an original world-war-style grand strategy with our
-   own factions and map: production (economy), unit types with attack/defence values, land, sea
-   and air movement, dice combat; rules engine with exhaustive tests and a real AI.
+1. #253 Star Council (Twilight Imperium-style): an original galactic 4X with politics and
+   objectives — own factions, a hex galaxy, resources/influence, fleets, a council with votes,
+   public objectives for victory points; rules engine with exhaustive tests and a real AI.
 2. Continue in catalog order through #264.
 3. Board games (#247–#264) each need a dedicated rules engine with exhaustive rule tests, a real AI
    (MCTS / heuristic search in a Web Worker where needed), original themes and art. Expect several

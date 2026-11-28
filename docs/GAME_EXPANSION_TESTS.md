@@ -498,3 +498,24 @@ on yellow farmland.
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,920 unit tests**, build and **884 Playwright
 tests** (desktop + mobile) — all passed, exit code 0.
+
+## #252 Global Front
+
+| Suite                                      | Result                                               |
+| ------------------------------------------ | ---------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 26 passed                                            |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed (two full rounds through the table; resume) |
+| `tests/e2e/games/global-front.spec.ts`     | 4 passed (2 tests × desktop/mobile)                  |
+| Self-play, sides alternating               | General 27 / 30 vs colonel                           |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport) with the Northern Pact against
+generals: Varn bought 16 worth of units, the computer's Kelt turn took Tarsk and sank Varn's fleet,
+Ossia bought and attacked Cape Verdan from Thornvale with two infantry and fought several rounds
+(dice and hits shown, retreat offered). Defects found and fixed: a transport could leave water held
+by enemy warships (now refused, with a test); during tuning the general's capital guard made it
+weaker than the colonel (dropped after measurement).
+
+## Full gate after #252
+
+`E2E_PORT=4391 npm run verify` — lint, typecheck, 594 unit test files / 4,948 tests, build, 888
+Playwright tests (desktop + mobile): all passed.

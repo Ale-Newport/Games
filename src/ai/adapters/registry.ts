@@ -281,6 +281,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'land-baron': () => import('../../games/land-baron/ai-adapter').then((m) => m.bundle),
   'tile-realm': () => import('../../games/tile-realm/ai-adapter').then((m) => m.bundle),
   'fading-empires': () => import('../../games/fading-empires/ai-adapter').then((m) => m.bundle),
+  'global-front': () => import('../../games/global-front/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {
