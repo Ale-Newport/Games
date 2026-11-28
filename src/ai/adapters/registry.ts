@@ -283,6 +283,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'fading-empires': () => import('../../games/fading-empires/ai-adapter').then((m) => m.bundle),
   'global-front': () => import('../../games/global-front/ai-adapter').then((m) => m.bundle),
   'star-council': () => import('../../games/star-council/ai-adapter').then((m) => m.bundle),
+  'planet-shapers': () => import('../../games/planet-shapers/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

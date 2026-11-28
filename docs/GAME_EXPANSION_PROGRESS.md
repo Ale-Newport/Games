@@ -36,7 +36,7 @@ playable in production (unregistered games are not shown in the library).
 | 251 | Fading Empires (Small World-style)   | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 252 | Global Front (Axis & Allies-style)   | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 253 | Star Council (Twilight Imperium)     | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 254 | Planet Shapers (Terraforming Mars)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 254 | Planet Shapers (Terraforming Mars)   | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 255 | Farmstead (Agricola-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 256 | Iron Fields (Scythe-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 257 | Trade League (Concordia-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -142,3 +142,9 @@ playable in production (unregistered games are not shown in the library).
   strategy cards with secondaries, command tokens, movement with carried units, space battles,
   invasion, production, technologies, public objectives, the Nexus and a council voting on twelve
   agendas. The regent AI wins 20/30 against an envoy and ~58 % as one of three.
+
+- 2026-11-28 — **#254 Planet Shapers COMPLETE**: an engine-building planet-shaping game for 1–4
+  players on the invented planet Kepra (heat, air and seas tracks, six resources with
+  production, six corporations, 57 cards, standard projects, seas / groves / settlements,
+  milestones and awards, hidden hands with a hand-off screen). The architect AI looks ahead with
+  determinized playouts and wins 15/20 against a cadet and 14/24 as one of three.

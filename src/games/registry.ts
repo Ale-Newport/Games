@@ -257,6 +257,7 @@ import { manifest as tileRealm } from './tile-realm/manifest';
 import { manifest as fadingEmpires } from './fading-empires/manifest';
 import { manifest as globalFront } from './global-front/manifest';
 import { manifest as starCouncil } from './star-council/manifest';
+import { manifest as planetShapers } from './planet-shapers/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -512,6 +513,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: fadingEmpires, load: () => import('./fading-empires/index') },
   { manifest: globalFront, load: () => import('./global-front/index') },
   { manifest: starCouncil, load: () => import('./star-council/index') },
+  { manifest: planetShapers, load: () => import('./planet-shapers/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

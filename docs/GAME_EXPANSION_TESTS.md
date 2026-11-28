@@ -552,3 +552,34 @@ Defects found and fixed:
 Playwright tests (desktop + mobile): all passed on the second run. The first run stopped at one
 old test (`rough-guess` “every answer lies on its scale”, 20 s timeout) while another application
 kept the machine at a load average of about 150; that test passes alone (23/23) and in the rerun.
+
+## #254 Planet Shapers
+
+| Suite                                      | Result                                                                                 |
+| ------------------------------------------ | -------------------------------------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 29 passed                                                                              |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed (two generations through the table; hand-off, resume)                         |
+| `tests/e2e/games/planet-shapers.spec.ts`   | 4 passed (2 tests × desktop/mobile)                                                    |
+| Self-play, seats rotating                  | Architect 15 / 20 and 18 / 20 vs cadet; 14 / 24 as one of three; 7 / 16 as one of four |
+
+Manual play (dev server, Spanish; desktop 1280 px, then 375 px):
+
+- I chose Meridian Union and bought three cards (9 credits).
+- I played Frost Algae, then the Settlement standard project. The legal spaces were highlighted
+  and the settlement went on an ore space (+1 ore, +2 credit production, Meridian's 4 credits
+  back).
+- Hints played the seat to the end: research, placements, conversions, milestones and awards.
+  The game ended in generation 10 with the score breakdown shown.
+- On a phone, the hand-off screen and the corporation and card panels fit the width.
+
+Defects found and fixed:
+
+- four players needed eight corporation options from six; options are now dealt in seat order;
+- games ran to the 14-generation limit, so the tracks were shortened and TR raised;
+- the hand-off button overflowed on phones;
+- the corporation log read “Tú eligió” (now “Jugador 1 (tú) eligió”).
+
+## Full gate after #254
+
+`E2E_PORT=4391 npm run verify` — lint, typecheck, 598 unit test files / 5,022 tests, build, 896
+Playwright tests (desktop + mobile): all passed.
