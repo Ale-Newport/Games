@@ -268,7 +268,8 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'price-check': () => import('../../games/price-check/ai-adapter').then((m) => m.bundle),
   'clue-ladder': () => import('../../games/clue-ladder/ai-adapter').then((m) => m.bundle),
   'year-guess': () => import('../../games/year-guess/ai-adapter').then((m) => m.bundle),
-  'one-star-landmarks': () => import('../../games/one-star-landmarks/ai-adapter').then((m) => m.bundle),
+  'one-star-landmarks': () =>
+    import('../../games/one-star-landmarks/ai-adapter').then((m) => m.bundle),
   'fact-match': () => import('../../games/fact-match/ai-adapter').then((m) => m.bundle),
   'aerial-eye': () => import('../../games/aerial-eye/ai-adapter').then((m) => m.bundle),
   'number-line': () => import('../../games/number-line/ai-adapter').then((m) => m.bundle),
@@ -276,6 +277,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'gap-graph': () => import('../../games/gap-graph/ai-adapter').then((m) => m.bundle),
   'equation-guess': () => import('../../games/equation-guess/ai-adapter').then((m) => m.bundle),
   'hex-isles': () => import('../../games/hex-isles/ai-adapter').then((m) => m.bundle),
+  'world-conquest': () => import('../../games/world-conquest/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

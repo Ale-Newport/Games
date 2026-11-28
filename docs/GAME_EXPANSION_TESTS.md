@@ -409,3 +409,26 @@ agents in a four-seat default (default is now three players).
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,808 unit tests**, build and **868 Playwright
 tests** (desktop + mobile) — all passed, exit code 0.
+
+## #248 World Conquest
+
+| Suite                                      | Result                                                            |
+| ------------------------------------------ | ----------------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 26 passed                                                         |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed (a whole 3-player game through the table; hotseat)       |
+| `tests/e2e/games/world-conquest.spec.ts`   | 4 passed (2 tests × desktop/mobile)                               |
+| Self-play, seats rotated                   | Marshal 67 / 120 vs two generals; 41 / 60 vs one; 18 / 50 vs four |
+| `npm run evaluate` (100 games, seed 7)     | Marshal 79–21 General · Random 0–100 General                      |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport) against generals: setup with
+“place for me”, all four reinforcements on one territory in one click, Cinder Road taken across a
+sea lane (5 4 4 against 4) with an advance of 6 chosen on the slider, Tidegate taken with “attack
+until it falls”, the card earned at the end of the turn, computer turns. Defects found and fixed:
+owner colours washed out by the landmass tones; army numbers too small; the attack-until buttons
+overflowing the panel (now short chips with defenders); the map too small to tap on phones (now
+640 px wide in a sideways-scrolling frame); the cards panel saying “Your cards” for other seats.
+
+## Full gate after #248 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,836 unit tests**, build and **872 Playwright
+tests** (desktop + mobile) — all passed, exit code 0.

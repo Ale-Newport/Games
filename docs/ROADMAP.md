@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 247 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 17
+**Complete:** 248 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 16
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -298,7 +298,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | # | Game | ID | Status | Engine | Graphics | Content | Tests | AI | Completed | Known issues |
 |---:|---|---|---|:-:|:-:|:-:|:-:|:-:|---|---|
 | 247 | Hex Isles (Catan-style) | `hex-isles` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
-| 248 | World Conquest (Risk-style) | `world-conquest` | TODO | — | — | — | — | — |  |  |
+| 248 | World Conquest (Risk-style) | `world-conquest` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 249 | Land Baron (Monopoly-style) | `land-baron` | TODO | — | — | — | — | — |  |  |
 | 250 | Tile Realm (Carcassonne-style) | `tile-realm` | TODO | — | — | — | — | — |  |  |
 | 251 | Fading Empires (Small World-style) | `fading-empires` | TODO | — | — | — | — | — |  |  |

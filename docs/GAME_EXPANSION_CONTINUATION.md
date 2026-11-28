@@ -7,8 +7,8 @@ Read `docs/GAME_EXPANSION_PLAN.md` first, then this file.
 1. **Completed**: #231 Graph Forecast (`graph-forecast`). Commit: `feat(games): complete #231
 Graph Forecast`.
 2. **Tests passing**: see `docs/GAME_EXPANSION_TESTS.md` (baseline + #231 + full verify).
-3. **Current unfinished game**: none in progress. #231–#247 are COMPLETE; next is **#248 World Conquest**.
-4. **Remaining**: #248–#264 (17 games), all TODO in `src/data/roadmap.ts` and unregistered.
+3. **Current unfinished game**: none in progress. #231–#248 are COMPLETE; next is **#249 Land Baron**.
+4. **Remaining**: #249–#264 (16 games), all TODO in `src/data/roadmap.ts` and unregistered.
 5. **Known defects**: none open for #231. Build prints an `INEFFECTIVE_DYNAMIC_IMPORT` notice for
    `wdi.json` (the AI adapter imports it statically, the game dynamically); the data still ships in
    its own lazy chunk and never in the main bundle (checked).
@@ -20,9 +20,9 @@ Graph Forecast`.
 
 ## Next steps
 
-1. #248 World Conquest (Risk-style): an original world map of territories and regions, troop
-   placement, dice combat, region bonuses and cards; rules engine with exhaustive tests and a real
-   AI. Reuse the multi-seat table patterns of #247 (`hex-isles/IslesTable.tsx`).
+1. #249 Land Baron (Monopoly-style): an original board of properties, groups, rents, building,
+   auctions, mortgages and trades with original names; rules engine with exhaustive tests and a
+   real AI. Reuse the multi-seat table patterns of #247 / #248.
 2. Continue in catalog order through #264.
 3. Board games (#247–#264) each need a dedicated rules engine with exhaustive rule tests, a real AI
    (MCTS / heuristic search in a Web Worker where needed), original themes and art. Expect several

@@ -30,7 +30,7 @@ playable in production (unregistered games are not shown in the library).
 | 245 | Gap Graph (Daily Graph-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 246 | Equation Guess (Nerdle-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 247 | Hex Isles (Catan-style)              | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 248 | World Conquest (Risk-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 248 | World Conquest (Risk-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 249 | Land Baron (Monopoly-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 250 | Tile Realm (Carcassonne-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 251 | Fading Empires (Small World-style)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -111,3 +111,8 @@ playable in production (unregistered games are not shown in the library).
   an original theme (wood, coral, salt, fish, iron; huts, towns, sea charts, the storm), random
   islands, bank / harbour / player trades, longest trail and grand fleet; strategist AI wins 64 of
   100 from one seat against three settlers.
+
+- 2026-11-28 — **#248 World Conquest COMPLETE**: 2–5 player territory conquest on an invented
+  hex-grid world (six landmasses, 36 territories, sea lanes), classic dice battles, card sets and
+  knock-outs; the marshal AI uses exact battle odds and wins 67 of 120 from one seat against two
+  generals.
