@@ -6,6 +6,7 @@ import raw from '../../shared/stats/wdi.json';
 import type { StatsData } from '../../shared/stats/stats';
 import { env, observe, cellCentre, cellOf } from '../ai-adapter';
 import {
+  chartKey,
   countriesFor,
   current,
   DAILY_ROUNDS,
@@ -151,7 +152,12 @@ describe('sessions', () => {
     for (let k = 0; k < DAILY_ROUNDS; k++) {
       s = submit(s, data, truth(data, current(s).c));
       expect(current(s).score).toBe(100);
-      if (k < DAILY_ROUNDS - 1) s = next(s, data);
+      if (k < DAILY_ROUNDS - 1) {
+        // The daily never depends on the player's history: avoiding exactly what comes next changes nothing.
+        const n = next(s, data);
+        expect(next(s, data, new Set([chartKey(current(n).c)]))).toEqual(n);
+        s = n;
+      }
     }
     expect(s.status).toBe('done');
     expect(s.total).toBe(500);

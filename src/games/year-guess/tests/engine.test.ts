@@ -175,7 +175,12 @@ describe('pools and sessions', () => {
       expect(era === 'medieval' ? 'ancient' : era).toBe(s.plan[i]);
       s = guess(s, DATA, y);
       expect(current(s).score).toBe(100);
-      if (i < DAILY_ROUNDS - 1) s = next(s, DATA);
+      if (i < DAILY_ROUNDS - 1) {
+        // The daily never depends on the player's history: avoiding exactly what comes next changes nothing.
+        const n = next(s, DATA);
+        expect(next(s, DATA, new Set([current(n).event]))).toEqual(n);
+        s = n;
+      }
     }
     expect(new Set(eras).size).toBe(5);
     expect(s.status).toBe('done');

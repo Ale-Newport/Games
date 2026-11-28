@@ -155,7 +155,8 @@ function addRound(s: Session, d: readonly PlaceRow[], avoid: ReadonlySet<number>
   }
   const cat = rng.pick(cats);
   const ids = pool(d, s.difficulty, cat);
-  const used = new Set([...avoid, ...s.rounds.map((r) => r.target)]);
+  // The daily is the same for everyone: a player's history never changes it.
+  const used = new Set([...(s.mode === 'daily' ? [] : avoid), ...s.rounds.map((r) => r.target)]);
   const fresh = ids.filter((i) => !used.has(i));
   const target = rng.pick(fresh.length ? fresh : ids);
   const others = rng.shuffle(ids.filter((i) => i !== target)).slice(0, OPTIONS - 1);

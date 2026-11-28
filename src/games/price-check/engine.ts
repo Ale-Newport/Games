@@ -189,7 +189,8 @@ const dailySeed = (day: number) => (Math.imul(day + 61, 2246822519) ^ 0x5e11_ca7
 
 function addRound(s: Session, d: PriceData, avoid: ReadonlySet<number>): Session {
   const rng = new Rng(s.rng);
-  const used = new Set([...avoid, ...s.rounds.map((r) => r.item)]);
+  // The daily is the same for everyone: a player's history never changes it.
+  const used = new Set([...(s.mode === 'daily' ? [] : avoid), ...s.rounds.map((r) => r.item)]);
   let ids = pool(d, s.difficulty, s.topic);
   if (!ids.length) ids = pool(d, 'hard', s.topic);
   const fresh = ids.filter((i) => !used.has(i));

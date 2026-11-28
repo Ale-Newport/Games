@@ -239,7 +239,11 @@ const dailySeed = (day: number) => (Math.imul(day + 53, 2654435761) ^ 0x3a7c_11f
 
 function addRound(s: Session, data: StatsData, avoid: ReadonlySet<string>): Session {
   const rng = new Rng(s.rng);
-  const used = new Set([...avoid, ...s.rounds.map((r) => chartKey(r.c))]);
+  // The daily is the same for everyone: a player's history never changes it.
+  const used = new Set([
+    ...(s.mode === 'daily' ? [] : avoid),
+    ...s.rounds.map((r) => chartKey(r.c)),
+  ]);
   const lastPair = s.rounds.length ? s.rounds[s.rounds.length - 1]!.c.pair : -1;
   let c = pickChart(data, rng, s.difficulty, used);
   for (let k = 0; k < 10 && c.pair === lastPair; k++) c = pickChart(data, rng, s.difficulty, used);

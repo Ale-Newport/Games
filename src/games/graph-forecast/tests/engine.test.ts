@@ -279,7 +279,10 @@ describe('sessions', () => {
       expect(current(s).score).toBe(100);
       if (k < DAILY_ROUNDS - 1) {
         expect(s.status).toBe('playing');
-        s = next(s, data);
+        // The daily never depends on the player's history: avoiding exactly what comes next changes nothing.
+        const n = next(s, data);
+        expect(next(s, data, new Set([current(n).c.s]))).toEqual(n);
+        s = n;
       }
     }
     expect(series.size).toBe(DAILY_ROUNDS);

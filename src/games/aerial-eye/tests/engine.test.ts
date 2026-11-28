@@ -94,7 +94,12 @@ describe('rounds and sessions', () => {
     for (let i = 0; i < DAILY_ROUNDS; i++) {
       kinds.add(DATA[current(s).target]![1]);
       s = pick(s, current(s).target);
-      if (i < DAILY_ROUNDS - 1) s = next(s, DATA);
+      if (i < DAILY_ROUNDS - 1) {
+        // The daily never depends on the player's history: avoiding exactly what comes next changes nothing.
+        const n = next(s, DATA);
+        expect(next(s, DATA, new Set([current(n).target]))).toEqual(n);
+        s = n;
+      }
     }
     expect(kinds.size).toBe(5);
     expect(s.total).toBe(500);

@@ -147,7 +147,12 @@ describe('sessions', () => {
       ids.add(current(s).target);
       s = play(s, 1);
       expect(current(s).score).toBe(100);
-      if (k < DAILY_ROUNDS - 1) s = next(s, data);
+      if (k < DAILY_ROUNDS - 1) {
+        // The daily never depends on the player's history: avoiding exactly what comes next changes nothing.
+        const n = next(s, data);
+        expect(next(s, data, new Set([current(n).target]))).toEqual(n);
+        s = n;
+      }
     }
     expect(ids.size).toBe(5);
     expect(s.status).toBe('done');

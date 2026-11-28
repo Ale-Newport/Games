@@ -325,7 +325,8 @@ const dailySeed = (day: number) => (Math.imul(day + 29, 2654435769) ^ 0x2b0c_9a1
 
 function addRound(s: Session, bank: Bank, avoid: ReadonlySet<QKey>): Session {
   const rng = new Rng(s.rng);
-  const used = new Set([...avoid, ...s.rounds.map((r) => r.key)]);
+  // The daily is the same for everyone: a player's history never changes it.
+  const used = new Set([...(s.mode === 'daily' ? [] : avoid), ...s.rounds.map((r) => r.key)]);
   const last = s.rounds.length ? question(bank, s.rounds[s.rounds.length - 1]!.key).kind : null;
   const key = pickQuestion(bank, rng, s.difficulty, s.topic, used, last);
   const rounds = [...s.rounds, { key, range: null, score: null }];

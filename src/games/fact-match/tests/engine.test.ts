@@ -145,7 +145,12 @@ describe('sessions', () => {
       topics.push(familyTopic(BANK, b.family, b.facts[0]!));
       s = { ...s, boards: [...s.boards.slice(0, -1), solve(b)] };
       s = checkIn(s);
-      if (i < DAILY_BOARDS - 1) s = next(s, BANK);
+      if (i < DAILY_BOARDS - 1) {
+        // The daily never depends on the player's history: avoiding exactly what comes next changes nothing.
+        const n = next(s, BANK);
+        expect(next(s, BANK, new Set([current(n).family]))).toEqual(n);
+        s = n;
+      }
     }
     expect(topics[0]).toBe('prices');
     expect(['science', 'distances']).toContain(topics[1]);

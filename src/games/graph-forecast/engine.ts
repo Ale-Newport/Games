@@ -242,7 +242,8 @@ export function completeDraft(c: Challenge, draft: Draft, lastVisible: number): 
 
 function addRound(s: Session, data: StatsData, avoid: ReadonlySet<number>): Session {
   const rng = new Rng(s.rng);
-  const used = new Set([...avoid, ...s.rounds.map((r) => r.c.s)]);
+  // The daily is the same for everyone: a player's history never changes it.
+  const used = new Set([...(s.mode === 'daily' ? [] : avoid), ...s.rounds.map((r) => r.c.s)]);
   const c = pickChallenge(data, rng, s.difficulty, s.topic, used);
   const rounds = [...s.rounds, { c, pred: null, score: null, cpuMethod: null, cpu: null }];
   return { ...s, rng: rng.state, rounds: rounds.slice(-KEEP_ROUNDS) };

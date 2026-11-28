@@ -316,7 +316,8 @@ const dailySeed = (day: number) => (Math.imul(day + 7, 2246822519) ^ 0x51ce_5e75
 function addRound(s: Session, data: SizeData, avoid: ReadonlySet<number>): Session {
   const rng = new Rng(s.rng);
   // In a session, never repeat an object or a family twice in a row.
-  const used = new Set([...avoid, ...s.rounds.map((r) => r.target)]);
+  // The daily is the same for everyone: a player's history never changes it.
+  const used = new Set([...(s.mode === 'daily' ? [] : avoid), ...s.rounds.map((r) => r.target)]);
   const lastFamily = s.rounds.length
     ? data.objects[s.rounds[s.rounds.length - 1]!.target]![1]
     : null;

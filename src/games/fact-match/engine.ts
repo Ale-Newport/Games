@@ -211,7 +211,8 @@ const DAILY_TOPICS: Exclude<Topic, 'all'>[][] = [['prices'], ['science', 'distan
 function addBoard(s: Session, bank: Bank, avoid: ReadonlySet<Family>): Session {
   const rng = new Rng(s.rng);
   const fams = families(bank, s.difficulty);
-  const recent = new Set([...avoid, ...s.boards.map((b) => b.family)]);
+  // The daily is the same for everyone: a player's history never changes it.
+  const recent = new Set([...(s.mode === 'daily' ? [] : avoid), ...s.boards.map((b) => b.family)]);
   const wanted = s.mode === 'daily' ? DAILY_TOPICS[s.boards.length % DAILY_TOPICS.length]! : null;
   let ids = [...fams.keys()].filter((f) => {
     const t = familyTopic(bank, f, fams.get(f)![0]!);

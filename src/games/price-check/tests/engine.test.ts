@@ -109,7 +109,12 @@ describe('sessions', () => {
     for (let k = 0; k < DAILY_ROUNDS; k++) {
       ids.add(current(s).item);
       s = guess(s, DATA, itemAt(DATA, current(s).item).price);
-      if (k < DAILY_ROUNDS - 1) s = next(s, DATA);
+      if (k < DAILY_ROUNDS - 1) {
+        // The daily never depends on the player's history: avoiding exactly what comes next changes nothing.
+        const n = next(s, DATA);
+        expect(next(s, DATA, new Set([current(n).item]))).toEqual(n);
+        s = n;
+      }
     }
     expect(ids.size).toBe(6);
     expect(s.total).toBe(600);

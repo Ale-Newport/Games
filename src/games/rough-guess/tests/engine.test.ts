@@ -161,7 +161,12 @@ describe('scoring and sessions', () => {
       keys.add(current(s).key);
       s = play(s, 2);
       expect(current(s).score).toBeGreaterThanOrEqual(85);
-      if (k < DAILY_ROUNDS - 1) s = next(s, BANK);
+      if (k < DAILY_ROUNDS - 1) {
+        // The daily never depends on the player's history: avoiding exactly what comes next changes nothing.
+        const n = next(s, BANK);
+        expect(next(s, BANK, new Set([current(n).key]))).toEqual(n);
+        s = n;
+      }
     }
     expect(keys.size).toBe(10);
     expect(s.status).toBe('done');

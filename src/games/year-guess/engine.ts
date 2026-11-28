@@ -203,7 +203,8 @@ const dailySeed = (day: number) => (Math.imul(day + 83, 2654435761) ^ 0x7ea2_9e5
 
 function addRound(s: Session, d: EventData, avoid: ReadonlySet<number>): Session {
   const rng = new Rng(s.rng);
-  const used = new Set([...avoid, ...s.rounds.map((r) => r.event)]);
+  // The daily is the same for everyone: a player's history never changes it.
+  const used = new Set([...(s.mode === 'daily' ? [] : avoid), ...s.rounds.map((r) => r.event)]);
   let ids: number[];
   if (s.mode === 'daily') {
     const eras = new Set<Era>(
