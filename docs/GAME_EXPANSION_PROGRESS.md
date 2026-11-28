@@ -24,7 +24,7 @@ playable in production (unregistered games are not shown in the library).
 | 239 | Year Guess (Time Clocker-style)      | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 240 | One-Star Landmarks (One Star-style)  | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 241 | Fact Match (Decoydle-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 242 | Aerial Eye (Analyst Eye-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 242 | Aerial Eye (Analyst Eye-style)       | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 243 | Number Line (Spanzo-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 244 | Trend Draw (Trendle-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 245 | Gap Graph (Daily Graph-style)        | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -86,3 +86,6 @@ playable in production (unregistered games are not shown in the library).
 - 2026-11-28 — **#241 Fact Match COMPLETE**: boards of five same-family facts and seven true
   numbers (two decoys from the family), three checks with locks and crosses; expert AI 190.4 /
   300 vs 124.4 ranker.
+- 2026-11-28 — **#242 Aerial Eye COMPLETE**: 365 freely licensed aerial photographs (Wikidata
+  aerial views, Commons, credited) in 11 kinds; zoom-out on misses, six options; colour-reader
+  AI 161.9 / 500 vs 140.5 random.

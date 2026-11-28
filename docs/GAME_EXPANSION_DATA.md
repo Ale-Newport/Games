@@ -80,6 +80,15 @@ its license in `docs/asset-licenses.md`.
   exactly the 137 reviewed places (`tools/fetch-landmarks.ts`). Countries and all review text are
   written for the game.
 
+## Aerial photographs (`src/games/aerial-eye/`, #242)
+
+- Wikidata (CC0) via QLever, 2026-11-28: items with an aerial view (P8592), 25+ sitelinks, class,
+  coordinates, country, labels (`tools/fetch-aerial.ts`); categories and filters in
+  `tools/generate-aerial.ts`.
+- Wikimedia Commons: 365 photographs, each under its own free licence, fetched as thumbnails with
+  author / licence / file page (`tools/fetch-aerial-images.ts`), shrunk to 380 px; credits in
+  `credits.json`, shown on every reveal. Colour features measured with Pillow at build time.
+
 ## Candidate sources for upcoming games (not yet downloaded)
 
 Each will be checked for license, CORS (not needed: data is prepackaged) and reliability before

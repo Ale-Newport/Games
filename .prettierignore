@@ -14,3 +14,5 @@ src/games/price-check/items.json
 src/games/price-check/credits.json
 src/games/year-guess/events.json
 src/games/one-star-landmarks/landmarks.json
+src/games/aerial-eye/places.json
+src/games/aerial-eye/credits.json

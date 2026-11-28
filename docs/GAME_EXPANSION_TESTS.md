@@ -264,7 +264,30 @@ higher step budget for random play (≈ 30 moves per check).
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,633 unit tests** (570 files), build and
 **840 Playwright tests** (desktop + mobile) — all passed, exit code 0.
 
+## #242 Aerial Eye
+
+| Suite                                      | Result                                                |
+| ------------------------------------------ | ----------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 19 passed                                             |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed                                              |
+| `tests/e2e/games/aerial-eye.spec.ts`       | 4 passed (2 tests × desktop/mobile)                   |
+| `npm run evaluate` (300 sessions, seed 7)  | Colour reader 161.9 · Best known 141.4 · Random 140.5 |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport): a circuit photo — Nürburgring
+struck, the photo zoomed out to ×1.5, Fuji Speedway by key 6 for 50, with the map of Japan and the
+GSI photo credit; a river round on the phone. A contact sheet of 16 random photos was checked by
+eye (all real aerial views). Defects found and fixed: ×2.6 was too blurry on 380 px photos (now
+×2.2 / ×1.5 / 1); after a miss the struck button was disabled and focus fell to the page, so keys
+1–6 stopped (the board now keeps focus — `autoFocus` does nothing on a `div`, so an effect focuses
+it); the first image set was 16 MB (re-encoded to 12 MB); cities had been filed as historic sites
+and the Colosseum as a stadium (category priority fixed).
+
 ## Full gate after #241 (2026-11-28)
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,656 unit tests**, build and **844 Playwright
+tests** (desktop + mobile) — all passed, exit code 0.
+
+## Full gate after #242 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,677 unit tests**, build and **848 Playwright
 tests** (desktop + mobile) — all passed, exit code 0.

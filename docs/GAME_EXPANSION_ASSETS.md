@@ -30,5 +30,7 @@ map layout or faction design of a commercial game is used; board games get origi
 | #240 | 137 reviews (EN + ES)                  | `src/games/one-star-landmarks/reviews.ts`      | Written for this game (original text)                                              |
 | #240 | Review card, map pins, preview, sounds | `src/games/one-star-landmarks/`                | CSS, drawn in code (SVG), Natural Earth shapes (public domain), synthesized sounds |
 | #241 | Board, tray, preview, sounds           | `src/games/fact-match/`                        | CSS, hand-authored SVG, synthesized sounds                                         |
+| #242 | 365 aerial photographs                 | `src/games/aerial-eye/images/`, `credits.json` | Wikimedia Commons (free licences), credited per photo                              |
+| #242 | Photo frame, options, preview, sounds  | `src/games/aerial-eye/`                        | CSS, hand-authored SVG, synthesized sounds                                         |
 
 Third-party data: see `docs/GAME_EXPANSION_DATA.md`.
