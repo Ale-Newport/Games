@@ -1,0 +1,6 @@
+/* Trend Draw reuses Graph Forecast's styles; only the world key is its own. */
+.keyWorld::before {
+  border-top-style: dotted !important;
+  border-top-width: 4px !important;
+  border-color: #7fd9ff !important;
+}

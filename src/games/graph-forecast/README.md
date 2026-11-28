@@ -133,3 +133,8 @@ after reload, keyboard endless run resumed after reload; desktop and Pixel 7).
 - Data is World Bank only (no Our World in Data long-run series yet), so windows start in 1960 at
   the earliest.
 - The daily challenge depends on the shipped dataset; regenerating the data changes old days.
+
+## Shared with #244 Trend Draw
+
+`ForecastChart` takes an optional `guide` (a dashed-dotted reference curve, e.g. the world's) and
+marks a single visible point with a dot; both are off for this game, whose behaviour is unchanged.

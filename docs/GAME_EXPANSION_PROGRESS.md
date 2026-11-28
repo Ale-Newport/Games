@@ -26,7 +26,7 @@ playable in production (unregistered games are not shown in the library).
 | 241 | Fact Match (Decoydle-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 242 | Aerial Eye (Analyst Eye-style)       | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 243 | Number Line (Spanzo-style)           | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 244 | Trend Draw (Trendle-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 244 | Trend Draw (Trendle-style)           | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 245 | Gap Graph (Daily Graph-style)        | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 246 | Equation Guess (Nerdle-style)        | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 247 | Hex Isles (Catan-style)              | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -95,3 +95,6 @@ playable in production (unregistered games are not shown in the library).
 - 2026-11-28 — **#243 Number Line COMPLETE**: World Bank indicators on a number line (log or
   linear, 2nd–98th percentile span) with three references; place three mystery countries;
   similar-countries AI 304.5 / 500 vs 209.6 middle reference.
+- 2026-11-28 — **#244 Trend Draw COMPLETE**: draw a country's whole World Bank series from its first
+  point, with the world's curve as a guide (reusing #231's chart); similar-countries AI 168.3 / 500
+  vs 152.8 follow-the-world, 110.4 flat.

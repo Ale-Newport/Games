@@ -316,3 +316,30 @@ out of order; the daily history bug above.
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,677 unit tests**, build and **848 Playwright
 tests** (desktop + mobile) — all passed, exit code 0.
+
+## Full gate after #243 and the daily fix (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,701 unit tests**, build and **852 Playwright
+tests** (desktop + mobile) — all passed, exit code 0.
+
+## #244 Trend Draw
+
+| Suite                                      | Result                                                            |
+| ------------------------------------------ | ----------------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 21 passed                                                         |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed                                                          |
+| `tests/e2e/games/trend-draw.spec.ts`       | 4 passed (2 tests × desktop/mobile); #231's spec re-run: 4 passed |
+| `npm run evaluate` (200 sessions, seed 7)  | Similar countries 168.3 · World 152.8 · Random 151.3 · Flat 110.4 |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport): Malaysia's GDP per person
+2006–2025 drawn freehand — 66 points against the similar-countries curve's 33 — and France's imports
+on the phone. Defects found and fixed: world totals (Italy's population against the world's)
+squashed the country's line against the axis (totals left out, and charts where the country sits in
+the bottom 15 % rejected); the single visible point was a zero-length line, then a dot clipped in
+half (now a full marker outside the clip); the world guide looked like the computer's dashed line
+(now dotted, light blue); the hint said “dashed”.
+
+## Full gate after #244 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,724 unit tests**, build and **856 Playwright
+tests** (desktop + mobile) — all passed, exit code 0.

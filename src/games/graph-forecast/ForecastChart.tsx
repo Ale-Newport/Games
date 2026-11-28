@@ -39,6 +39,8 @@ interface Props {
   t: Translator;
   onSubmit: () => void;
   onStroke?: () => void;
+  /** An optional reference curve over the whole window (e.g. the world's), drawn dashed. */
+  guide?: (number | null)[];
 }
 
 const path = (pts: [number, number][]) =>
@@ -56,6 +58,7 @@ export function ForecastChart({
   t,
   onSubmit,
   onStroke,
+  guide,
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
@@ -258,6 +261,17 @@ export function ForecastChart({
           </clipPath>
         </defs>
         <rect x={M.left} y={M.top} width={PW} height={PH} className={styles.plotBg} />
+        {guide && (
+          <path
+            d={path(
+              guide.flatMap((v, i) =>
+                v === null ? [] : [[x(i), y(clampTo(c, v))] as [number, number]],
+              ),
+            )}
+            className={styles.lineGuide}
+            data-testid="gf-guide"
+          />
+        )}
         {ticks.map((v) => (
           <g key={v}>
             <line x1={M.left} x2={M.left + PW} y1={y(v)} y2={y(v)} className={styles.grid} />
@@ -352,6 +366,16 @@ export function ForecastChart({
             />
           )}
         </g>
+        {visiblePts.length === 1 && (
+          // A single visible point (Trend Draw) is a line of length zero: mark it.
+          <circle
+            cx={visiblePts[0]![0]}
+            cy={visiblePts[0]![1]}
+            r={6}
+            className={styles.startDot}
+            data-testid="gf-start"
+          />
+        )}
       </svg>
       {!revealed && (
         <p className={styles.cursorReadout} aria-live="polite" data-focus-only="true">

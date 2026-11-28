@@ -272,6 +272,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'fact-match': () => import('../../games/fact-match/ai-adapter').then((m) => m.bundle),
   'aerial-eye': () => import('../../games/aerial-eye/ai-adapter').then((m) => m.bundle),
   'number-line': () => import('../../games/number-line/ai-adapter').then((m) => m.bundle),
+  'trend-draw': () => import('../../games/trend-draw/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

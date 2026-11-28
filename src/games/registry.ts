@@ -247,6 +247,7 @@ import { manifest as oneStarLandmarks } from './one-star-landmarks/manifest';
 import { manifest as factMatch } from './fact-match/manifest';
 import { manifest as aerialEye } from './aerial-eye/manifest';
 import { manifest as numberLine } from './number-line/manifest';
+import { manifest as trendDraw } from './trend-draw/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -492,6 +493,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: factMatch, load: () => import('./fact-match/index') },
   { manifest: aerialEye, load: () => import('./aerial-eye/index') },
   { manifest: numberLine, load: () => import('./number-line/index') },
+  { manifest: trendDraw, load: () => import('./trend-draw/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

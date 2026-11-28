@@ -613,3 +613,19 @@
     height: 24px;
   }
 }
+
+/* A reference curve (used by Trend Draw for the world's line). */
+.lineGuide {
+  fill: none;
+  stroke: #7fd9ff;
+  stroke-width: 2.5;
+  stroke-dasharray: 1 5;
+  stroke-linecap: round;
+  opacity: 0.8;
+}
+
+.startDot {
+  fill: #eef0ff;
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
