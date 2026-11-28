@@ -256,6 +256,7 @@ import { manifest as landBaron } from './land-baron/manifest';
 import { manifest as tileRealm } from './tile-realm/manifest';
 import { manifest as fadingEmpires } from './fading-empires/manifest';
 import { manifest as globalFront } from './global-front/manifest';
+import { manifest as starCouncil } from './star-council/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -510,6 +511,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: tileRealm, load: () => import('./tile-realm/index') },
   { manifest: fadingEmpires, load: () => import('./fading-empires/index') },
   { manifest: globalFront, load: () => import('./global-front/index') },
+  { manifest: starCouncil, load: () => import('./star-council/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

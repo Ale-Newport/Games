@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 252 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 12
+**Complete:** 253 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 11
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -303,7 +303,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 250 | Tile Realm (Carcassonne-style) | `tile-realm` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 251 | Fading Empires (Small World-style) | `fading-empires` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 252 | Global Front (Axis & Allies-style) | `global-front` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
-| 253 | Star Council (Twilight Imperium-style) | `star-council` | TODO | — | — | — | — | — |  |  |
+| 253 | Star Council (Twilight Imperium-style) | `star-council` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 254 | Planet Shapers (Terraforming Mars-style) | `planet-shapers` | TODO | — | — | — | — | — |  |  |
 | 255 | Farmstead (Agricola-style) | `farmstead` | TODO | — | — | — | — | — |  |  |
 | 256 | Iron Fields (Scythe-style) | `iron-fields` | TODO | — | — | — | — | — |  |  |

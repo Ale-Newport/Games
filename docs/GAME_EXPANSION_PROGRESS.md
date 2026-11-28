@@ -35,7 +35,7 @@ playable in production (unregistered games are not shown in the library).
 | 250 | Tile Realm (Carcassonne-style)       | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 251 | Fading Empires (Small World-style)   | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 252 | Global Front (Axis & Allies-style)   | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 253 | Star Council (Twilight Imperium)     | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 253 | Star Council (Twilight Imperium)     | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 254 | Planet Shapers (Terraforming Mars)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 255 | Farmstead (Agricola-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 256 | Iron Fields (Scythe-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -136,3 +136,9 @@ playable in production (unregistered games are not shown in the library).
   of Meridian (four powers in two alliances, 26 territories, 7 seas): buying, land / air / sea
   moves and transports, dice battles with retreat, capture, placing, income, victory cities; the
   general AI (battle simulation) wins 27 of 30 against the colonel.
+
+- 2026-11-28 — **#253 Star Council COMPLETE**: a galactic 4X for 1–4 players on a hex galaxy of
+  37 systems dealt per seed (six invented factions, 24 planet systems, nebulae, rifts, fields):
+  strategy cards with secondaries, command tokens, movement with carried units, space battles,
+  invasion, production, technologies, public objectives, the Nexus and a council voting on twelve
+  agendas. The regent AI wins 20/30 against an envoy and ~58 % as one of three.

@@ -519,3 +519,36 @@ weaker than the colonel (dropped after measurement).
 
 `E2E_PORT=4391 npm run verify` — lint, typecheck, 594 unit test files / 4,948 tests, build, 888
 Playwright tests (desktop + mobile): all passed.
+
+## #253 Star Council
+
+| Suite                                      | Result                                                                            |
+| ------------------------------------------ | --------------------------------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 41 passed                                                                         |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed (two rounds of three players through the table; council, resume)         |
+| `tests/e2e/games/star-council.spec.ts`     | 4 passed (2 tests × desktop/mobile)                                               |
+| Self-play, seats rotating                  | Regent 20 / 30 vs envoy; 17–18.5 / 30 as one of three; 9.5–10 / 20 as one of four |
+
+Manual play (dev server, Spanish; desktop 1280 px, then 375 px):
+
+- In the first round of a three-player game as the Oru Syndicate against regents, I took Command,
+  activated Maret, brought the carrier with a fighter and three infantry, and claimed Maret.
+- I played Command (5 tokens, speaker), activated Orumar and built a carrier, two infantry and a
+  fighter for 6 (the planet paid 5, a trade good the rest), and was offered Commerce's secondary.
+- From there hints played the seat to the end of round 8: status phases, scoring and the end
+  screen. A regent won with 11 points; the hinted seat had 9.
+
+Defects found and fixed:
+
+- moving a carrier could pull a negative number of fighters along (caught by random games);
+- the build panel showed “move 0” for infantry and fighters;
+- Spanish log lines read “Tú cogió” (now “Sindicato Oru (tú) cogió”);
+- a renamed helper crashed the log;
+- on phones a forced tap on a hex missed it (the e2e now scrolls it into view).
+
+## Full gate after #253
+
+`E2E_PORT=4391 npm run verify` — lint, typecheck, 596 unit test files / 4,991 tests, build, 892
+Playwright tests (desktop + mobile): all passed on the second run. The first run stopped at one
+old test (`rough-guess` “every answer lies on its scale”, 20 s timeout) while another application
+kept the machine at a load average of about 150; that test passes alone (23/23) and in the rerun.

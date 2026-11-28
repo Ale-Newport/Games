@@ -1,0 +1,417 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: var(--space-2);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.prompt {
+  margin: 0;
+  font-weight: 700;
+}
+
+.round {
+  flex: none;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-align: right;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(300px, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.mapWrap {
+  position: sticky;
+  top: var(--space-2);
+  min-width: 0;
+}
+
+.map {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  background: radial-gradient(circle at 50% 50%, #1d2346 0%, #0c0f22 70%);
+  touch-action: manipulation;
+}
+
+.sys {
+  cursor: pointer;
+  outline: none;
+}
+
+.hex {
+  fill: #151a36;
+  stroke: #3a4278;
+  stroke-width: 1.5;
+}
+
+.sys[data-kind='home'] .hex {
+  fill: color-mix(in srgb, var(--pc) 22%, #151a36);
+  stroke: var(--pc);
+  stroke-width: 3;
+}
+
+.sys[data-kind='nexus'] .hex {
+  fill: #2c2a1a;
+  stroke: #e0c25a;
+  stroke-width: 3;
+}
+
+.sys[data-kind='nebula'] .hex {
+  fill: #2b1d40;
+}
+
+.sys[data-kind='field'] .hex {
+  fill: #23232a;
+  cursor: default;
+}
+
+.sys[data-target='true'] .hex {
+  stroke: #8fb3ff;
+  stroke-dasharray: 5 3;
+}
+
+.sys:hover .hex,
+.sys:focus-visible .hex {
+  filter: brightness(1.35);
+}
+
+.sys[data-selected='true'] .hex {
+  stroke: #ffffff;
+  stroke-width: 3.5;
+  stroke-dasharray: none;
+}
+
+.sys[data-active='true'] .hex {
+  stroke: #ffd23f;
+  stroke-width: 4;
+  stroke-dasharray: none;
+}
+
+.nebula circle {
+  fill: #a26bff;
+  opacity: 0.25;
+}
+
+.rift circle {
+  fill: none;
+  stroke: #ff7aa8;
+  stroke-width: 2;
+  opacity: 0.7;
+}
+
+.rocks polygon {
+  fill: #6d6a66;
+  stroke: #2c2b29;
+  stroke-width: 1;
+}
+
+.halo {
+  fill: none;
+  stroke: #e0c25a;
+  stroke-width: 2;
+  stroke-dasharray: 3 3;
+}
+
+.planet circle {
+  fill: #5d6a8a;
+  stroke: #d8def0;
+  stroke-width: 2;
+}
+
+.planet[data-owner='-2'] circle {
+  fill: #e0c25a;
+  stroke: #fff6d0;
+}
+
+.planet:not([data-owner='-1']):not([data-owner='-2']) circle {
+  fill: var(--pc);
+  stroke: #ffffff;
+}
+
+.planet[data-ready='false'] circle {
+  opacity: 0.55;
+}
+
+.planet text,
+.fleet text {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  fill: #ffffff;
+  paint-order: stroke;
+  stroke: #0c0f22;
+  stroke-width: 2.5px;
+}
+
+.planet .inf {
+  font-size: 10px;
+  fill: #ffd23f;
+}
+
+.dock {
+  fill: #ffd23f;
+  stroke: #0c0f22;
+  stroke-width: 1.2;
+}
+
+.fleet rect {
+  fill: var(--pc);
+  stroke: #ffffff;
+  stroke-width: 1.5;
+}
+
+.token {
+  fill: var(--pc);
+  stroke: #ffffff;
+  stroke-width: 1.2;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.panel h3 {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.small {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+.list {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--surface-2);
+}
+
+.list li[data-hint='true'] {
+  border-color: #ffd23f;
+}
+
+.list li[data-done='true'] {
+  opacity: 0.6;
+}
+
+.list li > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.list small {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+.list em {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  font-style: normal;
+}
+
+.btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+.players {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.player {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  align-items: center;
+  column-gap: 8px;
+  padding: 4px 8px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--surface-2);
+}
+
+.player small {
+  grid-column: 2 / 4;
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+.player[data-current='true'] {
+  border-color: var(--pc);
+  box-shadow: 0 0 0 1px var(--pc);
+}
+
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--pc);
+}
+
+.vp {
+  font-weight: 800;
+}
+
+.dice {
+  margin: 0;
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.log {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-xs);
+}
+
+.log li {
+  color: var(--text-muted);
+}
+
+.log li:first-child {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.record {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin: 0;
+}
+
+.record div {
+  padding: 6px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  text-align: center;
+}
+
+.record dt {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+.record dd {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 0.85rem;
+}
+
+.factions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 6px;
+}
+
+.factions button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 6px 8px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--text-xs);
+  text-align: left;
+  cursor: pointer;
+}
+
+.factions button[aria-pressed='true'] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.factions strong {
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mapWrap {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .mapWrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    overscroll-behavior-x: contain;
+  }
+
+  .map {
+    width: 600px;
+    max-width: none;
+  }
+}
