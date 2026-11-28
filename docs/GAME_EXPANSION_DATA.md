@@ -5,7 +5,7 @@ its license in `docs/asset-licenses.md`.
 
 | Dataset                                | Games                              | Source / license                    | Build                                                                                                                                        |
 | -------------------------------------- | ---------------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| World Development Indicators, 44 codes | #231 (and planned #236, #243–#245) | World Bank Open Data API, CC BY 4.0 | `npx tsx tools/fetch-worldbank.ts` → `.cache/worldbank/` (gitignored), `npx tsx tools/generate-stats.ts` → `src/games/shared/stats/wdi.json` |
+| World Development Indicators, 44 codes | #231, #236 (and planned #243–#245) | World Bank Open Data API, CC BY 4.0 | `npx tsx tools/fetch-worldbank.ts` → `.cache/worldbank/` (gitignored), `npx tsx tools/generate-stats.ts` → `src/games/shared/stats/wdi.json` |
 
 ## World Development Indicators (`src/games/shared/stats/`)
 

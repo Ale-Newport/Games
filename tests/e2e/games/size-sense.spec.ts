@@ -10,9 +10,19 @@ import {
 /** Drags the mystery object's handle by `dy` pixels (vertical) or `dx` (horizontal) with real pointer moves. */
 async function dragHandle(page: Page, amount: number) {
   const svg = page.getByTestId('ss-stage').locator('svg').first();
-  await svg.scrollIntoViewIfNeeded();
+  // Centre the stage (aligned to the top, the sticky site header would cover the handle) and let
+  // the auto-zoom settle so the handle stops moving before it is grabbed.
+  await svg.evaluate((el) => el.scrollIntoView({ block: 'center' }));
+  const handleLoc = page.getByTestId('ss-stage').locator('circle').last();
+  let handle = (await handleLoc.boundingBox())!;
+  for (let k = 0; k < 20; k++) {
+    await page.waitForTimeout(100);
+    const now = (await handleLoc.boundingBox())!;
+    const still = Math.abs(now.x - handle.x) < 0.5 && Math.abs(now.y - handle.y) < 0.5;
+    handle = now;
+    if (still) break;
+  }
   const axis = await svg.getAttribute('data-axis');
-  const handle = (await page.getByTestId('ss-stage').locator('circle').last().boundingBox())!;
   const x = handle.x + handle.width / 2;
   const y = handle.y + handle.height / 2;
   await page.mouse.move(x, y);

@@ -239,6 +239,7 @@ import { manifest as sizeSense } from './size-sense/manifest';
 import { manifest as orderOfMagnitude } from './order-of-magnitude/manifest';
 import { manifest as roughGuess } from './rough-guess/manifest';
 import { manifest as closestCall } from './closest-call/manifest';
+import { manifest as plotThePoint } from './plot-the-point/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -476,6 +477,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: orderOfMagnitude, load: () => import('./order-of-magnitude/index') },
   { manifest: roughGuess, load: () => import('./rough-guess/index') },
   { manifest: closestCall, load: () => import('./closest-call/index') },
+  { manifest: plotThePoint, load: () => import('./plot-the-point/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

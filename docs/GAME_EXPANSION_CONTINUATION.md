@@ -7,8 +7,8 @@ Read `docs/GAME_EXPANSION_PLAN.md` first, then this file.
 1. **Completed**: #231 Graph Forecast (`graph-forecast`). Commit: `feat(games): complete #231
 Graph Forecast`.
 2. **Tests passing**: see `docs/GAME_EXPANSION_TESTS.md` (baseline + #231 + full verify).
-3. **Current unfinished game**: none in progress. Next is **#236 Plot the Point** (Factual-style).
-4. **Remaining**: #236–#264 (29 games), all TODO in `src/data/roadmap.ts` and unregistered.
+3. **Current unfinished game**: none in progress. Next is **#237 Price Check** (Asking Price-style).
+4. **Remaining**: #237–#264 (28 games), all TODO in `src/data/roadmap.ts` and unregistered.
 5. **Known defects**: none open for #231. Build prints an `INEFFECTIVE_DYNAMIC_IMPORT` notice for
    `wdi.json` (the AI adapter imports it statically, the game dynamically); the data still ships in
    its own lazy chunk and never in the main bundle (checked).
@@ -20,9 +20,13 @@ Graph Forecast`.
 
 ## Next steps
 
-1. #236 Plot the Point: players place data points on a real chart (e.g. a country's dot on a
-   scatter of two World Bank indicators, or a value on a time axis). Reuse `shared/stats`
-   (`wdi.json` has 44 indicators × 229 entities); research Factual's mechanic first.
+1. #237 Price Check: guess real prices of products and second-hand items with descriptions,
+   images and verified prices, from properly licensed data. Hard part: a licensed, verifiable
+   price source with images (no scraping of shops). Options to evaluate: the World Bank Pink
+   Sheet (already shipped, commodities), official consumer-price statistics (e.g. Eurostat /
+   national statistics offices' average prices, open licences), Wikidata items with a price
+   property (P2284) plus Wikimedia Commons images. Draw original illustrations if no licensed
+   images fit.
 2. Continue in catalog order. Graph games #236, #243, #244, #245 reuse `shared/stats` (#244 and
    #245 must have their own distinct mechanics — see the plan).
 3. Board games (#247+) each need a dedicated rules engine with exhaustive rule tests, a real AI

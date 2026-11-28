@@ -133,3 +133,26 @@ shown with 3 figures, hiding 1 % differences (now 4); the evaluation tool needs 
 
 `npm run verify`: lint ✔, typecheck ✔, Vitest 560 files / 4,513 tests ✔, build ✔, Playwright
 **820 passed**.
+
+## #236 Plot the Point
+
+| Suite                                      | Result                                                 |
+| ------------------------------------------ | ------------------------------------------------------ |
+| `tests/engine.test.ts` (incl. AI contract) | 21 passed                                              |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed                                               |
+| `tests/e2e/games/plot-the-point.spec.ts`   | 4 passed (2 tests × desktop/mobile)                    |
+| `npm run evaluate` (100 sessions, seed 7)  | Similar countries 263.1 · Centroid 134.5 · Random 51.3 |
+
+Manual play (dev server): a daily chart placed by clicks (fertility × infant mortality, log y)
+and the reveal; the 375×812 layout. Defects fixed: NaN scores from zero values on log axes
+(filtered in `countriesFor`); the x-axis title and landmark labels overflowed on phones (title
+removed — the card names both axes — and right-side labels flipped left); the e2e tap landed
+off the chart after a chip click scrolled the page (re-measured).
+
+## Full gate after #236 (2026-11-28)
+
+`npm run verify`: lint ✔, typecheck ✔, Vitest 562 files / 4,536 tests ✔, build ✔, Playwright
+823/824 — Size Sense's mobile pointer test missed once under load: the test scrolled the stage to
+the top edge, under the sticky site header, so the drag could hit the header. The test now centres
+the stage and waits for the auto-zoom to settle (12/12 over three parallel repeats). Full
+Playwright re-run: **824 passed**.

@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 235 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 29
+**Complete:** 236 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 28
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -281,7 +281,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 233 | Order of Magnitude (Magnitudle-style) | `order-of-magnitude` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-27 |  |
 | 234 | Rough Guess (Roughly-style) | `rough-guess` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-27 |  |
 | 235 | Closest Call (Bullseye-style) | `closest-call` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
-| 236 | Plot the Point (Factual-style) | `plot-the-point` | TODO | — | — | — | — | — |  |  |
+| 236 | Plot the Point (Factual-style) | `plot-the-point` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 237 | Price Check (Asking Price-style) | `price-check` | TODO | — | — | — | — | — |  |  |
 | 238 | Clue Ladder (Tenfold-style) | `clue-ladder` | TODO | — | — | — | — | — |  |  |
 | 239 | Year Guess (Time Clocker-style) | `year-guess` | TODO | — | — | — | — | — |  |  |
