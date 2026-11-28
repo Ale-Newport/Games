@@ -477,3 +477,24 @@ tests** (desktop + mobile) — all passed, exit code 0. Two earlier runs that da
 stage only on timeouts of older, heavy tests (Renju agents, Rough Guess questions, Theme Strands
 contract playouts) while the machine's load average was 90–140 from other processes (iCloud
 file provider); those files passed on their own, and the full gate passed once the load dropped.
+
+## #251 Fading Empires
+
+| Suite                                      | Result                                                  |
+| ------------------------------------------ | ------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 26 passed                                               |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed (a whole game through the table; resume)       |
+| `tests/e2e/games/fading-empires.spec.ts`   | 4 passed (2 tests × desktop/mobile)                     |
+| Self-play, seats rotated                   | Warlord 66.5/80 vs raider; 64/90 vs two; ~half vs three |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport) against warlords: a pairing
+picked past one skipped (a coin left on it), Stonewater taken on the edge for 1 thanks to
+Seafaring, three more regions, bands redeployed (one, then all at once), the turn ended for 4
+coins, computer turns. Defects found and fixed: Spanish pairing names in the wrong order
+(“Ricos Excavadores”; now “Excavadores · Ricos”), the empire line wrapping, owners’ colours lost
+on yellow farmland.
+
+## Full gate after #251 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,920 unit tests**, build and **884 Playwright
+tests** (desktop + mobile) — all passed, exit code 0.

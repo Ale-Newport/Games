@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 250 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 14
+**Complete:** 251 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 13
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -301,7 +301,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 248 | World Conquest (Risk-style) | `world-conquest` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 249 | Land Baron (Monopoly-style) | `land-baron` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 250 | Tile Realm (Carcassonne-style) | `tile-realm` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
-| 251 | Fading Empires (Small World-style) | `fading-empires` | TODO | — | — | — | — | — |  |  |
+| 251 | Fading Empires (Small World-style) | `fading-empires` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 252 | Global Front (Axis & Allies-style) | `global-front` | TODO | — | — | — | — | — |  |  |
 | 253 | Star Council (Twilight Imperium-style) | `star-council` | TODO | — | — | — | — | — |  |  |
 | 254 | Planet Shapers (Terraforming Mars-style) | `planet-shapers` | TODO | — | — | — | — | — |  |  |

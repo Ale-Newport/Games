@@ -33,7 +33,7 @@ playable in production (unregistered games are not shown in the library).
 | 248 | World Conquest (Risk-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 249 | Land Baron (Monopoly-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 250 | Tile Realm (Carcassonne-style)       | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 251 | Fading Empires (Small World-style)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 251 | Fading Empires (Small World-style)   | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 252 | Global Front (Axis & Allies-style)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 253 | Star Council (Twilight Imperium)     | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 254 | Planet Shapers (Terraforming Mars)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -126,3 +126,8 @@ playable in production (unregistered games are not shown in the library).
   (22 types, side segments for exact meadows), wardens on towns, roads, meadows and shrines,
   majority scoring and end scoring; the master AI wins 25 of 30 from one seat against two
   apprentices.
+
+- 2026-11-28 — **#251 Fading Empires COMPLETE**: 2–5 player conquest and decline on an invented
+  26-region valley with ten peoples and twelve traits of our own, a row of pairings, the
+  reinforcement die, redeploy, decline and coins per region; the warlord AI wins 64 of 90 from one
+  seat against two raiders.

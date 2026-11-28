@@ -254,6 +254,7 @@ import { manifest as hexIsles } from './hex-isles/manifest';
 import { manifest as worldConquest } from './world-conquest/manifest';
 import { manifest as landBaron } from './land-baron/manifest';
 import { manifest as tileRealm } from './tile-realm/manifest';
+import { manifest as fadingEmpires } from './fading-empires/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -506,6 +507,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: worldConquest, load: () => import('./world-conquest/index') },
   { manifest: landBaron, load: () => import('./land-baron/index') },
   { manifest: tileRealm, load: () => import('./tile-realm/index') },
+  { manifest: fadingEmpires, load: () => import('./fading-empires/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
