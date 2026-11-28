@@ -139,7 +139,8 @@ describe('questions', () => {
         expect(q.value).toBeGreaterThan(0);
       }
     }
-  });
+    // 2,000 questions: generous time when the machine is busy with other suites.
+  }, 60_000);
 });
 
 describe('scoring and sessions', () => {

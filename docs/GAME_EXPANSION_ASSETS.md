@@ -45,5 +45,6 @@ map layout or faction design of a commercial game is used; board games get origi
 | #253 | Galaxy map, planets, fleets, preview, sounds | `src/games/star-council/`                      | Generated in code (hex galaxy dealt by `engine.ts`), generated SVG, synthesized sounds                        |
 | #254 | Planet map, tiles, tracks, preview, sounds   | `src/games/planet-shapers/`                    | Generated in code (hex map from `world.ts`), card text generated from data, generated SVG, synthesized sounds |
 | #255 | Farmyard, action spaces, preview, sounds     | `src/games/farmstead/`                         | Generated in code (CSS grid farmyard), generated SVG, synthesized sounds                                      |
+| #256 | Land map, units, preview, sounds             | `src/games/iron-fields/`                       | Generated in code (hex land dealt by `engine.ts`), generated SVG, synthesized sounds                          |
 
 Third-party data: see `docs/GAME_EXPANSION_DATA.md`.

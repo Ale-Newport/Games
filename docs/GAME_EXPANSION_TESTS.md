@@ -613,3 +613,46 @@ Defects found and fixed:
 
 `E2E_PORT=4391 npm run verify` — lint, typecheck, 600 unit test files / 5,050 tests, build, 900
 Playwright tests (desktop + mobile): all passed.
+
+## #256 Iron Fields
+
+| Suite                                      | Result                                                        |
+| ------------------------------------------ | ------------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 24 passed                                                     |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed (six turns through the table; map moves, resume)     |
+| `tests/e2e/games/iron-fields.spec.ts`      | 4 passed (2 tests × desktop/mobile)                           |
+| Self-play, seats rotating                  | Marshal 13 / 16 vs recruit (2 players); 4 / 6 as one of three |
+
+Manual play (dev server, Spanish; desktop 1280 px, then 375 px):
+
+- As Thornwood against recruits, I chose Move, clicked my home to select the character, then a
+  highlighted farm, and it moved there.
+- Hints played the seat on to the end. Our side reached five stars at turn 21, but Highcrown won
+  the count 77 to 66 on territories and resources.
+- On a phone the land scrolls sideways.
+
+Defects found and fixed:
+
+- the choose step could have no legal section with no coins (trade and bolster now always open);
+- a fight that gave the deciding star was overwritten back into play;
+- the units were drawn too small;
+- an unused constant broke the build.
+
+Tuning:
+
+- the rules were rebalanced so stars end games: lower bottom costs, five stars, star thresholds,
+  starting resources;
+- the AI's value treated an ended game as worth less than development, so it avoided finishing
+  while ahead (fixed);
+- the marshal's look-ahead was lengthened to the end of the game.
+
+## Full gate after #256
+
+`E2E_PORT=4391 npm run verify` — lint, typecheck, 602 unit test files / 5,076 tests, build, 904
+Playwright tests (desktop + mobile): all passed on the third run.
+
+The first two runs each stopped at one old CPU-heavy test that timed out while another
+application kept the machine at a load average of 80–160. The first was `rough-guess` “every
+answer lies on its scale”, a 2,000-question loop; it now has a 60 s limit, with its checks
+unchanged. The second was `renju` “no agent ever plays a forbidden point”, which passes alone in
+3 s.

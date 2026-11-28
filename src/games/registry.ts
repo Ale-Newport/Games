@@ -259,6 +259,7 @@ import { manifest as globalFront } from './global-front/manifest';
 import { manifest as starCouncil } from './star-council/manifest';
 import { manifest as planetShapers } from './planet-shapers/manifest';
 import { manifest as farmstead } from './farmstead/manifest';
+import { manifest as ironFields } from './iron-fields/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -516,6 +517,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: starCouncil, load: () => import('./star-council/index') },
   { manifest: planetShapers, load: () => import('./planet-shapers/index') },
   { manifest: farmstead, load: () => import('./farmstead/index') },
+  { manifest: ironFields, load: () => import('./iron-fields/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 255 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 9
+**Complete:** 256 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 8
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -306,7 +306,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 253 | Star Council (Twilight Imperium-style) | `star-council` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 254 | Planet Shapers (Terraforming Mars-style) | `planet-shapers` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 255 | Farmstead (Agricola-style) | `farmstead` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
-| 256 | Iron Fields (Scythe-style) | `iron-fields` | TODO | — | — | — | — | — |  |  |
+| 256 | Iron Fields (Scythe-style) | `iron-fields` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 257 | Trade League (Concordia-style) | `trade-league` | TODO | — | — | — | — | — |  |  |
 | 258 | Ages of Nations (Through the Ages-style) | `ages-of-nations` | TODO | — | — | — | — | — |  |  |
 | 259 | Wonder Draft (7 Wonders-style) | `wonder-draft` | TODO | — | — | — | — | — |  |  |

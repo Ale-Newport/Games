@@ -38,7 +38,7 @@ playable in production (unregistered games are not shown in the library).
 | 253 | Star Council (Twilight Imperium)     | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 254 | Planet Shapers (Terraforming Mars)   | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 255 | Farmstead (Agricola-style)           | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 256 | Iron Fields (Scythe-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 256 | Iron Fields (Scythe-style)           | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 257 | Trade League (Concordia-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 258 | Ages of Nations (Through the Ages)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 259 | Wonder Draft (7 Wonders-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -154,3 +154,9 @@ playable in production (unregistered games are not shown in the library).
   rooms, stables, fields, pastures, animals, ten improvements, five harvests with feeding and
   begging, a balanced-farm scoring table). The steward AI looks three rounds ahead in
   determinized futures and wins 18/20 against a farmhand and 12/12 as one of three.
+
+- 2026-11-28 — **#256 Iron Fields COMPLETE**: an engine-building and area-control game for 1–4
+  players on a hex land dealt per seed (five factions, four boards pairing top and bottom actions,
+  workers, mechs with abilities, structures, recruits, encounters, the Foundry, fights with secret
+  power bids, stars and a popularity-tiered final count). The marshal AI plays its best sections
+  out to the end of the game and wins 13/16 against a recruit.
