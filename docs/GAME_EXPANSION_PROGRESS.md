@@ -23,7 +23,7 @@ playable in production (unregistered games are not shown in the library).
 | 238 | Clue Ladder (Tenfold-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 239 | Year Guess (Time Clocker-style)      | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 240 | One-Star Landmarks (One Star-style)  | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 241 | Fact Match (Decoydle-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 241 | Fact Match (Decoydle-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 242 | Aerial Eye (Analyst Eye-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 243 | Number Line (Spanzo-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 244 | Trend Draw (Trendle-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -83,3 +83,6 @@ playable in production (unregistered games are not shown in the library).
 - 2026-11-28 — **#240 One-Star Landmarks COMPLETE**: 137 famous places, each with an original
   three-line one-star review in English and Spanish; distance / direction hints, a map, five
   guesses; review-reader AI 364.5 / 500 vs 350.3 triangulator.
+- 2026-11-28 — **#241 Fact Match COMPLETE**: boards of five same-family facts and seven true
+  numbers (two decoys from the family), three checks with locks and crosses; expert AI 190.4 /
+  300 vs 124.4 ranker.

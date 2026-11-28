@@ -244,7 +244,27 @@ label was unreadable over the green bar; the reveal had no card around it.
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,610 unit tests** (568 files), build and
 **836 Playwright tests** (desktop + mobile) — all passed, exit code 0.
 
+## #241 Fact Match
+
+| Suite                                      | Result                                    |
+| ------------------------------------------ | ----------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 21 passed                                 |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed                                  |
+| `tests/e2e/games/fact-match.spec.ts`       | 4 passed (2 tests × desktop/mobile)       |
+| `npm run evaluate` (200 sessions, seed 7)  | Expert 190.4 · Ranker 124.4 · Random 50.9 |
+
+Manual play (dev server, Spanish, keyboard; then a 375 px viewport): a chicken-price board
+(1979–2025) — three locked on check 1, the crosses then narrowed 2023 and 2025 down to one
+number each, 72 points; the decoys were 1970 and 2014. Defects found and fixed: the board took a
+focus ring when clicked; element names showed in lower case; the contract playouts needed a
+higher step budget for random play (≈ 30 moves per check).
+
 ## Full gate after #240 (2026-11-28)
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,633 unit tests** (570 files), build and
 **840 Playwright tests** (desktop + mobile) — all passed, exit code 0.
+
+## Full gate after #241 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,656 unit tests**, build and **844 Playwright
+tests** (desktop + mobile) — all passed, exit code 0.

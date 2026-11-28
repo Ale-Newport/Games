@@ -244,6 +244,7 @@ import { manifest as priceCheck } from './price-check/manifest';
 import { manifest as clueLadder } from './clue-ladder/manifest';
 import { manifest as yearGuess } from './year-guess/manifest';
 import { manifest as oneStarLandmarks } from './one-star-landmarks/manifest';
+import { manifest as factMatch } from './fact-match/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -486,6 +487,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: clueLadder, load: () => import('./clue-ladder/index') },
   { manifest: yearGuess, load: () => import('./year-guess/index') },
   { manifest: oneStarLandmarks, load: () => import('./one-star-landmarks/index') },
+  { manifest: factMatch, load: () => import('./fact-match/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

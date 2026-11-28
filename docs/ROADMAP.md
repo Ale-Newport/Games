@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 240 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 24
+**Complete:** 241 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 23
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -286,7 +286,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 238 | Clue Ladder (Tenfold-style) | `clue-ladder` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 239 | Year Guess (Time Clocker-style) | `year-guess` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 240 | One-Star Landmarks (One Star-style) | `one-star-landmarks` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
-| 241 | Fact Match (Decoydle-style) | `fact-match` | TODO | — | — | — | — | — |  |  |
+| 241 | Fact Match (Decoydle-style) | `fact-match` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 242 | Aerial Eye (Analyst Eye-style) | `aerial-eye` | TODO | — | — | — | — | — |  |  |
 | 243 | Number Line (Spanzo-style) | `number-line` | TODO | — | — | — | — | — |  |  |
 | 244 | Trend Draw (Trendle-style) | `trend-draw` | TODO | — | — | — | — | — |  |  |
