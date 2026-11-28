@@ -7,8 +7,8 @@ Read `docs/GAME_EXPANSION_PLAN.md` first, then this file.
 1. **Completed**: #231 Graph Forecast (`graph-forecast`). Commit: `feat(games): complete #231
 Graph Forecast`.
 2. **Tests passing**: see `docs/GAME_EXPANSION_TESTS.md` (baseline + #231 + full verify).
-3. **Current unfinished game**: none in progress. Next is **#237 Price Check** (Asking Price-style).
-4. **Remaining**: #237–#264 (28 games), all TODO in `src/data/roadmap.ts` and unregistered.
+3. **Current unfinished game**: none in progress. Next is **#238 Clue Ladder** (Tenfold-style).
+4. **Remaining**: #238–#264 (27 games), all TODO in `src/data/roadmap.ts` and unregistered.
 5. **Known defects**: none open for #231. Build prints an `INEFFECTIVE_DYNAMIC_IMPORT` notice for
    `wdi.json` (the AI adapter imports it statically, the game dynamically); the data still ships in
    its own lazy chunk and never in the main bundle (checked).
@@ -20,13 +20,10 @@ Graph Forecast`.
 
 ## Next steps
 
-1. #237 Price Check: guess real prices of products and second-hand items with descriptions,
-   images and verified prices, from properly licensed data. Hard part: a licensed, verifiable
-   price source with images (no scraping of shops). Options to evaluate: the World Bank Pink
-   Sheet (already shipped, commodities), official consumer-price statistics (e.g. Eurostat /
-   national statistics offices' average prices, open licences), Wikidata items with a price
-   property (P2284) plus Wikimedia Commons images. Draw original illustrations if no licensed
-   images fit.
+1. #238 Clue Ladder: numeric guess with progressive clues (Tenfold). Research the original
+   first; must differ from #233 (feedback by orders), #234 (ranges), #235 (contest). Natural
+   fit: a quantity revealed through clues of increasing help (context facts, digit count,
+   leading digit, bounds) with fewer points per clue used; reuse the #233/#234 banks.
 2. Continue in catalog order. Graph games #236, #243, #244, #245 reuse `shared/stats` (#244 and
    #245 must have their own distinct mechanics — see the plan).
 3. Board games (#247+) each need a dedicated rules engine with exhaustive rule tests, a real AI

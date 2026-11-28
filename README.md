@@ -7,7 +7,7 @@
 <h1 align="center">Arcade AI Lab</h1>
 
 <p align="center">
-  <strong>236 fully playable browser games, from chess and go to solitaire and arcade, each built on a pure, seeded rules engine that is also a ready-made AI research environment.</strong>
+  <strong>237 fully playable browser games, from chess and go to solitaire and arcade, each built on a pure, seeded rules engine that is also a ready-made AI research environment.</strong>
 </p>
 
 <p align="center">
@@ -19,7 +19,7 @@
   <a href="https://github.com/Ale-Newport/Games/actions/workflows/codeql.yml"><img src="https://github.com/Ale-Newport/Games/actions/workflows/codeql.yml/badge.svg" alt="CodeQL" /></a>
   <a href="https://github.com/Ale-Newport/Games/releases/latest"><img src="https://img.shields.io/github/v/release/Ale-Newport/Games?color=8b5cf6" alt="Latest release" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/Ale-Newport/Games?color=22c55e" alt="MIT license" /></a>
-  <a href="docs/ROADMAP.md"><img src="https://img.shields.io/badge/games-236%2F264_complete-ff3d8b" alt="236 of 264 games complete" /></a>
+  <a href="docs/ROADMAP.md"><img src="https://img.shields.io/badge/games-237%2F264_complete-ff3d8b" alt="237 of 264 games complete" /></a>
   <img src="https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white" alt="TypeScript strict" />
   <img src="https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=black" alt="React 19" />
   <img src="https://img.shields.io/badge/Vite-8-646cff?logo=vite&logoColor=white" alt="Vite 8" />
@@ -46,7 +46,7 @@
 - **Built for AI research.** The same engine that powers the UI is exposed through one
   `GameEnvironment` interface with seeded randomness, explicit chance nodes, information-set
   observations and fixed action encodings, so you can benchmark MCTS, minimax, CFR or your own
-  reinforcement-learning agent on 236 games without writing a simulator.
+  reinforcement-learning agent on 237 games without writing a simulator.
 
 ## Features
 
@@ -104,7 +104,7 @@ Every game ships an `ai-adapter.ts` that wraps its real rules engine in the
 [`GameEnvironment` contract](docs/ai-integration.md): deterministic `reset(seed)`, legal actions,
 pure `applyAction`, per-player observations that never leak hidden information, outcomes and
 rewards, exact serialization, and optional chance distributions and tensor encodings. A shared
-contract test suite runs against all 236 adapters.
+contract test suite runs against all 237 adapters.
 
 ```ts
 import { loadAiBundle } from './src/ai/adapters/registry';

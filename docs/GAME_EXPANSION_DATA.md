@@ -55,6 +55,14 @@ its license in `docs/asset-licenses.md`.
   agreement-checked; gas densities and helium's melting point dropped as ill-defined); city
   coordinates for computed great-circle distances.
 
+## Product prices and photos (`src/games/price-check/`, #237)
+
+- Wikidata P2284 in 14 currencies (CC0), 2026-11-28; class allow-list; earliest dated price;
+  agreement and plausibility checks; an article required outside books and games. 1,149 items.
+- Wikimedia Commons thumbnails (277) via the Commons API with `extmetadata` (author, licence,
+  file page), shrunk with `sips`; credits shipped in `credits.json`.
+- No second-hand marketplace prices: no open, verifiable source exists (documented in the game).
+
 ## Candidate sources for upcoming games (not yet downloaded)
 
 Each will be checked for license, CORS (not needed: data is prepackaged) and reliability before

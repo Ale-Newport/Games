@@ -5,8 +5,8 @@ Counts (updated 2026-11-27):
 - Baseline games (verified: registered, COMPLETE, own e2e spec each): **230**
 - Requested: 36 — of which 2 already existed (#120 Word Guess = Wordle, #209 Country Shape =
   Worldle), so **34 new games** are planned (#231–#264)
-- New games completed: **6**
-- Total playable games: **236**
+- New games completed: **7**
+- Total playable games: **237**
 
 Only games that are COMPLETE by `docs/game-standards.md` count. Nothing below “done” is
 playable in production (unregistered games are not shown in the library).
@@ -19,7 +19,7 @@ playable in production (unregistered games are not shown in the library).
 | 234 | Rough Guess (Roughly-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 235 | Closest Call (Bullseye-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 236 | Plot the Point (Factual-style)       | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 237 | Price Check (Asking Price-style)     | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 237 | Price Check (Asking Price-style)     | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 238 | Clue Ladder (Tenfold-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 239 | Year Guess (Time Clocker-style)      | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 240 | One-Star Landmarks (One Star-style)  | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -71,3 +71,6 @@ playable in production (unregistered games are not shown in the library).
 - 2026-11-28 — **#236 Plot the Point COMPLETE**: real World Bank scatter charts (18 pairs, any
   year with ≥ 60 countries) with mystery countries to drag into place; similar-countries AI
   (263.1 / 500 vs 134.5 centroid).
+- 2026-11-28 — **#237 Price Check COMPLETE**: 1,149 verified dated prices (Wikidata, 14
+  currencies), 277 credited Commons photos + original illustrations, closest / don't-go-over
+  rules, today's-money context; similar-products AI 219.3 / 600.

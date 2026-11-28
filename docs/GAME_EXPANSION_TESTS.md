@@ -156,3 +156,27 @@ off the chart after a chip click scrolled the page (re-measured).
 the top edge, under the sticky site header, so the drag could hit the header. The test now centres
 the stage and waits for the auto-zoom to settle (12/12 over three parallel repeats). Full
 Playwright re-run: **824 passed**.
+
+## #237 Price Check
+
+| Suite                                      | Result                                               |
+| ------------------------------------------ | ---------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 22 passed                                            |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed                                             |
+| `tests/e2e/games/price-check.spec.ts`      | 4 passed (2 tests × desktop/mobile)                  |
+| `npm run evaluate` (200 sessions, seed 7)  | Similar products 219.3 · Typical 191.9 · Random 75.3 |
+
+Manual play (dev server): daily items with photos and illustrations, the reveal with credit and
+today's money. Defects/decisions: a self-promotional software entry appeared (fixed with the
+article requirement outside books and games); two candidate “era” agents did worse than the
+category median and were replaced by the similar-products agent; Node-only APIs in a src test
+broke the app typecheck (switched to `import.meta.glob`).
+
+## Full gate after #237 (2026-11-28)
+
+`npm run verify`: lint ✔, typecheck ✔, Vitest 564 files / 4,560 tests ✔, build ✔, Playwright
+826 passed / 2 failed — Closest Call's daily spec (desktop + mobile), a date-dependent test bug:
+the test retyped the shown answer, and today's daily has a figure shown compactly (“US$46.34B”)
+that retypes as an off-scale “46.34”, which the game correctly rejected. The test now clears the
+field and locks in the dial's value when the game shows the alert; the spec re-run passed 4/4.
+The next full gate re-runs everything.

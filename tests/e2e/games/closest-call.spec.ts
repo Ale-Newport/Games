@@ -16,10 +16,16 @@ test('Closest Call: a full daily game against three computer contestants', async
     const box = (await slider.boundingBox())!;
     await slider.click({ position: { x: box.width * (0.3 + round * 0.05), y: box.height / 2 } });
     if (round % 2) {
+      // Retype the shown answer; compact figures (“US$46.34B”) don't survive that, and the game
+      // rightly rejects the result — then clear the field and lock in the dial's value.
       const shown = (await page.getByTestId('cc-value').textContent())!;
       await page.getByTestId('cc-typed').fill(shown.replace(/[^\d.,]/g, '').replace(/,/g, ''));
     }
     await page.getByTestId('cc-submit').click();
+    if (await page.getByRole('alert').isVisible()) {
+      await page.getByTestId('cc-typed').fill('');
+      await page.getByTestId('cc-submit').click();
+    }
     await expect(page.getByTestId('cc-reveal')).toBeVisible({ timeout: 15_000 });
     await expect(page.getByTestId('cc-arrow-0')).toBeVisible();
     if (round === 2) await screenshot(page, 'closest-call-reveal');

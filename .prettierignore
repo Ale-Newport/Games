@@ -10,3 +10,5 @@ src/games/shared/stats/wdi.json
 src/games/size-sense/objects.json
 src/games/order-of-magnitude/questions.json
 src/games/rough-guess/data.json
+src/games/price-check/items.json
+src/games/price-check/credits.json
