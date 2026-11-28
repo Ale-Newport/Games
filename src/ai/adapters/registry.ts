@@ -275,6 +275,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'trend-draw': () => import('../../games/trend-draw/ai-adapter').then((m) => m.bundle),
   'gap-graph': () => import('../../games/gap-graph/ai-adapter').then((m) => m.bundle),
   'equation-guess': () => import('../../games/equation-guess/ai-adapter').then((m) => m.bundle),
+  'hex-isles': () => import('../../games/hex-isles/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

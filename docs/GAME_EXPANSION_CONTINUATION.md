@@ -7,8 +7,8 @@ Read `docs/GAME_EXPANSION_PLAN.md` first, then this file.
 1. **Completed**: #231 Graph Forecast (`graph-forecast`). Commit: `feat(games): complete #231
 Graph Forecast`.
 2. **Tests passing**: see `docs/GAME_EXPANSION_TESTS.md` (baseline + #231 + full verify).
-3. **Current unfinished game**: none in progress. #231–#246 are COMPLETE (the guessing category is done); next is **#247 Hex Isles**.
-4. **Remaining**: #247–#264 (18 games), all TODO in `src/data/roadmap.ts` and unregistered.
+3. **Current unfinished game**: none in progress. #231–#247 are COMPLETE; next is **#248 World Conquest**.
+4. **Remaining**: #248–#264 (17 games), all TODO in `src/data/roadmap.ts` and unregistered.
 5. **Known defects**: none open for #231. Build prints an `INEFFECTIVE_DYNAMIC_IMPORT` notice for
    `wdi.json` (the AI adapter imports it statically, the game dynamically); the data still ships in
    its own lazy chunk and never in the main bundle (checked).
@@ -20,9 +20,9 @@ Graph Forecast`.
 
 ## Next steps
 
-1. #247 Hex Isles (Catan-style): an original island map of hex tiles, resources, roads,
-   settlements and trading, with its own names and art; a rules engine with exhaustive rule tests
-   and a real AI opponent.
+1. #248 World Conquest (Risk-style): an original world map of territories and regions, troop
+   placement, dice combat, region bonuses and cards; rules engine with exhaustive tests and a real
+   AI. Reuse the multi-seat table patterns of #247 (`hex-isles/IslesTable.tsx`).
 2. Continue in catalog order through #264.
 3. Board games (#247–#264) each need a dedicated rules engine with exhaustive rule tests, a real AI
    (MCTS / heuristic search in a Web Worker where needed), original themes and art. Expect several

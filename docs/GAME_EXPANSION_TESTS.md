@@ -385,3 +385,27 @@ inherited tiny pixel font (now `--text-md`; the same typo fixed in Year Guess's 
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,775 unit tests**, build and **864 Playwright
 tests** (desktop + mobile) — all passed, exit code 0.
+
+## #247 Hex Isles
+
+| Suite                                      | Result                                                      |
+| ------------------------------------------ | ----------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 31 passed                                                   |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed (a whole 4-player game through the table; hotseat) |
+| `tests/e2e/games/hex-isles.spec.ts`        | 4 passed (2 tests × desktop/mobile)                         |
+| Self-play, 100 games, seats rotated        | Strategist 64 / 100 from one seat vs three settlers         |
+| `npm run evaluate` (60 games, seed 7)      | Strategist 46–14 Settler · Random 0–60 Settler              |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport) against strategists: setup by
+mouse and by keyboard (Tab to an edge, Enter), a 7 on the first roll (storm moved by clicking a hex,
+automatic steal), an offer of 1 iron for 1 coral accepted by Green, a path built, offers from the
+computer declined. Defects found and fixed: plurals (“1 cartas”); the storm cloud hid the number
+token (now replaces the terrain glyph); trade headings in the display font and resource steppers
+without names; thin edge hit areas; “ofrece a Tú” / “Tú ha rechazado” (you-forms added); a
+computer repeating an offer just refused (now asks someone else); the evaluator seating three
+agents in a four-seat default (default is now three players).
+
+## Full gate after #247 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,808 unit tests**, build and **868 Playwright
+tests** (desktop + mobile) — all passed, exit code 0.

@@ -29,7 +29,7 @@ playable in production (unregistered games are not shown in the library).
 | 244 | Trend Draw (Trendle-style)           | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 245 | Gap Graph (Daily Graph-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 246 | Equation Guess (Nerdle-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 247 | Hex Isles (Catan-style)              | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 247 | Hex Isles (Catan-style)              | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 248 | World Conquest (Risk-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 249 | Land Baron (Monopoly-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 250 | Tile Realm (Carcassonne-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -106,3 +106,8 @@ playable in production (unregistered games are not shown in the library).
 - 2026-11-28 — **#246 Equation Guess COMPLETE**: find a hidden true equation of 6 or 8 characters
   (Mini, Classic, Hard) from green / yellow / grey marks; every guess must be true; answer pools
   enumerated exhaustively (206 + 16,239). Completes the guessing category (#231–#246).
+
+- 2026-11-28 — **#247 Hex Isles COMPLETE**: 3–4 player hex-island settlement and trading game with
+  an original theme (wood, coral, salt, fish, iron; huts, towns, sea charts, the storm), random
+  islands, bank / harbour / player trades, longest trail and grand fleet; strategist AI wins 64 of
+  100 from one seat against three settlers.
