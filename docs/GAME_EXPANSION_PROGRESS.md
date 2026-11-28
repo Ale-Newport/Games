@@ -21,7 +21,7 @@ playable in production (unregistered games are not shown in the library).
 | 236 | Plot the Point (Factual-style)       | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 237 | Price Check (Asking Price-style)     | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 238 | Clue Ladder (Tenfold-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 239 | Year Guess (Time Clocker-style)      | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 239 | Year Guess (Time Clocker-style)      | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 240 | One-Star Landmarks (One Star-style)  | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 241 | Fact Match (Decoydle-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 242 | Aerial Eye (Analyst Eye-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -77,3 +77,6 @@ playable in production (unregistered games are not shown in the library).
 - 2026-11-28 — **#238 Clue Ladder COMPLETE**: five-rung ladders over the #233/#234 bank
   (related facts, digit count, leading digit, narrow window), higher/lower feedback bands and a
   keep-or-climb choice; clue-reasoner AI 263.7 / 500 vs 218.2 always-climb.
+- 2026-11-28 — **#239 Year Guess COMPLETE**: 5,367 dated Wikidata events in 13 kinds on a timeline
+  compressed with age (3000 BC–2025, no year 0), tolerance growing with age, daily one-per-era with
+  a recap; clue-words AI 94.5 / 500 vs 43.6 typical year. Data via QLever during a WDQS outage.

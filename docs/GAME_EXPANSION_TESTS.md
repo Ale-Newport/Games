@@ -197,7 +197,31 @@ that retypes as an off-scale “46.34”, which the game correctly rejected. The
 field and locks in the dial's value when the game shows the alert; the spec re-run passed 4/4.
 The next full gate re-runs everything.
 
+## #239 Year Guess
+
+| Suite                                      | Result                                            |
+| ------------------------------------------ | ------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 23 passed                                         |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed                                          |
+| `tests/e2e/games/year-guess.spec.ts`       | 4 passed (2 tests × desktop/mobile)               |
+| `npm run evaluate` (200 sessions, seed 7)  | Clue words 94.5 · Typical year 43.6 · Random 12.5 |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport): Leonardo's Portrait of a
+Musician typed as 1485 (exact), the First World War set with a tap and the −10 / −1 buttons
+(1914, exact), the Battle of the Boyne typed as 1700 (1690, 10 off → 60), resume after a reload,
+the recap timeline. Defects found and fixed: BC years were one off (the RDF export numbers years
+astronomically — now converted, with spot tests); disaster names carried their year (now removed
+from the name instead of dropping the event); Spanish names fell back to Indonesian “mul” labels;
+discoveries were mostly asteroids and galaxies, then “discovered” inhabited places; the first tick
+label was clipped; years before 1000 were bare numbers (now “AD 820” / “820 d. C.”); recap labels
+overlapped the stars; the e2e spec expected +10 past the 2025 end of the timeline.
+
 ## Full gate after #238 (2026-11-28)
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,585 unit tests** (566 files), build and
 **832 Playwright tests** (desktop + mobile) — all passed, exit code 0, no retries.
+
+## Full gate after #239 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,610 unit tests** (568 files), build and
+**836 Playwright tests** (desktop + mobile) — all passed, exit code 0.

@@ -242,6 +242,7 @@ import { manifest as closestCall } from './closest-call/manifest';
 import { manifest as plotThePoint } from './plot-the-point/manifest';
 import { manifest as priceCheck } from './price-check/manifest';
 import { manifest as clueLadder } from './clue-ladder/manifest';
+import { manifest as yearGuess } from './year-guess/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -482,6 +483,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: plotThePoint, load: () => import('./plot-the-point/index') },
   { manifest: priceCheck, load: () => import('./price-check/index') },
   { manifest: clueLadder, load: () => import('./clue-ladder/index') },
+  { manifest: yearGuess, load: () => import('./year-guess/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);

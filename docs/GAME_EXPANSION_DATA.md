@@ -63,6 +63,17 @@ its license in `docs/asset-licenses.md`.
   file page), shrunk with `sips`; credits shipped in `credits.json`.
 - No second-hand marketplace prices: no open, verifiable source exists (documented in the game).
 
+## Dated events (`src/games/year-guess/`, #239)
+
+- Wikidata (CC0), 2026-11-28, through QLever's public Wikidata endpoint (dump of 10 Aug 2026 with
+  live updates) because WDQS was in an outage, rate-limited to one query a minute
+  (`tools/fetch-years.ts --wdqs` still targets it). 13 kinds, one query each
+  (`tools/year-queries.ts`), fame thresholds by sitelinks. 5,367 events.
+- BC years arrive in the RDF export's astronomical numbering (year 0 = 1 BC) and are converted;
+  earliest year for releases and openings; conflicting dates, labels showing the year and
+  descriptions with digits or centuries are dropped; discoveries exclude astronomy, places and
+  elements known since antiquity.
+
 ## Candidate sources for upcoming games (not yet downloaded)
 
 Each will be checked for license, CORS (not needed: data is prepackaged) and reliability before
