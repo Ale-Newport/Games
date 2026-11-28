@@ -25,7 +25,7 @@ playable in production (unregistered games are not shown in the library).
 | 240 | One-Star Landmarks (One Star-style)  | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 241 | Fact Match (Decoydle-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 242 | Aerial Eye (Analyst Eye-style)       | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 243 | Number Line (Spanzo-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 243 | Number Line (Spanzo-style)           | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 244 | Trend Draw (Trendle-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 245 | Gap Graph (Daily Graph-style)        | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 246 | Equation Guess (Nerdle-style)        | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -89,3 +89,9 @@ playable in production (unregistered games are not shown in the library).
 - 2026-11-28 — **#242 Aerial Eye COMPLETE**: 365 freely licensed aerial photographs (Wikidata
   aerial views, Commons, credited) in 11 kinds; zoom-out on misses, six options; colour-reader
   AI 161.9 / 500 vs 140.5 random.
+- 2026-11-28 — **Fix across #231–#242**: the dailies took the player's history of seen items into
+  account from round 2 on, so the “same for everyone” daily could differ between players. Every
+  engine now ignores that history in daily mode; each game's daily test asserts it.
+- 2026-11-28 — **#243 Number Line COMPLETE**: World Bank indicators on a number line (log or
+  linear, 2nd–98th percentile span) with three references; place three mystery countries;
+  similar-countries AI 304.5 / 500 vs 209.6 middle reference.

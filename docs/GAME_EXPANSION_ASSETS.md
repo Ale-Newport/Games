@@ -32,5 +32,6 @@ map layout or faction design of a commercial game is used; board games get origi
 | #241 | Board, tray, preview, sounds           | `src/games/fact-match/`                        | CSS, hand-authored SVG, synthesized sounds                                         |
 | #242 | 365 aerial photographs                 | `src/games/aerial-eye/images/`, `credits.json` | Wikimedia Commons (free licences), credited per photo                              |
 | #242 | Photo frame, options, preview, sounds  | `src/games/aerial-eye/`                        | CSS, hand-authored SVG, synthesized sounds                                         |
+| #243 | Line, pins, preview, sounds            | `src/games/number-line/`                       | Drawn in code (SVG), hand-authored SVG, synthesized sounds                         |
 
 Third-party data: see `docs/GAME_EXPANSION_DATA.md`.

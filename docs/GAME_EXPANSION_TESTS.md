@@ -287,6 +287,31 @@ and the Colosseum as a stadium (category priority fixed).
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,656 unit tests**, build and **844 Playwright
 tests** (desktop + mobile) — all passed, exit code 0.
 
+## Daily-independence fix (#231–#242)
+
+Found while testing #243: each game's UI passed the player's history of seen items to `next()`,
+and the engines used it in daily mode too, so after round 1 two players' dailies could differ. All
+twelve engines now ignore the history in daily mode. Every game's daily test now asserts, at each
+step, that avoiding exactly the next round's item does not change it; reverting the fix in one
+engine makes its test fail (checked on Aerial Eye).
+
+## #243 Number Line
+
+| Suite                                      | Result                                                         |
+| ------------------------------------------ | -------------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 22 passed                                                      |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed                                                       |
+| `tests/e2e/games/number-line.spec.ts`      | 4 passed (2 tests × desktop/mobile)                            |
+| `npm run evaluate` (100 sessions, seed 7)  | Similar countries 304.5 · Middle reference 209.6 · Random 90.3 |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport): remittances 2008 (log line,
+0.01–100 %): DR Congo, Burkina Faso and Portugal placed by tap and keys, 25 points; urban
+population 2014 on the phone. Defects found and fixed: a skewed share on a linear line bunched
+every country at one end (now percentile span and log lines for skewed positive data); the true
+values hid behind pins (stars moved onto the axis); an arrow key on a focused pin also moved the
+selected pin through the board's handler (handled keys are now ignored); the references could come
+out of order; the daily history bug above.
+
 ## Full gate after #242 (2026-11-28)
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,677 unit tests**, build and **848 Playwright
