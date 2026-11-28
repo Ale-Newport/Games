@@ -454,3 +454,26 @@ log (you-forms for every line); the trade cash limited to steps of 10 (now a num
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,865 unit tests**, build and **876 Playwright
 tests** (desktop + mobile) — all passed, exit code 0.
+
+## #250 Tile Realm
+
+| Suite                                      | Result                                                      |
+| ------------------------------------------ | ----------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 25 passed                                                   |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed (a whole game through the table; keyboard, resume) |
+| `tests/e2e/games/tile-realm.spec.ts`       | 4 passed (2 tests × desktop/mobile)                         |
+| Self-play, seats rotated                   | Master 10/10 vs apprentice; 25/30 vs two; 12/20 vs three    |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport) against masters: a road tile
+placed east of the start (turned to fit), a warden on the road, ten more turns by hint and confirm
+with towns, roads and a meadow scored or claimed. Defects found and fixed: Enter on a chosen warden
+circle toggled it off instead of confirming; the board shrank to the frame (a global SVG max-width)
+and the layout overflowed on phones; wardens too small; tiles too small at the first zoom.
+
+## Full gate after #250 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,892 unit tests**, build and **880 Playwright
+tests** (desktop + mobile) — all passed, exit code 0. Two earlier runs that day failed in the unit
+stage only on timeouts of older, heavy tests (Renju agents, Rough Guess questions, Theme Strands
+contract playouts) while the machine's load average was 90–140 from other processes (iCloud
+file provider); those files passed on their own, and the full gate passed once the load dropped.

@@ -279,6 +279,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'hex-isles': () => import('../../games/hex-isles/ai-adapter').then((m) => m.bundle),
   'world-conquest': () => import('../../games/world-conquest/ai-adapter').then((m) => m.bundle),
   'land-baron': () => import('../../games/land-baron/ai-adapter').then((m) => m.bundle),
+  'tile-realm': () => import('../../games/tile-realm/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

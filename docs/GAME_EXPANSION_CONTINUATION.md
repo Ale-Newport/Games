@@ -7,8 +7,8 @@ Read `docs/GAME_EXPANSION_PLAN.md` first, then this file.
 1. **Completed**: #231 Graph Forecast (`graph-forecast`). Commit: `feat(games): complete #231
 Graph Forecast`.
 2. **Tests passing**: see `docs/GAME_EXPANSION_TESTS.md` (baseline + #231 + full verify).
-3. **Current unfinished game**: none in progress. #231–#249 are COMPLETE; next is **#250 Tile Realm**.
-4. **Remaining**: #250–#264 (15 games), all TODO in `src/data/roadmap.ts` and unregistered.
+3. **Current unfinished game**: none in progress. #231–#250 are COMPLETE; next is **#251 Fading Empires**.
+4. **Remaining**: #251–#264 (14 games), all TODO in `src/data/roadmap.ts` and unregistered.
 5. **Known defects**: none open for #231. Build prints an `INEFFECTIVE_DYNAMIC_IMPORT` notice for
    `wdi.json` (the AI adapter imports it statically, the game dynamically); the data still ships in
    its own lazy chunk and never in the main bundle (checked).
@@ -20,9 +20,9 @@ Graph Forecast`.
 
 ## Next steps
 
-1. #250 Tile Realm (Carcassonne-style): an original tile set (roads, cities, monasteries-like
-   features with our own names and art), tile placement with edge matching, followers, feature
-   completion and end scoring; rules engine with exhaustive tests and a real AI.
+1. #251 Fading Empires (Small World-style): original races and powers (our own names and
+   abilities), a region map, conquest by troop counts, declining an empire, coins per turn over a
+   fixed number of turns; rules engine with exhaustive tests and a real AI.
 2. Continue in catalog order through #264.
 3. Board games (#247–#264) each need a dedicated rules engine with exhaustive rule tests, a real AI
    (MCTS / heuristic search in a Web Worker where needed), original themes and art. Expect several

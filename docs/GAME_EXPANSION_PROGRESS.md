@@ -32,7 +32,7 @@ playable in production (unregistered games are not shown in the library).
 | 247 | Hex Isles (Catan-style)              | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 248 | World Conquest (Risk-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 249 | Land Baron (Monopoly-style)          | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 250 | Tile Realm (Carcassonne-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 250 | Tile Realm (Carcassonne-style)       | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 251 | Fading Empires (Small World-style)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 252 | Global Front (Axis & Allies-style)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 253 | Star Council (Twilight Imperium)     | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -121,3 +121,8 @@ playable in production (unregistered games are not shown in the library).
   harbour town (own districts, prices, rent formula, Luck and Council decks), auctions, even
   building with a limited bank, mortgages, trades, debts and bankruptcy, timed games; the baron AI
   values spaces by landing frequency and wins 42 of 60 from one seat against two speculators.
+
+- 2026-11-28 — **#250 Tile Realm COMPLETE**: 2–5 player tile laying with an original 69-tile set
+  (22 types, side segments for exact meadows), wardens on towns, roads, meadows and shrines,
+  majority scoring and end scoring; the master AI wins 25 of 30 from one seat against two
+  apprentices.

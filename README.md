@@ -7,7 +7,7 @@
 <h1 align="center">Arcade AI Lab</h1>
 
 <p align="center">
-  <strong>249 fully playable browser games, from chess and go to solitaire and arcade, each built on a pure, seeded rules engine that is also a ready-made AI research environment.</strong>
+  <strong>250 fully playable browser games, from chess and go to solitaire and arcade, each built on a pure, seeded rules engine that is also a ready-made AI research environment.</strong>
 </p>
 
 <p align="center">
@@ -19,7 +19,7 @@
   <a href="https://github.com/Ale-Newport/Games/actions/workflows/codeql.yml"><img src="https://github.com/Ale-Newport/Games/actions/workflows/codeql.yml/badge.svg" alt="CodeQL" /></a>
   <a href="https://github.com/Ale-Newport/Games/releases/latest"><img src="https://img.shields.io/github/v/release/Ale-Newport/Games?color=8b5cf6" alt="Latest release" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/Ale-Newport/Games?color=22c55e" alt="MIT license" /></a>
-  <a href="docs/ROADMAP.md"><img src="https://img.shields.io/badge/games-249%2F264_complete-ff3d8b" alt="249 of 264 games complete" /></a>
+  <a href="docs/ROADMAP.md"><img src="https://img.shields.io/badge/games-250%2F264_complete-ff3d8b" alt="250 of 264 games complete" /></a>
   <img src="https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white" alt="TypeScript strict" />
   <img src="https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=black" alt="React 19" />
   <img src="https://img.shields.io/badge/Vite-8-646cff?logo=vite&logoColor=white" alt="Vite 8" />
@@ -46,7 +46,7 @@
 - **Built for AI research.** The same engine that powers the UI is exposed through one
   `GameEnvironment` interface with seeded randomness, explicit chance nodes, information-set
   observations and fixed action encodings, so you can benchmark MCTS, minimax, CFR or your own
-  reinforcement-learning agent on 249 games without writing a simulator.
+  reinforcement-learning agent on 250 games without writing a simulator.
 
 ## Features
 
@@ -60,7 +60,7 @@
 | Arcade, platformers & physics             |    35 | Space Rocks, invaders, brick breaker, platformers, lunar lander, racing  |
 | Viral web, word & party games             |    30 | Daily word games, word-vector games, geography quizzes, doodle guessing  |
 | Guessing & daily challenges               |    16 | Graph forecasts, price guessing, year timelines, equation deduction      |
-| Modern strategy board games (in progress) |     3 | Hex-island settlement, territory conquest, property trading              |
+| Modern strategy board games (in progress) |     4 | Hex-island settlement, territory conquest, property trading, tile laying |
 
 - **Watch the AI play** any game (`?mode=watch`), with step-by-step explanations in the puzzle
   solvers.
@@ -105,7 +105,7 @@ Every game ships an `ai-adapter.ts` that wraps its real rules engine in the
 [`GameEnvironment` contract](docs/ai-integration.md): deterministic `reset(seed)`, legal actions,
 pure `applyAction`, per-player observations that never leak hidden information, outcomes and
 rewards, exact serialization, and optional chance distributions and tensor encodings. A shared
-contract test suite runs against all 249 adapters.
+contract test suite runs against all 250 adapters.
 
 ```ts
 import { loadAiBundle } from './src/ai/adapters/registry';
