@@ -583,3 +583,33 @@ Defects found and fixed:
 
 `E2E_PORT=4391 npm run verify` — lint, typecheck, 598 unit test files / 5,022 tests, build, 896
 Playwright tests (desktop + mobile): all passed.
+
+## #255 Farmstead
+
+| Suite                                      | Result                                                                     |
+| ------------------------------------------ | -------------------------------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 26 passed                                                                  |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed (four rounds through the table; building, resume)                 |
+| `tests/e2e/games/farmstead.spec.ts`        | 4 passed (2 tests × desktop/mobile)                                        |
+| Self-play, seats rotating                  | Steward 18 / 20 vs farmhand; 12 / 12 as one of three; 7 / 8 as one of four |
+
+Manual play (dev server, Spanish; desktop 1280 px, then 375 px):
+
+- Against stewards, I took the Forest (3 timber), then Ploughing, and ploughed the top-left
+  square by clicking it.
+- Hints played the seat on to the end of round 12: harvests, feeding, a hearth bought, animals.
+  The final breakdown was shown: a steward won 20 to 16.
+- On a phone the spaces stack two per row.
+
+Defects found and fixed:
+
+- the farm heading read “Granja de Tú”, and spaces “ocupado por Tú”;
+- the big farmyard was too large on desktop;
+- the phone header squeezed the prompt;
+- a feeding expectation in the tests was wrong (1 food + 2 raw grain is 1 short of 4), and the
+  rule was right.
+
+## Full gate after #255
+
+`E2E_PORT=4391 npm run verify` — lint, typecheck, 600 unit test files / 5,050 tests, build, 900
+Playwright tests (desktop + mobile): all passed.

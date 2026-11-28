@@ -284,6 +284,7 @@ export const AI_BUNDLES: Record<string, () => Promise<AnyBundle>> = {
   'global-front': () => import('../../games/global-front/ai-adapter').then((m) => m.bundle),
   'star-council': () => import('../../games/star-council/ai-adapter').then((m) => m.bundle),
   'planet-shapers': () => import('../../games/planet-shapers/ai-adapter').then((m) => m.bundle),
+  farmstead: () => import('../../games/farmstead/ai-adapter').then((m) => m.bundle),
 };
 
 export async function loadAiBundle(gameId: string): Promise<AnyBundle> {

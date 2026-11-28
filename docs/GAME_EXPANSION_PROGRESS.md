@@ -37,7 +37,7 @@ playable in production (unregistered games are not shown in the library).
 | 252 | Global Front (Axis & Allies-style)   | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 253 | Star Council (Twilight Imperium)     | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 254 | Planet Shapers (Terraforming Mars)   | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 255 | Farmstead (Agricola-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 255 | Farmstead (Agricola-style)           | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 256 | Iron Fields (Scythe-style)           | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 257 | Trade League (Concordia-style)       | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 258 | Ages of Nations (Through the Ages)   | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -148,3 +148,9 @@ playable in production (unregistered games are not shown in the library).
   production, six corporations, 57 cards, standard projects, seas / groves / settlements,
   milestones and awards, hidden hands with a hand-off screen). The architect AI looks ahead with
   determinized playouts and wins 15/20 against a cadet and 14/24 as one of three.
+
+- 2026-11-28 — **#255 Farmstead COMPLETE**: a worker-placement farming game for 1–4 players over
+  twelve rounds (23 action spaces in five stages, accumulating goods, a clickable 3×5 farmyard,
+  rooms, stables, fields, pastures, animals, ten improvements, five harvests with feeding and
+  begging, a balanced-farm scoring table). The steward AI looks three rounds ahead in
+  determinized futures and wins 18/20 against a farmhand and 12/12 as one of three.

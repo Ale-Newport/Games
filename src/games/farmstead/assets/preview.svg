@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+<rect width="320" height="200" fill="#9fd3e8"/>
+<rect y="110" width="320" height="90" fill="#6f9a3f"/>
+<circle cx="270" cy="38" r="18" fill="#ffd23f"/>
+<rect x="64" y="66" width="182" height="114" rx="8" fill="#5b7a3a" stroke="#e94f37" stroke-width="3"/>
+<rect x="72" y="74" width="30" height="30" rx="4" fill="#7aa04e" stroke="#3d5527" stroke-width="2"/>
+<rect x="106" y="74" width="30" height="30" rx="4" fill="#8b5a2b" stroke="#3d5527" stroke-width="2"/>
+<line x1="109" y1="81" x2="133" y2="81" stroke="#6f4521" stroke-width="2"/>
+<line x1="109" y1="89" x2="133" y2="89" stroke="#6f4521" stroke-width="2"/>
+<line x1="109" y1="97" x2="133" y2="97" stroke="#6f4521" stroke-width="2"/>
+<circle cx="121.0" cy="89.0" r="7" fill="#f1d36b"/>
+<rect x="140" y="74" width="30" height="30" rx="4" fill="#8b5a2b" stroke="#3d5527" stroke-width="2"/>
+<line x1="143" y1="81" x2="167" y2="81" stroke="#6f4521" stroke-width="2"/>
+<line x1="143" y1="89" x2="167" y2="89" stroke="#6f4521" stroke-width="2"/>
+<line x1="143" y1="97" x2="167" y2="97" stroke="#6f4521" stroke-width="2"/>
+<circle cx="155.0" cy="89.0" r="7" fill="#f1d36b"/>
+<rect x="174" y="74" width="30" height="30" rx="4" fill="#a5cf6a" stroke="#6b4b2a" stroke-width="3"/>
+<rect x="208" y="74" width="30" height="30" rx="4" fill="#a5cf6a" stroke="#6b4b2a" stroke-width="3"/>
+<rect x="72" y="108" width="30" height="30" rx="4" fill="#b07a45" stroke="#3d5527" stroke-width="2"/>
+<polygon points="75,122 87.0,110 99,122" fill="#8a3b2a"/>
+<rect x="106" y="108" width="30" height="30" rx="4" fill="#8b5a2b" stroke="#3d5527" stroke-width="2"/>
+<line x1="109" y1="115" x2="133" y2="115" stroke="#6f4521" stroke-width="2"/>
+<line x1="109" y1="123" x2="133" y2="123" stroke="#6f4521" stroke-width="2"/>
+<line x1="109" y1="131" x2="133" y2="131" stroke="#6f4521" stroke-width="2"/>
+<circle cx="121.0" cy="123.0" r="7" fill="#f1d36b"/>
+<rect x="140" y="108" width="30" height="30" rx="4" fill="#7aa04e" stroke="#3d5527" stroke-width="2"/>
+<rect x="174" y="108" width="30" height="30" rx="4" fill="#a5cf6a" stroke="#6b4b2a" stroke-width="3"/>
+<rect x="208" y="108" width="30" height="30" rx="4" fill="#7aa04e" stroke="#3d5527" stroke-width="2"/>
+<rect x="224" y="124" width="11" height="11" fill="#8a5a32" stroke="#3a2414" stroke-width="2"/>
+<rect x="72" y="142" width="30" height="30" rx="4" fill="#b07a45" stroke="#3d5527" stroke-width="2"/>
+<polygon points="75,156 87.0,144 99,156" fill="#8a3b2a"/>
+<rect x="106" y="142" width="30" height="30" rx="4" fill="#7aa04e" stroke="#3d5527" stroke-width="2"/>
+<rect x="140" y="142" width="30" height="30" rx="4" fill="#7aa04e" stroke="#3d5527" stroke-width="2"/>
+<rect x="174" y="142" width="30" height="30" rx="4" fill="#7aa04e" stroke="#3d5527" stroke-width="2"/>
+<rect x="208" y="142" width="30" height="30" rx="4" fill="#a5cf6a" stroke="#6b4b2a" stroke-width="3"/>
+<ellipse cx="178" cy="86" rx="8" ry="6" fill="#f4f0e6" stroke="#1b1b1b" stroke-width="1.2"/>
+<ellipse cx="194" cy="92" rx="8" ry="6" fill="#f4f0e6" stroke="#1b1b1b" stroke-width="1.2"/>
+<ellipse cx="246" cy="126" rx="8" ry="6" fill="#f2a6b5" stroke="#1b1b1b" stroke-width="1.2"/>
+<ellipse cx="228" cy="156" rx="8" ry="6" fill="#5a4030" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="30" cy="96" r="6" fill="#e94f37" stroke="#1b1b1b"/><rect x="25" y="102" width="10" height="12" rx="3" fill="#e94f37" stroke="#1b1b1b"/>
+<circle cx="44" cy="96" r="6" fill="#3b8ea5" stroke="#1b1b1b"/><rect x="39" y="102" width="10" height="12" rx="3" fill="#3b8ea5" stroke="#1b1b1b"/>
+<circle cx="58" cy="96" r="6" fill="#f2c14e" stroke="#1b1b1b"/><rect x="53" y="102" width="10" height="12" rx="3" fill="#f2c14e" stroke="#1b1b1b"/>
+<text x="160" y="192" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#2c3a18" letter-spacing="2">FARMSTEAD</text>
+</svg>
