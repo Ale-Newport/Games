@@ -7,8 +7,8 @@ Read `docs/GAME_EXPANSION_PLAN.md` first, then this file.
 1. **Completed**: #231 Graph Forecast (`graph-forecast`). Commit: `feat(games): complete #231
 Graph Forecast`.
 2. **Tests passing**: see `docs/GAME_EXPANSION_TESTS.md` (baseline + #231 + full verify).
-3. **Current unfinished game**: none in progress. #231–#244 are COMPLETE; next is **#245 Gap Graph**.
-4. **Remaining**: #245–#264 (20 games), all TODO in `src/data/roadmap.ts` and unregistered.
+3. **Current unfinished game**: none in progress. #231–#245 are COMPLETE; next is **#246 Equation Guess**.
+4. **Remaining**: #246–#264 (19 games), all TODO in `src/data/roadmap.ts` and unregistered.
 5. **Known defects**: none open for #231. Build prints an `INEFFECTIVE_DYNAMIC_IMPORT` notice for
    `wdi.json` (the AI adapter imports it statically, the game dynamically); the data still ships in
    its own lazy chunk and never in the main bundle (checked).
@@ -20,8 +20,9 @@ Graph Forecast`.
 
 ## Next steps
 
-1. #245 Gap Graph (Daily Graph-style): fill hidden gaps in line and bar charts — must differ from
-   #231 (continuation) and #244 (whole series): gaps in the middle, bars too. Reuse `shared/stats`.
+1. #246 Equation Guess (Nerdle-style): guess a hidden arithmetic equation in six tries with
+   positional feedback. Check the repo first: the original 230 may already include a Nerdle-like
+   game (word & math dailies) — the expansion one must differ (e.g. length/operators/modes).
 2. Continue in catalog order. Graph games #236, #243, #244, #245 reuse `shared/stats` (#244 and
    #245 must have their own distinct mechanics — see the plan).
 3. Board games (#247+) each need a dedicated rules engine with exhaustive rule tests, a real AI

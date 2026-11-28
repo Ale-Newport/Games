@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE: edit src/data/roadmap.ts and run `npm run roadmap`. -->
 
-**Complete:** 244 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 20
+**Complete:** 245 / 264 · **In progress:** 0 · **Testing:** 0 · **Blocked:** 0 · **To do:** 19
 
 Status values: `TODO`, `IN_PROGRESS`, `TESTING`, `COMPLETE`, `BLOCKED`. Part columns: ✔ done, ◐ partial, — not started.
 A game is COMPLETE only when it meets [the definition of done](game-standards.md).
@@ -290,7 +290,7 @@ A game is COMPLETE only when it meets [the definition of done](game-standards.md
 | 242 | Aerial Eye (Analyst Eye-style) | `aerial-eye` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 243 | Number Line (Spanzo-style) | `number-line` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 244 | Trend Draw (Trendle-style) | `trend-draw` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
-| 245 | Gap Graph (Daily Graph-style) | `gap-graph` | TODO | — | — | — | — | — |  |  |
+| 245 | Gap Graph (Daily Graph-style) | `gap-graph` | COMPLETE | ✔ | ✔ | ✔ | ✔ | ✔ | 2026-11-28 |  |
 | 246 | Equation Guess (Nerdle-style) | `equation-guess` | TODO | — | — | — | — | — |  |  |
 
 ## Strategy & Modern Board Games

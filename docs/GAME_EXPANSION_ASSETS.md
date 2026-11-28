@@ -34,5 +34,6 @@ map layout or faction design of a commercial game is used; board games get origi
 | #242 | Photo frame, options, preview, sounds  | `src/games/aerial-eye/`                        | CSS, hand-authored SVG, synthesized sounds                                         |
 | #243 | Line, pins, preview, sounds            | `src/games/number-line/`                       | Drawn in code (SVG), hand-authored SVG, synthesized sounds                         |
 | #244 | Preview, world guide, sounds           | `src/games/trend-draw/`                        | Hand-authored SVG, drawn in code (#231's chart), synthesized sounds                |
+| #245 | Chart, gap handles, preview, sounds    | `src/games/gap-graph/`                         | Drawn in code (SVG), hand-authored SVG, synthesized sounds                         |
 
 Third-party data: see `docs/GAME_EXPANSION_DATA.md`.

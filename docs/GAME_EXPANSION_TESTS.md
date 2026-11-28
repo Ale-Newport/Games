@@ -343,3 +343,23 @@ half (now a full marker outside the clip); the world guide looked like the compu
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4,724 unit tests**, build and **856 Playwright
 tests** (desktop + mobile) — all passed, exit code 0.
+
+## #245 Gap Graph
+
+| Suite                                      | Result                                             |
+| ------------------------------------------ | -------------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 19 passed                                          |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed                                           |
+| `tests/e2e/games/gap-graph.spec.ts`        | 4 passed (2 tests × desktop/mobile)                |
+| `npm run evaluate` (100 sessions, seed 7)  | Analyst 287.6 · Straight lines 249.0 · Random 90.3 |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport): Nepal's GDP per person
+1972–1984 with 1977, 1981 and 1983 hidden (58, 5, 3 → 22), then population bars for eight countries
+in 2020 on the phone. Defects found and fixed: long country names were cut off under rotated bar
+labels on phones (shortened there, full names in the list); the real bar hid under the guessed bar
+on the reveal (now drawn on top).
+
+## Full gate after #245 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4745 unit tests**, build and **860 Playwright
+tests** (desktop + mobile) — all passed, exit code 0.

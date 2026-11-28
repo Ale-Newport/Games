@@ -248,6 +248,7 @@ import { manifest as factMatch } from './fact-match/manifest';
 import { manifest as aerialEye } from './aerial-eye/manifest';
 import { manifest as numberLine } from './number-line/manifest';
 import { manifest as trendDraw } from './trend-draw/manifest';
+import { manifest as gapGraph } from './gap-graph/manifest';
 
 export const GAMES: readonly GameRegistration[] = [
   { manifest: ticTacToe, load: () => import('./tic-tac-toe/index') },
@@ -494,6 +495,7 @@ export const GAMES: readonly GameRegistration[] = [
   { manifest: aerialEye, load: () => import('./aerial-eye/index') },
   { manifest: numberLine, load: () => import('./number-line/index') },
   { manifest: trendDraw, load: () => import('./trend-draw/index') },
+  { manifest: gapGraph, load: () => import('./gap-graph/index') },
 ];
 
 export const MANIFESTS: readonly GameManifest[] = GAMES.map((g) => g.manifest);
