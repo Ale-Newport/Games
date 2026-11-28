@@ -363,3 +363,25 @@ on the reveal (now drawn on top).
 
 `E2E_PORT=4391 npm run verify`: lint, typecheck, **4745 unit tests**, build and **860 Playwright
 tests** (desktop + mobile) — all passed, exit code 0.
+
+## #246 Equation Guess
+
+| Suite                                      | Result                                         |
+| ------------------------------------------ | ---------------------------------------------- |
+| `tests/engine.test.ts` (incl. AI contract) | 28 passed                                      |
+| `tests/ui.test.tsx` (jsdom)                | 2 passed                                       |
+| `tests/e2e/games/equation-guess.spec.ts`   | 4 passed (2 tests × desktop/mobile)            |
+| `npm run evaluate` (100 sessions, seed 7)  | Solver 208.35 · Consistent 195.45 · Random 0.0 |
+
+Manual play (dev server, Spanish; desktop, then a 375 px viewport): the daily Mini refused
+`12+3=1` as not true, then `9+8=17` and `9×5=45` (two 5s guessed, one in the answer: only one
+coloured) led to `9×6=54` in three tries (70); the Classic board and keypad fit the phone. The e2e
+test solves the daily by reading the tile colours back from the page. Defects found and fixed: the
+random agent scored exactly 100 because its RNG mirrored the answer pick (the environment seed is
+now mixed); the results list used an undefined `--text-base` token, so equations shrank to the
+inherited tiny pixel font (now `--text-md`; the same typo fixed in Year Guess's recap headings).
+
+## Full gate after #246 (2026-11-28)
+
+`E2E_PORT=4391 npm run verify`: lint, typecheck, **4,775 unit tests**, build and **864 Playwright
+tests** (desktop + mobile) — all passed, exit code 0.

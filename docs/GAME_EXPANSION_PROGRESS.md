@@ -28,7 +28,7 @@ playable in production (unregistered games are not shown in the library).
 | 243 | Number Line (Spanzo-style)           | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 244 | Trend Draw (Trendle-style)           | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 245 | Gap Graph (Daily Graph-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
-| 246 | Equation Guess (Nerdle-style)        | —        | —      | —       | —        | —    | —     | —          | TODO     |
+| 246 | Equation Guess (Nerdle-style)        | done     | done   | done    | done     | done | done  | done       | COMPLETE |
 | 247 | Hex Isles (Catan-style)              | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 248 | World Conquest (Risk-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
 | 249 | Land Baron (Monopoly-style)          | —        | —      | —       | —        | —    | —     | —          | TODO     |
@@ -102,3 +102,7 @@ playable in production (unregistered games are not shown in the library).
 - 2026-11-28 — **#245 Gap Graph COMPLETE**: World Bank lines (three missing years, always including
   the biggest break from trend) and bars (three missing of eight countries) in turn; analyst AI
   287.6 / 500 vs 249.0 straight lines.
+
+- 2026-11-28 — **#246 Equation Guess COMPLETE**: find a hidden true equation of 6 or 8 characters
+  (Mini, Classic, Hard) from green / yellow / grey marks; every guess must be true; answer pools
+  enumerated exhaustively (206 + 16,239). Completes the guessing category (#231–#246).
